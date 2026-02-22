@@ -568,6 +568,7 @@ console.log('✅ MECULS Section 1 loaded successfully');
 })();
 
 
+
 /* ═══════════════════════════════════════════════════════════════════
    SECTION 10 JS - BLOG CAROUSEL
    ═══════════════════════════════════════════════════════════════════ */
@@ -576,25 +577,18 @@ console.log('✅ MECULS Section 1 loaded successfully');
     'use strict';
 
     const initBlogCarousel = () => {
-        const carousel = document.querySelector('.blog-carousel');
-        const prevBtn = document.querySelector('.nav-arrow.prev');
-        const nextBtn = document.querySelector('.nav-arrow.next');
+        const carousel = document.getElementById('blogCarousel');
+        const leftBtn = document.querySelector('.carousel-nav-btn.left');
+        const rightBtn = document.querySelector('.carousel-nav-btn.right');
 
-        if (!carousel || !prevBtn || !nextBtn) return;
+        if (!carousel || !leftBtn || !rightBtn) return;
 
-        const cardWidth = () => {
-            const card = carousel.querySelector('.blog-card');
-            if (!card) return 360;
-            const gap = parseInt(window.getComputedStyle(carousel).gap) || 48;
-            return card.offsetWidth + gap;
-        };
-
-        nextBtn.addEventListener('click', () => {
-            carousel.scrollBy({ left: cardWidth(), behavior: 'smooth' });
+        leftBtn.addEventListener('click', () => {
+            carousel.scrollBy({ left: -500, behavior: 'smooth' });
         });
 
-        prevBtn.addEventListener('click', () => {
-            carousel.scrollBy({ left: -cardWidth(), behavior: 'smooth' });
+        rightBtn.addEventListener('click', () => {
+            carousel.scrollBy({ left: 500, behavior: 'smooth' });
         });
 
         console.log('✅ Section 10 (Blog Carousel) initialized successfully');
