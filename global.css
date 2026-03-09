@@ -1,0 +1,439 @@
+/* ═══════════════════════════════════════════════════════════════════
+   MECULS — GLOBAL HEADER & FOOTER
+   File: global.css
+   Include this on EVERY page of the MECULS website.
+   This file controls the navigation bar and footer only.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── DESIGN TOKENS ────────────────────────────────────────────────── */
+:root {
+  --g-gold:        #d4af37;
+  --g-gold-dim:    rgba(212,175,55,0.12);
+  --g-gold-border: rgba(212,175,55,0.25);
+  --g-dark:        #000814;
+  --g-dark-2:      #00111f;
+  --g-white:       #ffffff;
+  --g-muted:       #7a8499;
+  --g-soft:        #b8c2d8;
+  --g-rule:        rgba(255,255,255,0.08);
+  --g-nav-h:       72px;
+}
+
+/* ── RESET BASICS ─────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: 'Archivo', sans-serif;
+  background: var(--g-dark);
+  color: var(--g-white);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   GLOBAL HEADER
+══════════════════════════════════════════════════════════════════ */
+.global-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 900;
+  height: var(--g-nav-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+  background: rgba(0, 8, 20, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--g-rule);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* scrolled state — added by global.js */
+.global-header.scrolled {
+  background: rgba(0, 8, 20, 0.99);
+  border-bottom-color: rgba(212,175,55,0.15);
+}
+
+/* ── Logo ── */
+.gh-logo {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+.gh-logo img {
+  height: 36px;
+  width: auto;
+  display: block;
+}
+/* If logo image missing — fallback text */
+.gh-logo-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--g-gold);
+  letter-spacing: 0.04em;
+  display: none; /* shown only if image fails */
+}
+
+/* ── Desktop Navigation ── */
+.gh-nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.gh-nav > li {
+  position: relative;
+}
+
+.gh-nav > li > a {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--g-soft);
+  text-decoration: none;
+  padding: 0.4rem 0;
+  transition: color 0.25s;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.gh-nav > li > a:hover,
+.gh-nav > li > a.active {
+  color: var(--g-gold);
+}
+
+/* dropdown arrow */
+.gh-nav > li > a .gh-arrow {
+  width: 10px; height: 10px;
+  transition: transform 0.25s;
+  opacity: 0.6;
+}
+.gh-nav > li:hover > a .gh-arrow {
+  transform: rotate(180deg);
+}
+
+/* ── Dropdown ── */
+.gh-dropdown {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 220px;
+  background: #001428;
+  border: 1px solid var(--g-gold-border);
+  border-radius: 3px;
+  padding: 0.6rem 0;
+  list-style: none;
+  margin: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%) translateY(-8px);
+  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.gh-nav > li:hover .gh-dropdown,
+.gh-nav > li:focus-within .gh-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.gh-dropdown li a {
+  display: block;
+  padding: 0.65rem 1.4rem;
+  font-size: 0.82rem;
+  color: var(--g-soft);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color 0.2s, background 0.2s;
+  border-left: 2px solid transparent;
+}
+
+.gh-dropdown li a:hover {
+  color: var(--g-gold);
+  background: var(--g-gold-dim);
+  border-left-color: var(--g-gold);
+}
+
+/* dropdown top indicator */
+.gh-dropdown::before {
+  content: '';
+  position: absolute;
+  top: -5px; left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 8px; height: 8px;
+  background: #001428;
+  border-left: 1px solid var(--g-gold-border);
+  border-top: 1px solid var(--g-gold-border);
+}
+
+/* ── CTA Button ── */
+.gh-cta {
+  padding: 0.55rem 1.4rem !important;
+  background: transparent !important;
+  border: 1px solid var(--g-gold-border) !important;
+  color: var(--g-gold) !important;
+  border-radius: 2px !important;
+  text-transform: uppercase !important;
+  font-size: 0.76rem !important;
+  letter-spacing: 0.09em !important;
+  transition: background 0.25s, border-color 0.25s !important;
+}
+.gh-cta:hover {
+  background: var(--g-gold-dim) !important;
+  border-color: var(--g-gold) !important;
+  color: var(--g-gold) !important;
+}
+
+/* ── Mobile Hamburger ── */
+.gh-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  width: 36px; height: 36px;
+}
+.gh-toggle span {
+  display: block;
+  width: 22px; height: 2px;
+  background: var(--g-soft);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+/* hamburger → X when open */
+.gh-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.gh-toggle.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.gh-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── Mobile Menu Panel ── */
+.gh-mobile-menu {
+  display: none;
+  position: fixed;
+  top: var(--g-nav-h);
+  left: 0; right: 0;
+  background: rgba(0,8,20,0.99);
+  border-bottom: 1px solid var(--g-gold-border);
+  padding: 1.5rem 5% 2rem;
+  z-index: 890;
+  max-height: calc(100vh - var(--g-nav-h));
+  overflow-y: auto;
+}
+.gh-mobile-menu.open { display: block; }
+
+.gh-mobile-nav {
+  list-style: none;
+  margin: 0; padding: 0;
+}
+.gh-mobile-nav > li {
+  border-bottom: 1px solid var(--g-rule);
+}
+.gh-mobile-nav > li > a {
+  display: block;
+  padding: 1rem 0;
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--g-soft);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.gh-mobile-nav > li > a:hover { color: var(--g-gold); }
+
+.gh-mobile-sub {
+  list-style: none;
+  margin: 0; padding: 0 0 0.8rem 1rem;
+}
+.gh-mobile-sub li a {
+  display: block;
+  padding: 0.5rem 0;
+  font-size: 0.85rem;
+  color: var(--g-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.gh-mobile-sub li a:hover { color: var(--g-gold); }
+
+.gh-mobile-cta {
+  display: block;
+  margin-top: 1.5rem;
+  padding: 0.85rem;
+  text-align: center;
+  border: 1px solid var(--g-gold-border);
+  color: var(--g-gold);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: background 0.25s;
+}
+.gh-mobile-cta:hover { background: var(--g-gold-dim); }
+
+
+/* ══════════════════════════════════════════════════════════════════
+   GLOBAL FOOTER
+══════════════════════════════════════════════════════════════════ */
+.global-footer {
+  background: var(--g-dark-2);
+  border-top: 1px solid var(--g-rule);
+  padding: 4rem 5% 2rem;
+  margin-top: auto;
+  line-height: 1;
+}
+
+.gf-top {
+  display: grid;
+  grid-template-columns: 280px 1fr 1fr 1fr;
+  gap: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--g-rule);
+  margin-bottom: 2rem;
+}
+
+/* Column 1 — Brand */
+.gf-brand {}
+.gf-logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.gf-logo img { height: 32px; width: auto; }
+.gf-logo-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--g-gold);
+}
+.gf-tagline {
+  font-size: 0.82rem;
+  color: var(--g-muted);
+  line-height: 1.6;
+  margin-bottom: 1.4rem;
+}
+.gf-contact a {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--g-soft);
+  text-decoration: none;
+  margin-bottom: 0.3rem;
+  transition: color 0.2s;
+}
+.gf-contact a:hover { color: var(--g-gold); }
+
+/* Social icons */
+.gf-social {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 1.2rem;
+}
+.gf-social a {
+  width: 34px; height: 34px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--g-rule);
+  border-radius: 2px;
+  color: var(--g-muted);
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+.gf-social a:hover {
+  border-color: var(--g-gold-border);
+  color: var(--g-gold);
+}
+.gf-social svg { width: 15px; height: 15px; }
+
+/* Columns 2-4 — Links */
+.gf-col-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--g-gold);
+  margin-bottom: 1.2rem;
+}
+.gf-links {
+  list-style: none;
+  margin: 0; padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.gf-links li a {
+  font-size: 0.85rem;
+  color: var(--g-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+  line-height: 1.4;
+}
+.gf-links li a:hover { color: var(--g-gold); }
+
+/* Bottom bar */
+.gf-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.gf-copy {
+  font-size: 0.78rem;
+  color: var(--g-muted);
+}
+.gf-legal {
+  display: flex;
+  gap: 1.5rem;
+}
+.gf-legal a {
+  font-size: 0.78rem;
+  color: var(--g-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.gf-legal a:hover { color: var(--g-gold); }
+
+/* Payment logos strip */
+.gf-payment {
+  font-size: 0.75rem;
+  color: var(--g-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════════════════════ */
+@media (max-width: 1100px) {
+  .gh-nav { gap: 1.4rem; }
+  .gf-top { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 900px) {
+  /* Hide desktop nav, show hamburger */
+  .gh-nav-wrap { display: none; }
+  .gh-toggle   { display: flex; }
+
+  /* Footer — stack columns */
+  .gf-top { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 600px) {
+  .gf-top { grid-template-columns: 1fr; gap: 2rem; }
+  .gf-bottom { flex-direction: column; align-items: flex-start; }
+  .gf-legal { flex-wrap: wrap; gap: 1rem; }
+}
