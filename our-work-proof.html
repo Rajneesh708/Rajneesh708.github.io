@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="MECULS work and proof &ndash; documented results at BCG, GMR Group, Strides Pharma and Forrester Research. ROI 450&ndash;750%. INR 12.24M savings. ICF-accredited coaching by Rajneesh Jain.">
+  <title>Our Work &amp; Proof &ndash; MECULS | Documented Results</title>
+  <meta property="og:title" content="Our Work &amp; Proof &ndash; MECULS">
+  <meta property="og:url" content="https://www.meculs.com/our-work-proof.html">
+  <link rel="canonical" href="https://www.meculs.com/our-work-proof.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Archivo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="global.css">
+  <style>
+
+  :root {
+    --gold:        #d4af37;
+    --gold-dim:    rgba(212,175,55,0.10);
+    --gold-border: rgba(212,175,55,0.22);
+    --ink:         #000814;
+    --ink2:        #06111f;
+    --white:       #ffffff;
+    --muted:       rgba(255,255,255,0.55);
+    --soft:        rgba(255,255,255,0.82);
+    --light-bg:    #f7f5f0;
+    --light-text:  #1a1a1a;
+    --light-muted: #6b6b6b;
+    --display:     'Playfair Display', serif;
+    --serif:       'Cormorant Garamond', serif;
+    --ease:        cubic-bezier(0.16,1,0.3,1);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--ink); color: var(--white);
+    font-family: 'Archivo', sans-serif;
+    line-height: 1.7; -webkit-font-smoothing: antialiased;
+  }
+  .page { padding-top: var(--g-nav-h, 72px); }
+  .wrap { max-width: 1140px; margin: 0 auto; padding: 0 5%; }
+  .wrap-narrow { max-width: 820px; margin: 0 auto; padding: 0 5%; }
+
+  .rev {
+    opacity: 0; transform: translateY(22px);
+    transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+  }
+  .rev.vis { opacity: 1; transform: none; }
+
+  .gold-rule { width: 40px; height: 2px; background: var(--gold); margin-bottom: 1.2rem; }
+  .label {
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 1rem;
+  }
+
+  /* ══════════════════════════════════════
+     HERO — full viewport, dramatic image
+  ══════════════════════════════════════ */
+  .hero {
+    min-height: 92vh;
+    display: flex; align-items: flex-end;
+    padding-bottom: 6rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-img {
+    position: absolute; inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1600&q=85');
+    background-size: cover; background-position: center 30%;
+  }
+  .hero-img::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(0,8,20,0.3) 0%,
+      rgba(0,8,20,0.5) 40%,
+      rgba(0,8,20,0.92) 100%
+    );
+  }
+  .hero-inner {
+    position: relative; z-index: 2;
+    width: 100%; max-width: 1140px;
+    margin: 0 auto; padding: 0 5%;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 1.8rem;
+    opacity: 0; animation: fadeUp 1s var(--ease) 0.3s forwards;
+  }
+  .hero-eyebrow::before {
+    content: ''; width: 36px; height: 1px; background: var(--gold); opacity: 0.7;
+  }
+  .hero-title {
+    font-family: var(--display);
+    font-size: clamp(3rem, 6.5vw, 6rem);
+    font-weight: 700; line-height: 1.02;
+    letter-spacing: -0.03em; margin-bottom: 1.8rem;
+    opacity: 0; animation: fadeUp 1.2s var(--ease) 0.45s forwards;
+  }
+  .hero-title em { font-style: italic; color: var(--gold); }
+
+  /* ── HERO STATS
+     Pure numbers only in .hn — no words
+     Short 2-word labels in .hl
+     Each cell: padding on all sides, flexible height
+  ── */
+  .hero-stats {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    border: 1px solid rgba(212,175,55,0.3);
+    max-width: 860px; margin-top: 3rem;
+    opacity: 0; animation: fadeUp 1.2s var(--ease) 0.7s forwards;
+    background: rgba(0,8,20,0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .hs {
+    padding: 1.8rem 1.6rem;
+    border-right: 1px solid rgba(212,175,55,0.3);
+  }
+  .hs:last-child { border-right: none; }
+  /* hn = pure number/symbol — single token, cannot wrap */
+  .hn {
+    display: block;
+    white-space: nowrap;
+    font-family: var(--display);
+    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+    font-weight: 300; color: var(--gold);
+    line-height: 1; margin-bottom: 0.65rem;
+  }
+  /* hl = label — max 3 words, wraps safely within padding */
+  .hl {
+    display: block;
+    font-size: 0.62rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.6); line-height: 1.5;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  /* ══════════════════════════════════════
+     OPENING STATEMENT — light section
+  ══════════════════════════════════════ */
+  .opening {
+    background: var(--light-bg);
+    padding: 7rem 0;
+  }
+  .opening-text {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 2.8vw, 2.4rem);
+    font-weight: 300; line-height: 1.6;
+    color: var(--light-text);
+    max-width: 820px; margin: 0 auto;
+    padding: 0 5%;
+  }
+  .opening-text em {
+    font-style: italic; color: #8a6d1a;
+  }
+  .opening-rule {
+    width: 40px; height: 2px; background: #8a6d1a;
+    margin: 0 auto 2.5rem; display: block;
+  }
+
+  /* ══════════════════════════════════════
+     ENGAGEMENT — alternating dark / light
+  ══════════════════════════════════════ */
+
+  /* Dark engagement */
+  .eng-dark { background: var(--ink); padding: 0; }
+  .eng-light { background: var(--light-bg); padding: 0; color: var(--light-text); }
+
+  /* Full-bleed image strip above each engagement */
+  .eng-image {
+    width: 100%; height: 420px;
+    overflow: hidden; position: relative;
+  }
+  .eng-image img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    display: block;
+    filter: brightness(0.82);
+    transition: transform 8s ease;
+  }
+  .eng-image:hover img { transform: scale(1.04); }
+  .eng-image-caption {
+    position: absolute; bottom: 2rem; left: 5%;
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: rgba(255,255,255,0.7);
+  }
+  .eng-image-caption span { color: var(--gold); }
+
+  /* Content area below the image */
+  .eng-content { padding: 5rem 0 6rem; }
+
+  .eng-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: start;
+  }
+
+  /* Left — story */
+  .eng-tag {
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; margin-bottom: 0.6rem;
+  }
+  .eng-dark .eng-tag { color: var(--gold); }
+  .eng-light .eng-tag { color: #8a6d1a; }
+
+  .eng-name {
+    font-family: var(--display);
+    font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+    font-weight: 700; line-height: 1.05;
+    letter-spacing: -0.02em; margin-bottom: 0.4rem;
+  }
+  .eng-period {
+    font-size: 0.8rem; margin-bottom: 2rem; letter-spacing: 0.04em;
+  }
+  .eng-dark .eng-period { color: var(--muted); }
+  .eng-light .eng-period { color: var(--light-muted); }
+
+  .eng-body {
+    font-size: 0.98rem; line-height: 1.9; margin-bottom: 2rem;
+  }
+  .eng-dark .eng-body { color: var(--muted); }
+  .eng-light .eng-body { color: var(--light-muted); }
+
+  .eng-points { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 2rem; }
+  .eng-points li {
+    font-size: 0.9rem; line-height: 1.7;
+    padding-left: 1.4rem; position: relative;
+  }
+  .eng-dark .eng-points li { color: var(--soft); }
+  .eng-light .eng-points li { color: var(--light-text); }
+  .eng-points li::before {
+    content: ''; position: absolute; left: 0; top: 0.65em;
+    width: 5px; height: 5px; border-radius: 50%; background: var(--gold);
+  }
+
+  /* Quote */
+  .eng-quote {
+    padding: 1.8rem 2rem; margin-top: 1.4rem;
+  }
+  .eng-dark .eng-quote {
+    border-left: 3px solid var(--gold);
+    background: var(--gold-dim);
+  }
+  .eng-light .eng-quote {
+    border-left: 3px solid #8a6d1a;
+    background: rgba(212,175,55,0.08);
+  }
+  .eng-quote p {
+    font-family: var(--serif);
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    font-style: italic; font-weight: 300; line-height: 1.7;
+  }
+  .eng-dark .eng-quote p { color: var(--white); }
+  .eng-light .eng-quote p { color: var(--light-text); }
+  .eng-quote cite {
+    display: block; margin-top: 0.8rem;
+    font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.09em; text-transform: uppercase; font-style: normal;
+  }
+  .eng-dark .eng-quote cite { color: var(--gold); }
+  .eng-light .eng-quote cite { color: #8a6d1a; }
+
+  /* Right — metrics
+     Each metric: number on own line (display:block, white-space:nowrap)
+     Label below — max 3 words
+     No fixed height — padding handles spacing
+  */
+  .eng-metrics { display: flex; flex-direction: column; }
+  .eng-metric {
+    padding: 1.8rem 2rem;
+    border-bottom: 1px solid var(--gold-border);
+  }
+  .eng-metric:first-child { border-top: 1px solid var(--gold-border); }
+  .eng-dark .eng-metric { background: rgba(255,255,255,0.02); }
+  .eng-light .eng-metric { background: rgba(212,175,55,0.05); border-color: rgba(138,109,26,0.2); }
+  .em-n {
+    display: block;
+    white-space: nowrap;
+    font-family: var(--display);
+    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+    font-weight: 300;
+    line-height: 1; margin-bottom: 0.6rem;
+  }
+  .eng-dark .em-n { color: var(--gold); }
+  .eng-light .em-n { color: #8a6d1a; }
+  .em-l {
+    display: block;
+    font-size: 0.8rem; line-height: 1.5;
+  }
+  .eng-dark .em-l { color: var(--soft); }
+  .eng-light .em-l { color: var(--light-muted); }
+
+  /* ══════════════════════════════════════
+     FORRESTER + INDIVIDUAL — two cards
+     on a warm light background
+  ══════════════════════════════════════ */
+  .beyond { background: #f0ece3; padding: 7rem 0; }
+  .beyond-head { text-align: center; margin-bottom: 4rem; }
+  .beyond-rule { width: 40px; height: 2px; background: #8a6d1a; margin: 0 auto 1.2rem; }
+  .beyond-label {
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: #8a6d1a; margin-bottom: 1rem;
+  }
+  .beyond-h {
+    font-family: var(--display);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 600; line-height: 1.1;
+    color: var(--light-text); letter-spacing: -0.02em;
+  }
+  .beyond-h em { font-style: italic; color: #8a6d1a; }
+
+  .beyond-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2.4rem;
+  }
+  .beyond-card {
+    background: var(--white);
+    overflow: hidden;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.08);
+  }
+  .beyond-card-img {
+    width: 100%; height: 240px; overflow: hidden;
+  }
+  .beyond-card-img img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    display: block; transition: transform 6s ease;
+  }
+  .beyond-card:hover .beyond-card-img img { transform: scale(1.05); }
+  .beyond-card-body { padding: 2.4rem; }
+  .bc-tag {
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: #8a6d1a; margin-bottom: 0.7rem;
+  }
+  .bc-title {
+    font-family: var(--display);
+    font-size: clamp(1.3rem, 2vw, 1.8rem);
+    font-weight: 600; color: var(--light-text);
+    margin-bottom: 1rem; line-height: 1.15;
+  }
+  .bc-body {
+    font-size: 0.9rem; color: var(--light-muted);
+    line-height: 1.85; margin-bottom: 1.8rem;
+  }
+  .bc-stats { display: flex; flex-direction: column; gap: 1rem; }
+  .bc-n {
+    display: block;
+    white-space: nowrap;
+    font-family: var(--display);
+    font-size: 1.6rem; font-weight: 300;
+    color: #8a6d1a; line-height: 1; margin-bottom: 0.4rem;
+  }
+  .bc-l {
+    display: block;
+    font-size: 0.78rem; color: var(--light-muted); line-height: 1.5;
+  }
+
+  /* ══════════════════════════════════════
+     CLOSING STATEMENT — full bleed image
+  ══════════════════════════════════════ */
+  .closing {
+    position: relative; overflow: hidden;
+    min-height: 480px; display: flex; align-items: center;
+  }
+  .closing-img {
+    position: absolute; inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&q=85');
+    background-size: cover; background-position: center;
+  }
+  .closing-img::after {
+    content: ''; position: absolute; inset: 0;
+    background: rgba(0,8,20,0.82);
+  }
+  .closing-inner {
+    position: relative; z-index: 2;
+    max-width: 760px; margin: 0 auto;
+    padding: 5rem 5%; text-align: center;
+  }
+  .closing-text {
+    font-family: var(--serif);
+    font-size: clamp(1.3rem, 2.5vw, 2rem);
+    font-style: italic; font-weight: 300;
+    color: var(--white); line-height: 1.65;
+    margin-bottom: 1.4rem;
+  }
+  .closing-text em { color: var(--gold); font-style: normal; font-weight: 400; }
+  .closing-cite {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--gold);
+  }
+
+  /* ══════════════════════════════════════
+     CTA
+  ══════════════════════════════════════ */
+  .cta-sec {
+    padding: 7rem 0; text-align: center;
+    background: var(--ink);
+  }
+  .cta-inner { max-width: 620px; margin: 0 auto; padding: 0 5%; }
+  .cta-h {
+    font-family: var(--display);
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-weight: 600; line-height: 1.1; margin-bottom: 1.2rem;
+  }
+  .cta-h em { font-style: italic; color: var(--gold); }
+  .cta-body { font-size: 1rem; color: var(--muted); line-height: 1.8; margin-bottom: 2.8rem; }
+  .btn-row { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; }
+  .btn-gold {
+    padding: 1rem 2.4rem; background: var(--gold); color: var(--ink);
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; text-decoration: none;
+    transition: background 0.3s, transform 0.2s; display: inline-block;
+  }
+  .btn-gold:hover { background: #f0d060; transform: translateY(-2px); }
+  .btn-outline {
+    padding: 1rem 2.4rem; border: 1px solid var(--gold-border);
+    color: var(--gold); font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+    transition: background 0.3s, transform 0.2s; display: inline-block;
+  }
+  .btn-outline:hover { background: var(--gold-dim); transform: translateY(-2px); }
+
+  /* ══════════════════════════════════════
+     RESPONSIVE
+  ══════════════════════════════════════ */
+  @media (max-width: 960px) {
+    .eng-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .beyond-grid { grid-template-columns: 1fr; }
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+    .hs:nth-child(2) { border-right: none; }
+    .hs:nth-child(3) { border-top: 1px solid rgba(212,175,55,0.3); }
+    .hs:nth-child(4) { border-top: 1px solid rgba(212,175,55,0.3); border-right: none; }
+    .eng-image { height: 300px; }
+  }
+  @media (max-width: 600px) {
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+    .eng-image { height: 220px; }
+    .beyond-card-img { height: 180px; }
+  }
+
+  </style>
+</head>
+<body>
+<div class="page">
+
+<!-- GLOBAL HEADER -->
+<header class="global-header">
+  <a href="index.html" class="gh-logo">
+    <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS"
+         onerror="this.style.display='none';document.querySelector('.gh-logo-text').style.display='block'">
+    <span class="gh-logo-text">MECULS</span>
+  </a>
+  <nav aria-label="Global navigation">
+    <ul class="gh-nav gh-nav-wrap">
+      <li>
+        <a href="how-meculs-works.html">How MECULS Works
+          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3.5l3 3 3-3"/></svg>
+        </a>
+        <ul class="gh-dropdown">
+          <li><a href="how-meculs-works.html#coaching-process">Coaching Process</a></li>
+          <li><a href="how-meculs-works.html#simulations">Simulations in Coaching</a></li>
+          <li><a href="how-meculs-works.html#profiling">Personality Profiling</a></li>
+          <li><a href="how-meculs-works.html#what-changes">What Changes in Real Work</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="contexts.html">Contexts
+          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3.5l3 3 3-3"/></svg>
+        </a>
+        <ul class="gh-dropdown">
+          <li><a href="contexts.html#leadership">Leadership &amp; Organisations</a></li>
+          <li><a href="contexts.html#professionals">Professionals &amp; Educators</a></li>
+          <li><a href="contexts.html#adults">Adults &amp; Youth</a></li>
+          <li><a href="contexts.html#children">Children</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="the-approach.html">The Approach
+          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3.5l3 3 3-3"/></svg>
+        </a>
+        <ul class="gh-dropdown">
+          <li><a href="360-pulse-rate.html">360&#xb0; PULSE RATE&#x2122;</a></li>
+          <li><a href="the-approach.html#mynd-care">Mynd CARE Philosophy</a></li>
+          <li><a href="the-approach.html#pressure">Why Behaviour Under Pressure</a></li>
+          <li><a href="the-approach.html#simulations">Why Simulations, Not Talk</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="insights.html">Insights
+          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3.5l3 3 3-3"/></svg>
+        </a>
+        <ul class="gh-dropdown">
+          <li><a href="insights.html">Writings</a></li>
+          <li><a href="insights.html#themes">Themes &amp; Series</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="about-rajneesh-jain.html">The Founder
+          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3.5l3 3 3-3"/></svg>
+        </a>
+        <ul class="gh-dropdown">
+          <li><a href="about-rajneesh-jain.html#thinking">The Thinking</a></li>
+          <li><a href="about-rajneesh-jain.html#journey">The Journey</a></li>
+          <li><a href="about-rajneesh-jain.html#selected-work">Selected Work</a></li>
+        </ul>
+      </li>
+      <li><a href="begin-conversation.html" class="gh-cta">Begin a Conversation</a></li>
+    </ul>
+  </nav>
+  <button class="gh-toggle" id="ghToggle" aria-label="Open navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+<div class="gh-mobile-menu" id="ghMobileMenu" role="dialog" aria-label="Mobile navigation">
+  <ul class="gh-mobile-nav">
+    <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+    <li><a href="contexts.html">Contexts</a></li>
+    <li><a href="the-approach.html">The Approach</a>
+      <ul class="gh-mobile-sub">
+        <li><a href="360-pulse-rate.html">360&#xb0; PULSE RATE&#x2122;</a></li>
+        <li><a href="the-approach.html#mynd-care">Mynd CARE Philosophy</a></li>
+      </ul>
+    </li>
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+  </ul>
+  <a href="begin-conversation.html" class="gh-mobile-cta">Begin a Conversation</a>
+</div>
+<!-- END GLOBAL HEADER -->
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-img"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">MECULS &middot; Documented Results</div>
+    <h1 class="hero-title">
+      Work that left<br><em>a measurable mark.</em>
+    </h1>
+    <div class="hero-stats">
+      <div class="hs">
+        <span class="hn">450&ndash;750%</span>
+        <span class="hl">BCG ROI</span>
+      </div>
+      <div class="hs">
+        <span class="hn">INR 12.24M</span>
+        <span class="hl">Annual savings</span>
+      </div>
+      <div class="hs">
+        <span class="hn">25&ndash;51%</span>
+        <span class="hl">Cognitive potential</span>
+      </div>
+      <div class="hs">
+        <span class="hn">16</span>
+        <span class="hl">Countries &ndash; Forrester</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPENING STATEMENT -->
+<section class="opening">
+  <div class="wrap-narrow">
+    <span class="opening-rule"></span>
+    <p class="opening-text rev">
+      Every result on this page was <em>documented</em> &ndash; in writing,
+      in numbers, or in the observable change that followed.
+      Not claimed. Not estimated. Produced, verified, and recorded.
+    </p>
+  </div>
+</section>
+
+<!-- ENGAGEMENT 1 - BCG - dark -->
+<section class="eng-dark">
+  <div class="eng-image">
+    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1600&q=85"
+         alt="Leadership at BCG" loading="lazy">
+    <div class="eng-image-caption">
+      <span>BCG</span> &ndash; The Boston Consulting Group
+    </div>
+  </div>
+  <div class="eng-content">
+    <div class="wrap">
+      <div class="eng-grid">
+        <div>
+          <div class="eng-tag rev">Corporate Engagement &ndash; 2019 to 2022</div>
+          <h2 class="eng-name rev">The Boston Consulting Group</h2>
+          <p class="eng-period rev">India Operations &middot; Leadership Coaching &amp; Research Tools</p>
+          <p class="eng-body rev">MECULS delivered two distinct bodies of work at BCG across separate engagements &ndash; one in leadership development coaching using the CFB Framework, and one in building research and analytics tools that transformed how BCG India operated. Both were formally recognised in writing.</p>
+          <ul class="eng-points rev">
+            <li>CFB Framework &ndash; Complexes, Fears, Biases &ndash; delivered as a structured leadership development programme</li>
+            <li>Participants freed 25&ndash;51% of cognitive potential, measured through observable change in real work</li>
+            <li>ROI of 450&ndash;750% on one-time engagement cost documented</li>
+            <li>INR 12.24 million per annum in cost savings generated</li>
+            <li>IT Benchmarking Tool reduced research from 16 hours to 10 minutes per cycle</li>
+            <li>Data scanning tool processed 7 million variables &ndash; reduced a 3-month task to 4 hours</li>
+            <li>All coaching IP confirmed in writing as belonging to Rajneesh Jain</li>
+          </ul>
+          <div class="eng-quote rev">
+            <p>"Thanks for the quick and awesome effort to get our meeting with [client] past the finish line."</p>
+            <cite>&ndash; Sumit Solanki, Principal, BCG</cite>
+          </div>
+        </div>
+        <div class="rev">
+          <div class="eng-metrics">
+            <div class="eng-metric">
+              <span class="em-n">450&ndash;750%</span>
+              <span class="em-l">Return on investment &ndash; one-time engagement</span>
+            </div>
+            <div class="eng-metric">
+              <span class="em-n">INR 12.24M</span>
+              <span class="em-l">Annual cost savings generated</span>
+            </div>
+            <div class="eng-metric">
+              <span class="em-n">25&ndash;51%</span>
+              <span class="em-l">Cognitive potential released per participant</span>
+            </div>
+            <div class="eng-metric">
+              <span class="em-n">99.9%</span>
+              <span class="em-l">Accuracy &ndash; 0.15 million data points identified</span>
+            </div>
+            <div class="eng-metric">
+              <span class="em-n">16h &rarr; 10min</span>
+              <span class="em-l">Benchmarking research time reduced</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENGAGEMENT 2 - GMR - light -->
+<section class="eng-light">
+  <div class="eng-image">
+    <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1600&q=85"
+         alt="GMR Group infrastructure" loading="lazy">
+    <div class="eng-image-caption">
+      <span>GMR Group</span> &ndash; Energy, Airport, University
+    </div>
+  </div>
+  <div class="eng-content">
+    <div class="wrap">
+      <div class="eng-grid">
+        <div>
+          <div class="eng-tag rev">Corporate Engagement &ndash; 2011 to 2015</div>
+          <h2 class="eng-name rev">GMR Group</h2>
+          <p class="eng-period rev">Delhi, Hyderabad, Bangalore &middot; Cultural Transformation</p>
+          <p class="eng-body rev">GMR Group engaged MECULS for a multi-year transformation programme spanning four entities &ndash; GMR Group, GMR Energy, GMRIT, and DIAL. The work operated at two levels: transforming organisational thinking culture for middle and senior management, and resolving CXO-level conflicts through a structured framework developed specifically for this engagement.</p>
+          <ul class="eng-points rev">
+            <li>ETG &rarr; ITG model &ndash; Exclusive Thinking to Inclusive Thinking &ndash; for middle and senior management across all entities</li>
+            <li>Shifted leadership culture from siloed, competitive thinking to collaborative, enterprise-wide thinking</li>
+            <li>KLMW Framework &ndash; King, Love, Magician, Warrior &ndash; 12-scenario diagnostic for CXO conflict resolution</li>
+            <li>Individual coaching and recovery sessions with top-level management at GMR Energy and GMRIT Vizag</li>
+            <li>Delivered across three cities over four years</li>
+          </ul>
+        </div>
+        <div class="rev">
+          <div class="eng-metrics">
+            <div class="eng-metric">
+              <span class="em-n">4</span>
+              <span class="em-l">Entities &ndash; GMR Group, Energy, GMRIT, DIAL</span>
+            </div>
+            <div class="eng-metric">
+              <span class="em-n">12</span>
+              <span class="em-l">KLMW scenarios for CXO development</span>
+            </div>
+            <div class="eng-metric">
+              <span class="em-n">3</span>
+              <span class="em-l">Cities &ndash; Delhi, Hyderabad, Bangalore</span>
+            </div>
+            <div class="eng-metric">
+              <span class="em-n">4</span>
+              <span class="em-l">Years of sustained engagement</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENGAGEMENT 3 - STRIDES - dark -->
+<section class="eng-dark">
+  <div class="eng-image">
+    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1600&q=85"
+         alt="Strides Pharma leadership" loading="lazy">
+    <div class="eng-image-caption">
+      <span>Strides Pharma</span> &ndash; Most Recent Engagement
+    </div>
+  </div>
+  <div class="eng-content">
+    <div class="wrap">
+      <div class="eng-grid">
+        <div>
+          <div class="eng-tag rev">Corporate Engagement &ndash; September to December 2025</div>
+          <h2 class="eng-name rev">Strides Pharma</h2>
+          <p class="eng-period rev">New DGM Cohort &middot; Full 360&#xb0; PULSE RATE&#x2122; Deployment</p>
+          <p class="eng-body rev">Strides Pharma engaged MECULS to coach its newly promoted DGM cohort &ndash; 15 Deputy General Managers across manufacturing, quality, commercial, finance, and engineering. This was the first full-scale deployment of the 360&#xb0; PULSE RATE&#x2122; model from Baseline Profiling through to Final Assessment, with complete documentation delivered to HR.</p>
+          <ul class="eng-points rev">
+            <li>Baseline Profiling Reports identifying MECULS Personality Type and core block for all 15 participants</li>
+            <li>Three structured phases &ndash; Baseline and Deep Profiling, Application and Reinforcement, Final Assessment</li>
+            <li>Individual and group coaching sessions delivered in parallel across the 12-week programme</li>
+            <li>Final Assessment Reports with behavioural delta, coachability rating, and Jungian typology mapping</li>
+            <li>Profile accuracy verified directly by participants at programme conclusion</li>
+            <li>30 reports &ndash; Baseline and Final &ndash; delivered to HR leadership</li>
+          </ul>
+        </div>
+        <div class="rev">
+          <div class="eng-metrics">
+            <div class="eng-metric">
+              <span class="em-n">15</span>
+              <span class="em-l">Leaders profiled and coached</span>
+            </div>
+            <div class="eng-metric">
+              <span class="em-n">12</span>
+              <span class="em-l">Weeks &ndash; 3 structured phases</span>
+            </div>
+            <div class="eng-metric">
+              <span class="em-n">100%</span>
+              <span class="em-l">Profile accuracy &ndash; participant verified</span>
+            </div>
+            <div class="eng-metric">
+              <span class="em-n">30</span>
+              <span class="em-l">Reports delivered to HR</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORRESTER + INDIVIDUAL -->
+<section class="beyond">
+  <div class="wrap">
+    <div class="beyond-head rev">
+      <div class="beyond-rule"></div>
+      <div class="beyond-label">Beyond Coaching</div>
+      <h2 class="beyond-h">Research leadership.<br><em>Individual transformation.</em></h2>
+    </div>
+    <div class="beyond-grid">
+      <div class="beyond-card rev">
+        <div class="beyond-card-img">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=85"
+               alt="Forrester Research" loading="lazy">
+        </div>
+        <div class="beyond-card-body">
+          <div class="bc-tag">Knowledge Research &ndash; Country Head</div>
+          <h3 class="bc-title">Forrester Research</h3>
+          <p class="bc-body">As India Country Head, Rajneesh Jain led research delivery for some of the world's most demanding client organisations. Research commissioned by and delivered for Microsoft, Intel, IBM, McKinsey &amp; Company, and American Express &ndash; covering technology adoption, market strategy, and organisational behaviour across 16 countries.</p>
+          <div class="bc-stats">
+            <div>
+              <span class="bc-n">16</span>
+              <span class="bc-l">Countries &ndash; single Microsoft engagement</span>
+            </div>
+            <div>
+              <span class="bc-n">5</span>
+              <span class="bc-l">Global firms &ndash; Microsoft, Intel, IBM, McKinsey, AmEx</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="beyond-card rev">
+        <div class="beyond-card-img">
+          <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&q=85"
+               alt="Individual coaching" loading="lazy">
+        </div>
+        <div class="beyond-card-body">
+          <div class="bc-tag">Individual Coaching &ndash; Ongoing</div>
+          <h3 class="bc-title">Individual &amp; Personal Coaching</h3>
+          <p class="bc-body">Alongside corporate engagements, MECULS has always maintained a direct individual coaching practice &ndash; working one-to-one with professionals, leaders, and individuals on personal development, career direction, and inner clarity. Clients span India, the United States, the United Kingdom, and China.</p>
+          <div class="bc-stats">
+            <div>
+              <span class="bc-n">4</span>
+              <span class="bc-l">Countries &ndash; India, US, UK, China</span>
+            </div>
+            <div>
+              <span class="bc-n">18</span>
+              <span class="bc-l">Years of individual work</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING STATEMENT -->
+<section class="closing">
+  <div class="closing-img"></div>
+  <div class="closing-inner">
+    <p class="closing-text rev">
+      "The results here were not produced by a methodology borrowed from somewhere else.
+      They were produced by <em>original work</em> &ndash;
+      frameworks built from scratch, tools built from scratch,
+      and coaching built on 18 years of direct inner research."
+    </p>
+    <div class="closing-cite rev">&ndash; Rajneesh Jain, Founder, MECULS</div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec">
+  <div class="cta-inner">
+    <div class="label rev">Work With MECULS</div>
+    <h2 class="cta-h rev">Results like these<br><em>begin with a conversation.</em></h2>
+    <p class="cta-body rev">If what you have read here is the standard you want for your organisation or for yourself &ndash; the next step is direct. No sales process. No proposal decks. A conversation about what is actually happening and whether MECULS can help.</p>
+    <div class="btn-row rev">
+      <a href="begin-conversation.html" class="btn-gold">Begin a Conversation</a>
+      <a href="360-pulse-rate.html" class="btn-outline">See the Methodology</a>
+    </div>
+  </div>
+</section>
+
+<!-- GLOBAL FOOTER -->
+<footer class="global-footer">
+  <div class="gf-top">
+    <div class="gf-brand">
+      <div class="gf-logo">
+        <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="gf-logo-text" style="display:none">MECULS</span>
+      </div>
+      <p class="gf-tagline">Mind Enablement Centre for Unlocking Limitless Leadership &amp; Self-Potential</p>
+      <div class="gf-contact">
+        <a href="mailto:Jain.Rajneesh@meculs.com">Jain.Rajneesh@meculs.com</a>
+        <a href="#">Delhi, India</a>
+      </div>
+      <div class="gf-social">
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.5 6.5s-.3-2-1.2-2.8c-1.1-1.2-2.4-1.2-3-1.3C15.6 2.2 12 2.2 12 2.2s-3.6 0-6.3.2c-.6.1-1.9.1-3 1.3C1.8 4.5 1.5 6.5 1.5 6.5S1.2 8.8 1.2 11v2.1c0 2.2.3 4.4.3 4.4s.3 2 1.2 2.8c1.1 1.2 2.6 1.1 3.3 1.2 2.4.2 10 .3 10 .3s3.6 0 6.3-.3c.6-.1 1.9-.1 3-1.3.9-.8 1.2-2.8 1.2-2.8s.3-2.2.3-4.4V11c0-2.2-.3-4.5-.3-4.5zM9.7 14.8V8.4l6.6 3.2-6.6 3.2z"/></svg></a>
+      </div>
+    </div>
+    <div>
+      <p class="gf-col-title">Services</p>
+      <ul class="gf-links">
+        <li><a href="services.html">Leadership Coaching</a></li>
+        <li><a href="360-pulse-rate.html">360&#xb0; PULSE RATE&#x2122;</a></li>
+        <li><a href="bespoke-coaching.html">Executive Coaching &ndash; Bespoke</a></li>
+        <li><a href="corporate-programs.html">Corporate Programmes</a></li>
+        <li><a href="service-children.html">For Children</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="gf-col-title">Company</p>
+      <ul class="gf-links">
+        <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+        <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+        <li><a href="why-meculs.html">Why MECULS</a></li>
+        <li><a href="our-work-proof.html">Our Work Proof</a></li>
+        <li><a href="insights.html">Insights</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="gf-col-title">Connect</p>
+      <ul class="gf-links">
+        <li><a href="begin-conversation.html">Begin a Conversation</a></li>
+        <li><a href="source-of-challenges.html">Source of Challenges</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms of Service</a></li>
+        <li><a href="refund-policy.html">Refund Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="gf-bottom">
+    <p class="gf-copy">&copy; 2026 MECULS. All rights reserved. Delhi, India.</p>
+    <div class="gf-legal">
+      <a href="privacy-policy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="refund-policy.html">Refund</a>
+      <a href="disclaimer.html">Disclaimer</a>
+    </div>
+  </div>
+</footer>
+<!-- END GLOBAL FOOTER -->
+
+</div>
+<script src="global.js"></script>
+<script>
+  var ro = new IntersectionObserver(function(e) {
+    e.forEach(function(x) {
+      if (x.isIntersecting) { x.target.classList.add('vis'); ro.unobserve(x.target); }
+    });
+  }, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.rev').forEach(function(el) { ro.observe(el); });
+</script>
+</body>
+</html>
