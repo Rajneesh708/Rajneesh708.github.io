@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Rajneesh Jain — Founder of MECULS. L&D Coach, Architect of the 360° PULSE RATE™ Model and Zero State Meditation. Structural clarity for leaders and individuals.">
+  <title>Rajneesh Jain — The Founder | MECULS</title>
+
+  <!-- Fonts — same on every MECULS page -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Archivo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Global header/footer styles — same on every MECULS page -->
+  <link rel="stylesheet" href="global.css">
+
+  <!-- Page-specific styles -->
+  <style>
+    /* ─────────────────────────────────────────────
+       PAGE WRAPPER
+    ───────────────────────────────────────────── */
+    .page {
+      padding-top: var(--g-nav-h);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ─────────────────────────────────────────────
+       UTILITIES
+    ───────────────────────────────────────────── */
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 5%;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--g-gold);
+      margin-bottom: 1.2rem;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 24px; height: 1px;
+      background: var(--g-gold);
+    }
+
+    .rule { border: none; border-top: 1px solid var(--g-rule); margin: 0; }
+
+    /* ─────────────────────────────────────────────
+       HERO
+    ───────────────────────────────────────────── */
+    .hero {
+      padding: 7rem 0 5rem;
+      border-bottom: 1px solid var(--g-rule);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 80% 50%,
+        rgba(212,175,55,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--g-gold);
+      margin-bottom: 1.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px; height: 1px;
+      background: var(--g-gold);
+    }
+
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 5.5vw, 4.8rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--g-white);
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-title {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--g-soft);
+      margin-bottom: 0.35rem;
+    }
+    .hero-subtitle {
+      font-size: 0.94rem;
+      font-weight: 400;
+      color: var(--g-soft);
+      margin-bottom: 2.8rem;
+    }
+
+    .hero-quote {
+      padding: 1.6rem 2rem;
+      border-left: 2px solid var(--g-gold);
+      background: var(--g-gold-dim);
+      margin-bottom: 2.8rem;
+    }
+    .hero-quote p {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.12rem;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--g-white);
+      line-height: 1.65;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+    }
+    .tag {
+      padding: 0.38rem 0.9rem;
+      border: 1px solid var(--g-gold-border);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      color: var(--g-soft);
+      border-radius: 2px;
+    }
+
+    /* Portrait */
+    .hero-portrait { position: relative; }
+    .portrait-frame {
+      position: relative;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      background: rgba(255,255,255,0.03);
+    }
+    .portrait-frame::after {
+      content: '';
+      position: absolute; inset: 0;
+      border: 1px solid var(--g-gold-border);
+      pointer-events: none;
+    }
+    .portrait-frame img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+    .portrait-placeholder {
+      width: 100%; height: 100%;
+      min-height: 360px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      color: var(--g-muted);
+    }
+    .portrait-placeholder svg { opacity: 0.25; }
+    .portrait-placeholder p {
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 0 1.5rem;
+      line-height: 1.6;
+    }
+    .portrait-accent {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--g-gold) 0%, transparent 100%);
+    }
+
+    /* ─────────────────────────────────────────────
+       CREDENTIALS STRIP
+    ───────────────────────────────────────────── */
+    .credentials-strip {
+      padding: 3rem 0;
+      border-bottom: 1px solid var(--g-rule);
+    }
+    .credentials-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .credential-item {
+      padding: 1rem 2rem;
+      border-right: 1px solid var(--g-rule);
+    }
+    .credential-item:first-child { padding-left: 0; }
+    .credential-item:last-child  { border-right: none; }
+    .credential-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--g-gold);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .credential-label {
+      font-size: 0.84rem;
+      color: var(--g-soft);
+      line-height: 1.5;
+    }
+
+    /* ─────────────────────────────────────────────
+       TWO-COLUMN SECTIONS (Thinking, Journey)
+    ───────────────────────────────────────────── */
+    .two-col-section {
+      padding: 6rem 0;
+      border-bottom: 1px solid var(--g-rule);
+    }
+    .two-col-grid {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+    .sticky-col {
+      position: sticky;
+      top: calc(var(--g-nav-h) + 2rem);
+    }
+    .section-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 0.8rem;
+    }
+    .section-desc {
+      font-size: 0.92rem;
+      color: var(--g-soft);
+      line-height: 1.75;
+    }
+
+    /* Thinking content */
+    .thinking-content p {
+      font-size: 1rem;
+      color: var(--g-soft);
+      line-height: 1.85;
+      margin-bottom: 1.4rem;
+    }
+    .thinking-content p:last-child { margin-bottom: 0; }
+    .thinking-content strong {
+      color: var(--g-white);
+      font-weight: 600;
+    }
+
+    /* Journey timeline */
+    .milestone-list {
+      list-style: none;
+      margin: 0; padding: 0;
+      border-left: 1px solid var(--g-rule);
+      padding-left: 2.4rem;
+    }
+    .milestone {
+      position: relative;
+      margin-bottom: 2.4rem;
+    }
+    .milestone:last-child { margin-bottom: 0; }
+    .milestone::before {
+      content: '';
+      position: absolute;
+      left: -2.4rem;
+      top: 0.45rem;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--g-dark);
+      border: 1.5px solid var(--g-gold);
+      margin-left: -4px;
+    }
+    .milestone-title {
+      font-size: 0.96rem;
+      font-weight: 600;
+      color: var(--g-white);
+      margin-bottom: 0.4rem;
+    }
+    .milestone-desc {
+      font-size: 0.92rem;
+      color: var(--g-soft);
+      line-height: 1.7;
+    }
+
+    /* ─────────────────────────────────────────────
+       VALUE CODE
+    ───────────────────────────────────────────── */
+    .values-section {
+      padding: 6rem 0;
+      border-bottom: 1px solid var(--g-rule);
+    }
+    .values-header { margin-bottom: 4rem; }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--g-rule);
+    }
+    .value-card {
+      background: var(--g-dark);
+      padding: 2.8rem 3rem;
+      transition: background 0.3s;
+    }
+    .value-card:hover { background: rgba(255,255,255,0.03); }
+    .value-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: rgba(212,175,55,0.18);
+      line-height: 1;
+      margin-bottom: 1rem;
+      user-select: none;
+    }
+    .value-title {
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: var(--g-white);
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.02em;
+    }
+    .value-desc {
+      font-size: 0.92rem;
+      color: var(--g-soft);
+      line-height: 1.75;
+    }
+
+    /* ─────────────────────────────────────────────
+       CAPABILITIES
+    ───────────────────────────────────────────── */
+    .capabilities-section {
+      padding: 6rem 0;
+      border-bottom: 1px solid var(--g-rule);
+    }
+    .capabilities-header { margin-bottom: 4rem; }
+    .cap-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--g-rule);
+    }
+    .cap-card {
+      background: var(--g-dark);
+      padding: 2.4rem;
+      transition: background 0.3s;
+    }
+    .cap-card:hover { background: rgba(255,255,255,0.03); }
+    .cap-icon {
+      width: 36px; height: 36px;
+      color: var(--g-gold);
+      opacity: 0.65;
+      margin-bottom: 1.4rem;
+    }
+    .cap-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--g-gold);
+      margin-bottom: 1rem;
+    }
+    .cap-list { list-style: none; margin: 0; padding: 0; }
+    .cap-list li {
+      font-size: 0.88rem;
+      color: var(--g-soft);
+      line-height: 1.6;
+      padding: 0.45rem 0;
+      border-bottom: 1px solid var(--g-rule);
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+    }
+    .cap-list li:last-child { border-bottom: none; }
+    .cap-list li::before {
+      content: '—';
+      color: var(--g-gold);
+      opacity: 0.45;
+      flex-shrink: 0;
+      font-size: 0.78rem;
+    }
+    .cap-note {
+      font-size: 0.88rem;
+      color: var(--g-soft);
+      margin-top: 1rem;
+      line-height: 1.6;
+    }
+
+    /* ─────────────────────────────────────────────
+       SOUL QUOTE
+    ───────────────────────────────────────────── */
+    .soul-section {
+      padding: 7rem 0;
+      border-bottom: 1px solid var(--g-rule);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .soul-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% 50%,
+        rgba(212,175,55,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .soul-quote { max-width: 820px; margin: 0 auto; position: relative; }
+    .soul-mark {
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      line-height: 0.6;
+      color: var(--g-gold);
+      opacity: 0.2;
+      display: block;
+      margin-bottom: 1.5rem;
+      user-select: none;
+    }
+    .soul-text {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--g-white);
+      line-height: 1.65;
+      margin-bottom: 2rem;
+    }
+    .soul-attr {
+      font-size: 0.84rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--g-soft);
+    }
+
+    /* ─────────────────────────────────────────────
+       CTA SECTION
+    ───────────────────────────────────────────── */
+    .cta-section { padding: 6rem 0; }
+    .cta-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 4rem;
+      align-items: center;
+    }
+    .cta-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.7rem;
+    }
+    .cta-desc {
+      font-size: 0.96rem;
+      color: var(--g-soft);
+      max-width: 480px;
+      line-height: 1.7;
+    }
+    .cta-actions {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.9rem 2rem;
+      background: var(--g-gold);
+      color: var(--g-dark);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: opacity 0.25s, transform 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.9rem 1.8rem;
+      border: 1px solid var(--g-gold-border);
+      color: var(--g-gold);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background 0.25s, border-color 0.25s;
+    }
+    .btn-secondary:hover {
+      background: var(--g-gold-dim);
+      border-color: var(--g-gold);
+    }
+
+    /* ─────────────────────────────────────────────
+       SCROLL REVEAL
+    ───────────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .d1 { transition-delay: 0.08s; }
+    .d2 { transition-delay: 0.16s; }
+    .d3 { transition-delay: 0.24s; }
+    .d4 { transition-delay: 0.32s; }
+
+    /* ─────────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .hero-portrait { max-width: 280px; }
+      .two-col-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .sticky-col { position: static; }
+      .credentials-grid { grid-template-columns: repeat(2, 1fr); }
+      .credential-item:nth-child(2) { border-right: none; }
+      .credential-item:nth-child(3) { padding-left: 0; }
+      .cap-grid { grid-template-columns: 1fr; }
+      .cta-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .cta-actions { flex-direction: row; }
+    }
+
+    @media (max-width: 640px) {
+      .hero { padding: 4rem 0 3rem; }
+      .hero-name { font-size: 2.6rem; }
+      .values-grid { grid-template-columns: 1fr; }
+      .credentials-grid { grid-template-columns: repeat(2, 1fr); }
+      .soul-text { font-size: 1.25rem; }
+      .cta-actions { flex-direction: column; width: 100%; }
+      .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════
+       GLOBAL HEADER — same on every MECULS page
+       To change logo: update src="images/logo/MECULS-gold-white-bold.png"
+       To change nav links: edit the <li> items below
+  ═══════════════════════════════════════════════ -->
+  <header class="global-header">
+
+    <!-- Logo — links to homepage -->
+    <a href="index.html" class="gh-logo">
+      <img src="images/logo/MECULS-gold-white-bold.png"
+           alt="MECULS"
+           onerror="this.style.display='none'; document.querySelector('.gh-logo-text').style.display='block'">
+      <span class="gh-logo-text">MECULS</span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav aria-label="Global navigation">
+      <ul class="gh-nav gh-nav-wrap">
+        <li>
+          <a href="how-meculs-works.html">How MECULS Works
+            <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 3.5l3 3 3-3"/>
+            </svg>
+          </a>
+          <ul class="gh-dropdown">
+            <li><a href="how-meculs-works.html#coaching-process">Coaching Process</a></li>
+            <li><a href="how-meculs-works.html#simulations">Simulations in Coaching</a></li>
+            <li><a href="how-meculs-works.html#profiling">Personality Profiling</a></li>
+            <li><a href="how-meculs-works.html#what-changes">What Changes in Real Work</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="contexts.html">Contexts
+            <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 3.5l3 3 3-3"/>
+            </svg>
+          </a>
+          <ul class="gh-dropdown">
+            <li><a href="contexts.html#leadership">Leadership &amp; Organisations</a></li>
+            <li><a href="contexts.html#professionals">Professionals &amp; Educators</a></li>
+            <li><a href="contexts.html#adults">Adults &amp; Youth</a></li>
+            <li><a href="contexts.html#children">Children</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="the-approach.html">The Approach
+            <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 3.5l3 3 3-3"/>
+            </svg>
+          </a>
+          <ul class="gh-dropdown">
+            <li><a href="360-pulse-rate.html">360° PULSE RATE™</a></li>
+            <li><a href="the-approach.html#mynd-care">Mynd CARE Philosophy</a></li>
+            <li><a href="the-approach.html#pressure">Why Behaviour Under Pressure</a></li>
+            <li><a href="the-approach.html#simulations">Why Simulations, Not Talk</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="insights.html">Insights
+            <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 3.5l3 3 3-3"/>
+            </svg>
+          </a>
+          <ul class="gh-dropdown">
+            <li><a href="insights.html">Writings</a></li>
+            <li><a href="insights.html#themes">Themes &amp; Series</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="about-rajneesh-jain.html">The Founder
+            <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 3.5l3 3 3-3"/>
+            </svg>
+          </a>
+          <ul class="gh-dropdown">
+            <li><a href="about-rajneesh-jain.html#thinking">The Thinking</a></li>
+            <li><a href="about-rajneesh-jain.html#journey">The Journey</a></li>
+            <li><a href="about-rajneesh-jain.html#selected-work">Selected Work</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="begin-conversation.html" class="gh-cta">Begin a Conversation</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Mobile hamburger button -->
+    <button class="gh-toggle" id="ghToggle" aria-label="Open navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+  </header>
+
+  <!-- Mobile menu panel -->
+  <div class="gh-mobile-menu" id="ghMobileMenu" role="dialog" aria-label="Mobile navigation">
+    <ul class="gh-mobile-nav">
+      <li>
+        <a href="how-meculs-works.html">How MECULS Works</a>
+        <ul class="gh-mobile-sub">
+          <li><a href="how-meculs-works.html#coaching-process">Coaching Process</a></li>
+          <li><a href="how-meculs-works.html#simulations">Simulations in Coaching</a></li>
+          <li><a href="how-meculs-works.html#profiling">Personality Profiling</a></li>
+          <li><a href="how-meculs-works.html#what-changes">What Changes in Real Work</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="contexts.html">Contexts</a>
+        <ul class="gh-mobile-sub">
+          <li><a href="contexts.html#leadership">Leadership &amp; Organisations</a></li>
+          <li><a href="contexts.html#professionals">Professionals &amp; Educators</a></li>
+          <li><a href="contexts.html#adults">Adults &amp; Youth</a></li>
+          <li><a href="contexts.html#children">Children</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="the-approach.html">The Approach</a>
+        <ul class="gh-mobile-sub">
+          <li><a href="360-pulse-rate.html">360° PULSE RATE™</a></li>
+          <li><a href="the-approach.html#mynd-care">Mynd CARE Philosophy</a></li>
+          <li><a href="the-approach.html#pressure">Why Behaviour Under Pressure</a></li>
+          <li><a href="the-approach.html#simulations">Why Simulations, Not Talk</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="insights.html">Insights</a>
+        <ul class="gh-mobile-sub">
+          <li><a href="insights.html">Writings</a></li>
+          <li><a href="insights.html#themes">Themes &amp; Series</a></li>
+        </ul>
+      </li>
+      <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+    </ul>
+    <a href="begin-conversation.html" class="gh-mobile-cta">Begin a Conversation</a>
+  </div>
+  <!-- END GLOBAL HEADER -->
+  <!-- END GLOBAL HEADER -->
+
+
+  <!-- ═══════════════════════════════════════════════
+       PAGE CONTENT
+  ═══════════════════════════════════════════════ -->
+  <div class="page">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-inner">
+
+          <div class="hero-text">
+            <p class="hero-eyebrow reveal">MECULS Founder</p>
+            <h1 class="hero-name reveal d1">Rajneesh Jain</h1>
+            <p class="hero-title reveal d2">L&amp;D Coach &amp; Strategic Advisor</p>
+            <p class="hero-subtitle reveal d2">Architect — Proprietary Personality Profiling &amp; Immersive Leadership Frameworks</p>
+
+            <div class="hero-quote reveal d3">
+              <p>"I don't energize leaders. I help them see clearly enough to stop sabotaging themselves."</p>
+            </div>
+
+            <div class="hero-tags reveal d4">
+              <span class="tag">ICF Certified Coach</span>
+              <span class="tag">360° PULSE RATE™ Creator</span>
+              <span class="tag">Zero State Meditation Originator</span>
+              <span class="tag">22+ Years Research</span>
+            </div>
+          </div>
+
+          <div class="hero-portrait reveal d2">
+            <div class="portrait-frame">
+              <!--
+                HOW TO SET YOUR PHOTO:
+                Replace the src below with your photo path.
+                Your photo file is currently at:
+                D:\1. MECULS\1. Design & Branding\6. meculs-site\images\Rajneesh Photo.jpg
+                So in the src you write:  images/Rajneesh Photo.jpg
+                (Just the filename with the images/ folder — not the full D:\ path)
+              -->
+              <img src="images/Rajneesh Photo.jpg"
+                   alt="Rajneesh Jain, Founder of MECULS"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+              <div class="portrait-placeholder" style="display:none">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                  <circle cx="30" cy="24" r="11" stroke="#d4af37" stroke-width="1.5"/>
+                  <path d="M8 56c0-12 10-21 22-21s22 9 22 21" stroke="#d4af37" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <p>Place your photo at:<br>images/Rajneesh Photo.jpg</p>
+              </div>
+            </div>
+            <div class="portrait-accent"></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CREDENTIALS -->
+    <section class="credentials-strip">
+      <div class="container">
+        <div class="credentials-grid">
+          <div class="credential-item reveal">
+            <div class="credential-num">22+</div>
+            <div class="credential-label">Years of Research &amp; Practice</div>
+          </div>
+          <div class="credential-item reveal d1">
+            <div class="credential-num">ICF</div>
+            <div class="credential-label">Certified — International Coaching Federation</div>
+          </div>
+          <div class="credential-item reveal d2">
+            <div class="credential-num">360°</div>
+            <div class="credential-label">PULSE RATE™ — Proprietary Leadership Model</div>
+          </div>
+          <div class="credential-item reveal d3">
+            <div class="credential-num">∞</div>
+            <div class="credential-label">Zero State Meditation — Taught Nowhere Else Globally</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE THINKING -->
+    <section class="two-col-section" id="thinking">
+      <div class="container">
+        <div class="two-col-grid">
+          <div class="sticky-col">
+            <p class="section-label reveal">The Thinking</p>
+            <h2 class="section-heading reveal d1">The doctrine behind the work</h2>
+            <p class="section-desc reveal d2">How Rajneesh sees leadership, performance, and the human mind — and why it produces results that other approaches cannot.</p>
+          </div>
+          <div class="thinking-content">
+            <p class="reveal"><strong>Information explains leadership. Architecture changes it.</strong> Most leaders already know what to do. What breaks is momentum — in decisions, communication, collaboration, and executive presence.</p>
+            <p class="reveal">Traditional tools like MBTI, Hogan, and Deeper Signals describe a leader's personality with precision. What they cannot do is change how that leader behaves when pressure removes all pretending. MECULS is designed not to describe — but to change how leadership moves.</p>
+            <p class="reveal">Rajneesh doesn't coach leaders on what leadership should look like. <strong>He trains how they respond when pressure removes all pretending.</strong> Through customised immersive simulations and the 360° PULSE RATE™ model, he engineers moments where self-awareness is unavoidable — and builds the architecture so the new response becomes permanent.</p>
+            <p class="reveal">For individuals and families, his work operates at a different depth: the hidden mind — where conflict, suppression, and unfulfilled desires reside. Clearing this hidden layer is the systematic neutralisation of what has been stored, so that a person's natural clarity and infinite inner power can flow freely.</p>
+            <p class="reveal"><strong>MECULS emerged from 22 years of this work.</strong> Not from a course, not from a certification — from relentless, original research into why people stop themselves, and what it actually takes to change that permanently.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VALUE CODE -->
+    <section class="values-section">
+      <div class="container">
+        <div class="values-header">
+          <p class="section-label reveal">Value Code</p>
+          <h2 class="section-heading reveal d1">What guides every engagement</h2>
+        </div>
+        <div class="values-grid">
+          <div class="value-card reveal">
+            <div class="value-number">01</div>
+            <div class="value-title">Human Respect</div>
+            <p class="value-desc">Every individual is treated with dignity and empathy — without exception. The work begins with complete respect for who the person is before any change is discussed.</p>
+          </div>
+          <div class="value-card reveal d1">
+            <div class="value-number">02</div>
+            <div class="value-title">Ethical Integrity</div>
+            <p class="value-desc">No manipulation. No false promises. No shortcuts. The work is honest about what it can deliver and does not inflate outcomes to secure an engagement.</p>
+          </div>
+          <div class="value-card reveal d2">
+            <div class="value-number">03</div>
+            <div class="value-title">Thorough Listening</div>
+            <p class="value-desc">Before any guidance is offered, deep listening is the foundation. Most of the real work happens in understanding what is actually present — not what is visible on the surface.</p>
+          </div>
+          <div class="value-card reveal d3">
+            <div class="value-number">04</div>
+            <div class="value-title">Care Beyond Revenue</div>
+            <p class="value-desc">MECULS exists to genuinely serve — not to extract fees. If the work is not the right fit, that is said clearly and immediately.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAPABILITIES -->
+    <section class="capabilities-section">
+      <div class="container">
+        <div class="capabilities-header">
+          <p class="section-label reveal">Capabilities</p>
+          <h2 class="section-heading reveal d1">Strengths, best use cases, and where this work is not the right fit</h2>
+        </div>
+        <div class="cap-grid">
+          <div class="cap-card reveal">
+            <div class="cap-icon">
+              <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" width="36" height="36">
+                <polygon points="18,3 22,14 33,14 24,21 27,32 18,25 9,32 12,21 3,14 14,14"/>
+              </svg>
+            </div>
+            <p class="cap-title">Distinctive Strengths</p>
+            <ul class="cap-list">
+              <li>Converts complexity into clean, actionable frameworks</li>
+              <li>Identifies invisible pressure points in leadership behaviour</li>
+              <li>Operates beyond motivation — focuses on coherence</li>
+              <li>Maintains stability under prolonged ambiguity</li>
+            </ul>
+          </div>
+          <div class="cap-card reveal d1">
+            <div class="cap-icon">
+              <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" width="36" height="36">
+                <circle cx="18" cy="18" r="14"/>
+                <circle cx="18" cy="18" r="7"/>
+                <circle cx="18" cy="18" r="2" fill="currentColor" stroke="none"/>
+              </svg>
+            </div>
+            <p class="cap-title">Best Use Cases</p>
+            <ul class="cap-list">
+              <li>Leadership recalibration</li>
+              <li>Executive clarity during transitions</li>
+              <li>Culture diagnosis and redesign</li>
+              <li>Personality-strategy alignment</li>
+              <li>Founder identity stabilisation</li>
+            </ul>
+          </div>
+          <div class="cap-card reveal d2">
+            <div class="cap-icon">
+              <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" width="36" height="36">
+                <circle cx="18" cy="18" r="14"/>
+                <path d="M12 18h12M18 12v12" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <p class="cap-title">Where This Is Not the Right Fit</p>
+            <ul class="cap-list">
+              <li>High-hype sales cultures seeking energy injection</li>
+              <li>Short-term incentive-driven environments</li>
+              <li>Emotionally performative leadership spaces</li>
+            </ul>
+            <p class="cap-note">Said with respect — not every practice is right for every context. If the fit is not there, Rajneesh says so directly.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE JOURNEY -->
+    <section class="two-col-section" id="journey">
+      <div class="container">
+        <div class="two-col-grid">
+          <div class="sticky-col">
+            <p class="section-label reveal">The Journey</p>
+            <h2 class="section-heading reveal d1">22 years of original work</h2>
+            <p class="section-desc reveal d2">Not a career built from certifications and corporate roles — a practice built from relentless research, original discovery, and direct work with leaders and individuals across India.</p>
+          </div>
+          <ul class="milestone-list">
+            <li class="milestone reveal">
+              <div class="milestone-title">Founder — MECULS</div>
+              <p class="milestone-desc">Mind Enablement Centre for Unlocking Limitless Leadership &amp; Self-Potential. Built as an independent practice — no investor funding, no franchise model. Every methodology is original.</p>
+            </li>
+            <li class="milestone reveal d1">
+              <div class="milestone-title">Creator — 360° PULSE RATE™ Leadership Coaching Model (ICF Certified)</div>
+              <p class="milestone-desc">A proprietary diagnostic and coaching model built on Jungian typology and behavioural architecture. Delivers five actionable outputs: Personality Type, Core Block, Readiness Band, Coaching Time Estimate, and One-Line Clarity Anchor.</p>
+            </li>
+            <li class="milestone reveal d2">
+              <div class="milestone-title">Architect — MECULS Personality Profiling System</div>
+              <p class="milestone-desc">Jungian-based, proprietary. Produces precise, named personality types with Core Block diagnosis — designed for application, not description. Deployed at Strides Pharma with 16 senior managers assessed.</p>
+            </li>
+            <li class="milestone reveal d3">
+              <div class="milestone-title">Originator — Zero State Meditation</div>
+              <p class="milestone-desc">Discovered and taught exclusively by MECULS. Not available from any other practitioner globally. Neutralises suppressed desires, emotions, and fears stored in the hidden consciousness — producing relief in depression, addiction, anger, and disease.</p>
+            </li>
+            <li class="milestone reveal d4">
+              <div class="milestone-title">22+ Years — Human Mind, Consciousness &amp; Organisational Research</div>
+              <p class="milestone-desc">Deep, sustained research across corporate India, individual coaching, children's development, and consciousness work. Every framework in MECULS is the product of this research — not borrowed, not adapted, but discovered through direct practice.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOUL QUOTE -->
+    <section class="soul-section">
+      <div class="container">
+        <div class="soul-quote reveal">
+          <span class="soul-mark">"</span>
+          <p class="soul-text">You are here to bring structure to inner chaos and clarity to leadership confusion — not by force, but by depth, discipline, and presence.</p>
+          <p class="soul-attr">— The MECULS Soul Summary</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-inner">
+          <div>
+            <p class="section-label reveal">Next Step</p>
+            <h2 class="cta-heading reveal d1">Begin a Conversation</h2>
+            <p class="cta-desc reveal d2">No pitch. No deck. A direct exchange about what is actually happening in your leadership context — or your life. Rajneesh responds personally.</p>
+          </div>
+          <div class="cta-actions reveal d2">
+            <a href="mailto:Jain.Rajneesh@meculs.com" class="btn-primary">
+              Contact Rajneesh
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </a>
+            <a href="how-meculs-works.html" class="btn-secondary">How MECULS Works</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- .page -->
+
+
+  <!-- ═══════════════════════════════════════════════
+       GLOBAL FOOTER — same on every MECULS page
+       To change links: edit the <li> items below
+       To change logo: update src="images/logo/..."
+  ═══════════════════════════════════════════════ -->
+  <footer class="global-footer">
+    <div class="gf-top">
+
+      <!-- Column 1: Brand -->
+      <div class="gf-brand">
+        <div class="gf-logo">
+          <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+          <span class="gf-logo-text" style="display:none">MECULS</span>
+        </div>
+        <p class="gf-tagline">Mind Enablement Centre for Unlocking Limitless Leadership &amp; Self-Potential</p>
+        <div class="gf-contact">
+          <a href="mailto:Jain.Rajneesh@meculs.com">Jain.Rajneesh@meculs.com</a>
+          <a href="#">Delhi, India</a>
+        </div>
+        <div class="gf-social">
+          <!-- LinkedIn -->
+          <a href="#" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <!-- YouTube -->
+          <a href="#" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.5 6.5s-.3-2-1.2-2.8c-1.1-1.2-2.4-1.2-3-1.3C15.6 2.2 12 2.2 12 2.2s-3.6 0-6.3.2c-.6.1-1.9.1-3 1.3C1.8 4.5 1.5 6.5 1.5 6.5S1.2 8.8 1.2 11v2.1c0 2.2.3 4.4.3 4.4s.3 2 1.2 2.8c1.1 1.2 2.6 1.1 3.3 1.2 2.4.2 10 .3 10 .3s3.6 0 6.3-.3c.6-.1 1.9-.1 3-1.3.9-.8 1.2-2.8 1.2-2.8s.3-2.2.3-4.4V11c0-2.2-.3-4.5-.3-4.5zM9.7 14.8V8.4l6.6 3.2-6.6 3.2z"/></svg>
+          </a>
+          <!-- Instagram -->
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <!-- Twitter/X -->
+          <a href="#" aria-label="Twitter">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 1.2h3.4l-7.4 8.5 8.7 11.5h-6.8l-5.3-6.9-6.1 6.9H1.9l7.9-9L1.3 1.2h7l4.8 6.3 5.8-6.3zm-1.2 18h1.9L6.4 3.2H4.4l13.3 16z"/></svg>
+          </a>
+          <!-- Facebook -->
+          <a href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Column 2: Services -->
+      <div>
+        <p class="gf-col-title">Services</p>
+        <ul class="gf-links">
+          <li><a href="services.html#leadership">Leadership Coaching</a></li>
+          <li><a href="services.html#profiling">Personality Profiling</a></li>
+          <li><a href="bespoke-coaching.html">Executive Coaching — Bespoke</a></li>
+          <li><a href="services.html#org-health">Organisational Health</a></li>
+          <li><a href="services.html#zero-state">Meditation As Medicine</a></li>
+          <li><a href="services.html#children">For Children</a></li>
+          <li><a href="services.html#wellness">Mind Wellness Counselling</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Company -->
+      <div>
+        <p class="gf-col-title">Company</p>
+        <ul class="gf-links">
+          <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+          <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+          <li><a href="why-meculs.html">Why MECULS</a></li>
+          <li><a href="our-work-proof.html">Our Work Proof</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="360-pulse-rate.html">360° PULSE RATE™</a></li>
+          <li><a href="cv-portal.html">CV Portal</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Connect -->
+      <div>
+        <p class="gf-col-title">Connect</p>
+        <ul class="gf-links">
+          <li><a href="begin-conversation.html">Begin a Conversation</a></li>
+          <li><a href="book-session.html">Book a Session</a></li>
+          <li><a href="source-of-challenges.html">Source of Challenges</a></li>
+          <li><a href="why-mynd-care.html">Why Mynd CARE</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="refund-policy.html">Refund Policy</a></li>
+        </ul>
+      </div>
+
+    </div><!-- .gf-top -->
+
+    <div class="gf-bottom">
+      <p class="gf-copy">© 2026 MECULS. All rights reserved. Delhi, India.</p>
+      <div class="gf-payment">
+        Payment: PayUBiz · Razorpay · PayPal · UPI · Credit Card
+      </div>
+      <div class="gf-legal">
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="refund-policy.html">Refund</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </footer>
+  <!-- END GLOBAL FOOTER -->
+  <!-- END GLOBAL FOOTER -->
+
+  <!-- Global JS — handles hamburger, scroll, active nav -->
+  <script src="global.js"></script>
+
+  <!-- Page-specific JS -->
+  <script>
+    'use strict';
+    // Scroll reveal
+    var reveals = document.querySelectorAll('.reveal');
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(function(el) { obs.observe(el); });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="How MECULS Works — Momentum Architecture™, 360° PULSE RATE™, and the coaching process that changes how leadership moves.">
+  <title>How MECULS Works — MECULS</title>
+  <link rel="stylesheet" href="global.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Archivo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+/* ═══════════════════════════════════════════════════
+   MECULS — HOW IT WORKS — GLOBAL EXCELLENCE EDITION
+═══════════════════════════════════════════════════ */
+:root {
+  --gold:#d4af37;
+  --gold-lt:rgba(212,175,55,0.18);
+  --gold-dim:rgba(212,175,55,0.10);
+  --gold-bdr:rgba(212,175,55,0.25);
+  --gold-glow:rgba(212,175,55,0.06);
+  --ink:#000814;
+  --ink-mid:#00112e;
+  --ink-deep:#000509;
+  --white:#ffffff;
+  --muted:rgba(255,255,255,0.48);
+  --soft:rgba(255,255,255,0.76);
+  --serif:'Cormorant Garamond',serif;
+  --sans:'Archivo',sans-serif;
+  --ease:cubic-bezier(0.16,1,0.3,1);
+  --nav-h:72px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--ink);color:var(--white);font-family:var(--sans);line-height:1.7;-webkit-font-smoothing:antialiased;}
+
+/* ── GRAIN OVERLAY ──────────────────────────────── */
+body::after{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:9999;opacity:0.32;mix-blend-mode:overlay;
+}
+
+/* ═══════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════ */
+.hw-hero{
+  min-height:100vh;position:relative;
+  display:flex;align-items:flex-end;overflow:hidden;
+}
+.hw-hero-bg{
+  position:absolute;inset:0;
+  background-image:url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1800&q=80&auto=format&fit=crop');
+  background-size:cover;background-position:center 30%;
+  transform:scale(1.04);
+  animation:heroZoom 18s ease-in-out infinite alternate;
+}
+@keyframes heroZoom{
+  from{transform:scale(1.04) translateX(0);}
+  to{transform:scale(1.10) translateX(-1%);}
+}
+.hw-hero-ink{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(to top,#000814 0%,rgba(0,8,20,0.88) 28%,rgba(0,8,20,0.45) 58%,rgba(0,8,20,0.18) 100%),
+    linear-gradient(135deg,rgba(0,8,20,0.55) 0%,transparent 60%);
+}
+.hw-hero-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(212,175,55,0.022) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(212,175,55,0.022) 1px,transparent 1px);
+  background-size:88px 88px;pointer-events:none;
+  mask-image:linear-gradient(to top,black 0%,transparent 65%);
+  -webkit-mask-image:linear-gradient(to top,black 0%,transparent 65%);
+}
+.hw-hero-inner{
+  position:relative;z-index:2;
+  width:100%;max-width:1400px;margin:0 auto;
+  padding:calc(var(--nav-h) + 2rem) 6vw clamp(5rem,10vh,9rem);
+}
+.hw-eyebrow{
+  display:inline-flex;align-items:center;gap:14px;
+  font-size:0.65rem;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:2.5rem;
+  opacity:0;animation:fadeUp 1s var(--ease) 0.2s forwards;
+}
+.hw-eyebrow::before{content:'';width:44px;height:1px;background:var(--gold);opacity:0.7;}
+.hw-hero-h1{
+  font-family:var(--serif);
+  font-size:clamp(3.4rem,7.5vw,8rem);
+  font-weight:300;line-height:1.0;letter-spacing:-0.03em;
+  color:var(--white);max-width:920px;margin-bottom:3.5rem;
+  opacity:0;animation:fadeUp 1.2s var(--ease) 0.35s forwards;
+}
+.hw-hero-h1 em{font-style:italic;color:var(--gold);}
+.hw-hero-h1 .line-ghost{
+  display:block;-webkit-text-stroke:1px rgba(255,255,255,0.3);
+  color:transparent;font-weight:300;
+}
+.hw-hero-sub{
+  display:grid;grid-template-columns:1fr auto;
+  gap:4rem;align-items:flex-end;max-width:900px;
+}
+.hw-hero-pull{
+  font-family:var(--serif);font-size:clamp(1.05rem,1.6vw,1.4rem);
+  font-weight:400;font-style:italic;
+  color:rgba(255,255,255,0.7);
+  border-left:2px solid var(--gold);padding-left:1.6rem;
+  line-height:1.65;max-width:520px;
+  opacity:0;animation:fadeUp 1.2s var(--ease) 0.5s forwards;
+}
+.hw-hero-stat{
+  text-align:right;flex-shrink:0;
+  opacity:0;animation:fadeUp 1.2s var(--ease) 0.65s forwards;
+}
+.hw-hero-stat-n{
+  display:block;font-family:var(--serif);font-size:3.8rem;font-weight:300;
+  color:var(--gold);line-height:1;letter-spacing:-0.04em;
+}
+.hw-hero-stat-l{
+  display:block;font-size:0.6rem;font-weight:600;letter-spacing:0.2em;
+  text-transform:uppercase;color:rgba(255,255,255,0.32);margin-top:0.35rem;
+}
+.hw-scroll{
+  position:absolute;bottom:2.5rem;right:6vw;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  opacity:0;animation:fadeIn 1s ease 2s forwards;
+}
+.hw-scroll span{font-size:0.58rem;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,255,255,0.28);}
+.hw-scroll-ln{width:1px;height:48px;background:linear-gradient(to bottom,var(--gold),transparent);animation:pulse 2.2s ease-in-out infinite;}
+
+/* ═══════════════════════════════════════════════
+   UTILITIES
+═══════════════════════════════════════════════ */
+.hw-sec{padding:clamp(90px,12vh,140px) 6vw;position:relative;}
+.hw-in{max-width:1400px;margin:0 auto;}
+.hw-bar{width:44px;height:2px;background:linear-gradient(90deg,var(--gold),transparent);margin-bottom:1.2rem;}
+.hw-lbl{font-size:0.63rem;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem;}
+.hw-h2{
+  font-family:var(--serif);font-size:clamp(2.4rem,4.8vw,4.4rem);
+  font-weight:300;line-height:1.08;letter-spacing:-0.03em;
+  color:var(--white);margin-bottom:1.2rem;
+}
+.hw-h2 em{font-style:italic;color:var(--gold);}
+.bg-ink{background:var(--ink);}
+.bg-grad{background:linear-gradient(180deg,#000814 0%,#000e28 100%);}
+.bg-grad2{background:linear-gradient(180deg,#000e28 0%,#000814 100%);}
+
+/* ═══════════════════════════════════════════════
+   S1 — THE CORE PROBLEM
+═══════════════════════════════════════════════ */
+.s1-opening{
+  font-family:var(--serif);font-size:clamp(1.5rem,2.6vw,2.4rem);
+  font-weight:300;color:rgba(255,255,255,0.84);
+  line-height:1.55;max-width:860px;
+  margin:5rem 0;padding-bottom:4rem;
+  border-bottom:1px solid rgba(255,255,255,0.07);
+}
+.s1-opening em{color:var(--gold);font-style:italic;}
+
+.s1-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
+.s1-col{
+  padding:3.5rem 3rem;
+  background:rgba(255,255,255,0.018);
+  border:1px solid rgba(255,255,255,0.06);
+  position:relative;overflow:hidden;
+  transition:background 0.5s;
+}
+.s1-col:first-child{border-right:none;}
+.s1-col:hover{background:rgba(255,255,255,0.03);}
+.s1-col-n{
+  position:absolute;top:1.8rem;right:2.2rem;
+  font-family:var(--serif);font-size:6.5rem;font-weight:700;
+  color:transparent;-webkit-text-stroke:1px rgba(212,175,55,0.06);
+  line-height:1;pointer-events:none;
+}
+.s1-col-tag{font-size:0.61rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;}
+.s1-col-title{font-family:var(--serif);font-size:1.65rem;font-weight:400;color:var(--white);line-height:1.28;margin-bottom:1.4rem;}
+.s1-col-body{font-size:0.95rem;color:var(--soft);line-height:1.82;}
+
+.s1-quote-block{
+  margin-top:5rem;padding:4rem 5rem;
+  background:var(--gold-glow);border:1px solid var(--gold-bdr);
+  position:relative;text-align:center;
+}
+.s1-quote-block::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.s1-qm{
+  font-family:var(--serif);font-size:7rem;line-height:0.4;
+  color:rgba(212,175,55,0.12);display:block;margin-bottom:2rem;
+}
+.s1-quote{
+  font-family:var(--serif);font-size:clamp(1.3rem,2.2vw,1.9rem);
+  font-weight:300;font-style:italic;color:rgba(255,255,255,0.9);
+  line-height:1.55;max-width:780px;margin:0 auto 2rem;
+}
+.s1-note{font-size:0.9rem;color:var(--muted);line-height:1.72;max-width:620px;margin:0 auto;}
+.s1-note strong{color:var(--gold);}
+
+/* ═══════════════════════════════════════════════
+   S2 — MOMENTUM ARCHITECTURE™
+   Full-width photo strip
+═══════════════════════════════════════════════ */
+.s2-photo-strip{
+  position:relative;height:clamp(280px,38vw,520px);
+  overflow:hidden;margin-bottom:-1px;
+}
+.s2-photo-strip img{
+  width:100%;height:100%;object-fit:cover;object-position:center 55%;
+  display:block;filter:brightness(0.78) saturate(0.85);
+  transform:scale(1.02);transition:transform 12s ease;
+}
+.s2-photo-strip:hover img{transform:scale(1.05);}
+.s2-photo-overlay{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(to right,rgba(0,8,20,0.7) 0%,transparent 40%,transparent 60%,rgba(0,8,20,0.7) 100%),
+    linear-gradient(to bottom,rgba(0,8,20,0.15) 0%,rgba(0,8,20,0.62) 100%);
+}
+.s2-photo-caption{
+  position:absolute;bottom:2.5rem;left:6vw;right:6vw;
+  display:flex;justify-content:space-between;align-items:flex-end;
+}
+.s2-photo-tag{
+  font-size:0.62rem;font-weight:700;letter-spacing:0.28em;
+  text-transform:uppercase;color:var(--gold);
+  border-left:2px solid var(--gold);padding-left:1rem;
+}
+.s2-photo-rule{
+  font-family:var(--serif);font-size:clamp(1.4rem,3vw,2.8rem);
+  font-weight:300;font-style:italic;
+  color:rgba(255,255,255,0.9);line-height:1.2;text-align:right;
+  text-shadow:0 2px 20px rgba(0,0,0,0.5);
+}
+.s2-photo-rule em{color:var(--gold);}
+
+.s2-body{padding:clamp(80px,11vh,130px) 6vw;}
+.s2-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:2px;}
+.mcard{
+  padding:3.5rem 3rem;background:rgba(255,255,255,0.02);
+  border:1px solid var(--gold-bdr);position:relative;overflow:hidden;
+  transition:background 0.45s,transform 0.45s var(--ease);
+}
+.mcard::after{
+  content:'';position:absolute;bottom:0;left:0;
+  width:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);
+  transition:width 0.5s var(--ease);
+}
+.mcard:hover::after{width:100%;}
+.mcard:hover{background:rgba(212,175,55,0.04);transform:translateY(-3px);}
+.mcard-n{
+  position:absolute;top:1.5rem;right:2rem;
+  font-family:var(--serif);font-size:6rem;font-weight:700;
+  color:rgba(212,175,55,0.06);line-height:1;letter-spacing:-0.04em;pointer-events:none;
+}
+.mcard-tag{font-size:0.62rem;font-weight:700;letter-spacing:0.26em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
+.mcard-title{font-family:var(--serif);font-size:1.65rem;font-weight:400;color:var(--white);line-height:1.28;margin-bottom:1.1rem;}
+.mcard-body{font-size:0.93rem;color:var(--soft);line-height:1.8;}
+
+.momentum-banner{
+  padding:3rem 5rem;background:var(--gold-glow);
+  border:1px solid var(--gold-bdr);border-top:none;
+  display:grid;grid-template-columns:3px 1fr;gap:3rem;align-items:center;
+}
+.mb-marker{background:linear-gradient(to bottom,var(--gold),rgba(212,175,55,0.2));}
+.momentum-banner p{
+  font-family:var(--serif);font-size:clamp(1.15rem,1.9vw,1.65rem);
+  font-weight:300;font-style:italic;color:rgba(255,255,255,0.88);line-height:1.6;
+}
+.momentum-banner strong{font-style:normal;font-weight:600;color:var(--gold);}
+
+.vc-lbl{
+  font-size:0.63rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;
+  color:rgba(255,255,255,0.3);margin:3.5rem 0 1.5rem;
+  padding-bottom:0.8rem;border-bottom:1px solid rgba(255,255,255,0.05);
+}
+.vc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;}
+.vc-item{
+  display:flex;align-items:flex-start;gap:1.2rem;
+  padding:1.6rem 2rem;border:1px solid rgba(255,255,255,0.05);
+  background:rgba(255,255,255,0.012);transition:background 0.4s;
+}
+.vc-item:hover{background:rgba(212,175,55,0.04);}
+.vc-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:8px;}
+.vc-text{font-size:0.93rem;color:var(--soft);line-height:1.65;}
+
+/* ═══════════════════════════════════════════════
+   S3 — THE CLIENT JOURNEY
+   Timeline + sticky photo sidebar
+═══════════════════════════════════════════════ */
+.s3-layout{
+  display:grid;grid-template-columns:1fr 380px;
+  gap:6rem;align-items:start;margin-top:4.5rem;
+}
+.journey{position:relative;}
+.journey::before{
+  content:'';position:absolute;left:27px;top:0;bottom:0;width:1px;
+  background:linear-gradient(to bottom,var(--gold),rgba(212,175,55,0.05));
+}
+.step{display:grid;grid-template-columns:54px 1fr;gap:2.2rem;margin-bottom:3rem;position:relative;}
+.step-node{
+  width:54px;height:54px;border-radius:50%;
+  border:1px solid var(--gold-bdr);background:var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;z-index:1;transition:all 0.45s var(--ease);
+}
+.step:hover .step-node{background:var(--gold-lt);border-color:var(--gold);box-shadow:0 0 24px rgba(212,175,55,0.2);}
+.step-num{font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--gold);}
+.step-time{font-size:0.62rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);opacity:0.65;margin-bottom:0.4rem;}
+.step-title{font-family:var(--serif);font-size:1.55rem;font-weight:500;color:var(--white);line-height:1.22;margin-bottom:0.6rem;}
+.step-body{font-size:0.94rem;color:var(--soft);line-height:1.8;}
+.step-hl{
+  margin-top:0.9rem;padding:1rem 1.4rem;
+  background:var(--gold-glow);border-left:2px solid var(--gold);
+  font-size:0.88rem;color:rgba(255,255,255,0.8);font-style:italic;line-height:1.55;
+}
+
+.s3-sidebar{position:sticky;top:calc(var(--nav-h) + 2rem);}
+.s3-photo{position:relative;overflow:hidden;margin-bottom:2px;}
+.s3-photo img{
+  width:100%;aspect-ratio:2/3;object-fit:cover;object-position:center;
+  display:block;filter:brightness(0.8) saturate(0.88);
+  transition:transform 8s ease,filter 0.5s;
+}
+.s3-photo:hover img{transform:scale(1.03);filter:brightness(0.88) saturate(1);}
+.s3-photo-cap{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:2rem 1.8rem;
+  background:linear-gradient(to top,rgba(0,8,20,0.92) 0%,transparent 100%);
+}
+.s3-photo-cap-tag{font-size:0.6rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem;}
+.s3-photo-cap-text{font-family:var(--serif);font-size:1.1rem;font-weight:300;font-style:italic;color:rgba(255,255,255,0.85);line-height:1.4;}
+.s3-stat-row{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:2px;}
+.s3-stat{padding:1.8rem;background:rgba(255,255,255,0.018);border:1px solid rgba(255,255,255,0.06);text-align:center;}
+.s3-stat-n{display:block;font-family:var(--serif);font-size:2.4rem;font-weight:300;color:var(--gold);line-height:1;letter-spacing:-0.03em;}
+.s3-stat-l{display:block;font-size:0.68rem;color:var(--muted);margin-top:0.4rem;line-height:1.4;}
+
+/* ═══════════════════════════════════════════════
+   S4 — 360° PULSE RATE™
+═══════════════════════════════════════════════ */
+.s4-header{
+  display:grid;grid-template-columns:1fr auto;
+  gap:4rem;align-items:end;margin-bottom:4rem;
+  padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,0.07);
+}
+.s4-intro{font-size:1rem;color:var(--soft);line-height:1.85;max-width:600px;margin-top:1.5rem;}
+.s4-badge{
+  flex-shrink:0;text-align:center;padding:2rem 2.5rem;
+  border:1px solid var(--gold-bdr);background:var(--gold-glow);
+}
+.s4-badge-abbr{
+  font-family:var(--serif);font-size:3.2rem;font-weight:300;
+  color:var(--gold);letter-spacing:0.1em;line-height:1;display:block;margin-bottom:0.5rem;
+}
+.s4-badge-line{width:30px;height:1px;background:var(--gold);margin:0.8rem auto;}
+.s4-badge-txt{font-size:0.62rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.4);}
+
+.pulse-layout{display:grid;grid-template-columns:1fr 1.25fr;gap:5rem;align-items:start;}
+.pulse-row{
+  display:flex;gap:1.8rem;align-items:flex-start;
+  padding:1.1rem 0;border-bottom:1px solid rgba(255,255,255,0.05);
+}
+.pulse-row:last-of-type{border-bottom:none;}
+.pulse-L{
+  font-family:var(--serif);font-size:2.6rem;font-weight:600;
+  color:var(--gold);line-height:1;min-width:38px;
+  transition:transform 0.3s;
+}
+.pulse-row:hover .pulse-L{transform:scale(1.1);}
+.pulse-def{padding-top:0.3rem;}
+.pulse-def strong{display:block;font-size:0.94rem;color:var(--white);font-weight:600;margin-bottom:0.1rem;}
+.pulse-def span{font-size:0.8rem;color:var(--muted);}
+.pulse-div{
+  font-size:0.6rem;font-weight:700;letter-spacing:0.3em;
+  text-transform:uppercase;color:rgba(255,255,255,0.18);padding:1.2rem 0 0.6rem;
+}
+.outputs-card{
+  padding:3.5rem;border:1px solid var(--gold-bdr);
+  background:rgba(255,255,255,0.02);position:relative;
+}
+.outputs-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--gold),transparent 60%);
+}
+.outputs-title{
+  font-size:0.62rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--gold);padding-bottom:1.4rem;border-bottom:1px solid var(--gold-bdr);margin-bottom:2rem;
+}
+.out-row{
+  display:flex;gap:1.4rem;align-items:flex-start;
+  padding:1.1rem 0;border-bottom:1px solid rgba(255,255,255,0.04);
+  transition:padding-left 0.3s;
+}
+.out-row:hover{padding-left:0.5rem;}
+.out-row:last-of-type{border-bottom:none;}
+.out-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:8px;}
+.out-text{font-size:0.93rem;color:var(--soft);line-height:1.6;}
+.out-text strong{color:var(--white);font-weight:600;}
+.icf-badge{
+  margin-top:2rem;display:inline-flex;align-items:center;gap:1rem;
+  padding:0.85rem 1.6rem;border:1px solid var(--gold-bdr);background:var(--gold-glow);
+}
+.icf-tag{font-size:0.6rem;font-weight:700;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold);}
+.icf-txt{font-size:0.82rem;color:var(--soft);}
+
+/* ═══════════════════════════════════════════════
+   S5 — SIMULATIONS
+   Split: photo left / content right
+═══════════════════════════════════════════════ */
+.s5-outer{display:grid;grid-template-columns:1fr 1fr;min-height:clamp(600px,72vh,880px);}
+.s5-photo{position:relative;overflow:hidden;}
+.s5-photo img{
+  width:100%;height:100%;object-fit:cover;object-position:center;
+  display:block;filter:brightness(0.7) saturate(0.72);transition:transform 10s ease;
+}
+.s5-outer:hover .s5-photo img{transform:scale(1.04);}
+.s5-photo-overlay{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(to right,transparent 55%,rgba(0,8,20,0.95) 100%),
+    linear-gradient(to bottom,rgba(0,8,20,0.15) 0%,rgba(0,8,20,0.38) 100%);
+}
+.s5-photo-text{position:absolute;bottom:3rem;left:3rem;}
+.s5-photo-text-tag{font-size:0.6rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem;}
+.s5-photo-text-quote{
+  font-family:var(--serif);font-size:1.35rem;font-weight:300;font-style:italic;
+  color:rgba(255,255,255,0.88);line-height:1.45;max-width:280px;
+}
+.s5-content{
+  padding:clamp(4rem,7vw,7rem) clamp(3rem,5vw,5rem);
+  background:var(--ink);display:flex;flex-direction:column;justify-content:center;position:relative;
+}
+.s5-content::before{
+  content:'SIMULATE';position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-family:var(--serif);font-size:clamp(4rem,8vw,10rem);font-weight:700;
+  color:transparent;-webkit-text-stroke:1px rgba(212,175,55,0.04);
+  white-space:nowrap;pointer-events:none;letter-spacing:-0.05em;z-index:0;
+}
+.s5-inner{position:relative;z-index:1;}
+.s5-intro{font-size:1rem;color:var(--soft);line-height:1.85;margin-bottom:2.5rem;}
+.sim-note{
+  padding:1.8rem 2.2rem;margin-bottom:2.5rem;
+  border:1px solid rgba(212,175,55,0.18);background:rgba(212,175,55,0.05);
+  border-left:3px solid var(--gold);
+}
+.sim-note-lbl{font-size:0.62rem;font-weight:700;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem;}
+.sim-note p{font-size:0.88rem;color:var(--soft);line-height:1.68;font-style:italic;}
+.sim-type{
+  display:flex;align-items:flex-start;gap:1.5rem;
+  padding:1rem 0;border-bottom:1px solid rgba(255,255,255,0.05);
+  transition:padding-left 0.3s;
+}
+.sim-type:hover{padding-left:0.5rem;}
+.sim-tag{
+  font-size:0.61rem;font-weight:700;letter-spacing:0.2em;
+  text-transform:uppercase;color:var(--gold);
+  min-width:100px;flex-shrink:0;padding-top:2px;
+}
+.sim-desc{font-size:0.88rem;color:var(--soft);line-height:1.6;}
+.s5-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
+.sim-metric{
+  padding:2.5rem 2rem;background:var(--ink);
+  border:1px solid rgba(255,255,255,0.05);text-align:center;
+  transition:background 0.4s,border-color 0.4s;
+}
+.sim-metric:hover{background:rgba(212,175,55,0.04);border-color:var(--gold-bdr);}
+.sim-num{display:block;font-family:var(--serif);font-size:2.6rem;font-weight:300;color:var(--gold);line-height:1;letter-spacing:-0.03em;margin-bottom:0.8rem;}
+.sim-txt{font-size:0.82rem;color:var(--soft);line-height:1.55;}
+
+/* ═══════════════════════════════════════════════
+   S6 — CLIENT STORY
+   Story card + atmospheric photo
+═══════════════════════════════════════════════ */
+.s6-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:4.5rem;}
+.s6-story{
+  padding:4rem;background:rgba(255,255,255,0.015);
+  border:1px solid rgba(255,255,255,0.06);position:relative;overflow:hidden;
+}
+.s6-story::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--gold),transparent 70%);
+}
+.story-tag{
+  display:inline-block;font-size:0.61rem;font-weight:700;
+  letter-spacing:0.26em;text-transform:uppercase;
+  color:var(--gold);border:1px solid var(--gold-bdr);
+  padding:0.38rem 1rem;margin-bottom:2.5rem;
+}
+.story-qm{font-family:var(--serif);font-size:6rem;line-height:0.45;color:rgba(212,175,55,0.12);margin-bottom:1.8rem;display:block;}
+.story-body{
+  font-family:var(--serif);font-size:clamp(1.05rem,1.6vw,1.35rem);
+  font-weight:400;color:rgba(255,255,255,0.86);line-height:1.82;
+}
+.story-body strong{color:var(--gold);font-weight:600;font-style:normal;}
+.story-out{
+  margin-top:2.5rem;padding:1.8rem 2.2rem;
+  background:var(--gold-glow);border-left:3px solid var(--gold);
+}
+.story-out p{font-size:0.98rem;color:rgba(255,255,255,0.84);line-height:1.68;}
+.story-out strong{color:var(--gold);}
+.s6-visual{position:relative;overflow:hidden;}
+.s6-visual img{
+  width:100%;height:100%;object-fit:cover;object-position:center;
+  display:block;filter:brightness(0.72) saturate(0.78);
+  transition:transform 10s ease,filter 0.5s;
+}
+.s6-visual:hover img{transform:scale(1.03);filter:brightness(0.8) saturate(0.88);}
+.s6-visual-overlay{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(to left,transparent 35%,rgba(0,8,20,0.88) 100%),
+    linear-gradient(to top,rgba(0,8,20,0.45) 0%,transparent 55%);
+}
+.s6-visual-aside{
+  position:absolute;top:50%;left:3rem;
+  transform:translateY(-50%);max-width:240px;
+}
+.s6-aside-rule{
+  font-family:var(--serif);font-size:1.5rem;font-weight:300;font-style:italic;
+  color:rgba(255,255,255,0.78);line-height:1.45;margin-bottom:1.5rem;
+}
+.s6-aside-rule em{color:var(--gold);}
+.s6-aside-bar{width:30px;height:1px;background:var(--gold);}
+
+/* ═══════════════════════════════════════════════
+   S7 — COMPARISON TABLE
+═══════════════════════════════════════════════ */
+.tbl-wrap{margin-top:4rem;overflow-x:auto;}
+.hw-table{width:100%;border-collapse:collapse;font-size:0.88rem;}
+.hw-table thead tr{background:rgba(255,255,255,0.015);}
+.hw-table th{
+  padding:1.2rem 1.5rem;text-align:center;
+  font-size:0.63rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;
+  border:1px solid rgba(255,255,255,0.06);white-space:nowrap;color:rgba(255,255,255,0.38);
+}
+.hw-table th:first-child{text-align:left;color:rgba(255,255,255,0.5);}
+.hw-table th.th-m{background:rgba(212,175,55,0.08);color:var(--gold);border-color:var(--gold-bdr);}
+.hw-table td{
+  padding:1rem 1.5rem;text-align:center;
+  border:1px solid rgba(255,255,255,0.04);
+  color:rgba(255,255,255,0.28);font-size:0.88rem;transition:background 0.3s;
+}
+.hw-table tr:hover td{background:rgba(255,255,255,0.01);}
+.hw-table td:first-child{text-align:left;color:rgba(255,255,255,0.72);font-weight:500;font-size:0.92rem;}
+.hw-table td.td-m{color:var(--gold);font-weight:700;font-size:1.05rem;background:rgba(212,175,55,0.04);border-color:rgba(212,175,55,0.1);}
+.tbl-note{margin-top:2rem;font-size:0.82rem;color:var(--muted);font-style:italic;}
+
+/* ═══════════════════════════════════════════════
+   CTA — CINEMATIC CLOSE
+═══════════════════════════════════════════════ */
+.hw-cta{position:relative;overflow:hidden;padding:clamp(100px,16vh,180px) 6vw;text-align:center;}
+.hw-cta-bg{
+  position:absolute;inset:0;
+  background-image:url('https://images.unsplash.com/photo-1505409859467-3a796fd5798e?w=1600&q=80&auto=format&fit=crop');
+  background-size:cover;background-position:center 40%;
+  filter:brightness(0.2) saturate(0.55);
+}
+.hw-cta-overlay{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 50% 50%,rgba(0,8,20,0.45) 0%,rgba(0,8,20,0.92) 68%),
+    linear-gradient(155deg,rgba(0,8,20,0.88) 0%,rgba(0,8,20,0.65) 100%);
+}
+.hw-cta-inner{position:relative;z-index:2;}
+.cta-eyebrow{
+  font-size:0.63rem;font-weight:700;letter-spacing:0.3em;
+  text-transform:uppercase;color:var(--gold);
+  display:block;margin-bottom:2.5rem;opacity:0.8;
+}
+.cta-quote{
+  font-family:var(--serif);font-size:clamp(1.6rem,3.2vw,2.8rem);
+  font-weight:300;font-style:italic;color:var(--white);
+  max-width:820px;margin:0 auto 1.5rem;line-height:1.48;
+}
+.cta-quote strong{font-style:normal;font-weight:600;color:var(--gold);}
+.cta-sub{font-size:0.92rem;color:var(--muted);max-width:500px;margin:0 auto 3.5rem;line-height:1.72;}
+.cta-btn{
+  display:inline-flex;align-items:center;gap:1.2rem;padding:1.2rem 3.5rem;
+  border:1px solid var(--gold);color:var(--gold);
+  font-family:var(--sans);font-size:0.76rem;font-weight:700;
+  letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;
+  transition:all 0.45s var(--ease);position:relative;overflow:hidden;
+}
+.cta-btn::before{
+  content:'';position:absolute;inset:0;
+  background:var(--gold);transform:scaleX(0);transform-origin:left;
+  transition:transform 0.45s var(--ease);
+}
+.cta-btn span{position:relative;z-index:1;transition:color 0.45s;}
+.cta-btn:hover::before{transform:scaleX(1);}
+.cta-btn:hover span{color:var(--ink);}
+.cta-btn::after{content:'→';position:relative;z-index:1;transition:transform 0.3s;}
+.cta-btn:hover::after{transform:translateX(6px);}
+
+/* ═══════════════════════════════════════════════
+   REVEAL ANIMATIONS
+═══════════════════════════════════════════════ */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity 1s var(--ease),transform 1s var(--ease);}
+.reveal.vis{opacity:1;transform:translateY(0);}
+.reveal-l{opacity:0;transform:translateX(-36px);transition:opacity 1s var(--ease),transform 1s var(--ease);}
+.reveal-l.vis{opacity:1;transform:translateX(0);}
+.reveal-r{opacity:0;transform:translateX(36px);transition:opacity 1s var(--ease),transform 1s var(--ease);}
+.reveal-r.vis{opacity:1;transform:translateX(0);}
+.reveal-scale{opacity:0;transform:scale(0.97);transition:opacity 1s var(--ease),transform 1s var(--ease);}
+.reveal-scale.vis{opacity:1;transform:scale(1);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{to{opacity:1;}}
+@keyframes pulse{0%,100%{opacity:0.35;}50%{opacity:1;}}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════ */
+@media(max-width:1100px){
+  .s3-layout{grid-template-columns:1fr;gap:4rem;}
+  .s3-sidebar{position:static;}
+  .s3-photo img{aspect-ratio:16/9;}
+  .s3-stat-row{grid-template-columns:repeat(4,1fr);}
+  .pulse-layout{grid-template-columns:1fr;gap:3rem;}
+  .s5-outer{grid-template-columns:1fr;}
+  .s5-photo{display:none;}
+  .s6-grid{grid-template-columns:1fr;}
+  .s6-visual{min-height:320px;}
+  .s4-header{grid-template-columns:1fr;}
+}
+@media(max-width:900px){
+  .s2-cards{grid-template-columns:1fr 1fr;}
+  .s5-metrics{grid-template-columns:repeat(2,1fr);}
+  .hw-hero-sub{grid-template-columns:1fr;}
+  .hw-hero-stat{text-align:left;}
+}
+@media(max-width:768px){
+  .hw-hero{min-height:85vh;}
+  .hw-sec{padding:60px 5vw;}
+  .s1-grid{grid-template-columns:1fr;}
+  .s1-col:first-child{border-right:1px solid rgba(255,255,255,0.06);}
+  .s2-cards{grid-template-columns:1fr;}
+  .s2-body{padding:60px 5vw;}
+  .vc-grid{grid-template-columns:1fr;}
+  .step{grid-template-columns:44px 1fr;gap:1.2rem;}
+  .step-node{width:44px;height:44px;}
+  .journey::before{left:22px;}
+  .s6-story{padding:2.5rem 2rem;}
+  .momentum-banner{grid-template-columns:1fr;padding:2rem 2.5rem;}
+  .mb-marker{display:none;}
+  .s5-metrics{grid-template-columns:1fr 1fr;}
+  .s3-stat-row{grid-template-columns:1fr 1fr;}
+  .s1-quote-block{padding:2.5rem 2rem;}
+}
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════
+       GLOBAL HEADER
+  ═══════════════════════════════════════════════ -->
+  <header class="global-header">
+
+    <!-- Logo — links to homepage -->
+    <a href="index.html" class="gh-logo">
+      <img src="images/logo/MECULS-gold-white-bold.png"
+           alt="MECULS"
+           onerror="this.style.display='none'; document.querySelector('.gh-logo-text').style.display='block'">
+      <span class="gh-logo-text">MECULS</span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav aria-label="Global navigation">
+      <ul class="gh-nav gh-nav-wrap">
+        <li>
+          <a href="how-meculs-works.html">How MECULS Works
+            <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 3.5l3 3 3-3"/>
+            </svg>
+          </a>
+          <ul class="gh-dropdown">
+            <li><a href="how-meculs-works.html#coaching-process">Coaching Process</a></li>
+            <li><a href="how-meculs-works.html#simulations">Simulations in Coaching</a></li>
+            <li><a href="how-meculs-works.html#profiling">Personality Profiling</a></li>
+            <li><a href="how-meculs-works.html#what-changes">What Changes in Real Work</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="contexts.html">Contexts
+            <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 3.5l3 3 3-3"/>
+            </svg>
+          </a>
+          <ul class="gh-dropdown">
+            <li><a href="contexts.html#leadership">Leadership &amp; Organisations</a></li>
+            <li><a href="contexts.html#professionals">Professionals &amp; Educators</a></li>
+            <li><a href="contexts.html#adults">Adults &amp; Youth</a></li>
+            <li><a href="contexts.html#children">Children</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="the-approach.html">The Approach
+            <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 3.5l3 3 3-3"/>
+            </svg>
+          </a>
+          <ul class="gh-dropdown">
+            <li><a href="360-pulse-rate.html">360° PULSE RATE™</a></li>
+            <li><a href="the-approach.html#mynd-care">Mynd CARE Philosophy</a></li>
+            <li><a href="the-approach.html#pressure">Why Behaviour Under Pressure</a></li>
+            <li><a href="the-approach.html#simulations">Why Simulations, Not Talk</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="insights.html">Insights
+            <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 3.5l3 3 3-3"/>
+            </svg>
+          </a>
+          <ul class="gh-dropdown">
+            <li><a href="insights.html">Writings</a></li>
+            <li><a href="insights.html#themes">Themes &amp; Series</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="about-rajneesh-jain.html">The Founder
+            <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 3.5l3 3 3-3"/>
+            </svg>
+          </a>
+          <ul class="gh-dropdown">
+            <li><a href="about-rajneesh-jain.html#thinking">The Thinking</a></li>
+            <li><a href="about-rajneesh-jain.html#journey">The Journey</a></li>
+            <li><a href="about-rajneesh-jain.html#selected-work">Selected Work</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="begin-conversation.html" class="gh-cta">Begin a Conversation</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Mobile hamburger button -->
+    <button class="gh-toggle" id="ghToggle" aria-label="Open navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+  </header>
+
+  <!-- Mobile menu panel -->
+  <div class="gh-mobile-menu" id="ghMobileMenu" role="dialog" aria-label="Mobile navigation">
+    <ul class="gh-mobile-nav">
+      <li>
+        <a href="how-meculs-works.html">How MECULS Works</a>
+        <ul class="gh-mobile-sub">
+          <li><a href="how-meculs-works.html#coaching-process">Coaching Process</a></li>
+          <li><a href="how-meculs-works.html#simulations">Simulations in Coaching</a></li>
+          <li><a href="how-meculs-works.html#profiling">Personality Profiling</a></li>
+          <li><a href="how-meculs-works.html#what-changes">What Changes in Real Work</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="contexts.html">Contexts</a>
+        <ul class="gh-mobile-sub">
+          <li><a href="contexts.html#leadership">Leadership &amp; Organisations</a></li>
+          <li><a href="contexts.html#professionals">Professionals &amp; Educators</a></li>
+          <li><a href="contexts.html#adults">Adults &amp; Youth</a></li>
+          <li><a href="contexts.html#children">Children</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="the-approach.html">The Approach</a>
+        <ul class="gh-mobile-sub">
+          <li><a href="360-pulse-rate.html">360° PULSE RATE™</a></li>
+          <li><a href="the-approach.html#mynd-care">Mynd CARE Philosophy</a></li>
+          <li><a href="the-approach.html#pressure">Why Behaviour Under Pressure</a></li>
+          <li><a href="the-approach.html#simulations">Why Simulations, Not Talk</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="insights.html">Insights</a>
+        <ul class="gh-mobile-sub">
+          <li><a href="insights.html">Writings</a></li>
+          <li><a href="insights.html#themes">Themes &amp; Series</a></li>
+        </ul>
+      </li>
+      <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+    </ul>
+    <a href="begin-conversation.html" class="gh-mobile-cta">Begin a Conversation</a>
+  </div>
+  <!-- END GLOBAL HEADER -->
+  <!-- END GLOBAL HEADER -->
+
+
+<!-- ════════════════════════════════════════════════════
+     HERO — Cinematic opening
+════════════════════════════════════════════════════ -->
+<section class="hw-hero">
+  <div class="hw-hero-bg"></div>
+  <div class="hw-hero-ink"></div>
+  <div class="hw-hero-grid"></div>
+  <div class="hw-hero-inner">
+    <div class="hw-eyebrow">MECULS &nbsp;·&nbsp; How It Works</div>
+    <h1 class="hw-hero-h1">
+      Information explains<br>
+      <span class="line-ghost">leadership.</span>
+      <em>Momentum changes it.</em>
+    </h1>
+    <div class="hw-hero-sub">
+      <p class="hw-hero-pull">
+        "Most leaders already know what to do. What breaks is the rhythm — of decisions, communication, and leadership presence. MECULS engineers the architecture that makes leadership hold."
+      </p>
+      <div class="hw-hero-stat">
+        <span class="hw-hero-stat-n">30</span>
+        <span class="hw-hero-stat-l">days to first<br>visible change</span>
+      </div>
+    </div>
+  </div>
+  <div class="hw-scroll">
+    <span>Scroll</span>
+    <div class="hw-scroll-ln"></div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════
+     S1 — THE CORE PROBLEM
+════════════════════════════════════════════════════ -->
+<section class="hw-sec bg-ink">
+  <div class="hw-in">
+    <div class="hw-bar reveal"></div>
+    <div class="hw-lbl reveal">The Core Problem</div>
+    <h2 class="hw-h2 reveal">Why most leadership<br><em>tools stop short.</em></h2>
+
+    <p class="s1-opening reveal">
+      Traditional tools like MBTI, Hogan, and Deeper Signals are <em>information-strong</em>.
+      They describe a leader's personality with precision.
+      What they cannot do is change how that leader behaves
+      when pressure removes all pretending.
+    </p>
+
+    <div class="s1-grid">
+      <div class="s1-col reveal-l">
+        <div class="s1-col-n">01</div>
+        <div class="s1-col-tag">What They Know</div>
+        <div class="s1-col-title">Knowledge without<br>behavioural change.</div>
+        <p class="s1-col-body">A leader may know they are reactive under stress. They may know they avoid difficult conversations. They may know their default response to challenge is defensiveness. <strong style="color:var(--white)">Knowing does not change the behaviour.</strong> Only structured practice under real pressure does.</p>
+      </div>
+      <div class="s1-col reveal-r">
+        <div class="s1-col-n">02</div>
+        <div class="s1-col-tag">What MECULS Does</div>
+        <div class="s1-col-title">Architecture that holds<br>under real pressure.</div>
+        <p class="s1-col-body">MECULS is not an information tool. It is designed to change how leadership moves — not by adding more knowledge, but by rebuilding the architecture through which decisions, communication, and presence actually flow. In real work. In real time.</p>
+      </div>
+    </div>
+
+    <div class="s1-quote-block reveal">
+      <span class="s1-qm">"</span>
+      <p class="s1-quote">Titles do not remove personality. Experience does not eliminate reaction. This is where leadership breaks down — and where coaching must actually work.</p>
+      <p class="s1-note">Most coaches talk about self-awareness. MECULS engineers moments where self-awareness is <strong>unavoidable</strong> — and then builds the response architecture to act on it, in real time, under real pressure.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════
+     S2 — MOMENTUM ARCHITECTURE™
+     Full-width photo strip → cards
+════════════════════════════════════════════════════ -->
+<div class="s2-photo-strip reveal-scale">
+  <img
+    src="https://images.unsplash.com/photo-1464938050520-ef2270bb8ce8?w=1800&q=80&auto=format&fit=crop"
+    alt="Grand architectural corridor — structure, momentum, depth"
+    loading="lazy"
+  >
+  <div class="s2-photo-overlay"></div>
+  <div class="s2-photo-caption">
+    <div class="s2-photo-tag">The MECULS Framework</div>
+    <div class="s2-photo-rule">Momentum<br><em>by design,<br>not by motivation.</em></div>
+  </div>
+</div>
+
+<section class="s2-body bg-grad">
+  <div class="hw-in">
+    <div class="s2-cards">
+      <div class="mcard reveal">
+        <div class="mcard-n">01</div>
+        <div class="mcard-tag">Definition</div>
+        <div class="mcard-title">Momentum Architecture™</div>
+        <p class="mcard-body">The discipline of orchestrating sustained leadership momentum — by design, not by motivation. Motivation fades. Architecture holds. It is not a coaching style. It is a structural intervention that produces automatic behavioural change.</p>
+      </div>
+      <div class="mcard reveal">
+        <div class="mcard-n">02</div>
+        <div class="mcard-tag">Three Movements</div>
+        <div class="mcard-title">Diagnose. Redesign.<br>Restore.</div>
+        <p class="mcard-body">First, identify precisely where momentum breaks. Second, redesign the leadership architecture at the specific point of failure. Third, restore impact — observable to others before it is felt internally.</p>
+      </div>
+      <div class="mcard reveal">
+        <div class="mcard-n">03</div>
+        <div class="mcard-tag">Core Truth</div>
+        <div class="mcard-title">Information explains.<br><em>Momentum changes.</em></div>
+        <p class="mcard-body">Every other leadership tool gives you information. MECULS gives you a changed architecture — one that produces different behaviour automatically, not through willpower, not through renewed intention.</p>
+      </div>
+    </div>
+
+    <div class="momentum-banner reveal">
+      <div class="mb-marker"></div>
+      <p>The first visible change appears within <strong>30 days</strong> — not as a feeling, but as <strong>observable behaviour that others notice</strong> before the leader does. Not a mood. A structural shift.</p>
+    </div>
+
+    <div class="vc-lbl reveal">What the first visible change looks like in practice</div>
+    <div class="vc-grid reveal">
+      <div class="vc-item"><div class="vc-dot"></div><div class="vc-text">Emails become short and decisive — not long and explanatory</div></div>
+      <div class="vc-item"><div class="vc-dot"></div><div class="vc-text">Meetings have fewer explanations and more clarity</div></div>
+      <div class="vc-item"><div class="vc-dot"></div><div class="vc-text">Boundaries are set calmly — without aggression or apology</div></div>
+      <div class="vc-item"><div class="vc-dot"></div><div class="vc-text">Decisions are framed with Impact / Risk / Next Step</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════
+     S3 — THE CLIENT JOURNEY
+     Timeline + sticky architectural photo sidebar
+════════════════════════════════════════════════════ -->
+<section class="hw-sec bg-ink" id="coaching-process">
+  <div class="hw-in">
+    <div class="hw-bar reveal"></div>
+    <div class="hw-lbl reveal">The Coaching Journey</div>
+    <h2 class="hw-h2 reveal">From first conversation<br><em>to visible change.</em></h2>
+
+    <div class="s3-layout">
+      <div>
+        <div class="journey">
+          <div class="step reveal">
+            <div class="step-node"><span class="step-num">01</span></div>
+            <div>
+              <div class="step-time">Week 1</div>
+              <div class="step-title">Begin a Conversation</div>
+              <p class="step-body">Not a sales call. A 20–30 minute exchange where Rajneesh listens to understand the actual situation — not to pitch a programme. Most clients say this conversation itself brings unexpected clarity.</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div class="step-node"><span class="step-num">02</span></div>
+            <div>
+              <div class="step-time">Weeks 1–2</div>
+              <div class="step-title">The 360° PULSE RATE™ Assessment</div>
+              <p class="step-body">A structured diagnostic process — not a test. A deep conversation with written outputs that produces your Personality Type, Core Block, Readiness Band, and Coaching Time Estimate. Specific, named, precise.</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div class="step-node"><span class="step-num">03</span></div>
+            <div>
+              <div class="step-time">Weeks 2–3</div>
+              <div class="step-title">The Architecture Session</div>
+              <p class="step-body">Rajneesh presents the findings. You see, for the first time, exactly what is stopping you — named precisely, not vaguely. The block is diagnosed. The architecture is proposed.</p>
+              <div class="step-hl">Most clients describe this session as the most confronting and most relieving hour of their professional life.</div>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div class="step-node"><span class="step-num">04</span></div>
+            <div>
+              <div class="step-time">Months 1–9 or 1–12</div>
+              <div class="step-title">Structured Coaching Engagement</div>
+              <p class="step-body">Sessions built entirely around your specific Core Block. No generic content. Includes immersive simulations selected specifically for your leadership context. Duration is determined by your Readiness Band — not by package.</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div class="step-node"><span class="step-num">05</span></div>
+            <div>
+              <div class="step-time">From Month 1 Onwards</div>
+              <div class="step-title">Visible Behavioural Delta</div>
+              <p class="step-body">The first visible change appears within 30 days — calmer responses, shorter emails, clearer boundaries, less reactivity. Not as a feeling, but as observable behaviour that others notice before you do.</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div class="step-node"><span class="step-num">06</span></div>
+            <div>
+              <div class="step-time">Final Month</div>
+              <div class="step-title">Integration and Closure</div>
+              <p class="step-body">The engagement closes when the behavioural change has become the default — not just occasional. The Quick Reference framework stays with you permanently as a daily leadership practice.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="s3-sidebar reveal-r">
+        <div class="s3-photo">
+          <img
+            src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80&auto=format&fit=crop"
+            alt="Empty modern boardroom — the space where clarity becomes unavoidable"
+            loading="lazy"
+          >
+          <div class="s3-photo-cap">
+            <div class="s3-photo-cap-tag">The Environment</div>
+            <div class="s3-photo-cap-text">The space where clarity becomes unavoidable.</div>
+          </div>
+        </div>
+        <div class="s3-stat-row">
+          <div class="s3-stat">
+            <span class="s3-stat-n">6–12</span>
+            <span class="s3-stat-l">months<br>typical engagement</span>
+          </div>
+          <div class="s3-stat">
+            <span class="s3-stat-n">1:1</span>
+            <span class="s3-stat-l">always<br>never group</span>
+          </div>
+          <div class="s3-stat">
+            <span class="s3-stat-n">30</span>
+            <span class="s3-stat-l">days to first<br>visible change</span>
+          </div>
+          <div class="s3-stat">
+            <span class="s3-stat-n">ICF</span>
+            <span class="s3-stat-l">certified<br>methodology</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════
+     S4 — 360° PULSE RATE™
+════════════════════════════════════════════════════ -->
+<section class="hw-sec bg-grad2" id="profiling">
+  <div class="hw-in">
+    <div class="hw-bar reveal"></div>
+    <div class="hw-lbl reveal">Proprietary Diagnostic</div>
+    <h2 class="hw-h2 reveal">360° PULSE RATE™</h2>
+
+    <div class="s4-header reveal">
+      <div>
+        <p class="s4-intro">Not a questionnaire. Not a score. A deep diagnostic process — ICF-certified, Jungian-rooted — that produces a precise, named personality type and the single most-important behavioural block. Everything in the coaching engagement flows from what this assessment reveals.</p>
+      </div>
+      <div class="s4-badge">
+        <span class="s4-badge-abbr">PULSE<br>RATE™</span>
+        <div class="s4-badge-line"></div>
+        <span class="s4-badge-txt">Proprietary · ICF Certified</span>
+      </div>
+    </div>
+
+    <div class="pulse-layout">
+      <div class="reveal-l">
+        <div class="pulse-row"><div class="pulse-L">P</div><div class="pulse-def"><strong>Personality</strong><span>Understanding for</span></div></div>
+        <div class="pulse-row"><div class="pulse-L">U</div><div class="pulse-def"><strong>Understanding</strong><span>for</span></div></div>
+        <div class="pulse-row"><div class="pulse-L">L</div><div class="pulse-def"><strong>Leadership</strong><span>&amp;</span></div></div>
+        <div class="pulse-row"><div class="pulse-L">S</div><div class="pulse-def"><strong>Strategy</strong><span>Excellence</span></div></div>
+        <div class="pulse-row" style="border-bottom:none;"><div class="pulse-L">E</div><div class="pulse-def"><strong>Excellence</strong><span>&nbsp;</span></div></div>
+        <div class="pulse-div">— assessed via —</div>
+        <div class="pulse-row"><div class="pulse-L">R</div><div class="pulse-def"><strong>Research on</strong><span>Personality</span></div></div>
+        <div class="pulse-row"><div class="pulse-L">A</div><div class="pulse-def"><strong>Architecture</strong><span>based on</span></div></div>
+        <div class="pulse-row"><div class="pulse-L">T</div><div class="pulse-def"><strong>Typology</strong><span>Jungian</span></div></div>
+        <div class="pulse-row" style="border-bottom:none;"><div class="pulse-L">E</div><div class="pulse-def"><strong>Exploration</strong><span>ICF Certified</span></div></div>
+      </div>
+
+      <div class="outputs-card reveal-r">
+        <div class="outputs-title">What You Receive From the Assessment</div>
+        <div class="out-row"><div class="out-dot"></div><div class="out-text"><strong>MECULS Personality Type</strong> — a precise, named type (e.g. 'The Confident Commander', 'The Overwhelmed Optimist')</div></div>
+        <div class="out-row"><div class="out-dot"></div><div class="out-text"><strong>Jungian Classification</strong> — the underlying typology (ESTJ, ENFP, ISFJ, etc.)</div></div>
+        <div class="out-row"><div class="out-dot"></div><div class="out-text"><strong>Core Block Diagnosis</strong> — the single most important behaviour holding this leader back</div></div>
+        <div class="out-row"><div class="out-dot"></div><div class="out-text"><strong>Leadership Readiness Band</strong> — Low / Developing / Moderate / Advancing / High</div></div>
+        <div class="out-row"><div class="out-dot"></div><div class="out-text"><strong>Coaching Time Estimate</strong> — 6–9 months or 9–12 months, based on your Readiness Band</div></div>
+        <div class="out-row"><div class="out-dot"></div><div class="out-text"><strong>One-line Clarity Anchor</strong> — a personal reference statement for daily use</div></div>
+        <div class="icf-badge"><span class="icf-tag">Certified</span><span class="icf-txt">ICF — International Coaching Federation</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════
+     S5 — SIMULATIONS
+     Split: atmospheric photo left / content right
+════════════════════════════════════════════════════ -->
+<div id="simulations">
+  <div class="s5-outer">
+    <div class="s5-photo reveal-l">
+      <img
+        src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=900&q=80&auto=format&fit=crop"
+        alt="Dramatic conference room corridor — the pressure of real leadership"
+        loading="lazy"
+      >
+      <div class="s5-photo-overlay"></div>
+      <div class="s5-photo-text">
+        <div class="s5-photo-text-tag">The 10-Second Principle</div>
+        <div class="s5-photo-text-quote">In real work, 10 seconds is the only thinking time you have.</div>
+      </div>
+    </div>
+
+    <div class="s5-content">
+      <div class="s5-inner">
+        <div class="hw-bar reveal"></div>
+        <div class="hw-lbl reveal">Simulation-Based Coaching</div>
+        <h2 class="hw-h2 reveal">Pressure-tested.<br><em>Psychologically real.</em></h2>
+        <p class="s5-intro reveal">MECULS uses a library of immersive simulations — designed and selected specifically for your leadership context. No two engagements use the same set. These are not role plays. They are structured pressure situations where you must respond in real time — with no preparation, no script, and no safety net.</p>
+        <div class="sim-note reveal">
+          <div class="sim-note-lbl">The 10-Second Principle</div>
+          <p>In real work, the 10 seconds before you respond is the only thinking time you have. Each simulation removes the safety net of preparation — because that is the condition under which leadership actually lives.</p>
+        </div>
+        <div class="reveal">
+          <div class="sim-type"><div class="sim-tag">Authority</div><div class="sim-desc">Being challenged by someone senior, undermined in a meeting, given contradictory instructions</div></div>
+          <div class="sim-type"><div class="sim-tag">Boundary</div><div class="sim-desc">Asked to violate values, overloaded without acknowledgement, blamed for another's failure</div></div>
+          <div class="sim-type"><div class="sim-tag">Communication</div><div class="sim-desc">Delivering difficult feedback, disagreeing with a decision, asking for what you need</div></div>
+          <div class="sim-type"><div class="sim-tag">Conflict</div><div class="sim-desc">Two team members in open conflict, a client escalating unreasonably, a peer taking credit</div></div>
+          <div class="sim-type"><div class="sim-tag">Decision</div><div class="sim-desc">Making a call with incomplete data, reversing a public decision, choosing between two people</div></div>
+          <div class="sim-type"><div class="sim-tag">Presence</div><div class="sim-desc">Entering a room where you are not yet respected, holding ground when the room wants you to agree</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="s5-metrics">
+    <div class="sim-metric reveal">
+      <span class="sim-num">40–60%</span>
+      <div class="sim-txt">Improvement in leadership learning retention through simulation-based experiences</div>
+    </div>
+    <div class="sim-metric reveal">
+      <span class="sim-num">&gt;30%</span>
+      <div class="sim-txt">Faster capability development in organisations using decision simulations</div>
+    </div>
+    <div class="sim-metric reveal">
+      <span class="sim-num">&gt;25%</span>
+      <div class="sim-txt">Improvement in judgment under pressure through simulation methodology</div>
+    </div>
+    <div class="sim-metric reveal">
+      <span class="sim-num">&gt;80%</span>
+      <div class="sim-txt">Acceleration in capability development through simulation-based learning</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════
+     S6 — CLIENT STORY
+     Story text left / atmospheric photo right
+════════════════════════════════════════════════════ -->
+<section class="hw-sec bg-grad2" id="what-changes">
+  <div class="hw-in">
+    <div class="hw-bar reveal"></div>
+    <div class="hw-lbl reveal">In Practice</div>
+    <h2 class="hw-h2 reveal">What this looks like<br><em>in real work.</em></h2>
+
+    <div class="s6-grid">
+      <div class="s6-story reveal-l">
+        <div class="story-tag">Anonymised Client Story — Pharmaceutical Sector</div>
+        <span class="story-qm">"</span>
+        <p class="story-body">A senior manager came in described by his organisation as highly capable but <strong>"difficult to work with."</strong> The 360° PULSE RATE™ assessment identified his type as <strong>The Guarded Controller.</strong> His Core Block: he did not trust his team because, at a deeper level, he did not fully trust himself. Every delegation felt like a risk. Every piece of feedback felt like an attack. These were not personality flaws. They were architecture failures.</p>
+        <div class="story-out">
+          <p><strong>Three months later,</strong> his team's output had measurably increased — not because he had learned to "be nicer," but because he had learned to <strong>separate his identity from his decisions.</strong> His team noticed the change before he did.</p>
+        </div>
+      </div>
+
+      <div class="s6-visual reveal-r">
+        <img
+          src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=800&q=80&auto=format&fit=crop"
+          alt="Window light through office architecture — clarity and quiet transformation"
+          loading="lazy"
+        >
+        <div class="s6-visual-overlay"></div>
+        <div class="s6-visual-aside">
+          <p class="s6-aside-rule">His team noticed the change <em>before he did.</em></p>
+          <div class="s6-aside-bar"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════
+     S7 — COMPARISON TABLE
+════════════════════════════════════════════════════ -->
+<section class="hw-sec bg-ink">
+  <div class="hw-in">
+    <div class="hw-bar reveal"></div>
+    <div class="hw-lbl reveal">How MECULS Compares</div>
+    <h2 class="hw-h2 reveal">What no other<br><em>tool delivers.</em></h2>
+    <div class="tbl-wrap reveal">
+      <table class="hw-table">
+        <thead>
+          <tr>
+            <th>Capability</th>
+            <th>MBTI</th>
+            <th>Hogan</th>
+            <th>Deeper Signals</th>
+            <th class="th-m">MECULS 360°</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Personality language</td><td>✓</td><td>✓</td><td>✓</td><td class="td-m">✓</td></tr>
+          <tr><td>Derailer / risk awareness</td><td>✗</td><td>✓</td><td>✓</td><td class="td-m">✓</td></tr>
+          <tr><td>Data-rich psychometrics</td><td>✗</td><td>✗</td><td>✓</td><td class="td-m">✓</td></tr>
+          <tr><td>Behaviour under pressure</td><td>✗</td><td>✗</td><td>✗</td><td class="td-m">✓</td></tr>
+          <tr><td>Immersive simulations</td><td>✗</td><td>✗</td><td>✗</td><td class="td-m">✓</td></tr>
+          <tr><td>10-second response training</td><td>✗</td><td>✗</td><td>✗</td><td class="td-m">✓</td></tr>
+          <tr><td>Core Block diagnosis</td><td>✗</td><td>✗</td><td>✗</td><td class="td-m">✓</td></tr>
+          <tr><td>Momentum Architecture™</td><td>✗</td><td>✗</td><td>✗</td><td class="td-m">✓</td></tr>
+        </tbody>
+      </table>
+      <p class="tbl-note">MBTI, Hogan, and Deeper Signals are respected tools. The comparison above reflects capability scope — not quality. MECULS is not a replacement for psychometric testing. It is a different category of intervention entirely.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════
+     CTA — CINEMATIC CLOSE
+════════════════════════════════════════════════════ -->
+<section class="hw-cta">
+  <div class="hw-cta-bg"></div>
+  <div class="hw-cta-overlay"></div>
+  <div class="hw-cta-inner">
+    <span class="cta-eyebrow reveal">Begin Here</span>
+    <blockquote class="cta-quote reveal">
+      Leadership failure is rarely loud. It is <strong>silent, slow,</strong> and extremely expensive — and it starts in the invisible layer that most tools never reach.
+    </blockquote>
+    <p class="cta-sub reveal">The first conversation is not a pitch. It is a diagnostic exchange. Most people leave it with clarity they did not expect.</p>
+    <a href="begin-conversation.html" class="cta-btn reveal"><span>Begin the Conversation</span></a>
+  </div>
+</section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       GLOBAL FOOTER
+  ═══════════════════════════════════════════════ -->
+  <footer class="global-footer">
+    <div class="gf-top">
+
+      <!-- Column 1: Brand -->
+      <div class="gf-brand">
+        <div class="gf-logo">
+          <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+          <span class="gf-logo-text" style="display:none">MECULS</span>
+        </div>
+        <p class="gf-tagline">Mind Enablement Centre for Unlocking Limitless Leadership &amp; Self-Potential</p>
+        <div class="gf-contact">
+          <a href="mailto:Jain.Rajneesh@meculs.com">Jain.Rajneesh@meculs.com</a>
+          <a href="#">Delhi, India</a>
+        </div>
+        <div class="gf-social">
+          <!-- LinkedIn -->
+          <a href="#" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <!-- YouTube -->
+          <a href="#" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.5 6.5s-.3-2-1.2-2.8c-1.1-1.2-2.4-1.2-3-1.3C15.6 2.2 12 2.2 12 2.2s-3.6 0-6.3.2c-.6.1-1.9.1-3 1.3C1.8 4.5 1.5 6.5 1.5 6.5S1.2 8.8 1.2 11v2.1c0 2.2.3 4.4.3 4.4s.3 2 1.2 2.8c1.1 1.2 2.6 1.1 3.3 1.2 2.4.2 10 .3 10 .3s3.6 0 6.3-.3c.6-.1 1.9-.1 3-1.3.9-.8 1.2-2.8 1.2-2.8s.3-2.2.3-4.4V11c0-2.2-.3-4.5-.3-4.5zM9.7 14.8V8.4l6.6 3.2-6.6 3.2z"/></svg>
+          </a>
+          <!-- Instagram -->
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <!-- Twitter/X -->
+          <a href="#" aria-label="Twitter">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 1.2h3.4l-7.4 8.5 8.7 11.5h-6.8l-5.3-6.9-6.1 6.9H1.9l7.9-9L1.3 1.2h7l4.8 6.3 5.8-6.3zm-1.2 18h1.9L6.4 3.2H4.4l13.3 16z"/></svg>
+          </a>
+          <!-- Facebook -->
+          <a href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Column 2: Services -->
+      <div>
+        <p class="gf-col-title">Services</p>
+        <ul class="gf-links">
+          <li><a href="services.html#leadership">Leadership Coaching</a></li>
+          <li><a href="services.html#profiling">Personality Profiling</a></li>
+          <li><a href="bespoke-coaching.html">Executive Coaching — Bespoke</a></li>
+          <li><a href="services.html#org-health">Organisational Health</a></li>
+          <li><a href="services.html#zero-state">Meditation As Medicine</a></li>
+          <li><a href="services.html#children">For Children</a></li>
+          <li><a href="services.html#wellness">Mind Wellness Counselling</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Company -->
+      <div>
+        <p class="gf-col-title">Company</p>
+        <ul class="gf-links">
+          <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+          <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+          <li><a href="why-meculs.html">Why MECULS</a></li>
+          <li><a href="our-work-proof.html">Our Work Proof</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="360-pulse-rate.html">360° PULSE RATE™</a></li>
+          <li><a href="cv-portal.html">CV Portal</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Connect -->
+      <div>
+        <p class="gf-col-title">Connect</p>
+        <ul class="gf-links">
+          <li><a href="begin-conversation.html">Begin a Conversation</a></li>
+          <li><a href="book-session.html">Book a Session</a></li>
+          <li><a href="source-of-challenges.html">Source of Challenges</a></li>
+          <li><a href="why-mynd-care.html">Why Mynd CARE</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="refund-policy.html">Refund Policy</a></li>
+        </ul>
+      </div>
+
+    </div><!-- .gf-top -->
+
+    <div class="gf-bottom">
+      <p class="gf-copy">© 2026 MECULS. All rights reserved. Delhi, India.</p>
+      <div class="gf-payment">
+        Payment: PayUBiz · Razorpay · PayPal · UPI · Credit Card
+      </div>
+      <div class="gf-legal">
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="refund-policy.html">Refund</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </footer>
+  <!-- END GLOBAL FOOTER -->
+  <!-- END GLOBAL FOOTER -->
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script src="global.js"></script>
+  <script>
+  /* ── Scroll reveal ── */
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('vis');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal, .reveal-l, .reveal-r, .reveal-scale')
+    .forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>

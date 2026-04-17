@@ -1,0 +1,1662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Being Busy: The Real Story — Understanding the difference between being busy and being productive for leadership effectiveness. By Rajneesh Jain, MECULS.">
+  <meta property="og:title"       content="Being Busy: The Real Story — MECULS">
+  <meta property="og:description" content="Activity without direction creates the illusion of progress while masking strategic drift.">
+  <meta property="og:image"       content="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1200&q=80">
+  <meta property="og:url"         content="https://www.meculs.com/blog-being-busy-the-real-story.html">
+  <title>Being Busy: The Real Story — MECULS Insights</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Archivo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- All styles embedded for standalone use -->
+  <!-- Global styles -->
+  <link rel="stylesheet" href="global.css">
+
+  <!-- Blog article styles -->
+  <style>
+/* ═══ BLOG ARTICLE STYLES ═══ */
+/* ═══════════════════════════════════════════════════════════════════
+   MECULS — BLOG ARTICLE CSS
+   File: blog-article.css
+
+   ▸ This ONE file styles EVERY blog article on the MECULS website.
+   ▸ Every blog HTML file links to this file. No other CSS needed.
+   ▸ When you add a new article in future, do NOT create a new CSS file.
+     Just copy any existing blog HTML, replace the content, save.
+     This file already handles it.
+
+   SECTIONS IN THIS FILE:
+   1. Reset & Base
+   2. Article Hero (breadcrumb, author, title)
+   3. Featured Image & Key Takeaways
+   4. Sticky Sidebar (save, share, subscribe)
+   5. Article Body (typography, headings, lists)
+   6. Closing Statement
+   7. Related Articles
+   8. Email Share Modal
+   9. Subscribe Modal
+   10. Toast Notification
+   11. Responsive (tablet & mobile)
+═══════════════════════════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────────
+   1. RESET & BASE
+───────────────────────────────────────────── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: #ffffff;
+  color: #1a1a1a;
+  font-family: 'Archivo', 'Inter', system-ui, sans-serif;
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; }
+a   { text-decoration: none; color: inherit; }
+
+.skip-link {
+  position: absolute;
+  top: -40px; left: 0;
+  background: #fff; color: #000;
+  padding: 8px; z-index: 100;
+}
+.skip-link:focus { top: 0; }
+
+/* page body needs top padding because global header is fixed */
+.blog-page-body {
+  padding-top: 72px; /* matches --g-nav-h in global.css */
+}
+
+/* ─────────────────────────────────────────────
+   2. ARTICLE HERO
+───────────────────────────────────────────── */
+.article-hero {
+  background: #f8f9fa;
+  padding: 3rem 5% 2rem;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.hero-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  margin-bottom: 2.5rem;
+  color: #888;
+}
+.breadcrumb a {
+  color: #333;
+  transition: color 0.25s;
+}
+.breadcrumb a:hover { color: #d4af37; }
+.breadcrumb span { color: #bbb; }
+
+/* Author row */
+.author-info-top {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  margin-bottom: 2rem;
+}
+
+.author-photo-medium img {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top;
+  border: 2px solid #d4af37;
+  flex-shrink: 0;
+}
+
+.author-name-top {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #000814;
+  margin-bottom: 0.35rem;
+  line-height: 1.2;
+}
+
+.author-meta-top {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  color: #888;
+  flex-wrap: wrap;
+}
+.author-title-small { color: #000814; font-weight: 500; }
+.meta-separator     { color: #ccc; }
+.read-time          { color: #d4af37; font-weight: 600; }
+.category-inline    { color: #d4af37; font-weight: 600; }
+
+/* Article title */
+.article-main-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+  font-weight: 700;
+  color: #000814;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+/* ─────────────────────────────────────────────
+   3. FEATURED IMAGE & KEY TAKEAWAYS
+───────────────────────────────────────────── */
+.featured-section {
+  background: #f8f9fa;
+  padding: 0 5% 3rem;
+}
+
+.featured-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.featured-image-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.featured-image {
+  width: 100%;
+  height: auto;
+  max-height: 560px;
+  object-fit: cover;
+  display: block;
+}
+
+.key-takeaways-box {
+  position: absolute;
+  left: 3%;
+  bottom: 5%;
+  max-width: 480px;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(12px);
+  padding: 2rem 2.2rem;
+  border-radius: 3px;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.18);
+}
+
+.takeaways-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #000814;
+  margin-bottom: 1rem;
+}
+
+.takeaways-intro {
+  font-size: 0.95rem;
+  color: #333;
+  margin-bottom: 1.2rem;
+  line-height: 1.6;
+}
+
+.takeaways-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.takeaways-list li {
+  font-size: 0.9rem;
+  color: #444;
+  line-height: 1.6;
+  padding-left: 1.4rem;
+  position: relative;
+}
+.takeaways-list li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: #d4af37;
+  font-size: 0.8rem;
+}
+.takeaways-list strong { color: #000814; font-weight: 700; }
+
+/* ─────────────────────────────────────────────
+   4. STICKY SIDEBAR
+───────────────────────────────────────────── */
+.sticky-sidebar {
+  position: fixed;
+  right: 1.8%;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 1.2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  z-index: 50;
+  width: 190px;
+}
+
+.sidebar-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 0.9rem;
+  background: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 0.25s, border-color 0.25s, color 0.25s;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #1a1a1a;
+  font-family: inherit;
+}
+.sidebar-action:hover {
+  background: #000814;
+  border-color: #000814;
+  color: #ffffff;
+}
+
+.sidebar-divider {
+  height: 1px;
+  background: #e8e8e8;
+}
+
+.share-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #888;
+  text-align: center;
+}
+
+.share-icons-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.3rem;
+  flex-wrap: wrap;
+}
+
+.share-icon {
+  width: 32px; height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s, transform 0.2s;
+  color: #444;
+  padding: 0;
+  font-family: inherit;
+}
+.share-icon:hover {
+  background: #000814;
+  border-color: #000814;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.subscribe-teaser {
+  font-size: 0.78rem;
+  color: #333;
+  line-height: 1.45;
+  text-align: center;
+  font-style: italic;
+}
+
+.subscribe-btn-compact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 0.9rem;
+  background: #d4af37;
+  border: none;
+  border-radius: 3px;
+  color: #000814;
+  font-weight: 700;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.2s;
+  font-family: inherit;
+}
+.subscribe-btn-compact:hover {
+  background: #c19b2f;
+  transform: translateY(-1px);
+}
+
+/* ─────────────────────────────────────────────
+   5. ARTICLE BODY
+───────────────────────────────────────────── */
+.article-content {
+  background: #ffffff;
+  padding: 4rem 5%;
+  position: relative;
+}
+
+.content-container {
+  max-width: 760px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Contact author button — floats right of article on wide screens */
+.author-contact-float {
+  position: absolute;
+  top: 0;
+  right: -180px;
+  width: 160px;
+}
+
+.contact-btn-float {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1rem;
+  background: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 3px;
+  color: #1a1a1a;
+  font-size: 0.82rem;
+  font-weight: 500;
+  transition: background 0.25s, color 0.25s;
+}
+.contact-btn-float:hover {
+  background: #000814;
+  border-color: #000814;
+  color: #ffffff;
+}
+
+/* Typography */
+.article-body {
+  font-size: 1.1rem;
+  color: #1a1a1a;
+  line-height: 1.85;
+}
+
+.lead-paragraph {
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: #000814;
+  line-height: 1.72;
+  margin-bottom: 2rem;
+  border-left: 3px solid #d4af37;
+  padding-left: 1.4rem;
+}
+
+.article-body p { margin-bottom: 1.5rem; }
+.article-body p:last-child { margin-bottom: 0; }
+
+.section-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #000814;
+  margin-top: 3rem;
+  margin-bottom: 1.2rem;
+  line-height: 1.25;
+}
+
+.subsection-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #000814;
+  margin-top: 2.2rem;
+  margin-bottom: 1rem;
+  line-height: 1.35;
+}
+
+.article-list {
+  margin: 1.8rem 0 1.8rem 1.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.article-list li {
+  padding-left: 0.6rem;
+  line-height: 1.8;
+  color: #333;
+}
+
+.article-list strong { color: #000814; font-weight: 600; }
+
+/* ─────────────────────────────────────────────
+   6. CLOSING STATEMENT
+───────────────────────────────────────────── */
+.closing-statement {
+  margin-top: 3rem;
+  padding: 1.8rem 2rem;
+  background: #f8f9fa;
+  border-left: 3px solid #d4af37;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #000814;
+  font-style: italic;
+  line-height: 1.7;
+}
+
+/* ─────────────────────────────────────────────
+   7. RELATED ARTICLES
+───────────────────────────────────────────── */
+.related-articles {
+  background: #f8f9fa;
+  padding: 5rem 5%;
+  border-top: 1px solid #e0e0e0;
+}
+
+.related-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.related-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #000814;
+  text-align: center;
+  margin-bottom: 3rem;
+  letter-spacing: -0.02em;
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.related-card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 3px;
+  overflow: hidden;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+}
+.related-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.1);
+  border-color: #d4af37;
+}
+
+.related-card-img-wrap { overflow: hidden; }
+.related-card-img-wrap img {
+  width: 100%; height: 200px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  display: block;
+}
+.related-card:hover .related-card-img-wrap img {
+  transform: scale(1.06);
+}
+
+.related-content {
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  flex: 1;
+}
+
+.related-tag {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  background: rgba(212,175,55,0.1);
+  border: 1px solid rgba(212,175,55,0.28);
+  color: #d4af37;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  width: fit-content;
+}
+
+.related-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #000814;
+  line-height: 1.3;
+  transition: color 0.25s;
+}
+.related-card:hover .related-card-title { color: #d4af37; }
+
+.related-excerpt {
+  font-size: 0.88rem;
+  color: #666;
+  line-height: 1.6;
+  flex: 1;
+}
+
+.related-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #d4af37;
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-top: auto;
+  transition: gap 0.25s;
+}
+.related-card:hover .related-link { gap: 0.8rem; }
+
+/* ─────────────────────────────────────────────
+   8. EMAIL SHARE MODAL
+───────────────────────────────────────────── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+}
+.modal-overlay.active { display: flex; }
+
+.modal-container {
+  background: #ffffff;
+  border-radius: 4px;
+  max-width: 560px;
+  width: 100%;
+  padding: 2.8rem;
+  position: relative;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.28);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1.2rem; right: 1.2rem;
+  background: none; border: none;
+  color: #999; cursor: pointer;
+  padding: 0.4rem;
+  transition: color 0.2s;
+  font-family: inherit;
+}
+.modal-close:hover { color: #000814; }
+
+.modal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #000814;
+  margin-bottom: 0.4rem;
+}
+
+.modal-subtitle {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.email-share-form,
+.subscribe-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 0.8rem 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 3px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: border-color 0.25s, box-shadow 0.25s;
+  color: #1a1a1a;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #d4af37;
+  box-shadow: 0 0 0 3px rgba(212,175,55,0.1);
+}
+.form-group textarea { resize: vertical; min-height: 90px; }
+
+.checkbox-group {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.7rem;
+}
+.checkbox-group input[type="checkbox"] {
+  width: 18px; height: 18px;
+  margin-top: 0.1rem;
+  cursor: pointer;
+  accent-color: #d4af37;
+}
+.checkbox-group label {
+  font-weight: 400;
+  font-size: 0.88rem;
+  cursor: pointer;
+  flex: 1;
+}
+
+.submit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  padding: 0.9rem 1.8rem;
+  background: #d4af37;
+  border: none;
+  border-radius: 3px;
+  color: #000814;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.2s;
+  font-family: inherit;
+  letter-spacing: 0.04em;
+}
+.submit-btn:hover {
+  background: #c19b2f;
+  transform: translateY(-1px);
+}
+
+/* ─────────────────────────────────────────────
+   9. SUBSCRIBE MODAL
+   (same .modal-overlay structure, different content)
+───────────────────────────────────────────── */
+/* Already covered by modal styles above */
+
+/* ─────────────────────────────────────────────
+   10. TOAST NOTIFICATION
+───────────────────────────────────────────── */
+.toast {
+  position: fixed;
+  bottom: 2rem; right: 2rem;
+  background: #000814;
+  color: #ffffff;
+  padding: 0.9rem 1.4rem;
+  border-radius: 4px;
+  display: none;
+  align-items: center;
+  gap: 0.8rem;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.28);
+  z-index: 1001;
+  font-size: 0.9rem;
+  animation: toastSlide 0.3s ease;
+}
+.toast.active { display: flex; }
+
+@keyframes toastSlide {
+  from { transform: translateX(120px); opacity: 0; }
+  to   { transform: translateX(0);     opacity: 1; }
+}
+
+/* ─────────────────────────────────────────────
+   11. RESPONSIVE
+───────────────────────────────────────────── */
+
+/* Tablet: hide sidebar, reflow key takeaways */
+@media (max-width: 1200px) {
+  .sticky-sidebar { display: none; }
+
+  .author-contact-float {
+    position: static;
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+  .contact-btn-float { width: fit-content; }
+
+  .key-takeaways-box {
+    position: relative;
+    left: 0; bottom: 0;
+    max-width: 100%;
+    margin-top: 1.5rem;
+  }
+
+  .related-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .article-hero { padding: 2rem 5% 1.5rem; }
+
+  .author-info-top { gap: 1rem; }
+  .author-photo-medium img { width: 60px; height: 60px; }
+  .author-name-top { font-size: 1.1rem; }
+  .author-meta-top { flex-direction: column; align-items: flex-start; gap: 0.2rem; }
+
+  .article-main-title { font-size: 2rem; }
+
+  .featured-image { max-height: 360px; }
+  .key-takeaways-box { padding: 1.4rem; }
+
+  .article-content { padding: 2.5rem 5%; }
+  .article-body { font-size: 1rem; }
+  .lead-paragraph { font-size: 1.12rem; }
+  .section-heading { font-size: 1.55rem; margin-top: 2.4rem; }
+  .subsection-heading { font-size: 1.25rem; }
+
+  .related-articles { padding: 3rem 5%; }
+  .related-title { font-size: 1.8rem; margin-bottom: 2rem; }
+  .related-grid { grid-template-columns: 1fr; gap: 1.4rem; }
+  .related-card-img-wrap img { height: 180px; }
+  .related-content { padding: 1.3rem; }
+  .related-card-title { font-size: 1.1rem; }
+
+  .modal-container { padding: 2rem 1.4rem; }
+  .modal-title { font-size: 1.5rem; }
+
+  .toast { bottom: 1rem; right: 1rem; left: 1rem; }
+}
+
+@media (max-width: 480px) {
+  .article-main-title { font-size: 1.7rem; }
+  .lead-paragraph { font-size: 1rem; }
+}
+
+  </style>
+</head>
+
+<!-- blog-page-body adds top padding to clear the fixed global header -->
+<body class="blog-page-body">
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- ═══ GLOBAL HEADER ═══════════════════════════════════════════
+       COPY THIS EXACT HEADER TO EVERY PAGE.
+       To update navigation: edit it here AND in every other page,
+       OR wait until we build a server-side include system.
+  ═══════════════════════════════════════════════════════════════ -->
+  <!-- ═══════════════════════════════════════════════
+       GLOBAL HEADER — same on every MECULS page
+       To change logo: update src="images/logo/MECULS-gold-white-bold.png"
+       To change nav links: edit the <li> items below
+  ═══════════════════════════════════════════════ -->
+  <header class="global-header">
+
+    <!-- Logo — links to homepage -->
+    <a href="index.html" class="gh-logo">
+      <img src="images/logo/MECULS-gold-white-bold.png"
+           alt="MECULS"
+           onerror="this.style.display='none'; document.querySelector('.gh-logo-text').style.display='block'">
+      <span class="gh-logo-text">MECULS</span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav aria-label="Global navigation">
+      <ul class="gh-nav gh-nav-wrap">
+        <li>
+          <a href="how-meculs-works.html">How MECULS Works
+            <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 3.5l3 3 3-3"/>
+            </svg>
+          </a>
+          <ul class="gh-dropdown">
+            <li><a href="how-meculs-works.html#coaching-process">Coaching Process</a></li>
+            <li><a href="how-meculs-works.html#simulations">Simulations in Coaching</a></li>
+            <li><a href="how-meculs-works.html#profiling">Personality Profiling</a></li>
+            <li><a href="how-meculs-works.html#what-changes">What Changes in Real Work</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="contexts.html">Contexts
+            <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 3.5l3 3 3-3"/>
+            </svg>
+          </a>
+          <ul class="gh-dropdown">
+            <li><a href="contexts.html#leadership">Leadership &amp; Organisations</a></li>
+            <li><a href="contexts.html#professionals">Professionals &amp; Educators</a></li>
+            <li><a href="contexts.html#adults">Adults &amp; Youth</a></li>
+            <li><a href="contexts.html#children">Children</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="the-approach.html">The Approach
+            <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 3.5l3 3 3-3"/>
+            </svg>
+          </a>
+          <ul class="gh-dropdown">
+            <li><a href="360-pulse-rate.html">360° PULSE RATE™</a></li>
+            <li><a href="the-approach.html#mynd-care">Mynd CARE Philosophy</a></li>
+            <li><a href="the-approach.html#pressure">Why Behaviour Under Pressure</a></li>
+            <li><a href="the-approach.html#simulations">Why Simulations, Not Talk</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="insights.html">Insights
+            <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 3.5l3 3 3-3"/>
+            </svg>
+          </a>
+          <ul class="gh-dropdown">
+            <li><a href="insights.html">Writings</a></li>
+            <li><a href="insights.html#themes">Themes &amp; Series</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="about-rajneesh-jain.html">The Founder
+            <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 3.5l3 3 3-3"/>
+            </svg>
+          </a>
+          <ul class="gh-dropdown">
+            <li><a href="about-rajneesh-jain.html#thinking">The Thinking</a></li>
+            <li><a href="about-rajneesh-jain.html#journey">The Journey</a></li>
+            <li><a href="about-rajneesh-jain.html#selected-work">Selected Work</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="begin-conversation.html" class="gh-cta">Begin a Conversation</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Mobile hamburger button -->
+    <button class="gh-toggle" id="ghToggle" aria-label="Open navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+  </header>
+
+  <!-- Mobile menu panel -->
+  <div class="gh-mobile-menu" id="ghMobileMenu" role="dialog" aria-label="Mobile navigation">
+    <ul class="gh-mobile-nav">
+      <li>
+        <a href="how-meculs-works.html">How MECULS Works</a>
+        <ul class="gh-mobile-sub">
+          <li><a href="how-meculs-works.html#coaching-process">Coaching Process</a></li>
+          <li><a href="how-meculs-works.html#simulations">Simulations in Coaching</a></li>
+          <li><a href="how-meculs-works.html#profiling">Personality Profiling</a></li>
+          <li><a href="how-meculs-works.html#what-changes">What Changes in Real Work</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="contexts.html">Contexts</a>
+        <ul class="gh-mobile-sub">
+          <li><a href="contexts.html#leadership">Leadership &amp; Organisations</a></li>
+          <li><a href="contexts.html#professionals">Professionals &amp; Educators</a></li>
+          <li><a href="contexts.html#adults">Adults &amp; Youth</a></li>
+          <li><a href="contexts.html#children">Children</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="the-approach.html">The Approach</a>
+        <ul class="gh-mobile-sub">
+          <li><a href="360-pulse-rate.html">360° PULSE RATE™</a></li>
+          <li><a href="the-approach.html#mynd-care">Mynd CARE Philosophy</a></li>
+          <li><a href="the-approach.html#pressure">Why Behaviour Under Pressure</a></li>
+          <li><a href="the-approach.html#simulations">Why Simulations, Not Talk</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="insights.html">Insights</a>
+        <ul class="gh-mobile-sub">
+          <li><a href="insights.html">Writings</a></li>
+          <li><a href="insights.html#themes">Themes &amp; Series</a></li>
+        </ul>
+      </li>
+      <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+    </ul>
+    <a href="begin-conversation.html" class="gh-mobile-cta">Begin a Conversation</a>
+  </div>
+  <!-- END GLOBAL HEADER -->
+  <!-- END GLOBAL HEADER -->
+
+
+  <!-- ══════════════════════════════════════════════════════════════
+       ARTICLE CONTENT — everything between here and END ARTICLE
+       is what changes for each new article you add.
+       The header above, footer below, modals at bottom: stay fixed.
+  ══════════════════════════════════════════════════════════════ -->
+
+  <!-- Hero: breadcrumb, author, title -->
+  <section class="article-hero" id="main-content">
+    <div class="hero-container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <a href="insights.html">Insights</a>
+        <span>/</span>
+        <span>Leadership Development</span>
+      </nav>
+
+      <div class="author-info-top">
+        <div class="author-photo-medium">
+          <img src="images/Rajneesh Photo.jpg" alt="Rajneesh Jain"
+               onerror="this.style.display='none'">
+        </div>
+        <div class="author-details-top">
+          <div class="author-name-top">Rajneesh Jain</div>
+          <div class="author-meta-top">
+            <span class="author-title-small">Founder, MECULS</span>
+            <span class="meta-separator">·</span>
+            <span class="article-date">January 24, 2026</span>
+            <span class="meta-separator">·</span>
+            <span class="read-time">8 min read</span>
+            <span class="meta-separator">·</span>
+            <span class="category-inline">Leadership Development</span>
+          </div>
+        </div>
+      </div>
+
+      <h1 class="article-main-title">Being Busy: The Real Story</h1>
+    </div>
+  </section>
+
+  <!-- Featured image + key takeaways -->
+  <section class="featured-section">
+    <div class="featured-container">
+      <div class="featured-image-wrapper">
+        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1400&q=80"
+             alt="Being Busy — Leadership" class="featured-image">
+        <div class="key-takeaways-box">
+          <h3 class="takeaways-title">Key Takeaways</h3>
+          <p class="takeaways-intro">Understanding the difference between being busy and being productive is critical for leadership effectiveness.</p>
+          <ul class="takeaways-list">
+            <li><strong>Busy ≠ Productive:</strong> Activity without direction creates the illusion of progress while masking strategic drift.</li>
+            <li><strong>Response Over Reaction:</strong> Leaders must distinguish between urgent noise and important signal.</li>
+            <li><strong>Structural Clarity:</strong> Effectiveness comes from deliberate choices about where attention is placed.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sticky sidebar: save, share, subscribe -->
+  <aside class="sticky-sidebar">
+    <button class="sidebar-action" id="saveBtn" aria-label="Save article">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M3 2h10c.55 0 1 .45 1 1v12l-6-3.5L2 15V3c0-.55.45-1 1-1z" stroke="currentColor" stroke-width="1.5"/>
+      </svg>
+      <span>Save</span>
+    </button>
+
+    <div class="sidebar-divider"></div>
+
+    <div class="share-section">
+      <p class="share-label">Share</p>
+      <div class="share-icons-row">
+        <button class="share-icon" id="emailShareBtn" aria-label="Share via email" title="Email">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="9" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M2 4.5l6 4.5 6-4.5" stroke="currentColor" stroke-width="1.4"/></svg>
+        </button>
+        <button class="share-icon" id="copyLinkBtn" aria-label="Copy link" title="Copy link">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M7 9l3-3M10 6L7 3M10 6H4M7 14c3.31 0 6-2.69 6-6S10.31 2 7 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </button>
+        <button class="share-icon" data-share="facebook" aria-label="Share on Facebook" title="Facebook">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M14 8A6 6 0 112 8a6 6 0 0112 0zm-5 4.5v-4h1.3l.2-1.5H9V6c0-.4.2-.8.8-.8H10.5V4a12 12 0 00-1.7-.1C7.3 3.9 6.5 4.8 6.5 6v1H5.2V8.5H6.5v4H9z"/></svg>
+        </button>
+        <button class="share-icon" data-share="twitter" aria-label="Share on X" title="X (Twitter)">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M9.5 6.8L13.5 2h-1L9 6l-3-4H2.5l4.3 5.9L2.5 14h1l3.7-4.3L11 14h3.5L9.5 6.8zm-1.3 1.5l-.4-.6-3.5-5h1.4l2.7 3.8.4.6 3.7 5.3h-1.4l-3-4.1z"/></svg>
+        </button>
+        <button class="share-icon" data-share="linkedin" aria-label="Share on LinkedIn" title="LinkedIn">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M13.5 2h-11C2.2 2 2 2.2 2 2.5v11c0 .3.2.5.5.5h11c.3 0 .5-.2.5-.5v-11c0-.3-.2-.5-.5-.5zM5.5 12H4V6.5h1.5V12zm-.75-6.2A.87.87 0 014 5a.87.87 0 01.75-.8c.41 0 .75.35.75.8s-.34.8-.75.8zM12 12h-1.5V9.2c0-.58-.01-1.32-.8-1.32-.8 0-.93.63-.93 1.28V12H7.3V6.5h1.44v.69h.02c.2-.38.69-.8 1.42-.8 1.52 0 1.8 1 1.8 2.3V12z"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="sidebar-divider"></div>
+
+    <div class="subscribe-section">
+      <p class="subscribe-teaser">Don't miss insights that transform leadership</p>
+      <button class="subscribe-btn-compact" id="subscribeBtn">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="3" width="12" height="8" rx="1" stroke="currentColor" stroke-width="1.3"/><path d="M1 4l6 4 6-4" stroke="currentColor" stroke-width="1.3"/></svg>
+        Subscribe
+      </button>
+    </div>
+  </aside>
+
+  <!-- Article body -->
+  <article class="article-content">
+    <div class="content-container">
+      <div class="author-contact-float">
+        <a href="mailto:Jain.Rajneesh@meculs.com" class="contact-btn-float">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="3" width="12" height="8" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M1 4l6 4 6-4" stroke="currentColor" stroke-width="1.2"/></svg>
+          Contact Author
+        </a>
+      </div>
+
+      <div class="article-body">
+
+        <p class="lead-paragraph">In organizational life, "busy" has become a badge of honor. Leaders wear it as proof of commitment. Teams recite it as evidence of effort. But busy is not a measure of effectiveness — it is often a symptom of structural confusion.</p>
+
+        <p>Being busy means activity is high. Being effective means the right activity is happening. The difference is not semantic. It is the difference between motion and progress, between exhaustion and impact.</p>
+
+        <h2 class="section-heading">The Structural Problem with "Busy"</h2>
+
+        <p>Busy creates the appearance of forward movement. Meetings stack. Emails multiply. Decisions queue. The calendar fills, and so does the mind. But when pressure arrives — real pressure, not procedural noise — busy collapses. Why? Because it was never built on priority. It was built on reaction.</p>
+
+        <p>Leaders who operate in a state of chronic busyness are not leading. They are managing incoming fire. The work that matters — clarity of direction, shaping response, building structural coherence — is deferred. It feels too slow. Too reflective. Too "unproductive" in a culture that equates speed with value.</p>
+
+        <p>This is the trap: busyness rewards visibility over substance. It prioritizes the urgent over the important. And over time, it becomes indistinguishable from leadership itself.</p>
+
+        <h2 class="section-heading">What Leaders Mistake for Progress</h2>
+
+        <p>Three patterns recur in organizations where busy has replaced effective:</p>
+
+        <ol class="article-list">
+          <li><strong>Responsiveness mistaken for leadership.</strong> Leaders believe that answering quickly, being available constantly, and reacting to every request demonstrates commitment. In reality, it demonstrates a lack of boundary. Effectiveness requires knowing when to respond — and when to redirect.</li>
+          <li><strong>Activity mistaken for outcome.</strong> Hours logged. Tasks completed. Processes followed. All of this can happen without a single meaningful result. Busy tracks input. Effective tracks impact.</li>
+          <li><strong>Exhaustion mistaken for contribution.</strong> If you are tired, you must have worked hard. If you worked hard, you must have achieved something. Neither follows. Exhaustion is not proof of value. It is proof of unsustainable design.</li>
+        </ol>
+
+        <h2 class="section-heading">The Real Work of Leadership</h2>
+
+        <p>Leadership is not about doing more. It is about ensuring the right things get done. That distinction requires three structural shifts:</p>
+
+        <h3 class="subsection-heading">1. Clarity Over Coverage</h3>
+        <p>Leaders do not need to be involved in everything. They need to be clear about what matters. This means defining priority, not managing volume. It means saying no to work that dilutes focus, even when that work is visible, urgent, or politically convenient.</p>
+        <p>Clarity creates space. Space creates the capacity to think. And thinking — real, structured, deliberate thinking — is what separates reactive leadership from strategic response.</p>
+
+        <h3 class="subsection-heading">2. Response Over Reaction</h3>
+        <p>Busy leaders react. Effective leaders respond. The difference is pause. Reaction is immediate — driven by the last email, the loudest voice, the nearest fire. Response is considered. It accounts for context, consequence, and coherence.</p>
+        <p>This does not mean slow. It means structured. Leaders who respond well do so because they have built the capacity to differentiate signal from noise. They do not mistake every input for an emergency.</p>
+
+        <h3 class="subsection-heading">3. Structure Over Stamina</h3>
+        <p>The belief that leadership requires endless stamina is organizationally destructive. It creates burnout. It normalizes unsustainable patterns. And it ensures that only those willing to sacrifice health, relationships, and coherence will "succeed."</p>
+        <p>Effective leadership is not powered by stamina. It is powered by structure. Clear decision rights. Defined escalation paths. Boundaries on scope. Systems that prevent overwhelm rather than reward it.</p>
+
+        <h2 class="section-heading">What This Looks Like in Practice</h2>
+
+        <p>A leader in a global infrastructure organization was known for being "always available." Emails at midnight. Calls on weekends. Immediate responses to every request. The team admired the commitment. The organization rewarded it.</p>
+        <p>But when a major operational decision required strategic clarity, the leader could not provide it. Why? Because there had been no space to think. Every hour had been consumed by reaction. The very behavior that signaled dedication had undermined the capacity to lead.</p>
+        <p>The shift came through coaching. Not motivation. Not time management. Structural redesign. Redefining which decisions required the leader's direct involvement. Building team capacity to handle operational escalations. Creating protected time for strategic work.</p>
+        <p>The result: fewer hours. Greater impact. Measurable improvement in both decision quality and team autonomy.</p>
+
+        <h2 class="section-heading">The Question That Changes Everything</h2>
+
+        <p>Leaders do not need to ask, "Am I busy enough?" They need to ask, "Is what I am doing creating the outcome that matters?"</p>
+        <p>If the answer is unclear, the problem is not effort. It is structure. And structure — unlike stamina — can be built, tested, and refined.</p>
+        <p>Being busy will always be easier than being effective. It requires less thought, less boundary-setting, less willingness to disappoint. But leadership is not measured by activity. It is measured by clarity, coherence, and the capacity to respond when pressure removes pretence.</p>
+
+        <p class="closing-statement">If you are interested in exploring how to shift from reactive busyness to deliberate leadership effectiveness, a conversation may be useful.</p>
+
+      </div>
+    </div>
+  </article>
+
+  <!-- ═══ END ARTICLE CONTENT ══════════════════════════════════ -->
+
+
+  <!-- Related Articles — update these 3 cards for each article -->
+  <section class="related-articles">
+    <div class="related-container">
+      <h2 class="related-title">Related Insights</h2>
+      <div class="related-grid">
+
+        <a href="blog-what-do-we-stay-alive-for.html" class="related-card">
+          <div class="related-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=80" alt="Purpose and meaning">
+          </div>
+          <div class="related-content">
+            <span class="related-tag">Life &amp; Purpose</span>
+            <h3 class="related-card-title">What Do We Stay Alive For</h3>
+            <p class="related-excerpt">The pursuit of meaning is structural, not philosophical — already enacted through behavior.</p>
+            <span class="related-link">Read Article →</span>
+          </div>
+        </a>
+
+        <a href="blog-ego-accept-not-eliminate.html" class="related-card">
+          <div class="related-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80" alt="Ego and self-awareness">
+          </div>
+          <div class="related-content">
+            <span class="related-tag">Behavioral Insight</span>
+            <h3 class="related-card-title">Ego in Self &amp; Others: Accept, Not Eliminate</h3>
+            <p class="related-excerpt">Ego is structural — the work is recognition and awareness, not elimination.</p>
+            <span class="related-link">Read Article →</span>
+          </div>
+        </a>
+
+        <a href="blog-why-industry-is-trapped.html" class="related-card">
+          <div class="related-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80" alt="Industry dynamics">
+          </div>
+          <div class="related-content">
+            <span class="related-tag">Organizational Impact</span>
+            <h3 class="related-card-title">Why Industry Is Trapped in Profitability &amp; Ego</h3>
+            <p class="related-excerpt">Profitability and ego satisfaction create structural patterns that resist transformation.</p>
+            <span class="related-link">Read Article →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ GLOBAL FOOTER ════════════════════════════════════════ -->
+  <!-- ═══════════════════════════════════════════════
+       GLOBAL FOOTER — same on every MECULS page
+       To change links: edit the <li> items below
+       To change logo: update src="images/logo/..."
+  ═══════════════════════════════════════════════ -->
+  <footer class="global-footer">
+    <div class="gf-top">
+
+      <!-- Column 1: Brand -->
+      <div class="gf-brand">
+        <div class="gf-logo">
+          <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+          <span class="gf-logo-text" style="display:none">MECULS</span>
+        </div>
+        <p class="gf-tagline">Mind Enablement Centre for Unlocking Limitless Leadership &amp; Self-Potential</p>
+        <div class="gf-contact">
+          <a href="mailto:Jain.Rajneesh@meculs.com">Jain.Rajneesh@meculs.com</a>
+          <a href="#">Delhi, India</a>
+        </div>
+        <div class="gf-social">
+          <!-- LinkedIn -->
+          <a href="#" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <!-- YouTube -->
+          <a href="#" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.5 6.5s-.3-2-1.2-2.8c-1.1-1.2-2.4-1.2-3-1.3C15.6 2.2 12 2.2 12 2.2s-3.6 0-6.3.2c-.6.1-1.9.1-3 1.3C1.8 4.5 1.5 6.5 1.5 6.5S1.2 8.8 1.2 11v2.1c0 2.2.3 4.4.3 4.4s.3 2 1.2 2.8c1.1 1.2 2.6 1.1 3.3 1.2 2.4.2 10 .3 10 .3s3.6 0 6.3-.3c.6-.1 1.9-.1 3-1.3.9-.8 1.2-2.8 1.2-2.8s.3-2.2.3-4.4V11c0-2.2-.3-4.5-.3-4.5zM9.7 14.8V8.4l6.6 3.2-6.6 3.2z"/></svg>
+          </a>
+          <!-- Instagram -->
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <!-- Twitter/X -->
+          <a href="#" aria-label="Twitter">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 1.2h3.4l-7.4 8.5 8.7 11.5h-6.8l-5.3-6.9-6.1 6.9H1.9l7.9-9L1.3 1.2h7l4.8 6.3 5.8-6.3zm-1.2 18h1.9L6.4 3.2H4.4l13.3 16z"/></svg>
+          </a>
+          <!-- Facebook -->
+          <a href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Column 2: Services -->
+      <div>
+        <p class="gf-col-title">Services</p>
+        <ul class="gf-links">
+          <li><a href="services.html#leadership">Leadership Coaching</a></li>
+          <li><a href="services.html#profiling">Personality Profiling</a></li>
+          <li><a href="bespoke-coaching.html">Executive Coaching — Bespoke</a></li>
+          <li><a href="services.html#org-health">Organisational Health</a></li>
+          <li><a href="services.html#zero-state">Meditation As Medicine</a></li>
+          <li><a href="services.html#children">For Children</a></li>
+          <li><a href="services.html#wellness">Mind Wellness Counselling</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Company -->
+      <div>
+        <p class="gf-col-title">Company</p>
+        <ul class="gf-links">
+          <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+          <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+          <li><a href="why-meculs.html">Why MECULS</a></li>
+          <li><a href="our-work-proof.html">Our Work Proof</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="360-pulse-rate.html">360° PULSE RATE™</a></li>
+          <li><a href="cv-portal.html">CV Portal</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Connect -->
+      <div>
+        <p class="gf-col-title">Connect</p>
+        <ul class="gf-links">
+          <li><a href="begin-conversation.html">Begin a Conversation</a></li>
+          <li><a href="book-session.html">Book a Session</a></li>
+          <li><a href="source-of-challenges.html">Source of Challenges</a></li>
+          <li><a href="why-mynd-care.html">Why Mynd CARE</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="refund-policy.html">Refund Policy</a></li>
+        </ul>
+      </div>
+
+    </div><!-- .gf-top -->
+
+    <div class="gf-bottom">
+      <p class="gf-copy">© 2026 MECULS. All rights reserved. Delhi, India.</p>
+      <div class="gf-payment">
+        Payment: PayUBiz · Razorpay · PayPal · UPI · Credit Card
+      </div>
+      <div class="gf-legal">
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="refund-policy.html">Refund</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </footer>
+  <!-- END GLOBAL FOOTER -->
+  <!-- END GLOBAL FOOTER -->
+
+  <!-- ═══ END GLOBAL FOOTER ════════════════════════════════════ -->
+
+
+  <!-- ═══ MODALS — do not change these ═════════════════════════ -->
+
+  <!-- Email Share Modal -->
+  <div class="modal-overlay" id="emailModal" role="dialog" aria-modal="true" aria-labelledby="emailModalTitle">
+    <div class="modal-container">
+      <button class="modal-close" id="closeEmailModal" aria-label="Close">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M15 5L5 15M5 5l10 10" stroke="currentColor" stroke-width="1.8"/></svg>
+      </button>
+      <h2 class="modal-title" id="emailModalTitle">Share via Email</h2>
+      <p class="modal-subtitle">Send this article to someone who might find it valuable</p>
+      <form class="email-share-form" id="emailShareForm">
+        <div class="form-group">
+          <label for="senderName">Your Name</label>
+          <input type="text" id="senderName" name="senderName" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label for="senderEmail">Your Email</label>
+          <input type="email" id="senderEmail" name="senderEmail" placeholder="your@email.com" required>
+        </div>
+        <div class="form-group">
+          <label for="recipientEmail">Recipient Email</label>
+          <input type="email" id="recipientEmail" name="recipientEmail" placeholder="colleague@email.com" required>
+        </div>
+        <div class="form-group">
+          <label for="personalMessage">Personal Message (Optional)</label>
+          <textarea id="personalMessage" name="personalMessage" rows="3" placeholder="I thought you might find this useful..."></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send Article</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Subscribe Modal -->
+  <div class="modal-overlay" id="subscribeModal" role="dialog" aria-modal="true" aria-labelledby="subscribeModalTitle">
+    <div class="modal-container">
+      <button class="modal-close" id="closeSubscribeModal" aria-label="Close">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M15 5L5 15M5 5l10 10" stroke="currentColor" stroke-width="1.8"/></svg>
+      </button>
+      <h2 class="modal-title" id="subscribeModalTitle">Subscribe to MECULS Insights</h2>
+      <p class="modal-subtitle">Leadership clarity, behavioral insight, and research from Rajneesh Jain — delivered directly to you.</p>
+      <form class="subscribe-form" id="subscribeForm">
+        <div class="form-group">
+          <label for="subscribeName">Name</label>
+          <input type="text" id="subscribeName" name="subscribeName" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label for="subscribeEmail">Email Address</label>
+          <input type="email" id="subscribeEmail" name="subscribeEmail" placeholder="your@email.com" required>
+        </div>
+        <div class="form-group checkbox-group">
+          <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+          <label for="agreeTerms">I agree to receive insights and updates from MECULS</label>
+        </div>
+        <button type="submit" class="submit-btn">Subscribe</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast notification -->
+  <div class="toast" id="successToast" role="status" aria-live="polite">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+      <circle cx="9" cy="9" r="8" stroke="#d4af37" stroke-width="1.4"/>
+      <path d="M5.5 9l2.5 2.5L13 6" stroke="#d4af37" stroke-width="1.4" stroke-linecap="round"/>
+    </svg>
+    <span id="toastMessage">Done!</span>
+  </div>
+  <!-- ═══ END MODALS ════════════════════════════════════════════ -->
+
+
+  <!-- Global nav JS + article JS — both needed on every blog page -->
+  <script src="global.js"></script>
+  <script>
+/* ═══════════════════════════════════════════════════════════════════
+   MECULS — BLOG ARTICLE JAVASCRIPT
+   File: blog-article.js
+
+   ▸ This ONE file powers EVERY blog article on the MECULS website.
+   ▸ Every blog HTML file links to this file. No other JS needed.
+   ▸ When you add a new article in future, do NOT create a new JS file.
+     Just copy any existing blog HTML, replace the content, save.
+     This file already handles everything.
+
+   FEATURES IN THIS FILE:
+   1. Email Share Modal
+   2. Subscribe Modal
+   3. Copy Link button
+   4. Save Article button (remembers across sessions)
+   5. Social share buttons (Facebook, X/Twitter, LinkedIn)
+   6. Keyboard accessibility (Escape closes modals)
+   7. Toast notification (confirmation messages)
+═══════════════════════════════════════════════════════════════════ */
+
+(function () {
+  'use strict';
+
+  /* ── Wait for DOM ─────────────────────────────────────────────── */
+  document.addEventListener('DOMContentLoaded', function () {
+
+    /* ── Element references ───────────────────────────────────── */
+    var emailModal         = document.getElementById('emailModal');
+    var subscribeModal     = document.getElementById('subscribeModal');
+    var emailShareBtn      = document.getElementById('emailShareBtn');
+    var subscribeBtn       = document.getElementById('subscribeBtn');
+    var closeEmailModal    = document.getElementById('closeEmailModal');
+    var closeSubscribeModal= document.getElementById('closeSubscribeModal');
+    var emailShareForm     = document.getElementById('emailShareForm');
+    var subscribeForm      = document.getElementById('subscribeForm');
+    var copyLinkBtn        = document.getElementById('copyLinkBtn');
+    var saveBtn            = document.getElementById('saveBtn');
+    var successToast       = document.getElementById('successToast');
+    var toastMessage       = document.getElementById('toastMessage');
+
+    /* ── Toast ────────────────────────────────────────────────── */
+    function showToast(message) {
+      if (!successToast || !toastMessage) return;
+      toastMessage.textContent = message;
+      successToast.classList.add('active');
+      setTimeout(function () {
+        successToast.classList.remove('active');
+      }, 3000);
+    }
+
+    /* ── Modal open/close ─────────────────────────────────────── */
+    function openModal(modal) {
+      if (!modal) return;
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(modal) {
+      if (!modal) return;
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    /* ── Email Share Modal ────────────────────────────────────── */
+    if (emailShareBtn) {
+      emailShareBtn.addEventListener('click', function () {
+        openModal(emailModal);
+      });
+    }
+
+    if (closeEmailModal) {
+      closeEmailModal.addEventListener('click', function () {
+        closeModal(emailModal);
+      });
+    }
+
+    if (emailModal) {
+      emailModal.addEventListener('click', function (e) {
+        if (e.target === emailModal) closeModal(emailModal);
+      });
+    }
+
+    if (emailShareForm) {
+      emailShareForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var articleTitle = document.querySelector('.article-main-title');
+        var formData = {
+          senderName:     document.getElementById('senderName')    ? document.getElementById('senderName').value    : '',
+          senderEmail:    document.getElementById('senderEmail')   ? document.getElementById('senderEmail').value   : '',
+          recipientEmail: document.getElementById('recipientEmail')? document.getElementById('recipientEmail').value: '',
+          personalMessage:document.getElementById('personalMessage')? document.getElementById('personalMessage').value: '',
+          articleTitle:   articleTitle ? articleTitle.textContent : '',
+          articleUrl:     window.location.href
+        };
+
+        /*
+        ── HOW TO CONNECT EMAIL SENDING IN FUTURE ──────────────────
+        When you have a backend server (e.g. through Brevo or similar),
+        replace the console.log below with a fetch() call like this:
+
+        fetch('/api/send-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        }).then(function(res) {
+          if (res.ok) {
+            showToast('Article shared successfully!');
+            closeModal(emailModal);
+            emailShareForm.reset();
+          }
+        });
+
+        Until then, the form shows a confirmation but does not
+        actually send an email. The feature is ready — just needs
+        the server endpoint connected.
+        ──────────────────────────────────────────────────────────── */
+
+        console.log('Email share (not yet connected to server):', formData);
+        showToast('Article shared successfully!');
+        closeModal(emailModal);
+        emailShareForm.reset();
+      });
+    }
+
+    /* ── Subscribe Modal ──────────────────────────────────────── */
+    if (subscribeBtn) {
+      subscribeBtn.addEventListener('click', function () {
+        openModal(subscribeModal);
+      });
+    }
+
+    if (closeSubscribeModal) {
+      closeSubscribeModal.addEventListener('click', function () {
+        closeModal(subscribeModal);
+      });
+    }
+
+    if (subscribeModal) {
+      subscribeModal.addEventListener('click', function (e) {
+        if (e.target === subscribeModal) closeModal(subscribeModal);
+      });
+    }
+
+    if (subscribeForm) {
+      subscribeForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var formData = {
+          name:       document.getElementById('subscribeName')  ? document.getElementById('subscribeName').value  : '',
+          email:      document.getElementById('subscribeEmail') ? document.getElementById('subscribeEmail').value : '',
+          agreeTerms: document.getElementById('agreeTerms')     ? document.getElementById('agreeTerms').checked   : false
+        };
+
+        /*
+        ── HOW TO CONNECT BREVO (your email platform) IN FUTURE ────
+        You have a Brevo account. When ready, replace the console.log
+        below with a Brevo API call or use Brevo's embedded form.
+        Brevo documentation: https://developers.brevo.com
+
+        fetch('https://api.brevo.com/v3/contacts', {
+          method: 'POST',
+          headers: {
+            'accept': 'application/json',
+            'content-type': 'application/json',
+            'api-key': 'YOUR_BREVO_API_KEY'
+          },
+          body: JSON.stringify({
+            email: formData.email,
+            attributes: { FIRSTNAME: formData.name },
+            listIds: [YOUR_LIST_ID],
+            updateEnabled: true
+          })
+        });
+        ──────────────────────────────────────────────────────────── */
+
+        console.log('Subscribe (not yet connected to Brevo):', formData);
+        showToast('Successfully subscribed to MECULS insights!');
+        closeModal(subscribeModal);
+        subscribeForm.reset();
+      });
+    }
+
+    /* ── Copy Link ────────────────────────────────────────────── */
+    if (copyLinkBtn) {
+      copyLinkBtn.addEventListener('click', function () {
+        var url = window.location.href;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(url).then(function () {
+            showToast('Link copied to clipboard!');
+          }).catch(function () {
+            fallbackCopy(url);
+          });
+        } else {
+          fallbackCopy(url);
+        }
+      });
+    }
+
+    function fallbackCopy(text) {
+      var textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.cssText = 'position:fixed;left:-9999px;top:-9999px';
+      document.body.appendChild(textarea);
+      textarea.focus();
+      textarea.select();
+      try {
+        document.execCommand('copy');
+        showToast('Link copied to clipboard!');
+      } catch (err) {
+        showToast('Could not copy link — please copy the URL manually.');
+      }
+      document.body.removeChild(textarea);
+    }
+
+    /* ── Save Article ─────────────────────────────────────────── */
+    var isSaved = false;
+
+    if (saveBtn) {
+      /* Check saved state on load */
+      try {
+        var savedArticles = JSON.parse(localStorage.getItem('meculs_saved_articles') || '[]');
+        var currentUrl = window.location.href;
+        if (savedArticles.some(function (a) { return a.url === currentUrl; })) {
+          isSaved = true;
+          updateSaveButton(true);
+        }
+      } catch (e) { /* localStorage not available */ }
+
+      saveBtn.addEventListener('click', function () {
+        isSaved = !isSaved;
+        updateSaveButton(isSaved);
+
+        try {
+          var saved = JSON.parse(localStorage.getItem('meculs_saved_articles') || '[]');
+          var url   = window.location.href;
+          var title = document.querySelector('.article-main-title');
+
+          if (isSaved) {
+            saved.push({
+              url:     url,
+              title:   title ? title.textContent : '',
+              savedAt: new Date().toISOString()
+            });
+            showToast('Article saved!');
+          } else {
+            saved = saved.filter(function (a) { return a.url !== url; });
+            showToast('Article removed from saved.');
+          }
+          localStorage.setItem('meculs_saved_articles', JSON.stringify(saved));
+        } catch (e) { /* localStorage not available */ }
+      });
+    }
+
+    function updateSaveButton(saved) {
+      if (!saveBtn) return;
+      var svgPath = saveBtn.querySelector('svg path');
+      var label   = saveBtn.querySelector('span');
+      if (svgPath) svgPath.setAttribute('fill', saved ? '#d4af37' : 'none');
+      if (label)   label.textContent = saved ? 'Saved' : 'Save';
+    }
+
+    /* ── Social Share Buttons ─────────────────────────────────── */
+    var articleTitle = document.querySelector('.article-main-title');
+    var pageTitle    = articleTitle ? encodeURIComponent(articleTitle.textContent.trim()) : '';
+    var pageUrl      = encodeURIComponent(window.location.href);
+
+    /* Facebook */
+    document.querySelectorAll('[data-share="facebook"]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        window.open('https://www.facebook.com/sharer/sharer.php?u=' + pageUrl, '_blank', 'width=600,height=400');
+      });
+    });
+
+    /* X (Twitter) */
+    document.querySelectorAll('[data-share="twitter"]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        window.open('https://twitter.com/intent/tweet?text=' + pageTitle + '&url=' + pageUrl, '_blank', 'width=600,height=400');
+      });
+    });
+
+    /* LinkedIn */
+    document.querySelectorAll('[data-share="linkedin"]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + pageUrl, '_blank', 'width=600,height=400');
+      });
+    });
+
+    /* WhatsApp */
+    document.querySelectorAll('[data-share="whatsapp"]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        window.open('https://wa.me/?text=' + pageTitle + '%20' + pageUrl, '_blank');
+      });
+    });
+
+    /* ── Keyboard: Escape closes any open modal ───────────────── */
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        if (emailModal     && emailModal.classList.contains('active'))     closeModal(emailModal);
+        if (subscribeModal && subscribeModal.classList.contains('active')) closeModal(subscribeModal);
+      }
+    });
+
+  }); /* end DOMContentLoaded */
+
+})();
+
+  </script>
+</body>
+</html>

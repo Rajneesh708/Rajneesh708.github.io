@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Zero State Meditation — discovered and taught exclusively by MECULS. Not available anywhere else in the world. Relieves depression, addiction, and chronic pain by addressing the hidden consciousness.">
+  <title>Zero State Meditation — MECULS</title>
+  <link rel="stylesheet" href="global.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Archivo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+:root{
+  --gold:#d4af37;--gold-dim:rgba(212,175,55,0.10);--gold-bdr:rgba(212,175,55,0.25);
+  --ink:#000814;--ink-mid:#00112e;--white:#ffffff;
+  --muted:rgba(255,255,255,0.58);--soft:rgba(255,255,255,0.82);
+  --serif:'Cormorant Garamond',serif;--sans:'Archivo',sans-serif;
+  --ease:cubic-bezier(0.16,1,0.3,1);--nav-h:72px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--ink);color:var(--white);font-family:var(--sans);line-height:1.75;-webkit-font-smoothing:antialiased;}
+
+/* HERO — full-bleed atmospheric photo */
+.hero{min-height:94vh;position:relative;display:flex;align-items:center;overflow:hidden;}
+.hero-img{position:absolute;inset:0;}
+.hero-img img{width:100%;height:100%;object-fit:cover;filter:brightness(0.28) saturate(0.4);}
+.hero-overlay{position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(0,24,48,0.6) 0%,rgba(0,8,20,0.5) 100%);}
+/* concentric rings overlay */
+.rings{position:absolute;top:50%;right:10%;transform:translate(0,-50%);pointer-events:none;}
+.ring{position:absolute;border-radius:50%;border:1px solid rgba(212,175,55,0.07);transform:translate(-50%,-50%);}
+.ring:nth-child(1){width:200px;height:200px;animation:ringPulse 4s ease-in-out infinite;}
+.ring:nth-child(2){width:380px;height:380px;animation:ringPulse 4s ease-in-out 0.8s infinite;}
+.ring:nth-child(3){width:580px;height:580px;animation:ringPulse 4s ease-in-out 1.6s infinite;}
+.ring:nth-child(4){width:800px;height:800px;animation:ringPulse 4s ease-in-out 2.4s infinite;}
+.ring-centre{position:absolute;top:0;left:0;width:40px;height:40px;border-radius:50%;background:radial-gradient(circle,rgba(212,175,55,0.3) 0%,transparent 70%);transform:translate(-50%,-50%);animation:centrePulse 4s ease-in-out infinite;}
+.hero-in{position:relative;z-index:2;max-width:1400px;margin:0 auto;width:100%;padding:0 6vw;}
+.exclusive-badge{display:inline-flex;align-items:center;gap:0.8rem;font-size:0.68rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink);background:var(--gold);padding:0.5rem 1.1rem;margin-bottom:2rem;opacity:0;animation:fadeUp 1s var(--ease) 0.15s forwards;}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:0.72rem;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:block;opacity:0;animation:fadeUp 1s var(--ease) 0.25s forwards;}
+.h1{font-family:var(--serif);font-size:clamp(3.5rem,6vw,6.5rem);font-weight:300;line-height:1.04;letter-spacing:-0.03em;color:var(--white);margin-bottom:2rem;max-width:660px;opacity:0;animation:fadeUp 1.2s var(--ease) 0.4s forwards;}
+.h1 em{font-style:italic;color:var(--gold);}
+.hero-pull{font-family:var(--serif);font-size:clamp(1.2rem,1.9vw,1.55rem);font-style:italic;color:rgba(255,255,255,0.65);line-height:1.65;border-left:3px solid var(--gold);padding-left:1.5rem;max-width:560px;opacity:0;animation:fadeUp 1.2s var(--ease) 0.55s forwards;}
+
+/* SECTIONS */
+.sec{padding:clamp(80px,11vh,130px) 6vw;}
+.in{max-width:1400px;margin:0 auto;}
+.bar{width:52px;height:2px;background:linear-gradient(90deg,var(--gold),transparent);margin-bottom:1.4rem;}
+.lbl{font-size:0.7rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;}
+.h2{font-family:var(--serif);font-size:clamp(2.2rem,4vw,3.8rem);font-weight:300;line-height:1.1;letter-spacing:-0.025em;color:var(--white);margin-bottom:2rem;}
+.h2 em{font-style:italic;color:var(--gold);}
+
+/* CORE TRUTH — photo + text split */
+.truth-layout{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;margin-top:4rem;}
+.truth-photo{position:relative;overflow:hidden;}
+.truth-photo img{width:100%;height:560px;object-fit:cover;filter:brightness(0.4) saturate(0.5);}
+.truth-photo-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(0,8,20,0.85) 100%);}
+.truth-photo-callout{position:absolute;bottom:0;left:0;right:0;padding:3rem;}
+.tpc-lbl{font-size:0.67rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;}
+.tpc-q{font-family:var(--serif);font-size:1.45rem;font-weight:400;font-style:italic;color:rgba(255,255,255,0.9);line-height:1.55;}
+.tpc-q strong{font-style:normal;color:var(--gold);}
+.truth-text p{font-size:1.12rem;color:var(--soft);line-height:1.88;margin-bottom:1.6rem;}
+.truth-text p strong{color:var(--gold);font-weight:600;}
+.truth-box{padding:2.8rem;background:var(--gold-dim);border:1px solid var(--gold-bdr);position:relative;margin-top:2rem;}
+.truth-box::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--gold),transparent);}
+.truth-box-lbl{font-size:0.67rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;}
+.truth-box-body{font-size:1.06rem;color:var(--soft);line-height:1.82;}
+.truth-box-body strong{color:var(--gold);font-weight:600;}
+
+/* WHAT MAKES IT DIFFERENT */
+.diff-list{margin-top:4rem;display:flex;flex-direction:column;gap:3px;}
+.diff{display:grid;grid-template-columns:200px 1fr;gap:0;overflow:hidden;border:1px solid rgba(255,255,255,0.05);transition:border-color 0.4s;}
+.diff:hover{border-color:var(--gold-bdr);}
+.diff-photo{overflow:hidden;}
+.diff-photo img{width:100%;height:100%;object-fit:cover;filter:brightness(0.35) saturate(0.4);transition:filter 0.5s,transform 0.7s var(--ease);}
+.diff:hover .diff-photo img{filter:brightness(0.48) saturate(0.6);transform:scale(1.05);}
+.diff-content{padding:2.5rem 3rem;background:rgba(255,255,255,0.02);}
+.diff-title{font-family:var(--serif);font-size:1.5rem;font-weight:500;color:var(--white);line-height:1.25;margin-bottom:0.8rem;}
+.diff-body{font-size:1.08rem;color:var(--soft);line-height:1.82;}
+.diff-body strong{color:var(--gold);font-weight:600;}
+
+/* RESULTS GRID */
+.results{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:4rem;}
+.result{overflow:hidden;border:1px solid rgba(255,255,255,0.05);transition:border-color 0.4s,background 0.4s;}
+.result:hover{border-color:var(--gold-bdr);background:rgba(212,175,55,0.03);}
+.result-photo{height:180px;overflow:hidden;}
+.result-photo img{width:100%;height:100%;object-fit:cover;filter:brightness(0.38) saturate(0.45);transition:transform 0.7s var(--ease),filter 0.5s;}
+.result:hover .result-photo img{transform:scale(1.05);filter:brightness(0.5) saturate(0.65);}
+.result-content{padding:2.2rem 2rem;}
+.result-title{font-family:var(--serif);font-size:1.4rem;font-weight:500;color:var(--white);line-height:1.25;margin-bottom:0.7rem;}
+.result-body{font-size:1.04rem;color:var(--muted);line-height:1.72;}
+
+/* WHO IT IS FOR */
+.for-layout{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;margin-top:4rem;}
+.for-list{display:flex;flex-direction:column;gap:3px;}
+.for-item{display:flex;align-items:flex-start;gap:1.5rem;padding:2rem 2.5rem;border:1px solid rgba(212,175,55,0.15);background:rgba(255,255,255,0.02);transition:background 0.3s,border-color 0.3s;}
+.for-item:hover{background:rgba(212,175,55,0.05);border-color:var(--gold-bdr);}
+.for-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:7px;}
+.for-text{font-size:1.08rem;color:var(--soft);line-height:1.72;}
+.for-text strong{color:var(--white);font-weight:600;}
+.for-photo{position:relative;overflow:hidden;}
+.for-photo img{width:100%;height:100%;min-height:480px;object-fit:cover;filter:brightness(0.38) saturate(0.5);}
+.for-photo-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 45%,rgba(0,8,20,0.85) 100%);}
+.for-photo-note{position:absolute;bottom:0;left:0;right:0;padding:3rem;border-top:1px solid var(--gold-bdr);}
+.for-photo-lbl{font-size:0.67rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;}
+.for-photo-q{font-family:var(--serif);font-size:1.35rem;font-weight:400;font-style:italic;color:rgba(255,255,255,0.88);line-height:1.55;}
+.for-photo-q strong{font-style:normal;color:var(--gold);}
+
+/* HOW IT WORKS */
+.how-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-top:4rem;}
+.hstep{padding:3rem 2.2rem;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);transition:background 0.4s;}
+.hstep:hover{background:rgba(212,175,55,0.04);border-color:var(--gold-bdr);}
+.hstep-n{font-family:var(--serif);font-size:3.5rem;font-weight:700;color:rgba(212,175,55,0.18);line-height:1;margin-bottom:1rem;}
+.hstep-t{font-family:var(--serif);font-size:1.35rem;font-weight:500;color:var(--white);line-height:1.25;margin-bottom:0.7rem;}
+.hstep-b{font-size:1.04rem;color:var(--muted);line-height:1.75;}
+
+/* CTA */
+.cta{padding:clamp(80px,12vh,140px) 6vw;text-align:center;position:relative;overflow:hidden;}
+.cta-img{position:absolute;inset:0;}
+.cta-img img{width:100%;height:100%;object-fit:cover;filter:brightness(0.18) saturate(0.3);}
+.cta-overlay{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(0,8,20,0.7) 0%,rgba(0,8,20,0.92) 100%);}
+.cta-in{position:relative;z-index:2;}
+.cta-lbl{font-size:0.7rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;}
+.cta-q{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2.7rem);font-weight:300;font-style:italic;color:var(--white);max-width:780px;margin:0 auto 3rem;line-height:1.5;}
+.cta-q strong{font-style:normal;font-weight:600;color:var(--gold);}
+.btn-row{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;}
+.btn{display:inline-flex;align-items:center;gap:0.8rem;padding:1.1rem 2.5rem;font-size:0.82rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:all 0.4s var(--ease);}
+.btn::after{content:'→';transition:transform 0.3s;}
+.btn:hover::after{transform:translateX(5px);}
+.btn.gold{border:1px solid var(--gold);color:var(--gold);}
+.btn.gold:hover{background:var(--gold);color:var(--ink);}
+.btn.soft{border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.6);}
+.btn.soft:hover{border-color:var(--gold-bdr);color:var(--gold);}
+
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.9s var(--ease),transform 0.9s var(--ease);}
+.reveal.vis{opacity:1;transform:translateY(0);}
+.reveal-l{opacity:0;transform:translateX(-35px);transition:opacity 0.9s var(--ease),transform 0.9s var(--ease);}
+.reveal-l.vis{opacity:1;transform:translateX(0);}
+.reveal-r{opacity:0;transform:translateX(35px);transition:opacity 0.9s var(--ease),transform 0.9s var(--ease);}
+.reveal-r.vis{opacity:1;transform:translateX(0);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+@keyframes ringPulse{0%,100%{opacity:0.35;}50%{opacity:0.85;}}
+@keyframes centrePulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:0.5;}50%{transform:translate(-50%,-50%) scale(1.4);opacity:1;}}
+
+@media(max-width:1100px){
+  .hero{min-height:auto;padding:calc(var(--nav-h) + 5rem) 0 5rem;}
+  .rings{display:none;}
+  .truth-layout,.for-layout{grid-template-columns:1fr;gap:3rem;}
+  .results{grid-template-columns:1fr 1fr;}
+  .how-steps{grid-template-columns:1fr 1fr;}
+  .diff{grid-template-columns:1fr;}
+  .diff-photo{height:200px;}
+}
+@media(max-width:700px){
+  .sec{padding:60px 5vw;}
+  .results,.how-steps{grid-template-columns:1fr;}
+  .for-item{padding:1.5rem;}
+}
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════
+       GLOBAL HEADER — same on every MECULS page
+       To change logo: update src="images/logo/MECULS-gold-white-bold.png"
+       To change nav links: edit the <li> items below
+  ═══════════════════════════════════════════════ -->
+  <header class="global-header">
+
+    <!-- Logo — links to homepage -->
+    <a href="index.html" class="gh-logo">
+      <img src="images/logo/MECULS-gold-white-bold.png"
+           alt="MECULS"
+           onerror="this.style.display='none'; document.querySelector('.gh-logo-text').style.display='block'">
+      <span class="gh-logo-text">MECULS</span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav aria-label="Global navigation">
+      <ul class="gh-nav gh-nav-wrap">
+        <li>
+          <a href="how-meculs-works.html">How MECULS Works
+            <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 3.5l3 3 3-3"/>
+            </svg>
+          </a>
+          <ul class="gh-dropdown">
+            <li><a href="how-meculs-works.html#coaching-process">Coaching Process</a></li>
+            <li><a href="how-meculs-works.html#simulations">Simulations in Coaching</a></li>
+            <li><a href="how-meculs-works.html#profiling">Personality Profiling</a></li>
+            <li><a href="how-meculs-works.html#what-changes">What Changes in Real Work</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="contexts.html">Contexts
+            <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 3.5l3 3 3-3"/>
+            </svg>
+          </a>
+          <ul class="gh-dropdown">
+            <li><a href="contexts.html#leadership">Leadership &amp; Organisations</a></li>
+            <li><a href="contexts.html#professionals">Professionals &amp; Educators</a></li>
+            <li><a href="contexts.html#adults">Adults &amp; Youth</a></li>
+            <li><a href="contexts.html#children">Children</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="the-approach.html">The Approach
+            <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 3.5l3 3 3-3"/>
+            </svg>
+          </a>
+          <ul class="gh-dropdown">
+            <li><a href="360-pulse-rate.html">360° PULSE RATE™</a></li>
+            <li><a href="the-approach.html#mynd-care">Mynd CARE Philosophy</a></li>
+            <li><a href="the-approach.html#pressure">Why Behaviour Under Pressure</a></li>
+            <li><a href="the-approach.html#simulations">Why Simulations, Not Talk</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="insights.html">Insights
+            <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 3.5l3 3 3-3"/>
+            </svg>
+          </a>
+          <ul class="gh-dropdown">
+            <li><a href="insights.html">Writings</a></li>
+            <li><a href="insights.html#themes">Themes &amp; Series</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="about-rajneesh-jain.html">The Founder
+            <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 3.5l3 3 3-3"/>
+            </svg>
+          </a>
+          <ul class="gh-dropdown">
+            <li><a href="about-rajneesh-jain.html#thinking">The Thinking</a></li>
+            <li><a href="about-rajneesh-jain.html#journey">The Journey</a></li>
+            <li><a href="about-rajneesh-jain.html#selected-work">Selected Work</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="begin-conversation.html" class="gh-cta">Begin a Conversation</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Mobile hamburger button -->
+    <button class="gh-toggle" id="ghToggle" aria-label="Open navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+  </header>
+
+  <!-- Mobile menu panel -->
+  <div class="gh-mobile-menu" id="ghMobileMenu" role="dialog" aria-label="Mobile navigation">
+    <ul class="gh-mobile-nav">
+      <li>
+        <a href="how-meculs-works.html">How MECULS Works</a>
+        <ul class="gh-mobile-sub">
+          <li><a href="how-meculs-works.html#coaching-process">Coaching Process</a></li>
+          <li><a href="how-meculs-works.html#simulations">Simulations in Coaching</a></li>
+          <li><a href="how-meculs-works.html#profiling">Personality Profiling</a></li>
+          <li><a href="how-meculs-works.html#what-changes">What Changes in Real Work</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="contexts.html">Contexts</a>
+        <ul class="gh-mobile-sub">
+          <li><a href="contexts.html#leadership">Leadership &amp; Organisations</a></li>
+          <li><a href="contexts.html#professionals">Professionals &amp; Educators</a></li>
+          <li><a href="contexts.html#adults">Adults &amp; Youth</a></li>
+          <li><a href="contexts.html#children">Children</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="the-approach.html">The Approach</a>
+        <ul class="gh-mobile-sub">
+          <li><a href="360-pulse-rate.html">360° PULSE RATE™</a></li>
+          <li><a href="the-approach.html#mynd-care">Mynd CARE Philosophy</a></li>
+          <li><a href="the-approach.html#pressure">Why Behaviour Under Pressure</a></li>
+          <li><a href="the-approach.html#simulations">Why Simulations, Not Talk</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="insights.html">Insights</a>
+        <ul class="gh-mobile-sub">
+          <li><a href="insights.html">Writings</a></li>
+          <li><a href="insights.html#themes">Themes &amp; Series</a></li>
+        </ul>
+      </li>
+      <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+    </ul>
+    <a href="begin-conversation.html" class="gh-mobile-cta">Begin a Conversation</a>
+  </div>
+  <!-- END GLOBAL HEADER -->
+  <!-- END GLOBAL HEADER -->
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-img">
+    <img src="https://images.unsplash.com/photo-1474418397713-7ede21d49118?w=1600&q=80" alt="Stillness and peace" loading="eager"/>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="rings">
+    <div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div>
+    <div class="ring-centre"></div>
+  </div>
+  <div class="hero-in">
+    <div class="exclusive-badge">Exclusive to MECULS · Not taught anywhere else in the world</div>
+    <div class="eyebrow">MECULS &nbsp;·&nbsp; Zero State Meditation</div>
+    <h1 class="h1">Meditation<br>as <em>medicine.</em></h1>
+    <p class="hero-pull">"A meditation discovered and taught exclusively by MECULS — not available anywhere else in the world."</p>
+  </div>
+</section>
+
+<!-- CORE TRUTH -->
+<section class="sec" style="background:var(--ink);">
+  <div class="in">
+    <div class="bar reveal"></div>
+    <div class="lbl reveal">The Core Truth</div>
+    <h2 class="h2 reveal">Where disease, addiction,<br>and depression <em>actually live.</em></h2>
+    <div class="truth-layout">
+      <div class="truth-photo reveal-l">
+        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=80" alt="Inner stillness and healing" loading="lazy"/>
+        <div class="truth-photo-overlay"></div>
+        <div class="truth-photo-callout">
+          <div class="tpc-lbl">The Pain-Body</div>
+          <p class="tpc-q">Suppression stored over years, living inside the physical body as <strong>tension, illness, compulsion, and despair.</strong></p>
+        </div>
+      </div>
+      <div class="reveal-r">
+        <div class="truth-text">
+          <p>Disease, addiction, and depression are the result of unfulfilled desires and suppressed feelings and emotions stored in the hidden consciousness. <strong>They do not live in the body alone. They live in what the body carries.</strong></p>
+          <p>This is not a metaphor. The hidden consciousness — what most people experience only as vague unease, compulsive behaviour, or chronic physical symptoms — is a real, addressable layer of mind. It responds to specific practice.</p>
+          <p>Zero State Meditation neutralises suppressed desires, emotions, feelings, and fears in your hidden consciousness. It dissolves the pain-body that is present inside your physical body. The result is considerable relief in diseases, addictions, and depression.</p>
+          <p>With consistent practice, as guided by MECULS, <strong>complete cure is also possible.</strong></p>
+        </div>
+        <div class="truth-box">
+          <div class="truth-box-lbl">Why ordinary meditation does not reach this</div>
+          <p class="truth-box-body">Most meditation traditions work with the conscious mind — relaxation, focus, breath. Zero State Meditation works at a different depth: <strong>the hidden layer where suppression has been stored.</strong> That is why it produces results that ordinary meditation cannot.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT MAKES IT DIFFERENT -->
+<section class="sec" style="background:linear-gradient(180deg,#000814 0%,var(--ink-mid) 100%);">
+  <div class="in">
+    <div class="bar reveal"></div>
+    <div class="lbl reveal">What Makes Zero State Different</div>
+    <h2 class="h2 reveal">This is not relaxation.<br><em>This is not mindfulness.</em></h2>
+    <div class="diff-list">
+      <div class="diff reveal">
+        <div class="diff-photo"><img src="https://images.unsplash.com/photo-1545389336-cf090694435e?w=400&q=75" alt="Not ordinary meditation" loading="lazy"/></div>
+        <div class="diff-content">
+          <div class="diff-title">It is not relaxation, mindfulness, or breathwork</div>
+          <p class="diff-body">Relaxation reduces surface tension. Mindfulness observes the conscious mind. Breathwork regulates the nervous system. Zero State Meditation does something none of these can: it <strong>reaches the hidden consciousness</strong> — the layer below conscious awareness where suppressed material has been stored.</p>
+        </div>
+      </div>
+      <div class="diff reveal">
+        <div class="diff-photo"><img src="https://images.unsplash.com/photo-1508672019048-805c876b67e2?w=400&q=75" alt="Hidden consciousness depth" loading="lazy"/></div>
+        <div class="diff-content">
+          <div class="diff-title">It addresses the hidden consciousness — not just the conscious mind</div>
+          <p class="diff-body">The hidden consciousness is where suppressed desires, unfulfilled expectations, unexpressed emotions, and unresolved fears reside. <strong>This layer drives behaviour, illness, and compulsion</strong> from below the surface. Zero State Meditation is the only practice known to reach and neutralise this layer directly.</p>
+        </div>
+      </div>
+      <div class="diff reveal">
+        <div class="diff-photo"><img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=400&q=75" alt="Results where others fail" loading="lazy"/></div>
+        <div class="diff-content">
+          <div class="diff-title">It works where most meditation does not reach</div>
+          <p class="diff-body">Most meditation practices produce results in the conscious mind: more calm, better sleep, more focus. Zero State Meditation produces results in the body and the deeper mind: <strong>relief from illness, freedom from addiction, dissolution of long-held anger</strong> — because it addresses the source, not the symptom.</p>
+        </div>
+      </div>
+      <div class="diff reveal">
+        <div class="diff-photo"><img src="https://images.unsplash.com/photo-1519834785169-98be25ec3f84?w=400&q=75" alt="Exclusive discovery" loading="lazy"/></div>
+        <div class="diff-content">
+          <div class="diff-title">Discovered exclusively by MECULS — taught nowhere else</div>
+          <p class="diff-body">Zero State Meditation is not a variation of any existing tradition. It was discovered by Rajneesh Jain through direct exploration of the hidden consciousness over many years. <strong>No other teacher or institution teaches this method.</strong> It is entirely exclusive to MECULS.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="sec" style="background:var(--ink);">
+  <div class="in">
+    <div class="bar reveal"></div>
+    <div class="lbl reveal">What It Has Produced</div>
+    <h2 class="h2 reveal">Documented results<br><em>across six areas.</em></h2>
+    <div class="results reveal">
+      <div class="result">
+        <div class="result-photo"><img src="https://images.unsplash.com/photo-1493894473891-10fc1e5dbd22?w=500&q=75" alt="Depression relief" loading="lazy"/></div>
+        <div class="result-content">
+          <div class="result-title">Depression</div>
+          <p class="result-body">Considerable relief from depression symptoms through neutralisation of the suppressed emotional layer that sustains depressive states.</p>
+        </div>
+      </div>
+      <div class="result">
+        <div class="result-photo"><img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?w=500&q=75" alt="Freedom from addiction" loading="lazy"/></div>
+        <div class="result-content">
+          <div class="result-title">Addiction</div>
+          <p class="result-body">Freedom from addiction — including smoking — by addressing the hidden need the addiction was fulfilling, not the habit itself.</p>
+        </div>
+      </div>
+      <div class="result">
+        <div class="result-photo"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=500&q=75" alt="Chronic pain" loading="lazy"/></div>
+        <div class="result-content">
+          <div class="result-title">Chronic Pain</div>
+          <p class="result-body">Measurable reduction in chronic physical pain through dissolution of the pain-body stored in the physical body over years of suppression.</p>
+        </div>
+      </div>
+      <div class="result">
+        <div class="result-photo"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=75" alt="Anger resolved" loading="lazy"/></div>
+        <div class="result-content">
+          <div class="result-title">Anger</div>
+          <p class="result-body">Permanent removal of recurring anger patterns — not anger management, but dissolution of the suppressed emotion producing the anger.</p>
+        </div>
+      </div>
+      <div class="result">
+        <div class="result-photo"><img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=500&q=75" alt="Relationship harmony" loading="lazy"/></div>
+        <div class="result-content">
+          <div class="result-title">Relationship Conflict</div>
+          <p class="result-body">Resolution of recurring relationship patterns by clearing the suppressed material that drives reactivity and projection in close relationships.</p>
+        </div>
+      </div>
+      <div class="result">
+        <div class="result-photo"><img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=500&q=75" alt="Disease relief" loading="lazy"/></div>
+        <div class="result-content">
+          <div class="result-title">Disease Relief</div>
+          <p class="result-body">Considerable relief in physical illnesses linked to suppressed emotional states — where the emotional root has been stored in the body.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IT IS FOR -->
+<section class="sec" style="background:linear-gradient(180deg,#000814 0%,var(--ink-mid) 100%);">
+  <div class="in">
+    <div class="bar reveal"></div>
+    <div class="lbl reveal">Who This Is For</div>
+    <h2 class="h2 reveal">Five kinds of people<br><em>who have found relief here.</em></h2>
+    <div class="for-layout">
+      <div class="for-list">
+        <div class="for-item reveal"><div class="for-dot"></div><div class="for-text"><strong>Adults experiencing depression, anxiety, or chronic stress</strong> — who have tried other approaches and found only temporary relief that did not last</div></div>
+        <div class="for-item reveal"><div class="for-dot"></div><div class="for-text"><strong>People seeking freedom from addiction</strong> — including smoking, alcohol, and compulsive behaviour — who want to address the root, not the symptom</div></div>
+        <div class="for-item reveal"><div class="for-dot"></div><div class="for-text"><strong>Anyone carrying unresolved anger or past pain</strong> — that has not shifted despite years of therapy, introspection, or spiritual practice</div></div>
+        <div class="for-item reveal"><div class="for-dot"></div><div class="for-text"><strong>Those experiencing physical illness</strong> linked to emotional suppression — where conventional medicine has not found the underlying cause</div></div>
+        <div class="for-item reveal"><div class="for-dot"></div><div class="for-text"><strong>People seeking deep inner peace</strong> and genuine connection to their authentic self — not surface calm, but settled, lasting stillness</div></div>
+      </div>
+      <div class="for-photo reveal-r">
+        <img src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=800&q=80" alt="Inner stillness" loading="lazy"/>
+        <div class="for-photo-overlay"></div>
+        <div class="for-photo-note">
+          <div class="for-photo-lbl">A note before you begin</div>
+          <p class="for-photo-q">Zero State Meditation requires a sincere commitment to consistent practice — <strong>guided throughout by MECULS.</strong> A first conversation with Rajneesh is the right way to begin.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="sec" style="background:var(--ink);">
+  <div class="in">
+    <div class="bar reveal"></div>
+    <div class="lbl reveal">How It Works</div>
+    <h2 class="h2 reveal">Four stages.<br><em>Guided throughout.</em></h2>
+    <div class="how-steps reveal">
+      <div class="hstep"><div class="hstep-n">01</div><div class="hstep-t">The first conversation</div><p class="hstep-b">Rajneesh listens to understand your specific situation — what you are carrying, how long, and what has and has not helped. This determines whether Zero State is the right beginning point for you now.</p></div>
+      <div class="hstep"><div class="hstep-n">02</div><div class="hstep-t">Initial instruction</div><p class="hstep-b">The practice is taught directly by Rajneesh — it cannot be learned from a book or recording. The first session establishes the foundation and the specific practice for your situation.</p></div>
+      <div class="hstep"><div class="hstep-n">03</div><div class="hstep-t">Consistent guided practice</div><p class="hstep-b">You practice daily, with regular sessions with Rajneesh to assess what is shifting, what is surfacing, and how the practice needs to evolve as the hidden layer clears.</p></div>
+      <div class="hstep"><div class="hstep-n">04</div><div class="hstep-t">Observable change</div><p class="hstep-b">Over weeks and months, changes become observable — in physical symptoms, emotional patterns, compulsive behaviours, and the quality of inner stillness that begins to take root.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-img"><img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1400&q=80" alt="Dawn and new beginnings" loading="lazy"/></div>
+  <div class="cta-overlay"></div>
+  <div class="cta-in">
+    <div class="cta-lbl reveal">Begin Zero State Meditation</div>
+    <p class="cta-q reveal">The hidden consciousness <strong>responds to the right practice.</strong> A single conversation with Rajneesh is enough to understand whether this is the right beginning for where you are now.</p>
+    <div class="btn-row reveal">
+      <a href="begin-conversation.html" class="btn gold">Begin a Conversation</a>
+      <a href="source-of-challenges.html" class="btn soft">Understand Your Challenge First</a>
+    </div>
+  </div>
+</section>
+
+  <!-- ═══════════════════════════════════════════════
+       GLOBAL FOOTER — same on every MECULS page
+       To change links: edit the <li> items below
+       To change logo: update src="images/logo/..."
+  ═══════════════════════════════════════════════ -->
+  <footer class="global-footer">
+    <div class="gf-top">
+
+      <!-- Column 1: Brand -->
+      <div class="gf-brand">
+        <div class="gf-logo">
+          <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+          <span class="gf-logo-text" style="display:none">MECULS</span>
+        </div>
+        <p class="gf-tagline">Mind Enablement Centre for Unlocking Limitless Leadership &amp; Self-Potential</p>
+        <div class="gf-contact">
+          <a href="mailto:Jain.Rajneesh@meculs.com">Jain.Rajneesh@meculs.com</a>
+          <a href="#">Delhi, India</a>
+        </div>
+        <div class="gf-social">
+          <!-- LinkedIn -->
+          <a href="#" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <!-- YouTube -->
+          <a href="#" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.5 6.5s-.3-2-1.2-2.8c-1.1-1.2-2.4-1.2-3-1.3C15.6 2.2 12 2.2 12 2.2s-3.6 0-6.3.2c-.6.1-1.9.1-3 1.3C1.8 4.5 1.5 6.5 1.5 6.5S1.2 8.8 1.2 11v2.1c0 2.2.3 4.4.3 4.4s.3 2 1.2 2.8c1.1 1.2 2.6 1.1 3.3 1.2 2.4.2 10 .3 10 .3s3.6 0 6.3-.3c.6-.1 1.9-.1 3-1.3.9-.8 1.2-2.8 1.2-2.8s.3-2.2.3-4.4V11c0-2.2-.3-4.5-.3-4.5zM9.7 14.8V8.4l6.6 3.2-6.6 3.2z"/></svg>
+          </a>
+          <!-- Instagram -->
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <!-- Twitter/X -->
+          <a href="#" aria-label="Twitter">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 1.2h3.4l-7.4 8.5 8.7 11.5h-6.8l-5.3-6.9-6.1 6.9H1.9l7.9-9L1.3 1.2h7l4.8 6.3 5.8-6.3zm-1.2 18h1.9L6.4 3.2H4.4l13.3 16z"/></svg>
+          </a>
+          <!-- Facebook -->
+          <a href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Column 2: Services -->
+      <div>
+        <p class="gf-col-title">Services</p>
+        <ul class="gf-links">
+          <li><a href="services.html#leadership">Leadership Coaching</a></li>
+          <li><a href="services.html#profiling">Personality Profiling</a></li>
+          <li><a href="bespoke-coaching.html">Executive Coaching — Bespoke</a></li>
+          <li><a href="services.html#org-health">Organisational Health</a></li>
+          <li><a href="services.html#zero-state">Meditation As Medicine</a></li>
+          <li><a href="services.html#children">For Children</a></li>
+          <li><a href="services.html#wellness">Mind Wellness Counselling</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Company -->
+      <div>
+        <p class="gf-col-title">Company</p>
+        <ul class="gf-links">
+          <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+          <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+          <li><a href="why-meculs.html">Why MECULS</a></li>
+          <li><a href="our-work-proof.html">Our Work Proof</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="360-pulse-rate.html">360° PULSE RATE™</a></li>
+          <li><a href="cv-portal.html">CV Portal</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Connect -->
+      <div>
+        <p class="gf-col-title">Connect</p>
+        <ul class="gf-links">
+          <li><a href="begin-conversation.html">Begin a Conversation</a></li>
+          <li><a href="book-session.html">Book a Session</a></li>
+          <li><a href="source-of-challenges.html">Source of Challenges</a></li>
+          <li><a href="why-mynd-care.html">Why Mynd CARE</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="refund-policy.html">Refund Policy</a></li>
+        </ul>
+      </div>
+
+    </div><!-- .gf-top -->
+
+    <div class="gf-bottom">
+      <p class="gf-copy">© 2026 MECULS. All rights reserved. Delhi, India.</p>
+      <div class="gf-payment">
+        Payment: PayUBiz · Razorpay · PayPal · UPI · Credit Card
+      </div>
+      <div class="gf-legal">
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="refund-policy.html">Refund</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </footer>
+  <!-- END GLOBAL FOOTER -->
+  <!-- END GLOBAL FOOTER -->
+
+<script>
+const obs=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target);}});},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>obs.observe(el));
+</script>
+<script src="global.js"></script>
+</body>
+</html>
