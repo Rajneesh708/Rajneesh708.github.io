@@ -81,7 +81,7 @@ body{background:var(--ink);color:var(--white);font-family:var(--sans);line-heigh
 .phase-ttl{font-family:var(--serif);font-size:1.25rem;font-weight:400;color:var(--white);margin-bottom:0.9rem;}
 .phase-list{list-style:none;display:flex;flex-direction:column;gap:0.45rem;}
 .phase-list li{font-size:0.86rem;color:var(--muted);padding-left:1rem;position:relative;}
-.phase-list li::before{content:'—';position:absolute;left:0;color:var(--gold);opacity:0.5;}
+.phase-list li::before{content:'&ndash;';position:absolute;left:0;color:var(--gold);opacity:0.5;}
 .deliverables{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;}
 .deliv{padding:2rem;background:rgba(212,175,55,0.04);border:1px solid var(--gold-border);text-align:center;transition:background 0.3s,transform 0.3s;}
 .deliv:hover{background:var(--gold-dim);transform:translateY(-4px);}
