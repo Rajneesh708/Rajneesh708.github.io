@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Book a session with Rajneesh Jain at MECULS &ndash; leadership coaching, personality profiling, Zero State Meditation, counselling, and children&rsquo;s programmes. Request preferred dates, Rajneesh responds personally.">
+  <title>Book a Session &ndash; MECULS | Rajneesh Jain</title>
+  <link rel="canonical" href="https://www.meculs.com/book-session.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Archivo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="global.css">
+  <style>
+
+  :root {
+    --gold:        #d4af37;
+    --gold-light:  #e4bf47;
+    --gold-deep:   #8a6d1a;
+    --gold-dim:    rgba(212,175,55,0.10);
+    --gold-border: rgba(212,175,55,0.22);
+    --gold-strong: rgba(212,175,55,0.55);
+    --ink:         #000814;
+    --ink-2:       #00080f;
+    --ink-3:       #001233;
+    --white:       #ffffff;
+    --muted:       rgba(255,255,255,0.55);
+    --soft:        rgba(255,255,255,0.82);
+    --cream:       #f7f3ea;
+    --parchment:   #faf7f0;
+    --cream-text:  #1a1713;
+    --cream-body:  #3a342b;
+    --cream-muted: #6b6258;
+    --display:     'Playfair Display', serif;
+    --serif:       'Cormorant Garamond', serif;
+    --ease:        cubic-bezier(0.16,1,0.3,1);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--ink); color: var(--white);
+    font-family: 'Archivo', sans-serif;
+    line-height: 1.75; -webkit-font-smoothing: antialiased;
+  }
+  .page { padding-top: var(--g-nav-h, 72px); }
+
+  .rev {
+    opacity: 0; transform: translateY(22px);
+    transition: opacity 1s var(--ease), transform 1s var(--ease);
+  }
+  .rev.vis { opacity: 1; transform: none; }
+
+  .chapter-label {
+    display: inline-flex; align-items: center; gap: 14px;
+    font-size: 0.66rem; font-weight: 700; letter-spacing: 0.26em;
+    text-transform: uppercase; margin-bottom: 1.6rem;
+  }
+  .chapter-label::before {
+    content: ''; width: 48px; height: 1px; background: currentColor; opacity: 0.7;
+  }
+  .chapter-num {
+    font-family: var(--display);
+    font-size: 0.82rem; font-weight: 500; letter-spacing: 0.05em;
+  }
+
+  /* ══════════════════════════════════════
+     HERO &ndash; decisive, confident, not tentative
+     Photography of a desk / an appointment kept
+  ══════════════════════════════════════ */
+  .b-hero {
+    min-height: 78vh; position: relative;
+    display: flex; align-items: flex-end;
+    padding-bottom: 5rem; overflow: hidden;
+  }
+  .b-hero-img {
+    position: absolute; inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1920&q=85');
+    background-size: cover; background-position: center;
+  }
+  .b-hero-img::after {
+    content: ''; position: absolute; inset: 0;
+    background:
+      linear-gradient(180deg,
+        rgba(0,8,20,0.55) 0%,
+        rgba(0,8,20,0.30) 28%,
+        rgba(0,8,20,0.70) 68%,
+        rgba(0,8,20,0.98) 100%);
+  }
+  .b-hero-img::before {
+    content: ''; position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(120deg, rgba(0,8,20,0.55) 0%, transparent 55%);
+  }
+  .b-hero-grid {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(212,175,55,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212,175,55,0.025) 1px, transparent 1px);
+    background-size: 88px 88px;
+  }
+  .b-hero-inner {
+    position: relative; z-index: 2;
+    width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 5%;
+  }
+  .b-hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 14px;
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.26em;
+    text-transform: uppercase; color: var(--gold-light);
+    margin-bottom: 1.8rem;
+    text-shadow: 0 1px 20px rgba(0,0,0,0.6);
+    opacity: 0; animation: fadeUp 1s var(--ease) 0.3s forwards;
+  }
+  .b-hero-eyebrow::before {
+    content: ''; width: 40px; height: 1px; background: var(--gold-light); opacity: 0.85;
+  }
+  .b-hero h1 {
+    font-family: var(--display);
+    font-size: clamp(2.8rem, 6vw, 5.6rem);
+    font-weight: 500; line-height: 1.04;
+    letter-spacing: -0.03em; margin-bottom: 1.6rem;
+    text-shadow: 0 2px 30px rgba(0,0,0,0.5);
+    opacity: 0; animation: fadeUp 1.2s var(--ease) 0.5s forwards;
+  }
+  .b-hero h1 em { font-style: italic; color: var(--gold); font-weight: 500; }
+  .b-hero-sub {
+    font-family: var(--serif);
+    font-size: clamp(1.15rem, 1.8vw, 1.5rem);
+    font-weight: 400; font-style: italic;
+    color: rgba(255,255,255,0.82); line-height: 1.55;
+    max-width: 660px; margin-bottom: 2.2rem;
+    text-shadow: 0 1px 20px rgba(0,0,0,0.5);
+    opacity: 0; animation: fadeUp 1.2s var(--ease) 0.7s forwards;
+  }
+  /* Anchor links to the two booking flows */
+  .b-hero-anchors {
+    display: inline-flex; gap: 0.8rem; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 1.2s var(--ease) 0.85s forwards;
+  }
+  .b-anchor {
+    padding: 0.7rem 1.4rem;
+    border: 1px solid var(--gold-strong);
+    background: rgba(0,8,20,0.72);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: var(--gold-light); text-decoration: none;
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em;
+    text-transform: uppercase;
+    transition: background 0.3s, transform 0.2s;
+    white-space: nowrap;
+  }
+  .b-anchor:hover { background: var(--gold-dim); transform: translateY(-2px); }
+  .b-anchor .b-anchor-num {
+    font-family: var(--display);
+    font-weight: 500; margin-right: 0.5rem;
+    opacity: 0.7; letter-spacing: 0.04em;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  /* ══════════════════════════════════════
+     HOW IT WORKS &ndash; the three-step flow
+     Cream section, clarifies the process before the form
+  ══════════════════════════════════════ */
+  .b-how {
+    padding: 6rem 0;
+    background: var(--cream);
+    color: var(--cream-text);
+  }
+  .b-how-inner {
+    max-width: 1100px; margin: 0 auto; padding: 0 5%;
+  }
+  .b-how-head {
+    text-align: center; margin-bottom: 3.5rem;
+  }
+  .b-how-head .chapter-label {
+    color: var(--gold-deep); justify-content: center;
+  }
+  .b-how-head .chapter-label::after {
+    content: ''; width: 48px; height: 1px; background: var(--gold-deep); opacity: 0.7;
+  }
+  .b-how-head h2 {
+    font-family: var(--display);
+    font-size: clamp(2rem, 3.8vw, 3rem);
+    font-weight: 500; line-height: 1.12;
+    letter-spacing: -0.02em; margin-bottom: 1.2rem;
+    color: var(--cream-text);
+  }
+  .b-how-head h2 em { font-style: italic; color: var(--gold-deep); }
+  .b-how-head p {
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+    font-weight: 400; font-style: italic;
+    color: var(--cream-body); line-height: 1.55;
+    max-width: 620px; margin: 0 auto;
+  }
+
+  .b-how-steps {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .b-how-step {
+    background: var(--white);
+    border: 1px solid rgba(138,109,26,0.18);
+    padding: 2.2rem 2rem;
+    position: relative;
+    transition: border-color 0.3s var(--ease), transform 0.3s var(--ease),
+                box-shadow 0.3s var(--ease);
+  }
+  .b-how-step:hover {
+    border-color: rgba(138,109,26,0.45);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+  }
+  .b-step-num {
+    font-family: var(--display);
+    font-size: clamp(2.8rem, 5vw, 4rem);
+    font-weight: 400; line-height: 0.9;
+    color: var(--gold-deep);
+    margin-bottom: 1rem; opacity: 0.85;
+    letter-spacing: -0.03em;
+  }
+  .b-step-title {
+    font-family: var(--display);
+    font-size: 1.3rem; font-weight: 600;
+    color: var(--cream-text); line-height: 1.25;
+    margin-bottom: 0.8rem;
+    letter-spacing: -0.01em;
+  }
+  .b-step-desc {
+    font-family: var(--serif);
+    font-size: 1.02rem; line-height: 1.7;
+    color: var(--cream-body);
+  }
+  .b-step-desc em { color: var(--gold-deep); font-style: italic; font-weight: 500; }
+
+  /* ══════════════════════════════════════
+     SERVICES &ndash; dark section
+     Two-column: Corporate (on application) | Individual (with prices)
+  ══════════════════════════════════════ */
+  .b-services {
+    padding: 7rem 0;
+    background: var(--ink);
+    position: relative;
+  }
+  .b-services::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(212,175,55,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212,175,55,0.025) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: linear-gradient(180deg, transparent, #000 25%, #000 75%, transparent);
+    -webkit-mask-image: linear-gradient(180deg, transparent, #000 25%, #000 75%, transparent);
+    opacity: 0.5;
+  }
+  .b-services-inner {
+    position: relative; z-index: 2;
+    max-width: 1200px; margin: 0 auto; padding: 0 5%;
+  }
+  .b-services-head {
+    text-align: center; margin-bottom: 4rem;
+  }
+  .b-services-head .chapter-label {
+    color: var(--gold); justify-content: center;
+  }
+  .b-services-head .chapter-label::after {
+    content: ''; width: 48px; height: 1px; background: var(--gold); opacity: 0.7;
+  }
+  .b-services-head h2 {
+    font-family: var(--display);
+    font-size: clamp(2rem, 3.8vw, 3rem);
+    font-weight: 500; line-height: 1.12;
+    letter-spacing: -0.02em; margin-bottom: 1.2rem;
+  }
+  .b-services-head h2 em { font-style: italic; color: var(--gold); }
+  .b-services-head p {
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+    font-weight: 400; font-style: italic;
+    color: var(--soft); line-height: 1.55;
+    max-width: 640px; margin: 0 auto;
+  }
+
+  /* Two-column grid of service cards */
+  .b-services-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  .b-svc-group {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--gold-border);
+    padding: 2.4rem 2.2rem;
+  }
+  .b-svc-group-label {
+    font-size: 0.64rem; font-weight: 700;
+    letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.6rem;
+  }
+  .b-svc-group-title {
+    font-family: var(--display);
+    font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+    font-weight: 500; line-height: 1.2;
+    letter-spacing: -0.01em; margin-bottom: 0.5rem;
+    color: var(--white);
+  }
+  .b-svc-group-title em { font-style: italic; color: var(--gold); }
+  .b-svc-group-sub {
+    font-family: var(--serif);
+    font-size: 1rem; font-style: italic;
+    color: var(--soft); line-height: 1.55;
+    margin-bottom: 1.8rem;
+    padding-bottom: 1.4rem;
+    border-bottom: 1px solid var(--gold-border);
+  }
+
+  .b-svc-list {
+    list-style: none;
+    display: flex; flex-direction: column;
+    gap: 0;
+  }
+  .b-svc-item {
+    padding: 1.1rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 1rem; align-items: baseline;
+  }
+  .b-svc-item:last-child { border-bottom: none; }
+  .b-svc-item-name {
+    font-family: var(--display);
+    font-size: 1.02rem; font-weight: 600;
+    color: var(--white); line-height: 1.3;
+    letter-spacing: -0.005em;
+  }
+  .b-svc-item-meta {
+    font-size: 0.78rem; color: var(--muted);
+    line-height: 1.5; margin-top: 0.3rem;
+    font-family: var(--serif); font-style: italic;
+  }
+  .b-svc-item-price {
+    font-family: var(--display);
+    font-size: 0.82rem; font-weight: 500;
+    color: var(--gold); letter-spacing: 0.04em;
+    white-space: nowrap;
+    text-align: right;
+  }
+  .b-svc-item-price.on-app {
+    font-style: italic; font-weight: 400;
+    color: var(--muted);
+  }
+
+  /* ══════════════════════════════════════
+     REQUEST FORM &ndash; parchment section
+     The actual booking request
+  ══════════════════════════════════════ */
+  .b-form {
+    padding: 7rem 0;
+    background: var(--parchment);
+    color: var(--cream-text);
+  }
+  .b-form-inner {
+    max-width: 980px; margin: 0 auto; padding: 0 5%;
+  }
+  .b-form-head {
+    text-align: center; margin-bottom: 3.5rem;
+  }
+  .b-form-head .chapter-label {
+    color: var(--gold-deep); justify-content: center;
+  }
+  .b-form-head .chapter-label::after {
+    content: ''; width: 48px; height: 1px; background: var(--gold-deep); opacity: 0.7;
+  }
+  .b-form-head h2 {
+    font-family: var(--display);
+    font-size: clamp(2rem, 3.8vw, 3rem);
+    font-weight: 500; line-height: 1.12;
+    letter-spacing: -0.02em; margin-bottom: 1.2rem;
+  }
+  .b-form-head h2 em { font-style: italic; color: var(--gold-deep); }
+  .b-form-head p {
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+    font-weight: 400; font-style: italic;
+    color: var(--cream-body); line-height: 1.55;
+    max-width: 640px; margin: 0 auto;
+  }
+
+  /* The form itself */
+  .b-form-card {
+    background: var(--white);
+    border: 1px solid rgba(138,109,26,0.22);
+    padding: 3rem 3rem;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.04);
+  }
+  .b-form-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.6rem;
+  }
+  .b-field-wide { grid-column: span 2; }
+
+  .b-field label {
+    display: block;
+    font-size: 0.62rem; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold-deep); margin-bottom: 0.6rem;
+  }
+  .b-field .required {
+    color: #a04020; margin-left: 0.3em;
+  }
+  .b-field input,
+  .b-field select,
+  .b-field textarea {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 1px solid rgba(138,109,26,0.22);
+    background: var(--parchment);
+    color: var(--cream-text);
+    font-family: 'Archivo', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    transition: border-color 0.25s var(--ease);
+  }
+  .b-field input:focus,
+  .b-field select:focus,
+  .b-field textarea:focus {
+    outline: none;
+    border-color: var(--gold-deep);
+    background: var(--white);
+  }
+  .b-field textarea {
+    min-height: 140px;
+    resize: vertical;
+    font-family: var(--serif);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  .b-field-help {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.78rem;
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--cream-muted);
+    line-height: 1.5;
+  }
+
+  .b-form-submit-row {
+    margin-top: 2.4rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(138,109,26,0.15);
+    display: flex; align-items: center;
+    justify-content: space-between;
+    gap: 2rem; flex-wrap: wrap;
+  }
+  .b-form-note {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.92rem;
+    color: var(--cream-muted);
+    line-height: 1.55;
+    flex: 1; min-width: 220px;
+  }
+
+  .btn-gold {
+    padding: 1.05rem 2.6rem; background: var(--gold-deep); color: var(--white);
+    font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; text-decoration: none;
+    border: none; cursor: pointer;
+    transition: background 0.3s, transform 0.2s; display: inline-block;
+    font-family: 'Archivo', sans-serif;
+  }
+  .btn-gold:hover { background: #6e570f; transform: translateY(-2px); }
+
+  .b-form-success {
+    display: none;
+    padding: 2rem;
+    background: rgba(138,109,26,0.06);
+    border: 1px solid rgba(138,109,26,0.3);
+    font-family: var(--serif);
+    font-size: 1.1rem; font-style: italic;
+    color: var(--cream-text); line-height: 1.65;
+    text-align: center;
+  }
+  .b-form-success.show { display: block; }
+  .b-form-success strong {
+    display: block;
+    font-family: var(--display);
+    font-size: 1.3rem; font-weight: 500;
+    color: var(--gold-deep); margin-bottom: 0.6rem;
+    font-style: normal;
+  }
+
+  /* ══════════════════════════════════════
+     DELIVERY &ndash; dark section, two modes
+  ══════════════════════════════════════ */
+  .b-delivery {
+    padding: 6rem 0;
+    background: var(--ink-2);
+    position: relative;
+  }
+  .b-delivery::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse at 30% 50%, rgba(212,175,55,0.06) 0%, transparent 55%);
+  }
+  .b-delivery-inner {
+    position: relative; z-index: 2;
+    max-width: 1100px; margin: 0 auto; padding: 0 5%;
+  }
+  .b-delivery-head {
+    text-align: center; margin-bottom: 3rem;
+  }
+  .b-delivery-head .chapter-label {
+    color: var(--gold); justify-content: center;
+  }
+  .b-delivery-head .chapter-label::after {
+    content: ''; width: 48px; height: 1px; background: var(--gold); opacity: 0.7;
+  }
+  .b-delivery-head h2 {
+    font-family: var(--display);
+    font-size: clamp(1.9rem, 3.4vw, 2.8rem);
+    font-weight: 500; line-height: 1.15;
+    letter-spacing: -0.02em; margin-bottom: 1.2rem;
+  }
+  .b-delivery-head h2 em { font-style: italic; color: var(--gold); }
+
+  .b-delivery-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  .b-delivery-mode {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--gold-border);
+    padding: 2.4rem 2.2rem;
+  }
+  .b-delivery-mode-label {
+    font-size: 0.64rem; font-weight: 700;
+    letter-spacing: 0.26em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.8rem;
+  }
+  .b-delivery-mode-title {
+    font-family: var(--display);
+    font-size: 1.5rem; font-weight: 500; font-style: italic;
+    color: var(--white); line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  .b-delivery-mode-desc {
+    font-family: var(--serif);
+    font-size: 1.05rem; line-height: 1.7;
+    color: var(--soft);
+  }
+
+  /* ══════════════════════════════════════
+     CLOSING
+  ══════════════════════════════════════ */
+  .b-close {
+    padding: 6rem 0;
+    background: linear-gradient(170deg, var(--ink) 0%, var(--ink-3) 100%);
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .b-close::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(212,175,55,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212,175,55,0.03) 1px, transparent 1px);
+    background-size: 88px 88px;
+    mask-image: radial-gradient(ellipse at center, #000 20%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 20%, transparent 75%);
+  }
+  .b-close-inner {
+    position: relative; z-index: 2;
+    max-width: 680px; margin: 0 auto; padding: 0 5%;
+  }
+  .b-close .chapter-label { color: var(--gold); justify-content: center; }
+  .b-close .chapter-label::after {
+    content: ''; width: 48px; height: 1px; background: var(--gold); opacity: 0.7;
+  }
+  .b-close h2 {
+    font-family: var(--display);
+    font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+    font-weight: 500; line-height: 1.18;
+    margin-bottom: 1.4rem;
+  }
+  .b-close h2 em { font-style: italic; color: var(--gold); }
+  .b-close p {
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 1.7vw, 1.3rem);
+    font-weight: 400; font-style: italic;
+    color: rgba(255,255,255,0.8); line-height: 1.6;
+    margin-bottom: 2.4rem;
+  }
+  .b-close-btns {
+    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+  }
+  .btn-outline {
+    padding: 1rem 2.4rem; border: 1px solid var(--gold-border);
+    color: var(--gold); font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none;
+    transition: background 0.3s, transform 0.2s; display: inline-block;
+    background: rgba(0,8,20,0.35);
+  }
+  .btn-outline:hover { background: var(--gold-dim); transform: translateY(-2px); }
+
+  /* ══════════════════════════════════════
+     RESPONSIVE
+     Breakpoints: 1024px tablet, 768px small tablet, 600px phone
+  ══════════════════════════════════════ */
+  @media (max-width: 1024px) {
+    .b-how-steps { grid-template-columns: 1fr; gap: 1.2rem; }
+    .b-services-grid { grid-template-columns: 1fr; }
+    .b-delivery-grid { grid-template-columns: 1fr; }
+    .b-form-card { padding: 2.4rem 2rem; }
+  }
+  @media (max-width: 768px) {
+    .b-hero { min-height: 68vh; }
+    .b-how, .b-services, .b-form, .b-delivery, .b-close {
+      padding: 5rem 0;
+    }
+    .b-form-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+    .b-field-wide { grid-column: span 1; }
+    .b-form-card { padding: 2rem 1.6rem; }
+    .b-form-submit-row { flex-direction: column; align-items: stretch; gap: 1.4rem; }
+    .b-form-note { min-width: 0; text-align: center; }
+    .btn-gold { width: 100%; text-align: center; }
+  }
+  @media (max-width: 600px) {
+    .b-hero-anchors { flex-direction: column; align-items: stretch; }
+    .b-anchor { text-align: center; }
+    .b-svc-item { grid-template-columns: 1fr; gap: 0.4rem; }
+    .b-svc-item-price { text-align: left; }
+    .b-svc-group { padding: 2rem 1.6rem; }
+    .b-how-step { padding: 1.8rem 1.5rem; }
+  }
+
+  </style>
+</head>
+<body>
+<div class="page">
+
+<!-- GLOBAL HEADER -->
+<header class="global-header">
+  <a href="index.html" class="gh-logo">
+    <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS"
+         onerror="this.style.display='none';document.querySelector('.gh-logo-text').style.display='block'">
+    <span class="gh-logo-text">MECULS</span>
+  </a>
+  <nav aria-label="Global navigation">
+    <ul class="gh-nav gh-nav-wrap">
+      <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+      <li><a href="contexts.html">Contexts</a></li>
+      <li><a href="the-approach.html">The Approach</a></li>
+      <li><a href="insights.html">Insights</a></li>
+      <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+      <li><a href="begin-conversation.html" class="gh-cta">Begin a Conversation</a></li>
+    </ul>
+  </nav>
+  <button class="gh-toggle" id="ghToggle" aria-label="Open navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+<div class="gh-mobile-menu" id="ghMobileMenu" role="dialog" aria-label="Mobile navigation">
+  <ul class="gh-mobile-nav">
+    <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+    <li><a href="contexts.html">Contexts</a></li>
+    <li><a href="the-approach.html">The Approach</a></li>
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+  </ul>
+  <a href="begin-conversation.html" class="gh-mobile-cta">Begin a Conversation</a>
+</div>
+<!-- END GLOBAL HEADER -->
+
+<!-- HERO -->
+<section class="b-hero">
+  <div class="b-hero-img"></div>
+  <div class="b-hero-grid"></div>
+  <div class="b-hero-inner">
+    <div class="b-hero-eyebrow">Book a Session</div>
+    <h1>
+      You have chosen.<br>
+      <em>Here is how it begins.</em>
+    </h1>
+    <p class="b-hero-sub">
+      This page is for the person who has read enough, thought enough, and is ready. Choose the service that fits, share your preferred dates, and Rajneesh responds personally within two working days.
+    </p>
+    <div class="b-hero-anchors">
+      <a href="#how-it-works" class="b-anchor"><span class="b-anchor-num">I</span>How It Works</a>
+      <a href="#services" class="b-anchor"><span class="b-anchor-num">II</span>Services &amp; Rates</a>
+      <a href="#request" class="b-anchor"><span class="b-anchor-num">III</span>Request a Booking</a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="b-how" id="how-it-works">
+  <div class="b-how-inner">
+    <div class="b-how-head rev">
+      <div class="chapter-label">
+        <span class="chapter-num">I</span>
+        <span>How It Works</span>
+      </div>
+      <h2>Three steps.<br><em>No intake forms, no chatbots.</em></h2>
+      <p>Every booking goes through Rajneesh directly. There is no assistant, no scheduling bot, no automated sequence. The discipline of the practice begins at the first contact.</p>
+    </div>
+
+    <div class="b-how-steps">
+      <div class="b-how-step rev">
+        <div class="b-step-num">01</div>
+        <div class="b-step-title">You send a request.</div>
+        <p class="b-step-desc">
+          Use the form below. Name the service you are booking, your preferred dates and times, and <em>a few honest sentences</em> about what you are coming to the work for.
+        </p>
+      </div>
+      <div class="b-how-step rev">
+        <div class="b-step-num">02</div>
+        <div class="b-step-title">Rajneesh responds personally.</div>
+        <p class="b-step-desc">
+          Within two working days, you receive a direct reply &ndash; <em>not a confirmation email</em>. If the work is a fit, a session is scheduled and payment details are shared. If it is not a fit, you are told honestly and, where possible, pointed to the right practitioner.
+        </p>
+      </div>
+      <div class="b-how-step rev">
+        <div class="b-step-num">03</div>
+        <div class="b-step-title">The session happens.</div>
+        <p class="b-step-desc">
+          Online globally, or in person in Delhi. Payment is confirmed before the first session. From there, the work is <em>direct, private, and serious</em>.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES & RATES -->
+<section class="b-services" id="services">
+  <div class="b-services-inner">
+    <div class="b-services-head rev">
+      <div class="chapter-label">
+        <span class="chapter-num">II</span>
+        <span>Services &amp; Rates</span>
+      </div>
+      <h2>What is bookable<br><em>on this page.</em></h2>
+      <p>Individual sessions carry a transparent rate. Corporate engagements are always priced on application &ndash; the scope determines the cost.</p>
+    </div>
+
+    <div class="b-services-grid">
+
+      <!-- CORPORATE &ndash; On Application -->
+      <div class="b-svc-group rev">
+        <div class="b-svc-group-label">Corporate &middot; On Application</div>
+        <h3 class="b-svc-group-title">For organisations &amp;<br><em>leadership teams.</em></h3>
+        <p class="b-svc-group-sub">
+          Scope-dependent. Rates shared after a direct conversation and a clear understanding of what the engagement requires.
+        </p>
+        <ul class="b-svc-list">
+          <li class="b-svc-item">
+            <div>
+              <div class="b-svc-item-name">360&deg; PULSE RATE&trade; Leadership Coaching</div>
+              <div class="b-svc-item-meta">Flagship ICF-accredited coaching programme</div>
+            </div>
+            <div class="b-svc-item-price on-app">On Application</div>
+          </li>
+          <li class="b-svc-item">
+            <div>
+              <div class="b-svc-item-name">Executive Coaching &ndash; Bespoke</div>
+              <div class="b-svc-item-meta">One-to-one work with senior leaders</div>
+            </div>
+            <div class="b-svc-item-price on-app">On Application</div>
+          </li>
+          <li class="b-svc-item">
+            <div>
+              <div class="b-svc-item-name">Corporate Programmes</div>
+              <div class="b-svc-item-meta">Cohort work, simulations, The Executive Edge</div>
+            </div>
+            <div class="b-svc-item-price on-app">On Application</div>
+          </li>
+          <li class="b-svc-item">
+            <div>
+              <div class="b-svc-item-name">Organisational Health Consulting</div>
+              <div class="b-svc-item-meta">Board-level work on culture and decision architecture</div>
+            </div>
+            <div class="b-svc-item-price on-app">On Application</div>
+          </li>
+          <li class="b-svc-item">
+            <div>
+              <div class="b-svc-item-name">HR Analytics &amp; Compensation Benchmarking</div>
+              <div class="b-svc-item-meta">Data-driven people intelligence and benchmarking</div>
+            </div>
+            <div class="b-svc-item-price on-app">On Application</div>
+          </li>
+          <li class="b-svc-item">
+            <div>
+              <div class="b-svc-item-name">Executive Search</div>
+              <div class="b-svc-item-meta">Psychological-depth search, launched April 2025</div>
+            </div>
+            <div class="b-svc-item-price on-app">On Application</div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- INDIVIDUAL &ndash; With Rates -->
+      <!--
+        ════════════════════════════════════════════════════════════
+        PRICING TO BE FILLED IN BY RAJNEESH BEFORE DEPLOYMENT
+        Current values are placeholders marked INR _____
+        Replace each INR _____ with the actual rate when decided.
+        Typical structure: per-session rate OR full-programme rate.
+        ════════════════════════════════════════════════════════════
+      -->
+      <div class="b-svc-group rev">
+        <div class="b-svc-group-label">Individual &middot; Per Session</div>
+        <h3 class="b-svc-group-title">For the person,<br><em>not the organisation.</em></h3>
+        <p class="b-svc-group-sub">
+          Transparent rates for standard individual work. Where a full programme is required &ndash; for example, quit smoking across multiple sessions &ndash; the full rate is discussed once a fit is confirmed.
+        </p>
+        <ul class="b-svc-list">
+          <li class="b-svc-item">
+            <div>
+              <div class="b-svc-item-name">Consciousness &amp; Clarity Coaching</div>
+              <div class="b-svc-item-meta">Per 60-minute session</div>
+            </div>
+            <div class="b-svc-item-price">INR _____</div>
+          </li>
+          <li class="b-svc-item">
+            <div>
+              <div class="b-svc-item-name">Mind Wellness Counselling</div>
+              <div class="b-svc-item-meta">Per 60-minute session</div>
+            </div>
+            <div class="b-svc-item-price">INR _____</div>
+          </li>
+          <li class="b-svc-item">
+            <div>
+              <div class="b-svc-item-name">Zero State Meditation</div>
+              <div class="b-svc-item-meta">Per guided session, including induction</div>
+            </div>
+            <div class="b-svc-item-price">INR _____</div>
+          </li>
+          <li class="b-svc-item">
+            <div>
+              <div class="b-svc-item-name">Quit Smoking Counselling</div>
+              <div class="b-svc-item-meta">Full programme rate on response</div>
+            </div>
+            <div class="b-svc-item-price on-app">On Response</div>
+          </li>
+          <li class="b-svc-item">
+            <div>
+              <div class="b-svc-item-name">For Children &ndash; Focus, Intelligence &amp; Good Nature</div>
+              <div class="b-svc-item-meta">Per session with parental involvement</div>
+            </div>
+            <div class="b-svc-item-price">INR _____</div>
+          </li>
+          <li class="b-svc-item">
+            <div>
+              <div class="b-svc-item-name">Counselling &ndash; Child to Adult</div>
+              <div class="b-svc-item-meta">Per 60-minute session</div>
+            </div>
+            <div class="b-svc-item-price">INR _____</div>
+          </li>
+          <li class="b-svc-item">
+            <div>
+              <div class="b-svc-item-name">Contemplative Practices</div>
+              <div class="b-svc-item-meta">Dream analysis, anger work, and related deep practices</div>
+            </div>
+            <div class="b-svc-item-price on-app">On Response</div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- REQUEST FORM -->
+<section class="b-form" id="request">
+  <div class="b-form-inner">
+    <div class="b-form-head rev">
+      <div class="chapter-label">
+        <span class="chapter-num">III</span>
+        <span>Request a Booking</span>
+      </div>
+      <h2>Send the request.<br><em>A personal reply follows.</em></h2>
+      <p>Every field matters. The honesty of what you write shapes the quality of the response you receive.</p>
+    </div>
+
+    <!--
+      ═══════════════════════════════════════════════════════════════
+      FORM SUBMISSION HANDLING
+      ═══════════════════════════════════════════════════════════════
+      The form below is front-end only. Three ways to make it send:
+
+      1. EASIEST (zero backend): Use Formspree, Basin, or Getform.
+         Sign up at formspree.io, get a form ID like "mzbabcde",
+         then change action="" below to:
+         action="https://formspree.io/f/YOUR_FORM_ID" method="POST"
+         Submissions arrive in your email. Free tier: 50/month.
+
+      2. Use your own email backend (e.g., a Cloudflare Worker
+         or a Vercel serverless function) and point action= to it.
+
+      3. mailto: fallback (not recommended for production but works
+         for soft-launch): action="mailto:Jain.Rajneesh@meculs.com"
+         method="POST" enctype="text/plain"
+
+      Until one of the above is set up, the form shows the success
+      panel client-side and logs to console &ndash; it does not yet send.
+      ═══════════════════════════════════════════════════════════════
+    -->
+    <form class="b-form-card rev" id="bookingForm" action="" method="POST" novalidate>
+
+      <div class="b-form-grid">
+
+        <div class="b-field">
+          <label for="f-name">Full Name<span class="required">*</span></label>
+          <input type="text" id="f-name" name="name" required autocomplete="name">
+        </div>
+
+        <div class="b-field">
+          <label for="f-email">Email<span class="required">*</span></label>
+          <input type="email" id="f-email" name="email" required autocomplete="email">
+        </div>
+
+        <div class="b-field">
+          <label for="f-phone">Phone (with country code)</label>
+          <input type="tel" id="f-phone" name="phone" autocomplete="tel" placeholder="+91 98XXX XXXXX">
+        </div>
+
+        <div class="b-field">
+          <label for="f-location">Your Location / Time Zone<span class="required">*</span></label>
+          <input type="text" id="f-location" name="location" required placeholder="e.g. Delhi IST, London GMT">
+        </div>
+
+        <div class="b-field b-field-wide">
+          <label for="f-service">Service You Are Booking<span class="required">*</span></label>
+          <select id="f-service" name="service" required>
+            <option value="" disabled selected>Choose a service</option>
+            <optgroup label="Individual &amp; Wellness">
+              <option>Consciousness &amp; Clarity Coaching</option>
+              <option>Mind Wellness Counselling</option>
+              <option>Zero State Meditation</option>
+              <option>Quit Smoking Counselling</option>
+              <option>For Children &ndash; Focus, Intelligence &amp; Good Nature</option>
+              <option>Counselling &ndash; Child to Adult</option>
+              <option>Contemplative Practices &ndash; Dream Analysis / Anger Work / Protection</option>
+              <option>Source of Challenges Diagnostic</option>
+            </optgroup>
+            <optgroup label="Corporate (On Application)">
+              <option>360&deg; PULSE RATE&trade; Leadership Coaching</option>
+              <option>Executive Coaching &ndash; Bespoke</option>
+              <option>Corporate Programmes / Executive Edge</option>
+              <option>Organisational Health Consulting</option>
+              <option>HR Analytics &amp; Compensation Benchmarking</option>
+              <option>Executive Search</option>
+            </optgroup>
+            <optgroup label="Not Sure Yet">
+              <option>Not sure &ndash; please advise</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div class="b-field b-field-wide">
+          <label for="f-mode">Preferred Mode<span class="required">*</span></label>
+          <select id="f-mode" name="mode" required>
+            <option value="" disabled selected>Online or in person</option>
+            <option>Online (globally)</option>
+            <option>In person &ndash; Delhi</option>
+            <option>Either &ndash; whichever works better</option>
+          </select>
+        </div>
+
+        <div class="b-field b-field-wide">
+          <label for="f-dates">Preferred Dates &amp; Times<span class="required">*</span></label>
+          <input type="text" id="f-dates" name="preferred_dates" required
+                 placeholder="e.g. any weekday morning from Oct 20 onwards, or Saturday the 25th after 4pm">
+          <span class="b-field-help">Plain English is fine. Rajneesh works across time zones and will match to yours.</span>
+        </div>
+
+        <div class="b-field b-field-wide">
+          <label for="f-context">What are you coming to this work for?<span class="required">*</span></label>
+          <textarea id="f-context" name="context" required
+                    placeholder="A few honest sentences. Not a pitch. What is actually going on, and what you hope this session will address."></textarea>
+          <span class="b-field-help">Three to five sentences is usually right. The honesty of what you write shapes the quality of the reply.</span>
+        </div>
+
+        <div class="b-field b-field-wide">
+          <label for="f-referral">How did you hear about MECULS?</label>
+          <input type="text" id="f-referral" name="referral" placeholder="Search, a person, an article, LinkedIn, other">
+        </div>
+
+      </div>
+
+      <div class="b-form-submit-row">
+        <p class="b-form-note">
+          By sending this request you agree to a direct personal response from Rajneesh Jain. Your information is never shared, stored on a marketing list, or sold.
+        </p>
+        <button type="submit" class="btn-gold">Send Booking Request</button>
+      </div>
+    </form>
+
+    <!-- Success state &ndash; shown after form submit -->
+    <div class="b-form-success" id="bookingSuccess" role="status" aria-live="polite">
+      <strong>Request received.</strong>
+      Thank you. Rajneesh will respond personally within two working days. If you have not heard back in that window, please write directly to <a href="mailto:Jain.Rajneesh@meculs.com" style="color:var(--gold-deep);text-decoration:underline;">Jain.Rajneesh@meculs.com</a>.
+    </div>
+
+  </div>
+</section>
+
+<!-- DELIVERY -->
+<section class="b-delivery">
+  <div class="b-delivery-inner">
+    <div class="b-delivery-head rev">
+      <div class="chapter-label">
+        <span class="chapter-num">IV</span>
+        <span>Where the Work Happens</span>
+      </div>
+      <h2>Online globally.<br><em>In person in Delhi.</em></h2>
+    </div>
+    <div class="b-delivery-grid">
+      <div class="b-delivery-mode rev">
+        <div class="b-delivery-mode-label">Mode 01</div>
+        <div class="b-delivery-mode-title">Online &ndash; anywhere in the world.</div>
+        <p class="b-delivery-mode-desc">
+          Delivered over a secure video platform. Audio only is an option for sessions where the work benefits from reduced visual input. You receive the link after the session is confirmed. Nothing is recorded unless you explicitly request it.
+        </p>
+      </div>
+      <div class="b-delivery-mode rev">
+        <div class="b-delivery-mode-label">Mode 02</div>
+        <div class="b-delivery-mode-title">In person &ndash; Delhi, by arrangement.</div>
+        <p class="b-delivery-mode-desc">
+          For people based in or travelling to Delhi. The address and logistics are shared after the first session is confirmed. In-person sessions are held in a private, appropriate setting &ndash; never a caf&eacute; or a public space.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="b-close">
+  <div class="b-close-inner">
+    <div class="chapter-label rev">
+      <span class="chapter-num">V</span>
+      <span>Not Ready to Book?</span>
+    </div>
+    <h2 class="rev">If you still have<br><em>questions first.</em></h2>
+    <p class="rev">Booking is for the person who has decided. If you are not there yet &ndash; begin with a conversation instead. A fifteen-minute direct exchange often clarifies what the right first step is.</p>
+    <div class="b-close-btns rev">
+      <a href="begin-conversation.html" class="btn-outline">Begin a Conversation</a>
+      <a href="services.html" class="btn-outline">See All Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- GLOBAL FOOTER -->
+<footer class="global-footer">
+  <div class="gf-top">
+    <div class="gf-brand">
+      <div class="gf-logo">
+        <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="gf-logo-text" style="display:none">MECULS</span>
+      </div>
+      <p class="gf-tagline">Mind Enablement Centre for Unlocking Limitless Leadership &amp; Self-Potential</p>
+      <div class="gf-contact">
+        <a href="mailto:Jain.Rajneesh@meculs.com">Jain.Rajneesh@meculs.com</a>
+        <a href="#">Delhi, India</a>
+      </div>
+      <div class="gf-social">
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.5 6.5s-.3-2-1.2-2.8c-1.1-1.2-2.4-1.2-3-1.3C15.6 2.2 12 2.2 12 2.2s-3.6 0-6.3.2c-.6.1-1.9.1-3 1.3C1.8 4.5 1.5 6.5 1.5 6.5S1.2 8.8 1.2 11v2.1c0 2.2.3 4.4.3 4.4s.3 2 1.2 2.8c1.1 1.2 2.6 1.1 3.3 1.2 2.4.2 10 .3 10 .3s3.6 0 6.3-.3c.6-.1 1.9-.1 3-1.3.9-.8 1.2-2.8 1.2-2.8s.3-2.2.3-4.4V11c0-2.2-.3-4.5-.3-4.5zM9.7 14.8V8.4l6.6 3.2-6.6 3.2z"/></svg></a>
+      </div>
+    </div>
+    <div>
+      <p class="gf-col-title">Services</p>
+      <ul class="gf-links">
+        <li><a href="360-pulse-rate.html">360&#xb0; PULSE RATE&#x2122;</a></li>
+        <li><a href="bespoke-coaching.html">Executive Coaching &ndash; Bespoke</a></li>
+        <li><a href="corporate-programs.html">Corporate Programmes</a></li>
+        <li><a href="services.html">All Services</a></li>
+        <li><a href="individual-services.html">Individual &amp; Wellness</a></li>
+        <li><a href="contemplative-practices.html">Contemplative Practices</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="gf-col-title">Company</p>
+      <ul class="gf-links">
+        <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+        <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+        <li><a href="the-approach.html">The Approach</a></li>
+        <li><a href="the-journey.html">The Journey</a></li>
+        <li><a href="contexts.html">Contexts</a></li>
+        <li><a href="our-work-proof.html">Our Work Proof</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="gf-col-title">Connect</p>
+      <ul class="gf-links">
+        <li><a href="begin-conversation.html">Begin a Conversation</a></li>
+        <li><a href="book-session.html">Book a Session</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms of Service</a></li>
+        <li><a href="refund-policy.html">Refund Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="gf-bottom">
+    <p class="gf-copy">&copy; 2026 MECULS. All rights reserved. Delhi, India.</p>
+    <div class="gf-legal">
+      <a href="privacy-policy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="refund-policy.html">Refund</a>
+    </div>
+  </div>
+</footer>
+<!-- END GLOBAL FOOTER -->
+
+</div>
+<script src="global.js"></script>
+<script>
+  // Reveal animation
+  var ro = new IntersectionObserver(function(e) {
+    e.forEach(function(x) {
+      if (x.isIntersecting) { x.target.classList.add('vis'); ro.unobserve(x.target); }
+    });
+  }, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.rev').forEach(function(el) { ro.observe(el); });
+
+  // Booking form front-end behaviour
+  // Until a backend (Formspree or similar) is wired, this logs to console
+  // and shows the success state. Replace the form's action= attribute
+  // with a real endpoint to activate submission (see HTML comment above).
+  var form = document.getElementById('bookingForm');
+  var success = document.getElementById('bookingSuccess');
+  if (form && success) {
+    form.addEventListener('submit', function (e) {
+      // If no action is set, prevent default and show success panel.
+      // When you wire Formspree, remove this block so real submission happens.
+      if (!form.getAttribute('action')) {
+        e.preventDefault();
+        var data = {};
+        new FormData(form).forEach(function (v, k) { data[k] = v; });
+        console.log('Booking request (front-end preview):', data);
+        form.style.display = 'none';
+        success.classList.add('show');
+        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+  }
+</script>
+</body>
+</html>
