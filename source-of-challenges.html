@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Source of Challenges — MECULS. Every challenge has a source. Understanding the source is the beginning of lasting change. Diagnostic page by age group.">
+  <title>Source of Challenges — MECULS</title>
+  <link rel="stylesheet" href="global.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Archivo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --gold:#d4af37; --gold-dim:rgba(212,175,55,0.10); --gold-bdr:rgba(212,175,55,0.25);
+  --ink:#000814; --ink-mid:#00112e; --white:#ffffff;
+  --muted:rgba(255,255,255,0.55); --soft:rgba(255,255,255,0.78);
+  --serif:'Cormorant Garamond',serif; --sans:'Archivo',sans-serif;
+  --ease:cubic-bezier(0.16,1,0.3,1); --nav-h:72px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--ink);color:var(--white);font-family:var(--sans);line-height:1.7;-webkit-font-smoothing:antialiased;}
+
+/* HERO */
+.sc-hero{min-height:88vh;padding:calc(var(--nav-h) + 7rem) 6vw 6rem;position:relative;display:flex;align-items:center;background:linear-gradient(155deg,#000814 0%,#000f2a 55%,#001233 100%);overflow:hidden;}
+.sc-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(212,175,55,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(212,175,55,0.03) 1px,transparent 1px);background-size:80px 80px;pointer-events:none;}
+.sc-glow{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(212,175,55,0.07) 0%,transparent 70%);top:-150px;right:-80px;pointer-events:none;}
+.sc-word{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--serif);font-size:clamp(4rem,12vw,14rem);font-weight:700;color:transparent;-webkit-text-stroke:1px rgba(212,175,55,0.05);white-space:nowrap;pointer-events:none;letter-spacing:-0.04em;}
+.sc-inner{position:relative;z-index:2;max-width:1400px;margin:0 auto;width:100%;}
+.sc-eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:0.68rem;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;opacity:0;animation:fadeUp 1s var(--ease) 0.2s forwards;}
+.sc-eyebrow::before{content:'';width:36px;height:1px;background:var(--gold);opacity:0.6;}
+.sc-h1{font-family:var(--serif);font-size:clamp(3rem,6.5vw,6.5rem);font-weight:300;line-height:1.06;letter-spacing:-0.03em;color:var(--white);margin-bottom:2.5rem;opacity:0;animation:fadeUp 1.2s var(--ease) 0.35s forwards;}
+.sc-h1 em{font-style:italic;color:var(--gold);}
+.sc-pull{max-width:680px;font-family:var(--serif);font-size:clamp(1.1rem,1.8vw,1.5rem);font-weight:400;font-style:italic;color:rgba(255,255,255,0.65);border-left:3px solid var(--gold);padding-left:1.5rem;line-height:1.6;opacity:0;animation:fadeUp 1.2s var(--ease) 0.5s forwards;}
+.sc-scroll{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeIn 1s ease 1.8s forwards;}
+.sc-scroll span{font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.3);}
+.sc-scroll-ln{width:1px;height:44px;background:linear-gradient(to bottom,var(--gold),transparent);animation:pulse 2s ease-in-out infinite;}
+
+/* UTILITY */
+.sc-sec{padding:clamp(80px,11vh,130px) 6vw;position:relative;}
+.sc-in{max-width:1400px;margin:0 auto;}
+.sc-bar{width:52px;height:2px;background:linear-gradient(90deg,var(--gold),transparent);margin-bottom:1.4rem;}
+.sc-lbl{font-size:0.67rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:0.7rem;}
+.sc-h2{font-family:var(--serif);font-size:clamp(2.2rem,4.5vw,4rem);font-weight:300;line-height:1.1;letter-spacing:-0.025em;color:var(--white);margin-bottom:1.5rem;}
+.sc-h2 em{font-style:italic;color:var(--gold);}
+.bg-ink{background:var(--ink);}
+.bg-grad{background:linear-gradient(180deg,#000814 0%,var(--ink-mid) 100%);}
+.bg-grad2{background:linear-gradient(180deg,var(--ink-mid) 0%,#000814 100%);}
+
+/* S1 — INTRO */
+.s1-intro{margin-top:3rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+.s1-text p{font-size:1.04rem;color:var(--soft);line-height:1.85;margin-bottom:1.5rem;}
+.s1-text p strong{color:var(--gold);font-weight:600;}
+.s1-truth-box{padding:3rem;background:var(--gold-dim);border:1px solid var(--gold-bdr);position:relative;}
+.s1-truth-box::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--gold),transparent);}
+.s1-truth-lbl{font-size:0.62rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;}
+.s1-truth-text{font-family:var(--serif);font-size:clamp(1.2rem,2vw,1.6rem);font-weight:400;font-style:italic;color:var(--white);line-height:1.55;}
+.s1-truth-text strong{font-style:normal;font-weight:600;color:var(--gold);}
+
+/* S2 — AGE GROUPS TABS/CARDS */
+.age-nav{display:flex;gap:2px;margin-top:4rem;margin-bottom:0;}
+.age-tab{padding:1rem 2rem;font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.45);border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.02);cursor:pointer;transition:all 0.3s;border-bottom:none;}
+.age-tab.active{color:var(--gold);background:rgba(212,175,55,0.08);border-color:var(--gold-bdr);border-bottom-color:var(--gold-bdr);}
+.age-tab:hover:not(.active){color:rgba(255,255,255,0.7);background:rgba(255,255,255,0.03);}
+.age-panels{border:1px solid var(--gold-bdr);}
+.age-panel{display:none;padding:4rem;}
+.age-panel.active{display:grid;grid-template-columns:1fr 1.2fr;gap:4rem;align-items:start;}
+.age-panel-intro{font-size:1.04rem;color:var(--soft);line-height:1.82;margin-bottom:2rem;}
+.age-panel-intro strong{color:var(--gold);font-weight:600;}
+.age-challenges-label{font-size:0.62rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;}
+.age-challenges{display:flex;flex-direction:column;gap:0.8rem;}
+.age-challenge{display:flex;align-items:flex-start;gap:1rem;padding:1rem 1.2rem;border:1px solid rgba(212,175,55,0.12);background:rgba(255,255,255,0.015);transition:background 0.3s;}
+.age-challenge:hover{background:rgba(212,175,55,0.06);}
+.age-ch-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:7px;}
+.age-ch-text{font-size:0.93rem;color:var(--soft);line-height:1.55;}
+.age-panel-right{}
+.age-root-block{padding:2.5rem;background:rgba(255,255,255,0.02);border:1px solid var(--gold-bdr);margin-bottom:2rem;}
+.age-root-block-lbl{font-size:0.62rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
+.age-root-block p{font-family:var(--serif);font-size:1.2rem;font-weight:400;font-style:italic;color:rgba(255,255,255,0.85);line-height:1.55;}
+.age-root-block strong{font-style:normal;font-weight:600;color:var(--gold);}
+.age-services-label{font-size:0.62rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;}
+.age-services{display:flex;flex-direction:column;gap:0.6rem;}
+.age-service{display:flex;align-items:center;gap:0.8rem;font-size:0.88rem;color:rgba(255,255,255,0.65);padding:0.6rem 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+.age-service:last-child{border-bottom:none;}
+.age-service::before{content:'→';color:var(--gold);font-size:0.8rem;}
+
+/* S3 — THE COMMON ROOT */
+.root-layout{display:grid;grid-template-columns:1fr 1.2fr;gap:6rem;align-items:center;margin-top:4rem;}
+.root-left{}
+.root-left p{font-size:1.04rem;color:var(--soft);line-height:1.85;margin-bottom:1.5rem;}
+.root-left p strong{color:var(--gold);font-weight:600;}
+.root-visual{position:relative;padding:4rem;text-align:center;}
+.root-circle-outer{width:280px;height:280px;border-radius:50%;border:1px solid var(--gold-bdr);display:flex;align-items:center;justify-content:center;margin:0 auto;position:relative;animation:slowRotate 20s linear infinite;}
+.root-circle-inner{width:200px;height:200px;border-radius:50%;border:1px solid rgba(212,175,55,0.4);display:flex;align-items:center;justify-content:center;background:rgba(212,175,55,0.06);}
+.root-centre-text{font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--gold);text-align:center;line-height:1.4;}
+.root-orbit{position:absolute;font-size:0.62rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.5);}
+.root-orbit-1{top:-10px;left:50%;transform:translateX(-50%);}
+.root-orbit-2{bottom:-10px;left:50%;transform:translateX(-50%);}
+.root-orbit-3{left:-30px;top:50%;transform:translateY(-50%);}
+.root-orbit-4{right:-30px;top:50%;transform:translateY(-50%);}
+@keyframes slowRotate{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+.root-labels{margin-top:3rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.root-label{padding:1.2rem 1.5rem;border:1px solid var(--gold-bdr);background:rgba(255,255,255,0.02);text-align:center;}
+.root-label-title{font-size:0.88rem;font-weight:600;color:var(--white);margin-bottom:0.3rem;}
+.root-label-sub{font-size:0.78rem;color:var(--muted);line-height:1.4;}
+
+/* S4 — ALL AGE GROUPS SUMMARY */
+.summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:4rem;}
+.sum-card{padding:3rem 2.5rem;background:rgba(255,255,255,0.02);border:1px solid var(--gold-bdr);position:relative;overflow:hidden;transition:background 0.4s;}
+.sum-card:hover{background:rgba(212,175,55,0.04);}
+.sum-card::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--gold),transparent);transform:scaleX(0);transform-origin:left;transition:transform 0.5s var(--ease);}
+.sum-card:hover::after{transform:scaleX(1);}
+.sum-num{font-family:var(--serif);font-size:5rem;font-weight:700;color:rgba(212,175,55,0.07);line-height:1;position:absolute;top:1rem;right:1.5rem;letter-spacing:-0.04em;}
+.sum-tag{display:inline-block;font-size:0.62rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-bdr);padding:0.32rem 0.8rem;margin-bottom:1.5rem;}
+.sum-title{font-family:var(--serif);font-size:1.5rem;font-weight:400;color:var(--white);line-height:1.25;margin-bottom:1rem;}
+.sum-list{display:flex;flex-direction:column;gap:0.55rem;}
+.sum-item{display:flex;align-items:flex-start;gap:0.8rem;font-size:0.86rem;color:var(--soft);line-height:1.5;}
+.sum-item::before{content:'·';color:var(--gold);flex-shrink:0;font-size:1.2rem;line-height:1.2;}
+
+/* S5 — DIAGNOSTIC CTA */
+.diag-section{margin-top:4rem;}
+.diag-intro{font-size:1.04rem;color:var(--soft);line-height:1.82;max-width:800px;margin-bottom:3rem;}
+.diag-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.diag-card{padding:2.5rem 2rem;border:1px solid var(--gold-bdr);background:rgba(255,255,255,0.02);text-align:center;transition:all 0.4s;text-decoration:none;}
+.diag-card:hover{background:rgba(212,175,55,0.06);border-color:rgba(212,175,55,0.4);transform:translateY(-4px);}
+.diag-card-icon{width:48px;height:48px;border-radius:50%;border:1px solid var(--gold-bdr);background:var(--gold-dim);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;color:var(--gold);}
+.diag-card-icon svg{width:20px;height:20px;}
+.diag-card-title{font-family:var(--serif);font-size:1.3rem;font-weight:500;color:var(--white);line-height:1.3;margin-bottom:0.7rem;}
+.diag-card-desc{font-size:0.86rem;color:var(--muted);line-height:1.6;}
+
+/* CTA */
+.sc-cta{padding:clamp(80px,13vh,150px) 6vw;background:linear-gradient(155deg,#000814 0%,#000f2a 100%);text-align:center;position:relative;overflow:hidden;}
+.sc-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(212,175,55,0.09) 0%,transparent 60%);}
+.cta-qm{font-family:var(--serif);font-size:6rem;line-height:0.5;color:rgba(212,175,55,0.12);margin-bottom:1.5rem;}
+.cta-q{font-family:var(--serif);font-size:clamp(1.4rem,2.8vw,2.4rem);font-weight:300;font-style:italic;color:var(--white);max-width:820px;margin:0 auto 3rem;line-height:1.5;position:relative;}
+.cta-q strong{font-style:normal;font-weight:600;color:var(--gold);}
+.cta-btn{display:inline-flex;align-items:center;gap:1rem;padding:1.1rem 3rem;border:1px solid var(--gold);color:var(--gold);font-family:var(--sans);font-size:0.78rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;transition:all 0.4s var(--ease);}
+.cta-btn:hover{background:var(--gold);color:var(--ink);}
+.cta-btn::after{content:'→';transition:transform 0.3s;}
+.cta-btn:hover::after{transform:translateX(6px);}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity 0.9s var(--ease),transform 0.9s var(--ease);}
+.reveal.vis{opacity:1;transform:translateY(0);}
+.reveal-l{opacity:0;transform:translateX(-34px);transition:opacity 0.9s var(--ease),transform 0.9s var(--ease);}
+.reveal-l.vis{opacity:1;transform:translateX(0);}
+.reveal-r{opacity:0;transform:translateX(34px);transition:opacity 0.9s var(--ease),transform 0.9s var(--ease);}
+.reveal-r.vis{opacity:1;transform:translateX(0);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{to{opacity:1;}}
+@keyframes pulse{0%,100%{opacity:0.4;}50%{opacity:1;}}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .s1-intro,.root-layout{grid-template-columns:1fr;gap:3rem;}
+  .summary-grid,.diag-cards{grid-template-columns:1fr 1fr;}
+  .age-panel.active{grid-template-columns:1fr;}
+}
+@media(max-width:768px){
+  .sc-hero{min-height:80vh;padding:calc(var(--nav-h) + 3rem) 5vw 3rem;}
+  .sc-sec{padding:60px 5vw;}
+  .age-nav{flex-wrap:wrap;}
+  .age-tab{flex:1 1 auto;text-align:center;}
+  .age-panel{padding:2rem;}
+  .summary-grid,.diag-cards{grid-template-columns:1fr;}
+  .root-labels{grid-template-columns:1fr;}
+}
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════
+       GLOBAL HEADER — same on every MECULS page
+       To change logo: update src="images/logo/MECULS-gold-white-bold.png"
+       To change nav links: edit the <li> items below
+  ═══════════════════════════════════════════════ -->
+  <header class="global-header">
+
+    <!-- Logo — links to homepage -->
+    <a href="index.html" class="gh-logo">
+      <img src="images/logo/MECULS-gold-white-bold.png"
+           alt="MECULS"
+           onerror="this.style.display='none'; document.querySelector('.gh-logo-text').style.display='block'">
+      <span class="gh-logo-text">MECULS</span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav aria-label="Global navigation">
+      <ul class="gh-nav gh-nav-wrap">
+        <li>
+          <a href="how-meculs-works.html">How MECULS Works
+            <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 3.5l3 3 3-3"/>
+            </svg>
+          </a>
+          <ul class="gh-dropdown">
+            <li><a href="how-meculs-works.html#coaching-process">Coaching Process</a></li>
+            <li><a href="how-meculs-works.html#simulations">Simulations in Coaching</a></li>
+            <li><a href="how-meculs-works.html#profiling">Personality Profiling</a></li>
+            <li><a href="how-meculs-works.html#what-changes">What Changes in Real Work</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="contexts.html">Contexts
+            <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 3.5l3 3 3-3"/>
+            </svg>
+          </a>
+          <ul class="gh-dropdown">
+            <li><a href="contexts.html#leadership">Leadership &amp; Organisations</a></li>
+            <li><a href="contexts.html#professionals">Professionals &amp; Educators</a></li>
+            <li><a href="contexts.html#adults">Adults &amp; Youth</a></li>
+            <li><a href="contexts.html#children">Children</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="the-approach.html">The Approach
+            <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 3.5l3 3 3-3"/>
+            </svg>
+          </a>
+          <ul class="gh-dropdown">
+            <li><a href="the-approach.html#pulse-rate">360° PULSE RATE™ Architecture</a></li>
+            <li><a href="the-approach.html#mynd-care">Mynd CARE Philosophy</a></li>
+            <li><a href="the-approach.html#pressure">Why Behaviour Under Pressure</a></li>
+            <li><a href="the-approach.html#simulations">Why Simulations, Not Talk</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="Blog_Listing_Page.html">Insights
+            <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 3.5l3 3 3-3"/>
+            </svg>
+          </a>
+          <ul class="gh-dropdown">
+            <li><a href="Blog_Listing_Page.html">Writings</a></li>
+            <li><a href="multimedia.html">Conversations (Videos)</a></li>
+            <li><a href="Blog_Listing_Page.html#themes">Themes &amp; Series</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="about-rajneesh-jain.html">The Founder
+            <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 3.5l3 3 3-3"/>
+            </svg>
+          </a>
+          <ul class="gh-dropdown">
+            <li><a href="about-rajneesh-jain.html#thinking">The Thinking</a></li>
+            <li><a href="about-rajneesh-jain.html#journey">The Journey</a></li>
+            <li><a href="about-rajneesh-jain.html#selected-work">Selected Work</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="begin-conversation.html" class="gh-cta">Begin a Conversation</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Mobile hamburger button -->
+    <button class="gh-toggle" id="ghToggle" aria-label="Open navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+  </header>
+
+  <!-- Mobile menu panel -->
+  <div class="gh-mobile-menu" id="ghMobileMenu" role="dialog" aria-label="Mobile navigation">
+    <ul class="gh-mobile-nav">
+      <li>
+        <a href="how-meculs-works.html">How MECULS Works</a>
+        <ul class="gh-mobile-sub">
+          <li><a href="how-meculs-works.html#coaching-process">Coaching Process</a></li>
+          <li><a href="how-meculs-works.html#simulations">Simulations in Coaching</a></li>
+          <li><a href="how-meculs-works.html#profiling">Personality Profiling</a></li>
+          <li><a href="how-meculs-works.html#what-changes">What Changes in Real Work</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="contexts.html">Contexts</a>
+        <ul class="gh-mobile-sub">
+          <li><a href="contexts.html#leadership">Leadership &amp; Organisations</a></li>
+          <li><a href="contexts.html#professionals">Professionals &amp; Educators</a></li>
+          <li><a href="contexts.html#adults">Adults &amp; Youth</a></li>
+          <li><a href="contexts.html#children">Children</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="the-approach.html">The Approach</a>
+        <ul class="gh-mobile-sub">
+          <li><a href="the-approach.html#pulse-rate">360° PULSE RATE™ Architecture</a></li>
+          <li><a href="the-approach.html#mynd-care">Mynd CARE Philosophy</a></li>
+          <li><a href="the-approach.html#pressure">Why Behaviour Under Pressure</a></li>
+          <li><a href="the-approach.html#simulations">Why Simulations, Not Talk</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="Blog_Listing_Page.html">Insights</a>
+        <ul class="gh-mobile-sub">
+          <li><a href="Blog_Listing_Page.html">Writings</a></li>
+          <li><a href="multimedia.html">Conversations (Videos)</a></li>
+          <li><a href="Blog_Listing_Page.html#themes">Themes &amp; Series</a></li>
+        </ul>
+      </li>
+      <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+    </ul>
+    <a href="begin-conversation.html" class="gh-mobile-cta">Begin a Conversation</a>
+  </div>
+  <!-- END GLOBAL HEADER -->
+
+<!-- ═══ HERO ══════════════════════════════════════════════════════ -->
+<section class="sc-hero">
+  <div class="sc-grid"></div>
+  <div class="sc-glow"></div>
+  <div class="sc-word">UNDERSTAND</div>
+  <div class="sc-inner">
+    <div class="sc-eyebrow">MECULS &nbsp;·&nbsp; Source of Challenges</div>
+    <h1 class="sc-h1">
+      Every challenge<br>
+      has a <em>source.</em><br>
+      Find yours.
+    </h1>
+    <p class="sc-pull">
+      "Understanding the source is the beginning of lasting change — not the beginning of more effort."
+    </p>
+  </div>
+  <div class="sc-scroll">
+    <span>Scroll</span>
+    <div class="sc-scroll-ln"></div>
+  </div>
+</section>
+
+<!-- ═══ S1 — THE STARTING POINT ══════════════════════════════════ -->
+<section class="sc-sec bg-ink">
+  <div class="sc-in">
+    <div class="sc-bar reveal"></div>
+    <div class="sc-lbl reveal">The Starting Point</div>
+    <h2 class="sc-h2 reveal">Before we change anything,<br><em>we understand what is actually happening.</em></h2>
+    <div class="s1-intro">
+      <div class="s1-text reveal-l">
+        <p>Most people spend years — sometimes decades — working hard on the wrong problem. They are disciplined, sincere, and committed. But they are addressing the surface expression of a challenge, not its actual source.</p>
+        <p>A child who cannot concentrate is not lazy. A young person who feels lost is not weak. A leader who reacts under pressure is not incompetent. An adult who carries anger or past pain is not broken. In every case, there is a source — specific, identifiable, and changeable.</p>
+        <p><strong>MECULS exists to find that source, name it precisely, and build the architecture to change it permanently.</strong> Not to manage symptoms. Not to improve coping. To remove the source itself.</p>
+      </div>
+      <div class="s1-truth-box reveal-r">
+        <div class="s1-truth-lbl">The Common Root</div>
+        <p class="s1-truth-text">Across all age groups, the root is the same: <strong>conflict in the hidden mind.</strong> Unfulfilled desires, suppressed emotions, and unresolved fears. The challenge looks different at each age. The source is the same. And the solution — clearing the hidden mind — is the same.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ S2 — BY AGE GROUP (INTERACTIVE TABS) ═════════════════════ -->
+<section class="sc-sec bg-grad">
+  <div class="sc-in">
+    <div class="sc-bar reveal"></div>
+    <div class="sc-lbl reveal">Challenges by Age Group</div>
+    <h2 class="sc-h2 reveal">Find where you are.<br><em>Understand what is happening.</em></h2>
+
+    <div class="age-nav reveal">
+      <div class="age-tab active" onclick="showTab(0)">Children &amp; Students</div>
+      <div class="age-tab" onclick="showTab(1)">Growing Youth</div>
+      <div class="age-tab" onclick="showTab(2)">Adults</div>
+      <div class="age-tab" onclick="showTab(3)">Leaders &amp; Professionals</div>
+    </div>
+    <div class="age-panels reveal">
+
+      <!-- CHILDREN -->
+      <div class="age-panel active">
+        <div>
+          <p class="age-panel-intro">Children carry the clearest signals — because they have not yet learned to hide them. When a child struggles with focus, avoids a subject, or becomes withdrawn, they are showing you exactly where the conflict lives. The challenge is not laziness or lack of intelligence. It is <strong>conflict in the hidden mind that has not been addressed.</strong></p>
+          <div class="age-challenges-label">Key Challenges</div>
+          <div class="age-challenges">
+            <div class="age-challenge"><div class="age-ch-dot"></div><div class="age-ch-text">Addictions and bad habits (gaming, phone, distraction)</div></div>
+            <div class="age-challenge"><div class="age-ch-dot"></div><div class="age-ch-text">Weakness in specific subjects — despite effort</div></div>
+            <div class="age-challenge"><div class="age-ch-dot"></div><div class="age-ch-text">Fear of self-expression — in class, with adults, in groups</div></div>
+            <div class="age-challenge"><div class="age-ch-dot"></div><div class="age-ch-text">Lack of concentration — easily distracted, unable to sit with a task</div></div>
+            <div class="age-challenge"><div class="age-ch-dot"></div><div class="age-ch-text">No clarity of natural talent — pressure to conform to academic standards</div></div>
+            <div class="age-challenge"><div class="age-ch-dot"></div><div class="age-ch-text">Low motivation — no internal drive, needs external pushing</div></div>
+          </div>
+        </div>
+        <div class="age-panel-right">
+          <div class="age-root-block">
+            <div class="age-root-block-lbl">What is Actually Happening</div>
+            <p>In the age of nuclear families, children no longer have the extended support structure they need. They carry confusion, unmet needs, and early suppression — which shows up as behavioural and academic difficulty. The hidden mind is full before the child has words for it.</p>
+          </div>
+          <div class="age-services-label">Relevant MECULS Services</div>
+          <div class="age-services">
+            <div class="age-service">Focus, Intelligence &amp; Good Nature — For Children</div>
+            <div class="age-service">Source of Challenges Diagnostic</div>
+            <div class="age-service">Secrets of Life Workshops</div>
+            <div class="age-service">Consciousness &amp; Clarity Coaching</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GROWING YOUTH -->
+      <div class="age-panel">
+        <div>
+          <p class="age-panel-intro">Growing youth and young people face a unique challenge: they are forming their identity at exactly the moment when external pressure — comparison, social media, peer relationships, career anxiety — is loudest. The result is <strong>identity confusion that masquerades as lifestyle choices.</strong></p>
+          <div class="age-challenges-label">Key Challenges</div>
+          <div class="age-challenges">
+            <div class="age-challenge"><div class="age-ch-dot"></div><div class="age-ch-text">Identity confusion — not knowing who they are or want to be</div></div>
+            <div class="age-challenge"><div class="age-ch-dot"></div><div class="age-ch-text">Peer pressure and relationship difficulties</div></div>
+            <div class="age-challenge"><div class="age-ch-dot"></div><div class="age-ch-text">Career direction anxiety — unable to choose or commit</div></div>
+            <div class="age-challenge"><div class="age-ch-dot"></div><div class="age-ch-text">Social media addiction — compulsive comparison and validation-seeking</div></div>
+            <div class="age-challenge"><div class="age-ch-dot"></div><div class="age-ch-text">Emotional instability — strong reactions, difficulty regulating</div></div>
+            <div class="age-challenge"><div class="age-ch-dot"></div><div class="age-ch-text">Early addictions — substances, gaming, escapism</div></div>
+          </div>
+        </div>
+        <div class="age-panel-right">
+          <div class="age-root-block">
+            <div class="age-root-block-lbl">What is Actually Happening</div>
+            <p>Identity forms in a context. When that context is saturated with comparison, performance pressure, and social media distortion, the hidden mind fills with unfulfilled desire and suppressed emotion. The confusion at the surface is the symptom of conflict underneath.</p>
+          </div>
+          <div class="age-services-label">Relevant MECULS Services</div>
+          <div class="age-services">
+            <div class="age-service">Consciousness &amp; Clarity Coaching</div>
+            <div class="age-service">Eliminate Anger &amp; Past Pain</div>
+            <div class="age-service">Zero State Meditation</div>
+            <div class="age-service">Secrets of Life Workshops</div>
+            <div class="age-service">Mind Wellness — Way To Live Cheerfully</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ADULTS -->
+      <div class="age-panel">
+        <div>
+          <p class="age-panel-intro">Adults carry the longest history of suppression. By the time most adults seek help, the challenge has compounded — years of unprocessed emotion have produced patterns of behaviour that feel permanent, but are not. <strong>The source is always reachable. The change is always possible.</strong></p>
+          <div class="age-challenges-label">Key Challenges</div>
+          <div class="age-challenges">
+            <div class="age-challenge"><div class="age-ch-dot"></div><div class="age-ch-text">Anger and past pain — patterns that do not soften with time</div></div>
+            <div class="age-challenge"><div class="age-ch-dot"></div><div class="age-ch-text">Depression and anxiety — low-grade or acute</div></div>
+            <div class="age-challenge"><div class="age-ch-dot"></div><div class="age-ch-text">Addiction — smoking, alcohol, compulsive behaviour</div></div>
+            <div class="age-challenge"><div class="age-ch-dot"></div><div class="age-ch-text">Relationship conflict — recurring patterns despite good intentions</div></div>
+            <div class="age-challenge"><div class="age-ch-dot"></div><div class="age-ch-text">Blocked potential — capability that is present but inaccessible</div></div>
+            <div class="age-challenge"><div class="age-ch-dot"></div><div class="age-ch-text">Loss of inner peace — sustained restlessness or disconnection</div></div>
+          </div>
+        </div>
+        <div class="age-panel-right">
+          <div class="age-root-block">
+            <div class="age-root-block-lbl">What is Actually Happening</div>
+            <p>Every limitation that adults experience — in relationships, health, work, and inner life — has its root in the hidden mind. Unfulfilled desires, suppressed emotions, and unresolved fears stored in consciousness. Clearing this hidden conflict is not therapy. It is the systematic removal of what has been stored.</p>
+          </div>
+          <div class="age-services-label">Relevant MECULS Services</div>
+          <div class="age-services">
+            <div class="age-service">Zero State Meditation</div>
+            <div class="age-service">Eliminate Anger &amp; Past Pain</div>
+            <div class="age-service">Quit Smoking Counselling</div>
+            <div class="age-service">Dream Analysis</div>
+            <div class="age-service">Mind Wellness — Way To Live Cheerfully</div>
+            <div class="age-service">Protection from Negative Energies</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LEADERS -->
+      <div class="age-panel">
+        <div>
+          <p class="age-panel-intro">Leaders operate under conditions that amplify every unresolved pattern. The pressure of authority, the isolation of seniority, and the constant demand for clear decisions — all of these bring the hidden mind's conflicts to the surface, whether the leader knows it or not. <strong>Leadership confusion is not a skills problem. It is an architecture problem.</strong></p>
+          <div class="age-challenges-label">Key Challenges</div>
+          <div class="age-challenges">
+            <div class="age-challenge"><div class="age-ch-dot"></div><div class="age-ch-text">Leadership confusion — unclear authority, inconsistent presence</div></div>
+            <div class="age-challenge"><div class="age-ch-dot"></div><div class="age-ch-text">Reactive behaviour under pressure — despite knowing better</div></div>
+            <div class="age-challenge"><div class="age-ch-dot"></div><div class="age-ch-text">Strategic isolation — leading alone, no safe space to think</div></div>
+            <div class="age-challenge"><div class="age-ch-dot"></div><div class="age-ch-text">Misaligned authority — role power without personal authority</div></div>
+            <div class="age-challenge"><div class="age-ch-dot"></div><div class="age-ch-text">Feedback avoidance — unable to deliver or receive honest feedback</div></div>
+            <div class="age-challenge"><div class="age-ch-dot"></div><div class="age-ch-text">Performance plateau — capable but stuck below potential</div></div>
+          </div>
+        </div>
+        <div class="age-panel-right">
+          <div class="age-root-block">
+            <div class="age-root-block-lbl">What is Actually Happening</div>
+            <p>More than 60% of leadership failures are due to behavioural and emotional gaps — not skill gaps. The challenge originates in invisible cognition: the hidden mind's unresolved patterns showing up as visible leadership breakdown. The Core Block is identifiable. The architecture to remove it is buildable.</p>
+          </div>
+          <div class="age-services-label">Relevant MECULS Services</div>
+          <div class="age-services">
+            <div class="age-service">Leadership Coaching + 360° PULSE RATE™</div>
+            <div class="age-service">Bespoke Executive Coaching</div>
+            <div class="age-service">Organisational Health Consulting</div>
+            <div class="age-service">MECULS Personality Profiling System</div>
+            <div class="age-service">Consciousness &amp; Clarity Coaching</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end age-panels -->
+  </div>
+</section>
+
+<!-- ═══ S3 — THE COMMON ROOT ══════════════════════════════════════ -->
+<section class="sc-sec bg-ink">
+  <div class="sc-in">
+    <div class="sc-bar reveal"></div>
+    <div class="sc-lbl reveal">The Common Root</div>
+    <h2 class="sc-h2 reveal">Different ages.<br><em>Same source. Same solution.</em></h2>
+    <div class="root-layout">
+      <div class="root-left reveal-l">
+        <p>Across all four age groups, across all challenges, the root is the same: <strong>conflict in the hidden mind.</strong> Unfulfilled desires, suppressed emotions, and unresolved fears stored in consciousness.</p>
+        <p>The challenge looks different at each age. A child's distraction and an adult's anger and a leader's reactivity are all different expressions of the same underlying structure. Different surface. Same root. Same solution.</p>
+        <p>The solution — clearing the hidden mind — is the same across every MECULS service. Whether we are working with a seven-year-old who cannot focus or a CEO who cannot delegate, we are doing the same work at different depths: <strong>removing the stored conflict that is producing the visible problem.</strong></p>
+        <div class="root-labels reveal">
+          <div class="root-label">
+            <div class="root-label-title">Unfulfilled Desires</div>
+            <div class="root-label-sub">What was wanted and never received — stored as longing and frustration</div>
+          </div>
+          <div class="root-label">
+            <div class="root-label-title">Suppressed Emotions</div>
+            <div class="root-label-sub">What was felt and never expressed — stored as tension and reaction</div>
+          </div>
+          <div class="root-label">
+            <div class="root-label-title">Unresolved Fears</div>
+            <div class="root-label-sub">What was feared and never processed — stored as avoidance and defense</div>
+          </div>
+          <div class="root-label">
+            <div class="root-label-title">Hidden Conflict</div>
+            <div class="root-label-sub">The total stored pressure — the source of all visible challenge</div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal-r" style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:3rem;">
+        <div class="root-visual">
+          <div class="root-circle-outer">
+            <div class="root-circle-inner">
+              <div class="root-centre-text">The<br>Hidden<br>Mind</div>
+            </div>
+          </div>
+          <div class="root-orbit root-orbit-1">Children</div>
+          <div class="root-orbit root-orbit-2">Leaders</div>
+          <div class="root-orbit root-orbit-3">Youth</div>
+          <div class="root-orbit root-orbit-4">Adults</div>
+        </div>
+        <p style="text-align:center;font-family:var(--serif);font-size:1.1rem;font-style:italic;color:var(--muted);margin-top:2rem;max-width:300px;">All four point to the same centre. The work is the same. The depth varies.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ S4 — ALL GROUPS SUMMARY ═══════════════════════════════════ -->
+<section class="sc-sec bg-grad2">
+  <div class="sc-in">
+    <div class="sc-bar reveal"></div>
+    <div class="sc-lbl reveal">Quick Reference</div>
+    <h2 class="sc-h2 reveal">All groups at a glance.</h2>
+    <div class="summary-grid">
+      <div class="sum-card reveal">
+        <div class="sum-num">01</div>
+        <div class="sum-tag">Children &amp; Students</div>
+        <div class="sum-title">Conflict before it has a name.</div>
+        <div class="sum-list">
+          <div class="sum-item">Addictions &amp; bad habits</div>
+          <div class="sum-item">Subject weakness</div>
+          <div class="sum-item">Fear of self-expression</div>
+          <div class="sum-item">Lack of concentration</div>
+          <div class="sum-item">Unclear natural talent</div>
+        </div>
+      </div>
+      <div class="sum-card reveal">
+        <div class="sum-num">02</div>
+        <div class="sum-tag">Growing Youth</div>
+        <div class="sum-title">Identity under pressure.</div>
+        <div class="sum-list">
+          <div class="sum-item">Identity confusion</div>
+          <div class="sum-item">Peer pressure &amp; relationships</div>
+          <div class="sum-item">Career direction anxiety</div>
+          <div class="sum-item">Social media addiction</div>
+          <div class="sum-item">Emotional instability</div>
+        </div>
+      </div>
+      <div class="sum-card reveal">
+        <div class="sum-num">03</div>
+        <div class="sum-tag">Adults</div>
+        <div class="sum-title">Years of suppression surfacing.</div>
+        <div class="sum-list">
+          <div class="sum-item">Anger &amp; past pain</div>
+          <div class="sum-item">Depression &amp; anxiety</div>
+          <div class="sum-item">Addiction</div>
+          <div class="sum-item">Relationship conflict</div>
+          <div class="sum-item">Blocked potential</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ S5 — DIAGNOSTIC ENTRY ═════════════════════════════════════ -->
+<section class="sc-sec bg-ink">
+  <div class="sc-in">
+    <div class="sc-bar reveal"></div>
+    <div class="sc-lbl reveal">Where to Go From Here</div>
+    <h2 class="sc-h2 reveal">Understanding is the first step.<br><em>The next step is a conversation.</em></h2>
+    <div class="diag-section">
+      <p class="diag-intro reveal">You do not need to have it figured out before you begin. The MECULS process begins with a conversation, not a form. Rajneesh listens first — to understand the actual situation, not to pre-assign a service. Most people find that this first conversation itself brings unexpected clarity.</p>
+      <div class="diag-cards">
+        <a href="begin-conversation.html" class="diag-card reveal">
+          <div class="diag-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          </div>
+          <div class="diag-card-title">Begin a Conversation</div>
+          <div class="diag-card-desc">A 20–30 minute exchange. No form, no pitch. Just listening — to understand what is actually happening.</div>
+        </a>
+        <a href="how-meculs-works.html" class="diag-card reveal">
+          <div class="diag-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          </div>
+          <div class="diag-card-title">How MECULS Works</div>
+          <div class="diag-card-desc">Understand the process from first contact to visible change — before you commit to anything.</div>
+        </a>
+        <a href="services.html" class="diag-card reveal">
+          <div class="diag-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h7"/></svg>
+          </div>
+          <div class="diag-card-title">View All Services</div>
+          <div class="diag-card-desc">Browse the full range of MECULS services — organised by audience and challenge type.</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ════════════════════════════════════════════════════ -->
+<section class="sc-cta">
+  <div class="cta-qm">"</div>
+  <blockquote class="cta-q reveal">
+    Every challenge you face has a source. <strong>Understanding the source is the beginning of lasting change</strong> — not the beginning of more effort.
+  </blockquote>
+  <a href="begin-conversation.html" class="cta-btn reveal">Begin the Conversation</a>
+</section>
+
+  <!-- ═══════════════════════════════════════════════
+       GLOBAL FOOTER — same on every MECULS page
+       To change links: edit the <li> items below
+       To change logo: update src="images/logo/..."
+  ═══════════════════════════════════════════════ -->
+  <footer class="global-footer">
+    <div class="gf-top">
+
+      <!-- Column 1: Brand -->
+      <div class="gf-brand">
+        <div class="gf-logo">
+          <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+          <span class="gf-logo-text" style="display:none">MECULS</span>
+        </div>
+        <p class="gf-tagline">Mind Enablement Centre for Unlocking Limitless Leadership &amp; Self-Potential</p>
+        <div class="gf-contact">
+          <a href="mailto:Jain.Rajneesh@meculs.com">Jain.Rajneesh@meculs.com</a>
+          <a href="#">Delhi, India</a>
+        </div>
+        <div class="gf-social">
+          <!-- LinkedIn -->
+          <a href="#" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <!-- YouTube -->
+          <a href="#" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.5 6.5s-.3-2-1.2-2.8c-1.1-1.2-2.4-1.2-3-1.3C15.6 2.2 12 2.2 12 2.2s-3.6 0-6.3.2c-.6.1-1.9.1-3 1.3C1.8 4.5 1.5 6.5 1.5 6.5S1.2 8.8 1.2 11v2.1c0 2.2.3 4.4.3 4.4s.3 2 1.2 2.8c1.1 1.2 2.6 1.1 3.3 1.2 2.4.2 10 .3 10 .3s3.6 0 6.3-.3c.6-.1 1.9-.1 3-1.3.9-.8 1.2-2.8 1.2-2.8s.3-2.2.3-4.4V11c0-2.2-.3-4.5-.3-4.5zM9.7 14.8V8.4l6.6 3.2-6.6 3.2z"/></svg>
+          </a>
+          <!-- Instagram -->
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <!-- Twitter/X -->
+          <a href="#" aria-label="Twitter">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 1.2h3.4l-7.4 8.5 8.7 11.5h-6.8l-5.3-6.9-6.1 6.9H1.9l7.9-9L1.3 1.2h7l4.8 6.3 5.8-6.3zm-1.2 18h1.9L6.4 3.2H4.4l13.3 16z"/></svg>
+          </a>
+          <!-- Facebook -->
+          <a href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Column 2: Services -->
+      <div>
+        <p class="gf-col-title">Services</p>
+        <ul class="gf-links">
+          <li><a href="services.html#leadership">Leadership Coaching</a></li>
+          <li><a href="services.html#profiling">Personality Profiling</a></li>
+          <li><a href="bespoke-coaching.html">Executive Coaching — Bespoke</a></li>
+          <li><a href="services.html#org-health">Organisational Health</a></li>
+          <li><a href="services.html#zero-state">Meditation As Medicine</a></li>
+          <li><a href="services.html#children">For Children</a></li>
+          <li><a href="services.html#wellness">Mind Wellness Counselling</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Company -->
+      <div>
+        <p class="gf-col-title">Company</p>
+        <ul class="gf-links">
+          <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+          <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+          <li><a href="why-meculs.html">Why MECULS</a></li>
+          <li><a href="our-work-proof.html">Our Work Proof</a></li>
+          <li><a href="Blog_Listing_Page.html">Insights</a></li>
+          <li><a href="multimedia.html">Multimedia</a></li>
+          <li><a href="cv-portal.html">CV Portal</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Connect -->
+      <div>
+        <p class="gf-col-title">Connect</p>
+        <ul class="gf-links">
+          <li><a href="begin-conversation.html">Begin a Conversation</a></li>
+          <li><a href="book-session.html">Book a Session</a></li>
+          <li><a href="source-of-challenges.html">Source of Challenges</a></li>
+          <li><a href="why-mynd-care.html">Why Mynd CARE</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="refund-policy.html">Refund Policy</a></li>
+        </ul>
+      </div>
+
+    </div><!-- .gf-top -->
+
+    <div class="gf-bottom">
+      <p class="gf-copy">© 2025 MECULS. All rights reserved. Delhi, India.</p>
+      <div class="gf-payment">
+        Payment: PayUBiz · Razorpay · PayPal · UPI · Credit Card
+      </div>
+      <div class="gf-legal">
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="refund-policy.html">Refund</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </footer>
+  <!-- END GLOBAL FOOTER -->
+
+  <script>
+  // Tab switching
+  function showTab(n) {
+    document.querySelectorAll('.age-tab').forEach((t, i) => t.classList.toggle('active', i === n));
+    document.querySelectorAll('.age-panel').forEach((p, i) => p.classList.toggle('active', i === n));
+  }
+  // Scroll reveal
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); } });
+  }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
+  document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el => obs.observe(el));
+  </script>
+  <script src="global.js"></script>
+</body>
+</html>

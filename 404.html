@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found — MECULS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Archivo:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="global.css">
+  <style>
+    .page-404 {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: calc(var(--g-nav-h) + 4rem) 5% 4rem;
+      text-align: center;
+    }
+    .e-inner { max-width: 560px; margin: 0 auto; }
+    .e-code {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(5rem, 15vw, 9rem);
+      font-weight: 700;
+      line-height: 1;
+      color: var(--g-gold);
+      opacity: 0.25;
+      margin-bottom: 0;
+    }
+    .e-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 700;
+      color: var(--g-white);
+      margin: 0.5rem 0 1rem;
+    }
+    .e-body {
+      font-size: 1rem;
+      color: var(--g-soft);
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+    .e-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+    }
+    .e-link {
+      padding: 0.65rem 1.4rem;
+      border: 1px solid var(--g-gold-border);
+      color: var(--g-gold);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: background 0.2s;
+    }
+    .e-link:hover { background: var(--g-gold-dim); }
+    .e-link.primary {
+      background: transparent;
+      border-color: var(--g-gold);
+    }
+  </style>
+</head>
+<body>
+
+  <header class="global-header">
+    <a href="index.html" class="gh-logo">
+      <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS"
+           onerror="this.style.display='none'; document.querySelector('.gh-logo-text').style.display='block'">
+      <span class="gh-logo-text">MECULS</span>
+    </a>
+    <nav aria-label="Global navigation">
+      <ul class="gh-nav gh-nav-wrap">
+        <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="begin-conversation.html" class="gh-cta">Begin a Conversation</a></li>
+      </ul>
+    </nav>
+    <button class="gh-toggle" id="ghToggle" aria-label="Open navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <div class="gh-mobile-menu" id="ghMobileMenu" role="dialog" aria-label="Mobile navigation">
+    <ul class="gh-mobile-nav">
+      <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+      <li><a href="insights.html">Insights</a></li>
+    </ul>
+    <a href="begin-conversation.html" class="gh-mobile-cta">Begin a Conversation</a>
+  </div>
+
+  <main class="page-404">
+    <div class="e-inner">
+      <div class="e-code">404</div>
+      <h1 class="e-title">This page has moved or does not exist.</h1>
+      <p class="e-body">
+        The page you were looking for is not here. It may have been renamed, moved, or is still being built.
+        Use the links below to find what you need.
+      </p>
+      <div class="e-links">
+        <a href="index.html" class="e-link primary">← Home</a>
+        <a href="services.html" class="e-link">Services</a>
+        <a href="360-pulse-rate.html" class="e-link">360° PULSE RATE™</a>
+        <a href="about-rajneesh-jain.html" class="e-link">The Founder</a>
+        <a href="begin-conversation.html" class="e-link">Begin a Conversation</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="global.js"></script>
+</body>
+</html>
