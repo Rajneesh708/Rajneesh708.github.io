@@ -88,7 +88,10 @@
     margin-bottom:0.5rem;
     opacity:0; animation:fadeUp 1.2s var(--ease) 0.35s forwards;
   }
-  .hero-title .tm { font-size:0.45em; vertical-align:super; color:var(--gold); }
+  .hero-title .deg::after { content:"°"; font-size:0.55em;
+    vertical-align:super; line-height:0; }
+  .hero-title .tm { font-size:0.35em; vertical-align:super;
+    line-height:0; color:var(--gold); letter-spacing:0; }
 
   .hero-subtitle {
     font-family:var(--serif); font-size:clamp(1.3rem,2.4vw,1.9rem);
@@ -109,9 +112,15 @@
   .badge.filled { background:var(--gold-dim); }
 
   .hero-stats {
-    display:flex; flex-wrap:wrap; gap:3rem;
-    opacity:0; animation:fadeUp 1.2s var(--ease) 0.8s forwards;
+    display:grid; grid-template-columns:repeat(4,auto);
+    gap:0; opacity:0; animation:fadeUp 1.2s var(--ease) 0.8s forwards;
   }
+  .hero-stat-item {
+    padding-right:3rem; border-right:1px solid rgba(212,175,55,0.18);
+    padding-left:0;
+  }
+  .hero-stat-item:last-child { border-right:none; padding-right:0; }
+  .hero-stat-item:not(:first-child) { padding-left:3rem; }
   .stat-n { font-family:var(--display); font-size:2.8rem; font-weight:300;
     color:var(--gold); line-height:1; margin-bottom:0.25rem; }
   .stat-l { font-size:0.72rem; font-weight:600; letter-spacing:0.1em;
@@ -238,8 +247,9 @@
   .proof-metrics { display:flex; flex-direction:column; gap:0.5rem; }
   .proof-metric { display:flex; align-items:baseline; gap:0.6rem; }
   .proof-metric-n { font-family:var(--display); font-size:1.3rem;
-    font-weight:300; color:var(--gold); }
-  .proof-metric-l { font-size:0.78rem; color:var(--soft); }
+    font-weight:300; color:var(--gold); white-space:nowrap;
+    flex-shrink:0; min-width:4.5rem; }
+  .proof-metric-l { font-size:0.78rem; color:var(--soft); line-height:1.45; }
 
   /* ══════════════════════════════════════
      PERSONALITY TYPES
@@ -337,7 +347,9 @@
     .icf-item:nth-child(8), .icf-item:nth-child(10) { display:none; }
   }
   @media(max-width:600px) {
-    .hero-stats { gap:1.5rem; flex-wrap:wrap; }
+    .hero-stats { grid-template-columns:1fr 1fr; gap:1.5rem 0; }
+    .hero-stat-item { padding-left:0 !important; padding-right:0 !important; border-right:none; border-bottom:1px solid rgba(212,175,55,0.15); padding-bottom:1.2rem; }
+    .hero-stat-item:last-child, .hero-stat-item:nth-child(3) { border-bottom:none; }
     .hero-badges { flex-direction:column; }
     .how-steps { grid-template-columns:1fr; }
     .how-step { border-right:none; border-bottom:1px solid var(--gold-border); }
@@ -443,7 +455,7 @@
   <div class="hero-glow"></div>
   <div class="hero-inner wrap">
     <div class="hero-eyebrow">MECULS · Flagship Methodology</div>
-    <h1 class="hero-title">360° PULSE RATE<span class="tm">™</span></h1>
+    <h1 class="hero-title"><span class="deg">360</span> PULSE RATE<span class="tm">™</span></h1>
     <p class="hero-subtitle">The world's first fully analytical,<br>360-degree leadership coaching model.</p>
     <div class="hero-badges">
       <span class="badge filled">ICF Accredited — February 2022</span>

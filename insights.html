@@ -629,7 +629,7 @@
         <div class="articles-container">
             <div class="articles-grid" id="articlesGrid">
                 
-                <!-- Article: The War No One Talks About — Featured -->
+                <!-- Article: The War No One Talks About -->
                 <article class="insights-article-card" data-category="Life &amp; Purpose" data-title="The War No One Talks About" data-date="2026-01-26">
                     <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&q=80" alt="The war no one talks about">
                     <div class="insights-article-content">
@@ -938,5 +938,17 @@
         filterArticles();
     </script>
     <script src="global.js"></script>
+<script>
+  // Make entire card clickable — find the href from the Read Article link inside each card
+  document.querySelectorAll('.insights-article-card').forEach(function(card) {
+    var link = card.querySelector('a.insights-read-more');
+    if (!link) return;
+    var url = link.getAttribute('href');
+    card.addEventListener('click', function(e) {
+      if (e.target.tagName === 'A') return; // let the link handle itself
+      window.location.href = url;
+    });
+  });
+</script>
 </body>
 </html>
