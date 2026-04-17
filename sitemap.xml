@@ -1,58 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+  <!-- ═══════════════════════════════════════════════════════════
+       MECULS.COM SITEMAP
+       Last updated: 2026-04-18
+       Contains only pages that are LIVE on the site.
+       Pages still under construction are commented out below.
+  ═══════════════════════════════════════════════════════════ -->
+
   <!-- Core pages -->
   <url>
     <loc>https://www.meculs.com/</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://www.meculs.com/about-rajneesh-jain.html</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.meculs.com/360-pulse-rate.html</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.meculs.com/services.html</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-04-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.meculs.com/individual-services.html</loc>
+    <lastmod>2026-04-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.meculs.com/how-meculs-works.html</loc>
-    <lastmod>2026-04-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.meculs.com/why-meculs.html</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.meculs.com/the-approach.html</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.meculs.com/contexts.html</loc>
-    <lastmod>2026-04-17</lastmod>
+    <loc>https://www.meculs.com/the-journey.html</loc>
+    <lastmod>2026-04-18</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.meculs.com/why-meculs.html</loc>
+    <lastmod>2026-04-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.meculs.com/our-work-proof.html</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -60,37 +73,31 @@
   <!-- Service pages -->
   <url>
     <loc>https://www.meculs.com/bespoke-coaching.html</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.meculs.com/corporate-programs.html</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.meculs.com/service-children.html</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.meculs.com/service-zero-state-meditation.html</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.meculs.com/source-of-challenges.html</loc>
-    <lastmod>2026-04-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.meculs.com/why-mynd-care.html</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -98,91 +105,86 @@
   <!-- Conversion pages -->
   <url>
     <loc>https://www.meculs.com/begin-conversation.html</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.meculs.com/book-session.html</loc>
-    <lastmod>2026-04-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.meculs.com/cv-portal.html</loc>
-    <lastmod>2026-04-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
   </url>
 
   <!-- Insights / Blog -->
   <url>
     <loc>https://www.meculs.com/insights.html</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.meculs.com/c-blog-the-war-no-one-talks-about.html</loc>
-    <lastmod>2026-04-17</lastmod>
-    <changefreq>never</changefreq>
+    <loc>https://www.meculs.com/blog-the-war-no-one-talks-about.html</loc>
+    <lastmod>2026-04-18</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.meculs.com/blog-a-peaceful-life-is-a-reality.html</loc>
-    <lastmod>2026-04-17</lastmod>
-    <changefreq>never</changefreq>
+    <lastmod>2026-04-18</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.meculs.com/blog-being-busy-the-real-story.html</loc>
-    <lastmod>2026-04-17</lastmod>
-    <changefreq>never</changefreq>
+    <lastmod>2026-04-18</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.meculs.com/blog-ego-accept-not-eliminate.html</loc>
-    <lastmod>2026-04-17</lastmod>
-    <changefreq>never</changefreq>
+    <lastmod>2026-04-18</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.meculs.com/blog-what-do-we-stay-alive-for.html</loc>
-    <lastmod>2026-04-17</lastmod>
-    <changefreq>never</changefreq>
+    <lastmod>2026-04-18</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.meculs.com/blog-why-industry-is-trapped.html</loc>
-    <lastmod>2026-04-17</lastmod>
-    <changefreq>never</changefreq>
+    <lastmod>2026-04-18</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <!-- Policy pages -->
   <url>
     <loc>https://www.meculs.com/privacy-policy.html</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://www.meculs.com/terms.html</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://www.meculs.com/refund-policy.html</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
-  <url>
-    <loc>https://www.meculs.com/disclaimer.html</loc>
-    <lastmod>2026-04-17</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       PAGES STILL UNDER CONSTRUCTION - will be added when live:
+       - contexts.html
+       - book-session.html
+       - cv-portal.html
+       - service-leadership-coaching.html
+       - service-personality-profiling.html
+       - service-org-health.html
+       - service-mind-wellness.html
+       - why-mynd-care.html
+       - disclaimer.html
+  ═══════════════════════════════════════════════════════════ -->
 
 </urlset>
