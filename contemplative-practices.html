@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Contemplative practices at MECULS &ndash; elimination of anger and past pain, dream analysis, protection from negative energies, Secrets of Life workshops, and the Source of Challenges diagnostic. Held quietly for those who come looking.">
+  <title>Contemplative Practices &ndash; MECULS | Rajneesh Jain</title>
+  <link rel="canonical" href="https://www.meculs.com/contemplative-practices.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Archivo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="global.css">
+  <style>
+
+  :root {
+    --gold:        #d4af37;
+    --gold-light:  #e4bf47;
+    --gold-deep:   #8a6d1a;
+    --gold-muted:  #9a8243;
+    --gold-dim:    rgba(212,175,55,0.08);
+    --gold-border: rgba(212,175,55,0.18);
+    --ink:         #040409;
+    --ink-2:       #070813;
+    --ink-3:       #0d0f1e;
+    --white:       #ffffff;
+    --muted:       rgba(255,255,255,0.50);
+    --soft:        rgba(255,255,255,0.78);
+    --ivory:       #f5ede0;
+    --ivory-2:     #ede3d2;
+    --ivory-text:  #1f1a14;
+    --ivory-body:  #3d3529;
+    --ivory-muted: #6e6351;
+    --display:     'Playfair Display', serif;
+    --serif:       'Cormorant Garamond', serif;
+    --ease:        cubic-bezier(0.16,1,0.3,1);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--ink); color: var(--white);
+    font-family: 'Archivo', sans-serif;
+    line-height: 1.8; -webkit-font-smoothing: antialiased;
+  }
+  .page { padding-top: var(--g-nav-h, 72px); }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
+  .wrap-narrow { max-width: 780px; margin: 0 auto; padding: 0 5%; }
+
+  .rev {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 1.3s var(--ease), transform 1.3s var(--ease);
+  }
+  .rev.vis { opacity: 1; transform: none; }
+
+  .chapter-label {
+    display: inline-flex; align-items: center; gap: 14px;
+    font-size: 0.64rem; font-weight: 700; letter-spacing: 0.3em;
+    text-transform: uppercase; margin-bottom: 1.8rem;
+  }
+  .chapter-label::before {
+    content: ''; width: 48px; height: 1px; background: currentColor; opacity: 0.6;
+  }
+  .chapter-num {
+    font-family: var(--display);
+    font-size: 0.82rem; font-weight: 500;
+    letter-spacing: 0.08em; font-style: italic;
+  }
+
+  /* ══════════════════════════════════════
+     HERO &ndash; deliberately minimal
+     Typography alone, on near-black, with one small candle-flame detail
+  ══════════════════════════════════════ */
+  .cp-hero {
+    min-height: 86vh; position: relative;
+    display: flex; align-items: center; justify-content: center;
+    padding: 8rem 0;
+    background:
+      radial-gradient(ellipse at 50% 50%, rgba(212,175,55,0.06) 0%, transparent 55%),
+      linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+    overflow: hidden;
+    text-align: center;
+  }
+  /* Subtle flame glow */
+  .cp-hero::before {
+    content: ''; position: absolute;
+    left: 50%; top: 18%; transform: translateX(-50%);
+    width: 160px; height: 160px;
+    background: radial-gradient(circle, rgba(212,175,55,0.22) 0%, rgba(212,175,55,0.08) 30%, transparent 70%);
+    border-radius: 50%;
+    animation: flamePulse 5s ease-in-out infinite;
+    pointer-events: none;
+  }
+  @keyframes flamePulse {
+    0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.9; }
+    50% { transform: translateX(-50%) scale(1.12); opacity: 0.65; }
+  }
+  .cp-hero-inner {
+    position: relative; z-index: 2;
+    max-width: 860px; padding: 0 5%;
+  }
+  .cp-hero-flame {
+    display: inline-block;
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--gold);
+    margin-bottom: 2.4rem;
+    box-shadow:
+      0 0 8px var(--gold),
+      0 0 16px rgba(212,175,55,0.6),
+      0 0 32px rgba(212,175,55,0.3);
+    animation: flameFlicker 3s ease-in-out infinite;
+  }
+  @keyframes flameFlicker {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.75; transform: scale(0.92); }
+  }
+  .cp-hero .chapter-label {
+    color: var(--gold-muted); justify-content: center;
+    margin-bottom: 2.8rem;
+  }
+  .cp-hero .chapter-label::after {
+    content: ''; width: 48px; height: 1px; background: var(--gold-muted); opacity: 0.6;
+  }
+  .cp-hero h1 {
+    font-family: var(--display);
+    font-size: clamp(2.2rem, 4.8vw, 4rem);
+    font-weight: 400; line-height: 1.2;
+    letter-spacing: -0.02em; margin-bottom: 2.4rem;
+    color: var(--white);
+    font-style: italic;
+  }
+  .cp-hero h1 em {
+    font-style: normal; color: var(--gold);
+    font-weight: 500;
+  }
+  .cp-hero-attribution {
+    display: inline-block; margin-top: 1rem;
+    font-size: 0.66rem; font-weight: 600;
+    letter-spacing: 0.24em; text-transform: uppercase;
+    color: var(--gold-muted);
+  }
+
+  /* ══════════════════════════════════════
+     FRAME &ndash; ivory section, one paragraph
+     Establishes what this page is, and who it is for
+  ══════════════════════════════════════ */
+  .cp-frame {
+    background: var(--ivory);
+    color: var(--ivory-text);
+    padding: 7rem 0;
+    text-align: center;
+    position: relative;
+  }
+  .cp-frame-inner {
+    max-width: 780px; margin: 0 auto; padding: 0 5%;
+  }
+  .cp-frame .chapter-label {
+    color: var(--gold-deep); justify-content: center;
+  }
+  .cp-frame .chapter-label::after {
+    content: ''; width: 48px; height: 1px; background: var(--gold-deep); opacity: 0.6;
+  }
+  .cp-frame h2 {
+    font-family: var(--display);
+    font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+    font-weight: 500; line-height: 1.2;
+    letter-spacing: -0.015em; margin-bottom: 1.8rem;
+    color: var(--ivory-text);
+  }
+  .cp-frame h2 em { font-style: italic; color: var(--gold-deep); }
+  .cp-frame p {
+    font-family: var(--serif);
+    font-size: clamp(1.15rem, 1.65vw, 1.35rem);
+    font-weight: 400; line-height: 1.75;
+    color: var(--ivory-body); margin-bottom: 1.3rem;
+  }
+  .cp-frame p:last-child { margin-bottom: 0; }
+  .cp-frame p em { font-style: italic; color: var(--gold-deep); font-weight: 500; }
+
+  /* ══════════════════════════════════════
+     PRACTICE &ndash; each one an editorial spread
+     Alternating dark / ivory. Photography contextual, sparing.
+  ══════════════════════════════════════ */
+  .cp-practice {
+    padding: 7rem 0;
+    position: relative; overflow: hidden;
+  }
+  .cp-practice-grid {
+    max-width: 1200px; margin: 0 auto; padding: 0 5%;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center;
+  }
+  .cp-practice-reverse .cp-practice-grid {
+    grid-template-areas: "content img";
+    grid-template-columns: 1.05fr 0.95fr;
+  }
+  .cp-practice-reverse .cp-practice-content { grid-area: content; }
+  .cp-practice-reverse .cp-practice-visual { grid-area: img; }
+
+  .cp-practice-dark {
+    background: var(--ink-2);
+    color: var(--white);
+  }
+  .cp-practice-dark::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse at 15% 50%, rgba(212,175,55,0.05) 0%, transparent 55%);
+  }
+  .cp-practice-ivory {
+    background: var(--ivory);
+    color: var(--ivory-text);
+  }
+  .cp-practice-ivory::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse at 80% 50%, rgba(138,109,26,0.06) 0%, transparent 55%);
+  }
+
+  .cp-practice-content { position: relative; z-index: 2; }
+  .cp-practice-visual { position: relative; z-index: 2; }
+
+  .cp-practice-num {
+    font-family: var(--display);
+    font-size: clamp(4.5rem, 8vw, 6.8rem);
+    font-weight: 400; line-height: 0.85;
+    letter-spacing: -0.04em;
+    margin-bottom: 0.8rem; opacity: 0.85;
+  }
+  .cp-practice-dark .cp-practice-num { color: var(--gold); }
+  .cp-practice-ivory .cp-practice-num { color: var(--gold-deep); }
+
+  .cp-practice-tag {
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.28em;
+    text-transform: uppercase; margin-bottom: 1.4rem;
+    display: inline-block;
+  }
+  .cp-practice-dark .cp-practice-tag { color: var(--gold); }
+  .cp-practice-ivory .cp-practice-tag { color: var(--gold-deep); }
+
+  .cp-practice-title {
+    font-family: var(--display);
+    font-size: clamp(1.9rem, 3.4vw, 2.8rem);
+    font-weight: 500; line-height: 1.1;
+    letter-spacing: -0.02em; margin-bottom: 1.6rem;
+  }
+  .cp-practice-title em { font-style: italic; font-weight: 500; }
+  .cp-practice-dark .cp-practice-title { color: var(--white); }
+  .cp-practice-dark .cp-practice-title em { color: var(--gold); }
+  .cp-practice-ivory .cp-practice-title { color: var(--ivory-text); }
+  .cp-practice-ivory .cp-practice-title em { color: var(--gold-deep); }
+
+  .cp-practice-content p {
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 1.55vw, 1.28rem);
+    font-weight: 400; line-height: 1.8;
+    margin-bottom: 1.4rem;
+  }
+  .cp-practice-content p.lead {
+    font-family: var(--serif);
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    font-weight: 500; font-style: italic;
+    line-height: 1.5; margin-bottom: 1.8rem;
+    letter-spacing: -0.005em;
+  }
+  .cp-practice-dark .cp-practice-content p { color: rgba(255,255,255,0.85); }
+  .cp-practice-dark .cp-practice-content p.lead { color: var(--white); }
+  .cp-practice-ivory .cp-practice-content p { color: var(--ivory-body); }
+  .cp-practice-ivory .cp-practice-content p.lead { color: var(--ivory-text); }
+
+  .cp-practice-note {
+    margin-top: 2rem;
+    padding: 1.2rem 1.4rem;
+    font-size: 0.84rem; line-height: 1.65;
+    font-family: var(--serif); font-style: italic;
+  }
+  .cp-practice-dark .cp-practice-note {
+    background: rgba(212,175,55,0.04);
+    border-left: 1px solid var(--gold-border);
+    color: var(--soft);
+  }
+  .cp-practice-ivory .cp-practice-note {
+    background: rgba(138,109,26,0.06);
+    border-left: 1px solid rgba(138,109,26,0.25);
+    color: var(--ivory-body);
+  }
+
+  .cp-practice-cta {
+    display: inline-flex; align-items: center; gap: 0.8rem;
+    margin-top: 1.8rem;
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em;
+    text-transform: uppercase; text-decoration: none;
+    padding-bottom: 0.5rem;
+    transition: gap 0.3s var(--ease);
+  }
+  .cp-practice-cta:hover { gap: 1.3rem; }
+  .cp-practice-dark .cp-practice-cta {
+    color: var(--gold);
+    border-bottom: 1px solid var(--gold);
+  }
+  .cp-practice-ivory .cp-practice-cta {
+    color: var(--gold-deep);
+    border-bottom: 1px solid var(--gold-deep);
+  }
+
+  /* Visual treatments &ndash; each practice has different imagery */
+  .cp-practice-img {
+    position: relative; overflow: hidden;
+    aspect-ratio: 4/5;
+  }
+  .cp-practice-img img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 10s ease; display: block;
+  }
+  .cp-practice:hover .cp-practice-img img { transform: scale(1.03); }
+  .cp-practice-img::after {
+    content: ''; position: absolute; inset: 0;
+    pointer-events: none;
+  }
+  .cp-practice-dark .cp-practice-img::after {
+    background: linear-gradient(180deg, rgba(0,8,20,0.15) 0%, rgba(0,8,20,0.45) 100%);
+  }
+  .cp-practice-ivory .cp-practice-img::after {
+    background: linear-gradient(180deg, rgba(245,237,224,0.0) 0%, rgba(245,237,224,0.15) 100%);
+  }
+  .cp-practice-img-caption {
+    position: absolute; bottom: 1.2rem; left: 1.2rem;
+    font-size: 0.6rem; font-weight: 600; letter-spacing: 0.22em;
+    text-transform: uppercase; color: rgba(255,255,255,0.88);
+    background: rgba(4,4,9,0.78); padding: 0.5rem 0.9rem;
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    z-index: 2;
+  }
+
+  /* For the non-photographic practices, use a typographic plate */
+  .cp-practice-plate {
+    aspect-ratio: 4/5;
+    display: flex; align-items: center; justify-content: center;
+    padding: 3rem;
+    position: relative;
+  }
+  .cp-practice-dark .cp-practice-plate {
+    background:
+      radial-gradient(ellipse at center, rgba(212,175,55,0.06) 0%, transparent 65%),
+      linear-gradient(160deg, #0a0d1c 0%, #05060f 100%);
+    border: 1px solid var(--gold-border);
+  }
+  .cp-practice-ivory .cp-practice-plate {
+    background:
+      radial-gradient(ellipse at center, rgba(138,109,26,0.06) 0%, transparent 65%),
+      linear-gradient(160deg, var(--ivory-2) 0%, var(--ivory) 100%);
+    border: 1px solid rgba(138,109,26,0.22);
+  }
+  .cp-practice-plate::before, .cp-practice-plate::after {
+    content: ''; position: absolute;
+    width: 32px; height: 32px;
+  }
+  .cp-practice-plate::before {
+    top: 0.9rem; left: 0.9rem;
+    border-top: 1px solid currentColor;
+    border-left: 1px solid currentColor;
+  }
+  .cp-practice-plate::after {
+    bottom: 0.9rem; right: 0.9rem;
+    border-bottom: 1px solid currentColor;
+    border-right: 1px solid currentColor;
+  }
+  .cp-practice-dark .cp-practice-plate { color: rgba(212,175,55,0.5); }
+  .cp-practice-ivory .cp-practice-plate { color: rgba(138,109,26,0.4); }
+
+  .cp-plate-inner {
+    text-align: center;
+    position: relative; z-index: 2;
+  }
+  .cp-plate-symbol {
+    font-family: var(--display);
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    font-weight: 400; line-height: 1;
+    margin-bottom: 1.4rem;
+  }
+  .cp-practice-dark .cp-plate-symbol { color: var(--gold); }
+  .cp-practice-ivory .cp-plate-symbol { color: var(--gold-deep); }
+  .cp-plate-divider {
+    width: 40px; height: 1px;
+    margin: 0 auto 1.4rem;
+  }
+  .cp-practice-dark .cp-plate-divider { background: var(--gold); opacity: 0.6; }
+  .cp-practice-ivory .cp-plate-divider { background: var(--gold-deep); opacity: 0.6; }
+  .cp-plate-legend {
+    font-family: var(--display);
+    font-size: 0.95rem; font-weight: 500; font-style: italic;
+    letter-spacing: 0.02em;
+  }
+  .cp-practice-dark .cp-plate-legend { color: rgba(255,255,255,0.75); }
+  .cp-practice-ivory .cp-plate-legend { color: var(--ivory-body); }
+
+  /* ══════════════════════════════════════
+     BRIDGE TO RITARTHA
+  ══════════════════════════════════════ */
+  .cp-ritartha {
+    padding: 7rem 0;
+    background: linear-gradient(180deg, var(--ivory) 0%, var(--ivory-2) 100%);
+    color: var(--ivory-text);
+    text-align: center;
+  }
+  .cp-ritartha-inner {
+    max-width: 760px; margin: 0 auto; padding: 0 5%;
+  }
+  .cp-ritartha .chapter-label {
+    color: var(--gold-deep); justify-content: center;
+  }
+  .cp-ritartha .chapter-label::after {
+    content: ''; width: 48px; height: 1px; background: var(--gold-deep); opacity: 0.6;
+  }
+  .cp-ritartha h2 {
+    font-family: var(--display);
+    font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+    font-weight: 500; line-height: 1.15;
+    letter-spacing: -0.015em; margin-bottom: 1.4rem;
+  }
+  .cp-ritartha h2 em { font-style: italic; color: var(--gold-deep); }
+  .cp-ritartha p {
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 1.65vw, 1.3rem);
+    font-weight: 400; line-height: 1.7;
+    color: var(--ivory-body); margin-bottom: 1.2rem;
+  }
+  .cp-ritartha p strong {
+    color: var(--ivory-text); font-weight: 500;
+    font-family: var(--display); font-style: italic;
+  }
+
+  /* ══════════════════════════════════════
+     CLOSING
+  ══════════════════════════════════════ */
+  .cp-close {
+    padding: 7rem 0;
+    background:
+      radial-gradient(ellipse at center, rgba(212,175,55,0.1) 0%, transparent 60%),
+      linear-gradient(170deg, var(--ink) 0%, var(--ink-3) 100%);
+    color: var(--white);
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .cp-close::before {
+    content: ''; position: absolute;
+    left: 50%; top: -30px; transform: translateX(-50%);
+    width: 3px; height: 60px;
+    background: linear-gradient(180deg, transparent, var(--gold));
+    opacity: 0.7;
+  }
+  .cp-close-inner {
+    position: relative; z-index: 2;
+    max-width: 680px; margin: 0 auto; padding: 0 5%;
+  }
+  .cp-close .chapter-label { color: var(--gold); justify-content: center; }
+  .cp-close .chapter-label::after {
+    content: ''; width: 48px; height: 1px; background: var(--gold); opacity: 0.6;
+  }
+  .cp-close h2 {
+    font-family: var(--display);
+    font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+    font-weight: 500; line-height: 1.18;
+    margin-bottom: 1.6rem;
+  }
+  .cp-close h2 em { font-style: italic; color: var(--gold); }
+  .cp-close p {
+    font-family: var(--serif);
+    font-size: clamp(1.15rem, 1.7vw, 1.35rem);
+    font-weight: 400; font-style: italic;
+    color: rgba(255,255,255,0.8); line-height: 1.6;
+    margin-bottom: 2.6rem;
+  }
+  .cp-close-btns {
+    display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap;
+  }
+  .btn-gold {
+    padding: 1.05rem 2.6rem; background: var(--gold); color: var(--ink);
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em;
+    text-transform: uppercase; text-decoration: none;
+    transition: background 0.3s, transform 0.2s; display: inline-block;
+  }
+  .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline {
+    padding: 1.05rem 2.6rem; border: 1px solid var(--gold-border);
+    color: var(--gold); font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none;
+    transition: background 0.3s, transform 0.2s; display: inline-block;
+    background: rgba(0,8,20,0.35);
+  }
+  .btn-outline:hover { background: var(--gold-dim); transform: translateY(-2px); }
+
+  /* ══════════════════════════════════════
+     RESPONSIVE
+  ══════════════════════════════════════ */
+  @media (max-width: 960px) {
+    .cp-practice-grid,
+    .cp-practice-reverse .cp-practice-grid {
+      grid-template-columns: 1fr;
+      grid-template-areas: "img" "content";
+      gap: 2.4rem;
+    }
+    .cp-practice-visual { grid-area: img; }
+    .cp-practice-content { grid-area: content; }
+    .cp-practice-img, .cp-practice-plate { aspect-ratio: 16/10; }
+    .cp-hero { min-height: 70vh; padding: 5rem 0; }
+    .cp-frame, .cp-practice, .cp-ritartha, .cp-close {
+      padding: 5rem 0;
+    }
+  }
+
+  </style>
+</head>
+<body>
+<div class="page">
+
+<!-- GLOBAL HEADER -->
+<header class="global-header">
+  <a href="index.html" class="gh-logo">
+    <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS"
+         onerror="this.style.display='none';document.querySelector('.gh-logo-text').style.display='block'">
+    <span class="gh-logo-text">MECULS</span>
+  </a>
+  <nav aria-label="Global navigation">
+    <ul class="gh-nav gh-nav-wrap">
+      <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+      <li><a href="contexts.html">Contexts</a></li>
+      <li><a href="the-approach.html">The Approach</a></li>
+      <li><a href="insights.html">Insights</a></li>
+      <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+      <li><a href="begin-conversation.html" class="gh-cta">Begin a Conversation</a></li>
+    </ul>
+  </nav>
+  <button class="gh-toggle" id="ghToggle" aria-label="Open navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+<div class="gh-mobile-menu" id="ghMobileMenu" role="dialog" aria-label="Mobile navigation">
+  <ul class="gh-mobile-nav">
+    <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+    <li><a href="contexts.html">Contexts</a></li>
+    <li><a href="the-approach.html">The Approach</a></li>
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+  </ul>
+  <a href="begin-conversation.html" class="gh-mobile-cta">Begin a Conversation</a>
+</div>
+<!-- END GLOBAL HEADER -->
+
+<!-- HERO -->
+<section class="cp-hero">
+  <div class="cp-hero-inner">
+    <span class="cp-hero-flame" aria-hidden="true"></span>
+    <div class="chapter-label">
+      <span class="chapter-num">I</span>
+      <span>Contemplative Practices</span>
+    </div>
+    <h1>
+      Some work<br>
+      cannot be systematised.<br>
+      <em>It can only be practised.</em>
+    </h1>
+  </div>
+</section>
+
+<!-- FRAME -->
+<section class="cp-frame">
+  <div class="cp-frame-inner rev">
+    <div class="chapter-label">
+      <span class="chapter-num">II</span>
+      <span>For Whom This Page Exists</span>
+    </div>
+    <h2>Five practices<br><em>held quietly.</em></h2>
+    <p>
+      Alongside the main services of MECULS &ndash; the coaching, the programmes, the counselling &ndash; a smaller set of practices exists for those who come looking for them. These are not marketed. They do not appear in the corporate brochure. A person who needs them has usually, in some way, already found them.
+    </p>
+    <p>
+      What follows is not an introduction to these practices. It is an acknowledgement. If the language here resonates, <em>a direct conversation is the next step.</em> If it does not, the main services of MECULS are the right place to remain.
+    </p>
+  </div>
+</section>
+
+<!-- PRACTICE 01 &ndash; Elimination of Anger and Past Pain -->
+<section class="cp-practice cp-practice-dark">
+  <div class="cp-practice-grid">
+    <div class="cp-practice-content rev">
+      <div class="cp-practice-num">01</div>
+      <div class="cp-practice-tag">Pain-Body Work</div>
+      <h2 class="cp-practice-title">Elimination of anger<br><em>and past pain.</em></h2>
+      <p class="lead">
+        Anger does not need to be managed. It needs to be removed at its root.
+      </p>
+      <p>
+        What the psychological literature calls the pain-body is a real thing. It is the accumulated residue of unresolved emotion carried across years, decades, and sometimes the full arc of a life. It becomes a kind of structure inside a person &ndash; a structure that feeds on certain situations, certain people, certain memories, and that grows stronger the more it is engaged with through ordinary coping.
+      </p>
+      <p>
+        This work addresses the pain-body directly. Not by talking around it or naming it. By dissolving it, in stages, over the course of a carefully held practice. What remains at the end is not a person with better anger management techniques. What remains is a person for whom the old anger no longer has material to work with.
+      </p>
+      <div class="cp-practice-note">
+        This practice is not appropriate for people in acute crisis. It presumes a person is already stable enough to do depth work, and is offered only after a direct assessment conversation.
+      </div>
+      <a href="begin-conversation.html" class="cp-practice-cta">Begin a Conversation &rarr;</a>
+    </div>
+    <div class="cp-practice-visual rev">
+      <div class="cp-practice-img">
+        <img src="https://images.unsplash.com/photo-1439853949127-fa647821eba0?w=1000&q=85"
+             alt="Still water at first light &ndash; surface without disturbance" loading="lazy">
+        <span class="cp-practice-img-caption">Water &middot; Surface without disturbance</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRACTICE 02 &ndash; Dream Analysis -->
+<section class="cp-practice cp-practice-ivory cp-practice-reverse">
+  <div class="cp-practice-grid">
+    <div class="cp-practice-content rev">
+      <div class="cp-practice-num">02</div>
+      <div class="cp-practice-tag">Jungian Inquiry</div>
+      <h2 class="cp-practice-title">Dream<br><em>analysis.</em></h2>
+      <p class="lead">
+        The dream is a message from the part of the self the waking self cannot yet hear.
+      </p>
+      <p>
+        Jung did not treat dreams as riddles to be solved. He treated them as the voice of the unconscious speaking in its own language &ndash; image, metaphor, symbol &ndash; and offering precisely the information the dreamer most needs and is least able to receive directly. The dream is not a disguise. It is the most honest communication the psyche makes.
+      </p>
+      <p>
+        This work is the patient practice of listening to that voice. Not through a dream dictionary or a set of stock interpretations, but through the specific dream of the specific person at the specific moment of their life. What the dream is responding to. What it is preparing for. What it is asking the dreamer to see.
+      </p>
+      <div class="cp-practice-note">
+        This practice works best when a person keeps a simple dream journal for a few weeks before the first session. The material accumulates, and patterns become readable.
+      </div>
+      <a href="begin-conversation.html" class="cp-practice-cta">Begin a Conversation &rarr;</a>
+    </div>
+    <div class="cp-practice-visual rev">
+      <div class="cp-practice-plate">
+        <div class="cp-plate-inner">
+          <div class="cp-plate-symbol" aria-hidden="true">&#x2740;</div>
+          <div class="cp-plate-divider"></div>
+          <div class="cp-plate-legend">The night's own writing</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRACTICE 03 &ndash; Protection from Negative Energies -->
+<section class="cp-practice cp-practice-dark">
+  <div class="cp-practice-grid">
+    <div class="cp-practice-content rev">
+      <div class="cp-practice-num">03</div>
+      <div class="cp-practice-tag">Boundary &amp; Ground</div>
+      <h2 class="cp-practice-title">Protection from<br><em>negative energies.</em></h2>
+      <p class="lead">
+        The field around a person is real. What passes through it leaves a trace.
+      </p>
+      <p>
+        This is not about superstition. It is about the concrete psychological and energetic experience of being depleted by certain people, certain places, and certain situations &ndash; and the concrete practice of building the inner ground that is no longer available to that depletion. A person who walks into a room and absorbs what is there is useful to many. A person who walks in grounded is useful to more.
+      </p>
+      <p>
+        The work is taught in three phases: recognising what is actually happening in an energetic exchange, building the inner ground that makes one less available to what does not belong, and the ongoing practice of restoration when ordinary life inevitably leaks it away.
+      </p>
+      <div class="cp-practice-note">
+        This practice is often taken alongside Zero State Meditation. The ground built in meditation is the same ground this work protects.
+      </div>
+      <a href="begin-conversation.html" class="cp-practice-cta">Begin a Conversation &rarr;</a>
+    </div>
+    <div class="cp-practice-visual rev">
+      <div class="cp-practice-img">
+        <img src="https://images.unsplash.com/photo-1515816052601-210d5501d471?w=1000&q=85"
+             alt="A quiet doorway in shadow &ndash; the threshold that holds" loading="lazy">
+        <span class="cp-practice-img-caption">Threshold &middot; What enters, what does not</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRACTICE 04 &ndash; Secrets of Life Workshops -->
+<section class="cp-practice cp-practice-ivory cp-practice-reverse">
+  <div class="cp-practice-grid">
+    <div class="cp-practice-content rev">
+      <div class="cp-practice-num">04</div>
+      <div class="cp-practice-tag">Workshop &middot; Small Group</div>
+      <h2 class="cp-practice-title">Secrets of Life<br><em>workshops.</em></h2>
+      <p class="lead">
+        There are things about how a life actually works that no one teaches you, and that you spend decades learning the hard way.
+      </p>
+      <p>
+        These workshops are not motivational gatherings. They are careful, small-group transmissions of what eighteen years of direct practice on leaders, ordinary adults, children, and the depth-work on oneself has revealed about the architecture of a human life. What actually drives people. What actually heals. What actually matters at the end, and what does not, despite all the noise.
+      </p>
+      <p>
+        Each workshop is held with a small number of participants, by invitation or application. The material is delivered orally, in sequence, with time for work on the specific life of the specific participant. Nothing is recorded. Nothing is turned into a product.
+      </p>
+      <div class="cp-practice-note">
+        Workshops are announced to those on the direct mailing list only. Registration is by application; every applicant is spoken with before being offered a place.
+      </div>
+      <a href="begin-conversation.html" class="cp-practice-cta">Apply for the Next Workshop &rarr;</a>
+    </div>
+    <div class="cp-practice-visual rev">
+      <div class="cp-practice-plate">
+        <div class="cp-plate-inner">
+          <div class="cp-plate-symbol" aria-hidden="true">&#x25C7;</div>
+          <div class="cp-plate-divider"></div>
+          <div class="cp-plate-legend">The small circle, the deep transmission</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRACTICE 05 &ndash; Source of Challenges Diagnostic -->
+<section class="cp-practice cp-practice-dark">
+  <div class="cp-practice-grid">
+    <div class="cp-practice-content rev">
+      <div class="cp-practice-num">05</div>
+      <div class="cp-practice-tag">Diagnostic &middot; Self-Assessment</div>
+      <h2 class="cp-practice-title">The Source of<br><em>Challenges diagnostic.</em></h2>
+      <p class="lead">
+        Before any practice begins, a person needs to know what the actual problem is.
+      </p>
+      <p>
+        The Source of Challenges diagnostic is the quiet first step in any MECULS engagement &ndash; and particularly for anyone drawn to the contemplative practices on this page. It is a structured self-inquiry, held in conversation, that helps a person name &ndash; with honesty and without jargon &ndash; what is actually happening in their life, what they have been trying to do about it, and what is underneath what they have been trying.
+      </p>
+      <p>
+        It is available as a standalone engagement &ndash; a single conversation, with a written reflection sent afterwards &ndash; or as the opening of any deeper practice. Most people who eventually take Dream Analysis, or the elimination work, or a workshop, begin here.
+      </p>
+      <div class="cp-practice-note">
+        This is typically the right first step for anyone on this page who is not yet sure which practice fits their life.
+      </div>
+      <a href="source-of-challenges.html" class="cp-practice-cta">See the Diagnostic &rarr;</a>
+    </div>
+    <div class="cp-practice-visual rev">
+      <div class="cp-practice-img">
+        <img src="https://images.unsplash.com/photo-1519791883288-dc8bd696e667?w=1000&q=85"
+             alt="Notebook and pen on a wooden surface &ndash; the inquiry that precedes the work" loading="lazy">
+        <span class="cp-practice-img-caption">The page &middot; Where the work begins</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRIDGE TO RITARTHA -->
+<section class="cp-ritartha">
+  <div class="cp-ritartha-inner rev">
+    <div class="chapter-label">
+      <span class="chapter-num">III</span>
+      <span>A Companion Home</span>
+    </div>
+    <h2>These practices have<br><em>a natural home elsewhere.</em></h2>
+    <p>
+      A companion site &ndash; <strong>Ritartha.com</strong> &ndash; is being built as the dedicated home for the individual, philosophical, and contemplative dimensions of this work. When that site is live, these five practices, along with financial literacy, meditation programmes, and deeper life and career direction work, will move there. Until then, they remain here, held in this quiet corner of MECULS.
+    </p>
+    <p>
+      Nothing about the practice itself changes. Only the door through which one enters it.
+    </p>
+  </div>
+</section>
+
+<!-- CLOSE -->
+<section class="cp-close">
+  <div class="cp-close-inner">
+    <div class="chapter-label rev">
+      <span class="chapter-num">IV</span>
+      <span>The Next Step</span>
+    </div>
+    <h2 class="rev">If any of this<br><em>speaks to you.</em></h2>
+    <p class="rev">A direct conversation is the first and only way into these practices. There is no booking form, no intake sequence, no scheduling software. A person writes, a conversation happens, and what follows &ndash; or does not &ndash; becomes clear between the two of us.</p>
+    <div class="cp-close-btns rev">
+      <a href="begin-conversation.html" class="btn-gold">Begin a Conversation</a>
+      <a href="the-approach.html" class="btn-outline">See the Approach</a>
+    </div>
+  </div>
+</section>
+
+<!-- GLOBAL FOOTER -->
+<footer class="global-footer">
+  <div class="gf-top">
+    <div class="gf-brand">
+      <div class="gf-logo">
+        <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="gf-logo-text" style="display:none">MECULS</span>
+      </div>
+      <p class="gf-tagline">Mind Enablement Centre for Unlocking Limitless Leadership &amp; Self-Potential</p>
+      <div class="gf-contact">
+        <a href="mailto:Jain.Rajneesh@meculs.com">Jain.Rajneesh@meculs.com</a>
+        <a href="#">Delhi, India</a>
+      </div>
+      <div class="gf-social">
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.5 6.5s-.3-2-1.2-2.8c-1.1-1.2-2.4-1.2-3-1.3C15.6 2.2 12 2.2 12 2.2s-3.6 0-6.3.2c-.6.1-1.9.1-3 1.3C1.8 4.5 1.5 6.5 1.5 6.5S1.2 8.8 1.2 11v2.1c0 2.2.3 4.4.3 4.4s.3 2 1.2 2.8c1.1 1.2 2.6 1.1 3.3 1.2 2.4.2 10 .3 10 .3s3.6 0 6.3-.3c.6-.1 1.9-.1 3-1.3.9-.8 1.2-2.8 1.2-2.8s.3-2.2.3-4.4V11c0-2.2-.3-4.5-.3-4.5zM9.7 14.8V8.4l6.6 3.2-6.6 3.2z"/></svg></a>
+      </div>
+    </div>
+    <div>
+      <p class="gf-col-title">Services</p>
+      <ul class="gf-links">
+        <li><a href="360-pulse-rate.html">360&#xb0; PULSE RATE&#x2122;</a></li>
+        <li><a href="bespoke-coaching.html">Executive Coaching &ndash; Bespoke</a></li>
+        <li><a href="corporate-programs.html">Corporate Programmes</a></li>
+        <li><a href="services.html">All Services</a></li>
+        <li><a href="individual-services.html">Individual &amp; Wellness</a></li>
+        <li><a href="contemplative-practices.html">Contemplative Practices</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="gf-col-title">Company</p>
+      <ul class="gf-links">
+        <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+        <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+        <li><a href="the-approach.html">The Approach</a></li>
+        <li><a href="the-journey.html">The Journey</a></li>
+        <li><a href="contexts.html">Contexts</a></li>
+        <li><a href="our-work-proof.html">Our Work Proof</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="gf-col-title">Connect</p>
+      <ul class="gf-links">
+        <li><a href="begin-conversation.html">Begin a Conversation</a></li>
+        <li><a href="source-of-challenges.html">Source of Challenges</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms of Service</a></li>
+        <li><a href="refund-policy.html">Refund Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="gf-bottom">
+    <p class="gf-copy">&copy; 2026 MECULS. All rights reserved. Delhi, India.</p>
+    <div class="gf-legal">
+      <a href="privacy-policy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="refund-policy.html">Refund</a>
+    </div>
+  </div>
+</footer>
+<!-- END GLOBAL FOOTER -->
+
+</div>
+<script src="global.js"></script>
+<script>
+  var ro = new IntersectionObserver(function(e) {
+    e.forEach(function(x) {
+      if (x.isIntersecting) { x.target.classList.add('vis'); ro.unobserve(x.target); }
+    });
+  }, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.rev').forEach(function(el) { ro.observe(el); });
+</script>
+</body>
+</html>
