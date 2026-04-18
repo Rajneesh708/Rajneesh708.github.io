@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="MECULS Consciousness &amp; Clarity Coaching &ndash; the unconscious mind is the driver, the conscious mind is only the wheel. Work with Rajneesh Jain to find the belief underneath the problem &ndash; and understand it clearly enough that it no longer runs the room.">
+  <title>Consciousness &amp; Clarity Coaching &ndash; MECULS | Rajneesh Jain</title>
+  <link rel="canonical" href="https://www.meculs.com/service-consciousness-clarity.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Archivo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="global.css">
+  <style>
+
+  :root {
+    --gold:        #d4af37;
+    --gold-light:  #e4bf47;
+    --gold-deep:   #8a6d1a;
+    --gold-dim:    rgba(212,175,55,0.10);
+    --gold-border: rgba(212,175,55,0.22);
+    --ink:         #000814;
+    --ink-2:       #00080f;
+    --ink-3:       #001233;
+    --white:       #ffffff;
+    --cream:       #f7f3ea;
+    --parchment:   #faf7f0;
+    --cream-text:  #1a1713;
+    --cream-body:  #3a342b;
+    --cream-muted: #6b6258;
+    --rule-warm:   rgba(138,109,26,0.22);
+    --rule-warm-2: rgba(138,109,26,0.40);
+    /* Deep indigo-black &ndash; the unconscious, vast, pre-verbal, profound */
+    --indigo:      #08061a;
+    --indigo-2:    #0c0920;
+    --indigo-3:    #100c28;
+    --indigo-border: rgba(120,100,200,0.18);
+    --indigo-mid:  rgba(120,100,200,0.08);
+    --display:     'Playfair Display', serif;
+    --serif:       'Cormorant Garamond', serif;
+    --ease:        cubic-bezier(0.16,1,0.3,1);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--parchment); color: var(--cream-text);
+    font-family: 'Archivo', sans-serif;
+    line-height: 1.75; -webkit-font-smoothing: antialiased;
+  }
+  .page { padding-top: var(--g-nav-h, 72px); }
+  .wrap-narrow { max-width: 820px; margin: 0 auto; padding: 0 5%; }
+
+  .rev {
+    opacity: 0; transform: translateY(22px);
+    transition: opacity 1.1s var(--ease), transform 1.1s var(--ease);
+  }
+  .rev.vis { opacity: 1; transform: none; }
+
+  .chapter-label {
+    display: inline-flex; align-items: center; gap: 14px;
+    font-size: 0.66rem; font-weight: 700; letter-spacing: 0.26em;
+    text-transform: uppercase; margin-bottom: 1.6rem;
+  }
+  .chapter-label::before {
+    content: ''; width: 48px; height: 1px; background: currentColor; opacity: 0.7;
+  }
+  .chapter-num {
+    font-family: var(--display);
+    font-size: 0.82rem; font-weight: 500; letter-spacing: 0.05em;
+  }
+
+  /* ══════════════════════════════════════
+     HERO &ndash; deep indigo, vast and still
+  ══════════════════════════════════════ */
+  .c-hero {
+    min-height: 92vh; position: relative;
+    display: flex; align-items: center;
+    padding: 8rem 0 7rem;
+    background:
+      radial-gradient(ellipse at 30% 25%, rgba(80,60,160,0.25) 0%, transparent 55%),
+      radial-gradient(ellipse at 70% 80%, rgba(212,175,55,0.06) 0%, transparent 48%),
+      linear-gradient(168deg, var(--indigo) 0%, var(--ink) 55%, var(--ink-2) 100%);
+    overflow: hidden; color: var(--white);
+  }
+  /* Slow-breathing background texture */
+  .c-hero::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      radial-gradient(ellipse 60% 40% at 50% 50%,
+        rgba(120,100,200,0.06) 0%, transparent 70%);
+    animation: breathe 8s ease-in-out infinite;
+  }
+  @keyframes breathe {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50%       { transform: scale(1.08); opacity: 1; }
+  }
+  .c-hero-inner {
+    position: relative; z-index: 2;
+    width: 100%; max-width: 900px; margin: 0 auto; padding: 0 5%;
+    text-align: center;
+  }
+  .c-hero .chapter-label { color: var(--gold); justify-content: center; }
+  .c-hero .chapter-label::after {
+    content: ''; width: 48px; height: 1px; background: var(--gold); opacity: 0.7;
+  }
+  .c-hero h1 {
+    font-family: var(--display);
+    font-size: clamp(2.6rem, 5.5vw, 5rem);
+    font-weight: 400; line-height: 1.12;
+    letter-spacing: -0.02em; margin-bottom: 2rem;
+    color: var(--white);
+  }
+  .c-hero h1 em { font-style: italic; color: var(--gold); font-weight: 400; }
+  .c-hero-sub {
+    font-family: var(--serif);
+    font-size: clamp(1.2rem, 1.9vw, 1.6rem);
+    font-weight: 400; font-style: italic;
+    color: rgba(255,255,255,0.78); line-height: 1.6;
+    max-width: 680px; margin: 0 auto 3rem;
+  }
+  /* Thin gold rule beneath the subhead */
+  .c-hero-rule {
+    width: 1px; height: 60px;
+    background: linear-gradient(180deg, var(--gold), transparent);
+    margin: 0 auto;
+  }
+
+  /* ══════════════════════════════════════
+     THE RECOGNITION &ndash; the opening mirror
+  ══════════════════════════════════════ */
+  .c-recognition {
+    padding: 8rem 0 7rem;
+    background: var(--parchment);
+  }
+  .c-recognition .chapter-label { color: var(--gold-deep); }
+  .c-recognition h2 {
+    font-family: var(--display);
+    font-size: clamp(2.1rem, 4.2vw, 3.4rem);
+    font-weight: 500; line-height: 1.14;
+    letter-spacing: -0.02em; margin-bottom: 2rem;
+    color: var(--cream-text);
+  }
+  .c-recognition h2 em { font-style: italic; color: var(--gold-deep); }
+  .c-recognition p {
+    font-family: var(--serif);
+    font-size: clamp(1.15rem, 1.7vw, 1.38rem);
+    line-height: 1.78; color: var(--cream-body);
+    margin-bottom: 1.4rem;
+  }
+  .c-recognition p:last-child { margin-bottom: 0; }
+  .c-recognition p em { font-style: italic; color: var(--gold-deep); font-weight: 500; }
+
+  /* ══════════════════════════════════════
+     THE FRAMEWORK &ndash; driver and wheel
+  ══════════════════════════════════════ */
+  .c-framework {
+    padding: 8rem 0;
+    background: var(--indigo);
+    color: var(--white); position: relative; overflow: hidden;
+  }
+  .c-framework::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse at 50% 40%, rgba(80,60,160,0.20) 0%, transparent 60%);
+  }
+  .c-fw-head {
+    max-width: 820px; margin: 0 auto 5rem; padding: 0 5%;
+    position: relative; z-index: 2; text-align: center;
+  }
+  .c-framework .chapter-label { color: var(--gold); justify-content: center; }
+  .c-framework .chapter-label::after {
+    content: ''; width: 48px; height: 1px; background: var(--gold); opacity: 0.7;
+  }
+  .c-fw-head h2 {
+    font-family: var(--display);
+    font-size: clamp(2.1rem, 4.2vw, 3.4rem);
+    font-weight: 500; line-height: 1.14;
+    letter-spacing: -0.02em; margin-bottom: 1.6rem;
+  }
+  .c-fw-head h2 em { font-style: italic; color: var(--gold); }
+  .c-fw-head p {
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 1.6vw, 1.28rem);
+    line-height: 1.75; color: rgba(255,255,255,0.82);
+  }
+  .c-fw-head p em { font-style: italic; color: var(--gold); font-weight: 500; }
+
+  /* The driver-wheel diagram */
+  .c-fw-diagram {
+    max-width: 860px; margin: 0 auto 5rem; padding: 0 5%;
+    position: relative; z-index: 2;
+    overflow-x: auto;
+  }
+  .c-fw-diagram svg {
+    width: 100%; min-width: 560px; display: block;
+  }
+
+  /* Two-column layout: effect vs cause */
+  .c-fw-cols {
+    max-width: 1040px; margin: 0 auto; padding: 0 5%;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0; border: 1px solid var(--gold-border);
+    position: relative; z-index: 2;
+  }
+  .c-fw-col {
+    padding: 2.8rem 2.5rem; display: flex; flex-direction: column;
+    min-height: 380px;
+  }
+  .c-fw-col:first-child {
+    border-right: 1px solid var(--gold-border);
+    background: rgba(255,255,255,0.015);
+  }
+  .c-fw-col:last-child { background: rgba(212,175,55,0.04); }
+  .c-fw-col-label {
+    display: block;
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.26em;
+    text-transform: uppercase; margin-bottom: 1.4rem;
+  }
+  .c-fw-col:first-child .c-fw-col-label { color: rgba(255,255,255,0.40); }
+  .c-fw-col:last-child .c-fw-col-label { color: var(--gold); }
+  .c-fw-col h3 {
+    font-family: var(--display);
+    font-size: clamp(1.3rem, 1.9vw, 1.6rem);
+    font-weight: 500; font-style: italic;
+    line-height: 1.22; margin-bottom: 1.4rem;
+    letter-spacing: -0.01em;
+  }
+  .c-fw-col:first-child h3 { color: rgba(255,255,255,0.62); }
+  .c-fw-col:last-child h3 { color: var(--white); }
+  .c-fw-col p {
+    font-family: var(--serif);
+    font-size: 1.1rem; line-height: 1.72;
+    margin-bottom: 1.2rem;
+  }
+  .c-fw-col:first-child p { color: rgba(255,255,255,0.58); }
+  .c-fw-col:last-child p { color: rgba(255,255,255,0.84); }
+  .c-fw-col p:last-child { margin-bottom: 0; }
+  .c-fw-col p em { font-style: italic; font-weight: 500; }
+  .c-fw-col:first-child p em { color: rgba(255,255,255,0.75); }
+  .c-fw-col:last-child p em { color: var(--gold); }
+
+  /* ══════════════════════════════════════
+     THE EXAMPLE &ndash; fear unpacked
+  ══════════════════════════════════════ */
+  .c-example {
+    padding: 8rem 0;
+    background: var(--cream); position: relative;
+  }
+  .c-example::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      radial-gradient(ellipse 50% 30% at 50% 80%,
+        rgba(80,60,160,0.04) 0%, transparent 70%);
+  }
+  .c-example-head {
+    max-width: 820px; margin: 0 auto 4rem; padding: 0 5%;
+    position: relative; z-index: 2;
+  }
+  .c-example .chapter-label { color: var(--gold-deep); }
+  .c-example-head h2 {
+    font-family: var(--display);
+    font-size: clamp(2.1rem, 4.2vw, 3.4rem);
+    font-weight: 500; line-height: 1.14;
+    letter-spacing: -0.02em; margin-bottom: 1.6rem;
+    color: var(--cream-text);
+  }
+  .c-example-head h2 em { font-style: italic; color: var(--gold-deep); }
+  .c-example-head p {
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 1.6vw, 1.28rem);
+    line-height: 1.72; color: var(--cream-body);
+  }
+
+  /* The fear unpack &ndash; three-step descent */
+  .c-unpack {
+    max-width: 820px; margin: 0 auto; padding: 0 5%;
+    display: flex; flex-direction: column; gap: 0;
+    position: relative; z-index: 2;
+  }
+  .c-unpack-step {
+    padding: 2.6rem 2.4rem;
+    border: 1px solid var(--rule-warm);
+    background: var(--white);
+    position: relative;
+  }
+  .c-unpack-step + .c-unpack-step {
+    border-top: none;
+  }
+  /* Connector arrow between steps */
+  .c-unpack-step::after {
+    content: '';
+    position: absolute; bottom: -1px; left: 50%;
+    transform: translateX(-50%);
+    width: 1px; height: 1px;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 12px solid var(--rule-warm);
+    z-index: 3;
+  }
+  .c-unpack-step:last-child::after { display: none; }
+  .c-unpack-label {
+    display: block;
+    font-size: 0.60rem; font-weight: 700; letter-spacing: 0.26em;
+    text-transform: uppercase; color: var(--gold-deep);
+    margin-bottom: 0.9rem;
+  }
+  .c-unpack-step h4 {
+    font-family: var(--display);
+    font-size: clamp(1.3rem, 2vw, 1.65rem);
+    font-weight: 500; font-style: italic;
+    color: var(--cream-text); line-height: 1.22;
+    letter-spacing: -0.01em; margin-bottom: 0.9rem;
+  }
+  .c-unpack-step p {
+    font-family: var(--serif);
+    font-size: clamp(1.08rem, 1.55vw, 1.22rem);
+    line-height: 1.72; color: var(--cream-body);
+  }
+  .c-unpack-step p em { font-style: italic; color: var(--gold-deep); font-weight: 500; }
+
+  /* The arrival &ndash; gold-bordered, the insight landing */
+  .c-unpack-arrival {
+    margin-top: 2.4rem;
+    padding: 2.4rem 2.4rem;
+    background: rgba(138,109,26,0.06);
+    border: 1px solid var(--gold-deep);
+    max-width: 820px; margin: 2.4rem auto 0;
+    position: relative; z-index: 2;
+  }
+  .c-unpack-arrival-label {
+    display: block;
+    font-size: 0.60rem; font-weight: 700; letter-spacing: 0.26em;
+    text-transform: uppercase; color: var(--gold-deep);
+    margin-bottom: 1rem;
+  }
+  .c-unpack-arrival p {
+    font-family: var(--serif);
+    font-size: clamp(1.15rem, 1.7vw, 1.35rem);
+    font-style: italic; line-height: 1.65;
+    color: var(--cream-body);
+  }
+  .c-unpack-arrival p em { font-style: italic; color: var(--gold-deep); font-weight: 600; }
+
+  /* ══════════════════════════════════════
+     HOW IT WORKS &ndash; a conversation
+  ══════════════════════════════════════ */
+  .c-method {
+    padding: 8rem 0;
+    background: var(--indigo-2);
+    color: var(--white); position: relative; overflow: hidden;
+  }
+  .c-method::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse at 80% 30%, rgba(80,60,160,0.15) 0%, transparent 55%);
+  }
+  .c-method-inner {
+    position: relative; z-index: 2;
+    max-width: 1140px; margin: 0 auto; padding: 0 5%;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: start;
+  }
+  .c-method .chapter-label { color: var(--gold); }
+  .c-method-text h2 {
+    font-family: var(--display);
+    font-size: clamp(2rem, 3.8vw, 3rem);
+    font-weight: 500; line-height: 1.14;
+    letter-spacing: -0.02em; margin-bottom: 1.6rem;
+  }
+  .c-method-text h2 em { font-style: italic; color: var(--gold); }
+  .c-method-text p {
+    font-family: var(--serif);
+    font-size: clamp(1.08rem, 1.55vw, 1.22rem);
+    line-height: 1.75; color: rgba(255,255,255,0.84);
+    margin-bottom: 1.2rem;
+  }
+  .c-method-text p:last-child { margin-bottom: 0; }
+  .c-method-text em { font-style: italic; color: var(--gold); font-weight: 500; }
+
+  /* What happens in the session */
+  .c-session-steps {
+    display: flex; flex-direction: column; gap: 0;
+    border: 1px solid var(--gold-border);
+  }
+  .c-session-step {
+    padding: 1.8rem 2rem;
+    border-bottom: 1px solid var(--gold-border);
+    display: flex; align-items: flex-start; gap: 1.2rem;
+    transition: background 0.3s;
+  }
+  .c-session-step:last-child { border-bottom: none; }
+  .c-session-step:hover { background: rgba(212,175,55,0.04); }
+  .c-session-step-num {
+    font-family: var(--display);
+    font-size: 1.1rem; font-weight: 500;
+    color: var(--gold); opacity: 0.70;
+    flex-shrink: 0; line-height: 1.4;
+    letter-spacing: -0.01em;
+  }
+  .c-session-step-body { flex: 1; }
+  .c-session-step-title {
+    font-family: var(--display);
+    font-size: 1.1rem; font-weight: 500; font-style: italic;
+    color: var(--white); line-height: 1.3;
+    letter-spacing: -0.005em;
+    margin-bottom: 0.4rem; display: block;
+  }
+  .c-session-step-desc {
+    font-family: var(--serif);
+    font-size: 1rem; font-style: italic;
+    color: rgba(255,255,255,0.60); line-height: 1.55;
+  }
+
+  /* ══════════════════════════════════════
+     WHO THIS IS FOR
+  ══════════════════════════════════════ */
+  .c-forwhom {
+    padding: 7rem 0;
+    background: var(--parchment);
+  }
+  .c-forwhom-head {
+    max-width: 820px; margin: 0 auto 4rem; padding: 0 5%;
+    text-align: center;
+  }
+  .c-forwhom .chapter-label { color: var(--gold-deep); justify-content: center; }
+  .c-forwhom .chapter-label::after {
+    content: ''; width: 48px; height: 1px; background: var(--gold-deep); opacity: 0.7;
+  }
+  .c-forwhom-head h2 {
+    font-family: var(--display);
+    font-size: clamp(2rem, 3.8vw, 3rem);
+    font-weight: 500; line-height: 1.14;
+    letter-spacing: -0.02em; margin-bottom: 1.4rem;
+    color: var(--cream-text);
+  }
+  .c-forwhom-head h2 em { font-style: italic; color: var(--gold-deep); }
+  .c-forwhom-head p {
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 1.6vw, 1.22rem);
+    font-style: italic; line-height: 1.6;
+    color: var(--cream-body); max-width: 640px; margin: 0 auto;
+  }
+
+  .c-forwhom-grid {
+    max-width: 1100px; margin: 0 auto; padding: 0 5%;
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.4rem;
+  }
+  .c-forwhom-card {
+    background: var(--white);
+    border: 1px solid var(--rule-warm);
+    padding: 2.4rem 2.2rem;
+    display: flex; flex-direction: column;
+    transition: border-color 0.4s, transform 0.4s, box-shadow 0.4s;
+  }
+  .c-forwhom-card:hover {
+    border-color: var(--rule-warm-2);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.06);
+  }
+  .c-forwhom-card h3 {
+    font-family: var(--display);
+    font-size: clamp(1.2rem, 1.8vw, 1.45rem);
+    font-weight: 600; color: var(--cream-text);
+    line-height: 1.2; letter-spacing: -0.01em;
+    margin-bottom: 0.9rem;
+  }
+  .c-forwhom-card h3 em { font-style: italic; color: var(--gold-deep); font-weight: 500; }
+  .c-forwhom-card p {
+    font-family: var(--serif);
+    font-size: 1.08rem; line-height: 1.65;
+    color: var(--cream-body); flex: 1;
+  }
+  .c-forwhom-card p em { font-style: italic; color: var(--gold-deep); }
+
+  /* ══════════════════════════════════════
+     THE JUNG ANCHOR
+  ══════════════════════════════════════ */
+  .c-jung {
+    padding: 8rem 0;
+    background: var(--indigo);
+    color: var(--white); position: relative; overflow: hidden;
+  }
+  .c-jung::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse at 50% 50%, rgba(80,60,160,0.18) 0%, transparent 65%);
+  }
+  .c-jung-inner {
+    position: relative; z-index: 2;
+    max-width: 760px; margin: 0 auto; padding: 0 5%;
+    text-align: center;
+  }
+  .c-jung-rule-top {
+    width: 1px; height: 52px;
+    background: linear-gradient(180deg, transparent, rgba(212,175,55,0.55));
+    margin: 0 auto 2.4rem;
+  }
+  .c-jung-quote {
+    font-family: var(--display);
+    font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+    font-weight: 400; font-style: italic;
+    color: var(--white); line-height: 1.45;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.2rem;
+  }
+  .c-jung-attr {
+    font-family: 'Archivo', sans-serif;
+    font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 0.20em; text-transform: uppercase;
+    color: rgba(255,255,255,0.40);
+    margin-bottom: 3rem; display: block;
+  }
+  .c-jung-response {
+    font-family: var(--serif);
+    font-size: clamp(1.15rem, 1.7vw, 1.38rem);
+    font-style: italic; line-height: 1.70;
+    color: rgba(255,255,255,0.82);
+    margin-bottom: 1.2rem;
+  }
+  .c-jung-response em { font-style: italic; color: var(--gold); font-weight: 500; }
+  .c-jung-rule-bot {
+    width: 1px; height: 52px;
+    background: linear-gradient(180deg, rgba(212,175,55,0.55), transparent);
+    margin: 2.4rem auto 0;
+  }
+
+  /* ══════════════════════════════════════
+     CONVICTION CLOSE
+  ══════════════════════════════════════ */
+  .c-depth {
+    padding: 8rem 0;
+    background: var(--indigo-2);
+    color: var(--white); position: relative; overflow: hidden;
+  }
+  .c-depth::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse at 50% 35%, rgba(80,60,160,0.18) 0%, transparent 58%);
+  }
+  .c-depth-inner {
+    position: relative; z-index: 2;
+    max-width: 880px; margin: 0 auto; padding: 0 5%;
+    text-align: center;
+  }
+  .c-depth .chapter-label { color: var(--gold); justify-content: center; }
+  .c-depth .chapter-label::after {
+    content: ''; width: 48px; height: 1px; background: var(--gold); opacity: 0.7;
+  }
+  .c-depth h2 {
+    font-family: var(--display);
+    font-size: clamp(2.1rem, 4.2vw, 3.4rem);
+    font-weight: 500; line-height: 1.14;
+    letter-spacing: -0.02em; margin-bottom: 2rem;
+  }
+  .c-depth h2 em { font-style: italic; color: var(--gold); }
+  .c-depth p {
+    font-family: var(--serif);
+    font-size: clamp(1.15rem, 1.7vw, 1.38rem);
+    line-height: 1.72; color: rgba(255,255,255,0.85);
+    margin-bottom: 1.3rem;
+  }
+  .c-depth p:last-of-type { margin-bottom: 0; }
+  .c-depth p em { font-style: italic; color: var(--gold); font-weight: 500; }
+  .c-depth-rule {
+    width: 1px; height: 52px;
+    background: linear-gradient(180deg, transparent, var(--gold), transparent);
+    margin: 2.4rem auto;
+  }
+  .c-depth-line {
+    font-family: var(--display);
+    font-size: clamp(1.3rem, 2.2vw, 1.75rem);
+    font-weight: 400; font-style: italic;
+    color: var(--white); line-height: 1.5;
+    max-width: 720px; margin: 0 auto 2.8rem;
+    letter-spacing: -0.005em;
+  }
+  .c-depth-line em { color: var(--gold); }
+  .c-depth-cta {
+    display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap;
+  }
+
+  /* ══════════════════════════════════════
+     CLOSE
+  ══════════════════════════════════════ */
+  .c-close {
+    padding: 7rem 0;
+    background: linear-gradient(168deg, var(--indigo) 0%, var(--ink) 55%, var(--ink-3) 100%);
+    color: var(--white); text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .c-close::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      radial-gradient(circle, rgba(120,100,200,0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse at center, #000 20%, transparent 72%);
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 20%, transparent 72%);
+  }
+  .c-close-inner {
+    position: relative; z-index: 2;
+    max-width: 760px; margin: 0 auto; padding: 0 5%;
+  }
+  .c-close .chapter-label { color: var(--gold); justify-content: center; }
+  .c-close .chapter-label::after {
+    content: ''; width: 48px; height: 1px; background: var(--gold); opacity: 0.7;
+  }
+  .c-close h2 {
+    font-family: var(--display);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 500; line-height: 1.14;
+    letter-spacing: -0.02em; margin-bottom: 1.6rem;
+  }
+  .c-close h2 em { font-style: italic; color: var(--gold); }
+  .c-close p {
+    font-family: var(--serif);
+    font-size: clamp(1.15rem, 1.7vw, 1.35rem);
+    font-style: italic; line-height: 1.6;
+    color: rgba(255,255,255,0.82); margin-bottom: 2.6rem;
+  }
+  .c-close-btns {
+    display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap;
+  }
+
+  .btn-gold {
+    padding: 1.05rem 2.6rem; background: var(--gold); color: var(--ink);
+    font-size: 0.76rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; text-decoration: none;
+    transition: background 0.3s, transform 0.2s; display: inline-block;
+  }
+  .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline {
+    padding: 1.05rem 2.6rem; border: 1px solid var(--gold-border);
+    color: var(--gold); font-size: 0.76rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none;
+    transition: background 0.3s, transform 0.2s; display: inline-block;
+    background: rgba(0,8,20,0.35);
+  }
+  .btn-outline:hover { background: var(--gold-dim); transform: translateY(-2px); }
+
+  /* ══════════════════════════════════════
+     RESPONSIVE
+  ══════════════════════════════════════ */
+  @media (max-width: 1024px) {
+    .c-method-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .c-forwhom-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    .c-fw-cols { grid-template-columns: 1fr; }
+    .c-fw-col:first-child {
+      border-right: none;
+      border-bottom: 1px solid var(--gold-border);
+    }
+    .c-fw-col { min-height: 0; }
+    .c-forwhom-grid { grid-template-columns: 1fr; }
+    .c-hero, .c-recognition, .c-framework, .c-example,
+    .c-method, .c-forwhom, .c-jung, .c-depth, .c-close {
+      padding-top: 5rem; padding-bottom: 5rem;
+    }
+  }
+  @media (max-width: 600px) {
+    .c-fw-col { padding: 2rem 1.7rem; }
+    .c-unpack-step { padding: 2rem 1.8rem; }
+    .c-forwhom-card { padding: 2rem 1.7rem; }
+  }
+
+  </style>
+</head>
+<body>
+<div class="page">
+
+<!-- GLOBAL HEADER -->
+<header class="global-header">
+  <a href="index.html" class="gh-logo">
+    <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS"
+         onerror="this.style.display='none';document.querySelector('.gh-logo-text').style.display='block'">
+    <span class="gh-logo-text">MECULS</span>
+  </a>
+  <nav aria-label="Global navigation">
+    <ul class="gh-nav gh-nav-wrap">
+      <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+      <li><a href="contexts.html">Contexts</a></li>
+      <li><a href="the-approach.html">The Approach</a></li>
+      <li><a href="insights.html">Insights</a></li>
+      <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+      <li><a href="begin-conversation.html" class="gh-cta">Begin a Conversation</a></li>
+    </ul>
+  </nav>
+  <button class="gh-toggle" id="ghToggle" aria-label="Open navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+<div class="gh-mobile-menu" id="ghMobileMenu" role="dialog" aria-label="Mobile navigation">
+  <ul class="gh-mobile-nav">
+    <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+    <li><a href="contexts.html">Contexts</a></li>
+    <li><a href="the-approach.html">The Approach</a></li>
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+  </ul>
+  <a href="begin-conversation.html" class="gh-mobile-cta">Begin a Conversation</a>
+</div>
+<!-- END GLOBAL HEADER -->
+
+<!-- ══════════════════════════════════════
+     HERO &ndash; centred, still, vast
+══════════════════════════════════════ -->
+<section class="c-hero">
+  <div class="c-hero-inner">
+    <div class="chapter-label">
+      <span class="chapter-num">I</span>
+      <span>Consciousness &amp; Clarity</span>
+    </div>
+    <h1>
+      The problem you keep trying to fix<br>
+      <em>is not the problem.</em>
+    </h1>
+    <p class="c-hero-sub">
+      Underneath every repeating pattern &ndash; every fear, every doubt, every ceiling you cannot seem to break through &ndash; is a belief that was formed before you knew it was being formed. The work is to find it. Once it is seen clearly, it no longer needs to run the room.
+    </p>
+    <div class="c-hero-rule" aria-hidden="true"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     THE RECOGNITION
+══════════════════════════════════════ -->
+<section class="c-recognition">
+  <div class="wrap-narrow rev">
+    <div class="chapter-label">
+      <span class="chapter-num">II</span>
+      <span>What You Already Know</span>
+    </div>
+    <h2>Something keeps happening<br><em>that you cannot explain by trying harder.</em></h2>
+    <p>You have worked on it. Read about it. Understood it well enough to explain it to someone else. And it is still there. Not because you have not tried enough &ndash; but because trying harder at the surface level cannot reach what is operating underneath it. The surface is where the symptoms live. The cause lives somewhere quieter.</p>
+    <p>Most approaches to the inner life address what a person feels and thinks. This work goes one level deeper: to the belief that produces the feeling, that shapes the thought, that determines the choice before the person is even aware a choice is being made. <em>The conscious mind steers. The unconscious mind drives.</em> Until the driver is understood, the steering wheel is a performance.</p>
+    <p>This is not a dramatic claim. It is a practical one. A person who understands the belief underneath their repeating pattern does not need to manage the pattern anymore. The pattern was never the problem. It was the signal.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     THE FRAMEWORK
+══════════════════════════════════════ -->
+<section class="c-framework">
+  <div class="c-fw-head rev">
+    <div class="chapter-label">
+      <span class="chapter-num">III</span>
+      <span>The Framework</span>
+    </div>
+    <h2>The driver and the wheel.<br><em>Only one of them decides where the car goes.</em></h2>
+    <p>The unconscious mind holds beliefs formed early &ndash; about who the person is, what they deserve, what is safe to want, what must be avoided. The conscious mind thinks, plans, decides. But the direction of a life is set by the beliefs in the unconscious, not by the intentions of the conscious. <em>Changing the intention without changing the belief produces effort without movement.</em></p>
+  </div>
+
+  <!-- Driver-Wheel diagram -->
+  <div class="c-fw-diagram rev">
+    <svg viewBox="0 0 860 160" xmlns="http://www.w3.org/2000/svg" fill="none">
+      <defs>
+        <marker id="ccc-arr" viewBox="0 0 10 10" refX="8" refY="5"
+                markerWidth="5" markerHeight="5" orient="auto">
+          <path d="M2 2L8 5L2 8" fill="none" stroke="rgba(212,175,55,0.65)"
+                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+      </defs>
+
+      <!-- Unconscious (driver) -->
+      <rect x="30" y="30" width="220" height="100" rx="4"
+            fill="rgba(212,175,55,0.10)" stroke="#d4af37" stroke-width="1.2"/>
+      <text x="140" y="68" text-anchor="middle"
+            font-family="'Archivo',sans-serif" font-size="9" font-weight="700"
+            fill="rgba(212,175,55,0.70)" letter-spacing="0.18em">THE DRIVER</text>
+      <text x="140" y="90" text-anchor="middle"
+            font-family="'Playfair Display',serif" font-size="15" font-weight="500"
+            font-style="italic" fill="#d4af37">Unconscious Mind</text>
+      <text x="140" y="110" text-anchor="middle"
+            font-family="'Cormorant Garamond',serif" font-size="12" font-style="italic"
+            fill="rgba(212,175,55,0.60)">Beliefs formed early. Sets direction.</text>
+
+      <!-- Arrow right -->
+      <line x1="250" y1="80" x2="320" y2="80"
+            stroke="rgba(212,175,55,0.55)" stroke-width="1.2"
+            marker-end="url(#ccc-arr)"/>
+      <text x="285" y="70" text-anchor="middle"
+            font-family="'Cormorant Garamond',serif" font-size="11" font-style="italic"
+            fill="rgba(255,255,255,0.35)">drives</text>
+
+      <!-- Conscious (wheel) -->
+      <rect x="320" y="30" width="220" height="100" rx="4"
+            fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/>
+      <text x="430" y="68" text-anchor="middle"
+            font-family="'Archivo',sans-serif" font-size="9" font-weight="700"
+            fill="rgba(255,255,255,0.38)" letter-spacing="0.18em">THE WHEEL</text>
+      <text x="430" y="90" text-anchor="middle"
+            font-family="'Playfair Display',serif" font-size="15" font-weight="500"
+            font-style="italic" fill="rgba(255,255,255,0.65)">Conscious Mind</text>
+      <text x="430" y="110" text-anchor="middle"
+            font-family="'Cormorant Garamond',serif" font-size="12" font-style="italic"
+            fill="rgba(255,255,255,0.35)">Thinks, plans, intends. Steers.</text>
+
+      <!-- Arrow right -->
+      <line x1="540" y1="80" x2="610" y2="80"
+            stroke="rgba(255,255,255,0.22)" stroke-width="1"
+            marker-end="url(#ccc-arr)"/>
+      <text x="575" y="70" text-anchor="middle"
+            font-family="'Cormorant Garamond',serif" font-size="11" font-style="italic"
+            fill="rgba(255,255,255,0.28)">produces</text>
+
+      <!-- Experience (what shows up in life) -->
+      <rect x="610" y="30" width="220" height="100" rx="4"
+            fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.15)" stroke-width="0.6"/>
+      <text x="720" y="68" text-anchor="middle"
+            font-family="'Archivo',sans-serif" font-size="9" font-weight="700"
+            fill="rgba(255,255,255,0.28)" letter-spacing="0.18em">WHAT SHOWS UP</text>
+      <text x="720" y="90" text-anchor="middle"
+            font-family="'Playfair Display',serif" font-size="15" font-weight="500"
+            font-style="italic" fill="rgba(255,255,255,0.48)">Life experience</text>
+      <text x="720" y="110" text-anchor="middle"
+            font-family="'Cormorant Garamond',serif" font-size="12" font-style="italic"
+            fill="rgba(255,255,255,0.28)">Patterns, feelings, results.</text>
+    </svg>
+  </div>
+
+  <!-- Effect vs Cause two-column -->
+  <div class="c-fw-cols rev">
+    <div class="c-fw-col">
+      <span class="c-fw-col-label">What most people work on</span>
+      <h3>The effect. The feeling. The pattern at the surface.</h3>
+      <p>Fear is worked on as though it is the problem. Anxiety is managed. Low confidence is trained. Repeating relationship patterns are analysed. The effort is real. The results are partial &ndash; because <em>managing a symptom cannot dissolve the belief that produces it.</em></p>
+      <p>The symptom returns. Perhaps in a different shape. Perhaps more quietly. But it returns, because the driver has not changed direction. Only the wheel has been adjusted.</p>
+    </div>
+    <div class="c-fw-col">
+      <span class="c-fw-col-label">What this work reaches</span>
+      <h3>The cause. The belief. The driver underneath.</h3>
+      <p>Through conversation, the belief underneath the pattern is identified and brought into the light of conscious understanding. Not as a concept to be analysed &ndash; but as a specific, personal belief that this person formed, for a specific reason, that made complete sense at the time and has been running quietly ever since.</p>
+      <p>When that belief is seen clearly &ndash; <em>truly seen, not just named</em> &ndash; it no longer needs to run in the dark. The pattern was its expression. The clarity is its end.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     THE EXAMPLE &ndash; fear unpacked
+══════════════════════════════════════ -->
+<section class="c-example">
+  <div class="c-example-head rev">
+    <div class="chapter-label">
+      <span class="chapter-num">IV</span>
+      <span>An Example</span>
+    </div>
+    <h2>Fear of failure, unpacked<br><em>one level deeper than usual.</em></h2>
+    <p>Most approaches to fear ask: how do we reduce it? This work asks a different question: what is the belief underneath it? What was the person protecting when they formed that belief? Because fear is not the enemy. It is the signal. And every signal points somewhere specific.</p>
+  </div>
+
+  <div class="c-unpack">
+
+    <div class="c-unpack-step rev">
+      <span class="c-unpack-label">What the person experiences</span>
+      <h4>Fear. Doubt. A ceiling they cannot seem to break through.</h4>
+      <p>The person knows what they want. They have the ability. And something stops them every time it starts to come together. They call it fear of failure, fear of success, imposter syndrome. The label varies. The feeling is the same: an invisible wall between where they are and where they want to be.</p>
+    </div>
+
+    <div class="c-unpack-step rev">
+      <span class="c-unpack-label">What lives underneath it</span>
+      <h4>A belief formed early, about what self-confidence means.</h4>
+      <p>Perhaps: <em>confidence is arrogance.</em> Perhaps: <em>I am not worthy of certainty about myself.</em> Perhaps: <em>to stay humble, I must experience doubt.</em> The exact belief is specific to the person. But in every case it was formed for a reason &ndash; and that reason made complete sense at the time. The belief was a protection, not a flaw.</p>
+    </div>
+
+    <div class="c-unpack-step rev">
+      <span class="c-unpack-label">What the fear is actually doing</span>
+      <h4>Keeping faith. In the only direction the belief allows.</h4>
+      <p>The person feeling fear is not lacking self-faith. They are expressing self-faith &ndash; in the direction of fear rather than fearlessness. Both fear and confidence are expressions of the same energy: the person&rsquo;s own vitality, keeping faith with their own existence. <em>The energy is not the problem. The direction is.</em> And direction changes when the belief underneath it is understood.</p>
+    </div>
+
+  </div>
+
+  <div class="c-unpack-arrival rev">
+    <span class="c-unpack-arrival-label">What clarity produces</span>
+    <p>When the belief is seen &ndash; truly seen, not just intellectually noted &ndash; the person recognises that they have always had the very thing the fear was telling them they lacked. The fear was never the wall. <em>The belief that they needed the wall was.</em> Clarity dissolves the belief. The pattern has nothing left to express.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     HOW IT WORKS
+══════════════════════════════════════ -->
+<section class="c-method">
+  <div class="c-method-inner">
+    <div class="rev">
+      <div class="chapter-label">
+        <span class="chapter-num">V</span>
+        <span>How It Works</span>
+      </div>
+      <h2>A conversation.<br><em>One level deeper than most conversations go.</em></h2>
+      <p>There are no tests, no questionnaires, no exercises to complete between sessions. The work is done entirely through conversation. The person says what they are experiencing. Rajneesh reads what they are protecting underneath it &ndash; the belief that is producing the experience &ndash; and reflects it back with the clarity that comes from having spent years understanding how the unconscious mind works.</p>
+      <p>The conversation does not stay at the level of the symptom. It does not analyse the fear or the anxiety or the pattern as problems to be solved. It moves to the belief underneath &ndash; gently, specifically, and <em>without judgment about why the belief was formed.</em> The belief was formed for a reason. Understanding that reason is part of the clarity.</p>
+      <p>Sessions are available for individuals, families, couples, and young people. The work is the same regardless of the presenting situation. The belief underneath is always personal, always specific, and always findable through conversation.</p>
+    </div>
+
+    <div class="c-session-steps rev">
+      <div class="c-session-step">
+        <span class="c-session-step-num">01</span>
+        <div class="c-session-step-body">
+          <span class="c-session-step-title">The person speaks.</span>
+          <span class="c-session-step-desc">What they are experiencing &ndash; the feeling, the pattern, the situation that keeps returning. Without needing to have an explanation for it.</span>
+        </div>
+      </div>
+      <div class="c-session-step">
+        <span class="c-session-step-num">02</span>
+        <div class="c-session-step-body">
+          <span class="c-session-step-title">The belief is found.</span>
+          <span class="c-session-step-desc">Through the conversation, Rajneesh identifies what the person is protecting underneath the experience &ndash; the specific belief that is producing it.</span>
+        </div>
+      </div>
+      <div class="c-session-step">
+        <span class="c-session-step-num">03</span>
+        <div class="c-session-step-body">
+          <span class="c-session-step-title">The belief is seen clearly.</span>
+          <span class="c-session-step-desc">Not analysed, not fought, not managed. Seen. When a belief is brought fully into conscious understanding, it integrates &ndash; and the pattern it produced has nothing left to express.</span>
+        </div>
+      </div>
+      <div class="c-session-step">
+        <span class="c-session-step-num">04</span>
+        <div class="c-session-step-body">
+          <span class="c-session-step-title">Lasting change follows.</span>
+          <span class="c-session-step-desc">Not because the person tried harder &ndash; but because the driver changed direction. The conscious mind can now steer toward what it always wanted.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     WHO THIS IS FOR
+══════════════════════════════════════ -->
+<section class="c-forwhom">
+  <div class="c-forwhom-head rev">
+    <div class="chapter-label">
+      <span class="chapter-num">VI</span>
+      <span>Who This Is For</span>
+    </div>
+    <h2>Anyone whose inner life<br><em>is not keeping pace with their outer one.</em></h2>
+    <p>The work does not require a crisis to begin. It requires only the recognition that something is running underneath &ndash; and the willingness to find out what it is.</p>
+  </div>
+
+  <div class="c-forwhom-grid">
+
+    <div class="c-forwhom-card rev">
+      <h3>Adults &amp;<br><em>professionals.</em></h3>
+      <p>Leaders, professionals, and individuals who are performing well outwardly and experiencing something quieter inside &ndash; a ceiling that moves when they move, a pattern in relationships or decisions that keeps returning despite everything they have tried. <em>The surface has been addressed. The root has not.</em></p>
+    </div>
+
+    <div class="c-forwhom-card rev">
+      <h3>Young people &amp;<br><em>college students.</em></h3>
+      <p>Teens and young adults navigating pressure, identity, confidence, or direction &ndash; at the stage where beliefs about the self are being tested for the first time against a larger world. <em>Clarity at this stage changes the trajectory of everything that follows.</em> The pattern addressed now is the pattern the adult does not have to manage later.</p>
+    </div>
+
+    <div class="c-forwhom-card rev">
+      <h3>Families &amp;<br><em>couples.</em></h3>
+      <p>Relationships where the difficulty is not a lack of love or effort &ndash; but two sets of unconscious beliefs meeting each other and producing friction neither person fully understands. <em>When each person sees what they are protecting, the friction has a different quality.</em> It becomes a conversation rather than a pattern.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     THE JUNG ANCHOR
+══════════════════════════════════════ -->
+<section class="c-jung">
+  <div class="c-jung-inner">
+    <div class="c-jung-rule-top rev" aria-hidden="true"></div>
+    <blockquote class="c-jung-quote rev">
+      &ldquo;Until you make the unconscious conscious,<br>
+      you will continue to call your life destiny.&rdquo;
+    </blockquote>
+    <span class="c-jung-attr rev">Carl Gustav Jung</span>
+    <p class="c-jung-response rev">
+      This is the work. Not to rename destiny &ndash; but to understand what is producing it. The unconscious mind is not a mystery to be left alone. It is a part of the self that formed beliefs, carried them quietly, and expressed them as the life the person has been living. <em>Making it conscious does not take the life away. It gives the person their life back.</em>
+    </p>
+    <div class="c-jung-rule-bot rev" aria-hidden="true"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     CONVICTION CLOSE
+══════════════════════════════════════ -->
+<section class="c-depth">
+  <div class="c-depth-inner">
+    <div class="chapter-label rev">
+      <span class="chapter-num">VII</span>
+      <span>The Point</span>
+    </div>
+    <h2 class="rev">The clarity that changes things<br><em>is not a new idea. It is a seen belief.</em></h2>
+    <p class="rev">A person can understand their fear intellectually. Name it, trace its origins, accept its presence. And still feel it the next morning. Because understanding at the level of the conscious mind does not reach the belief that is producing the fear from underneath. The driver does not change direction because the wheel has been adjusted.</p>
+    <p class="rev">The work in this practice is not to make the person smarter about themselves. It is to make the unconscious conscious &ndash; specifically, personally, in a conversation that finds the exact belief that is running the exact pattern the person came in with. When that belief is seen, the pattern is understood at its root. <em>And understood at its root, it is already changing.</em></p>
+    <div class="c-depth-rule rev" aria-hidden="true"></div>
+    <div class="c-depth-line rev">
+      The thing you have been working so hard to overcome<br>
+      <em>was never your enemy. It was your energy, waiting for a different direction.</em>
+    </div>
+    <div class="c-depth-cta rev">
+      <a href="begin-conversation.html" class="btn-gold">Begin a Conversation</a>
+      <a href="book-session.html" class="btn-outline">Book a Session</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     CLOSE
+══════════════════════════════════════ -->
+<section class="c-close">
+  <div class="c-close-inner">
+    <div class="chapter-label rev">
+      <span class="chapter-num">VIII</span>
+      <span>The Next Page</span>
+    </div>
+    <h2 class="rev">You have seen how clarity works.<br><em>Now see what it looks like when the mind is at rest.</em></h2>
+    <p class="rev">Mind Wellness is where the inner work meets the body &ndash; stillness, breath, and the practices that let the clarity found in conversation become the experience of a life lived from a quieter place.</p>
+    <div class="c-close-btns rev">
+      <a href="service-mind-wellness.html" class="btn-gold">Mind Wellness</a>
+      <a href="services.html" class="btn-outline">All Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- GLOBAL FOOTER -->
+<footer class="global-footer">
+  <div class="gf-top">
+    <div class="gf-brand">
+      <div class="gf-logo">
+        <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="gf-logo-text" style="display:none">MECULS</span>
+      </div>
+      <p class="gf-tagline">Mind Enablement Centre for Unlocking Limitless Leadership &amp; Self-Potential</p>
+      <div class="gf-contact">
+        <a href="mailto:Jain.Rajneesh@meculs.com">Jain.Rajneesh@meculs.com</a>
+        <a href="#">Delhi, India</a>
+      </div>
+      <div class="gf-social">
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.5 6.5s-.3-2-1.2-2.8c-1.1-1.2-2.4-1.2-3-1.3C15.6 2.2 12 2.2 12 2.2s-3.6 0-6.3.2c-.6.1-1.9.1-3 1.3C1.8 4.5 1.5 6.5 1.5 6.5S1.2 8.8 1.2 11v2.1c0 2.2.3 4.4.3 4.4s.3 2 1.2 2.8c1.1 1.2 2.6 1.1 3.3 1.2 2.4.2 10 .3 10 .3s3.6 0 6.3-.3c.6-.1 1.9-.1 3-1.3.9-.8 1.2-2.8 1.2-2.8s.3-2.2.3-4.4V11c0-2.2-.3-4.5-.3-4.5zM9.7 14.8V8.4l6.6 3.2-6.6 3.2z"/></svg></a>
+      </div>
+    </div>
+    <div>
+      <p class="gf-col-title">Services</p>
+      <ul class="gf-links">
+        <li><a href="service-personality-profiling.html">Personality Profiling</a></li>
+        <li><a href="service-executive-search.html">Executive Search</a></li>
+        <li><a href="service-hr-analytics.html">HR Analytics &amp; SIOS</a></li>
+        <li><a href="individual-services.html">Individual &amp; Wellness</a></li>
+        <li><a href="services.html">All Services</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="gf-col-title">Company</p>
+      <ul class="gf-links">
+        <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+        <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+        <li><a href="the-approach.html">The Approach</a></li>
+        <li><a href="the-journey.html">The Journey</a></li>
+        <li><a href="why-meculs.html">Why MECULS</a></li>
+        <li><a href="our-work-proof.html">Our Work Proof</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="gf-col-title">Connect</p>
+      <ul class="gf-links">
+        <li><a href="begin-conversation.html">Begin a Conversation</a></li>
+        <li><a href="source-of-challenges.html">Source of Challenges</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms of Service</a></li>
+        <li><a href="refund-policy.html">Refund Policy</a></li>
+        <li><a href="disclaimer.html">Disclaimer</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="gf-bottom">
+    <p class="gf-copy">&copy; 2026 MECULS. All rights reserved. Delhi, India.</p>
+    <div class="gf-legal">
+      <a href="privacy-policy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="refund-policy.html">Refund</a>
+      <a href="disclaimer.html">Disclaimer</a>
+    </div>
+  </div>
+</footer>
+<!-- END GLOBAL FOOTER -->
+
+</div>
+<script src="global.js"></script>
+<script>
+  var ro = new IntersectionObserver(function(e) {
+    e.forEach(function(x) {
+      if (x.isIntersecting) { x.target.classList.add('vis'); ro.unobserve(x.target); }
+    });
+  }, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.rev').forEach(function(el) { ro.observe(el); });
+</script>
+</body>
+</html>
