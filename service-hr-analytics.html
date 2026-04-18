@@ -1,0 +1,1771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="MECULS HR Analytics &ndash; SIOS (Sector Intelligence Operating System). A three-module benchmarking system deployed in IT and Green Energy. KPIs, benchmarking intelligence, strategic signals. The decisions your sector data was always meant to enable.">
+  <title>HR Analytics &amp; SIOS &ndash; MECULS | Rajneesh Jain</title>
+  <link rel="canonical" href="https://www.meculs.com/service-hr-analytics.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Archivo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="global.css">
+  <style>
+
+  :root {
+    --gold:        #d4af37;
+    --gold-light:  #e4bf47;
+    --gold-deep:   #8a6d1a;
+    --gold-dim:    rgba(212,175,55,0.10);
+    --gold-border: rgba(212,175,55,0.22);
+    --ink:         #000814;
+    --ink-2:       #00080f;
+    --ink-3:       #001233;
+    --white:       #ffffff;
+    --cream:       #f7f3ea;
+    --parchment:   #faf7f0;
+    --cream-text:  #1a1713;
+    --cream-body:  #3a342b;
+    --cream-muted: #6b6258;
+    --rule-warm:   rgba(138,109,26,0.22);
+    --rule-warm-2: rgba(138,109,26,0.40);
+    --slate:       #0d1b2a;
+    --slate-2:     #162032;
+    --slate-3:     #1e2d3d;
+    --slate-border:rgba(100,140,180,0.18);
+    --slate-gold:  rgba(212,175,55,0.14);
+    --display:     'Playfair Display', serif;
+    --serif:       'Cormorant Garamond', serif;
+    --ease:        cubic-bezier(0.16,1,0.3,1);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--parchment); color: var(--cream-text);
+    font-family: 'Archivo', sans-serif;
+    line-height: 1.75; -webkit-font-smoothing: antialiased;
+  }
+  .page { padding-top: var(--g-nav-h, 72px); }
+  .wrap-narrow { max-width: 820px; margin: 0 auto; padding: 0 5%; }
+
+  .rev {
+    opacity: 0; transform: translateY(22px);
+    transition: opacity 1.1s var(--ease), transform 1.1s var(--ease);
+  }
+  .rev.vis { opacity: 1; transform: none; }
+
+  .chapter-label {
+    display: inline-flex; align-items: center; gap: 14px;
+    font-size: 0.66rem; font-weight: 700; letter-spacing: 0.26em;
+    text-transform: uppercase; margin-bottom: 1.6rem;
+  }
+  .chapter-label::before {
+    content: ''; width: 48px; height: 1px; background: currentColor; opacity: 0.7;
+  }
+  .chapter-num {
+    font-family: var(--display);
+    font-size: 0.82rem; font-weight: 500; letter-spacing: 0.05em;
+  }
+
+  /* ══════════════════════════════════════
+     HERO &ndash; slate-blue palette, different from profiling's pure ink
+  ══════════════════════════════════════ */
+  .h-hero {
+    min-height: 86vh; position: relative;
+    display: flex; align-items: center;
+    padding: 8rem 0 6rem;
+    background:
+      radial-gradient(ellipse at 15% 20%, rgba(29,78,140,0.22) 0%, transparent 50%),
+      radial-gradient(ellipse at 85% 75%, rgba(212,175,55,0.07) 0%, transparent 50%),
+      linear-gradient(160deg, var(--slate) 0%, var(--ink) 60%, var(--ink-3) 100%);
+    overflow: hidden; color: var(--white);
+  }
+  .h-hero::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(100,140,200,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(100,140,200,0.04) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, #000 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, #000 30%, transparent 80%);
+  }
+  .h-hero-inner {
+    position: relative; z-index: 2;
+    width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 5%;
+    display: grid; grid-template-columns: 1.2fr 0.8fr;
+    gap: 5rem; align-items: center;
+  }
+  .h-hero .chapter-label { color: var(--gold); }
+  .h-hero h1 {
+    font-family: var(--display);
+    font-size: clamp(2.4rem, 5.2vw, 4.6rem);
+    font-weight: 500; line-height: 1.08;
+    letter-spacing: -0.025em; margin-bottom: 1.8rem;
+    color: var(--white);
+  }
+  .h-hero h1 em { font-style: italic; color: var(--gold); }
+  .h-hero-sub {
+    font-family: var(--serif);
+    font-size: clamp(1.15rem, 1.7vw, 1.48rem);
+    font-style: italic; line-height: 1.55;
+    color: rgba(255,255,255,0.82); margin-bottom: 2.2rem;
+    max-width: 560px;
+  }
+  .h-hero-tags {
+    display: flex; flex-wrap: wrap; gap: 0.6rem;
+  }
+  .h-hero-tag {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--slate-border);
+    background: rgba(13,27,42,0.55);
+    font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(180,210,255,0.85); white-space: nowrap;
+  }
+  .h-hero-tag.gold {
+    border-color: rgba(212,175,55,0.45);
+    color: var(--gold-light);
+    background: rgba(0,8,20,0.55);
+  }
+
+  /* The SIOS emblem &ndash; three-module radial */
+  .h-hero-emblem {
+    max-width: 400px; margin: 0 auto; width: 100%;
+    aspect-ratio: 1; position: relative;
+  }
+  .h-hero-emblem svg { width: 100%; height: 100%; }
+  @keyframes pulseRing {
+    0%, 100% { opacity: 0.35; }
+    50%       { opacity: 0.65; }
+  }
+  @keyframes slowSpin {
+    to { transform: rotate(360deg); }
+  }
+  @keyframes slowSpinRev {
+    to { transform: rotate(-360deg); }
+  }
+  .sios-outer { animation: slowSpin 200s linear infinite; transform-origin: center; }
+  .sios-mid   { animation: slowSpinRev 130s linear infinite; transform-origin: center; }
+  .sios-pulse { animation: pulseRing 4s ease-in-out infinite; }
+
+  /* ══════════════════════════════════════
+     POSITION &ndash; the so-what opening
+  ══════════════════════════════════════ */
+  .h-position {
+    padding: 8rem 0 6rem;
+    background: var(--parchment);
+  }
+  .h-position .chapter-label { color: var(--gold-deep); }
+  .h-position h2 {
+    font-family: var(--display);
+    font-size: clamp(2.1rem, 4.2vw, 3.4rem);
+    font-weight: 500; line-height: 1.14;
+    letter-spacing: -0.02em; margin-bottom: 2rem;
+    color: var(--cream-text);
+  }
+  .h-position h2 em { font-style: italic; color: var(--gold-deep); }
+  .h-position p {
+    font-family: var(--serif);
+    font-size: clamp(1.15rem, 1.7vw, 1.38rem);
+    line-height: 1.75; color: var(--cream-body);
+    margin-bottom: 1.4rem;
+  }
+  .h-position p:last-child { margin-bottom: 0; }
+  .h-position p em { font-style: italic; color: var(--gold-deep); font-weight: 500; }
+
+  .h-so-what {
+    margin-top: 3rem;
+    padding: 2rem 2.4rem;
+    background: rgba(13,27,42,0.04);
+    border-left: 2px solid var(--gold-deep);
+  }
+  .h-so-what-label {
+    display: block;
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.26em;
+    text-transform: uppercase; color: var(--gold-deep);
+    margin-bottom: 0.8rem;
+  }
+  .h-so-what p {
+    font-family: var(--serif);
+    font-size: 1.18rem; font-style: italic;
+    color: var(--cream-body); line-height: 1.55;
+    margin-bottom: 0;
+  }
+
+  /* ══════════════════════════════════════
+     THE ORIGIN &ndash; BCG provenance on slate
+  ══════════════════════════════════════ */
+  .h-origin {
+    padding: 7rem 0;
+    background: var(--slate);
+    color: var(--white); position: relative; overflow: hidden;
+  }
+  .h-origin::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse at 80% 20%, rgba(29,78,140,0.18) 0%, transparent 55%);
+  }
+  .h-origin-inner {
+    position: relative; z-index: 2;
+    max-width: 1140px; margin: 0 auto; padding: 0 5%;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+  }
+  .h-origin .chapter-label { color: var(--gold); }
+  .h-origin h2 {
+    font-family: var(--display);
+    font-size: clamp(2rem, 3.8vw, 3rem);
+    font-weight: 500; line-height: 1.14;
+    letter-spacing: -0.02em; margin-bottom: 1.6rem;
+  }
+  .h-origin h2 em { font-style: italic; color: var(--gold); }
+  .h-origin p {
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 1.6vw, 1.28rem);
+    line-height: 1.75; color: rgba(255,255,255,0.84);
+    margin-bottom: 1.3rem;
+  }
+  .h-origin p:last-child { margin-bottom: 0; }
+  .h-origin p em { font-style: italic; color: var(--gold); font-weight: 500; }
+
+  /* BCG credential card */
+  .h-origin-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--slate-border);
+    padding: 2.4rem 2.2rem;
+    position: relative;
+  }
+  .h-origin-card::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--gold-deep), var(--gold), var(--gold-deep));
+  }
+  .h-origin-card-label {
+    display: block;
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.26em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1.2rem;
+  }
+  .h-origin-card h3 {
+    font-family: var(--display);
+    font-size: clamp(1.3rem, 2vw, 1.6rem);
+    font-weight: 500; font-style: italic;
+    color: var(--white); line-height: 1.22;
+    letter-spacing: -0.01em; margin-bottom: 1.2rem;
+  }
+  .h-origin-card p {
+    font-family: var(--serif);
+    font-size: 1.08rem; line-height: 1.65;
+    color: rgba(255,255,255,0.78);
+    margin-bottom: 1.6rem;
+  }
+  .h-origin-card p:last-of-type { margin-bottom: 0; }
+  .h-origin-facts {
+    list-style: none;
+    border-top: 1px solid var(--slate-border);
+    padding-top: 1.2rem;
+    display: flex; flex-direction: column; gap: 0.55rem;
+  }
+  .h-origin-facts li {
+    font-family: var(--serif);
+    font-size: 1rem; font-style: italic;
+    color: rgba(255,255,255,0.72);
+    padding-left: 1rem; position: relative;
+  }
+  .h-origin-facts li::before {
+    content: ''; position: absolute;
+    left: 0; top: 0.72em;
+    width: 8px; height: 1px; background: var(--gold);
+  }
+
+  /* ══════════════════════════════════════
+     THREE MODULES &ndash; the instrument architecture on cream
+  ══════════════════════════════════════ */
+  .h-modules {
+    padding: 8rem 0;
+    background: var(--cream);
+    position: relative;
+  }
+  .h-modules::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(13,27,42,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(13,27,42,0.03) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: linear-gradient(180deg, transparent, #000 12%, #000 88%, transparent);
+    -webkit-mask-image: linear-gradient(180deg, transparent, #000 12%, #000 88%, transparent);
+  }
+  .h-modules-head {
+    max-width: 820px; margin: 0 auto 5rem; padding: 0 5%;
+    position: relative; z-index: 2;
+  }
+  .h-modules .chapter-label { color: var(--gold-deep); }
+  .h-modules-head h2 {
+    font-family: var(--display);
+    font-size: clamp(2.1rem, 4.2vw, 3.4rem);
+    font-weight: 500; line-height: 1.14;
+    letter-spacing: -0.02em; margin-bottom: 1.6rem;
+    color: var(--cream-text);
+  }
+  .h-modules-head h2 em { font-style: italic; color: var(--gold-deep); }
+  .h-modules-head p {
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 1.6vw, 1.28rem);
+    line-height: 1.7; color: var(--cream-body);
+  }
+
+  .h-module-stack {
+    max-width: 1040px; margin: 0 auto; padding: 0 5%;
+    display: flex; flex-direction: column;
+    position: relative; z-index: 2;
+  }
+  .h-module {
+    display: grid; grid-template-columns: 160px 1fr;
+    gap: 3.5rem; align-items: start;
+    padding: 4rem 0;
+    border-top: 1px solid var(--rule-warm);
+  }
+  .h-module:last-child { border-bottom: 1px solid var(--rule-warm); }
+
+  .h-module-mark {
+    display: flex; flex-direction: column; align-items: flex-start;
+  }
+  .h-module-num {
+    font-family: var(--display);
+    font-size: clamp(4rem, 8vw, 6.5rem);
+    font-weight: 500; line-height: 0.9;
+    color: var(--gold-deep); opacity: 0.88;
+    letter-spacing: -0.03em; position: relative;
+  }
+  .h-module-num::after {
+    content: ''; position: absolute;
+    left: 0; bottom: -0.5rem;
+    width: 52px; height: 2px; background: var(--gold-deep);
+  }
+  .h-module-tag {
+    font-family: 'Archivo', sans-serif;
+    font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.26em; text-transform: uppercase;
+    color: var(--gold-deep); margin-top: 1.8rem;
+  }
+
+  .h-module-body h3 {
+    font-family: var(--display);
+    font-size: clamp(1.5rem, 2.4vw, 2rem);
+    font-weight: 500; font-style: italic;
+    color: var(--cream-text); line-height: 1.22;
+    letter-spacing: -0.01em; margin-bottom: 1.4rem;
+  }
+  .h-module-body > p {
+    font-family: var(--serif);
+    font-size: clamp(1.08rem, 1.55vw, 1.22rem);
+    line-height: 1.75; color: var(--cream-body);
+    margin-bottom: 1rem;
+  }
+  .h-module-body > p:last-of-type { margin-bottom: 0; }
+  .h-module-body > p em { font-style: italic; color: var(--gold-deep); font-weight: 500; }
+
+  .h-module-kpis {
+    margin-top: 1.8rem;
+    padding: 1.5rem 1.8rem;
+    background: rgba(138,109,26,0.05);
+    border: 1px solid rgba(138,109,26,0.15);
+  }
+  .h-module-kpis-label {
+    display: block;
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.24em;
+    text-transform: uppercase; color: var(--gold-deep);
+    margin-bottom: 0.9rem;
+  }
+  .h-module-kpis ul {
+    list-style: none;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0.55rem 1.6rem;
+  }
+  .h-module-kpis li {
+    font-family: var(--serif);
+    font-size: 1rem; font-style: italic;
+    color: var(--cream-body); line-height: 1.5;
+    padding-left: 1rem; position: relative;
+  }
+  .h-module-kpis li::before {
+    content: ''; position: absolute;
+    left: 0; top: 0.64em;
+    width: 5px; height: 5px;
+    background: var(--gold-deep); border-radius: 50%;
+  }
+
+  /* ══════════════════════════════════════
+     C&B BENCHMARKING &ndash; its own section on slate
+  ══════════════════════════════════════ */
+  .h-cb {
+    padding: 8rem 0;
+    background: var(--ink);
+    color: var(--white); position: relative; overflow: hidden;
+  }
+  .h-cb::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse at 20% 30%, rgba(29,78,140,0.14) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 70%, rgba(212,175,55,0.06) 0%, transparent 50%);
+  }
+  .h-cb-inner {
+    position: relative; z-index: 2;
+    max-width: 1140px; margin: 0 auto; padding: 0 5%;
+  }
+  .h-cb-head {
+    max-width: 820px; margin: 0 auto 4rem;
+  }
+  .h-cb .chapter-label { color: var(--gold); }
+  .h-cb-head h2 {
+    font-family: var(--display);
+    font-size: clamp(2.1rem, 4.2vw, 3.4rem);
+    font-weight: 500; line-height: 1.14;
+    letter-spacing: -0.02em; margin-bottom: 1.6rem;
+  }
+  .h-cb-head h2 em { font-style: italic; color: var(--gold); }
+  .h-cb-head p {
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 1.6vw, 1.28rem);
+    line-height: 1.75; color: rgba(255,255,255,0.84);
+    margin-bottom: 1.2rem;
+  }
+  .h-cb-head p:last-child { margin-bottom: 0; }
+  .h-cb-head p em { font-style: italic; color: var(--gold); font-weight: 500; }
+
+  .h-cb-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem;
+    margin-top: 1rem;
+  }
+  .h-cb-card {
+    padding: 2rem 1.8rem 1.8rem;
+    border: 1px solid var(--gold-border);
+    background: rgba(0,8,20,0.38);
+    display: flex; flex-direction: column;
+    min-height: 220px;
+    transition: border-color 0.4s var(--ease), background 0.4s var(--ease);
+  }
+  .h-cb-card:hover {
+    border-color: rgba(212,175,55,0.5);
+    background: rgba(0,8,20,0.52);
+  }
+  .h-cb-card-label {
+    display: block;
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.26em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .h-cb-card h4 {
+    font-family: var(--display);
+    font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+    font-weight: 500; font-style: italic;
+    color: var(--white); line-height: 1.25;
+    letter-spacing: -0.01em; margin-bottom: 0.9rem;
+  }
+  .h-cb-card ul {
+    list-style: none; flex: 1;
+    display: flex; flex-direction: column; gap: 0.4rem;
+  }
+  .h-cb-card li {
+    font-family: var(--serif);
+    font-size: 0.98rem; line-height: 1.55;
+    color: rgba(255,255,255,0.78);
+    padding-left: 0.9rem; position: relative;
+  }
+  .h-cb-card li::before {
+    content: ''; position: absolute;
+    left: 0; top: 0.72em;
+    width: 5px; height: 1px; background: var(--gold);
+  }
+
+  /* ══════════════════════════════════════
+     MOAT &ndash; what BCG did not have, MECULS built
+  ══════════════════════════════════════ */
+  .h-moat {
+    padding: 8rem 0;
+    background: var(--parchment);
+  }
+  .h-moat-head {
+    max-width: 820px; margin: 0 auto 4.5rem; padding: 0 5%;
+  }
+  .h-moat .chapter-label { color: var(--gold-deep); }
+  .h-moat-head h2 {
+    font-family: var(--display);
+    font-size: clamp(2rem, 3.8vw, 3rem);
+    font-weight: 500; line-height: 1.14;
+    letter-spacing: -0.02em; margin-bottom: 1.6rem;
+    color: var(--cream-text);
+  }
+  .h-moat-head h2 em { font-style: italic; color: var(--gold-deep); }
+  .h-moat-head p {
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 1.6vw, 1.25rem);
+    line-height: 1.72; color: var(--cream-body);
+  }
+
+  .h-moat-grid {
+    max-width: 1140px; margin: 0 auto; padding: 0 5%;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem;
+  }
+  .h-moat-cell {
+    padding: 2rem 1.7rem 1.8rem;
+    background: var(--white);
+    border: 1px solid var(--rule-warm);
+    display: flex; flex-direction: column;
+    transition: border-color 0.4s var(--ease),
+                transform 0.4s var(--ease),
+                box-shadow 0.4s var(--ease);
+  }
+  .h-moat-cell:hover {
+    border-color: var(--rule-warm-2);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  }
+  .h-moat-cell-icon {
+    width: 36px; height: 36px; margin-bottom: 1.1rem;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(138,109,26,0.08);
+    border: 1px solid rgba(138,109,26,0.18);
+  }
+  .h-moat-cell-icon svg { width: 18px; height: 18px; stroke: var(--gold-deep); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .h-moat-cell h4 {
+    font-family: var(--display);
+    font-size: 1.08rem; font-weight: 600; font-style: italic;
+    color: var(--cream-text); line-height: 1.25;
+    letter-spacing: -0.005em; margin-bottom: 0.7rem;
+  }
+  .h-moat-cell p {
+    font-family: var(--serif);
+    font-size: 0.98rem; line-height: 1.6;
+    color: var(--cream-body); flex: 1;
+  }
+  .h-moat-cell p em { font-style: italic; color: var(--gold-deep); }
+
+  /* ══════════════════════════════════════
+     SECTORS &ndash; where deployed
+  ══════════════════════════════════════ */
+  .h-sectors {
+    padding: 7rem 0;
+    background: var(--cream);
+  }
+  .h-sectors-head {
+    max-width: 820px; margin: 0 auto 4rem; padding: 0 5%;
+    text-align: center;
+  }
+  .h-sectors .chapter-label { color: var(--gold-deep); justify-content: center; }
+  .h-sectors .chapter-label::after {
+    content: ''; width: 48px; height: 1px; background: var(--gold-deep); opacity: 0.7;
+  }
+  .h-sectors-head h2 {
+    font-family: var(--display);
+    font-size: clamp(2rem, 3.8vw, 3rem);
+    font-weight: 500; line-height: 1.14;
+    letter-spacing: -0.02em; margin-bottom: 1.4rem;
+    color: var(--cream-text);
+  }
+  .h-sectors-head h2 em { font-style: italic; color: var(--gold-deep); }
+  .h-sectors-head p {
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 1.6vw, 1.22rem);
+    font-style: italic; line-height: 1.55;
+    color: var(--cream-body); max-width: 640px; margin: 0 auto;
+  }
+
+  .h-sectors-grid {
+    max-width: 1140px; margin: 0 auto; padding: 0 5%;
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.6rem;
+  }
+  .h-sector-card {
+    background: var(--white);
+    border: 1px solid var(--rule-warm);
+    padding: 2.4rem 2.2rem;
+    position: relative;
+    transition: border-color 0.4s, transform 0.4s, box-shadow 0.4s;
+  }
+  .h-sector-card:hover {
+    border-color: var(--rule-warm-2);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 36px rgba(0,0,0,0.06);
+  }
+  .h-sector-status {
+    display: inline-block;
+    padding: 0.28rem 0.7rem;
+    font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    margin-bottom: 1.1rem;
+  }
+  .h-sector-status.live {
+    background: rgba(138,109,26,0.1);
+    color: var(--gold-deep);
+    border: 1px solid rgba(138,109,26,0.25);
+  }
+  .h-sector-status.coming {
+    background: rgba(13,27,42,0.06);
+    color: var(--cream-muted);
+    border: 1px solid rgba(13,27,42,0.12);
+  }
+  .h-sector-card h3 {
+    font-family: var(--display);
+    font-size: clamp(1.25rem, 1.9vw, 1.5rem);
+    font-weight: 600; color: var(--cream-text);
+    line-height: 1.2; letter-spacing: -0.01em;
+    margin-bottom: 0.9rem;
+  }
+  .h-sector-card h3 em { font-style: italic; color: var(--gold-deep); }
+  .h-sector-card p {
+    font-family: var(--serif);
+    font-size: 1.05rem; line-height: 1.65;
+    color: var(--cream-body);
+  }
+
+  /* ══════════════════════════════════════
+     THE DELIVERABLE
+  ══════════════════════════════════════ */
+  .h-deliverable {
+    padding: 8rem 0;
+    background: var(--slate);
+    color: var(--white); position: relative; overflow: hidden;
+  }
+  .h-deliverable::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse at 60% 40%, rgba(212,175,55,0.06) 0%, transparent 55%);
+  }
+  .h-del-inner {
+    position: relative; z-index: 2;
+    max-width: 1200px; margin: 0 auto; padding: 0 5%;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+  }
+  .h-deliverable .chapter-label { color: var(--gold); }
+  .h-del-text h2 {
+    font-family: var(--display);
+    font-size: clamp(2rem, 3.8vw, 3rem);
+    font-weight: 500; line-height: 1.14;
+    letter-spacing: -0.02em; margin-bottom: 1.6rem;
+  }
+  .h-del-text h2 em { font-style: italic; color: var(--gold); }
+  .h-del-text p {
+    font-family: var(--serif);
+    font-size: clamp(1.08rem, 1.55vw, 1.22rem);
+    line-height: 1.72; color: rgba(255,255,255,0.84);
+    margin-bottom: 1.2rem;
+  }
+  .h-del-text p:last-child { margin-bottom: 0; }
+  .h-del-text p em { font-style: italic; color: var(--gold); font-weight: 500; }
+
+  /* Document object */
+  .h-del-doc {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--slate-border);
+    padding: 2.4rem 2.2rem 2rem;
+    position: relative; max-width: 460px; margin: 0 auto; width: 100%;
+  }
+  .h-del-doc::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .h-doc-head {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--slate-border);
+    margin-bottom: 1.2rem;
+  }
+  .h-doc-brand {
+    font-family: var(--display);
+    font-size: 0.68rem; font-weight: 600;
+    letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold);
+  }
+  .h-doc-ref {
+    font-family: 'Archivo', sans-serif;
+    font-size: 0.56rem; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.38); white-space: nowrap;
+  }
+  .h-doc-title {
+    font-family: var(--display);
+    font-size: 1.2rem; font-weight: 500;
+    color: var(--white); line-height: 1.2;
+    letter-spacing: -0.01em; margin-bottom: 0.3rem;
+  }
+  .h-doc-title em { font-style: italic; color: var(--gold); }
+  .h-doc-sub {
+    font-family: var(--serif);
+    font-size: 0.92rem; font-style: italic;
+    color: rgba(255,255,255,0.45); margin-bottom: 1.4rem;
+  }
+
+  .h-doc-modules {
+    display: flex; flex-direction: column; gap: 0.55rem;
+    margin-bottom: 1.4rem;
+  }
+  .h-doc-module {
+    display: flex; align-items: center; gap: 0.8rem;
+    padding: 0.65rem 1rem;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--slate-border);
+  }
+  .h-doc-module-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .h-doc-module-dot.m1 { background: #3b8a3f; }
+  .h-doc-module-dot.m2 { background: #b85a10; }
+  .h-doc-module-dot.m3 { background: #534ab7; }
+  .h-doc-module-name {
+    font-family: 'Archivo', sans-serif;
+    font-size: 0.76rem; font-weight: 600;
+    color: rgba(255,255,255,0.82); letter-spacing: 0.02em;
+  }
+  .h-doc-module-desc {
+    font-family: var(--serif);
+    font-size: 0.88rem; font-style: italic;
+    color: rgba(255,255,255,0.45); margin-left: auto;
+    white-space: nowrap;
+  }
+  .h-doc-foot {
+    padding-top: 1rem;
+    border-top: 1px solid var(--slate-border);
+    font-family: var(--serif);
+    font-size: 0.85rem; font-style: italic;
+    color: rgba(255,255,255,0.45); line-height: 1.5;
+  }
+
+  /* ══════════════════════════════════════
+     THE CONVICTION CLOSE
+  ══════════════════════════════════════ */
+  .h-depth {
+    padding: 8rem 0;
+    background: var(--ink-2);
+    color: var(--white); position: relative; overflow: hidden;
+  }
+  .h-depth::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse at 50% 35%, rgba(29,78,140,0.12) 0%, transparent 55%);
+  }
+  .h-depth-inner {
+    position: relative; z-index: 2;
+    max-width: 880px; margin: 0 auto; padding: 0 5%;
+    text-align: center;
+  }
+  .h-depth .chapter-label { color: var(--gold); justify-content: center; }
+  .h-depth .chapter-label::after {
+    content: ''; width: 48px; height: 1px; background: var(--gold); opacity: 0.7;
+  }
+  .h-depth h2 {
+    font-family: var(--display);
+    font-size: clamp(2.1rem, 4.2vw, 3.4rem);
+    font-weight: 500; line-height: 1.14;
+    letter-spacing: -0.02em; margin-bottom: 2rem;
+  }
+  .h-depth h2 em { font-style: italic; color: var(--gold); }
+  .h-depth p {
+    font-family: var(--serif);
+    font-size: clamp(1.15rem, 1.7vw, 1.38rem);
+    line-height: 1.7; color: rgba(255,255,255,0.85);
+    margin-bottom: 1.3rem;
+  }
+  .h-depth p:last-of-type { margin-bottom: 0; }
+  .h-depth p em { font-style: italic; color: var(--gold); font-weight: 500; }
+
+  .h-depth-rule {
+    width: 1px; height: 52px;
+    background: linear-gradient(180deg, transparent, var(--gold), transparent);
+    margin: 2.4rem auto;
+  }
+  .h-depth-line {
+    font-family: var(--display);
+    font-size: clamp(1.3rem, 2.2vw, 1.75rem);
+    font-weight: 500; font-style: italic;
+    color: var(--white); line-height: 1.4;
+    max-width: 720px; margin: 0 auto 2.8rem;
+    letter-spacing: -0.005em;
+  }
+  .h-depth-line em { color: var(--gold); }
+  .h-depth-cta {
+    display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap;
+  }
+
+  /* ══════════════════════════════════════
+     CLOSE
+  ══════════════════════════════════════ */
+  .h-close {
+    padding: 7rem 0;
+    background: linear-gradient(160deg, var(--slate) 0%, var(--ink) 60%, var(--ink-3) 100%);
+    color: var(--white); text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .h-close::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(100,140,200,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(100,140,200,0.03) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: radial-gradient(ellipse at center, #000 20%, transparent 72%);
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 20%, transparent 72%);
+  }
+  .h-close-inner {
+    position: relative; z-index: 2;
+    max-width: 760px; margin: 0 auto; padding: 0 5%;
+  }
+  .h-close .chapter-label { color: var(--gold); justify-content: center; }
+  .h-close .chapter-label::after {
+    content: ''; width: 48px; height: 1px; background: var(--gold); opacity: 0.7;
+  }
+  .h-close h2 {
+    font-family: var(--display);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 500; line-height: 1.14;
+    letter-spacing: -0.02em; margin-bottom: 1.6rem;
+  }
+  .h-close h2 em { font-style: italic; color: var(--gold); }
+  .h-close p {
+    font-family: var(--serif);
+    font-size: clamp(1.15rem, 1.7vw, 1.35rem);
+    font-style: italic; line-height: 1.6;
+    color: rgba(255,255,255,0.82); margin-bottom: 2.6rem;
+  }
+  .h-close-btns {
+    display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap;
+  }
+
+  /* ══════════════════════════════════════
+     SIOS ARCHITECTURE DIAGRAM
+  ══════════════════════════════════════ */
+  .h-arch-wrap {
+    max-width: 1100px; margin: 3.5rem auto 0;
+    padding: 0 5%;
+    position: relative; z-index: 2;
+  }
+  .h-arch-label {
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.26em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1rem;
+    padding-left: 0;
+  }
+  .h-arch-diagram {
+    background: rgba(255,255,255,0.025);
+    border: 1px solid var(--slate-border);
+    padding: 2rem 1.5rem 1.5rem;
+    overflow-x: auto;
+  }
+  .h-arch-diagram svg {
+    width: 100%; min-width: 600px; display: block;
+  }
+
+  /* ══════════════════════════════════════
+     CB LADDER DIAGRAM
+  ══════════════════════════════════════ */
+  .h-cb-ladder {
+    max-width: 1100px; margin: 0 auto 3.5rem;
+    overflow-x: auto;
+    border: 1px solid var(--gold-border);
+    background: rgba(0,8,20,0.30);
+    padding: 1.8rem 1.5rem 1.2rem;
+  }
+  .h-cb-ladder svg {
+    width: 100%; min-width: 640px; display: block;
+  }
+
+  .btn-gold {
+    padding: 1.05rem 2.6rem; background: var(--gold); color: var(--ink);
+    font-size: 0.76rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; text-decoration: none;
+    transition: background 0.3s, transform 0.2s; display: inline-block;
+  }
+  .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline {
+    padding: 1.05rem 2.6rem; border: 1px solid var(--gold-border);
+    color: var(--gold); font-size: 0.76rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none;
+    transition: background 0.3s, transform 0.2s; display: inline-block;
+    background: rgba(0,8,20,0.35);
+  }
+  .btn-outline:hover { background: var(--gold-dim); transform: translateY(-2px); }
+
+  /* ══════════════════════════════════════
+     RESPONSIVE
+  ══════════════════════════════════════ */
+  @media (max-width: 1024px) {
+    .h-hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .h-hero-emblem { max-width: 320px; }
+    .h-origin-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .h-del-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .h-moat-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    .h-module { grid-template-columns: 1fr; gap: 1.5rem; padding: 3rem 0; }
+    .h-module-num { font-size: 5rem; }
+    .h-module-kpis ul { grid-template-columns: 1fr; }
+    .h-cb-grid { grid-template-columns: 1fr; }
+    .h-moat-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .h-sectors-grid { grid-template-columns: 1fr; }
+    .h-hero, .h-position, .h-origin, .h-modules, .h-cb,
+    .h-moat, .h-sectors, .h-deliverable, .h-depth, .h-close {
+      padding-top: 5rem; padding-bottom: 5rem;
+    }
+  }
+  @media (max-width: 600px) {
+    .h-moat-grid { grid-template-columns: 1fr; }
+    .h-cb-card { min-height: 0; }
+    .h-del-doc { padding: 2rem 1.5rem 1.8rem; }
+    .h-doc-head { flex-direction: column; gap: 0.5rem; }
+    .h-doc-module-desc { display: none; }
+    .h-module { padding: 2.5rem 0; }
+  }
+
+  </style>
+</head>
+<body>
+<div class="page">
+
+<!-- GLOBAL HEADER -->
+<header class="global-header">
+  <a href="index.html" class="gh-logo">
+    <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS"
+         onerror="this.style.display='none';document.querySelector('.gh-logo-text').style.display='block'">
+    <span class="gh-logo-text">MECULS</span>
+  </a>
+  <nav aria-label="Global navigation">
+    <ul class="gh-nav gh-nav-wrap">
+      <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+      <li><a href="contexts.html">Contexts</a></li>
+      <li><a href="the-approach.html">The Approach</a></li>
+      <li><a href="insights.html">Insights</a></li>
+      <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+      <li><a href="begin-conversation.html" class="gh-cta">Begin a Conversation</a></li>
+    </ul>
+  </nav>
+  <button class="gh-toggle" id="ghToggle" aria-label="Open navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+<div class="gh-mobile-menu" id="ghMobileMenu" role="dialog" aria-label="Mobile navigation">
+  <ul class="gh-mobile-nav">
+    <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+    <li><a href="contexts.html">Contexts</a></li>
+    <li><a href="the-approach.html">The Approach</a></li>
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+  </ul>
+  <a href="begin-conversation.html" class="gh-mobile-cta">Begin a Conversation</a>
+</div>
+<!-- END GLOBAL HEADER -->
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<section class="h-hero">
+  <div class="h-hero-inner">
+    <div class="h-hero-text">
+      <div class="chapter-label">
+        <span class="chapter-num">I</span>
+        <span>HR Analytics &amp; SIOS</span>
+      </div>
+      <h1>
+        Most sector data tells you<br>
+        <em>what already happened.</em><br>
+        This one tells you what to do next.
+      </h1>
+      <p class="h-hero-sub">
+        SIOS &ndash; Sector Intelligence Operating System &ndash; is a three-module benchmarking instrument built to produce decisions, not reports.
+      </p>
+      <div class="h-hero-tags">
+        <span class="h-hero-tag gold">SIOS</span>
+        <span class="h-hero-tag">KPIs</span>
+        <span class="h-hero-tag">Benchmarking</span>
+        <span class="h-hero-tag">Strategic Signals</span>
+        <span class="h-hero-tag gold">C&amp;B Intelligence</span>
+      </div>
+    </div>
+
+    <div class="h-hero-emblem" aria-hidden="true">
+      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" fill="none">
+        <!-- outer ring -->
+        <g class="sios-outer">
+          <circle cx="200" cy="200" r="188" stroke="rgba(100,140,200,0.18)" stroke-width="0.5"/>
+          <circle cx="200" cy="200" r="188" stroke="rgba(100,140,200,0.30)" stroke-width="0.5" stroke-dasharray="3 18"/>
+        </g>
+        <!-- mid ring -->
+        <g class="sios-mid">
+          <circle cx="200" cy="200" r="134" stroke="rgba(212,175,55,0.30)" stroke-width="0.5"/>
+          <circle cx="200" cy="200" r="134" stroke="rgba(212,175,55,0.50)" stroke-width="0.8" stroke-dasharray="1 20"/>
+        </g>
+        <!-- three-module triangle -->
+        <g stroke="rgba(212,175,55,0.75)" stroke-width="1">
+          <polygon points="200,90 296,245 104,245"/>
+        </g>
+        <!-- module nodes -->
+        <circle cx="200" cy="90" r="5" fill="#3b8a3f"/>
+        <circle cx="296" cy="245" r="5" fill="#b85a10"/>
+        <circle cx="104" cy="245" r="5" fill="#534ab7"/>
+        <!-- centre to nodes -->
+        <g stroke="rgba(212,175,55,0.28)" stroke-width="0.6" stroke-dasharray="3 5">
+          <line x1="200" y1="200" x2="200" y2="90"/>
+          <line x1="200" y1="200" x2="296" y2="245"/>
+          <line x1="200" y1="200" x2="104" y2="245"/>
+        </g>
+        <!-- inner circle -->
+        <circle cx="200" cy="200" r="74" stroke="rgba(100,140,200,0.20)" stroke-width="0.5"/>
+        <!-- centre -->
+        <circle cx="200" cy="200" r="5" fill="#d4af37"/>
+        <circle cx="200" cy="200" r="14" fill="none" stroke="rgba(212,175,55,0.40)" stroke-width="0.6"/>
+        <!-- pulsing outer halo -->
+        <circle cx="200" cy="200" r="155" class="sios-pulse" fill="none" stroke="rgba(100,140,200,0.12)" stroke-width="0.5"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     POSITION &ndash; the so-what opening
+══════════════════════════════════════ -->
+<section class="h-position">
+  <div class="wrap-narrow rev">
+    <div class="chapter-label">
+      <span class="chapter-num">II</span>
+      <span>The Position</span>
+    </div>
+    <h2>The sector data already exists.<br><em>The problem is what gets done with it.</em></h2>
+    <p>Every large consulting firm can produce a sector report. They will tell you the revenue growth rates, the market share positions, the compensation medians. They will produce slides of considerable visual sophistication. The report will be read once and then sit. What it will not do is tell the person who commissioned it what to change, what to hold, what to move on, and by when.</p>
+    <p>The reason is structural. Intelligence is only as useful as the decision it enables. A sector benchmark that shows you are in the third quartile on EBITDA margin is not useful by itself. What is useful is knowing precisely which operational choices put you there, what the leading companies did differently, and what the adjustment looks like in your own numbers. <em>That is the difference between a report and a system.</em></p>
+
+    <div class="h-so-what">
+      <span class="h-so-what-label">The governing question</span>
+      <p>Every output of SIOS is held against a single question before it leaves the system: so what? If the answer to that question is not a decision, the output is not finished.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     ORIGIN &ndash; BCG provenance
+══════════════════════════════════════ -->
+<section class="h-origin">
+  <div class="h-origin-inner">
+    <div class="rev">
+      <div class="chapter-label">
+        <span class="chapter-num">III</span>
+        <span>Where It Was Built</span>
+      </div>
+      <h2>Built for one of the world&rsquo;s most demanding strategy firms.<br><em>Then built further.</em></h2>
+      <p>The instrument that became SIOS was first commissioned as an external engagement for BCG &ndash; The Boston Consulting Group. The brief was an IT sector benchmarking tool capable of tracking KPIs, segment performance, and year-on-year movement across a defined company universe.</p>
+      <p>What was delivered went beyond the brief. The tool was built on a single-source-of-truth data architecture &ndash; no hardcoded numbers anywhere, every view derived from one master database, every slicer live. <em>Adding a new financial year required one row, and all 22 views updated automatically.</em></p>
+      <p>After BCG, the instrument was extended into Green Energy &amp; Mobility in India &ndash; a sector with a younger data history, more volatile KPIs, and an ESG dimension that conventional benchmarking tools had not been built to handle. That extension required new modules. Those modules are now part of the standard instrument.</p>
+    </div>
+
+    <div class="h-origin-card rev">
+      <span class="h-origin-card-label">The BCG engagement</span>
+      <h3>IT Sector Benchmarking Tool<br>Built as external consultant for BCG</h3>
+      <p>A 22-sheet benchmarking system covering KPIs, segment analysis, Y-o-Y growth, revenue&ndash;employee slabs, and a master view that updated across all sheets from a single data entry point.</p>
+      <ul class="h-origin-facts">
+        <li>Single source of truth &ndash; no hardcoded numbers in any view sheet</li>
+        <li>Live pivot tables connected directly to master database</li>
+        <li>Slicers operating across KPI master, detailed, and growth views</li>
+        <li>Year-on-year scalable &ndash; one row added, all views auto-update</li>
+        <li>KPIs by segment, by geography, by Y-o-Y growth</li>
+        <li>Personnel and non-personnel expense breakdowns</li>
+        <li>Working capital ratios and client metrics</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SIOS Architecture Diagram -->
+  <div class="h-arch-wrap rev">
+    <div class="h-arch-label">SIOS &ndash; data architecture</div>
+    <div class="h-arch-diagram" aria-label="SIOS single-source-of-truth architecture diagram">
+      <svg viewBox="0 0 960 340" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <marker id="arr-gold" viewBox="0 0 10 10" refX="8" refY="5"
+                  markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M2 2L8 5L2 8" fill="none" stroke="#d4af37" stroke-width="1.5"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+          <marker id="arr-dim" viewBox="0 0 10 10" refX="8" refY="5"
+                  markerWidth="5" markerHeight="5" orient="auto">
+            <path d="M2 2L8 5L2 8" fill="none" stroke="rgba(212,175,55,0.40)" stroke-width="1.5"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+        </defs>
+
+        <!-- Master Database -->
+        <rect x="330" y="18" width="300" height="72" rx="4"
+              fill="rgba(212,175,55,0.10)" stroke="#d4af37" stroke-width="1.2"/>
+        <text x="480" y="44" text-anchor="middle"
+              font-family="'Playfair Display',serif" font-size="13" font-weight="600"
+              fill="#d4af37" letter-spacing="0.04em">Master Database</text>
+        <text x="480" y="62" text-anchor="middle"
+              font-family="'Cormorant Garamond',serif" font-size="11" font-style="italic"
+              fill="rgba(212,175,55,0.70)">Single source of truth &ndash; no hardcoded numbers anywhere</text>
+        <text x="480" y="78" text-anchor="middle"
+              font-family="'Archivo',sans-serif" font-size="9.5" font-weight="600"
+              fill="rgba(212,175,55,0.50)" letter-spacing="0.08em">ONE ROW ADDED &rarr; ALL 22 VIEWS UPDATE</text>
+
+        <!-- Arrows: master to modules -->
+        <line x1="380" y1="90" x2="148" y2="155"
+              stroke="#d4af37" stroke-width="1" stroke-dasharray="4 4"
+              marker-end="url(#arr-gold)" opacity="0.70"/>
+        <line x1="480" y1="90" x2="480" y2="155"
+              stroke="#d4af37" stroke-width="1.2"
+              marker-end="url(#arr-gold)" opacity="0.85"/>
+        <line x1="580" y1="90" x2="812" y2="155"
+              stroke="#d4af37" stroke-width="1" stroke-dasharray="4 4"
+              marker-end="url(#arr-gold)" opacity="0.70"/>
+
+        <!-- Module 1: KPIs -->
+        <rect x="30" y="155" width="236" height="80" rx="4"
+              fill="rgba(59,138,63,0.12)" stroke="rgba(59,138,63,0.55)" stroke-width="1"/>
+        <text x="148" y="180" text-anchor="middle"
+              font-family="'Archivo',sans-serif" font-size="10" font-weight="700"
+              fill="rgba(59,138,63,0.90)" letter-spacing="0.14em">MODULE 01</text>
+        <text x="148" y="198" text-anchor="middle"
+              font-family="'Playfair Display',serif" font-size="13" font-weight="500"
+              fill="#e8f5e9">KPIs</text>
+        <text x="148" y="214" text-anchor="middle"
+              font-family="'Cormorant Garamond',serif" font-size="11" font-style="italic"
+              fill="rgba(232,245,233,0.60)">Financial &amp; operating foundation</text>
+        <text x="148" y="229" text-anchor="middle"
+              font-family="'Archivo',sans-serif" font-size="9" font-weight="600"
+              fill="rgba(59,138,63,0.65)" letter-spacing="0.08em">12 KPI VIEWS &bull; LIVE SLICERS</text>
+
+        <!-- Module 2: Benchmarking -->
+        <rect x="362" y="155" width="236" height="80" rx="4"
+              fill="rgba(184,90,16,0.12)" stroke="rgba(184,90,16,0.55)" stroke-width="1"/>
+        <text x="480" y="180" text-anchor="middle"
+              font-family="'Archivo',sans-serif" font-size="10" font-weight="700"
+              fill="rgba(184,90,16,0.90)" letter-spacing="0.14em">MODULE 02</text>
+        <text x="480" y="198" text-anchor="middle"
+              font-family="'Playfair Display',serif" font-size="13" font-weight="500"
+              fill="#fff3e0">Benchmarking</text>
+        <text x="480" y="214" text-anchor="middle"
+              font-family="'Cormorant Garamond',serif" font-size="11" font-style="italic"
+              fill="rgba(255,243,224,0.60)">Quartiles, CAGR, normalisation</text>
+        <text x="480" y="229" text-anchor="middle"
+              font-family="'Archivo',sans-serif" font-size="9" font-weight="600"
+              fill="rgba(184,90,16,0.65)" letter-spacing="0.08em">WHERE YOU STAND IN THE SECTOR</text>
+
+        <!-- Module 3: Strategic Signals -->
+        <rect x="694" y="155" width="236" height="80" rx="4"
+              fill="rgba(83,74,183,0.12)" stroke="rgba(83,74,183,0.55)" stroke-width="1"/>
+        <text x="812" y="180" text-anchor="middle"
+              font-family="'Archivo',sans-serif" font-size="10" font-weight="700"
+              fill="rgba(130,120,230,0.90)" letter-spacing="0.14em">MODULE 03</text>
+        <text x="812" y="198" text-anchor="middle"
+              font-family="'Playfair Display',serif" font-size="13" font-weight="500"
+              fill="#ede7f6">Strategic Signals</text>
+        <text x="812" y="214" text-anchor="middle"
+              font-family="'Cormorant Garamond',serif" font-size="11" font-style="italic"
+              fill="rgba(237,231,246,0.60)">Pre-empt the future</text>
+        <text x="812" y="229" text-anchor="middle"
+              font-family="'Archivo',sans-serif" font-size="9" font-weight="600"
+              fill="rgba(83,74,183,0.65)" letter-spacing="0.08em">BOARD-READY SNAPSHOTS</text>
+
+        <!-- Arrows: modules to outputs -->
+        <line x1="148" y1="235" x2="148" y2="275"
+              stroke="rgba(212,175,55,0.35)" stroke-width="1" stroke-dasharray="3 4"
+              marker-end="url(#arr-dim)"/>
+        <line x1="480" y1="235" x2="480" y2="275"
+              stroke="rgba(212,175,55,0.35)" stroke-width="1" stroke-dasharray="3 4"
+              marker-end="url(#arr-dim)"/>
+        <line x1="812" y1="235" x2="812" y2="275"
+              stroke="rgba(212,175,55,0.35)" stroke-width="1" stroke-dasharray="3 4"
+              marker-end="url(#arr-dim)"/>
+
+        <!-- Output row -->
+        <rect x="30" y="275" width="236" height="48" rx="3"
+              fill="rgba(255,255,255,0.025)" stroke="rgba(212,175,55,0.18)" stroke-width="0.8"/>
+        <text x="148" y="294" text-anchor="middle"
+              font-family="'Archivo',sans-serif" font-size="9" font-weight="700"
+              fill="rgba(212,175,55,0.50)" letter-spacing="0.12em">OUTPUT</text>
+        <text x="148" y="312" text-anchor="middle"
+              font-family="'Cormorant Garamond',serif" font-size="11" font-style="italic"
+              fill="rgba(255,255,255,0.48)">22-view master &bull; segment &bull; geography</text>
+
+        <rect x="362" y="275" width="236" height="48" rx="3"
+              fill="rgba(255,255,255,0.025)" stroke="rgba(212,175,55,0.18)" stroke-width="0.8"/>
+        <text x="480" y="294" text-anchor="middle"
+              font-family="'Archivo',sans-serif" font-size="9" font-weight="700"
+              fill="rgba(212,175,55,0.50)" letter-spacing="0.12em">OUTPUT</text>
+        <text x="480" y="312" text-anchor="middle"
+              font-family="'Cormorant Garamond',serif" font-size="11" font-style="italic"
+              fill="rgba(255,255,255,0.48)">C&amp;B intelligence &bull; pay-performance matrix</text>
+
+        <rect x="694" y="275" width="236" height="48" rx="3"
+              fill="rgba(255,255,255,0.025)" stroke="rgba(212,175,55,0.18)" stroke-width="0.8"/>
+        <text x="812" y="294" text-anchor="middle"
+              font-family="'Archivo',sans-serif" font-size="9" font-weight="700"
+              fill="rgba(212,175,55,0.50)" letter-spacing="0.12em">OUTPUT</text>
+        <text x="812" y="312" text-anchor="middle"
+              font-family="'Cormorant Garamond',serif" font-size="11" font-style="italic"
+              fill="rgba(255,255,255,0.48)">Company profiles &bull; scenario model &bull; signals</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     THREE MODULES
+══════════════════════════════════════ -->
+<section class="h-modules">
+  <div class="h-modules-head rev">
+    <div class="chapter-label">
+      <span class="chapter-num">IV</span>
+      <span>The Instrument</span>
+    </div>
+    <h2>Three modules.<br><em>One system that runs continuously.</em></h2>
+    <p>SIOS is not a static report delivered once a year. It is a living system structured around three modules that build on each other. The first measures what is. The second measures where you stand relative to your sector. The third tells you what to do about it.</p>
+  </div>
+
+  <div class="h-module-stack">
+
+    <!-- MODULE 1 -->
+    <div class="h-module rev">
+      <div class="h-module-mark">
+        <div class="h-module-num">01</div>
+        <span class="h-module-tag">KPIs</span>
+      </div>
+      <div class="h-module-body">
+        <h3>The numbers that run the sector &ndash; read in one place, in every dimension.</h3>
+        <p>Module 1 is the financial and operating foundation. Every KPI the sector runs on is captured here &ndash; from revenue and margin to working capital, R&amp;D spend, and employee productivity ratios. The data is structured so it can be read as a master overview, as a detailed per-company view, as Y-o-Y movement, and as segment or geography cuts &ndash; all from the same underlying source.</p>
+        <p>The architecture means that when new data arrives &ndash; a new financial year, a new company added to the universe &ndash; <em>all views update. Nothing is manually re-entered anywhere else.</em></p>
+        <div class="h-module-kpis">
+          <span class="h-module-kpis-label">KPIs tracked in Module 1</span>
+          <ul>
+            <li>Revenue, gross profit, EBITDA</li>
+            <li>PAT, EBIT, operating margins</li>
+            <li>OpEx breakdown by category</li>
+            <li>Units sold, employees, market share</li>
+            <li>R&amp;D spend, capex, debt levels</li>
+            <li>Working capital ratios</li>
+            <li>Personnel expense breakdown</li>
+            <li>Non-personnel expense breakdown</li>
+            <li>Order book and new client %</li>
+            <li>Large client concentration</li>
+            <li>KPIs by segment, Y-o-Y</li>
+            <li>KPIs by geography, Y-o-Y</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 2 -->
+    <div class="h-module rev">
+      <div class="h-module-mark">
+        <div class="h-module-num">02</div>
+        <span class="h-module-tag">Benchmarking</span>
+      </div>
+      <div class="h-module-body">
+        <h3>Where you stand in the sector &ndash; and what the gap is actually made of.</h3>
+        <p>Module 2 takes the KPIs from Module 1 and positions each company against the sector. Averages, medians, quartile rankings, leader vs laggard bands. But the more useful layer is normalization &ndash; ratios that make companies of different sizes genuinely comparable. Revenue per employee, PAT per unit, EBITDA per unit of capacity, working capital as a percentage of revenue. These are the numbers that explain <em>why</em> a larger company can have worse margins than a smaller one.</p>
+        <p>The CAGR analysis and compensation-vs-performance matrix sit in this module. Both are outputs a board can act on the same day they are reviewed.</p>
+        <div class="h-module-kpis">
+          <span class="h-module-kpis-label">What Module 2 produces</span>
+          <ul>
+            <li>Sector averages and medians per KPI</li>
+            <li>Quartile ranking by company</li>
+            <li>Leader vs laggard positioning</li>
+            <li>CAGR analysis across years</li>
+            <li>Normalization ratios (revenue/employee, PAT/unit, capex/capacity)</li>
+            <li>Working capital and debt ratios normalised</li>
+            <li>Personnel cost % of revenue</li>
+            <li>Market cap vs revenue</li>
+            <li>Compensation vs performance matrix</li>
+            <li>ESG score vs financial performance</li>
+            <li>Revenue slab vs unit slab positioning</li>
+            <li>Sector &amp; market context sheet</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 3 -->
+    <div class="h-module rev">
+      <div class="h-module-mark">
+        <div class="h-module-num">03</div>
+        <span class="h-module-tag">Strategic Signals</span>
+      </div>
+      <div class="h-module-body">
+        <h3>What the sector is telling you before the rest of the market has heard it.</h3>
+        <p>Module 3 is the intelligence layer. It does not describe what has happened. It reads the signals that pre-empt what will happen &ndash; fundraising velocity, pre-IPO financial trajectory, policy subsidy dependency, capacity vs demand gaps, M&amp;A signal indicators. For each company in the universe, a one-page strategic profile is generated from the underlying data.</p>
+        <p>The scenario modelling sheet allows the commissioning party to test decisions against the data before making them. <em>A board-ready snapshot is the final output of Module 3 &ndash; a document that can be placed in front of a board without further preparation.</em></p>
+        <div class="h-module-kpis">
+          <span class="h-module-kpis-label">What Module 3 produces</span>
+          <ul>
+            <li>Company profile one-pager per company</li>
+            <li>Scenario modelling sheet</li>
+            <li>Future signals radar</li>
+            <li>Fundraising velocity tracker</li>
+            <li>Pre-IPO financial trajectory</li>
+            <li>Policy subsidy dependency %</li>
+            <li>Capacity vs demand gap</li>
+            <li>M&amp;A signal indicators</li>
+            <li>Competitive moat score</li>
+            <li>Survival probability index</li>
+            <li>Investment trigger signals</li>
+            <li>Board-ready snapshot</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     C&B BENCHMARKING
+══════════════════════════════════════ -->
+<section class="h-cb">
+  <div class="h-cb-inner">
+    <div class="h-cb-head rev">
+      <div class="chapter-label">
+        <span class="chapter-num">V</span>
+        <span>Compensation &amp; Benefits Benchmarking</span>
+      </div>
+      <h2>What your sector actually pays &ndash;<br><em>from factory floor to CXO suite.</em></h2>
+      <p>Compensation benchmarking in India has historically been either too broad to be useful (industry-wide surveys) or too narrow to be actionable (single-company audits). The C&amp;B Intelligence dimension of SIOS is built on a different architecture: it maps compensation across nine levels within a defined company universe, ties each level to performance data, and delivers a customised report and recommendation to the commissioning party.</p>
+      <p>The output is not a comparison table. It is an answer to the question every CHRO is actually asking: <em>are we paying the right people the right amount, relative to what the sector is doing, and what is the cost of getting this wrong?</em></p>
+    </div>
+
+    <!-- Nine-level compensation ladder diagram -->
+    <div class="h-cb-ladder rev" aria-label="Nine-level compensation structure from factory floor to CXO">
+      <svg viewBox="0 0 960 420" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="ladderGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="rgba(59,138,63,0.70)"/>
+            <stop offset="50%" stop-color="rgba(184,90,16,0.70)"/>
+            <stop offset="100%" stop-color="rgba(212,175,55,0.90)"/>
+          </linearGradient>
+          <linearGradient id="barGrad1" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="rgba(59,138,63,0.55)"/>
+            <stop offset="100%" stop-color="rgba(59,138,63,0.20)"/>
+          </linearGradient>
+          <linearGradient id="barGrad9" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="rgba(212,175,55,0.75)"/>
+            <stop offset="100%" stop-color="rgba(212,175,55,0.22)"/>
+          </linearGradient>
+        </defs>
+
+        <!-- Title row -->
+        <text x="480" y="24" text-anchor="middle"
+              font-family="'Archivo',sans-serif" font-size="10" font-weight="700"
+              fill="rgba(212,175,55,0.60)" letter-spacing="0.18em">C&amp;B INTELLIGENCE &ndash; NINE LEVELS MAPPED</text>
+
+        <!-- Column headers -->
+        <text x="170" y="48" text-anchor="middle"
+              font-family="'Archivo',sans-serif" font-size="9" font-weight="700"
+              fill="rgba(255,255,255,0.35)" letter-spacing="0.12em">DESIGNATION LEVEL</text>
+        <text x="430" y="48" text-anchor="middle"
+              font-family="'Archivo',sans-serif" font-size="9" font-weight="700"
+              fill="rgba(255,255,255,0.35)" letter-spacing="0.12em">COMPONENTS MAPPED</text>
+        <text x="760" y="48" text-anchor="middle"
+              font-family="'Archivo',sans-serif" font-size="9" font-weight="700"
+              fill="rgba(255,255,255,0.35)" letter-spacing="0.12em">COMPENSATION BAND (ILLUSTRATIVE)</text>
+
+        <!-- Divider -->
+        <line x1="30" y1="56" x2="930" y2="56"
+              stroke="rgba(212,175,55,0.20)" stroke-width="0.8"/>
+
+        <!-- The nine levels. Rows at y = 56 + n*40, height 32 -->
+        <!-- Level 9: CXO -->
+        <rect x="30" y="60" width="280" height="32" rx="2"
+              fill="rgba(212,175,55,0.12)" stroke="rgba(212,175,55,0.30)" stroke-width="0.8"/>
+        <text x="46" y="81" font-family="'Archivo',sans-serif" font-size="10" font-weight="700"
+              fill="#d4af37" letter-spacing="0.06em">L9</text>
+        <text x="75" y="81" font-family="'Playfair Display',serif" font-size="12" font-weight="500"
+              font-style="italic" fill="rgba(212,175,55,0.95)">CXO &ndash; C-Suite</text>
+        <text x="320" y="81" font-family="'Cormorant Garamond',serif" font-size="11"
+              font-style="italic" fill="rgba(255,255,255,0.55)">Fixed &bull; Variable &bull; ESOP &bull; Benefits &bull; Pay ratio</text>
+        <rect x="590" y="64" width="320" height="20" rx="2" fill="url(#barGrad9)"/>
+        <text x="918" y="78" text-anchor="end" font-family="'Archivo',sans-serif" font-size="9"
+              font-weight="600" fill="rgba(212,175,55,0.70)">Highest band</text>
+
+        <!-- Level 8: VP / Director -->
+        <rect x="30" y="97" width="280" height="32" rx="2"
+              fill="rgba(200,160,40,0.08)" stroke="rgba(200,160,40,0.22)" stroke-width="0.8"/>
+        <text x="46" y="118" font-family="'Archivo',sans-serif" font-size="10" font-weight="700"
+              fill="rgba(200,160,40,0.85)" letter-spacing="0.06em">L8</text>
+        <text x="75" y="118" font-family="'Playfair Display',serif" font-size="12" font-weight="500"
+              font-style="italic" fill="rgba(255,255,255,0.82)">VP / Director</text>
+        <text x="320" y="118" font-family="'Cormorant Garamond',serif" font-size="11"
+              font-style="italic" fill="rgba(255,255,255,0.50)">Fixed &bull; Variable &bull; ESOP &bull; Benefits</text>
+        <rect x="590" y="101" width="276" height="20" rx="2" fill="rgba(200,160,40,0.40)"/>
+
+        <!-- Level 7: Senior Manager -->
+        <rect x="30" y="134" width="280" height="32" rx="2"
+              fill="rgba(184,120,30,0.08)" stroke="rgba(184,120,30,0.20)" stroke-width="0.8"/>
+        <text x="46" y="155" font-family="'Archivo',sans-serif" font-size="10" font-weight="700"
+              fill="rgba(184,120,30,0.85)" letter-spacing="0.06em">L7</text>
+        <text x="75" y="155" font-family="'Playfair Display',serif" font-size="12" font-weight="500"
+              font-style="italic" fill="rgba(255,255,255,0.82)">Senior Manager</text>
+        <text x="320" y="155" font-family="'Cormorant Garamond',serif" font-size="11"
+              font-style="italic" fill="rgba(255,255,255,0.50)">Fixed &bull; Variable &bull; ESOP &bull; Benefits</text>
+        <rect x="590" y="138" width="236" height="20" rx="2" fill="rgba(184,120,30,0.40)"/>
+
+        <!-- Level 6: Manager -->
+        <rect x="30" y="171" width="280" height="32" rx="2"
+              fill="rgba(150,110,30,0.08)" stroke="rgba(150,110,30,0.18)" stroke-width="0.8"/>
+        <text x="46" y="192" font-family="'Archivo',sans-serif" font-size="10" font-weight="700"
+              fill="rgba(150,110,30,0.85)" letter-spacing="0.06em">L6</text>
+        <text x="75" y="192" font-family="'Playfair Display',serif" font-size="12" font-weight="500"
+              font-style="italic" fill="rgba(255,255,255,0.82)">Manager</text>
+        <text x="320" y="192" font-family="'Cormorant Garamond',serif" font-size="11"
+              font-style="italic" fill="rgba(255,255,255,0.50)">Fixed &bull; Variable &bull; Benefits</text>
+        <rect x="590" y="175" width="196" height="20" rx="2" fill="rgba(150,110,30,0.40)"/>
+
+        <!-- Level 5: Assistant Manager / Team Lead -->
+        <rect x="30" y="208" width="280" height="32" rx="2"
+              fill="rgba(100,120,50,0.08)" stroke="rgba(100,120,50,0.18)" stroke-width="0.8"/>
+        <text x="46" y="229" font-family="'Archivo',sans-serif" font-size="10" font-weight="700"
+              fill="rgba(100,120,50,0.85)" letter-spacing="0.06em">L5</text>
+        <text x="75" y="229" font-family="'Playfair Display',serif" font-size="12" font-weight="500"
+              font-style="italic" fill="rgba(255,255,255,0.82)">Assistant Manager / Team Lead</text>
+        <text x="320" y="229" font-family="'Cormorant Garamond',serif" font-size="11"
+              font-style="italic" fill="rgba(255,255,255,0.50)">Fixed &bull; Variable &bull; Benefits</text>
+        <rect x="590" y="212" width="160" height="20" rx="2" fill="rgba(100,120,50,0.42)"/>
+
+        <!-- Level 4: Senior Executive / Senior Engineer -->
+        <rect x="30" y="245" width="280" height="32" rx="2"
+              fill="rgba(70,120,60,0.08)" stroke="rgba(70,120,60,0.18)" stroke-width="0.8"/>
+        <text x="46" y="266" font-family="'Archivo',sans-serif" font-size="10" font-weight="700"
+              fill="rgba(70,120,60,0.85)" letter-spacing="0.06em">L4</text>
+        <text x="75" y="266" font-family="'Playfair Display',serif" font-size="12" font-weight="500"
+              font-style="italic" fill="rgba(255,255,255,0.82)">Senior Executive / Engineer</text>
+        <text x="320" y="266" font-family="'Cormorant Garamond',serif" font-size="11"
+              font-style="italic" fill="rgba(255,255,255,0.50)">Fixed &bull; Variable &bull; Benefits</text>
+        <rect x="590" y="249" width="124" height="20" rx="2" fill="rgba(70,120,60,0.44)"/>
+
+        <!-- Level 3: Executive / Engineer -->
+        <rect x="30" y="282" width="280" height="32" rx="2"
+              fill="rgba(59,138,63,0.08)" stroke="rgba(59,138,63,0.18)" stroke-width="0.8"/>
+        <text x="46" y="303" font-family="'Archivo',sans-serif" font-size="10" font-weight="700"
+              fill="rgba(59,138,63,0.85)" letter-spacing="0.06em">L3</text>
+        <text x="75" y="303" font-family="'Playfair Display',serif" font-size="12" font-weight="500"
+              font-style="italic" fill="rgba(255,255,255,0.82)">Executive / Engineer</text>
+        <text x="320" y="303" font-family="'Cormorant Garamond',serif" font-size="11"
+              font-style="italic" fill="rgba(255,255,255,0.50)">Fixed &bull; Benefits</text>
+        <rect x="590" y="286" width="92" height="20" rx="2" fill="rgba(59,138,63,0.46)"/>
+
+        <!-- Level 2: Technician / Operator -->
+        <rect x="30" y="319" width="280" height="32" rx="2"
+              fill="rgba(59,138,63,0.06)" stroke="rgba(59,138,63,0.14)" stroke-width="0.8"/>
+        <text x="46" y="340" font-family="'Archivo',sans-serif" font-size="10" font-weight="700"
+              fill="rgba(59,138,63,0.75)" letter-spacing="0.06em">L2</text>
+        <text x="75" y="340" font-family="'Playfair Display',serif" font-size="12" font-weight="500"
+              font-style="italic" fill="rgba(255,255,255,0.70)">Technician / Operator</text>
+        <text x="320" y="340" font-family="'Cormorant Garamond',serif" font-size="11"
+              font-style="italic" fill="rgba(255,255,255,0.42)">Fixed &bull; Benefits</text>
+        <rect x="590" y="323" width="62" height="20" rx="2" fill="rgba(59,138,63,0.42)"/>
+
+        <!-- Level 1: Factory Floor -->
+        <rect x="30" y="356" width="280" height="32" rx="2"
+              fill="rgba(59,138,63,0.04)" stroke="rgba(59,138,63,0.12)" stroke-width="0.8"/>
+        <text x="46" y="377" font-family="'Archivo',sans-serif" font-size="10" font-weight="700"
+              fill="rgba(59,138,63,0.65)" letter-spacing="0.06em">L1</text>
+        <text x="75" y="377" font-family="'Playfair Display',serif" font-size="12" font-weight="500"
+              font-style="italic" fill="rgba(255,255,255,0.60)">Factory Floor</text>
+        <text x="320" y="377" font-family="'Cormorant Garamond',serif" font-size="11"
+              font-style="italic" fill="rgba(255,255,255,0.38)">Fixed</text>
+        <rect x="590" y="360" width="36" height="20" rx="2" fill="url(#barGrad1)"/>
+
+        <!-- Gradient scale axis label -->
+        <line x1="590" y1="395" x2="910" y2="395"
+              stroke="url(#ladderGrad)" stroke-width="1.5"/>
+        <text x="590" y="410" font-family="'Archivo',sans-serif" font-size="9" font-weight="600"
+              fill="rgba(59,138,63,0.65)" letter-spacing="0.08em">ENTRY</text>
+        <text x="910" y="410" text-anchor="end" font-family="'Archivo',sans-serif" font-size="9"
+              font-weight="600" fill="rgba(212,175,55,0.70)" letter-spacing="0.08em">SENIOR LEADERSHIP</text>
+      </svg>
+    </div>
+
+    <div class="h-cb-grid">
+
+      <div class="h-cb-card rev">
+        <span class="h-cb-card-label">Structure</span>
+        <h4>Nine levels, every component mapped.</h4>
+        <ul>
+          <li>Factory floor to CXO &ndash; 9 designation levels</li>
+          <li>Fixed, variable, ESOP, and benefits separated</li>
+          <li>Total compensation benchmarks by level</li>
+          <li>Sector average vs company position</li>
+          <li>CXO pay ratio vs sector average</li>
+          <li>ESOP pool as % of revenue</li>
+        </ul>
+      </div>
+
+      <div class="h-cb-card rev">
+        <span class="h-cb-card-label">Performance Linkage</span>
+        <h4>Pay that is anchored to what the person actually produces.</h4>
+        <ul>
+          <li>Pay vs performance matrix</li>
+          <li>Compensation vs financial KPI movement</li>
+          <li>Attrition rate by level</li>
+          <li>Training spend per employee</li>
+          <li>Gender pay gap signal</li>
+          <li>High performer retention risk indicator</li>
+        </ul>
+      </div>
+
+      <div class="h-cb-card rev">
+        <span class="h-cb-card-label">The Deliverable</span>
+        <h4>A customised recommendation, not a data dump.</h4>
+        <ul>
+          <li>Sector-calibrated C&amp;B report for your organisation</li>
+          <li>Level-by-level gap analysis</li>
+          <li>Specific adjustment recommendations</li>
+          <li>Risk-ranked priorities for action</li>
+          <li>Scenario model: cost of correction vs cost of attrition</li>
+          <li>Reviewed in a live session with the commissioning team</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     THE MOAT &ndash; what BCG did not have
+══════════════════════════════════════ -->
+<section class="h-moat">
+  <div class="h-moat-head rev">
+    <div class="chapter-label">
+      <span class="chapter-num">VI</span>
+      <span>The MECULS Moat</span>
+    </div>
+    <h2>What was built beyond the brief &ndash;<br><em>and why it matters.</em></h2>
+    <p>The BCG tool was a strong instrument. What came after it was stronger. Four dimensions were added that conventional benchmarking tools had not been designed to carry &ndash; each one built in response to a question the data was raising that the existing structure could not answer.</p>
+  </div>
+
+  <div class="h-moat-grid">
+
+    <div class="h-moat-cell rev">
+      <div class="h-moat-cell-icon">
+        <svg viewBox="0 0 24 24"><path d="M9 19V6l12-3v13M9 19c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm12-3c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2z"/></svg>
+      </div>
+      <h4>Normalization ratios</h4>
+      <p>Revenue per employee, PAT per unit, EBITDA per unit of capacity, capex per unit produced. These ratios make a company with 10,000 employees genuinely comparable to one with 800. <em>Without them, sector benchmarks mislead.</em></p>
+    </div>
+
+    <div class="h-moat-cell rev">
+      <div class="h-moat-cell-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      </div>
+      <h4>Compensation intelligence</h4>
+      <p>First of its kind in the Green Energy sector in India. Nine levels, every compensation component, pay tied to performance. <em>Not a survey median. A sector-calibrated map.</em></p>
+    </div>
+
+    <div class="h-moat-cell rev">
+      <div class="h-moat-cell-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <h4>ESG intelligence</h4>
+      <p>Sourced from BRSR and GRI filings. CO&sub;2; avoided per unit, Scope 1+2+3 emissions, battery recycling rates, water intensity, ESG score mapped against financial performance. <em>The regulatory direction is clear. The instrument is already there.</em></p>
+    </div>
+
+    <div class="h-moat-cell rev">
+      <div class="h-moat-cell-icon">
+        <svg viewBox="0 0 24 24"><path d="M2 12h6M16 12h6M12 2v6M12 16v6"/><circle cx="12" cy="12" r="4"/></svg>
+      </div>
+      <h4>Strategic signals</h4>
+      <p>Fundraising velocity, pre-IPO trajectory, policy subsidy dependency, M&amp;A indicators, competitive moat score, survival probability index. <em>These are the numbers that pre-empt the future, not describe the past.</em></p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTORS DEPLOYED
+══════════════════════════════════════ -->
+<section class="h-sectors">
+  <div class="h-sectors-head rev">
+    <div class="chapter-label">
+      <span class="chapter-num">VII</span>
+      <span>Sectors</span>
+    </div>
+    <h2>One instrument.<br><em>Any sector it is pointed at.</em></h2>
+    <p>SIOS was built to be sector-agnostic. The three-module architecture, the data design, and the C&amp;B intelligence layer apply to any industry where companies file public data and where benchmarking produces decisions. Two sectors are live. Others are in build.</p>
+  </div>
+
+  <div class="h-sectors-grid">
+
+    <div class="h-sector-card rev">
+      <span class="h-sector-status live">Live</span>
+      <h3>Information Technology</h3>
+      <p>The origin sector. Built for BCG as an external engagement. 22-sheet architecture covering KPIs, segment analysis, geography cuts, Y-o-Y growth, and working capital ratios. The instrument that proved the design.</p>
+    </div>
+
+    <div class="h-sector-card rev">
+      <span class="h-sector-status live">Live</span>
+      <h3>Green Energy &amp; <em>Mobility</em></h3>
+      <p>Extended from the IT base into India&rsquo;s EV and green energy sector. Added ESG intelligence, normalization ratios for units and charging infrastructure, and the compensation intelligence layer. The sector that pushed the instrument further than BCG did.</p>
+    </div>
+
+    <div class="h-sector-card rev">
+      <span class="h-sector-status coming">In Build</span>
+      <h3>Your Sector</h3>
+      <p>New industry benchmarking dimensions are in build. If your sector is not listed here, the conversation about building it is the right starting point. The architecture is ready. What varies is the company universe and the KPI set.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     DELIVERABLE
+══════════════════════════════════════ -->
+<section class="h-deliverable">
+  <div class="h-del-inner">
+    <div class="h-del-text rev">
+      <div class="chapter-label">
+        <span class="chapter-num">VIII</span>
+        <span>The Deliverable</span>
+      </div>
+      <h2>What the commissioning party<br><em>walks away with.</em></h2>
+      <p>The SIOS output is not a file that is emailed and then explained over a call. It is a working system &ndash; reviewed live with the commissioning team, walked through module by module, and left with them to use as a running instrument for as long as the data remains current.</p>
+      <p>The C&amp;B report is a separate deliverable: a customised written recommendation for the commissioning organisation, specific to their level structure, their sector position, and the adjustment decisions in front of them. <em>It is reviewed in a live session and left as a working document.</em></p>
+      <p>The standard engagement is sector-specific. For organisations that want SIOS built for a sector not yet covered, that is a separate conversation.</p>
+    </div>
+
+    <div class="h-del-doc rev">
+      <div class="h-doc-head">
+        <div class="h-doc-brand">SIOS &ndash; MECULS</div>
+        <div class="h-doc-ref">Confidential</div>
+      </div>
+      <div class="h-doc-title">Sector Intelligence<br><em>Operating System</em></div>
+      <div class="h-doc-sub">Sector-specific. Prepared by Rajneesh Jain.</div>
+
+      <div class="h-doc-modules">
+        <div class="h-doc-module">
+          <span class="h-doc-module-dot m1"></span>
+          <span class="h-doc-module-name">Module 1 &ndash; KPIs</span>
+          <span class="h-doc-module-desc">22 views, live</span>
+        </div>
+        <div class="h-doc-module">
+          <span class="h-doc-module-dot m2"></span>
+          <span class="h-doc-module-name">Module 2 &ndash; Benchmarking</span>
+          <span class="h-doc-module-desc">Quartiles, CAGR</span>
+        </div>
+        <div class="h-doc-module">
+          <span class="h-doc-module-dot m3"></span>
+          <span class="h-doc-module-name">Module 3 &ndash; Strategic Signals</span>
+          <span class="h-doc-module-desc">Board-ready</span>
+        </div>
+      </div>
+
+      <div class="h-doc-foot">
+        All views derive from a single source. No hardcoded numbers anywhere. The system is scalable: adding a new year or a new company updates all views automatically.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     CONVICTION CLOSE
+══════════════════════════════════════ -->
+<section class="h-depth">
+  <div class="h-depth-inner">
+    <div class="chapter-label rev">
+      <span class="chapter-num">IX</span>
+      <span>The Point</span>
+    </div>
+    <h2 class="rev">Intelligence without a decision<br><em>is just expensive noise.</em></h2>
+    <p class="rev">The global consulting industry has made a very good business out of telling organisations what they already suspected, in formats they cannot immediately act on. Beautiful slides. Deep analysis. Long reports. And at the end of it, the business owner is in the same position they were in before &ndash; except lighter in the pocket.</p>
+    <p class="rev">SIOS is built on a different premise. Every output carries a so-what. Every benchmark is tied to a decision the commissioning party can make. Every strategic signal points at a move that can be made now, before the rest of the market makes it first.</p>
+    <div class="h-depth-rule rev" aria-hidden="true"></div>
+    <div class="h-depth-line rev">
+      The question is not what the sector data shows. <em>The question is what you are going to do differently because of it.</em>
+    </div>
+    <div class="h-depth-cta rev">
+      <a href="begin-conversation.html" class="btn-gold">Begin a Conversation</a>
+      <a href="book-session.html" class="btn-outline">Commission a SIOS Report</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     CLOSE &ndash; next chapter
+══════════════════════════════════════ -->
+<section class="h-close">
+  <div class="h-close-inner">
+    <div class="chapter-label rev">
+      <span class="chapter-num">X</span>
+      <span>The Next Page</span>
+    </div>
+    <h2 class="rev">You have seen how a sector is read.<br><em>Now see how the data is built.</em></h2>
+    <p class="rev">SIOS runs on data science and analytics capability that extends well beyond sector benchmarking &ndash; into market intelligence, product analysis, and decisions that do not wait for a quarterly report cycle.</p>
+    <div class="h-close-btns rev">
+      <a href="service-data-science-analytics.html" class="btn-gold">Data Science &amp; Analytics</a>
+      <a href="services.html" class="btn-outline">All Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- GLOBAL FOOTER -->
+<footer class="global-footer">
+  <div class="gf-top">
+    <div class="gf-brand">
+      <div class="gf-logo">
+        <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="gf-logo-text" style="display:none">MECULS</span>
+      </div>
+      <p class="gf-tagline">Mind Enablement Centre for Unlocking Limitless Leadership &amp; Self-Potential</p>
+      <div class="gf-contact">
+        <a href="mailto:Jain.Rajneesh@meculs.com">Jain.Rajneesh@meculs.com</a>
+        <a href="#">Delhi, India</a>
+      </div>
+      <div class="gf-social">
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.5 6.5s-.3-2-1.2-2.8c-1.1-1.2-2.4-1.2-3-1.3C15.6 2.2 12 2.2 12 2.2s-3.6 0-6.3.2c-.6.1-1.9.1-3 1.3C1.8 4.5 1.5 6.5 1.5 6.5S1.2 8.8 1.2 11v2.1c0 2.2.3 4.4.3 4.4s.3 2 1.2 2.8c1.1 1.2 2.6 1.1 3.3 1.2 2.4.2 10 .3 10 .3s3.6 0 6.3-.3c.6-.1 1.9-.1 3-1.3.9-.8 1.2-2.8 1.2-2.8s.3-2.2.3-4.4V11c0-2.2-.3-4.5-.3-4.5zM9.7 14.8V8.4l6.6 3.2-6.6 3.2z"/></svg></a>
+      </div>
+    </div>
+    <div>
+      <p class="gf-col-title">Services</p>
+      <ul class="gf-links">
+        <li><a href="360-pulse-rate.html">360&deg; PULSE RATE&trade;</a></li>
+        <li><a href="service-personality-profiling.html">Personality Profiling</a></li>
+        <li><a href="bespoke-coaching.html">Executive Coaching &ndash; Bespoke</a></li>
+        <li><a href="corporate-programs.html">Corporate Programmes</a></li>
+        <li><a href="services.html">All Services</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="gf-col-title">Company</p>
+      <ul class="gf-links">
+        <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+        <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+        <li><a href="the-approach.html">The Approach</a></li>
+        <li><a href="the-journey.html">The Journey</a></li>
+        <li><a href="why-meculs.html">Why MECULS</a></li>
+        <li><a href="our-work-proof.html">Our Work Proof</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="gf-col-title">Connect</p>
+      <ul class="gf-links">
+        <li><a href="begin-conversation.html">Begin a Conversation</a></li>
+        <li><a href="source-of-challenges.html">Source of Challenges</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms of Service</a></li>
+        <li><a href="refund-policy.html">Refund Policy</a></li>
+        <li><a href="disclaimer.html">Disclaimer</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="gf-bottom">
+    <p class="gf-copy">&copy; 2026 MECULS. All rights reserved. Delhi, India.</p>
+    <div class="gf-legal">
+      <a href="privacy-policy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="refund-policy.html">Refund</a>
+      <a href="disclaimer.html">Disclaimer</a>
+    </div>
+  </div>
+</footer>
+<!-- END GLOBAL FOOTER -->
+
+</div>
+<script src="global.js"></script>
+<script>
+  var ro = new IntersectionObserver(function(e) {
+    e.forEach(function(x) {
+      if (x.isIntersecting) { x.target.classList.add('vis'); ro.unobserve(x.target); }
+    });
+  }, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.rev').forEach(function(el) { ro.observe(el); });
+</script>
+</body>
+</html>
