@@ -390,6 +390,17 @@ body {
   flex-wrap: wrap;
   gap: 1rem;
 }
+.gf-ip {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.80rem;
+  font-style: italic;
+  color: rgba(122,132,153,0.55);
+  line-height: 1.65;
+  max-width: 900px;
+  text-align: center;
+  margin: 0 auto 1rem;
+  padding: 0 1rem;
+}
 .gf-copy {
   font-size: 0.78rem;
   color: var(--g-muted);
