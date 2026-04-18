@@ -375,7 +375,7 @@ body {
 }
 .gf-links li a {
   font-size: 0.85rem;
-  color: var(--g-muted);
+  color: var(--g-soft);
   text-decoration: none;
   transition: color 0.2s;
   line-height: 1.4;
@@ -394,7 +394,7 @@ body {
   font-family: 'Cormorant Garamond', serif;
   font-size: 0.80rem;
   font-style: italic;
-  color: rgba(122,132,153,0.55);
+  color: rgba(184,194,216,0.75);
   line-height: 1.65;
   max-width: 900px;
   text-align: center;

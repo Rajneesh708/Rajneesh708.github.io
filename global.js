@@ -1,8 +1,7 @@
 /* ═══════════════════════════════════════════════════════════════════
-   MECULS — GLOBAL NAVIGATION JAVASCRIPT
+   MECULS — GLOBAL NAVIGATION JAVASCRIPT  v2
    File: global.js
-   Include this on EVERY page of the MECULS website.
-   Place the <script src="global.js"> just before </body> on every page.
+   Place <script src="global.js"> just before </body> on every page.
    ═══════════════════════════════════════════════════════════════════ */
 
 (function () {
@@ -12,27 +11,23 @@
   var header = document.querySelector('.global-header');
   if (header) {
     window.addEventListener('scroll', function () {
-      if (window.scrollY > 60) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
+      header.classList.toggle('scrolled', window.scrollY > 60);
     }, { passive: true });
   }
 
   /* ── Mobile hamburger toggle ──────────────────────────────────── */
-  var toggle    = document.getElementById('ghToggle');
+  var toggle     = document.getElementById('ghToggle');
   var mobileMenu = document.getElementById('ghMobileMenu');
 
   if (toggle && mobileMenu) {
     toggle.addEventListener('click', function () {
       var isOpen = mobileMenu.classList.toggle('open');
       toggle.classList.toggle('open', isOpen);
-      toggle.setAttribute('aria-expanded', isOpen);
+      toggle.setAttribute('aria-expanded', String(isOpen));
       document.body.style.overflow = isOpen ? 'hidden' : '';
     });
 
-    /* Close mobile menu when a link is clicked */
+    /* Close on link click */
     mobileMenu.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function () {
         mobileMenu.classList.remove('open');
@@ -42,7 +37,7 @@
       });
     });
 
-    /* Close on Escape key */
+    /* Close on Escape */
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
         mobileMenu.classList.remove('open');
@@ -54,23 +49,22 @@
     });
   }
 
-  /* ── Mark active nav link ─────────────────────────────────────── */
+  /* ── Active nav link ──────────────────────────────────────────── */
   var currentPage = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.gh-nav > li > a, .gh-mobile-nav > li > a').forEach(function (link) {
-    var linkPage = link.getAttribute('href') || '';
-    if (linkPage === currentPage || (currentPage === '' && linkPage === 'index.html')) {
+  document.querySelectorAll('.gh-nav a, .gh-mobile-nav a').forEach(function (link) {
+    var href = (link.getAttribute('href') || '').split('#')[0];
+    if (href === currentPage || (currentPage === '' && href === 'index.html')) {
       link.classList.add('active');
     }
   });
 
-  /* ── Logo image error fallback ────────────────────────────────── */
-  var logoImg = document.querySelector('.gh-logo img');
-  if (logoImg) {
-    logoImg.addEventListener('error', function () {
+  /* ── Logo image fallback ──────────────────────────────────────── */
+  document.querySelectorAll('.gh-logo img, .gf-logo img').forEach(function (img) {
+    img.addEventListener('error', function () {
       this.style.display = 'none';
-      var fallback = document.querySelector('.gh-logo-text');
-      if (fallback) fallback.style.display = 'block';
+      var fb = this.nextElementSibling;
+      if (fb) fb.style.display = 'block';
     });
-  }
+  });
 
 })();
