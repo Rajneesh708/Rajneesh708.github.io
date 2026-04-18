@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Mynd CARE &ndash; Cure Anxiety, Restore Excellence. Why the mind, like a seed, needs five specific elements to grow into its natural wholeness. With Rajneesh Jain, MECULS.">
+  <title>Why Mynd CARE &ndash; MECULS | Rajneesh Jain</title>
+  <link rel="canonical" href="https://www.meculs.com/why-mynd-care.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Archivo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="global.css">
+  <style>
+  :root{
+    --gold:#d4af37;--gold-light:#e4bf47;--gold-deep:#8a6d1a;
+    --gold-dim:rgba(212,175,55,0.10);--gold-bd:rgba(212,175,55,0.22);
+    --ink:#000814;--white:#ffffff;--cream:#f7f3ea;--parchment:#faf7f0;
+    --ct:#1a1713;--cb:#3a342b;--cm:#6b6258;
+    --rw:rgba(138,109,26,0.20);--rw2:rgba(138,109,26,0.38);
+    /* Ocean dawn palette */
+    --ocean:#03080f;--ocean2:#061220;--ocean3:#040c18;
+    --display:'Playfair Display',serif;--serif:'Cormorant Garamond',serif;
+    --ease:cubic-bezier(0.16,1,0.3,1);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--parchment);color:var(--ct);font-family:'Archivo',sans-serif;line-height:1.75;-webkit-font-smoothing:antialiased}
+  .page{padding-top:var(--g-nav-h,72px)}
+  .rev{opacity:0;transform:translateY(24px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
+  .rev.vis{opacity:1;transform:none}
+  .lbl{display:inline-flex;align-items:center;gap:14px;font-size:0.68rem;font-weight:700;letter-spacing:0.26em;text-transform:uppercase;margin-bottom:1.8rem}
+  .lbl::before{content:'';width:48px;height:1px;background:currentColor;opacity:0.7}
+  .lbl-n{font-family:var(--display);font-size:0.84rem;font-weight:500}
+  .btn-g{padding:1.1rem 2.8rem;background:var(--gold);color:var(--ink);font-size:0.78rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:background 0.3s,transform 0.2s;display:inline-block}
+  .btn-g:hover{background:var(--gold-light);transform:translateY(-2px)}
+  .btn-o{padding:1.1rem 2.8rem;border:1px solid var(--gold-bd);color:var(--gold);font-size:0.78rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:background 0.3s,transform 0.2s;display:inline-block;background:rgba(3,8,15,0.40)}
+  .btn-o:hover{background:var(--gold-dim);transform:translateY(-2px)}
+
+  /* ══════════════════════════════════
+     HERO &ndash; ocean horizon at dawn
+  ══════════════════════════════════ */
+  .h{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden;color:var(--white);background:var(--ocean)}
+  .h-bg{position:absolute;inset:0;z-index:0;width:100%;height:100%}
+  .h-photo{position:absolute;inset:0;z-index:1;background:url('images/mynd-care-hero.jpg') center/cover no-repeat;opacity:0}
+  .h-photo.loaded{opacity:0.35;transition:opacity 1s}
+  .h-ov{position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(3,8,15,0.88) 0%,rgba(3,8,15,0.55) 45%,rgba(0,8,20,0.88) 100%)}
+  .h-in{position:relative;z-index:3;width:100%;max-width:1100px;margin:0 auto;padding:9rem 5% 7rem;display:grid;grid-template-columns:1.05fr 0.95fr;gap:5rem;align-items:center}
+  .h .lbl{color:var(--gold)}
+  .h h1{font-family:var(--display);font-size:clamp(3rem,5.5vw,5.2rem);font-weight:400;line-height:1.08;letter-spacing:-0.025em;margin-bottom:2.2rem;color:var(--white)}
+  .h h1 em{font-style:italic;color:var(--gold);font-weight:400}
+  .h-sub{font-family:var(--serif);font-size:clamp(1.35rem,2vw,1.70rem);font-style:italic;line-height:1.65;color:rgba(255,255,255,0.80);margin-bottom:2.6rem}
+  .h-cta{display:flex;gap:1.2rem;flex-wrap:wrap}
+  .h-acro{margin-top:3rem;display:flex;flex-direction:column;gap:0.4rem}
+  .h-acro-item{display:flex;align-items:baseline;gap:1rem}
+  .h-acro-letter{font-family:var(--display);font-size:2rem;font-weight:400;color:var(--gold);line-height:1;width:1.6rem;flex-shrink:0}
+  .h-acro-word{font-family:var(--serif);font-size:clamp(1.25rem,1.65vw,1.45rem);color:rgba(255,255,255,0.75);font-style:italic}
+  /* Ocean horizon SVG right side */
+  .h-horizon{width:100%;max-width:480px;margin:0 auto;position:relative}
+  .h-horizon svg{width:100%;height:auto}
+  @keyframes hwave{0%,100%{d:path("M0,40 Q60,22 120,38 Q180,54 240,36 Q300,18 360,36 Q420,54 480,38 L480,90 L0,90Z")}
+    50%{d:path("M0,38 Q60,54 120,36 Q180,18 240,38 Q300,58 360,36 Q420,14 480,38 L480,90 L0,90Z")}}
+  @keyframes sunrise{0%,100%{opacity:0.55;r:55}50%{opacity:0.88;r:65}}
+  @keyframes hrays{0%,100%{opacity:0.18}50%{opacity:0.32}}
+  .sr{animation:sunrise 7s ease-in-out infinite;transform-origin:240px 95px}
+  .sray{animation:hrays 7s ease-in-out infinite}
+
+  /* ══════════════════════════════════
+     ACRONYM EXPLAINER
+  ══════════════════════════════════ */
+  .ac{padding:8rem 0;background:var(--ocean);color:var(--white);position:relative;overflow:hidden}
+  .ac::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 0%,rgba(212,175,55,0.07) 0%,transparent 55%)}
+  .ac-in{max-width:1120px;margin:0 auto;padding:0 5%;position:relative;z-index:2}
+  .ac .lbl{color:var(--gold)}
+  .ac-head{max-width:800px;margin-bottom:5rem}
+  .ac-head h2{font-family:var(--display);font-size:clamp(2.5rem,4.5vw,4rem);font-weight:400;line-height:1.10;letter-spacing:-0.025em;margin-bottom:1.8rem}
+  .ac-head h2 em{font-style:italic;color:var(--gold)}
+  .ac-head p{font-family:var(--serif);font-size:clamp(1.28rem,1.78vw,1.52rem);line-height:1.75;color:rgba(255,255,255,0.80)}
+  .ac-head p em{font-style:italic;color:var(--gold);font-weight:500}
+  .ac-gr{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(212,175,55,0.12)}
+  .ac-c{padding:3.5rem 3.8rem;background:var(--ocean);display:flex;align-items:flex-start;gap:2rem;transition:background 0.4s}
+  .ac-c:hover{background:rgba(255,255,255,0.025)}
+  .ac-letter{font-family:var(--display);font-size:clamp(3.5rem,5vw,5rem);font-weight:400;line-height:0.9;color:var(--gold);opacity:0.70;letter-spacing:-0.03em;flex-shrink:0}
+  .ac-c-txt h3{font-family:var(--display);font-size:clamp(1.5rem,2.1vw,1.85rem);font-weight:500;font-style:italic;color:var(--white);line-height:1.18;letter-spacing:-0.012em;margin-bottom:0.9rem}
+  .ac-c-txt h3 em{color:var(--gold)}
+  .ac-c-txt p{font-family:var(--serif);font-size:clamp(1.20rem,1.62vw,1.42rem);line-height:1.72;color:rgba(255,255,255,0.72)}
+  .ac-c-txt p em{font-style:italic;color:rgba(212,175,55,0.88)}
+
+  /* ══════════════════════════════════
+     TWO MINDS DIAGRAM
+  ══════════════════════════════════ */
+  .tm{padding:9rem 0;background:var(--parchment);position:relative;overflow:hidden}
+  .tm::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,transparent,var(--gold-deep),transparent)}
+  .tm-in{max-width:1160px;margin:0 auto;padding:0 5%;display:grid;grid-template-columns:1fr 1.1fr;gap:6rem;align-items:center}
+  .tm .lbl{color:var(--gold-deep)}
+  .tm-txt h2{font-family:var(--display);font-size:clamp(2.5rem,4.5vw,4rem);font-weight:500;line-height:1.10;letter-spacing:-0.022em;margin-bottom:2.4rem;color:var(--ct)}
+  .tm-txt h2 em{font-style:italic;color:var(--gold-deep)}
+  .tm-txt p{font-family:var(--serif);font-size:clamp(1.28rem,1.78vw,1.52rem);line-height:1.78;color:var(--cb);margin-bottom:1.7rem}
+  .tm-txt p:last-child{margin-bottom:0}
+  .tm-txt p em{font-style:italic;color:var(--gold-deep);font-weight:500}
+  .tm-insight{margin:2.4rem 0;padding:2.4rem 2.8rem;background:rgba(138,109,26,0.07);border-left:3px solid var(--gold-deep)}
+  .tm-insight p{font-family:var(--display);font-size:clamp(1.48rem,2.1vw,1.85rem);font-style:italic;font-weight:400;line-height:1.40;color:var(--ct);margin:0}
+  .tm-insight p em{color:var(--gold-deep)}
+  /* Two minds diagram &ndash; large, clear */
+  .tm-diag{width:100%;max-width:580px;margin:0 auto}
+  .tm-diag svg{width:100%;height:auto;overflow:visible}
+
+  /* ══════════════════════════════════
+     SEED DIAGRAM &ndash; full width dark section
+  ══════════════════════════════════ */
+  .sd{padding:9rem 0;background:var(--ocean2);color:var(--white);position:relative;overflow:hidden}
+  .sd::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 50%,rgba(212,175,55,0.07) 0%,transparent 60%)}
+  .sd-in{max-width:1160px;margin:0 auto;padding:0 5%;position:relative;z-index:2}
+  .sd .lbl{color:var(--gold)}
+  .sd-head{max-width:800px;margin-bottom:5rem}
+  .sd-head h2{font-family:var(--display);font-size:clamp(2.5rem,4.5vw,4rem);font-weight:400;line-height:1.10;letter-spacing:-0.025em;margin-bottom:1.8rem}
+  .sd-head h2 em{font-style:italic;color:var(--gold)}
+  .sd-head p{font-family:var(--serif);font-size:clamp(1.28rem,1.78vw,1.52rem);line-height:1.75;color:rgba(255,255,255,0.80)}
+  .sd-head p em{font-style:italic;color:var(--gold);font-weight:500}
+  /* Diagram centred */
+  .sd-diagram{display:flex;justify-content:center;margin:3rem 0 0}
+  .sd-diagram svg{width:min(900px,100%);height:auto;overflow:visible}
+
+  /* ══════════════════════════════════
+     FIVE ELEMENTS &ndash; each as large section
+  ══════════════════════════════════ */
+  .fe{padding:0;background:var(--parchment)}
+  .fe-el{padding:8rem 0;border-bottom:1px solid var(--rw);position:relative;overflow:hidden}
+  .fe-el:last-child{border-bottom:none}
+  .fe-el:nth-child(even){background:var(--cream)}
+  .fe-el-in{max-width:1160px;margin:0 auto;padding:0 5%;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
+  .fe-el:nth-child(even) .fe-el-in{direction:rtl}
+  .fe-el:nth-child(even) .fe-el-txt{direction:ltr}
+  .fe-el-num{font-family:var(--display);font-size:clamp(6rem,10vw,9rem);font-weight:400;line-height:0.85;color:var(--gold-deep);opacity:0.20;letter-spacing:-0.04em;margin-bottom:0.8rem}
+  .fe-el-tag{display:block;font-size:0.68rem;font-weight:700;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:1.4rem}
+  .fe-el-txt h2{font-family:var(--display);font-size:clamp(2.4rem,4vw,3.5rem);font-weight:500;line-height:1.10;letter-spacing:-0.022em;margin-bottom:1.8rem;color:var(--ct)}
+  .fe-el-txt h2 em{font-style:italic;color:var(--gold-deep)}
+  .fe-el-txt p{font-family:var(--serif);font-size:clamp(1.28rem,1.78vw,1.52rem);line-height:1.78;color:var(--cb);margin-bottom:1.5rem}
+  .fe-el-txt p:last-child{margin-bottom:0}
+  .fe-el-txt p em{font-style:italic;color:var(--gold-deep);font-weight:500}
+  /* Visual side of each element */
+  .fe-el-vis{position:relative;min-height:460px;display:flex;align-items:center;justify-content:center}
+  .fe-el-vis svg{width:min(420px,100%);height:auto}
+
+  /* ══════════════════════════════════
+     CONVICTION CLOSE
+  ══════════════════════════════════ */
+  .cl{padding:10rem 0;background:var(--ocean);color:var(--white);position:relative;overflow:hidden}
+  .cl::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 80%,rgba(212,175,55,0.06) 0%,transparent 55%)}
+  .cl-in{max-width:880px;margin:0 auto;padding:0 5%;text-align:center;position:relative;z-index:2}
+  .cl .lbl{color:var(--gold);justify-content:center}
+  .cl .lbl::after{content:'';width:48px;height:1px;background:var(--gold);opacity:0.7}
+  .cl h2{font-family:var(--display);font-size:clamp(2.6rem,4.8vw,4.2rem);font-weight:400;line-height:1.10;letter-spacing:-0.025em;margin-bottom:2.6rem;color:var(--white)}
+  .cl h2 em{font-style:italic;color:var(--gold)}
+  .cl p{font-family:var(--serif);font-size:clamp(1.28rem,1.82vw,1.55rem);line-height:1.76;color:rgba(255,255,255,0.82);margin-bottom:1.5rem}
+  .cl p em{font-style:italic;color:var(--gold);font-weight:500}
+  .cl-rl{width:1px;height:64px;background:linear-gradient(180deg,transparent,var(--gold),transparent);margin:3.2rem auto}
+  .cl-ln{font-family:var(--display);font-size:clamp(1.6rem,2.6vw,2.3rem);font-weight:400;font-style:italic;line-height:1.42;color:var(--white);max-width:700px;margin:0 auto 3.8rem;letter-spacing:-0.012em}
+  .cl-ln em{color:var(--gold)}
+  .cl-bt{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap}
+
+  @media(max-width:1100px){
+    .h-in{grid-template-columns:1fr;gap:3rem}
+    .h-horizon{max-width:320px}
+    .ac-gr{grid-template-columns:1fr}
+    .tm-in{grid-template-columns:1fr;gap:4.5rem}
+    .fe-el-in{grid-template-columns:1fr;gap:4rem}
+    .fe-el:nth-child(even) .fe-el-in{direction:ltr}
+    .fe-el-vis{min-height:320px}
+  }
+  @media(max-width:768px){
+    .ac-c{padding:2.8rem 2.4rem;gap:1.5rem}
+    .h,.ac,.tm,.sd,.fe-el,.cl{padding-top:6rem;padding-bottom:6rem}
+  }
+  @media(max-width:600px){
+    .ac-c{flex-direction:column;gap:0.8rem}
+    .ac-letter{font-size:3rem}
+  }
+  </style>
+</head>
+<body>
+<div class="page">
+
+<header class="global-header">
+  <a href="index.html" class="gh-logo">
+    <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS"
+         onerror="this.style.display='none';document.querySelector('.gh-logo-text').style.display='block'">
+    <span class="gh-logo-text">MECULS</span>
+  </a>
+  <nav aria-label="Global navigation">
+    <ul class="gh-nav gh-nav-wrap">
+      <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+      <li><a href="contexts.html">Contexts</a></li>
+      <li><a href="the-approach.html">The Approach</a></li>
+      <li><a href="insights.html">Insights</a></li>
+      <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+      <li><a href="begin-conversation.html" class="gh-cta">Begin a Conversation</a></li>
+    </ul>
+  </nav>
+  <button class="gh-toggle" id="ghToggle" aria-label="Open navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+<div class="gh-mobile-menu" id="ghMobileMenu" role="dialog" aria-label="Mobile navigation">
+  <ul class="gh-mobile-nav">
+    <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+    <li><a href="contexts.html">Contexts</a></li>
+    <li><a href="the-approach.html">The Approach</a></li>
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+  </ul>
+  <a href="begin-conversation.html" class="gh-mobile-cta">Begin a Conversation</a>
+</div>
+
+<!-- HERO - ocean horizon at dawn -->
+<section class="h">
+  <svg class="h-bg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice"
+       xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="rgba(2,6,14,1)"/>
+        <stop offset="40%" stop-color="rgba(4,12,28,1)"/>
+        <stop offset="65%" stop-color="rgba(8,20,48,1)"/>
+        <stop offset="80%" stop-color="rgba(12,35,68,1)"/>
+        <stop offset="100%" stop-color="rgba(3,8,15,1)"/>
+      </linearGradient>
+      <radialGradient id="sun" cx="50%" cy="57%" r="30%">
+        <stop offset="0%" stop-color="rgba(212,175,55,0.55)"/>
+        <stop offset="30%" stop-color="rgba(180,130,30,0.22)"/>
+        <stop offset="70%" stop-color="rgba(100,70,10,0.08)"/>
+        <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+      </radialGradient>
+      <radialGradient id="horiz" cx="50%" cy="58%" r="55%">
+        <stop offset="0%" stop-color="rgba(30,50,100,0.25)"/>
+        <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+      </radialGradient>
+    </defs>
+    <rect x="0" y="0" width="1440" height="900" fill="url(#sky)"/>
+    <ellipse cx="720" cy="515" rx="800" ry="300" fill="url(#horiz)"/>
+    <ellipse cx="720" cy="515" rx="500" ry="200" fill="url(#sun)"/>
+    <!-- Sun disc -->
+    <g class="sray">
+      <line x1="720" y1="440" x2="720" y2="380" stroke="rgba(212,175,55,0.18)" stroke-width="1.2"/>
+      <line x1="720" y1="590" x2="720" y2="640" stroke="rgba(212,175,55,0.10)" stroke-width="1"/>
+      <line x1="640" y1="448" x2="600" y2="414" stroke="rgba(212,175,55,0.15)" stroke-width="1"/>
+      <line x1="800" y1="448" x2="840" y2="414" stroke="rgba(212,175,55,0.15)" stroke-width="1"/>
+      <line x1="580" y1="515" x2="520" y2="515" stroke="rgba(212,175,55,0.12)" stroke-width="1"/>
+      <line x1="860" y1="515" x2="920" y2="515" stroke="rgba(212,175,55,0.12)" stroke-width="1"/>
+    </g>
+    <circle class="sr" cx="720" cy="515" r="55" fill="rgba(212,175,55,0.50)" stroke="rgba(212,175,55,0.30)" stroke-width="1"/>
+    <circle cx="720" cy="515" r="28" fill="rgba(212,175,55,0.75)"/>
+    <circle cx="720" cy="515" r="12" fill="#d4af37"/>
+    <!-- Horizon line -->
+    <line x1="0" y1="555" x2="1440" y2="555" stroke="rgba(212,175,55,0.20)" stroke-width="0.8"/>
+    <!-- Ocean -->
+    <rect x="0" y="555" width="1440" height="345" fill="rgba(2,10,28,0.88)"/>
+    <!-- Wave layers -->
+    <path d="M0,570 Q180,558 360,572 Q540,586 720,568 Q900,550 1080,568 Q1260,586 1440,568 L1440,900 L0,900Z"
+          fill="rgba(5,18,50,0.55)"/>
+    <path d="M0,590 Q240,578 480,594 Q720,610 960,592 Q1200,574 1440,590 L1440,900 L0,900Z"
+          fill="rgba(8,22,55,0.40)"/>
+    <!-- Horizon reflection of sun on water -->
+    <ellipse cx="720" cy="580" rx="220" ry="30" fill="rgba(212,175,55,0.08)"/>
+    <ellipse cx="720" cy="600" rx="120" ry="18" fill="rgba(212,175,55,0.06)"/>
+    <!-- Stars (few, subtle) -->
+    <g fill="rgba(255,255,255,0.30)">
+      <circle cx="180" cy="120" r="1.2"/><circle cx="340" cy="80" r="0.9"/>
+      <circle cx="580" cy="160" r="1.0"/><circle cx="820" cy="90" r="1.1"/>
+      <circle cx="1050" cy="140" r="0.9"/><circle cx="1280" cy="100" r="1.2"/>
+      <circle cx="1380" cy="200" r="0.8"/><circle cx="90" cy="240" r="0.9"/>
+      <circle cx="440" cy="200" r="0.8"/><circle cx="980" cy="185" r="1.0"/>
+    </g>
+  </svg>
+  <div class="h-photo" id="hPhoto"></div>
+  <div class="h-ov"></div>
+
+  <div class="h-in">
+    <div class="rev">
+      <div class="lbl"><span class="lbl-n">I</span><span>Mynd CARE</span></div>
+      <h1>The mind is not<br>broken.<br><em>It is a seed that has not<br>been given what it needs.</em></h1>
+      <p class="h-sub">Mynd CARE is the philosophy of mind that underpins everything MECULS does for the individual. Five elements. In sequence. Given to the mind the way light, water, and soil are given to a seed.</p>
+      <div class="h-cta">
+        <a href="begin-conversation.html" class="btn-g">Begin a Conversation</a>
+        <a href="services.html" class="btn-o">Explore All Services</a>
+      </div>
+    </div>
+    <!-- Horizon visual right -->
+    <div class="h-horizon rev" aria-hidden="true">
+      <svg viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg" fill="none">
+        <defs>
+          <radialGradient id="hsg" cx="50%" cy="44%" r="45%">
+            <stop offset="0%" stop-color="rgba(212,175,55,0.50)"/>
+            <stop offset="50%" stop-color="rgba(180,130,30,0.15)"/>
+            <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+          </radialGradient>
+        </defs>
+        <!-- Sky -->
+        <rect x="0" y="0" width="480" height="360" fill="rgba(3,8,20,0.60)" rx="2"/>
+        <!-- Sun glow -->
+        <ellipse cx="240" cy="178" rx="350" ry="160" fill="url(#hsg)"/>
+        <!-- Sun disc -->
+        <circle cx="240" cy="178" r="38" fill="rgba(212,175,55,0.60)" stroke="rgba(212,175,55,0.35)" stroke-width="1"/>
+        <circle cx="240" cy="178" r="20" fill="rgba(212,175,55,0.80)"/>
+        <circle cx="240" cy="178" r="8" fill="#d4af37"/>
+        <!-- Horizon -->
+        <line x1="0" y1="198" x2="480" y2="198" stroke="rgba(212,175,55,0.30)" stroke-width="1"/>
+        <!-- Ocean -->
+        <path d="M0,198 Q120,192 240,200 Q360,208 480,198 L480,360 L0,360Z" fill="rgba(4,14,38,0.75)"/>
+        <!-- Reflection -->
+        <path d="M190,200 Q215,210 240,205 Q265,200 290,208 Q265,220 240,215 Q215,210 190,200Z"
+              fill="rgba(212,175,55,0.15)"/>
+        <path d="M210,215 Q225,222 240,218 Q255,214 270,220 Q255,228 240,224 Q225,220 210,215Z"
+              fill="rgba(212,175,55,0.09)"/>
+        <!-- MYND CARE text -->
+        <text x="240" y="282" text-anchor="middle" font-family="'Playfair Display',serif"
+              font-size="28" font-weight="400" fill="rgba(212,175,55,0.75)" letter-spacing="0.18em">MYND</text>
+        <text x="240" y="316" text-anchor="middle" font-family="'Cormorant Garamond',serif"
+              font-size="16" font-style="italic" fill="rgba(212,175,55,0.45)" letter-spacing="0.12em">Cure Anxiety. Restore Excellence.</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ACRONYM EXPLAINER -->
+<section class="ac">
+  <div class="ac-in">
+    <div class="ac-head rev">
+      <div class="lbl"><span class="lbl-n">II</span><span>What CARE Stands For</span></div>
+      <h2>Cure Anxiety.<br><em>Restore Excellence.</em></h2>
+      <p>Not an acronym chosen for style. An accurate description of what happens when the mind receives what it needs: the anxiety that comes from an unsettled mind is resolved, and the natural excellence that the mind is capable of &ndash; which anxiety suppresses &ndash; <em>returns on its own.</em></p>
+    </div>
+    <div class="ac-gr rev">
+      <div class="ac-c">
+        <span class="ac-letter">C</span>
+        <div class="ac-c-txt">
+          <h3>Cure.<br><em>Not manage.</em></h3>
+          <p>Anxiety is not a personality trait to be accommodated. It is a signal from a mind whose needs have not been met. The work of Mynd CARE is to meet those needs &ndash; <em>which is what resolves the signal, not suppresses it.</em></p>
+        </div>
+      </div>
+      <div class="ac-c">
+        <span class="ac-letter">A</span>
+        <div class="ac-c-txt">
+          <h3>Anxiety.<br><em>The alarm, not the problem.</em></h3>
+          <p>Anxiety is not what needs to be treated. It is the alarm. The mind raises the alarm when something important to its wellbeing is absent. <em>Treat what is absent, and the alarm stops.</em></p>
+        </div>
+      </div>
+      <div class="ac-c">
+        <span class="ac-letter">R</span>
+        <div class="ac-c-txt">
+          <h3>Restore.<br><em>What was always there.</em></h3>
+          <p>Excellence is not an achievement to be reached. It is the natural state of a mind that is whole. It was not absent &ndash; it was obscured. <em>Restore the conditions, and it returns.</em></p>
+        </div>
+      </div>
+      <div class="ac-c">
+        <span class="ac-letter">E</span>
+        <div class="ac-c-txt">
+          <h3>Excellence.<br><em>The mind in its natural state.</em></h3>
+          <p>Not peak performance. Not exceptional output. The quiet, reliable capacity of a mind that is not fighting itself &ndash; <em>to do exactly what it is here to do, with full energy available for the doing.</em></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TWO MINDS DIAGRAM -->
+<section class="tm">
+  <div class="tm-in">
+    <div class="rev">
+      <div class="lbl"><span class="lbl-n">III</span><span>Two Minds</span></div>
+      <h2>Every person has<br><em>two minds, not one.</em></h2>
+      <p>The brain is the conscious mind &ndash; the one that talks, plans, analyses, and worries. It is what most people mean when they say &ldquo;my mind.&rdquo; It is also only half of the system.</p>
+      <p>The body-mind is the unconscious &ndash; older, quieter, and vastly larger. It holds the instincts, the physical states, the deep patterns of response that operate beneath the surface of conscious thought. It is the mind that knows what is wrong before the brain can name it.</p>
+      <p>Most difficulty &ndash; anxiety, stuck patterns, distance from one&rsquo;s own life &ndash; happens when the brain is blocking the body-mind rather than listening to it. The brain treats the body&rsquo;s signals as problems to be solved rather than information to be understood.</p>
+      <div class="tm-insight">
+        <p>When both minds are aligned &ndash; when the brain listens to the body and the body trusts the brain &ndash; <em>what the person experiences is complete wellness.</em> Not the absence of difficulty. The presence of wholeness.</p>
+      </div>
+      <p>All the work of MECULS with individuals moves toward this alignment. Every service, in its own way, is dissolving the interference the brain creates with the body-mind &ndash; and helping the person experience what it feels like when the two work together.</p>
+    </div>
+
+    <!-- Two minds diagram - large and clear, designed for parchment background -->
+    <div class="tm-diag rev" aria-hidden="true">
+      <svg viewBox="0 0 520 620" xmlns="http://www.w3.org/2000/svg" fill="none">
+        <defs>
+          <!-- Gold-warm fill for body-mind (unconscious) -->
+          <radialGradient id="bmg" cx="50%" cy="60%" r="55%">
+            <stop offset="0%" stop-color="rgba(138,109,26,0.14)"/>
+            <stop offset="100%" stop-color="rgba(138,109,26,0.02)"/>
+          </radialGradient>
+          <!-- Blue-cool fill for brain (conscious) -->
+          <radialGradient id="brg" cx="50%" cy="40%" r="55%">
+            <stop offset="0%" stop-color="rgba(60,80,160,0.10)"/>
+            <stop offset="100%" stop-color="rgba(60,80,160,0.01)"/>
+          </radialGradient>
+          <marker id="arr2" markerWidth="8" markerHeight="8" refX="5" refY="4" orient="auto">
+            <path d="M0,0 L8,4 L0,8 L2,4 Z" fill="rgba(138,109,26,0.80)"/>
+          </marker>
+        </defs>
+
+        <!-- Outer container ring -->
+        <circle cx="260" cy="300" r="248" stroke="rgba(138,109,26,0.12)" stroke-width="1" fill="none"/>
+
+        <!-- Body-mind (unconscious) - lower, larger ellipse -->
+        <ellipse cx="260" cy="395" rx="198" ry="138"
+                 fill="url(#bmg)" stroke="rgba(138,109,26,0.40)" stroke-width="1.8"/>
+        <!-- Body-mind labels - dark ink on parchment -->
+        <text x="260" y="368" text-anchor="middle" font-family="'Archivo',sans-serif"
+              font-size="12" font-weight="700" letter-spacing="0.20em" fill="rgba(138,109,26,0.90)">BODY-MIND</text>
+        <text x="260" y="392" text-anchor="middle" font-family="'Cormorant Garamond',serif"
+              font-size="22" font-style="italic" fill="rgba(26,23,19,0.85)">(the unconscious)</text>
+        <text x="260" y="416" text-anchor="middle" font-family="'Cormorant Garamond',serif"
+              font-size="18" font-style="italic" fill="rgba(58,52,43,0.72)">older &middot; deeper &middot; larger</text>
+        <text x="260" y="438" text-anchor="middle" font-family="'Cormorant Garamond',serif"
+              font-size="18" font-style="italic" fill="rgba(58,52,43,0.65)">holds what the body knows</text>
+
+        <!-- Brain (conscious) - upper ellipse -->
+        <ellipse cx="260" cy="200" rx="152" ry="108"
+                 fill="url(#brg)" stroke="rgba(60,80,160,0.35)" stroke-width="1.8"/>
+        <!-- Brain labels - dark ink on parchment -->
+        <text x="260" y="178" text-anchor="middle" font-family="'Archivo',sans-serif"
+              font-size="12" font-weight="700" letter-spacing="0.20em" fill="rgba(60,80,160,0.85)">THE BRAIN</text>
+        <text x="260" y="202" text-anchor="middle" font-family="'Cormorant Garamond',serif"
+              font-size="22" font-style="italic" fill="rgba(26,23,19,0.85)">(the conscious)</text>
+        <text x="260" y="226" text-anchor="middle" font-family="'Cormorant Garamond',serif"
+              font-size="18" font-style="italic" fill="rgba(58,52,43,0.65)">talks &middot; plans &middot; analyses</text>
+
+        <!-- Alignment zone - the overlap -->
+        <ellipse cx="260" cy="296" rx="118" ry="46"
+                 fill="rgba(212,175,55,0.14)" stroke="rgba(138,109,26,0.50)" stroke-width="1.4"/>
+        <text x="260" y="292" text-anchor="middle" font-family="'Cormorant Garamond',serif"
+              font-size="18" font-weight="600" font-style="italic" fill="rgba(138,109,26,0.95)">alignment zone</text>
+        <text x="260" y="312" text-anchor="middle" font-family="'Cormorant Garamond',serif"
+              font-size="15" font-style="italic" fill="rgba(138,109,26,0.70)">where wellbeing lives</text>
+
+        <!-- Arrows - two-way dialogue between brain and body-mind -->
+        <path d="M218 254 C196 272 194 292 206 308"
+              stroke="rgba(138,109,26,0.65)" stroke-width="1.6" fill="none" marker-end="url(#arr2)"/>
+        <path d="M302 334 C322 316 324 296 312 280"
+              stroke="rgba(138,109,26,0.65)" stroke-width="1.6" fill="none" marker-end="url(#arr2)"/>
+        <!-- Arrow labels -->
+        <text x="178" y="292" text-anchor="middle" font-family="'Cormorant Garamond',serif"
+              font-size="15" font-style="italic" fill="rgba(138,109,26,0.80)">brain listens</text>
+        <text x="342" y="322" text-anchor="middle" font-family="'Cormorant Garamond',serif"
+              font-size="15" font-style="italic" fill="rgba(138,109,26,0.80)">body trusts</text>
+
+        <!-- Bottom label -->
+        <text x="260" y="580" text-anchor="middle" font-family="'Playfair Display',serif"
+              font-size="19" font-style="italic" font-weight="400" fill="rgba(138,109,26,0.75)">aligned &rarr; complete wellness</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- SEED DIAGRAM - full pentagon -->
+<section class="sd">
+  <div class="sd-in">
+    <div class="sd-head rev">
+      <div class="lbl"><span class="lbl-n">IV</span><span>The Mind as a Seed</span></div>
+      <h2>Five elements.<br><em>In sequence. Given to the mind the way a seed is given what it needs to grow.</em></h2>
+      <p>A seed does not need to be taught to grow. It needs light, water, soil, air, and warmth &ndash; in the right conditions, in the right order. The mind is the same. It does not need to be fixed or taught or improved. <em>It needs its five elements.</em> When they are present, what grows is wholeness.</p>
+    </div>
+    <div class="sd-diagram rev" aria-label="Seed pentagon diagram showing the five elements of Mynd CARE">
+      <!-- viewBox expanded to 1060x820 so left/right labels have full room - pentagon stays centred -->
+      <svg viewBox="0 0 1060 820" xmlns="http://www.w3.org/2000/svg" fill="none">
+        <defs>
+          <radialGradient id="sdg" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(212,175,55,0.15)"/>
+            <stop offset="100%" stop-color="rgba(212,175,55,0)"/>
+          </radialGradient>
+        </defs>
+        <!-- Pentagon centre: cx=530, cy=400, node radius=220 -->
+        <!-- Top (Shadow):       530, 180 -->
+        <!-- Top-right (Wholeness): 530+209=739, 400-68=332 -->
+        <!-- Bottom-right (Provided): 530+129=659, 400+178=578 -->
+        <!-- Bottom-left (Contentment): 530-129=401, 400+178=578 -->
+        <!-- Top-left (Peace):   530-209=321, 400-68=332 -->
+
+        <!-- Background glow -->
+        <ellipse cx="530" cy="400" rx="340" ry="320" fill="url(#sdg)"/>
+        <!-- Guide rings -->
+        <circle cx="530" cy="400" r="310" stroke="rgba(212,175,55,0.08)" stroke-width="0.8"/>
+        <circle cx="530" cy="400" r="220" stroke="rgba(212,175,55,0.14)" stroke-width="0.8" stroke-dasharray="3 9"/>
+        <!-- Pentagon outline -->
+        <polygon points="530,180 739,332 659,578 401,578 321,332"
+                 stroke="rgba(212,175,55,0.32)" stroke-width="1.5" fill="rgba(212,175,55,0.04)"/>
+        <polygon points="530,180 739,332 659,578 401,578 321,332"
+                 stroke="rgba(212,175,55,0.10)" stroke-width="0.6" stroke-dasharray="3 8" fill="none"/>
+        <!-- Lines from each node to centre -->
+        <line x1="530" y1="180" x2="530" y2="400" stroke="rgba(212,175,55,0.13)" stroke-width="0.8" stroke-dasharray="3 8"/>
+        <line x1="739" y1="332" x2="530" y2="400" stroke="rgba(212,175,55,0.13)" stroke-width="0.8" stroke-dasharray="3 8"/>
+        <line x1="659" y1="578" x2="530" y2="400" stroke="rgba(212,175,55,0.13)" stroke-width="0.8" stroke-dasharray="3 8"/>
+        <line x1="401" y1="578" x2="530" y2="400" stroke="rgba(212,175,55,0.13)" stroke-width="0.8" stroke-dasharray="3 8"/>
+        <line x1="321" y1="332" x2="530" y2="400" stroke="rgba(212,175,55,0.13)" stroke-width="0.8" stroke-dasharray="3 8"/>
+
+        <!-- NODE 1: Shadow (top) - labels above node -->
+        <circle cx="530" cy="180" r="26" fill="rgba(212,175,55,0.70)" stroke="rgba(212,175,55,0.90)" stroke-width="1.5"/>
+        <circle cx="530" cy="180" r="11" fill="#d4af37"/>
+        <text x="530" y="130" text-anchor="middle" font-family="'Archivo',sans-serif"
+              font-size="13" font-weight="700" letter-spacing="0.20em" fill="rgba(212,175,55,0.70)">ELEMENT 01</text>
+        <text x="530" y="105" text-anchor="middle" font-family="'Playfair Display',serif"
+              font-size="28" font-weight="500" fill="rgba(255,255,255,0.95)">Shadow</text>
+        <text x="530" y="78" text-anchor="middle" font-family="'Cormorant Garamond',serif"
+              font-size="18" font-style="italic" fill="rgba(255,255,255,0.60)">Accepting one&rsquo;s own</text>
+
+        <!-- NODE 2: Wholeness (top-right) - labels to the right -->
+        <circle cx="739" cy="332" r="26" fill="rgba(212,175,55,0.65)" stroke="rgba(212,175,55,0.85)" stroke-width="1.5"/>
+        <circle cx="739" cy="332" r="11" fill="#d4af37"/>
+        <text x="778" y="315" text-anchor="start" font-family="'Archivo',sans-serif"
+              font-size="13" font-weight="700" letter-spacing="0.20em" fill="rgba(212,175,55,0.70)">ELEMENT 02</text>
+        <text x="778" y="340" text-anchor="start" font-family="'Playfair Display',serif"
+              font-size="28" font-weight="500" fill="rgba(255,255,255,0.95)">Wholeness</text>
+        <text x="778" y="362" text-anchor="start" font-family="'Cormorant Garamond',serif"
+              font-size="18" font-style="italic" fill="rgba(255,255,255,0.60)">Understanding it</text>
+
+        <!-- NODE 3: Provided (bottom-right) - labels to the right, below -->
+        <circle cx="659" cy="578" r="26" fill="rgba(212,175,55,0.60)" stroke="rgba(212,175,55,0.80)" stroke-width="1.5"/>
+        <circle cx="659" cy="578" r="11" fill="#d4af37"/>
+        <text x="698" y="568" text-anchor="start" font-family="'Archivo',sans-serif"
+              font-size="13" font-weight="700" letter-spacing="0.20em" fill="rgba(212,175,55,0.70)">ELEMENT 03</text>
+        <text x="698" y="593" text-anchor="start" font-family="'Playfair Display',serif"
+              font-size="28" font-weight="500" fill="rgba(255,255,255,0.95)">Provided</text>
+        <text x="698" y="616" text-anchor="start" font-family="'Cormorant Garamond',serif"
+              font-size="18" font-style="italic" fill="rgba(255,255,255,0.60)">Always, with everything needed</text>
+
+        <!-- NODE 4: Contentment (bottom-left) - labels to the left -->
+        <circle cx="401" cy="578" r="26" fill="rgba(212,175,55,0.60)" stroke="rgba(212,175,55,0.80)" stroke-width="1.5"/>
+        <circle cx="401" cy="578" r="11" fill="#d4af37"/>
+        <text x="362" y="568" text-anchor="end" font-family="'Archivo',sans-serif"
+              font-size="13" font-weight="700" letter-spacing="0.20em" fill="rgba(212,175,55,0.70)">ELEMENT 04</text>
+        <text x="362" y="593" text-anchor="end" font-family="'Playfair Display',serif"
+              font-size="28" font-weight="500" fill="rgba(255,255,255,0.95)">Contentment</text>
+        <text x="362" y="616" text-anchor="end" font-family="'Cormorant Garamond',serif"
+              font-size="18" font-style="italic" fill="rgba(255,255,255,0.60)">Creating from peace</text>
+
+        <!-- NODE 5: Peace (top-left) - labels to the left -->
+        <circle cx="321" cy="332" r="26" fill="rgba(212,175,55,0.65)" stroke="rgba(212,175,55,0.85)" stroke-width="1.5"/>
+        <circle cx="321" cy="332" r="11" fill="#d4af37"/>
+        <text x="282" y="315" text-anchor="end" font-family="'Archivo',sans-serif"
+              font-size="13" font-weight="700" letter-spacing="0.20em" fill="rgba(212,175,55,0.70)">ELEMENT 05</text>
+        <text x="282" y="340" text-anchor="end" font-family="'Playfair Display',serif"
+              font-size="28" font-weight="500" fill="rgba(255,255,255,0.95)">Peace</text>
+        <text x="282" y="362" text-anchor="end" font-family="'Cormorant Garamond',serif"
+              font-size="18" font-style="italic" fill="rgba(255,255,255,0.60)">Feeling wholeness</text>
+
+        <!-- Centre: the mind as seed -->
+        <circle cx="530" cy="400" r="62" fill="rgba(212,175,55,0.08)" stroke="rgba(212,175,55,0.35)" stroke-width="1.2"/>
+        <circle cx="530" cy="400" r="36" fill="rgba(212,175,55,0.14)" stroke="rgba(212,175,55,0.55)" stroke-width="1"/>
+        <circle cx="530" cy="400" r="16" fill="rgba(212,175,55,0.75)"/>
+        <circle cx="530" cy="400" r="6" fill="#d4af37"/>
+        <text x="530" y="484" text-anchor="middle" font-family="'Cormorant Garamond',serif"
+              font-size="18" font-style="italic" fill="rgba(212,175,55,0.55)">the mind</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- FIVE ELEMENTS - each as large section -->
+<section class="fe">
+
+  <!-- Element 1: Shadow -->
+  <div class="fe-el">
+    <div class="fe-el-in">
+      <div class="fe-el-txt rev">
+        <div class="fe-el-num">01</div>
+        <span class="fe-el-tag">The First Element</span>
+        <h2>Accepting<br><em>one&rsquo;s own shadow.</em></h2>
+        <p>Every person has a shadow &ndash; the parts of themselves they have learned to hide, judge, or deny. Not because those parts are bad, but because at some point the person decided they were unacceptable. The decision may have been made at age five. It may have been made yesterday.</p>
+        <p>The shadow does not disappear when it is denied. It grows more powerful, operating from beneath the surface of the person&rsquo;s choices, relationships, and responses. <em>The person who has not accepted their shadow is not in charge of their own life as fully as they believe they are.</em></p>
+        <p>Accepting the shadow is the first element because nothing that follows is possible without it. The person who is at war with parts of themselves cannot be whole. The person who has accepted all of themselves &ndash; including what they judge &ndash; has the foundation for everything that follows.</p>
+      </div>
+      <div class="fe-el-vis rev" aria-hidden="true">
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <defs>
+            <radialGradient id="shg" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="rgba(212,175,55,0.12)"/>
+              <stop offset="100%" stop-color="rgba(212,175,55,0)"/>
+            </radialGradient>
+          </defs>
+          <circle cx="200" cy="200" r="185" fill="rgba(26,23,19,0.05)" stroke="rgba(138,109,26,0.12)" stroke-width="0.8"/>
+          <!-- Light half -->
+          <path d="M200,30 A170,170 0 0,1 200,370 Z" fill="rgba(212,175,55,0.12)" stroke="rgba(212,175,55,0.28)" stroke-width="1"/>
+          <!-- Shadow half -->
+          <path d="M200,30 A170,170 0 0,0 200,370 Z" fill="rgba(26,23,19,0.30)" stroke="rgba(138,109,26,0.22)" stroke-width="1"/>
+          <!-- Dividing line - the integration line -->
+          <line x1="200" y1="30" x2="200" y2="370" stroke="rgba(212,175,55,0.45)" stroke-width="1.2"/>
+          <!-- Centre: the whole person -->
+          <circle cx="200" cy="200" r="38" stroke="rgba(212,175,55,0.40)" stroke-width="1.2" fill="rgba(212,175,55,0.08)"/>
+          <circle cx="200" cy="200" r="16" fill="rgba(212,175,55,0.65)"/>
+          <circle cx="200" cy="200" r="6" fill="#d4af37"/>
+          <text x="200" y="330" text-anchor="middle" font-family="'Cormorant Garamond',serif"
+                font-size="16" font-style="italic" fill="rgba(138,109,26,0.55)">light and shadow, together</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Element 2: Wholeness (understanding) -->
+  <div class="fe-el">
+    <div class="fe-el-in">
+      <div class="fe-el-txt rev">
+        <div class="fe-el-num">02</div>
+        <span class="fe-el-tag">The Second Element</span>
+        <h2>Understanding<br><em>wholeness.</em></h2>
+        <p>Wholeness is not something to achieve. It is not a destination. It is the nature of the mind as it already exists &ndash; before the additions of worry, comparison, self-rejection, and the belief that something is missing.</p>
+        <p>The understanding of wholeness means recognising &ndash; intellectually, clearly, as a known fact &ndash; that nothing is lacking. That the person, as they are, is already complete. That the restlessness they feel is not evidence of a gap to be filled, <em>but of a gap to be dissolved.</em></p>
+        <p>This is the second element because the shadow must be accepted before wholeness can be understood. A person at war with parts of themselves cannot yet see the whole. Once the shadow is accepted, the whole becomes visible. The understanding is the first glimpse of it.</p>
+      </div>
+      <div class="fe-el-vis rev" aria-hidden="true">
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <defs>
+            <radialGradient id="wg3" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="rgba(212,175,55,0.18)"/>
+              <stop offset="100%" stop-color="rgba(212,175,55,0)"/>
+            </radialGradient>
+          </defs>
+          <circle cx="200" cy="200" r="185" fill="rgba(26,23,19,0.04)" stroke="rgba(138,109,26,0.10)" stroke-width="0.8"/>
+          <!-- Complete circle - wholeness -->
+          <circle cx="200" cy="200" r="158" fill="url(#wg3)" stroke="rgba(212,175,55,0.28)" stroke-width="1.5"/>
+          <circle cx="200" cy="200" r="100" stroke="rgba(212,175,55,0.22)" stroke-width="1" stroke-dasharray="4 8"/>
+          <circle cx="200" cy="200" r="52" stroke="rgba(212,175,55,0.32)" stroke-width="1.2" fill="rgba(212,175,55,0.06)"/>
+          <circle cx="200" cy="200" r="20" fill="rgba(212,175,55,0.65)"/>
+          <circle cx="200" cy="200" r="7" fill="#d4af37"/>
+          <!-- Equal segments showing completeness -->
+          <line x1="200" y1="42" x2="200" y2="62" stroke="rgba(212,175,55,0.30)" stroke-width="1"/>
+          <line x1="313" y1="87" x2="299" y2="99" stroke="rgba(212,175,55,0.25)" stroke-width="1"/>
+          <line x1="358" y1="200" x2="338" y2="200" stroke="rgba(212,175,55,0.25)" stroke-width="1"/>
+          <line x1="313" y1="313" x2="299" y2="301" stroke="rgba(212,175,55,0.25)" stroke-width="1"/>
+          <line x1="200" y1="358" x2="200" y2="338" stroke="rgba(212,175,55,0.30)" stroke-width="1"/>
+          <line x1="87" y1="313" x2="101" y2="301" stroke="rgba(212,175,55,0.25)" stroke-width="1"/>
+          <line x1="42" y1="200" x2="62" y2="200" stroke="rgba(212,175,55,0.25)" stroke-width="1"/>
+          <line x1="87" y1="87" x2="101" y2="99" stroke="rgba(212,175,55,0.25)" stroke-width="1"/>
+          <text x="200" y="330" text-anchor="middle" font-family="'Cormorant Garamond',serif"
+                font-size="16" font-style="italic" fill="rgba(138,109,26,0.55)">already complete</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Element 3: Provided (feeling wholeness) - NOTE: matches standing instructions.
+       Element 3 in the sequence is "feeling wholeness" / "practically living awareness: always provided"
+       The screenshot shows nodes: Shadow, Wholeness, Provided, Contentment, Peace
+       Per the project brief: (3) feeling wholeness, (4) practically living awareness always provided
+       The Provided node = "always provided with everything needed" = element 3 in the screenshot labels
+       We follow the screenshot's node labeling and the brief's explanation. -->
+  <div class="fe-el">
+    <div class="fe-el-in">
+      <div class="fe-el-txt rev">
+        <div class="fe-el-num">03</div>
+        <span class="fe-el-tag">The Third Element</span>
+        <h2>Feeling<br><em>wholeness.</em></h2>
+        <p>Understanding wholeness and feeling it are different. A person can know, with full intellectual clarity, that they are complete &ndash; and still not feel it. The mind understands before the body does. The third element is the movement from the known to the felt.</p>
+        <p>This is where meditation does its deepest work. The body-mind does not respond to argument. It responds to experience. The stillness of meditation is the condition in which wholeness stops being a thought and starts being a felt reality &ndash; even briefly, even in glimpses. <em>Each glimpse becomes a reference point the person can return to.</em></p>
+        <p>The person who has felt wholeness even once knows it is real. That knowing changes the quality of everything: how they respond to difficulty, what they believe they deserve, how they relate to the parts of themselves they once hid.</p>
+      </div>
+      <div class="fe-el-vis rev" aria-hidden="true">
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <!-- Ripple of felt experience -->
+          <circle cx="200" cy="200" r="185" fill="rgba(26,23,19,0.04)" stroke="rgba(138,109,26,0.08)" stroke-width="0.8"/>
+          <circle cx="200" cy="200" r="155" stroke="rgba(212,175,55,0.08)" stroke-width="0.7"/>
+          <circle cx="200" cy="200" r="120" stroke="rgba(212,175,55,0.12)" stroke-width="0.9"/>
+          <circle cx="200" cy="200" r="88" stroke="rgba(212,175,55,0.18)" stroke-width="1.0" fill="rgba(212,175,55,0.03)"/>
+          <circle cx="200" cy="200" r="58" stroke="rgba(212,175,55,0.26)" stroke-width="1.1" fill="rgba(212,175,55,0.05)"/>
+          <circle cx="200" cy="200" r="34" stroke="rgba(212,175,55,0.40)" stroke-width="1.2" fill="rgba(212,175,55,0.09)"/>
+          <circle cx="200" cy="200" r="16" fill="rgba(212,175,55,0.72)"/>
+          <circle cx="200" cy="200" r="6" fill="#d4af37"/>
+          <text x="200" y="328" text-anchor="middle" font-family="'Cormorant Garamond',serif"
+                font-size="16" font-style="italic" fill="rgba(138,109,26,0.55)">the felt ripples outward</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Element 4: Provided - practically living awareness -->
+  <div class="fe-el">
+    <div class="fe-el-in">
+      <div class="fe-el-txt rev">
+        <div class="fe-el-num">04</div>
+        <span class="fe-el-tag">The Fourth Element</span>
+        <h2>Practically living awareness:<br><em>always provided.</em></h2>
+        <p>The fourth element is a shift in how the person moves through daily life. Having understood and felt wholeness, the person begins to live from a different premise: that they are, in every situation, provided with everything they actually need.</p>
+        <p>This is not a claim about external circumstances. It is a quality of awareness &ndash; the recognition that in any situation, the resources needed to respond to it are present. <em>Not unlimited resources. The right resources, for this situation, right now.</em></p>
+        <p>The person who lives from this awareness does not move through life in a posture of lack or fear. They move from fullness. The difference in what this makes possible &ndash; in decisions, in relationships, in creativity &ndash; is fundamental.</p>
+      </div>
+      <div class="fe-el-vis rev" aria-hidden="true">
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <!-- Person provided with everything -->
+          <circle cx="200" cy="200" r="185" fill="rgba(26,23,19,0.04)" stroke="rgba(138,109,26,0.08)" stroke-width="0.8"/>
+          <!-- Person - simple geometric form -->
+          <circle cx="200" cy="148" r="30" stroke="rgba(212,175,55,0.50)" stroke-width="1.5" fill="rgba(212,175,55,0.08)"/>
+          <circle cx="200" cy="148" r="12" fill="rgba(212,175,55,0.65)"/>
+          <!-- Body -->
+          <line x1="200" y1="178" x2="200" y2="260" stroke="rgba(212,175,55,0.45)" stroke-width="2"/>
+          <!-- Arms spread open - receiving -->
+          <path d="M200 205 Q155 192 128 205" stroke="rgba(212,175,55,0.45)" stroke-width="1.8" fill="none"/>
+          <path d="M200 205 Q245 192 272 205" stroke="rgba(212,175,55,0.45)" stroke-width="1.8" fill="none"/>
+          <!-- Legs -->
+          <line x1="200" y1="260" x2="175" y2="310" stroke="rgba(212,175,55,0.40)" stroke-width="1.5"/>
+          <line x1="200" y1="260" x2="225" y2="310" stroke="rgba(212,175,55,0.40)" stroke-width="1.5"/>
+          <!-- Abundance markers radiating around person -->
+          <g stroke="rgba(212,175,55,0.28)" stroke-width="1">
+            <line x1="200" y1="50" x2="200" y2="68"/>
+            <line x1="270" y1="75" x2="258" y2="89"/>
+            <line x1="325" y1="148" x2="308" y2="148"/>
+            <line x1="270" y1="220" x2="256" y2="210"/>
+            <line x1="130" y1="220" x2="144" y2="210"/>
+            <line x1="75" y1="148" x2="92" y2="148"/>
+            <line x1="130" y1="75" x2="142" y2="89"/>
+          </g>
+          <text x="200" y="348" text-anchor="middle" font-family="'Cormorant Garamond',serif"
+                font-size="16" font-style="italic" fill="rgba(138,109,26,0.55)">open to what is already here</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Element 5: Contentment / Peace - creating from peace -->
+  <div class="fe-el">
+    <div class="fe-el-in">
+      <div class="fe-el-txt rev">
+        <div class="fe-el-num">05</div>
+        <span class="fe-el-tag">The Fifth Element</span>
+        <h2>Contentment.<br><em>Creating from peace, for something greater than oneself.</em></h2>
+        <p>The fifth element is the fruit of the first four. The person who has accepted their shadow, understood and felt their wholeness, and begun to live from the awareness of being provided &ndash; arrives, not at completion, but at peace. And from peace, they begin to create.</p>
+        <p>The contentment of this element is not passive. It is not the contentment of wanting nothing. It is the contentment of a person who is no longer creating from fear, lack, or the need to prove something. <em>They are creating from fullness, for something larger than their own need.</em></p>
+        <p>This is also where the individual journey opens into the social. The person who is no longer spending their energy managing their own suffering has energy available for the world. What they choose to do with that energy &ndash; in work, in relationship, in community &ndash; is the final expression of the five elements.</p>
+        <p><em>Only from peace can a person see clearly what they are here to create.</em> And only from peace can they cross the obstacles between where they are and where that creation needs to go.</p>
+      </div>
+      <div class="fe-el-vis rev" aria-hidden="true">
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <defs>
+            <radialGradient id="pcg" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="rgba(212,175,55,0.22)"/>
+              <stop offset="100%" stop-color="rgba(212,175,55,0)"/>
+            </radialGradient>
+          </defs>
+          <!-- The seed bloomed - all five petals -->
+          <circle cx="200" cy="200" r="185" fill="rgba(26,23,19,0.04)" stroke="rgba(138,109,26,0.08)" stroke-width="0.8"/>
+          <circle cx="200" cy="200" r="160" fill="url(#pcg)"/>
+          <!-- Five petals radiating - the bloom -->
+          <ellipse cx="200" cy="88" rx="28" ry="62" fill="rgba(212,175,55,0.22)" stroke="rgba(212,175,55,0.40)" stroke-width="1" transform="rotate(0,200,200)"/>
+          <ellipse cx="200" cy="88" rx="28" ry="62" fill="rgba(212,175,55,0.18)" stroke="rgba(212,175,55,0.32)" stroke-width="0.8" transform="rotate(72,200,200)"/>
+          <ellipse cx="200" cy="88" rx="28" ry="62" fill="rgba(212,175,55,0.18)" stroke="rgba(212,175,55,0.32)" stroke-width="0.8" transform="rotate(144,200,200)"/>
+          <ellipse cx="200" cy="88" rx="28" ry="62" fill="rgba(212,175,55,0.18)" stroke="rgba(212,175,55,0.32)" stroke-width="0.8" transform="rotate(216,200,200)"/>
+          <ellipse cx="200" cy="88" rx="28" ry="62" fill="rgba(212,175,55,0.22)" stroke="rgba(212,175,55,0.40)" stroke-width="1" transform="rotate(288,200,200)"/>
+          <!-- Centre -->
+          <circle cx="200" cy="200" r="50" fill="rgba(212,175,55,0.16)" stroke="rgba(212,175,55,0.48)" stroke-width="1.2"/>
+          <circle cx="200" cy="200" r="26" fill="rgba(212,175,55,0.65)"/>
+          <circle cx="200" cy="200" r="10" fill="#d4af37"/>
+          <text x="200" y="330" text-anchor="middle" font-family="'Cormorant Garamond',serif"
+                font-size="16" font-style="italic" fill="rgba(138,109,26,0.55)">the seed, in full bloom</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- CONVICTION CLOSE -->
+<section class="cl">
+  <div class="cl-in">
+    <div class="lbl rev"><span class="lbl-n">V</span><span>The Point</span></div>
+    <h2 class="rev">The mind does not need<br><em>more to carry.</em></h2>
+    <p class="rev">Every service within MECULS for the individual &ndash; Consciousness &amp; Clarity, Mind Wellness, Addiction Freedom, Counselling &ndash; is an expression of Mynd CARE. Each reaches a different person at a different point in their relationship with their own inner life.</p>
+    <p class="rev">But each is working toward the same thing: the experience of a mind that is not fighting itself. A person who is not managing their anxiety but is genuinely not anxious. A person whose excellence is not performance &ndash; <em>it is simply the quality of their presence in their own life.</em></p>
+    <div class="cl-rl rev" aria-hidden="true"></div>
+    <div class="cl-ln rev">
+      A seed does not try to grow.<br><em>It grows when given what it needs.</em><br>The mind is the same.
+    </div>
+    <div class="cl-bt rev">
+      <a href="begin-conversation.html" class="btn-g">Begin a Conversation</a>
+      <a href="services.html" class="btn-o">Explore All Services</a>
+    </div>
+  </div>
+</section>
+
+<footer class="global-footer">
+  <div class="gf-top">
+    <div class="gf-brand">
+      <div class="gf-logo">
+        <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="gf-logo-text" style="display:none">MECULS</span>
+      </div>
+      <p class="gf-tagline">Mind Enablement Centre for Unlocking Limitless Leadership &amp; Self-Potential</p>
+      <div class="gf-contact">
+        <a href="mailto:Jain.Rajneesh@meculs.com">Jain.Rajneesh@meculs.com</a>
+        <a href="#">Delhi, India</a>
+      </div>
+      <div class="gf-social">
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.5 6.5s-.3-2-1.2-2.8c-1.1-1.2-2.4-1.2-3-1.3C15.6 2.2 12 2.2 12 2.2s-3.6 0-6.3.2c-.6.1-1.9.1-3 1.3C1.8 4.5 1.5 6.5 1.5 6.5S1.2 8.8 1.2 11v2.1c0 2.2.3 4.4.3 4.4s.3 2 1.2 2.8c1.1 1.2 2.6 1.1 3.3 1.2 2.4.2 10 .3 10 .3s3.6 0 6.3-.3c.6-.1 1.9-.1 3-1.3.9-.8 1.2-2.8 1.2-2.8s.3-2.2.3-4.4V11c0-2.2-.3-4.5-.3-4.5zM9.7 14.8V8.4l6.6 3.2-6.6 3.2z"/></svg></a>
+      </div>
+    </div>
+    <div>
+      <p class="gf-col-title">Individual Services</p>
+      <ul class="gf-links">
+        <li><a href="service-consciousness-clarity.html">Consciousness &amp; Clarity</a></li>
+        <li><a href="service-mind-wellness.html">Mind Wellness</a></li>
+        <li><a href="service-addiction-freedom.html">Addiction Freedom</a></li>
+        <li><a href="service-counselling.html">Counselling</a></li>
+        <li><a href="services.html">All Services</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="gf-col-title">Company</p>
+      <ul class="gf-links">
+        <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+        <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+        <li><a href="the-approach.html">The Approach</a></li>
+        <li><a href="why-meculs.html">Why MECULS</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="gf-col-title">Connect</p>
+      <ul class="gf-links">
+        <li><a href="begin-conversation.html">Begin a Conversation</a></li>
+        <li><a href="book-session.html">Book a Session</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms of Service</a></li>
+        <li><a href="disclaimer.html">Disclaimer</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="gf-bottom">
+    <p class="gf-ip">This website, its content, frameworks, methodologies, and design are conceptualised, created, and authored by Rajneesh Jain, Founder, MECULS. All methodologies are the original and exclusive intellectual property of Rajneesh Jain. Unauthorised reproduction or commercial use is prohibited.</p>
+    <p class="gf-copy">&copy; 2026 MECULS. All rights reserved. Delhi, India.</p>
+    <div class="gf-legal">
+      <a href="privacy-policy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="refund-policy.html">Refund</a>
+      <a href="disclaimer.html">Disclaimer</a>
+    </div>
+  </div>
+</footer>
+</div>
+<script src="global.js"></script>
+<script>
+var ro=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('vis');ro.unobserve(x.target)}})},{threshold:0.05,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rev').forEach(function(el){ro.observe(el)});
+var img=new Image();img.onload=function(){document.getElementById('hPhoto').classList.add('loaded')};
+img.src='images/mynd-care-hero.jpg';
+</script>
+</body>
+</html>

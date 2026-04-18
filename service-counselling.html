@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="MECULS Counselling &ndash; for grief, crisis, and relationship breakdown. One-to-one work that helps a person put the pieces back together. With Rajneesh Jain.">
+  <title>Counselling &ndash; MECULS | Rajneesh Jain</title>
+  <link rel="canonical" href="https://www.meculs.com/service-counselling.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Archivo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="global.css">
+  <style>
+  :root{
+    --gold:#d4af37;--gold-light:#e4bf47;--gold-deep:#8a6d1a;
+    --gold-dim:rgba(212,175,55,0.10);--gold-bd:rgba(212,175,55,0.22);
+    --ink:#000814;--white:#ffffff;--cream:#f7f3ea;--parchment:#faf7f0;
+    --ct:#1a1713;--cb:#3a342b;--cm:#6b6258;
+    --rw:rgba(138,109,26,0.20);--rw2:rgba(138,109,26,0.38);
+    --wood:#120a04;--wood2:#1c0f06;--wood3:#0d0702;
+    --display:'Playfair Display',serif;--serif:'Cormorant Garamond',serif;
+    --ease:cubic-bezier(0.16,1,0.3,1);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--parchment);color:var(--ct);font-family:'Archivo',sans-serif;line-height:1.75;-webkit-font-smoothing:antialiased}
+  .page{padding-top:var(--g-nav-h,72px)}
+  .rev{opacity:0;transform:translateY(24px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
+  .rev.vis{opacity:1;transform:none}
+  .lbl{display:inline-flex;align-items:center;gap:14px;font-size:0.68rem;font-weight:700;letter-spacing:0.26em;text-transform:uppercase;margin-bottom:1.8rem}
+  .lbl::before{content:'';width:48px;height:1px;background:currentColor;opacity:0.7}
+  .lbl-n{font-family:var(--display);font-size:0.84rem;font-weight:500}
+  .btn-g{padding:1.1rem 2.8rem;background:var(--gold);color:var(--ink);font-size:0.78rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:background 0.3s,transform 0.2s;display:inline-block}
+  .btn-g:hover{background:var(--gold-light);transform:translateY(-2px)}
+  .btn-o{padding:1.1rem 2.8rem;border:1px solid var(--gold-bd);color:var(--gold);font-size:0.78rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:background 0.3s,transform 0.2s;display:inline-block;background:rgba(0,8,20,0.35)}
+  .btn-o:hover{background:var(--gold-dim);transform:translateY(-2px)}
+
+  /* HERO */
+  .h{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden;color:var(--white);background:var(--wood3)}
+  .h-bg{position:absolute;inset:0;z-index:0;width:100%;height:100%}
+  .h-photo{position:absolute;inset:0;z-index:1;background:url('images/counselling-hero.jpg') center/cover no-repeat;opacity:0}
+  .h-photo.loaded{opacity:0.28;transition:opacity 1s}
+  .h-ov{position:absolute;inset:0;z-index:2;background:linear-gradient(168deg,rgba(18,10,4,0.92) 0%,rgba(18,10,4,0.62) 48%,rgba(0,8,20,0.90) 100%)}
+  .h-in{position:relative;z-index:3;width:100%;max-width:1120px;margin:0 auto;padding:9rem 5% 7rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+  .h .lbl{color:var(--gold)}
+  .h h1{font-family:var(--display);font-size:clamp(3rem,5.5vw,5.2rem);font-weight:400;line-height:1.08;letter-spacing:-0.025em;margin-bottom:2.2rem;color:var(--white)}
+  .h h1 em{font-style:italic;color:var(--gold);font-weight:400}
+  .h-sub{font-family:var(--serif);font-size:clamp(1.35rem,2vw,1.70rem);font-style:italic;line-height:1.65;color:rgba(255,255,255,0.78);margin-bottom:2.6rem}
+  .h-cta{display:flex;gap:1.2rem;flex-wrap:wrap}
+
+  /* Kintsugi SVG visual */
+  .kt{width:100%;max-width:460px;margin:0 auto;aspect-ratio:1;display:flex;align-items:center;justify-content:center}
+  .kt svg{width:100%;height:100%}
+  @keyframes kg{0%,100%{opacity:0.65;filter:drop-shadow(0 0 4px rgba(212,175,55,0.30))}50%{opacity:1;filter:drop-shadow(0 0 12px rgba(212,175,55,0.55))}}
+  .kg{animation:kg 5s ease-in-out infinite}
+
+  /* WHAT THIS IS */
+  .wt{padding:9rem 0 7rem;background:var(--parchment)}
+  .wt-in{max-width:920px;margin:0 auto;padding:0 5%}
+  .wt .lbl{color:var(--gold-deep)}
+  .wt h2{font-family:var(--display);font-size:clamp(2.6rem,4.8vw,4.2rem);font-weight:500;line-height:1.10;letter-spacing:-0.022em;margin-bottom:2.4rem;color:var(--ct)}
+  .wt h2 em{font-style:italic;color:var(--gold-deep)}
+  .wt p{font-family:var(--serif);font-size:clamp(1.30rem,1.85vw,1.58rem);line-height:1.78;color:var(--cb);margin-bottom:1.7rem}
+  .wt p:last-child{margin-bottom:0}
+  .wt p em{font-style:italic;color:var(--gold-deep);font-weight:500}
+
+  /* KINTSUGI PRINCIPLE */
+  .kp{padding:9rem 0;background:var(--wood);color:var(--white);position:relative;overflow:hidden}
+  .kp::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 65% 30%,rgba(140,90,20,0.14) 0%,transparent 55%)}
+  .kp-in{max-width:1160px;margin:0 auto;padding:0 5%;display:grid;grid-template-columns:1fr 1fr;gap:7rem;align-items:center;position:relative;z-index:2}
+  .kp .lbl{color:var(--gold)}
+  .kp-txt h2{font-family:var(--display);font-size:clamp(2.6rem,4.8vw,4.2rem);font-weight:400;line-height:1.10;letter-spacing:-0.025em;margin-bottom:2.4rem}
+  .kp-txt h2 em{font-style:italic;color:var(--gold)}
+  .kp-txt p{font-family:var(--serif);font-size:clamp(1.30rem,1.82vw,1.55rem);line-height:1.78;color:rgba(255,255,255,0.82);margin-bottom:1.7rem}
+  .kp-txt p:last-child{margin-bottom:0}
+  .kp-txt p em{font-style:italic;color:var(--gold);font-weight:500}
+  /* Large kintsugi bowl SVG */
+  .kp-bowl{position:relative;width:100%;aspect-ratio:1;max-width:480px;margin:0 auto}
+  .kp-bowl svg{width:100%;height:100%}
+
+  /* WHEN */
+  .wh{padding:9rem 0;background:var(--cream);position:relative}
+  .wh-hd{max-width:920px;margin:0 auto 5.5rem;padding:0 5%}
+  .wh .lbl{color:var(--gold-deep)}
+  .wh-hd h2{font-family:var(--display);font-size:clamp(2.6rem,4.8vw,4.2rem);font-weight:500;line-height:1.10;letter-spacing:-0.022em;margin-bottom:2rem;color:var(--ct)}
+  .wh-hd h2 em{font-style:italic;color:var(--gold-deep)}
+  .wh-hd p{font-family:var(--serif);font-size:clamp(1.28rem,1.78vw,1.52rem);line-height:1.75;color:var(--cb)}
+  .wh-hd p em{font-style:italic;color:var(--gold-deep);font-weight:500}
+  .wh-gr{max-width:1120px;margin:0 auto;padding:0 5%;display:grid;grid-template-columns:repeat(3,1fr);gap:1.8rem}
+  .wh-c{background:var(--white);border:1px solid var(--rw);padding:3.2rem 2.8rem;display:flex;flex-direction:column;transition:border-color 0.4s,transform 0.4s,box-shadow 0.4s}
+  .wh-c:hover{border-color:var(--rw2);transform:translateY(-5px);box-shadow:0 12px 32px rgba(0,0,0,0.07)}
+  .wh-c-n{font-family:var(--display);font-size:3.8rem;font-weight:400;line-height:0.9;color:var(--gold-deep);opacity:0.42;letter-spacing:-0.03em;margin-bottom:1.4rem}
+  .wh-c h3{font-family:var(--display);font-size:clamp(1.5rem,2.1vw,1.85rem);font-weight:500;font-style:italic;color:var(--ct);line-height:1.18;letter-spacing:-0.012em;margin-bottom:1.1rem}
+  .wh-c h3 em{color:var(--gold-deep)}
+  .wh-c p{font-family:var(--serif);font-size:clamp(1.18rem,1.58vw,1.38rem);line-height:1.72;color:var(--cb);flex:1}
+  .wh-c p em{font-style:italic;color:var(--gold-deep)}
+
+  /* WHAT HAPPENS */
+  .wh2{padding:9rem 0;background:var(--wood2);color:var(--white);position:relative;overflow:hidden}
+  .wh2::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 20% 50%,rgba(140,90,20,0.12) 0%,transparent 55%)}
+  .wh2-in{max-width:1160px;margin:0 auto;padding:0 5%;display:grid;grid-template-columns:1fr 1fr;gap:7rem;align-items:start;position:relative;z-index:2}
+  .wh2 .lbl{color:var(--gold)}
+  .wh2-txt h2{font-family:var(--display);font-size:clamp(2.4rem,4.5vw,4rem);font-weight:400;line-height:1.10;letter-spacing:-0.025em;margin-bottom:2.4rem}
+  .wh2-txt h2 em{font-style:italic;color:var(--gold)}
+  .wh2-txt p{font-family:var(--serif);font-size:clamp(1.28rem,1.78vw,1.52rem);line-height:1.78;color:rgba(255,255,255,0.82);margin-bottom:1.7rem}
+  .wh2-txt p:last-child{margin-bottom:0}
+  .wh2-txt p em{font-style:italic;color:var(--gold);font-weight:500}
+  /* Pieces steps */
+  .ps{display:flex;flex-direction:column;gap:0;border:1px solid rgba(140,90,20,0.25);background:rgba(18,10,4,0.45)}
+  .ps-s{padding:2.4rem 2.8rem;border-bottom:1px solid rgba(140,90,20,0.20);display:flex;align-items:flex-start;gap:1.8rem}
+  .ps-s:last-child{border-bottom:none}
+  .ps-s:hover{background:rgba(212,175,55,0.04)}
+  .ps-n{font-family:var(--display);font-size:2.4rem;font-weight:400;line-height:1;color:var(--gold);opacity:0.50;letter-spacing:-0.025em;flex-shrink:0;padding-top:0.1rem}
+  .ps-s h4{font-family:var(--display);font-size:clamp(1.4rem,2vw,1.72rem);font-weight:500;font-style:italic;color:var(--white);line-height:1.20;letter-spacing:-0.01em;margin-bottom:0.7rem}
+  .ps-s p{font-family:var(--serif);font-size:clamp(1.18rem,1.60vw,1.38rem);line-height:1.68;color:rgba(255,255,255,0.72);margin:0}
+  .ps-s p em{font-style:italic;color:rgba(212,175,55,0.88)}
+
+  /* CLOSE */
+  .cl{padding:10rem 0;background:var(--parchment);position:relative}
+  .cl-in{max-width:880px;margin:0 auto;padding:0 5%;text-align:center}
+  .cl .lbl{color:var(--gold-deep);justify-content:center}
+  .cl .lbl::after{content:'';width:48px;height:1px;background:var(--gold-deep);opacity:0.7}
+  .cl h2{font-family:var(--display);font-size:clamp(2.6rem,4.8vw,4.2rem);font-weight:400;line-height:1.10;letter-spacing:-0.025em;margin-bottom:2.6rem;color:var(--ct)}
+  .cl h2 em{font-style:italic;color:var(--gold-deep)}
+  .cl p{font-family:var(--serif);font-size:clamp(1.28rem,1.82vw,1.55rem);line-height:1.76;color:var(--cb);margin-bottom:1.5rem}
+  .cl p em{font-style:italic;color:var(--gold-deep);font-weight:500}
+  .cl-rl{width:1px;height:64px;background:linear-gradient(180deg,transparent,var(--gold-deep),transparent);margin:3.2rem auto}
+  .cl-ln{font-family:var(--display);font-size:clamp(1.6rem,2.6vw,2.3rem);font-weight:400;font-style:italic;line-height:1.42;color:var(--ct);max-width:700px;margin:0 auto 3.8rem;letter-spacing:-0.012em}
+  .cl-ln em{color:var(--gold-deep)}
+  .cl-bt{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap}
+  .nx{padding:7rem 0;background:linear-gradient(168deg,var(--wood) 0%,var(--ink) 100%);color:var(--white);text-align:center;position:relative;overflow:hidden}
+  .nx-in{max-width:720px;margin:0 auto;padding:0 5%;position:relative;z-index:2}
+  .nx .lbl{color:var(--gold);justify-content:center}
+  .nx .lbl::after{content:'';width:48px;height:1px;background:var(--gold);opacity:0.7}
+  .nx h2{font-family:var(--display);font-size:clamp(2.1rem,3.8vw,3.2rem);font-weight:500;line-height:1.14;letter-spacing:-0.02em;margin-bottom:1.8rem}
+  .nx h2 em{font-style:italic;color:var(--gold)}
+  .nx p{font-family:var(--serif);font-size:clamp(1.25rem,1.75vw,1.50rem);font-style:italic;line-height:1.65;color:rgba(255,255,255,0.76);margin-bottom:2.8rem}
+  .nx-bt{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap}
+
+  @media(max-width:1100px){
+    .h-in{grid-template-columns:1fr;gap:3rem}
+    .kt{max-width:300px}
+    .kp-in{grid-template-columns:1fr;gap:4rem}
+    .wh2-in{grid-template-columns:1fr;gap:4.5rem}
+    .wh-gr{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:768px){
+    .wh-gr{grid-template-columns:1fr}
+    .h,.wt,.kp,.wh,.wh2,.cl,.nx{padding-top:6rem;padding-bottom:6rem}
+  }
+  @media(max-width:600px){
+    .ps-s{padding:2rem 2.2rem;gap:1.4rem}
+    .wh-c{padding:2.8rem 2.4rem}
+  }
+  </style>
+</head>
+<body>
+<div class="page">
+
+<header class="global-header">
+  <a href="index.html" class="gh-logo">
+    <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS"
+         onerror="this.style.display='none';document.querySelector('.gh-logo-text').style.display='block'">
+    <span class="gh-logo-text">MECULS</span>
+  </a>
+  <nav aria-label="Global navigation">
+    <ul class="gh-nav gh-nav-wrap">
+      <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+      <li><a href="contexts.html">Contexts</a></li>
+      <li><a href="the-approach.html">The Approach</a></li>
+      <li><a href="insights.html">Insights</a></li>
+      <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+      <li><a href="begin-conversation.html" class="gh-cta">Begin a Conversation</a></li>
+    </ul>
+  </nav>
+  <button class="gh-toggle" id="ghToggle" aria-label="Open navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+<div class="gh-mobile-menu" id="ghMobileMenu" role="dialog" aria-label="Mobile navigation">
+  <ul class="gh-mobile-nav">
+    <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+    <li><a href="contexts.html">Contexts</a></li>
+    <li><a href="the-approach.html">The Approach</a></li>
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+  </ul>
+  <a href="begin-conversation.html" class="gh-mobile-cta">Begin a Conversation</a>
+</div>
+
+<!-- HERO -->
+<section class="h">
+  <!-- Warm wood atmospheric SVG -->
+  <svg class="h-bg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice"
+       xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <radialGradient id="wg" cx="40%" cy="40%" r="55%">
+        <stop offset="0%" stop-color="rgba(140,75,15,0.28)"/>
+        <stop offset="50%" stop-color="rgba(100,50,8,0.10)"/>
+        <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+      </radialGradient>
+      <radialGradient id="wg2" cx="78%" cy="72%" r="42%">
+        <stop offset="0%" stop-color="rgba(212,175,55,0.07)"/>
+        <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+      </radialGradient>
+    </defs>
+    <ellipse cx="580" cy="360" rx="680" ry="500" fill="url(#wg)"/>
+    <ellipse cx="1120" cy="650" rx="420" ry="340" fill="url(#wg2)"/>
+    <!-- Soft grain texture lines -->
+    <g opacity="0.06" stroke="rgba(180,120,40,1)">
+      <path d="M0 200 Q360 180 720 210 Q1080 240 1440 200" stroke-width="0.8" fill="none"/>
+      <path d="M0 350 Q360 330 720 360 Q1080 390 1440 350" stroke-width="0.6" fill="none"/>
+      <path d="M0 500 Q360 480 720 510 Q1080 540 1440 500" stroke-width="0.6" fill="none"/>
+      <path d="M0 650 Q360 630 720 660 Q1080 690 1440 650" stroke-width="0.5" fill="none"/>
+    </g>
+    <!-- Warm glow at floor -->
+    <ellipse cx="580" cy="850" rx="580" ry="90" fill="rgba(140,75,15,0.08)"/>
+  </svg>
+  <div class="h-photo" id="hPhoto"></div>
+  <div class="h-ov"></div>
+
+  <div class="h-in">
+    <div class="rev">
+      <div class="lbl"><span class="lbl-n">I</span><span>Counselling</span></div>
+      <h1>Sometimes a person<br>is not broken.<br><em>They are in pieces.</em></h1>
+      <p class="h-sub">One-to-one work for grief, crisis, and the times when a relationship &ndash; with another person or with oneself &ndash; has come apart in ways that are hard to name.</p>
+      <div class="h-cta">
+        <a href="begin-conversation.html" class="btn-g">Begin a Conversation</a>
+        <a href="book-session.html" class="btn-o">Book a Session</a>
+      </div>
+    </div>
+
+    <!-- Kintsugi visual -->
+    <div class="kt rev" aria-hidden="true">
+      <svg viewBox="0 0 460 460" xmlns="http://www.w3.org/2000/svg" fill="none">
+        <defs>
+          <radialGradient id="kg0" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(140,75,15,0.20)"/>
+            <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+          </radialGradient>
+        </defs>
+        <!-- Bowl shape - broken and repaired -->
+        <ellipse cx="230" cy="230" rx="220" ry="220" fill="url(#kg0)"/>
+        <!-- The bowl - fragments -->
+        <g fill="rgba(18,10,4,0.85)" stroke="rgba(18,10,4,0.95)" stroke-width="0.5">
+          <!-- Fragment 1 - top left -->
+          <path d="M230 60 Q185 70 155 100 Q135 125 138 160 Q142 185 165 195 Q185 202 200 190 Q218 175 222 155 Q228 125 230 60Z"/>
+          <!-- Fragment 2 - top right -->
+          <path d="M230 60 Q275 70 308 105 Q328 132 322 168 Q316 192 295 200 Q275 205 260 192 Q242 178 238 155 Q232 125 230 60Z"/>
+          <!-- Fragment 3 - right -->
+          <path d="M322 168 Q335 195 332 230 Q329 262 312 285 Q296 305 278 308 Q260 310 252 295 Q244 278 250 258 Q258 238 275 232 Q295 225 322 168Z"/>
+          <!-- Fragment 4 - bottom right -->
+          <path d="M280 308 Q295 322 298 345 Q300 368 285 388 Q268 405 246 408 Q224 410 208 395 Q192 380 195 358 Q198 338 215 328 Q232 318 250 322Z"/>
+          <!-- Fragment 5 - bottom left -->
+          <path d="M195 328 Q178 338 165 355 Q150 375 153 398 Q158 418 178 425 Q200 430 220 420 Q238 410 240 390 Q242 368 225 352Z"/>
+          <!-- Fragment 6 - left -->
+          <path d="M138 160 Q122 182 118 215 Q115 248 128 275 Q142 300 163 308 Q182 314 195 298 Q206 282 202 262 Q196 240 180 228 Q160 215 138 160Z"/>
+        </g>
+        <!-- Gold repair lines - kintsugi -->
+        <g class="kg" stroke="#d4af37" stroke-width="2.5" fill="none" stroke-linecap="round">
+          <!-- Main crack lines -->
+          <path d="M230 60 Q228 120 222 155 Q218 178 200 190 Q185 202 165 195"/>
+          <path d="M230 60 Q232 120 238 155 Q242 178 260 192 Q278 205 295 200 Q316 192 322 168"/>
+          <path d="M200 190 Q218 200 230 215 Q240 230 250 258 Q258 278 252 295 Q244 310 280 308"/>
+          <path d="M195 298 Q208 310 215 328 Q225 345 225 352 Q224 368 220 385"/>
+          <path d="M165 195 Q182 215 180 228 Q162 242 163 308 Q172 318 195 328"/>
+          <path d="M252 295 Q240 310 230 330 Q224 355 225 375"/>
+        </g>
+        <!-- Gold dots at joints -->
+        <g fill="#d4af37" class="kg">
+          <circle cx="222" cy="155" r="4"/>
+          <circle cx="238" cy="155" r="4"/>
+          <circle cx="200" cy="190" r="5"/>
+          <circle cx="260" cy="192" r="5"/>
+          <circle cx="180" cy="228" r="4"/>
+          <circle cx="250" cy="258" r="4"/>
+          <circle cx="195" cy="298" r="5"/>
+          <circle cx="252" cy="295" r="4"/>
+          <circle cx="215" cy="328" r="4"/>
+          <circle cx="225" cy="352" r="3.5"/>
+        </g>
+        <!-- Bowl rim -->
+        <ellipse cx="230" cy="230" r="205" stroke="rgba(140,75,15,0.20)" stroke-width="0.8" fill="none"/>
+        <text x="230" y="436" text-anchor="middle" font-family="'Cormorant Garamond',serif"
+              font-size="15" font-style="italic" fill="rgba(212,175,55,0.55)">broken and repaired with gold</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT THIS IS -->
+<section class="wt">
+  <div class="wt-in">
+    <div class="rev">
+      <div class="lbl"><span class="lbl-n">II</span><span>What This Is</span></div>
+      <h2>Helping a person put the picture<br><em>back together, piece by piece.</em></h2>
+      <p>Counselling is the work of accompaniment. A person in grief, in crisis, or in the aftermath of a relationship breaking down is not lacking knowledge about their situation. They are living in the middle of it &ndash; and the middle of it is a place where the picture of who they are, what matters, and what comes next has come apart into pieces that do not yet connect.</p>
+      <p>The counsellor&rsquo;s role is not to hand the person a completed picture or to tell them what it should look like. <em>It is to sit with them while they find which piece goes where</em> &ndash; at the pace that is honest for them, without rushing toward resolution before resolution is ready.</p>
+      <p>The counselling offered here is personal, one-to-one, and follows no fixed number of sessions. It follows the person. Some find what they need in three conversations. Some need more. <em>The work ends when the person is ready &ndash; not when the calendar says so.</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- KINTSUGI PRINCIPLE -->
+<section class="kp">
+  <div class="kp-in">
+    <div class="rev">
+      <div class="lbl"><span class="lbl-n">III</span><span>The Kintsugi Principle</span></div>
+      <h2>The repair becomes<br><em>the most beautiful part.</em></h2>
+      <p>Kintsugi is the Japanese art of repairing broken pottery with gold &ndash; not hiding the cracks but honouring them. The repaired piece is more beautiful than the unbroken one, because its history is visible in gold.</p>
+      <p>Counselling works the same way. The person who has been through grief, crisis, or the ending of something important, and who has sat with another person in the middle of it and found their way through &ndash; <em>that person does not return to who they were before.</em> They become something more complete. The breaking is part of the story. The repairing is what gives it meaning.</p>
+      <p>The picture that emerges from counselling does not look like it did before. It is not supposed to. <em>It looks like who the person is now</em> &ndash; which is more than who they were, because it includes what they have been through.</p>
+    </div>
+    <!-- Large kintsugi bowl -->
+    <div class="kp-bowl rev" aria-hidden="true">
+      <svg viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg" fill="none">
+        <defs>
+          <radialGradient id="kb" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(140,75,15,0.25)"/>
+            <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+          </radialGradient>
+          <radialGradient id="kb2" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(212,175,55,0.12)"/>
+            <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+          </radialGradient>
+        </defs>
+        <ellipse cx="240" cy="240" rx="230" ry="230" fill="url(#kb)"/>
+        <ellipse cx="240" cy="240" rx="180" ry="180" fill="url(#kb2)"/>
+        <!-- Large bowl fragments -->
+        <g fill="rgba(26,15,6,0.80)" stroke="rgba(26,15,6,0.90)" stroke-width="0.5">
+          <path d="M240 45 Q200 55 172 82 Q148 108 145 148 Q143 175 162 192 Q178 206 200 205 Q220 202 232 186 Q244 168 244 148 Q246 100 240 45Z"/>
+          <path d="M240 45 Q280 55 312 85 Q335 112 334 150 Q333 178 314 194 Q296 208 276 205 Q256 200 248 184 Q238 166 240 148Z"/>
+          <path d="M314 194 Q328 216 328 248 Q327 278 308 298 Q290 316 268 318 Q248 318 240 304 Q232 288 238 268 Q246 248 268 242 Q294 236 314 194Z"/>
+          <path d="M268 318 Q280 334 278 358 Q276 380 260 396 Q244 410 226 408 Q208 406 200 390 Q192 374 198 356 Q206 340 224 336 Q244 332 268 318Z"/>
+          <path d="M200 390 Q188 400 180 415 Q174 428 182 438 Q192 446 210 444 Q228 442 238 428 Q246 414 240 402Z"/>
+          <path d="M162 192 Q148 212 142 242 Q138 268 150 292 Q162 314 184 320 Q202 324 214 310 Q224 296 220 275 Q214 254 198 242 Q178 228 162 192Z"/>
+        </g>
+        <!-- Wide gold cracks -->
+        <g stroke="#d4af37" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M240 45 Q238 100 232 148 Q226 175 200 190"/>
+          <path d="M240 45 Q242 100 248 148 Q254 172 276 190 Q296 204 314 194"/>
+          <path d="M200 190 Q215 208 228 232 Q240 258 238 285 Q236 308 240 320"/>
+          <path d="M240 320 Q250 336 240 358 Q232 378 238 400"/>
+          <path d="M184 320 Q202 312 214 310 Q224 296 222 278"/>
+          <path d="M162 192 Q178 215 198 240 Q212 258 214 280"/>
+        </g>
+        <!-- Glowing joints -->
+        <g fill="#d4af37">
+          <circle cx="232" cy="148" r="5.5"/>
+          <circle cx="248" cy="148" r="5.5"/>
+          <circle cx="200" cy="190" r="6.5"/>
+          <circle cx="276" cy="190" r="5"/>
+          <circle cx="198" cy="242" r="5"/>
+          <circle cx="238" cy="285" r="5"/>
+          <circle cx="240" cy="320" r="6"/>
+          <circle cx="240" cy="358" r="5"/>
+          <circle cx="184" cy="320" r="5"/>
+          <circle cx="214" cy="310" r="4.5"/>
+        </g>
+        <!-- Bowl edge -->
+        <ellipse cx="240" cy="240" r="215" stroke="rgba(140,75,15,0.18)" stroke-width="0.8" fill="none"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- WHEN COUNSELLING IS RIGHT -->
+<section class="wh">
+  <div class="wh-hd rev">
+    <div class="lbl"><span class="lbl-n">IV</span><span>When This Is Right</span></div>
+    <h2>Three situations where<br><em>the pieces need patient attention.</em></h2>
+    <p>Counselling is the right work when something has happened that has changed the person&rsquo;s sense of who they are and what they are standing on. <em>It holds the person first. The deeper root-cause work, if it comes, comes after.</em></p>
+  </div>
+  <div class="wh-gr">
+    <div class="wh-c rev">
+      <div class="wh-c-n">01</div>
+      <h3>Grief &amp;<br><em>loss.</em></h3>
+      <p>The loss of a person. A role. A future that was assumed and then was not. Grief does not follow a timeline and does not respond to being managed. <em>It responds to being witnessed.</em> The counselling creates space for that witnessing, without rushing toward acceptance before the person is ready.</p>
+    </div>
+    <div class="wh-c rev">
+      <div class="wh-c-n">02</div>
+      <h3>Crisis &amp;<br><em>overwhelm.</em></h3>
+      <p>When too much is happening at once, or when one thing has happened that changes everything. When the person cannot see a next step. <em>The counselling does not solve the crisis. It gives the person a room in which to be in it without being alone in it.</em></p>
+    </div>
+    <div class="wh-c rev">
+      <div class="wh-c-n">03</div>
+      <h3>Relationship<br><em>breakdown.</em></h3>
+      <p>A marriage, partnership, friendship, or family relationship that has come apart. The counselling helps the person find what they are actually feeling beneath what they believe they should be feeling &ndash; and begin building <em>a relationship with themselves that is stable regardless of what the other relationship becomes.</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT HAPPENS -->
+<section class="wh2">
+  <div class="wh2-in">
+    <div class="rev">
+      <div class="lbl"><span class="lbl-n">V</span><span>What Happens</span></div>
+      <h2>A conversation without a<br><em>predetermined destination.</em></h2>
+      <p>The person speaks. Rajneesh listens &ndash; not to find an answer, but to understand what the person is actually carrying, and to reflect it back in a way that helps the person understand it too.</p>
+      <p>The conversation does not stay at the surface of events. It moves, when the person is ready, toward what the events mean &ndash; and toward what remains solid underneath what has shifted.</p>
+      <p>No tools, no questionnaires, no homework. Only conversation, presence, and the patience to stay with what is true for as long as it takes to become workable. <em>The pieces come together one session at a time.</em></p>
+    </div>
+    <div class="ps rev">
+      <div class="ps-s">
+        <span class="ps-n">01</span>
+        <div>
+          <h4>The person speaks all of it.</h4>
+          <p>Without editing. Nothing too small or too confused to say. <em>The whole weight is put down here.</em></p>
+        </div>
+      </div>
+      <div class="ps-s">
+        <span class="ps-n">02</span>
+        <div>
+          <h4>Feeling is separated from thought.</h4>
+          <p>Grief and crisis confuse the two. <em>Clarity begins when the person knows which is which.</em></p>
+        </div>
+      </div>
+      <div class="ps-s">
+        <span class="ps-n">03</span>
+        <div>
+          <h4>What remains solid is found.</h4>
+          <p>In every situation, however difficult, something in the person is still standing. <em>The counselling helps them find it.</em></p>
+        </div>
+      </div>
+      <div class="ps-s">
+        <span class="ps-n">04</span>
+        <div>
+          <h4>A direction emerges.</h4>
+          <p>Not a solution. A direction. <em>Small enough to be real. Theirs, not assigned.</em></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONVICTION CLOSE -->
+<section class="cl">
+  <div class="cl-in">
+    <div class="lbl rev"><span class="lbl-n">VI</span><span>The Point</span></div>
+    <h2 class="rev">Being in pieces is not<br><em>the same as being broken.</em></h2>
+    <p class="rev">A person in the middle of grief or crisis is not a person who needs to be fixed. They are a person experiencing something genuinely hard, who needs someone present to that difficulty without flinching from it, without rushing it toward resolution.</p>
+    <p class="rev">The counselling offered here is that presence. It does not promise outcomes or guarantee timelines. It offers what a person in pieces actually needs: <em>someone to sit with them in the dark, steadily, until they can see which piece goes where.</em></p>
+    <div class="cl-rl rev" aria-hidden="true"></div>
+    <div class="cl-ln rev">The picture does not have to look like it did before.<br><em>It only has to be true to who the person is now.</em></div>
+    <div class="cl-bt rev">
+      <a href="begin-conversation.html" class="btn-g">Begin a Conversation</a>
+      <a href="book-session.html" class="btn-o">Book a Session</a>
+    </div>
+  </div>
+</section>
+
+<!-- NEXT -->
+<section class="nx">
+  <div class="nx-in">
+    <div class="lbl rev"><span class="lbl-n">VII</span><span>The Next Page</span></div>
+    <h2 class="rev">You have seen how the pieces are held.<br><em>Now see why this practice exists.</em></h2>
+    <p class="rev">Mynd CARE is the philosophy behind all the individual services &ndash; five elements the mind, like a seed, needs to grow into its full and natural state.</p>
+    <div class="nx-bt rev">
+      <a href="why-mynd-care.html" class="btn-g">Why Mynd CARE</a>
+      <a href="services.html" class="btn-o">All Services</a>
+    </div>
+  </div>
+</section>
+
+<footer class="global-footer">
+  <div class="gf-top">
+    <div class="gf-brand">
+      <div class="gf-logo">
+        <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="gf-logo-text" style="display:none">MECULS</span>
+      </div>
+      <p class="gf-tagline">Mind Enablement Centre for Unlocking Limitless Leadership &amp; Self-Potential</p>
+      <div class="gf-contact">
+        <a href="mailto:Jain.Rajneesh@meculs.com">Jain.Rajneesh@meculs.com</a>
+        <a href="#">Delhi, India</a>
+      </div>
+      <div class="gf-social">
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.5 6.5s-.3-2-1.2-2.8c-1.1-1.2-2.4-1.2-3-1.3C15.6 2.2 12 2.2 12 2.2s-3.6 0-6.3.2c-.6.1-1.9.1-3 1.3C1.8 4.5 1.5 6.5 1.5 6.5S1.2 8.8 1.2 11v2.1c0 2.2.3 4.4.3 4.4s.3 2 1.2 2.8c1.1 1.2 2.6 1.1 3.3 1.2 2.4.2 10 .3 10 .3s3.6 0 6.3-.3c.6-.1 1.9-.1 3-1.3.9-.8 1.2-2.8 1.2-2.8s.3-2.2.3-4.4V11c0-2.2-.3-4.5-.3-4.5zM9.7 14.8V8.4l6.6 3.2-6.6 3.2z"/></svg></a>
+      </div>
+    </div>
+    <div>
+      <p class="gf-col-title">Individual Services</p>
+      <ul class="gf-links">
+        <li><a href="service-consciousness-clarity.html">Consciousness &amp; Clarity</a></li>
+        <li><a href="service-mind-wellness.html">Mind Wellness</a></li>
+        <li><a href="service-addiction-freedom.html">Addiction Freedom</a></li>
+        <li><a href="why-mynd-care.html">Why Mynd CARE</a></li>
+        <li><a href="services.html">All Services</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="gf-col-title">Company</p>
+      <ul class="gf-links">
+        <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+        <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+        <li><a href="the-approach.html">The Approach</a></li>
+        <li><a href="why-meculs.html">Why MECULS</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="gf-col-title">Connect</p>
+      <ul class="gf-links">
+        <li><a href="begin-conversation.html">Begin a Conversation</a></li>
+        <li><a href="book-session.html">Book a Session</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms of Service</a></li>
+        <li><a href="disclaimer.html">Disclaimer</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="gf-bottom">
+    <p class="gf-ip">This website, its content, frameworks, methodologies, and design are conceptualised, created, and authored by Rajneesh Jain, Founder, MECULS. All methodologies are the original and exclusive intellectual property of Rajneesh Jain. Unauthorised reproduction or commercial use is prohibited.</p>
+    <p class="gf-copy">&copy; 2026 MECULS. All rights reserved. Delhi, India.</p>
+    <div class="gf-legal">
+      <a href="privacy-policy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="refund-policy.html">Refund</a>
+      <a href="disclaimer.html">Disclaimer</a>
+    </div>
+  </div>
+</footer>
+</div>
+<script src="global.js"></script>
+<script>
+var ro=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('vis');ro.unobserve(x.target)}})},{threshold:0.06,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rev').forEach(function(el){ro.observe(el)});
+var img=new Image();img.onload=function(){document.getElementById('hPhoto').classList.add('loaded')};
+img.src='images/counselling-hero.jpg';
+</script>
+</body>
+</html>

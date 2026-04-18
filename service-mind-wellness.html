@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="MECULS Mind Wellness &ndash; meditation and conversation working together. For adults and young people whose inner life needs the same attention as their outer one.">
+  <title>Mind Wellness &ndash; MECULS | Rajneesh Jain</title>
+  <link rel="canonical" href="https://www.meculs.com/service-mind-wellness.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Archivo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="global.css">
+  <style>
+  :root{
+    --gold:#d4af37;--gold-light:#e4bf47;--gold-deep:#8a6d1a;
+    --gold-dim:rgba(212,175,55,0.10);--gold-bd:rgba(212,175,55,0.22);
+    --ink:#000814;--white:#ffffff;--cream:#f7f3ea;--parchment:#faf7f0;
+    --ct:#1a1713;--cb:#3a342b;--cm:#6b6258;
+    --rw:rgba(138,109,26,0.20);--rw2:rgba(138,109,26,0.38);
+    --sage:#0b0d0a;--sage2:#111410;
+    --display:'Playfair Display',serif;--serif:'Cormorant Garamond',serif;
+    --ease:cubic-bezier(0.16,1,0.3,1);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--parchment);color:var(--ct);font-family:'Archivo',sans-serif;line-height:1.75;-webkit-font-smoothing:antialiased}
+  .page{padding-top:var(--g-nav-h,72px)}
+  .rev{opacity:0;transform:translateY(24px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
+  .rev.vis{opacity:1;transform:none}
+  .lbl{display:inline-flex;align-items:center;gap:14px;font-size:0.68rem;font-weight:700;letter-spacing:0.26em;text-transform:uppercase;margin-bottom:1.8rem}
+  .lbl::before{content:'';width:48px;height:1px;background:currentColor;opacity:0.7}
+  .lbl-n{font-family:var(--display);font-size:0.84rem;font-weight:500}
+  .btn-g{padding:1.1rem 2.8rem;background:var(--gold);color:var(--ink);font-size:0.78rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:background 0.3s,transform 0.2s;display:inline-block}
+  .btn-g:hover{background:var(--gold-light);transform:translateY(-2px)}
+  .btn-o{padding:1.1rem 2.8rem;border:1px solid var(--gold-bd);color:var(--gold);font-size:0.78rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:background 0.3s,transform 0.2s;display:inline-block;background:rgba(0,8,20,0.35)}
+  .btn-o:hover{background:var(--gold-dim);transform:translateY(-2px)}
+
+  /* HERO */
+  .h{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden;color:var(--white);background:var(--sage)}
+  .h-bg{position:absolute;inset:0;z-index:0;width:100%;height:100%}
+  .h-photo{position:absolute;inset:0;z-index:1;background:url('images/mind-wellness-hero.jpg') center/cover no-repeat;opacity:0}
+  .h-photo.loaded{opacity:0.35;transition:opacity 1s}
+  .h-ov{position:absolute;inset:0;z-index:2;background:linear-gradient(168deg,rgba(11,13,10,0.88) 0%,rgba(11,13,10,0.60) 48%,rgba(0,8,20,0.85) 100%)}
+  .h-in{position:relative;z-index:3;width:100%;max-width:1120px;margin:0 auto;padding:9rem 5% 7rem;display:grid;grid-template-columns:1.1fr 0.9fr;gap:5rem;align-items:center}
+  .h .lbl{color:var(--gold)}
+  .h h1{font-family:var(--display);font-size:clamp(3.2rem,5.8vw,5.5rem);font-weight:400;line-height:1.06;letter-spacing:-0.025em;margin-bottom:2.2rem;color:var(--white)}
+  .h h1 em{font-style:italic;color:var(--gold);font-weight:400}
+  .h-sub{font-family:var(--serif);font-size:clamp(1.35rem,2vw,1.7rem);font-style:italic;line-height:1.65;color:rgba(255,255,255,0.78);margin-bottom:2.6rem}
+  .h-cta{display:flex;gap:1.2rem;flex-wrap:wrap}
+
+  /* Breath rings */
+  .br{display:flex;align-items:center;justify-content:center;width:100%;aspect-ratio:1;max-width:440px;margin:0 auto}
+  .br svg{width:100%;height:100%}
+  @keyframes rOut{0%{r:44;opacity:0.80;stroke-width:1.2}100%{r:215;opacity:0;stroke-width:0.2}}
+  @keyframes rOut2{0%{r:44;opacity:0.55;stroke-width:0.9}100%{r:195;opacity:0;stroke-width:0.2}}
+  @keyframes rOut3{0%{r:44;opacity:0.32;stroke-width:0.5}100%{r:175;opacity:0;stroke-width:0.1}}
+  @keyframes cb{0%,100%{r:40;opacity:0.60}50%{r:52;opacity:0.92}}
+  @keyframes dp{0%,100%{r:9;opacity:0.88}50%{r:13;opacity:1}}
+  .r1{animation:rOut 5s ease-out infinite}
+  .r2{animation:rOut2 5s ease-out 1.67s infinite}
+  .r3{animation:rOut3 5s ease-out 3.33s infinite}
+  .rc{animation:cb 5s ease-in-out infinite;transform-origin:220px 220px}
+  .rd{animation:dp 5s ease-in-out infinite}
+
+  /* WHAT THIS IS */
+  .wt{padding:9rem 0 7rem;background:var(--parchment)}
+  .wt-in{max-width:920px;margin:0 auto;padding:0 5%}
+  .wt .lbl{color:var(--gold-deep)}
+  .wt h2{font-family:var(--display);font-size:clamp(2.6rem,4.8vw,4.2rem);font-weight:500;line-height:1.10;letter-spacing:-0.022em;margin-bottom:2.4rem;color:var(--ct)}
+  .wt h2 em{font-style:italic;color:var(--gold-deep)}
+  .wt p{font-family:var(--serif);font-size:clamp(1.30rem,1.85vw,1.58rem);line-height:1.78;color:var(--cb);margin-bottom:1.7rem}
+  .wt p:last-child{margin-bottom:0}
+  .wt p em{font-style:italic;color:var(--gold-deep);font-weight:500}
+  .pq{margin:3.8rem 0;padding:3rem 3.2rem;background:rgba(138,109,26,0.06);border-left:3px solid var(--gold-deep);position:relative}
+  .pq::before{content:'\201C';font-family:var(--display);font-size:7rem;line-height:0.65;color:rgba(138,109,26,0.16);position:absolute;top:1.6rem;left:1.8rem}
+  .pq p{font-family:var(--display);font-size:clamp(1.6rem,2.6vw,2.2rem);font-style:italic;font-weight:400;line-height:1.42;color:var(--ct);padding-left:2rem;margin-bottom:0}
+  .pq p em{color:var(--gold-deep)}
+
+  /* PANELS */
+  .pnls{background:var(--parchment)}
+  .pnl{display:grid;grid-template-columns:1fr 1fr;min-height:600px}
+  .pnl:nth-child(even){direction:rtl}
+  .pnl:nth-child(even) .pnl-txt{direction:ltr}
+  .pnl-vis{position:relative;overflow:hidden;min-height:500px;background:var(--sage2)}
+  .pnl-ph{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0.12}
+  .pnl-svg{position:absolute;inset:0;width:100%;height:100%}
+  .pnl-txt{padding:5.5rem 5rem;display:flex;flex-direction:column;justify-content:center}
+  .pnl:nth-child(odd) .pnl-txt{background:var(--sage);color:var(--white)}
+  .pnl:nth-child(even) .pnl-txt{background:var(--sage2);color:var(--white)}
+  .pnl-n{font-family:var(--display);font-size:5.5rem;font-weight:400;line-height:0.88;color:var(--gold);opacity:0.50;letter-spacing:-0.03em;margin-bottom:1.6rem}
+  .pnl h3{font-family:var(--display);font-size:clamp(2.1rem,3.2vw,3rem);font-weight:500;font-style:italic;color:var(--white);line-height:1.16;letter-spacing:-0.015em;margin-bottom:1.8rem}
+  .pnl h3 em{color:var(--gold)}
+  .pnl p{font-family:var(--serif);font-size:clamp(1.25rem,1.72vw,1.50rem);line-height:1.75;color:rgba(255,255,255,0.80);margin-bottom:1.3rem}
+  .pnl p:last-child{margin-bottom:0}
+  .pnl p em{font-style:italic;color:rgba(212,175,55,0.92)}
+
+  /* SESSION */
+  .ss{padding:9rem 0;background:var(--cream);position:relative;overflow:hidden}
+  .ss::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 85% 15%,rgba(212,175,55,0.07) 0%,transparent 55%)}
+  .ss-in{max-width:1160px;margin:0 auto;padding:0 5%;display:grid;grid-template-columns:1fr 1fr;gap:6.5rem;align-items:start;position:relative;z-index:2}
+  .ss .lbl{color:var(--gold-deep)}
+  .ss-txt h2{font-family:var(--display);font-size:clamp(2.3rem,3.8vw,3.5rem);font-weight:500;line-height:1.12;letter-spacing:-0.022em;margin-bottom:2.2rem;color:var(--ct)}
+  .ss-txt h2 em{font-style:italic;color:var(--gold-deep)}
+  .ss-txt p{font-family:var(--serif);font-size:clamp(1.25rem,1.75vw,1.50rem);line-height:1.78;color:var(--cb);margin-bottom:1.5rem}
+  .ss-txt p:last-child{margin-bottom:0}
+  .ss-txt em{font-style:italic;color:var(--gold-deep);font-weight:500}
+  .tl{position:relative;padding-left:4px}
+  .tl::before{content:'';position:absolute;left:0;top:8px;bottom:0;width:2px;background:linear-gradient(180deg,var(--gold-deep),rgba(138,109,26,0.12))}
+  .tls{position:relative;padding:0 0 3.8rem 3.2rem}
+  .tls:last-child{padding-bottom:0}
+  .tld{position:absolute;left:-8px;top:4px;width:18px;height:18px;border-radius:50%;background:var(--gold-deep);box-shadow:0 0 0 5px rgba(138,109,26,0.14)}
+  .tls-lbl{font-family:'Archivo',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.20em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:0.6rem;display:block}
+  .tls h4{font-family:var(--display);font-size:clamp(1.4rem,2vw,1.75rem);font-weight:500;font-style:italic;color:var(--ct);line-height:1.20;letter-spacing:-0.01em;margin-bottom:0.7rem}
+  .tls p{font-family:var(--serif);font-size:clamp(1.18rem,1.62vw,1.38rem);line-height:1.70;color:var(--cb);margin:0}
+  .tls p em{font-style:italic;color:var(--gold-deep);font-weight:500}
+
+  /* FOR WHOM */
+  .fw{padding:9rem 0;background:var(--sage);color:var(--white);position:relative;overflow:hidden}
+  .fw::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 20% 60%,rgba(212,175,55,0.07) 0%,transparent 55%)}
+  .fw-hd{max-width:920px;margin:0 auto 5.5rem;padding:0 5%;position:relative;z-index:2}
+  .fw .lbl{color:var(--gold)}
+  .fw-hd h2{font-family:var(--display);font-size:clamp(2.6rem,4.8vw,4.2rem);font-weight:400;line-height:1.10;letter-spacing:-0.025em;margin-bottom:2rem}
+  .fw-hd h2 em{font-style:italic;color:var(--gold)}
+  .fw-hd p{font-family:var(--serif);font-size:clamp(1.28rem,1.78vw,1.52rem);font-style:italic;line-height:1.65;color:rgba(255,255,255,0.76);max-width:680px}
+  .fw-gr{max-width:1120px;margin:0 auto;padding:0 5%;display:grid;grid-template-columns:repeat(3,1fr);gap:1.8rem;position:relative;z-index:2}
+  .fw-c{padding:3.2rem 2.8rem;border:1px solid rgba(212,175,55,0.18);background:rgba(255,255,255,0.03);display:flex;flex-direction:column;transition:border-color 0.4s,background 0.4s,transform 0.4s}
+  .fw-c:hover{border-color:rgba(212,175,55,0.45);background:rgba(255,255,255,0.055);transform:translateY(-5px)}
+  .fw-ic{width:52px;height:52px;margin-bottom:1.8rem;border:1px solid rgba(212,175,55,0.28);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .fw-ic svg{width:24px;height:24px;stroke:var(--gold);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+  .fw-c h3{font-family:var(--display);font-size:clamp(1.5rem,2.1vw,1.85rem);font-weight:500;font-style:italic;color:var(--white);line-height:1.20;letter-spacing:-0.012em;margin-bottom:1.1rem}
+  .fw-c h3 em{color:var(--gold)}
+  .fw-c p{font-family:var(--serif);font-size:clamp(1.18rem,1.58vw,1.38rem);line-height:1.72;color:rgba(255,255,255,0.72);flex:1}
+  .fw-c p em{font-style:italic;color:rgba(212,175,55,0.88)}
+
+  /* CLOSE */
+  .cl{padding:10rem 0;background:var(--parchment);position:relative}
+  .cl-in{max-width:880px;margin:0 auto;padding:0 5%;text-align:center}
+  .cl .lbl{color:var(--gold-deep);justify-content:center}
+  .cl .lbl::after{content:'';width:48px;height:1px;background:var(--gold-deep);opacity:0.7}
+  .cl h2{font-family:var(--display);font-size:clamp(2.6rem,4.8vw,4.2rem);font-weight:400;line-height:1.10;letter-spacing:-0.025em;margin-bottom:2.6rem;color:var(--ct)}
+  .cl h2 em{font-style:italic;color:var(--gold-deep)}
+  .cl p{font-family:var(--serif);font-size:clamp(1.28rem,1.82vw,1.55rem);line-height:1.76;color:var(--cb);margin-bottom:1.5rem}
+  .cl p em{font-style:italic;color:var(--gold-deep);font-weight:500}
+  .cl-rl{width:1px;height:64px;background:linear-gradient(180deg,transparent,var(--gold-deep),transparent);margin:3.2rem auto}
+  .cl-ln{font-family:var(--display);font-size:clamp(1.6rem,2.6vw,2.3rem);font-weight:400;font-style:italic;line-height:1.42;color:var(--ct);max-width:680px;margin:0 auto 3.8rem;letter-spacing:-0.012em}
+  .cl-ln em{color:var(--gold-deep)}
+  .cl-bt{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap}
+
+  /* NEXT */
+  .nx{padding:7rem 0;background:linear-gradient(168deg,var(--sage) 0%,var(--ink) 100%);color:var(--white);text-align:center;position:relative;overflow:hidden}
+  .nx-in{max-width:720px;margin:0 auto;padding:0 5%;position:relative;z-index:2}
+  .nx .lbl{color:var(--gold);justify-content:center}
+  .nx .lbl::after{content:'';width:48px;height:1px;background:var(--gold);opacity:0.7}
+  .nx h2{font-family:var(--display);font-size:clamp(2.1rem,3.8vw,3.2rem);font-weight:500;line-height:1.14;letter-spacing:-0.02em;margin-bottom:1.8rem}
+  .nx h2 em{font-style:italic;color:var(--gold)}
+  .nx p{font-family:var(--serif);font-size:clamp(1.25rem,1.75vw,1.50rem);font-style:italic;line-height:1.65;color:rgba(255,255,255,0.76);margin-bottom:2.8rem}
+  .nx-bt{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap}
+
+  @media(max-width:1100px){
+    .h-in{grid-template-columns:1fr;gap:3rem}
+    .br{max-width:300px}
+    .pnl{grid-template-columns:1fr;min-height:auto}
+    .pnl:nth-child(even){direction:ltr}
+    .pnl-vis{min-height:340px}
+    .ss-in{grid-template-columns:1fr;gap:4.5rem}
+    .fw-gr{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:768px){
+    .pnl-txt{padding:4rem 3rem}
+    .fw-gr{grid-template-columns:1fr}
+    .h,.wt,.ss,.fw,.cl,.nx{padding-top:6rem;padding-bottom:6rem}
+  }
+  @media(max-width:600px){
+    .pnl-txt{padding:3.2rem 2.4rem}
+    .pq{padding:2.4rem 2.4rem 2.4rem 3.2rem}
+    .fw-c{padding:2.8rem 2.4rem}
+  }
+  </style>
+</head>
+<body>
+<div class="page">
+
+<header class="global-header">
+  <a href="index.html" class="gh-logo">
+    <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS"
+         onerror="this.style.display='none';document.querySelector('.gh-logo-text').style.display='block'">
+    <span class="gh-logo-text">MECULS</span>
+  </a>
+  <nav aria-label="Global navigation">
+    <ul class="gh-nav gh-nav-wrap">
+      <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+      <li><a href="contexts.html">Contexts</a></li>
+      <li><a href="the-approach.html">The Approach</a></li>
+      <li><a href="insights.html">Insights</a></li>
+      <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+      <li><a href="begin-conversation.html" class="gh-cta">Begin a Conversation</a></li>
+    </ul>
+  </nav>
+  <button class="gh-toggle" id="ghToggle" aria-label="Open navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+<div class="gh-mobile-menu" id="ghMobileMenu" role="dialog" aria-label="Mobile navigation">
+  <ul class="gh-mobile-nav">
+    <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+    <li><a href="contexts.html">Contexts</a></li>
+    <li><a href="the-approach.html">The Approach</a></li>
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+  </ul>
+  <a href="begin-conversation.html" class="gh-mobile-cta">Begin a Conversation</a>
+</div>
+
+<!-- HERO &ndash; forest light atmosphere -->
+<section class="h">
+  <svg class="h-bg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice"
+       xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <radialGradient id="sg" cx="50%" cy="36%" r="58%">
+        <stop offset="0%" stop-color="rgba(212,175,55,0.32)"/>
+        <stop offset="45%" stop-color="rgba(180,140,40,0.10)"/>
+        <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+      </radialGradient>
+      <radialGradient id="fg" cx="50%" cy="75%" r="65%">
+        <stop offset="0%" stop-color="rgba(160,180,140,0.07)"/>
+        <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+      </radialGradient>
+    </defs>
+    <ellipse cx="720" cy="295" rx="740" ry="420" fill="url(#sg)"/>
+    <ellipse cx="720" cy="660" rx="940" ry="320" fill="url(#fg)"/>
+    <!-- Light rays from sun -->
+    <g opacity="0.22" stroke="#d4af37">
+      <line x1="720" y1="180" x2="140" y2="900" stroke-width="1.6"/>
+      <line x1="720" y1="180" x2="320" y2="900" stroke-width="1.3"/>
+      <line x1="720" y1="180" x2="500" y2="900" stroke-width="1.0"/>
+      <line x1="720" y1="180" x2="650" y2="900" stroke-width="0.8"/>
+      <line x1="720" y1="180" x2="790" y2="900" stroke-width="0.8"/>
+      <line x1="720" y1="180" x2="940" y2="900" stroke-width="1.0"/>
+      <line x1="720" y1="180" x2="1120" y2="900" stroke-width="1.3"/>
+      <line x1="720" y1="180" x2="1300" y2="900" stroke-width="1.6"/>
+    </g>
+    <!-- Tree silhouettes -->
+    <g fill="rgba(4,6,3,0.96)">
+      <path d="M0,900 L0,420 L55,300 L110,400 L75,250 L135,360 L95,190 L158,315 L195,900Z"/>
+      <path d="M150,900 L155,470 L205,370 L248,458 L218,310 L268,408 L240,255 L296,385 L328,900Z"/>
+      <path d="M1440,900 L1440,420 L1385,300 L1330,400 L1365,250 L1305,360 L1345,190 L1282,315 L1245,900Z"/>
+      <path d="M1290,900 L1285,470 L1235,370 L1192,458 L1222,310 L1172,408 L1200,255 L1144,385 L1112,900Z"/>
+      <path d="M370,900 L380,720 L392,620 L408,710 L402,575 L420,660 L415,900Z" opacity="0.65"/>
+      <path d="M550,900 L558,760 L568,660 L580,750 L575,620 L590,700 L588,900Z" opacity="0.55"/>
+      <path d="M890,900 L882,760 L872,660 L860,750 L865,620 L850,700 L852,900Z" opacity="0.55"/>
+      <path d="M1070,900 L1060,720 L1048,620 L1032,710 L1038,575 L1020,660 L1025,900Z" opacity="0.65"/>
+      <rect x="0" y="840" width="1440" height="60"/>
+    </g>
+    <ellipse cx="720" cy="870" rx="960" ry="55" fill="rgba(160,180,140,0.04)"/>
+  </svg>
+  <div class="h-photo" id="hPhoto"></div>
+  <div class="h-ov"></div>
+
+  <div class="h-in">
+    <div class="rev">
+      <div class="lbl"><span class="lbl-n">I</span><span>Mind Wellness</span></div>
+      <h1>The mind does not<br>need to be fixed.<br><em>It needs to be heard.</em></h1>
+      <p class="h-sub" style="font-family:var(--serif);font-size:clamp(1.35rem,2vw,1.70rem);font-style:italic;line-height:1.65;color:rgba(255,255,255,0.78);margin-bottom:2.6rem">
+        When the inner life is given the same attention as the outer one, something shifts &ndash; not dramatically, not all at once, but in the direction of a life that feels like it belongs to the person living it.
+      </p>
+      <div class="h-cta" style="display:flex;gap:1.2rem;flex-wrap:wrap">
+        <a href="begin-conversation.html" class="btn-g">Begin a Conversation</a>
+        <a href="book-session.html" class="btn-o">Book a Session</a>
+      </div>
+    </div>
+    <!-- Breathing rings -->
+    <div class="br rev" aria-hidden="true">
+      <svg viewBox="0 0 440 440" xmlns="http://www.w3.org/2000/svg" fill="none">
+        <defs>
+          <radialGradient id="cg" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(212,175,55,0.20)"/>
+            <stop offset="100%" stop-color="rgba(212,175,55,0)"/>
+          </radialGradient>
+        </defs>
+        <circle cx="220" cy="220" r="215" stroke="rgba(212,175,55,0.06)" stroke-width="0.5"/>
+        <circle cx="220" cy="220" r="155" stroke="rgba(212,175,55,0.08)" stroke-width="0.5" stroke-dasharray="2 9"/>
+        <circle class="r1" cx="220" cy="220" stroke="#d4af37"/>
+        <circle class="r2" cx="220" cy="220" stroke="#d4af37"/>
+        <circle class="r3" cx="220" cy="220" stroke="#d4af37"/>
+        <circle class="rc" cx="220" cy="220" r="44" fill="url(#cg)" stroke="rgba(212,175,55,0.42)" stroke-width="1"/>
+        <circle class="rd" cx="220" cy="220" r="10" fill="rgba(212,175,55,0.82)"/>
+        <circle cx="220" cy="220" r="4" fill="#d4af37"/>
+        <line x1="220" y1="82" x2="220" y2="100" stroke="rgba(212,175,55,0.28)" stroke-width="1"/>
+        <line x1="220" y1="340" x2="220" y2="358" stroke="rgba(212,175,55,0.28)" stroke-width="1"/>
+        <line x1="82" y1="220" x2="100" y2="220" stroke="rgba(212,175,55,0.28)" stroke-width="1"/>
+        <line x1="340" y1="220" x2="358" y2="220" stroke="rgba(212,175,55,0.28)" stroke-width="1"/>
+        <text x="220" y="260" text-anchor="middle"
+              font-family="'Cormorant Garamond',serif" font-size="15"
+              font-style="italic" fill="rgba(212,175,55,0.48)">breathe</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT THIS IS -->
+<section class="wt">
+  <div class="wt-in">
+    <div class="rev">
+      <div class="lbl"><span class="lbl-n">II</span><span>What This Is</span></div>
+      <h2>Two instruments.<br><em>One person, attended to completely.</em></h2>
+      <p>Mind Wellness brings two things to the inner life that it rarely receives together: conversation that goes deep enough to find what is actually happening, and meditation that creates the stillness in which what was found can settle.</p>
+      <p>Most wellness approaches offer one or the other. Meditation without conversation can create peace without clarity &ndash; the person feels calmer but does not understand why they felt the way they did. Conversation without meditation can create clarity without integration &ndash; the person understands something new but cannot yet live from it. <em>Together, they complete each other.</em></p>
+    </div>
+    <div class="pq rev">
+      <p>The session creates the understanding.<br><em>The daily practice deepens it into lived experience.</em></p>
+    </div>
+    <p class="rev" style="font-family:var(--serif);font-size:clamp(1.30rem,1.85vw,1.58rem);line-height:1.78;color:var(--cb)">The practice is entirely personal &ndash; no programmes, no fixed structures. What is needed in any session is determined by what the person brings to it.</p>
+  </div>
+</section>
+
+<!-- TWO INSTRUMENT PANELS -->
+<section class="pnls">
+
+  <!-- Conversation panel -->
+  <div class="pnl">
+    <div class="pnl-vis">
+      <div class="pnl-ph" style="background-image:url('images/mind-wellness-conversation.jpg')"></div>
+      <svg class="pnl-svg" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid slice"
+           xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true">
+        <defs>
+          <radialGradient id="cv" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(212,175,55,0.10)"/>
+            <stop offset="100%" stop-color="rgba(212,175,55,0)"/>
+          </radialGradient>
+        </defs>
+        <ellipse cx="300" cy="300" rx="290" ry="270" fill="url(#cv)"/>
+        <!-- Two presence circles -->
+        <circle cx="175" cy="270" r="68" stroke="rgba(212,175,55,0.28)" stroke-width="1.2" fill="rgba(212,175,55,0.05)"/>
+        <circle cx="175" cy="270" r="28" stroke="rgba(212,175,55,0.42)" stroke-width="1" fill="rgba(212,175,55,0.10)"/>
+        <circle cx="175" cy="270" r="9" fill="rgba(212,175,55,0.70)"/>
+        <circle cx="425" cy="270" r="68" stroke="rgba(212,175,55,0.20)" stroke-width="1.2" fill="rgba(212,175,55,0.03)"/>
+        <circle cx="425" cy="270" r="28" stroke="rgba(212,175,55,0.30)" stroke-width="1" fill="rgba(212,175,55,0.06)"/>
+        <circle cx="425" cy="270" r="9" fill="rgba(212,175,55,0.52)"/>
+        <!-- Dialogue waves -->
+        <path d="M244 248 Q300 215 356 248" stroke="rgba(212,175,55,0.35)" stroke-width="1.4" fill="none"/>
+        <path d="M244 268 Q300 250 356 268" stroke="rgba(212,175,55,0.52)" stroke-width="1.8" fill="none"/>
+        <path d="M244 288 Q300 305 356 288" stroke="rgba(212,175,55,0.35)" stroke-width="1.4" fill="none"/>
+        <!-- Listening waves -->
+        <path d="M124 252 Q82 270 124 290" stroke="rgba(212,175,55,0.22)" stroke-width="1.2" fill="none"/>
+        <path d="M110 242 Q60 270 110 300" stroke="rgba(212,175,55,0.12)" stroke-width="0.8" fill="none"/>
+        <text x="300" y="400" text-anchor="middle" font-family="'Cormorant Garamond',serif"
+              font-size="17" font-style="italic" fill="rgba(212,175,55,0.42)">the conversation goes deeper</text>
+      </svg>
+    </div>
+    <div class="pnl-txt rev">
+      <div class="pnl-n">01</div>
+      <h3>Conversation.<br><em>What is actually underneath.</em></h3>
+      <p>The conversation moves below the surface of what the person is experiencing, toward the belief or pattern producing it. The person says what they feel. Rajneesh reads what is underneath it and reflects it back.</p>
+      <p>This is not advice. It is not analysis. <em>It is the act of being genuinely understood</em> &ndash; which is itself, for many people, something they have not experienced in a room with another person.</p>
+    </div>
+  </div>
+
+  <!-- Meditation panel -->
+  <div class="pnl">
+    <div class="pnl-vis">
+      <div class="pnl-ph" style="background-image:url('images/mind-wellness-meditation.jpg')"></div>
+      <svg class="pnl-svg" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid slice"
+           xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true">
+        <defs>
+          <radialGradient id="mg" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(212,175,55,0.14)"/>
+            <stop offset="100%" stop-color="rgba(212,175,55,0)"/>
+          </radialGradient>
+        </defs>
+        <ellipse cx="300" cy="300" rx="290" ry="270" fill="url(#mg)"/>
+        <circle cx="300" cy="300" r="240" stroke="rgba(212,175,55,0.05)" stroke-width="0.6"/>
+        <circle cx="300" cy="300" r="188" stroke="rgba(212,175,55,0.08)" stroke-width="0.7" stroke-dasharray="2 11"/>
+        <circle cx="300" cy="300" r="138" stroke="rgba(212,175,55,0.12)" stroke-width="0.8"/>
+        <circle cx="300" cy="300" r="94"  stroke="rgba(212,175,55,0.18)" stroke-width="1.0"/>
+        <circle cx="300" cy="300" r="56"  stroke="rgba(212,175,55,0.28)" stroke-width="1.2" fill="rgba(212,175,55,0.04)"/>
+        <circle cx="300" cy="300" r="26"  stroke="rgba(212,175,55,0.45)" stroke-width="1" fill="rgba(212,175,55,0.08)"/>
+        <circle cx="300" cy="300" r="9" fill="rgba(212,175,55,0.82)"/>
+        <circle cx="300" cy="300" r="4" fill="#d4af37"/>
+        <line x1="300" y1="62" x2="300" y2="538" stroke="rgba(212,175,55,0.06)" stroke-width="0.5"/>
+        <line x1="62" y1="300" x2="538" y2="300" stroke="rgba(212,175,55,0.06)" stroke-width="0.5"/>
+        <text x="300" y="412" text-anchor="middle" font-family="'Cormorant Garamond',serif"
+              font-size="17" font-style="italic" fill="rgba(212,175,55,0.42)">stillness grows from the centre</text>
+      </svg>
+    </div>
+    <div class="pnl-txt rev">
+      <div class="pnl-n">02</div>
+      <h3>Meditation.<br><em>Stillness as practice, not destination.</em></h3>
+      <p>The meditation is guided, personal, adjusted to what the person needs that day. Not a fixed technique. The stillness it creates is not an absence of thought &ndash; it is a quality of presence in which thoughts can be observed rather than inhabited.</p>
+      <p>Meditation is also taught as a daily practice. <em>Over time, the stillness available in a session becomes available in ordinary life</em> &ndash; in a meeting, in a difficult moment, in the space between a trigger and a response.</p>
+    </div>
+  </div>
+
+</section>
+
+<!-- HOW A SESSION WORKS -->
+<section class="ss">
+  <div class="ss-in">
+    <div class="rev">
+      <div class="lbl"><span class="lbl-n">III</span><span>How a Session Works</span></div>
+      <h2>The session follows<br><em>what the person brings.</em></h2>
+      <p>There is no fixed structure. The person arrives with what they arrive with &ndash; sometimes a specific difficulty, sometimes a general heaviness with no name yet, sometimes the desire to maintain a stillness they have begun to find.</p>
+      <p>What guides the session is attentiveness. <em>Rajneesh listens to what is said and to what is not said</em> &ndash; and moves toward whichever instrument serves the person in that moment. Sometimes mostly conversation. Sometimes meditation early. Sometimes both in the same hour.</p>
+      <p>Sessions are available in person and online. The meditation taught in the session is given as a daily practice &ndash; ten minutes each morning, designed to deepen between sessions.</p>
+    </div>
+    <div class="tl rev">
+      <div class="tls">
+        <span class="tld"></span>
+        <span class="tls-lbl">Arrive</span>
+        <h4>The person arrives as they are.</h4>
+        <p>No preparation needed. No right way to begin. <em>What the person brings is where the session starts.</em></p>
+      </div>
+      <div class="tls">
+        <span class="tld"></span>
+        <span class="tls-lbl">Conversation</span>
+        <h4>What is underneath is found.</h4>
+        <p>What is felt is heard. What is underneath the feeling is gently named. <em>The person does not need to already know what it is.</em></p>
+      </div>
+      <div class="tls">
+        <span class="tld"></span>
+        <span class="tls-lbl">Meditation</span>
+        <h4>Stillness creates room to settle.</h4>
+        <p>What was found in conversation is given space to be experienced. <em>Guided, personal, adjusted to this person on this day.</em></p>
+      </div>
+      <div class="tls">
+        <span class="tld"></span>
+        <span class="tls-lbl">Daily Practice</span>
+        <h4>A practice is given to carry home.</h4>
+        <p>Simple. Ten minutes. <em>Something to return to each morning that deepens what the session began.</em></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO THIS IS FOR -->
+<section class="fw">
+  <div class="fw-hd rev">
+    <div class="lbl"><span class="lbl-n">IV</span><span>Who This Is For</span></div>
+    <h2>Anyone whose inner life<br><em>is quieter than it deserves to be.</em></h2>
+    <p>No crisis required. A life can function well on the outside and still be carrying something heavy inside. Mind Wellness is for the person who knows the difference.</p>
+  </div>
+  <div class="fw-gr">
+    <div class="fw-c rev">
+      <div class="fw-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
+      <h3>Adults carrying<br><em>what they cannot name.</em></h3>
+      <p>A tiredness sleep does not fix. A sense of going through the motions. A distance from their own life hard to explain &ndash; because from the outside the life looks fine. <em>The inner weather is different from the outer report.</em></p>
+    </div>
+    <div class="fw-c rev">
+      <div class="fw-ic"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+      <h3>Young people under<br><em>pressure they cannot place.</em></h3>
+      <p>Students navigating expectation, identity, and the gap between who they are told to be and who they are. <em>Meditation at this stage is a foundation</em> that changes the quality of everything built on top of it.</p>
+    </div>
+    <div class="fw-c rev">
+      <div class="fw-ic"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+      <h3>Anyone who wants<br><em>stillness to be available.</em></h3>
+      <p>Not only in a session &ndash; but in a meeting, in a difficult conversation, in the ordinary moments when the mind is louder than necessary. <em>What meditation teaches is not how to be still. It is how to choose stillness.</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- CONVICTION CLOSE -->
+<section class="cl">
+  <div class="cl-in">
+    <div class="lbl rev"><span class="lbl-n">V</span><span>The Point</span></div>
+    <h2 class="rev">Wellness is not a state<br><em>to be achieved.</em></h2>
+    <p class="rev">The person who is well is not the person who never experiences difficulty. It is the person who has a relationship with their inner life honest enough to recognise difficulty early, deep enough to understand what it is, and steady enough to not be overwhelmed by it.</p>
+    <p class="rev">That relationship is built in small, quiet, consistent acts &ndash; the conversation that goes somewhere real, the meditation that becomes a daily return to self. Neither is dramatic. Together, over time, <em>they change the quality of a life from the inside out.</em></p>
+    <div class="cl-rl rev" aria-hidden="true"></div>
+    <div class="cl-ln rev">The mind does not need more to carry.<br><em>It needs room to put something down.</em></div>
+    <div class="cl-bt rev">
+      <a href="begin-conversation.html" class="btn-g">Begin a Conversation</a>
+      <a href="book-session.html" class="btn-o">Book a Session</a>
+    </div>
+  </div>
+</section>
+
+<!-- NEXT CHAPTER -->
+<section class="nx">
+  <div class="nx-in">
+    <div class="lbl rev"><span class="lbl-n">VI</span><span>The Next Page</span></div>
+    <h2 class="rev">You have seen how the mind is steadied.<br><em>Now see how it is freed.</em></h2>
+    <p class="rev">Addiction Freedom is where the work goes when something has taken hold &ndash; any pattern of escape from an unfulfilled want. The work is to find what the heart truly wants, and help the person move toward it.</p>
+    <div class="nx-bt rev">
+      <a href="service-addiction-freedom.html" class="btn-g">Addiction Freedom</a>
+      <a href="services.html" class="btn-o">All Services</a>
+    </div>
+  </div>
+</section>
+
+<footer class="global-footer">
+  <div class="gf-top">
+    <div class="gf-brand">
+      <div class="gf-logo">
+        <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="gf-logo-text" style="display:none">MECULS</span>
+      </div>
+      <p class="gf-tagline">Mind Enablement Centre for Unlocking Limitless Leadership &amp; Self-Potential</p>
+      <div class="gf-contact">
+        <a href="mailto:Jain.Rajneesh@meculs.com">Jain.Rajneesh@meculs.com</a>
+        <a href="#">Delhi, India</a>
+      </div>
+      <div class="gf-social">
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.5 6.5s-.3-2-1.2-2.8c-1.1-1.2-2.4-1.2-3-1.3C15.6 2.2 12 2.2 12 2.2s-3.6 0-6.3.2c-.6.1-1.9.1-3 1.3C1.8 4.5 1.5 6.5 1.5 6.5S1.2 8.8 1.2 11v2.1c0 2.2.3 4.4.3 4.4s.3 2 1.2 2.8c1.1 1.2 2.6 1.1 3.3 1.2 2.4.2 10 .3 10 .3s3.6 0 6.3-.3c.6-.1 1.9-.1 3-1.3.9-.8 1.2-2.8 1.2-2.8s.3-2.2.3-4.4V11c0-2.2-.3-4.5-.3-4.5zM9.7 14.8V8.4l6.6 3.2-6.6 3.2z"/></svg></a>
+      </div>
+    </div>
+    <div>
+      <p class="gf-col-title">Individual Services</p>
+      <ul class="gf-links">
+        <li><a href="service-consciousness-clarity.html">Consciousness &amp; Clarity</a></li>
+        <li><a href="service-addiction-freedom.html">Addiction Freedom</a></li>
+        <li><a href="service-counselling.html">Counselling</a></li>
+        <li><a href="why-mynd-care.html">Why Mynd CARE</a></li>
+        <li><a href="services.html">All Services</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="gf-col-title">Company</p>
+      <ul class="gf-links">
+        <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+        <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+        <li><a href="the-approach.html">The Approach</a></li>
+        <li><a href="why-meculs.html">Why MECULS</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="gf-col-title">Connect</p>
+      <ul class="gf-links">
+        <li><a href="begin-conversation.html">Begin a Conversation</a></li>
+        <li><a href="book-session.html">Book a Session</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms of Service</a></li>
+        <li><a href="disclaimer.html">Disclaimer</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="gf-bottom">
+    <p class="gf-ip">This website, its content, frameworks, methodologies, and design are conceptualised, created, and authored by Rajneesh Jain, Founder, MECULS. All methodologies are the original and exclusive intellectual property of Rajneesh Jain. Unauthorised reproduction or commercial use is prohibited.</p>
+    <p class="gf-copy">&copy; 2026 MECULS. All rights reserved. Delhi, India.</p>
+    <div class="gf-legal">
+      <a href="privacy-policy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="refund-policy.html">Refund</a>
+      <a href="disclaimer.html">Disclaimer</a>
+    </div>
+  </div>
+</footer>
+
+</div>
+<script src="global.js"></script>
+<script>
+var ro=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('vis');ro.unobserve(x.target)}})},{threshold:0.06,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rev').forEach(function(el){ro.observe(el)});
+// Photo upgrade when image loads
+var img=new Image();img.onload=function(){document.getElementById('hPhoto').classList.add('loaded')};
+img.src='images/mind-wellness-hero.jpg';
+</script>
+</body>
+</html>
