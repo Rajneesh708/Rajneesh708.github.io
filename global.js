@@ -1,13 +1,12 @@
 /* ═══════════════════════════════════════════════════════════════════
-   MECULS — GLOBAL NAVIGATION JAVASCRIPT  v3
+   MECULS - GLOBAL NAVIGATION JAVASCRIPT  v4
    File: global.js
    Place <script src="global.js"> just before </body> on every page.
 
-   What changed vs v2:
-   - Mobile sub-menu parents now expand on tap (instead of navigating)
-   - Desktop dropdowns support tap on iPad (not just hover)
-   - Active-page detection handles root "/" correctly
-   - Clicks outside an open dropdown now close it
+   What changed vs v3:
+   - Tagline-height measurement moved in here so no page has its own
+     tagline JS. Every page gets --tagline-h set automatically.
+   - Hamburger breakpoint aligned with global.css at 899px.
    ═══════════════════════════════════════════════════════════════════ */
 
 (function () {
@@ -20,6 +19,19 @@
       header.classList.toggle('scrolled', window.scrollY > 60);
     }, { passive: true });
   }
+
+  /* ── Tagline height measurement ───────────────────────────────── */
+  /* Sets --tagline-h so page content padding-top can clear the tagline.
+     On mobile at 680px or below, the tagline is hidden, so --tagline-h
+     collapses to 0. Every page inherits this automatically. */
+  var taglineEl = document.getElementById('ghTaglineSub');
+  function setTaglineHeight() {
+    var h = (window.innerWidth <= 680 || !taglineEl) ? 0 : taglineEl.offsetHeight;
+    document.documentElement.style.setProperty('--tagline-h', h + 'px');
+  }
+  setTaglineHeight();
+  window.addEventListener('resize', setTaglineHeight, { passive: true });
+  window.addEventListener('load', setTaglineHeight); /* re-measure after fonts load */
 
   /* ── Mobile hamburger toggle ──────────────────────────────────── */
   var toggle     = document.getElementById('ghToggle');

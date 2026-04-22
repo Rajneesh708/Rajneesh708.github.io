@@ -1,16 +1,13 @@
 /* ═══════════════════════════════════════════════════════════════════
-   MECULS — GLOBAL HEADER & FOOTER  v3
+   MECULS - GLOBAL HEADER & FOOTER  v5
    File: global.css
    Include this on EVERY page of the MECULS website.
-   This file controls the navigation bar and footer only.
+   This file controls the navigation bar, tagline sub-bar, and footer.
 
-   What changed vs v2:
-   - Added .gh-dropdown-divider styling (used in header dropdowns)
-   - Added .gf-bottom-bar flex layout for copyright/payment/legal row
-   - Added .gf-ip now sits in its own block above the bottom bar
-   - Added touch-friendly dropdown behaviour (tap to open on iPad)
-   - Tightened responsive breakpoints for mobile / tablet / laptop / desktop
-   - Fixed .gf-legal wrapping on narrow screens
+   What changed vs v4:
+   - Hamburger breakpoint moved from 1099px to 899px so the full
+     desktop nav stays visible on iPads in portrait and small laptops
+   - Footer 2-column stacking breakpoint also moved to 899px to match
    ═══════════════════════════════════════════════════════════════════ */
 
 /* ── DESIGN TOKENS ────────────────────────────────────────────────── */
@@ -167,7 +164,7 @@ body {
   border-left-color: var(--g-gold);
 }
 
-/* Divider inside dropdown (e.g. Corporate | Individual split) */
+/* Divider inside dropdown */
 .gh-dropdown-divider {
   height: 1px;
   background: var(--g-rule);
@@ -316,6 +313,53 @@ body {
 
 
 /* ══════════════════════════════════════════════════════════════════
+   TAGLINE SUB-BAR
+   Fixed strip directly below the nav bar.
+   Left-aligned - starts at same 5% left edge as the MECULS logo.
+   Same dark background as nav - reads as one unified header.
+   PERMANENT - does not hide on scroll.
+   Hidden on mobile at 680px and below so the chrome stays compact.
+   global.js sets --tagline-h at runtime so page content clears it.
+════════════════════════════════════════════════════════════════════ */
+.gh-tagline-sub {
+  position: fixed;
+  top: var(--g-nav-h, 72px);
+  left: 0; right: 0;
+  z-index: 899;
+  background: rgba(0,8,20,0.97);
+  border-bottom: 1px solid rgba(212,175,55,0.10);
+  padding: 0.32rem 5%;
+}
+
+.gh-tagline-sub-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(0.80rem, 1.05vw, 0.92rem);
+  font-style: italic;
+  color: rgba(255,255,255,0.62);
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gh-tagline-sub-text strong {
+  font-family: 'Archivo', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #d4af37;
+  margin-right: 0.5em;
+}
+
+@media (max-width: 680px) {
+  .gh-tagline-sub { display: none; }
+}
+
+
+/* ══════════════════════════════════════════════════════════════════
    GLOBAL FOOTER
 ════════════════════════════════════════════════════════════════════ */
 .global-footer {
@@ -335,7 +379,7 @@ body {
   margin-bottom: 2.5rem;
 }
 
-/* Column 1 — Brand */
+/* Column 1 - Brand */
 .gf-logo {
   display: flex;
   align-items: center;
@@ -388,7 +432,7 @@ body {
 }
 .gf-social svg { width: 15px; height: 15px; }
 
-/* Columns 2-4 — Links */
+/* Columns 2-4 - Links */
 .gf-col-title {
   font-size: 0.72rem;
   font-weight: 700;
@@ -471,11 +515,11 @@ body {
 
 /* ══════════════════════════════════════════════════════════════════
    RESPONSIVE BREAKPOINTS
-   Desktop  ≥ 1280px  — full 4-column footer, full horizontal nav
-   Laptop    1100–1279  — tighter nav gap, footer stays 4-column
-   Tablet     900–1099  — footer collapses to 2×2, hamburger appears
-   Mobile    600–899   — 2-column footer still possible
-   Small      <600       — single-column footer, stacked bottom bar
+   Desktop    1280px and up    full 4-column footer, full nav
+   Laptop     1100 to 1279     tighter nav gap, footer stays 4-column
+   Tablet      900 to 1099     tighter nav gap, nav still visible
+   Small tab   680 to  899     hamburger appears, footer 2 columns
+   Mobile      up to 679       tagline hides, footer stacks
 ════════════════════════════════════════════════════════════════════ */
 
 @media (max-width: 1279px) {
@@ -485,6 +529,11 @@ body {
 }
 
 @media (max-width: 1099px) {
+  .gh-nav { gap: 1.15rem; }
+  .gh-nav > li > a { font-size: 0.72rem; letter-spacing: 0.05em; }
+}
+
+@media (max-width: 899px) {
   .gh-nav-wrap { display: none; }
   .gh-toggle   { display: flex; }
   .gf-top {
