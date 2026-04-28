@@ -5,10 +5,10 @@
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
   <!-- ═══════════════════════════════════════════════════════════
-       MECULS.COM SITEMAP — COMPLETE
-       Last updated: 2026-04-28
-       All 41 live indexable pages included.
-       404.html excluded (error page, should not be indexed).
+       MECULS.COM SITEMAP - COMPLETE
+       Last updated: 2026-04-29
+       42 live indexable pages.
+       Page rebuilt this cycle: contemplative-practices.html
        Maintained by: Rajneesh Jain / MECULS
   ═══════════════════════════════════════════════════════════ -->
 
@@ -16,7 +16,7 @@
   <url>
     <loc>https://www.meculs.com/</loc>
     <lastmod>2026-04-21</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
 
@@ -151,6 +151,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://www.meculs.com/organisational-health-consulting.html</loc>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
   <!-- ─── INDIVIDUAL & WELLNESS SERVICE PAGES ────────────────── -->
   <url>
@@ -205,7 +211,7 @@
   </url>
   <url>
     <loc>https://www.meculs.com/contemplative-practices.html</loc>
-    <lastmod>2026-04-19</lastmod>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
