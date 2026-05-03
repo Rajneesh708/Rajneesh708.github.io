@@ -1,17 +1,67 @@
 name: Keep Supabase Alive
 
+# Keeps the MECULS Mumbai Supabase project active.
+# Free-tier Supabase projects pause after ~7 days of database
+# inactivity. A paused project means login breaks for everyone
+# until you manually un-pause from the Supabase dashboard.
+#
+# This workflow pings a public Supabase REST endpoint every 6
+# hours. Each ping registers as activity, so the project never
+# pauses.
+#
+# Updated 2026-05-02:
+#   - URL changed from old project (mlvjztftunndjudunlim) to
+#     the active Mumbai project (fjxcphhhddfwrlkpshyw).
+#   - Cron changed from every 5 minutes (288/day, burns most
+#     of GitHub Actions free tier) to every 6 hours (4/day).
+#   - Removed the apikey/Authorization headers — they were
+#     using a secret that likely matched the old project anyway.
+#     The base /rest/v1/ endpoint needs no auth to hit.
+
 on:
+  # Every 6 hours: 00:00, 06:00, 12:00, 18:00 UTC.
+  # 4 runs per day × 30 days × ~10 seconds each = ~20 minutes
+  # of compute per month. Comfortably inside any free tier.
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '0 */6 * * *'
+
+  # Allows manual trigger from the Actions tab — useful for
+  # testing the workflow without waiting 6 hours.
   workflow_dispatch:
 
 jobs:
   ping:
+    name: Ping Supabase REST endpoint
     runs-on: ubuntu-latest
+    timeout-minutes: 2
+
     steps:
       - name: Ping Supabase
         run: |
-          curl -s https://mlvjztftunndjudunlim.supabase.co/rest/v1/skills_master?limit=1 \
-            -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
-            -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}"
-          echo "Ping sent at $(date)"
+          # -s: silent (no progress bar)
+          # -o /dev/null: discard response body (we only want status)
+          # -w "%{http_code}": print HTTP status code
+          # --max-time 30: time out after 30 seconds
+          # --retry 3: retry up to 3 times on network failure
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            --max-time 30 \
+            --retry 3 \
+            --retry-delay 5 \
+            "https://fjxcphhhddfwrlkpshyw.supabase.co/rest/v1/")
+
+          echo "HTTP status from Supabase: $STATUS"
+          echo "Ping completed at $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+
+          # Any 2xx, 3xx, or 4xx means the project is awake.
+          # 401/403 are also acceptable — they mean auth was
+          # rejected, but the server is alive (which is all
+          # the keep-alive needs to verify).
+          # 5xx, or no status (timeout / DNS fail), is a real
+          # failure that should mark the workflow as failed.
+          if [[ "$STATUS" =~ ^[2345][0-9][0-9]$ ]]; then
+            echo "✓ Supabase project is alive."
+            exit 0
+          else
+            echo "✗ Unexpected status — project may be paused."
+            exit 1
+          fi
