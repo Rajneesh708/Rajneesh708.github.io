@@ -1,0 +1,1708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' https://www.meculs.com; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The CV Portal by MECULS - Ikshu. A profile that goes to work for you, not one that just sits there. Free, no tiers, no subscriptions. Build your shareable public profile, get connected with peers and seniors, receive industry pulse updates.">
+<title>Ikshu - The CV Portal | Where Capability Gets Recognised | MECULS</title>
+<meta property="og:title" content="Ikshu - The CV Portal - Where Capability Gets Recognised">
+<meta property="og:description" content="A profile that goes to work for you - not one that just sits there. Free. No tiers. No subscriptions.">
+<meta property="og:url" content="https://www.meculs.com/cv-portal.html">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://www.meculs.com/cv-portal.html">
+
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Archivo:wght@300;400;500;600;700;800&family=Noto+Serif+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="global.css">
+
+<style>
+  :root {
+    --tagline-h: 28px;
+
+    --cv-cream:    #f4ece4;
+    --cv-cream-2:  #ebe1d3;
+    --cv-paper:    #fbf6ee;
+    --cv-ink:      #161412;
+    --cv-ink-2:    #2a2520;
+    --cv-body:     #2e2a23;
+    --cv-soft:     #3d3830;
+    --cv-quiet:    #5a5248;
+    --cv-rule:     rgba(22,20,18,0.16);
+    --cv-rule-2:   rgba(22,20,18,0.10);
+    --cv-ochre:    #a87a2c;
+    --cv-ochre-2:  #c9912f;
+    --cv-ochre-bg: rgba(168,122,44,0.06);
+
+    --display:  'Playfair Display', serif;
+    --serif:    'Cormorant Garamond', serif;
+    --sans:     'Archivo', sans-serif;
+    --deva:     'Noto Serif Devanagari', 'Cormorant Garamond', serif;
+
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--cv-cream);
+    color: var(--cv-body);
+    font-family: var(--sans);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .page {
+    padding-top: calc(var(--g-nav-h, 72px) + var(--tagline-h, 28px));
+    background: var(--cv-cream);
+    min-height: 100vh;
+  }
+
+  ::selection { background: var(--cv-ochre); color: var(--cv-paper); }
+
+  .rev {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.85s var(--ease), transform 0.85s var(--ease);
+  }
+  .rev.vis { opacity: 1; transform: none; }
+
+  /* HEADER LOGIN ICON + DROPDOWN */
+  .gh-login-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+  .gh-login-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--g-gold-border);
+    border-radius: 50%;
+    color: var(--g-gold);
+    text-decoration: none;
+    margin-left: 0.6rem;
+    transition: background 0.25s, border-color 0.25s, transform 0.2s;
+    cursor: pointer;
+  }
+  .gh-login-icon:hover,
+  .gh-login-wrap:hover .gh-login-icon,
+  .gh-login-wrap:focus-within .gh-login-icon {
+    background: var(--g-gold-dim);
+    border-color: var(--g-gold);
+    transform: translateY(-1px);
+  }
+  .gh-login-icon svg {
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* The dropdown - anchored to the right edge of the icon */
+  .gh-login-dropdown {
+    position: absolute;
+    top: calc(100% + 14px);
+    right: 0;
+    min-width: 240px;
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem 0;
+    background: #1a1a1a;
+    border: 1px solid var(--g-gold-border);
+    box-shadow: 0 18px 48px -22px rgba(0,0,0,0.55);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+    z-index: 1100;
+  }
+  .gh-login-dropdown::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--g-gold);
+  }
+  .gh-login-wrap:hover .gh-login-dropdown,
+  .gh-login-wrap:focus-within .gh-login-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .gh-login-dropdown li { list-style: none; }
+  .gh-login-dropdown a {
+    display: block;
+    padding: 0.85rem 1.4rem;
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.86);
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, padding-left 0.2s;
+  }
+  .gh-login-dropdown a:hover,
+  .gh-login-dropdown a:focus-visible {
+    background: rgba(180,140,50,0.10);
+    color: var(--g-gold);
+    padding-left: 1.7rem;
+    outline: none;
+  }
+  .gh-login-dropdown-label {
+    display: block;
+    padding: 0.5rem 1.4rem 0.65rem;
+    font-family: var(--display, 'Playfair Display', serif);
+    font-size: 0.72rem;
+    font-style: italic;
+    color: var(--g-gold);
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 0.3rem;
+  }
+
+  @media (max-width: 899px) {
+    .gh-login-wrap { display: none; }
+  }
+
+  /* HERO */
+  .cv-hero {
+    background: var(--cv-cream);
+    padding: 5rem 0 6rem;
+    border-bottom: 1px solid var(--cv-rule-2);
+  }
+  .cv-hero-grid {
+    max-width: 1340px;
+    margin: 0 auto;
+    padding: 0 5%;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .cv-eyebrow {
+    font-family: var(--sans);
+    font-size: 0.84rem;
+    font-weight: 700;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    color: var(--cv-ochre);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .cv-eyebrow::before {
+    content: "";
+    width: 32px;
+    height: 1px;
+    background: var(--cv-ochre);
+  }
+  .cv-eyebrow-deva {
+    font-family: var(--deva);
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--cv-ink);
+    margin: 0 0.18em;
+    position: relative;
+    top: 0.04em;
+  }
+
+  .cv-hero-title {
+    font-family: var(--display);
+    font-size: clamp(2.2rem, 4.6vw, 3.8rem);
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--cv-ink);
+    margin-bottom: 1.8rem;
+  }
+  .cv-hero-title em {
+    font-style: italic;
+    color: var(--cv-ochre);
+    font-weight: 500;
+  }
+
+  .cv-hero-sub {
+    font-family: var(--serif);
+    font-size: clamp(1.36rem, 2vw, 1.7rem);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.45;
+    color: var(--cv-ink-2);
+    max-width: 560px;
+    margin-bottom: 2.4rem;
+  }
+
+  .cv-hero-quiet {
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cv-soft);
+    padding-top: 1.4rem;
+    border-top: 1px solid var(--cv-rule);
+  }
+  .cv-hero-quiet span {
+    display: inline-block;
+    margin: 0 0.4em;
+    color: var(--cv-rule);
+  }
+
+  /* AUTH CARD */
+  .cv-auth {
+    background: var(--cv-paper);
+    border: 1px solid var(--cv-rule);
+    padding: 2.4rem 2.2rem 2.2rem;
+    box-shadow: 0 24px 64px -32px rgba(22,20,18,0.16);
+    position: relative;
+  }
+  .cv-auth::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--cv-ochre);
+  }
+
+  .cv-auth-h {
+    font-family: var(--display);
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--cv-ink);
+    margin-bottom: 1.4rem;
+    letter-spacing: -0.01em;
+  }
+
+  .cv-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid var(--cv-rule);
+    margin-bottom: 1.6rem;
+    background: var(--cv-cream-2);
+  }
+  .cv-tab {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.85rem 1rem;
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cv-quiet);
+    transition: background 0.25s var(--ease), color 0.25s var(--ease);
+  }
+  .cv-tab.active {
+    background: var(--cv-paper);
+    color: var(--cv-ink);
+    box-shadow: inset 0 -3px 0 var(--cv-ochre);
+  }
+  .cv-tab:focus-visible {
+    outline: 2px solid var(--cv-ochre);
+    outline-offset: -2px;
+  }
+
+  .cv-tab-panel { display: none; }
+  .cv-tab-panel.active { display: block; }
+
+  .cv-tab-line {
+    font-family: var(--sans);
+    font-size: 1.12rem;
+    line-height: 1.65;
+    color: var(--cv-body);
+    margin-bottom: 1.4rem;
+  }
+
+  .cv-btn {
+    display: block;
+    width: 100%;
+    padding: 1.05rem 1.4rem;
+    font-family: var(--sans);
+    font-size: 0.86rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    background: var(--cv-ink);
+    color: var(--cv-paper);
+    border: 1px solid var(--cv-ink);
+    cursor: pointer;
+    transition: background 0.25s var(--ease), color 0.25s var(--ease), transform 0.25s var(--ease);
+  }
+  .cv-btn:hover {
+    background: var(--cv-ochre);
+    border-color: var(--cv-ochre);
+    transform: translateY(-1px);
+  }
+
+  .cv-auth-mini {
+    margin-top: 1rem;
+    font-family: var(--sans);
+    font-size: 0.92rem;
+    color: var(--cv-soft);
+    letter-spacing: 0.02em;
+    text-align: center;
+  }
+
+  .cv-auth-foot {
+    margin-top: 1.6rem;
+    padding-top: 1.3rem;
+    border-top: 1px solid var(--cv-rule-2);
+    font-family: var(--sans);
+    font-size: 0.88rem;
+    color: var(--cv-soft);
+    text-align: center;
+  }
+  .cv-auth-foot a {
+    color: var(--cv-ochre);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.25s var(--ease);
+  }
+  .cv-auth-foot a:hover { border-bottom-color: var(--cv-ochre); }
+
+  /* (D1) PROFILE LINK MOCKUP BAND */
+  .cv-mockup-band {
+    background: var(--cv-cream-2);
+    padding: 4.5rem 0;
+    border-bottom: 1px solid var(--cv-rule-2);
+  }
+  .cv-mockup-wrap {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 5%;
+    text-align: center;
+  }
+  .cv-mockup-eyebrow {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--cv-ochre);
+    margin-bottom: 1.2rem;
+  }
+  .cv-mockup-h {
+    font-family: var(--display);
+    font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+    font-weight: 500;
+    font-style: italic;
+    color: var(--cv-ink);
+    margin-bottom: 2.6rem;
+    line-height: 1.3;
+  }
+  .cv-browser {
+    background: var(--cv-paper);
+    border: 1px solid var(--cv-rule);
+    border-radius: 8px;
+    box-shadow: 0 18px 48px -28px rgba(22,20,18,0.22);
+    overflow: hidden;
+    text-align: left;
+  }
+  .cv-browser-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.85rem 1.1rem;
+    border-bottom: 1px solid var(--cv-rule-2);
+    background: var(--cv-cream);
+  }
+  .cv-browser-dots { display: flex; gap: 0.4rem; }
+  .cv-browser-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--cv-rule);
+  }
+  .cv-browser-url {
+    flex: 1;
+    background: var(--cv-paper);
+    border: 1px solid var(--cv-rule-2);
+    border-radius: 5px;
+    padding: 0.5rem 0.9rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.92rem;
+    color: var(--cv-body);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .cv-browser-url .cv-browser-domain { color: var(--cv-quiet); }
+  .cv-browser-url .cv-browser-path { color: var(--cv-ochre); font-weight: 700; }
+  .cv-browser-content {
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    gap: 1.6rem;
+    padding: 1.8rem 1.8rem 1.6rem;
+    align-items: start;
+  }
+  .cv-browser-avatar {
+    width: 96px; height: 96px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--cv-ochre) 0%, var(--cv-ochre-2) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--display);
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: var(--cv-paper);
+    letter-spacing: -0.02em;
+  }
+  .cv-browser-name {
+    font-family: var(--display);
+    font-size: 1.42rem;
+    font-weight: 500;
+    color: var(--cv-ink);
+    margin-bottom: 0.25rem;
+  }
+  .cv-browser-role {
+    font-family: var(--sans);
+    font-size: 0.92rem;
+    color: var(--cv-quiet);
+    margin-bottom: 0.85rem;
+    letter-spacing: 0.02em;
+  }
+  .cv-browser-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0.9rem;
+  }
+  .cv-browser-tag {
+    font-family: var(--sans);
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    padding: 0.28rem 0.65rem;
+    border: 1px solid var(--cv-rule);
+    color: var(--cv-soft);
+    background: var(--cv-cream);
+  }
+  .cv-browser-rules {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+  .cv-browser-rule {
+    height: 6px;
+    background: var(--cv-cream-2);
+    border-radius: 2px;
+  }
+  .cv-browser-rule.short { width: 62%; }
+  .cv-browser-rule.med   { width: 84%; }
+  .cv-mockup-cap {
+    margin-top: 1.6rem;
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--cv-soft);
+    letter-spacing: 0.01em;
+  }
+
+  /* SECTION SCAFFOLDING */
+  .cv-section {
+    padding: 6.5rem 0;
+    border-bottom: 1px solid var(--cv-rule-2);
+  }
+  .cv-section.tone { background: var(--cv-cream-2); }
+  .cv-section.ink {
+    background: var(--cv-ink);
+    color: rgba(244,236,228,0.92);
+    border-bottom: 1px solid rgba(244,236,228,0.12);
+  }
+  .cv-wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 5%;
+  }
+
+  .cv-rule {
+    width: 44px;
+    height: 2px;
+    background: var(--cv-ochre);
+    margin-bottom: 1.4rem;
+  }
+  .cv-section.ink .cv-rule { background: var(--cv-ochre-2); }
+
+  .cv-label {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    color: var(--cv-ochre);
+    margin-bottom: 1.4rem;
+  }
+  .cv-section.ink .cv-label { color: var(--cv-ochre-2); }
+
+  .cv-h2 {
+    font-family: var(--display);
+    font-size: clamp(2rem, 3.8vw, 3rem);
+    font-weight: 500;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    color: var(--cv-ink);
+    margin-bottom: 1.6rem;
+  }
+  .cv-section.ink .cv-h2 { color: rgba(244,236,228,0.96); }
+  .cv-h2 em { font-style: italic; color: var(--cv-ochre); font-weight: 500; }
+  .cv-section.ink .cv-h2 em { color: var(--cv-ochre-2); }
+
+  .cv-prose p {
+    font-family: var(--sans);
+    font-size: clamp(1.22rem, 1.55vw, 1.40rem);
+    font-weight: 400;
+    line-height: 1.78;
+    color: var(--cv-body);
+    margin-bottom: 1.4rem;
+    max-width: 64ch;
+  }
+  .cv-section.ink .cv-prose p { color: rgba(244,236,228,0.92); }
+  .cv-prose p strong { color: var(--cv-ink); font-weight: 600; }
+  .cv-section.ink .cv-prose p strong { color: rgba(244,236,228,0.98); }
+
+  .cv-recog { max-width: 880px; }
+
+  /* IKSHU MEANING */
+  .cv-ikshu-grid {
+    display: grid;
+    grid-template-columns: 0.42fr 0.58fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .cv-ikshu-deva-wrap {
+    position: relative;
+    padding: 2rem 0;
+    text-align: left;
+  }
+  .cv-ikshu-deva {
+    font-family: var(--deva);
+    font-size: clamp(7rem, 14vw, 12rem);
+    font-weight: 600;
+    line-height: 0.9;
+    color: var(--cv-ink);
+    letter-spacing: -0.02em;
+    display: block;
+  }
+  .cv-ikshu-roman {
+    margin-top: 0.6rem;
+    font-family: var(--display);
+    font-size: clamp(1.4rem, 1.9vw, 1.75rem);
+    font-style: italic;
+    font-weight: 500;
+    color: var(--cv-ochre);
+    letter-spacing: 0.04em;
+  }
+  .cv-ikshu-pron {
+    margin-top: 0.4rem;
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cv-soft);
+  }
+
+  /* WHAT YOU GET */
+  .cv-cards-intro {
+    max-width: 760px;
+    margin-bottom: 3.4rem;
+  }
+
+  /* (D2) Three glyph poster */
+  .cv-glyphs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-bottom: 3.6rem;
+    border-top: 1px solid var(--cv-rule);
+    border-bottom: 1px solid var(--cv-rule);
+  }
+  .cv-glyph {
+    padding: 2.4rem 1.6rem;
+    text-align: center;
+    border-right: 1px solid var(--cv-rule);
+  }
+  .cv-glyph:last-child { border-right: none; }
+  .cv-glyph svg {
+    width: 56px;
+    height: 56px;
+    color: var(--cv-ochre);
+    margin-bottom: 0.9rem;
+  }
+  .cv-glyph-label {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cv-soft);
+  }
+
+  .cv-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.2rem;
+  }
+  .cv-card {
+    background: var(--cv-paper);
+    border: 1px solid var(--cv-rule);
+    border-top: 3px solid var(--cv-ochre);
+    padding: 2.4rem 2rem;
+  }
+  .cv-card-num {
+    font-family: var(--display);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--cv-ochre);
+    letter-spacing: 0.06em;
+    margin-bottom: 1.2rem;
+  }
+  .cv-card-h {
+    font-family: var(--display);
+    font-size: clamp(1.34rem, 1.9vw, 1.55rem);
+    font-weight: 500;
+    line-height: 1.25;
+    color: var(--cv-ink);
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.005em;
+  }
+  .cv-card-body {
+    font-family: var(--sans);
+    font-size: 1.15rem;
+    line-height: 1.72;
+    color: var(--cv-body);
+    margin-bottom: 1.4rem;
+  }
+  .cv-card-mini {
+    font-family: var(--serif);
+    font-size: 1.08rem;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--cv-soft);
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--cv-rule-2);
+  }
+  .cv-card-link {
+    display: inline-block;
+    margin-bottom: 1rem;
+    padding: 0.6rem 0.9rem;
+    background: var(--cv-cream);
+    border: 1px solid var(--cv-rule);
+    font-family: 'Courier New', monospace;
+    font-size: 0.95rem;
+    color: var(--cv-ink);
+  }
+  .cv-card-link span { color: var(--cv-ochre); font-weight: 700; }
+
+  /* PROFILE LIST */
+  .cv-profile-intro {
+    max-width: 800px;
+    margin-bottom: 3.6rem;
+  }
+  .cv-profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 2.4rem;
+  }
+  .cv-profile-col h3 {
+    font-family: var(--sans);
+    font-size: 0.86rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cv-ochre);
+    margin-bottom: 0.5rem;
+  }
+  .cv-profile-col-sub {
+    font-family: var(--serif);
+    font-size: 1.18rem;
+    font-style: italic;
+    color: var(--cv-soft);
+    margin-bottom: 1.6rem;
+    padding-bottom: 1.2rem;
+    border-bottom: 1px solid var(--cv-rule);
+  }
+  .cv-profile-list { list-style: none; margin: 0; padding: 0; counter-reset: prof; }
+  .cv-profile-list li {
+    font-family: var(--sans);
+    font-size: 1.12rem;
+    line-height: 1.4;
+    color: var(--cv-ink);
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--cv-rule-2);
+    display: flex;
+    align-items: baseline;
+    gap: 0.9rem;
+  }
+  .cv-profile-list li:last-child { border-bottom: none; }
+  .cv-profile-list li::before {
+    content: counter(prof, decimal-leading-zero);
+    counter-increment: prof;
+    font-family: var(--display);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--cv-ochre);
+    min-width: 28px;
+    letter-spacing: 0.02em;
+  }
+  .cv-profile-close {
+    font-family: var(--serif);
+    font-size: clamp(1.22rem, 1.7vw, 1.42rem);
+    font-style: italic;
+    color: var(--cv-ink);
+    text-align: center;
+    padding: 2.2rem 1rem 0;
+    border-top: 1px solid var(--cv-rule);
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  /* (D3) Quiet ledger divider */
+  .cv-divider {
+    background: var(--cv-cream);
+    padding: 3.6rem 0;
+    border-bottom: 1px solid var(--cv-rule-2);
+  }
+  .cv-divider-wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 5%;
+    text-align: center;
+  }
+  .cv-divider svg {
+    width: 100%;
+    max-width: 560px;
+    height: auto;
+    color: var(--cv-ochre);
+    opacity: 0.85;
+  }
+
+  /* HOW IT WORKS */
+  .cv-how-intro {
+    max-width: 720px;
+    margin-bottom: 3.4rem;
+  }
+  .cv-how-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--cv-rule);
+    border-left: 1px solid var(--cv-rule);
+  }
+  .cv-how-step {
+    padding: 2.4rem 1.7rem;
+    border-right: 1px solid var(--cv-rule);
+    border-bottom: 1px solid var(--cv-rule);
+    background: var(--cv-paper);
+  }
+  .cv-how-num {
+    font-family: var(--display);
+    font-size: 3rem;
+    font-weight: 300;
+    color: rgba(168,122,44,0.32);
+    line-height: 0.9;
+    margin-bottom: 1rem;
+    letter-spacing: -0.04em;
+  }
+  .cv-how-name {
+    font-family: var(--display);
+    font-size: 1.22rem;
+    font-weight: 500;
+    color: var(--cv-ink);
+    margin-bottom: 0.7rem;
+    line-height: 1.3;
+  }
+  .cv-how-body {
+    font-family: var(--sans);
+    font-size: 1.08rem;
+    line-height: 1.68;
+    color: var(--cv-body);
+  }
+
+  /* WHO IT'S FOR */
+  .cv-who-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .cv-who-list { list-style: none; margin: 0; padding: 0; }
+  .cv-who-list li {
+    font-family: var(--sans);
+    font-size: 1.12rem;
+    line-height: 1.65;
+    color: var(--cv-body);
+    padding: 1rem 0 1rem 2rem;
+    border-bottom: 1px solid var(--cv-rule-2);
+    position: relative;
+  }
+  .cv-who-list li:last-child { border-bottom: none; }
+  .cv-who-list li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 1.6rem;
+    width: 14px;
+    height: 1px;
+    background: var(--cv-ochre);
+  }
+
+  /* WHAT THIS IS NOT */
+  .cv-not-grid {
+    display: grid;
+    grid-template-columns: 0.45fr 0.55fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .cv-not-list { list-style: none; margin: 0; padding: 0; }
+  .cv-not-list li {
+    font-family: var(--sans);
+    font-size: clamp(1.22rem, 1.55vw, 1.4rem);
+    line-height: 1.65;
+    color: rgba(244,236,228,0.92);
+    padding: 1.4rem 0;
+    border-bottom: 1px solid rgba(244,236,228,0.12);
+  }
+  .cv-not-list li:first-child { padding-top: 0; }
+  .cv-not-list li:last-child { border-bottom: none; }
+  .cv-not-list li strong { color: rgba(244,236,228,0.98); font-weight: 600; }
+  .cv-not-list li em {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 600;
+    color: var(--cv-ochre-2);
+  }
+
+  /* CLOSING CTA */
+  .cv-final {
+    background: var(--cv-cream-2);
+    padding: 7rem 0 8rem;
+    text-align: center;
+  }
+  .cv-final-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 5%;
+  }
+  .cv-final-h {
+    font-family: var(--display);
+    font-size: clamp(2rem, 3.8vw, 3rem);
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--cv-ink);
+    margin-bottom: 2.4rem;
+    letter-spacing: -0.02em;
+  }
+  .cv-final-h em { font-style: italic; color: var(--cv-ochre); }
+
+  .cv-final-btn {
+    display: inline-block;
+    padding: 1.15rem 2.6rem;
+    font-family: var(--sans);
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: var(--cv-ink);
+    color: var(--cv-paper);
+    border: 1px solid var(--cv-ink);
+    transition: background 0.25s var(--ease), border-color 0.25s var(--ease), transform 0.25s var(--ease);
+  }
+  .cv-final-btn:hover {
+    background: var(--cv-ochre);
+    border-color: var(--cv-ochre);
+    transform: translateY(-2px);
+  }
+  .cv-final-mini {
+    margin-top: 1.4rem;
+    font-family: var(--sans);
+    font-size: 0.92rem;
+    color: var(--cv-soft);
+    letter-spacing: 0.04em;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .cv-hero-grid { grid-template-columns: 1fr; gap: 2.8rem; }
+    .cv-hero-grid .cv-auth-wrap { order: -1; }
+    .cv-ikshu-grid { grid-template-columns: 1fr; gap: 2.6rem; }
+    .cv-cards-grid { grid-template-columns: 1fr; gap: 1.8rem; }
+    .cv-how-grid { grid-template-columns: 1fr 1fr; }
+    .cv-not-grid { grid-template-columns: 1fr; gap: 2.2rem; }
+    .cv-who-grid { grid-template-columns: 1fr; gap: 2.4rem; }
+    .cv-glyphs { grid-template-columns: 1fr; }
+    .cv-glyph { border-right: none; border-bottom: 1px solid var(--cv-rule); }
+    .cv-glyph:last-child { border-bottom: none; }
+  }
+  @media (max-width: 720px) {
+    .cv-hero { padding: 3.5rem 0 4rem; }
+    .cv-section { padding: 4.4rem 0; }
+    .cv-final { padding: 5rem 0 5.5rem; }
+    .cv-mockup-band { padding: 3.4rem 0; }
+    .cv-divider { padding: 2.6rem 0; }
+    .cv-profile-grid { grid-template-columns: 1fr; gap: 2.4rem; }
+    .cv-how-grid { grid-template-columns: 1fr; }
+    .cv-how-step { border-right: none; }
+    .cv-auth { padding: 2rem 1.5rem 1.8rem; }
+    .cv-ikshu-deva { font-size: 6rem; }
+    .cv-browser-content { grid-template-columns: 72px 1fr; gap: 1.1rem; padding: 1.4rem; }
+    .cv-browser-avatar { width: 72px; height: 72px; font-size: 1.8rem; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="gh-tagline-sub" id="ghTaglineSub">
+  <span class="gh-tagline-sub-text">
+    <strong>Feel Proud:</strong> Choosing to be courageous enough to feel proud of exactly who you are and what your life is &ndash; is seeing you are growing, expanding, and creating a better world
+  </span>
+</div>
+
+<header class="global-header">
+  <a href="index.html" class="gh-logo" aria-label="MECULS home">
+    <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS" loading="eager" width="140" height="36">
+    <span class="gh-logo-text">MECULS</span>
+  </a>
+
+  <nav aria-label="Primary navigation">
+    <ul class="gh-nav gh-nav-wrap">
+
+      <li><a href="about-meculs.html">About MECULS</a></li>
+
+      <li>
+        <a href="how-meculs-works.html">How MECULS Works
+          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <ul class="gh-dropdown">
+          <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+          <li><a href="the-journey.html">The Journey</a></li>
+          <li><a href="contexts.html">Contexts</a></li>
+          <li><a href="source-of-challenges.html">Source of Challenges</a></li>
+          <li><a href="contemplative-practices.html">Contemplative Practices</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="services.html">Services
+          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <ul class="gh-dropdown">
+          <li><a href="services.html">All Services</a></li>
+          <li><a href="corporate-programs.html">Corporate Programmes</a></li>
+          <li><a href="360-pulse-rate.html">360&deg; PULSE RATE&trade;</a></li>
+          <li><a href="service-personality-profiling.html">Personality Profiling</a></li>
+          <li><a href="service-executive-search.html">Executive Search</a></li>
+          <li><a href="bespoke-coaching.html">Executive Coaching &ndash; Bespoke</a></li>
+          <li><a href="service-hr-analytics.html">HR Analytics</a></li>
+          <li><a href="service-data-science-analytics.html">Data Science &amp; Analytics</a></li>
+          <li><a href="service-market-actionable-intelligence.html">Market Intelligence</a></li>
+          <li><a href="organisational-health-consulting.html">Organisational Health</a></li>
+          <li class="gh-dropdown-divider" aria-hidden="true"></li>
+          <li><a href="individual-services.html">Individual &amp; Wellness</a></li>
+          <li><a href="service-consciousness-clarity.html">Consciousness &amp; Clarity</a></li>
+          <li><a href="service-mind-wellness.html">Mind Wellness</a></li>
+          <li><a href="service-addiction-freedom.html">Addiction Freedom</a></li>
+          <li><a href="service-counselling.html">Counselling</a></li>
+          <li><a href="service-children.html">For Children</a></li>
+          <li><a href="service-zero-state-meditation.html">Meditation as Medicine</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="the-approach.html">The Approach
+          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <ul class="gh-dropdown">
+          <li><a href="the-approach.html">The Approach</a></li>
+          <li><a href="why-meculs.html">Why MECULS</a></li>
+          <li><a href="why-mynd-care.html">Why Mynd CARE</a></li>
+          <li><a href="our-work-proof.html">Our Work Proof</a></li>
+        </ul>
+      </li>
+
+      <li><a href="insights.html">Insights</a></li>
+      <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+      <li><a href="cv-portal.html" class="active">The CV Portal</a></li>
+      <li><a href="begin-conversation.html" class="gh-cta">Begin a Conversation</a></li>
+
+      <li class="gh-login-wrap">
+        <a href="login.html" class="gh-login-icon" aria-label="Sign in or register for The CV Portal" aria-haspopup="true" aria-expanded="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </a>
+        <ul class="gh-login-dropdown" role="menu" aria-label="The CV Portal account">
+          <li class="gh-login-dropdown-label">The CV Portal</li>
+          <li role="none"><a href="login.html" role="menuitem">CV Portal &ndash; Login</a></li>
+          <li role="none"><a href="register.html" role="menuitem">CV Portal &ndash; Register</a></li>
+        </ul>
+      </li>
+
+    </ul>
+  </nav>
+
+  <button class="gh-toggle" id="ghToggle" aria-label="Open navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="gh-mobile-menu" id="ghMobileMenu" role="dialog" aria-label="Mobile navigation">
+  <ul class="gh-mobile-nav">
+
+    <li><a href="about-meculs.html">About MECULS</a></li>
+
+    <li>
+      <a href="how-meculs-works.html">How MECULS Works</a>
+      <ul class="gh-mobile-sub">
+        <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+        <li><a href="the-journey.html">The Journey</a></li>
+        <li><a href="contexts.html">Contexts</a></li>
+        <li><a href="source-of-challenges.html">Source of Challenges</a></li>
+        <li><a href="contemplative-practices.html">Contemplative Practices</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <a href="services.html">Services</a>
+      <ul class="gh-mobile-sub">
+        <li><a href="services.html">All Services</a></li>
+        <li><a href="corporate-programs.html">Corporate Programmes</a></li>
+        <li><a href="360-pulse-rate.html">360&deg; PULSE RATE&trade;</a></li>
+        <li><a href="service-personality-profiling.html">Personality Profiling</a></li>
+        <li><a href="service-executive-search.html">Executive Search</a></li>
+        <li><a href="bespoke-coaching.html">Executive Coaching &ndash; Bespoke</a></li>
+        <li><a href="service-hr-analytics.html">HR Analytics</a></li>
+        <li><a href="service-data-science-analytics.html">Data Science &amp; Analytics</a></li>
+        <li><a href="service-market-actionable-intelligence.html">Market Intelligence</a></li>
+        <li><a href="organisational-health-consulting.html">Organisational Health</a></li>
+        <li><a href="individual-services.html">Individual &amp; Wellness</a></li>
+        <li><a href="service-consciousness-clarity.html">Consciousness &amp; Clarity</a></li>
+        <li><a href="service-mind-wellness.html">Mind Wellness</a></li>
+        <li><a href="service-addiction-freedom.html">Addiction Freedom</a></li>
+        <li><a href="service-counselling.html">Counselling</a></li>
+        <li><a href="service-children.html">For Children</a></li>
+        <li><a href="service-zero-state-meditation.html">Meditation as Medicine</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <a href="the-approach.html">The Approach</a>
+      <ul class="gh-mobile-sub">
+        <li><a href="the-approach.html">The Approach</a></li>
+        <li><a href="why-meculs.html">Why MECULS</a></li>
+        <li><a href="why-mynd-care.html">Why Mynd CARE</a></li>
+        <li><a href="our-work-proof.html">Our Work Proof</a></li>
+      </ul>
+    </li>
+
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+    <li><a href="cv-portal.html">The CV Portal</a></li>
+    <li><a href="login.html">CV Portal &ndash; Login</a></li>
+    <li><a href="register.html">CV Portal &ndash; Register</a></li>
+  </ul>
+  <a href="begin-conversation.html" class="gh-mobile-cta">Begin a Conversation</a>
+</div>
+
+<section class="cv-hero">
+  <div class="cv-hero-grid">
+
+    <div>
+      <div class="cv-eyebrow rev">
+        MECULS &middot; Ikshu (<span class="cv-eyebrow-deva" lang="sa">इक्षु</span>) &middot; The CV Portal
+      </div>
+
+      <h1 class="cv-hero-title rev">
+        The capability you have already built<br>
+        <em>deserves to be seen.</em>
+      </h1>
+
+      <p class="cv-hero-sub rev">
+        A profile that goes to work for you &ndash; not one that just sits there.
+      </p>
+
+      <p class="cv-hero-quiet rev">
+        Free <span>&middot;</span> No tiers <span>&middot;</span> No subscriptions <span>&middot;</span> 18+ only
+      </p>
+    </div>
+
+    <div class="cv-auth-wrap rev">
+      <div class="cv-auth">
+        <h2 class="cv-auth-h">Sign In or Create Account</h2>
+
+        <div class="cv-tabs" role="tablist" aria-label="Sign in or create account">
+          <button class="cv-tab active" id="tab-signin" role="tab" aria-selected="true" aria-controls="panel-signin" type="button">Sign In</button>
+          <button class="cv-tab" id="tab-create" role="tab" aria-selected="false" aria-controls="panel-create" type="button">Create Account</button>
+        </div>
+
+        <div class="cv-tab-panel active" id="panel-signin" role="tabpanel" aria-labelledby="tab-signin">
+          <p class="cv-tab-line">
+            Welcome back. Pick up exactly where you left off &ndash; your profile, your link, your connections.
+          </p>
+          <a href="login.html" class="cv-btn">Sign In &rarr;</a>
+          <p class="cv-auth-mini">Forgot your password? You can reset it on the sign-in page.</p>
+        </div>
+
+        <div class="cv-tab-panel" id="panel-create" role="tabpanel" aria-labelledby="tab-create" hidden>
+          <p class="cv-tab-line">
+            Create your free account. Build a serious profile. Get a shareable public link. Get connected with peers and seniors &ndash; with your consent.
+          </p>
+          <a href="register.html" class="cv-btn">Create Your Free Account &rarr;</a>
+          <p class="cv-auth-mini">Free. Two minutes. 18+ only.</p>
+        </div>
+
+        <p class="cv-auth-foot">
+          Powered by MECULS &middot; <a href="privacy-policy.html">Privacy</a> &middot; <a href="terms.html">Terms</a>
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="cv-mockup-band">
+  <div class="cv-mockup-wrap">
+    <div class="cv-mockup-eyebrow rev">What your profile looks like</div>
+    <h2 class="cv-mockup-h rev">One link. Your full profile. Owned by you.</h2>
+
+    <div class="cv-browser rev">
+      <div class="cv-browser-bar">
+        <div class="cv-browser-dots">
+          <span class="cv-browser-dot"></span>
+          <span class="cv-browser-dot"></span>
+          <span class="cv-browser-dot"></span>
+        </div>
+        <div class="cv-browser-url">
+          <span class="cv-browser-domain">meculs.com/p/</span><span class="cv-browser-path">anjali-mehta</span>
+        </div>
+      </div>
+      <div class="cv-browser-content">
+        <div class="cv-browser-avatar">AM</div>
+        <div>
+          <div class="cv-browser-name">Anjali Mehta</div>
+          <div class="cv-browser-role">Senior Manager, Operations &middot; Bengaluru</div>
+          <div class="cv-browser-tags">
+            <span class="cv-browser-tag">14 yrs</span>
+            <span class="cv-browser-tag">Available for consulting</span>
+            <span class="cv-browser-tag">Open to mentor</span>
+          </div>
+          <div class="cv-browser-rules">
+            <div class="cv-browser-rule"></div>
+            <div class="cv-browser-rule med"></div>
+            <div class="cv-browser-rule short"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="cv-mockup-cap rev">Cleaner than a PDF. More current than a printed CV. Yours to share.</p>
+  </div>
+</section>
+
+<section class="cv-section">
+  <div class="cv-wrap cv-recog">
+    <div class="cv-rule rev"></div>
+    <div class="cv-label rev">The recognition</div>
+    <h2 class="cv-h2 rev">Capability is real.<br><em>Recognition is uneven.</em></h2>
+    <div class="cv-prose">
+      <p class="rev">
+        You have spent years building something real. The judgement to know when a meeting is going wrong before anyone else in the room sees it. The discipline to deliver under conditions most people would not stay in. The instinct to read a numbers deck and find the one cell that is hiding the answer. None of this came from a workshop. It came from work.
+      </p>
+      <p class="rev">
+        And yet recognition for what you have built does not arrive evenly. The people who post the most are not always the people who do the most. The people who network the loudest are not always the people who deliver the best. Capability is real; visibility is something else &ndash; and the gap between the two is where careers quietly stall.
+      </p>
+      <p class="rev">
+        <strong>This is the gap Ikshu was built to close.</strong> Not by asking you to perform on social media. Not by asking you to grind a job board. By making your real work, in plain language, visible to the people who can actually act on it.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="cv-section tone">
+  <div class="cv-wrap">
+    <div class="cv-ikshu-grid">
+
+      <div class="cv-ikshu-deva-wrap rev">
+        <span class="cv-ikshu-deva" lang="sa">इक्षु</span>
+        <div class="cv-ikshu-roman">Ikshu</div>
+        <div class="cv-ikshu-pron">Ik-shu &middot; Sanskrit</div>
+      </div>
+
+      <div>
+        <div class="cv-rule rev"></div>
+        <div class="cv-label rev">The name</div>
+        <h2 class="cv-h2 rev">Why we call it <em>Ikshu.</em></h2>
+        <div class="cv-prose">
+          <p class="rev">
+            <strong>इ</strong> is a beej mantra &ndash; a seed sound, the first vibration from which a thing begins. <strong>इक्षु</strong> means sugarcane: real plant, drawn from earth, holding sweetness that nourishes rather than rots the body. The same word, in older Sanskrit usage, also carries the sense of <em>seeing clearly</em> &ndash; perception that sees through to what is actually there.
+          </p>
+          <p class="rev">
+            That is what this portal was named after. Not the processed, sweetened version of you that performs on a job board. The real plant. The capability you already carry, set down clearly, so the people who matter can see what is actually there.
+          </p>
+          <p class="rev">
+            This is what we mean when we say <strong>seen</strong>.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="cv-section">
+  <div class="cv-wrap">
+
+    <div class="cv-cards-intro">
+      <div class="cv-rule rev"></div>
+      <div class="cv-label rev">What you get</div>
+      <h2 class="cv-h2 rev">Three things, included.<br><em>No tiers. No upgrades.</em></h2>
+      <div class="cv-prose">
+        <p class="rev">When you create your account &ndash; free, two minutes &ndash; you get all three of these. Not a teaser version. Not a free trial that runs out. The full thing, kept free because the philosophy behind Ikshu does not allow for premium versions of you.</p>
+      </div>
+    </div>
+
+    <div class="cv-glyphs rev" aria-hidden="true">
+      <div class="cv-glyph">
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 32 a8 8 0 0 1 8-8 h12 a8 8 0 0 1 0 16 h-4"/>
+          <path d="M42 32 a8 8 0 0 1 -8 8 h-12 a8 8 0 0 1 0 -16 h4"/>
+        </svg>
+        <div class="cv-glyph-label">A link to share</div>
+      </div>
+      <div class="cv-glyph">
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="22" cy="22" r="8"/>
+          <circle cx="42" cy="22" r="8"/>
+          <circle cx="32" cy="42" r="8"/>
+          <line x1="28" y1="26" x2="28" y2="36"/>
+          <line x1="36" y1="26" x2="36" y2="36"/>
+          <line x1="28" y1="22" x2="36" y2="22"/>
+        </svg>
+        <div class="cv-glyph-label">Connections that matter</div>
+      </div>
+      <div class="cv-glyph">
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10 42 L20 30 L26 36 L36 22 L44 30 L54 18"/>
+          <circle cx="54" cy="18" r="2.4" fill="currentColor"/>
+        </svg>
+        <div class="cv-glyph-label">A pulse on the market</div>
+      </div>
+    </div>
+
+    <div class="cv-cards-grid">
+
+      <div class="cv-card rev">
+        <div class="cv-card-num">01</div>
+        <h3 class="cv-card-h">One link. Your full profile. Yours to share.</h3>
+        <div class="cv-card-link">meculs.com/p/<span>your-name</span></div>
+        <p class="cv-card-body">
+          Once your profile is complete, you receive a public profile URL. Share it with recruiters. Put it in your email signature. Drop it into a conversation after a meeting where someone asked what you do. One link replaces the PDF, the printed CV, the screenshot.
+        </p>
+        <p class="cv-card-mini">
+          Cleaner than a PDF. More current than a printed CV.
+        </p>
+      </div>
+
+      <div class="cv-card rev">
+        <div class="cv-card-num">02</div>
+        <h3 class="cv-card-h">Up to ten connections &ndash; five at your level, five senior.</h3>
+        <p class="cv-card-body">
+          With your consent, we connect you with up to ten other professionals from our network &ndash; five peers and five seniors. By email, with both sides' consent. Free. The intent is goodwill exchange, not transaction. A real conversation, made possible.
+        </p>
+        <p class="cv-card-mini">
+          Goodwill exchange, not a guarantee. Matches depend on who is in the network at the time.
+        </p>
+      </div>
+
+      <div class="cv-card rev">
+        <div class="cv-card-num">03</div>
+        <h3 class="cv-card-h">Industry pulse &ndash; know where opportunity is moving.</h3>
+        <p class="cv-card-body">
+          If you opt in, we send periodic insights on which sectors are hiring, which companies are growing, where the market is opening up. Not a generic newsletter &ndash; targeted observations you can use to direct your next move with intent rather than guesswork.
+        </p>
+        <p class="cv-card-mini">
+          Use it to target your applications smartly. Unsubscribe any time.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="cv-section tone">
+  <div class="cv-wrap">
+
+    <div class="cv-profile-intro">
+      <div class="cv-rule rev"></div>
+      <div class="cv-label rev">What goes into your profile</div>
+      <h2 class="cv-h2 rev">Eleven core sections.<br><em>Seven optional.</em></h2>
+      <div class="cv-prose">
+        <p class="rev">
+          A serious profile reflects a serious career. The eleven core sections cover the substance of your professional life. The seven optional sections let you bring in the parts of yourself that most CV portals have no room for &ndash; mentorship, consulting availability, publications, volunteering, the work you have made that did not fit on a single line of a CV.
+        </p>
+      </div>
+    </div>
+
+    <div class="cv-profile-grid rev">
+
+      <div class="cv-profile-col">
+        <h3>Core sections</h3>
+        <div class="cv-profile-col-sub">The substance of your career &ndash; what most people will fill in.</div>
+        <ol class="cv-profile-list">
+          <li>Goals &amp; Interests</li>
+          <li>Photo &amp; CV upload</li>
+          <li>Profile Category</li>
+          <li>About You</li>
+          <li>Experience</li>
+          <li>Education</li>
+          <li>Skills</li>
+          <li>Certifications</li>
+          <li>References</li>
+          <li>Preferences</li>
+          <li>Languages</li>
+        </ol>
+      </div>
+
+      <div class="cv-profile-col">
+        <h3>Bonus sections</h3>
+        <div class="cv-profile-col-sub">For the parts of you most CV portals have no room for.</div>
+        <ol class="cv-profile-list">
+          <li>AI Tools &amp; Digital Literacy</li>
+          <li>Consulting Availability</li>
+          <li>Key Achievements</li>
+          <li>Mentorship &amp; Coaching</li>
+          <li>Work Portfolio</li>
+          <li>Publications &amp; Media</li>
+          <li>Volunteering</li>
+        </ol>
+      </div>
+
+    </div>
+
+    <p class="cv-profile-close rev">
+      As much depth as you want to bring. You decide where to stop.
+    </p>
+
+  </div>
+</section>
+
+<section class="cv-divider" aria-hidden="true">
+  <div class="cv-divider-wrap rev">
+    <svg viewBox="0 0 560 80" fill="none" stroke="currentColor">
+      <line x1="40" y1="40" x2="220" y2="40" stroke-width="1"/>
+      <circle cx="240" cy="40" r="3" fill="currentColor" stroke="none"/>
+      <path d="M260 30 L268 40 L260 50" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <circle cx="280" cy="40" r="3" fill="currentColor" stroke="none"/>
+      <path d="M300 30 L292 40 L300 50" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <circle cx="320" cy="40" r="3" fill="currentColor" stroke="none"/>
+      <line x1="340" y1="40" x2="520" y2="40" stroke-width="1"/>
+    </svg>
+  </div>
+</section>
+
+<section class="cv-section">
+  <div class="cv-wrap">
+
+    <div class="cv-how-intro">
+      <div class="cv-rule rev"></div>
+      <div class="cv-label rev">How it works</div>
+      <h2 class="cv-h2 rev">Four steps.<br><em>One real outcome.</em></h2>
+    </div>
+
+    <div class="cv-how-grid rev">
+
+      <div class="cv-how-step">
+        <div class="cv-how-num">01</div>
+        <div class="cv-how-name">Sign up</div>
+        <div class="cv-how-body">
+          Free. About two minutes. Email, password, two consent ticks for terms and 18+ confirmation, and a security check.
+        </div>
+      </div>
+
+      <div class="cv-how-step">
+        <div class="cv-how-num">02</div>
+        <div class="cv-how-name">Build your profile</div>
+        <div class="cv-how-body">
+          As much time as you want. Most people complete the core sections across two or three sittings. Save and return any time.
+        </div>
+      </div>
+
+      <div class="cv-how-step">
+        <div class="cv-how-num">03</div>
+        <div class="cv-how-name">Get your public link</div>
+        <div class="cv-how-body">
+          Once the profile carries enough substance, your shareable link goes live. meculs.com/p/your-name. Yours to share.
+        </div>
+      </div>
+
+      <div class="cv-how-step">
+        <div class="cv-how-num">04</div>
+        <div class="cv-how-name">Get connected</div>
+        <div class="cv-how-body">
+          With your consent &ndash; by email, when matches happen. Up to ten connections, five at your level and five senior.
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="cv-section tone">
+  <div class="cv-wrap">
+
+    <div class="cv-cards-intro">
+      <div class="cv-rule rev"></div>
+      <div class="cv-label rev">Who this is for</div>
+      <h2 class="cv-h2 rev">Working professionals &ndash;<br><em>in both directions.</em></h2>
+      <div class="cv-prose">
+        <p class="rev">
+          Ikshu is built for working professionals who want their real capability to be visible to the right people. Whichever direction you are facing.
+        </p>
+      </div>
+    </div>
+
+    <div class="cv-who-grid">
+
+      <ul class="cv-who-list rev">
+        <li>People looking for their next role &ndash; and people available for consulting work.</li>
+        <li>People looking for mentorship &ndash; and people willing to mentor someone earlier in the journey.</li>
+        <li>People early in their career &ndash; and people late in it, wanting to share what they have learned.</li>
+        <li>People returning after a break &ndash; pregnancy, illness, family responsibility, study.</li>
+      </ul>
+
+      <ul class="cv-who-list rev">
+        <li>People who do excellent work but do not post on social media.</li>
+        <li>People whose CV does not reflect the full shape of what they have built.</li>
+        <li>People who want a single link they can share, kept current, owned by them.</li>
+        <li>People who would rather build a serious profile once than perform their career every week.</li>
+      </ul>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="cv-section ink">
+  <div class="cv-wrap">
+
+    <div class="cv-not-grid">
+
+      <div>
+        <div class="cv-rule rev"></div>
+        <div class="cv-label rev">In plain language</div>
+        <h2 class="cv-h2 rev">What this <em>is not.</em></h2>
+        <div class="cv-prose">
+          <p class="rev">
+            The category has lost a lot of trust over the years &ndash; and for good reasons. Five things, said plainly, so you know what you are signing up for and what you are not.
+          </p>
+        </div>
+      </div>
+
+      <ul class="cv-not-list">
+        <li class="rev">We are <strong>not a job board</strong>. We do not list vacancies, we do not run applicant tracking, we do not charge recruiters for your data.</li>
+        <li class="rev">We do <strong>not sell your email</strong>. <em>Ever.</em></li>
+        <li class="rev">We do <strong>not have premium tiers</strong>. The free version is the only version.</li>
+        <li class="rev">We do <strong>not promise jobs</strong>. We promise visibility and a real connection or two.</li>
+        <li class="rev">We do <strong>not push notifications</strong> you did not opt into.</li>
+      </ul>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="cv-final">
+  <div class="cv-final-inner">
+    <h2 class="cv-final-h rev">
+      One link. One free account.<br>
+      <em>The work you have already done, set down clearly.</em>
+    </h2>
+
+    <a href="register.html" class="cv-final-btn rev">Create Your Free Account &rarr;</a>
+    <p class="cv-final-mini rev">Free &middot; Two minutes &middot; 18+ only</p>
+  </div>
+</section>
+
+<footer class="global-footer">
+
+  <div class="gf-top">
+
+    <div class="gf-brand">
+      <div class="gf-logo">
+        <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS" width="140" height="32">
+        <span class="gf-logo-text" style="display:none">MECULS</span>
+      </div>
+      <p class="gf-tagline">Mind Enablement Centre for Unlocking Limitless Leadership &amp; Self-Potential</p>
+      <div class="gf-contact">
+        <a href="mailto:Jain.Rajneesh@meculs.com">Jain.Rajneesh@meculs.com</a>
+        <a href="https://www.meculs.com">www.meculs.com</a>
+        <span>Delhi, India</span>
+      </div>
+      <div class="gf-social">
+        <a href="https://www.linkedin.com/in/rajneesh-jain-meculs" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@meculs" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.33zM9.75 15.02V8.48l5.75 3.27z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/meculs_official" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://x.com/meculs_official" aria-label="X / Twitter" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/meculs" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <span class="gf-col-title">Services</span>
+      <ul class="gf-links">
+        <li><a href="360-pulse-rate.html">360&deg; PULSE RATE&trade;</a></li>
+        <li><a href="service-personality-profiling.html">Personality Profiling</a></li>
+        <li><a href="bespoke-coaching.html">Executive Coaching &ndash; Bespoke</a></li>
+        <li><a href="corporate-programs.html">Corporate Programmes</a></li>
+        <li><a href="service-executive-search.html">Executive Search</a></li>
+        <li><a href="service-hr-analytics.html">HR Analytics</a></li>
+        <li><a href="service-data-science-analytics.html">Data Science &amp; Analytics</a></li>
+        <li><a href="service-market-actionable-intelligence.html">Market Intelligence</a></li>
+        <li><a href="organisational-health-consulting.html">Organisational Health</a></li>
+        <li><a href="service-consciousness-clarity.html">Consciousness &amp; Clarity</a></li>
+        <li><a href="service-mind-wellness.html">Mind Wellness</a></li>
+        <li><a href="service-addiction-freedom.html">Addiction Freedom</a></li>
+        <li><a href="service-counselling.html">Counselling</a></li>
+        <li><a href="service-children.html">For Children</a></li>
+        <li><a href="service-zero-state-meditation.html">Meditation as Medicine</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <span class="gf-col-title">Company</span>
+      <ul class="gf-links">
+        <li><a href="about-meculs.html">About MECULS</a></li>
+        <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+        <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+        <li><a href="the-approach.html">The Approach</a></li>
+        <li><a href="the-journey.html">The Journey</a></li>
+        <li><a href="why-meculs.html">Why MECULS</a></li>
+        <li><a href="why-mynd-care.html">Why Mynd CARE</a></li>
+        <li><a href="our-work-proof.html">Our Work Proof</a></li>
+        <li><a href="contexts.html">Contexts</a></li>
+        <li><a href="source-of-challenges.html">Source of Challenges</a></li>
+        <li><a href="contemplative-practices.html">Contemplative Practices</a></li>
+        <li><a href="insights.html">Insights</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <span class="gf-col-title">Connect</span>
+      <ul class="gf-links">
+        <li><a href="cv-portal.html">The CV Portal</a></li>
+        <li><a href="login.html">Sign In</a></li>
+        <li><a href="begin-conversation.html">Begin a Conversation</a></li>
+        <li><a href="book-session.html">Book a Session</a></li>
+      </ul>
+      <span class="gf-col-title" style="margin-top:2rem;">Legal</span>
+      <ul class="gf-links">
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms of Service</a></li>
+        <li><a href="refund-policy.html">Refund Policy</a></li>
+        <li><a href="disclaimer.html">Disclaimer</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="gf-bottom">
+    <p class="gf-ip">This website, its content, frameworks, methodologies, and design are conceptualised, created, and authored by Rajneesh Jain, Founder, MECULS. All methodologies are the original and exclusive intellectual property of Rajneesh Jain. Unauthorised reproduction or commercial use is prohibited.</p>
+    <div class="gf-bottom-bar">
+      <p class="gf-copy">&copy; 2026 MECULS. All rights reserved. Delhi, India.</p>
+      <p class="gf-payment">Payment: PayUBiz &middot; Razorpay &middot; PayPal &middot; UPI &middot; Credit Card</p>
+      <nav class="gf-legal" aria-label="Legal links">
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="refund-policy.html">Refund</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </nav>
+    </div>
+  </div>
+
+</footer>
+
+</div>
+
+<script src="global.js"></script>
+<script>
+  (function(){
+    var tabs = document.querySelectorAll('.cv-tab');
+    var panels = document.querySelectorAll('.cv-tab-panel');
+    function activate(name){
+      tabs.forEach(function(t){
+        var on = t.id === 'tab-' + name;
+        t.classList.toggle('active', on);
+        t.setAttribute('aria-selected', String(on));
+      });
+      panels.forEach(function(p){
+        var on = p.id === 'panel-' + name;
+        p.classList.toggle('active', on);
+        if (on) { p.removeAttribute('hidden'); } else { p.setAttribute('hidden',''); }
+      });
+    }
+    tabs.forEach(function(t){
+      t.addEventListener('click', function(){
+        var name = t.id.replace('tab-','');
+        activate(name);
+      });
+      t.addEventListener('keydown', function(e){
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+          e.preventDefault();
+          var other = (t.id === 'tab-signin') ? 'create' : 'signin';
+          activate(other);
+          document.getElementById('tab-' + other).focus();
+        }
+      });
+    });
+  })();
+
+  (function(){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('vis'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.rev').forEach(function(el){ io.observe(el); });
+  })();
+</script>
+
+</body>
+</html>
