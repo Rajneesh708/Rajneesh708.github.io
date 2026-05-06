@@ -378,12 +378,20 @@
     background: var(--paper-soft);
   }
 
+  /* ── Editorial header: text on the left, anchor photo on the right.
+     Clean, sharp photograph — no masks, no fades, no opacity tricks.
+     The image is a real, present photograph. */
   .s-register-head {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    column-gap: clamp(2.4rem, 5vw, 4.5rem);
+    align-items: center;
     max-width: 1200px;
-    margin: 0 auto 3.5rem;
+    margin: 0 auto 4rem;
     padding: 0 5%;
+  }
+  .s-register-head-text {
+    padding: 0.4rem 0;
   }
   .s-register-head h2 {
     font-family: var(--display);
@@ -405,48 +413,21 @@
     font-style: italic; font-weight: 400;
     line-height: 1.8;
     color: var(--type-body);
-    max-width: 620px;
+    max-width: 56ch;
     margin: 0;
   }
 
-  /* Atmospheric photo plate -- edge-dissolved into the white page.
-     No frame, no border, no caption block. The photo bleeds full-width
-     and fades into the page top and bottom through a soft mask, so the
-     eye reads continuous flow rather than a boxed image. */
   .s-register-atmos {
     position: relative;
     width: 100%;
-    height: 360px;
-    margin: 1rem 0 2rem;
+    aspect-ratio: 4 / 3;
+    margin: 0;
     overflow: hidden;
   }
   .s-register-atmos img {
     width: 100%; height: 100%;
     object-fit: cover;
     display: block;
-    /* Soft mask -- top 22% and bottom 28% fade to transparent */
-    -webkit-mask-image: linear-gradient(
-      180deg,
-      transparent 0%,
-      rgba(0,0,0,0.4) 12%,
-      rgba(0,0,0,1) 32%,
-      rgba(0,0,0,1) 68%,
-      rgba(0,0,0,0.35) 90%,
-      transparent 100%
-    );
-    mask-image: linear-gradient(
-      180deg,
-      transparent 0%,
-      rgba(0,0,0,0.4) 12%,
-      rgba(0,0,0,1) 32%,
-      rgba(0,0,0,1) 68%,
-      rgba(0,0,0,0.35) 90%,
-      transparent 100%
-    );
-    /* Subtle desaturation so warm/cool variations between corporate
-       and wellness photos don't fight the gold-deep palette */
-    filter: grayscale(0.35) contrast(0.95);
-    opacity: 0.78;
   }
 
   /* The numbered register itself */
@@ -792,7 +773,18 @@
     }
     .s-row-signal-text { font-size: 1.18rem; line-height: 1.80; }
     .s-row-arrow { margin-top: 0; }
-    .s-register-atmos { height: 240px; }
+
+    /* Side-by-side header collapses to stacked on tablet/phone.
+       Photo sits beneath text so reading order stays intact. */
+    .s-register-head {
+      grid-template-columns: 1fr;
+      gap: 2.4rem;
+      align-items: stretch;
+      margin-bottom: 2.6rem;
+    }
+    .s-register-atmos {
+      aspect-ratio: 16 / 9;
+    }
   }
 
   @media (max-width: 680px) {
@@ -1050,17 +1042,19 @@
 <section class="s-register" aria-labelledby="corp-h2">
 
   <div class="s-register-head rev">
-    <div class="eyebrow">
-      <span class="num">II</span>
-      <span>For Organisations</span>
+    <div class="s-register-head-text">
+      <div class="eyebrow">
+        <span class="num">II</span>
+        <span>For Organisations</span>
+      </div>
+      <h2 id="corp-h2">Nine services<br><em>for organisations.</em></h2>
+      <p class="lede">Each delivered personally by Rajneesh Jain. No associates, no franchises, no generic programmes. What you read here is what you receive in the room.</p>
     </div>
-    <h2 id="corp-h2">Nine services<br><em>for organisations.</em></h2>
-    <p class="lede">Each delivered personally by Rajneesh Jain. No associates, no franchises, no generic programmes. What you read here is what you receive in the room.</p>
-  </div>
 
-  <div class="s-register-atmos rev" aria-hidden="true">
-    <img src="images/services/services-corporate-plate.jpg"
-         alt="" loading="lazy" width="2400" height="800">
+    <div class="s-register-atmos" aria-hidden="true">
+      <img src="images/services/services-corporate-plate.jpg"
+           alt="" loading="lazy" width="2400" height="1800">
+    </div>
   </div>
 
   <div class="s-register-list">
@@ -1229,17 +1223,19 @@
 <section class="s-register alt" aria-labelledby="well-h2">
 
   <div class="s-register-head rev">
-    <div class="eyebrow">
-      <span class="num">III</span>
-      <span>For the Person</span>
+    <div class="s-register-head-text">
+      <div class="eyebrow">
+        <span class="num">III</span>
+        <span>For the Person</span>
+      </div>
+      <h2 id="well-h2">Six services<br><em>for the person.</em></h2>
+      <p class="lede">Delivered with the same depth as the corporate practice. Only now the subject is not a leader under quarterly pressure, but a person under the pressure of their own life &ndash; anxiety, addiction, a child, a long illness, the wish to be quieter inside.</p>
     </div>
-    <h2 id="well-h2">Six services<br><em>for the person.</em></h2>
-    <p class="lede">Delivered with the same depth as the corporate practice. Only now the subject is not a leader under quarterly pressure, but a person under the pressure of their own life &ndash; anxiety, addiction, a child, a long illness, the wish to be quieter inside.</p>
-  </div>
 
-  <div class="s-register-atmos rev" aria-hidden="true">
-    <img src="images/services/services-wellness-plate.jpg"
-         alt="" loading="lazy" width="2400" height="800">
+    <div class="s-register-atmos" aria-hidden="true">
+      <img src="images/services/services-wellness-plate.jpg"
+           alt="" loading="lazy" width="2400" height="1800">
+    </div>
   </div>
 
   <div class="s-register-list">
