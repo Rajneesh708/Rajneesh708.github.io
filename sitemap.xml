@@ -7,9 +7,8 @@
   <!-- ═══════════════════════════════════════════════════════════
        MECULS.COM SITEMAP - COMPLETE
        Last updated: 2026-05-07
-       43 live indexable pages.
-       Pages rebuilt this cycle: 360-pulse-rate.html (V6.5 rebuild)
-       Pages added this cycle: cv-portal.html (Ikshu landing)
+       42 live indexable pages.
+       Page rebuilt this cycle: corporate-programs.html (V6.5 rebuild)
        Maintained by: Rajneesh Jain / MECULS
   ═══════════════════════════════════════════════════════════ -->
 
@@ -35,18 +34,10 @@
     <priority>0.9</priority>
   </url>
 
-  <!-- ─── INDIVIDUAL PROFESSIONAL PORTAL ─────────────────────── -->
-  <url>
-    <loc>https://www.meculs.com/cv-portal.html</loc>
-    <lastmod>2026-05-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
   <!-- ─── FLAGSHIP SERVICE ───────────────────────────────────── -->
   <url>
     <loc>https://www.meculs.com/360-pulse-rate.html</loc>
-    <lastmod>2026-05-07</lastmod>
+    <lastmod>2026-04-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -126,7 +117,7 @@
   </url>
   <url>
     <loc>https://www.meculs.com/corporate-programs.html</loc>
-    <lastmod>2026-04-19</lastmod>
+    <lastmod>2026-05-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
