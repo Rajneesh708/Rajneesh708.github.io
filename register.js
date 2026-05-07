@@ -1,576 +1,469 @@
-/* ============================================================
-   MECULS — register.js (v=16)
-   Date: 2026-05-05 (final rev)
-   ============================================================
-   Changes vs v=15:
-   - Removed the soft Gmail hint feature. The Google sign-up
-     button is already prominent at the top of the page; users
-     who want it will use it. A nudge that says "no password
-     needed" is misleading for users who aren't already signed
-     into Gmail (they DO need their Google password in that
-     case). Cleaner to omit.
-
-   Carried forward from v=15:
-   - emailRedirectTo appends "?confirmed=1" so login.js can
-     detect a user arriving from the email-confirmation link
-     and route them through proper "please sign in" flow
-   ============================================================ */
-
 "use strict";
 
-/* ── Supabase client ── */
-const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+/* ============================================================
+   MECULS — register.js (v=19)
+   Date: 2026-05-07
+   ============================================================
+   Changes from v=18:
+   - Replaced GIS rendered button with custom-styled button.
+     Custom MECULS-styled button (in HTML) calls
+     google.accounts.id.prompt() programmatically. User stays
+     on meculs.com — no supabase.co text in OAuth flow.
+   - Added gmail-typing hint: when user types a gmail.com
+     email, a small note appears below the field gently
+     suggesting they can use "Sign up with Google" above.
+   - Custom button hidden until both required consents ticked.
+     googleHint banner shown when button is hidden.
+   ============================================================ */
 
-/* ── DOM refs ── */
-const registerForm     = document.getElementById("registerForm");
-const regName          = document.getElementById("regName");
-const regEmail         = document.getElementById("regEmail");
-const regPassword      = document.getElementById("regPassword");
-const registerBtn      = document.getElementById("registerBtn");
-const registerError    = document.getElementById("registerError");
-const captchaError     = document.getElementById("captchaError");
-const googleBtnContainer = document.getElementById("googleSignInBtnContainer");
-const googleHint       = document.getElementById("googleHint");
-const toggleRegPwd     = document.getElementById("toggleRegPassword");
-const strengthBar      = document.getElementById("strengthBar");
-const strengthLabel    = document.getElementById("strengthLabel");
-const regSuccessState  = document.getElementById("regSuccessState");
-const regSuccessMsg    = document.getElementById("regSuccessMsg");
+(function () {
 
-/* ── Consent checkbox refs (5 total) ── */
-const consentTerms       = document.getElementById("consentTerms");
-const consentAge         = document.getElementById("consentAge");
-const consentEmailShare  = document.getElementById("consentEmailShare");
-const consentNotif       = document.getElementById("consentNotif");
-const consentMarketing   = document.getElementById("consentMarketing");
+  /* ── Globals from config.js ── */
+  const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-/* ── Turnstile token storage ── */
-window.captchaToken = null;
-let captchaReady = false;
+  /* ── DOM refs ── */
+  const registerForm     = document.getElementById("registerForm");
+  const regName          = document.getElementById("regName");
+  const regEmail         = document.getElementById("regEmail");
+  const regPassword      = document.getElementById("regPassword");
+  const registerBtn      = document.getElementById("registerBtn");
+  const registerError    = document.getElementById("registerError");
+  const togglePwd        = document.getElementById("toggleRegPassword");
+  const captchaError     = document.getElementById("captchaError");
+  const successState     = document.getElementById("regSuccessState");
+  const successMsg       = document.getElementById("regSuccessMsg");
+  const strengthBar      = document.getElementById("strengthBar");
+  const strengthLabel    = document.getElementById("strengthLabel");
+  const consentTerms     = document.getElementById("consentTerms");
+  const consentAge       = document.getElementById("consentAge");
+  const consentEmailShare= document.getElementById("consentEmailShare");
+  const consentNotif     = document.getElementById("consentNotif");
+  const consentMarketing = document.getElementById("consentMarketing");
+  const googleBtn        = document.getElementById("googleCustomBtn");
+  const googleHint       = document.getElementById("googleHint");
+  const gmailHint        = document.getElementById("gmailHint");
 
-window.onCaptchaSuccess = function (token) {
-  window.captchaToken = token;
-  captchaReady = true;
-  if (captchaError) captchaError.classList.add("hidden");
-  refreshSubmitState();
-};
+  /* ── State ── */
+  let captchaToken = null;
+  let lastSubmitTime = 0;
+  let _gisInitialized = false;
+  let _currentNonce = null;
 
-window.onCaptchaError = function () {
-  window.captchaToken = null;
-  if (captchaError) {
-    captchaError.textContent = "Security check failed. Please try again.";
-    captchaError.classList.remove("hidden");
-  }
-  refreshSubmitState();
-};
-
-window.onCaptchaExpired = function () {
-  window.captchaToken = null;
-  if (captchaError) {
-    captchaError.textContent = "Security check expired. Please complete it again.";
-    captchaError.classList.remove("hidden");
-  }
-  refreshSubmitState();
-};
-
-function resetCaptcha() {
-  window.captchaToken = null;
-  if (window.turnstile && window.turnstile.reset) {
-    try { window.turnstile.reset(); } catch (e) { /* widget not yet ready */ }
-  }
-  refreshSubmitState();
-}
-
-/* ── Floating error toast ── */
-let toastDismissTimer = null;
-
-function showError(msg) {
-  if (toastDismissTimer) {
-    clearTimeout(toastDismissTimer);
-    toastDismissTimer = null;
-  }
-
-  registerError.innerHTML = "";
-  const text = document.createElement("span");
-  text.textContent = msg;
-  registerError.appendChild(text);
-
-  const closeBtn = document.createElement("button");
-  closeBtn.type = "button";
-  closeBtn.className = "toast__close";
-  closeBtn.setAttribute("aria-label", "Dismiss error");
-  closeBtn.innerHTML = "&times;";
-  closeBtn.addEventListener("click", hideError);
-  registerError.appendChild(closeBtn);
-
-  registerError.classList.remove("hidden");
-  registerError.classList.add("toast--floating");
-  registerError.style.display = "block";
-
-  toastDismissTimer = setTimeout(hideError, 8000);
-}
-
-function hideError() {
-  if (toastDismissTimer) {
-    clearTimeout(toastDismissTimer);
-    toastDismissTimer = null;
-  }
-  registerError.classList.add("hidden");
-  registerError.classList.remove("toast--floating");
-  registerError.style.display = "none";
-  registerError.textContent = "";
-}
-
-/* ── Loading state for buttons ── */
-function setLoading(btn, loading) {
-  if (loading) {
-    btn.disabled = true;
-    btn.classList.add("btn--loading");
-    btn._orig = btn.textContent;
-    btn.textContent = "Please wait\u2026";
-  } else {
-    btn.disabled = false;
-    btn.classList.remove("btn--loading");
-    btn.textContent = btn._orig || btn.textContent;
-  }
-}
-
-function showSuccess(msg) {
-  registerForm.classList.add("hidden");
-  regSuccessMsg.textContent = msg;
-  regSuccessState.classList.remove("hidden");
-  regSuccessState.scrollIntoView({ behavior: "smooth", block: "center" });
-}
-
-function isValidEmail(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-/* ── Required-consents check ── */
-function requiredConsentsTicked() {
-  return consentTerms.checked === true && consentAge.checked === true;
-}
-
-/* ── Submit + Google button + Google-hint state ── */
-function refreshSubmitState() {
-  /* Email/password submit button — gated by captcha completion */
-  const submitReady = window.captchaToken !== null && captchaReady;
-  if (!registerBtn.classList.contains("btn--loading")) {
-    registerBtn.disabled = !submitReady;
-    registerBtn.classList.toggle("btn--disabled", !submitReady);
-  }
-
-  /* Google button visibility — gated by required-consents state.
-     Delegated to refreshGoogleVisibility() defined below in the
-     GIS section so consent-change listeners can call either path. */
-  if (typeof refreshGoogleVisibility === "function") {
-    refreshGoogleVisibility();
-  }
-}
-
-consentTerms.addEventListener("change", refreshSubmitState);
-consentAge.addEventListener("change", refreshSubmitState);
-
-/* ── Build consent metadata payload ── */
-function buildConsentMetadata(fullName) {
-  return {
-    full_name           : fullName,
-    user_type           : "candidate",
-    terms_consent       : !!consentTerms.checked,
-    age_18_confirmed    : !!consentAge.checked,
-    email_share_consent : !!consentEmailShare.checked,
-    notif_consent       : !!consentNotif.checked,
-    marketing_consent   : !!consentMarketing.checked
+  /* ============================================================
+     Captcha callbacks
+     ============================================================ */
+  window.onCaptchaSuccess = function (token) {
+    captchaToken = token;
+    if (captchaError) captchaError.classList.add("hidden");
+    refreshSubmitState();
   };
-}
-
-/* ── Password strength ── */
-function measureStrength(pwd) {
-  let score = 0;
-  if (pwd.length >= 8)  score++;
-  if (pwd.length >= 12) score++;
-  if (/[A-Z]/.test(pwd)) score++;
-  if (/[0-9]/.test(pwd)) score++;
-  if (/[^A-Za-z0-9]/.test(pwd)) score++;
-  return score;
-}
-
-function updateStrengthDisplay() {
-  const pwd = regPassword.value;
-  const score = measureStrength(pwd);
-
-  const levels  = ["", "Weak", "Weak", "Fair", "Good", "Strong"];
-  const colours = ["", "#ef4444", "#ef4444", "#f59e0b", "#3b82f6", "#22c55e"];
-  const widths  = ["0%", "20%", "40%", "60%", "80%", "100%"];
-
-  strengthBar.style.width      = pwd.length ? widths[score]  : "0%";
-  strengthBar.style.background = pwd.length ? colours[score] : "transparent";
-  strengthLabel.textContent    = pwd.length ? `Password strength: ${levels[score]}` : "";
-}
-
-regPassword.addEventListener("input",  updateStrengthDisplay);
-regPassword.addEventListener("change", updateStrengthDisplay);
-
-/* ── Password visibility toggle ── */
-toggleRegPwd.addEventListener("click", () => {
-  const show = regPassword.type === "password";
-  regPassword.type = show ? "text" : "password";
-  toggleRegPwd.setAttribute("aria-pressed", show ? "true" : "false");
-  toggleRegPwd.setAttribute("aria-label", show ? "Hide password" : "Show password");
-});
-
-/* ── Client-side rate limiter ── */
-let lastSubmitAt = 0;
-const MIN_SUBMIT_GAP_MS = 3000;
-
-function isRateLimited() {
-  const now = Date.now();
-  if (now - lastSubmitAt < MIN_SUBMIT_GAP_MS) {
-    return true;
-  }
-  lastSubmitAt = now;
-  return false;
-}
-
-/* ── Google Sign Up ── */
-/* ── Google Sign Up via Google Identity Services (GIS) ──
-   Why: see login.js — we keep the entire OAuth flow on meculs.com so
-   Google's consent screen shows our domain, not supabase.co.
-
-   Special handling for register flow:
-   - Required consents (terms + age 18+) must be ticked BEFORE we let
-     the user sign up via Google. We hide the GIS button when consents
-     aren't ticked (instead of disabling — GIS controls its own enabled
-     state). The googleHint banner explains why.
-   - Optional consents (email-share, notif, marketing) are collected
-     in the existing checkboxes. AFTER GIS sign-in succeeds, we read
-     these and write them to the user's profile row directly via
-     supabase, since signInWithIdToken doesn't accept arbitrary
-     metadata at signup time the way signInWithOAuth did.
-   - For RETURNING Google users (already registered before), we don't
-     overwrite their existing consents on each sign-in — we only set
-     them once at first signup. We detect first-signup using the
-     `created_at === updated_at` heuristic on the user object.
-*/
-
-let _gisNonce = null;       /* raw nonce we send to supabase     */
-let _gisHashedNonce = null; /* sha256 hash sent to Google        */
-let _gisInitialised = false;
-
-async function _generateNoncePair() {
-  /* Generate a 32-byte random nonce, return raw (hex) and SHA-256 (hex) */
-  const arr = new Uint8Array(32);
-  crypto.getRandomValues(arr);
-  const raw = Array.from(arr).map(b => b.toString(16).padStart(2, "0")).join("");
-  const buf = new TextEncoder().encode(raw);
-  const hash = await crypto.subtle.digest("SHA-256", buf);
-  const hashed = Array.from(new Uint8Array(hash))
-    .map(b => b.toString(16).padStart(2, "0")).join("");
-  return { raw, hashed };
-}
-
-async function _writeConsentsForNewUser(user) {
-  /* For first-time Google sign-ups, write consent flags to the
-     profiles table. The handle_new_user trigger will have already
-     created the profile row when auth.users got the new entry —
-     we just need to populate the consent columns now. We DON'T
-     overwrite existing rows for returning users. */
-  if (!user || !user.id) return;
-
-  /* Heuristic: if created_at and updated_at are within 5 seconds of
-     each other, this is a fresh signup. Otherwise it's a returning
-     user we shouldn't overwrite consents for. */
-  const created = new Date(user.created_at).getTime();
-  const updated = new Date(user.updated_at || user.created_at).getTime();
-  const isFreshSignup = Math.abs(updated - created) < 5000;
-
-  if (!isFreshSignup) {
-    /* Returning user — leave their existing consents alone */
-    return;
-  }
-
-  /* Build the consent payload — same shape as buildConsentMetadata
-     but with the values direct (no full_name, no user_type — those
-     are set elsewhere, full_name comes from Google's id_token). */
-  const consentPayload = {
-    terms_consent       : !!consentTerms.checked,
-    age_18_confirmed    : !!consentAge.checked,
-    email_share_consent : !!consentEmailShare.checked,
-    notif_consent       : !!consentNotif.checked,
-    marketing_consent   : !!consentMarketing.checked,
-    user_type           : "candidate"
+  window.onCaptchaError = function () {
+    captchaToken = null;
+    refreshSubmitState();
+  };
+  window.onCaptchaExpired = function () {
+    captchaToken = null;
+    refreshSubmitState();
   };
 
-  /* If marketing consent ticked, also stamp marketing_consent_at */
-  if (consentPayload.marketing_consent) {
-    consentPayload.marketing_consent_at = new Date().toISOString();
+  /* ============================================================
+     Consent state checks
+     ============================================================ */
+  function requiredConsentsTicked() {
+    return !!(consentTerms && consentTerms.checked &&
+              consentAge && consentAge.checked);
   }
 
-  try {
-    const { error } = await sb
-      .from("profiles")
-      .update(consentPayload)
-      .eq("user_id", user.id);
-    if (error) {
-      console.warn("[register.js] Could not write consents to profile:", error.message);
-      /* Not catastrophic — user is signed in, can update consents
-         later via Settings page. */
-    }
-  } catch (e) {
-    console.warn("[register.js] Exception writing consents:", e.message);
-  }
-}
-
-async function _handleGoogleCredentialResponse(response) {
-  /* Called by GIS when Google returns the ID token after user picks account */
-  hideError();
-  if (isRateLimited()) {
-    showError("Please wait a moment before trying again.");
-    return;
+  function getConsentState() {
+    return {
+      terms_consent: !!(consentTerms && consentTerms.checked),
+      age_18_confirmed: !!(consentAge && consentAge.checked),
+      email_share_consent: !!(consentEmailShare && consentEmailShare.checked),
+      notif_consent: !!(consentNotif && consentNotif.checked),
+      marketing_consent: !!(consentMarketing && consentMarketing.checked)
+    };
   }
 
-  if (!requiredConsentsTicked()) {
-    /* Defence-in-depth: even though we hide the button when consents
-       aren't ticked, double-check before completing the auth. */
-    showError("Please tick the two required consents (Terms and Age 18+) before signing up with Google.");
-    return;
-  }
-
-  const idToken = response && response.credential;
-  if (!idToken) {
-    showError("Google sign-up did not complete. Please try again.");
-    return;
-  }
-
-  const { data, error } = await sb.auth.signInWithIdToken({
-    provider: "google",
-    token: idToken,
-    nonce: _gisNonce
-  });
-
-  if (error) {
-    showError("Could not sign up with Google: " + (error.message || "unknown error"));
-    return;
-  }
-
-  if (!data || !data.session || !data.user) {
-    showError("Google sign-up succeeded but no session was created. Please try again.");
-    return;
-  }
-
-  /* Write consent flags to profile row (only for first-time signups) */
-  await _writeConsentsForNewUser(data.user);
-
-  /* Success — redirect to dashboard */
-  window.location.href = window.location.origin + "/dashboard.html";
-}
-
-async function _initialiseGoogleSignIn() {
-  /* Wait for GIS script to load before initialising */
-  if (typeof google === "undefined" || !google.accounts || !google.accounts.id) {
-    setTimeout(_initialiseGoogleSignIn, 100);
-    return;
-  }
-  if (typeof GOOGLE_CLIENT_ID === "undefined" || !GOOGLE_CLIENT_ID) {
-    console.error("[register.js] GOOGLE_CLIENT_ID not defined in config.js");
-    return;
-  }
-
-  const pair = await _generateNoncePair();
-  _gisNonce = pair.raw;
-  _gisHashedNonce = pair.hashed;
-
-  google.accounts.id.initialize({
-    client_id: GOOGLE_CLIENT_ID,
-    callback: _handleGoogleCredentialResponse,
-    nonce: _gisHashedNonce,
-    auto_select: false,
-    cancel_on_tap_outside: true,
-    /* use_fedcm_for_button: false  forces the GENERIC "Sign up with
-       Google" button (with the multi-color G logo) instead of the
-       personalised "Sign in as <Name>" button. See login.js for the
-       same explanation. */
-    use_fedcm_for_button: false,
-    use_fedcm_for_prompt: false
-  });
-
-  _gisInitialised = true;
-  /* Render the button if consents already ticked (e.g. on form re-show);
-     otherwise refreshGoogleVisibility() will render later. */
-  refreshGoogleVisibility();
-}
-
-function _renderGoogleButton() {
-  if (!_gisInitialised) return;
-  const container = document.getElementById("googleSignInBtnContainer");
-  if (!container) return;
-  /* Clear any previous render to avoid duplicate buttons */
-  container.innerHTML = "";
-  google.accounts.id.renderButton(container, {
-    type: "standard",
-    theme: "outline",
-    size: "large",
-    text: "signup_with",
-    shape: "rectangular",
-    logo_alignment: "left",
-    width: container.offsetWidth || 320
-  });
-}
-
-function refreshGoogleVisibility() {
-  /* Show or hide the GIS button container based on required-consents
-     state. When hidden, the googleHint banner explains why. */
-  const ready = requiredConsentsTicked();
-  const container = document.getElementById("googleSignInBtnContainer");
-  if (container) {
+  /* ============================================================
+     Submit-button enable/disable based on captcha + consents
+     ============================================================ */
+  function refreshSubmitState() {
+    if (!registerBtn) return;
+    const ready = captchaToken && requiredConsentsTicked();
     if (ready) {
-      container.style.display = "";
-      _renderGoogleButton();
+      registerBtn.disabled = false;
+      registerBtn.classList.remove("btn--disabled");
     } else {
-      container.style.display = "none";
+      registerBtn.disabled = true;
+      registerBtn.classList.add("btn--disabled");
     }
   }
-  if (googleHint) {
-    googleHint.classList.toggle("hidden", ready);
-  }
-}
 
-/* Kick off GIS setup once DOM is ready */
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", _initialiseGoogleSignIn);
-} else {
-  _initialiseGoogleSignIn();
-}
-
-/* ── Email + Password Registration ── */
-registerForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  hideError();
-
-  if (isRateLimited()) {
-    showError("Please wait a moment before trying again.");
-    return;
-  }
-
-  const name     = regName.value.trim().replace(/\s+/g, " ");
-  const email    = regEmail.value.trim().toLowerCase();
-  const password = regPassword.value;
-
-  if (!name) {
-    showError("Please enter your full name.");
-    regName.focus();
-    return;
-  }
-  if (name.length < 2) {
-    showError("Please enter a valid full name (at least 2 characters).");
-    regName.focus();
-    return;
-  }
-  if (!email || !isValidEmail(email)) {
-    showError("Please enter a valid email address.");
-    regEmail.focus();
-    return;
-  }
-
-  if (!password || password.length < 8) {
-    showError("Password must be at least 8 characters long.");
-    regPassword.focus();
-    return;
-  }
-  if (!/[A-Z]/.test(password)) {
-    showError("Password must contain at least one capital letter (A-Z).");
-    regPassword.focus();
-    return;
-  }
-  if (!/[0-9]/.test(password)) {
-    showError("Password must contain at least one number (0-9).");
-    regPassword.focus();
-    return;
-  }
-  if (!/[^A-Za-z0-9]/.test(password)) {
-    showError("Password must contain at least one special character (e.g. !@#$%).");
-    regPassword.focus();
-    return;
-  }
-
-  if (!consentTerms.checked) {
-    showError("Please accept the Terms of Use and Privacy Policy to continue.");
-    consentTerms.focus();
-    consentTerms.scrollIntoView({ behavior: "smooth", block: "center" });
-    return;
-  }
-  if (!consentAge.checked) {
-    showError("Please confirm you are 18 years or older to continue.");
-    consentAge.focus();
-    consentAge.scrollIntoView({ behavior: "smooth", block: "center" });
-    return;
-  }
-
-  if (!window.captchaToken) {
-    if (captchaError) {
-      captchaError.textContent = "Please complete the security check above.";
-      captchaError.classList.remove("hidden");
+  /* ============================================================
+     Google button visibility — only shown when required consents
+     are ticked. When hidden, googleHint banner appears.
+     ============================================================ */
+  function refreshGoogleVisibility() {
+    if (!googleBtn) return;
+    const ready = requiredConsentsTicked();
+    if (ready) {
+      googleBtn.style.display = "";
+      if (googleHint) googleHint.classList.add("hidden");
+    } else {
+      googleBtn.style.display = "none";
+      if (googleHint) googleHint.classList.remove("hidden");
     }
-    showError("Please complete the security check.");
-    return;
   }
 
-  setLoading(registerBtn, true);
-
-  const metadata = buildConsentMetadata(name);
-
-  /* IMPORTANT: emailRedirectTo includes "?confirmed=1" flag so that
-     login.js can detect a user arriving from email-confirmation link
-     and route them through "please sign in" flow rather than letting
-     Supabase's auto-session take them straight to dashboard. */
-  const { data, error } = await sb.auth.signUp({
-    email,
-    password,
-    options: {
-      data: metadata,
-      captchaToken: window.captchaToken,
-      emailRedirectTo: window.location.origin + "/login.html?confirmed=1"
+  /* ── Wire up consent change listeners ── */
+  [consentTerms, consentAge, consentEmailShare, consentNotif, consentMarketing].forEach(cb => {
+    if (cb) {
+      cb.addEventListener("change", () => {
+        refreshSubmitState();
+        refreshGoogleVisibility();
+      });
     }
   });
 
-  setLoading(registerBtn, false);
-  resetCaptcha();
+  /* ============================================================
+     Error/success display helpers
+     ============================================================ */
+  function showError(msg) {
+    if (!registerError) return;
+    registerError.textContent = msg;
+    registerError.classList.remove("hidden");
+    registerError.classList.add("toast--floating");
+    setTimeout(() => {
+      registerError.classList.add("hidden");
+      registerError.classList.remove("toast--floating");
+    }, 8000);
+  }
 
-  if (error) {
-    if (error.message.toLowerCase().includes("already")) {
-      showError("An account with this email already exists. Please sign in instead.");
-    } else if (error.message.toLowerCase().includes("captcha")) {
-      showError("Security check failed. Please try again.");
-    } else if (error.message.toLowerCase().includes("rate limit")) {
-      showError("Too many attempts. Please wait a few minutes and try again.");
+  function showSuccess(msg) {
+    if (registerForm) registerForm.classList.add("hidden");
+    if (successState) successState.classList.remove("hidden");
+    if (successMsg) successMsg.textContent = msg;
+  }
+
+  /* ============================================================
+     Gmail hint — show when user types a gmail.com email
+     ============================================================ */
+  function updateGmailHint() {
+    if (!gmailHint || !regEmail) return;
+    const v = (regEmail.value || "").trim().toLowerCase();
+    const isGmail = /@gmail\.com$/.test(v);
+    if (isGmail) {
+      gmailHint.classList.remove("hidden");
     } else {
-      showError("Registration failed: " + error.message);
+      gmailHint.classList.add("hidden");
     }
-    return;
   }
 
-  /* DETECT DUPLICATE EMAIL */
-  const userObj = data && data.user;
-  const isExistingEmail =
-    !userObj ||
-    !userObj.identities ||
-    userObj.identities.length === 0;
-
-  if (isExistingEmail) {
-    showError("An account with this email already exists. Please sign in instead.");
-    return;
+  if (regEmail) {
+    regEmail.addEventListener("input", updateGmailHint);
+    regEmail.addEventListener("blur", updateGmailHint);
   }
 
-  /* Sign out cleanly so the next page (login) shows the form */
-  await sb.auth.signOut();
+  /* ============================================================
+     Password toggle (eye/eye-off)
+     ============================================================ */
+  if (togglePwd && regPassword) {
+    togglePwd.addEventListener("click", () => {
+      const isPwd = regPassword.type === "password";
+      regPassword.type = isPwd ? "text" : "password";
+      togglePwd.setAttribute("aria-pressed", isPwd ? "true" : "false");
+      togglePwd.setAttribute("aria-label", isPwd ? "Hide password" : "Show password");
+      togglePwd.classList.toggle("is-shown", isPwd);
+    });
+  }
 
-  showSuccess(
-    `Account created! We've sent a confirmation email to ${email}. ` +
-    `Please check your inbox and click the link to verify your account, then sign in.`
-  );
-});
+  /* ============================================================
+     Password strength meter
+     ============================================================ */
+  function rateStrength(pwd) {
+    let score = 0;
+    if (pwd.length >= 8) score++;
+    if (/[A-Z]/.test(pwd)) score++;
+    if (/[0-9]/.test(pwd)) score++;
+    if (/[^a-zA-Z0-9]/.test(pwd)) score++;
+    if (pwd.length >= 12) score++;
+    return score;
+  }
 
-/* ── Init ── */
-document.addEventListener("DOMContentLoaded", () => {
+  function updateStrength() {
+    if (!regPassword || !strengthBar || !strengthLabel) return;
+    const pwd = regPassword.value;
+    if (!pwd) {
+      strengthBar.style.width = "0%";
+      strengthBar.style.background = "#d1d5db";
+      strengthLabel.textContent = "";
+      return;
+    }
+    const s = rateStrength(pwd);
+    const pct = Math.min(100, s * 20);
+    strengthBar.style.width = pct + "%";
+    if (s <= 1) {
+      strengthBar.style.background = "#dc2626";
+      strengthLabel.textContent = "Weak";
+    } else if (s <= 3) {
+      strengthBar.style.background = "#f59e0b";
+      strengthLabel.textContent = "Fair";
+    } else {
+      strengthBar.style.background = "#10b981";
+      strengthLabel.textContent = "Strong";
+    }
+  }
+
+  if (regPassword) {
+    regPassword.addEventListener("input", updateStrength);
+    regPassword.addEventListener("change", updateStrength);
+  }
+
+  /* ============================================================
+     Email/password registration submit
+     ============================================================ */
+  if (registerForm) {
+    registerForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (!registerBtn) return;
+
+      const now = Date.now();
+      if (now - lastSubmitTime < 3000) return;
+      lastSubmitTime = now;
+
+      if (!captchaToken) {
+        if (captchaError) captchaError.classList.remove("hidden");
+        return;
+      }
+
+      if (!requiredConsentsTicked()) {
+        showError("Please tick the two required consents to continue.");
+        return;
+      }
+
+      const name = (regName.value || "").trim().replace(/\s+/g, " ");
+      const email = (regEmail.value || "").trim().toLowerCase();
+      const password = regPassword.value || "";
+
+      if (!name || !email || !password) {
+        showError("Please fill in all fields.");
+        return;
+      }
+
+      if (rateStrength(password) < 3) {
+        showError("Password is too weak. Use 8+ characters with capital, number, and special character.");
+        return;
+      }
+
+      registerBtn.disabled = true;
+      registerBtn.classList.add("btn--loading");
+
+      const consents = getConsentState();
+
+      try {
+        const { data, error } = await sb.auth.signUp({
+          email,
+          password,
+          options: {
+            captchaToken,
+            emailRedirectTo: window.location.origin + "/login.html?confirmed=1",
+            data: {
+              full_name: name,
+              user_type: "candidate",
+              terms_consent: consents.terms_consent,
+              age_18_confirmed: consents.age_18_confirmed,
+              email_share_consent: consents.email_share_consent,
+              notif_consent: consents.notif_consent,
+              marketing_consent: consents.marketing_consent
+            }
+          }
+        });
+
+        if (error) {
+          registerBtn.disabled = false;
+          registerBtn.classList.remove("btn--loading");
+          captchaToken = null;
+          if (window.turnstile && typeof window.turnstile.reset === "function") {
+            try { window.turnstile.reset(); } catch (e) {}
+          }
+          refreshSubmitState();
+          showError(error.message || "Registration failed. Please try again.");
+          return;
+        }
+
+        showSuccess("Check your inbox at " + email + " for a confirmation link.");
+      } catch (err) {
+        registerBtn.disabled = false;
+        registerBtn.classList.remove("btn--loading");
+        showError("Network error. Please try again.");
+      }
+    });
+  }
+
+  /* ============================================================
+     Google Identity Services — custom button approach
+     ============================================================ */
+  function initGoogleSignIn() {
+    if (_gisInitialized) return;
+    if (!window.google || !window.google.accounts || !window.google.accounts.id) return;
+    if (typeof GOOGLE_CLIENT_ID === "undefined" || !GOOGLE_CLIENT_ID) return;
+
+    const nonce = generateNonce();
+    _currentNonce = nonce;
+
+    hashNonce(nonce).then((hashedNonce) => {
+      window.google.accounts.id.initialize({
+        client_id: GOOGLE_CLIENT_ID,
+        callback: handleGoogleCredential,
+        nonce: hashedNonce,
+        auto_select: false,
+        cancel_on_tap_outside: true,
+        use_fedcm_for_prompt: true
+      });
+      _gisInitialized = true;
+    }).catch((err) => {
+      console.warn("[register] GIS init failed:", err);
+    });
+  }
+
+  function generateNonce() {
+    const arr = new Uint8Array(32);
+    crypto.getRandomValues(arr);
+    return Array.from(arr).map(b => b.toString(16).padStart(2, "0")).join("");
+  }
+
+  async function hashNonce(nonce) {
+    const enc = new TextEncoder();
+    const data = enc.encode(nonce);
+    const hashBuf = await crypto.subtle.digest("SHA-256", data);
+    return Array.from(new Uint8Array(hashBuf))
+      .map(b => b.toString(16).padStart(2, "0")).join("");
+  }
+
+  async function handleGoogleCredential(response) {
+    if (!response || !response.credential) return;
+
+    /* Capture consents NOW (before signin), so we can write them
+       to the profile row immediately after the new user is created. */
+    const consents = getConsentState();
+
+    if (!consents.terms_consent || !consents.age_18_confirmed) {
+      showError("Please tick the two required consents to continue.");
+      return;
+    }
+
+    try {
+      const { data, error } = await sb.auth.signInWithIdToken({
+        provider: "google",
+        token: response.credential,
+        nonce: _currentNonce
+      });
+
+      if (error) {
+        showError("Google sign-up failed: " + (error.message || "unknown error"));
+        return;
+      }
+
+      if (!data || !data.user) {
+        showError("Google sign-up failed: no user returned.");
+        return;
+      }
+
+      /* Detect new vs returning user — if created_at and updated_at
+         are within 5 seconds, this is a fresh signup. */
+      const createdAt = new Date(data.user.created_at).getTime();
+      const updatedAt = new Date(data.user.updated_at).getTime();
+      const isNewUser = Math.abs(updatedAt - createdAt) < 5000;
+
+      if (isNewUser) {
+        await _writeConsentsForNewUser(data.user.id, consents);
+      }
+
+      await handleAuthSuccess(data.session);
+    } catch (err) {
+      showError("Google sign-up error: " + (err.message || "network issue"));
+    }
+  }
+
+  async function _writeConsentsForNewUser(userId, consents) {
+    const now = new Date().toISOString();
+    const updatePayload = {
+      terms_consent: consents.terms_consent,
+      terms_consent_at: consents.terms_consent ? now : null,
+      age_18_confirmed: consents.age_18_confirmed,
+      age_18_confirmed_at: consents.age_18_confirmed ? now : null,
+      email_share_consent: consents.email_share_consent,
+      email_share_consent_at: consents.email_share_consent ? now : null,
+      notif_consent: consents.notif_consent,
+      notif_consent_at: consents.notif_consent ? now : null,
+      marketing_consent: consents.marketing_consent,
+      marketing_consent_at: consents.marketing_consent ? now : null
+    };
+
+    try {
+      const { error } = await sb.from("profiles")
+        .update(updatePayload)
+        .eq("user_id", userId);
+      if (error) {
+        console.warn("[register] Failed to write consents to profile:", error);
+      }
+    } catch (e) {
+      console.warn("[register] Exception writing consents:", e);
+    }
+  }
+
+  async function handleAuthSuccess(session) {
+    if (window.MC_STORAGE && typeof MC_STORAGE.wipeMeculsAppDataOnly === "function") {
+      try { MC_STORAGE.wipeMeculsAppDataOnly(); } catch (e) {}
+    }
+    localStorage.setItem("registration_complete", "yes");
+    localStorage.setItem("user_type", "candidate");
+    window.location.href = "dashboard.html";
+  }
+
+  /* ── Custom button click handler ── */
+  if (googleBtn) {
+    googleBtn.addEventListener("click", () => {
+      if (!requiredConsentsTicked()) {
+        showError("Please tick the two required consents to continue.");
+        return;
+      }
+      if (!_gisInitialized) {
+        initGoogleSignIn();
+        setTimeout(triggerGooglePrompt, 200);
+      } else {
+        triggerGooglePrompt();
+      }
+    });
+  }
+
+  function triggerGooglePrompt() {
+    if (!window.google || !window.google.accounts || !window.google.accounts.id) {
+      showError("Google sign-in is not ready yet. Please try again in a moment.");
+      return;
+    }
+    try {
+      window.google.accounts.id.prompt();
+    } catch (e) {
+      showError("Could not open Google sign-in. Please try again.");
+    }
+  }
+
+  /* ── Wait for GIS library to load, then init ── */
+  function waitForGIS() {
+    if (window.google && window.google.accounts && window.google.accounts.id) {
+      initGoogleSignIn();
+    } else {
+      setTimeout(waitForGIS, 200);
+    }
+  }
+  waitForGIS();
+
+  /* ============================================================
+     Initial state
+     ============================================================ */
   refreshSubmitState();
-});
+  refreshGoogleVisibility();
+  updateGmailHint();
+
+})();
