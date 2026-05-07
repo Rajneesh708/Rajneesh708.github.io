@@ -369,7 +369,14 @@ async function _initialiseGoogleSignIn() {
     nonce: _gisHashedNonce,
     auto_select: false,
     cancel_on_tap_outside: true,
-    use_fedcm_for_prompt: true
+    /* use_fedcm_for_button: false  forces the GENERIC "Sign in with
+       Google" button (with the multi-color G logo) instead of the
+       personalised "Sign in as <Name>" button that GIS shows when
+       the user already has a Google session in the browser. The
+       generic button is the professional default that matches the
+       MECULS brand presentation. */
+    use_fedcm_for_button: false,
+    use_fedcm_for_prompt: false
   });
 
   const container = document.getElementById("googleSignInBtnContainer");
@@ -378,7 +385,7 @@ async function _initialiseGoogleSignIn() {
       type: "standard",
       theme: "outline",
       size: "large",
-      text: "continue_with",
+      text: "signin_with",
       shape: "rectangular",
       logo_alignment: "left",
       width: container.offsetWidth || 320

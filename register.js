@@ -386,7 +386,12 @@ async function _initialiseGoogleSignIn() {
     nonce: _gisHashedNonce,
     auto_select: false,
     cancel_on_tap_outside: true,
-    use_fedcm_for_prompt: true
+    /* use_fedcm_for_button: false  forces the GENERIC "Sign up with
+       Google" button (with the multi-color G logo) instead of the
+       personalised "Sign in as <Name>" button. See login.js for the
+       same explanation. */
+    use_fedcm_for_button: false,
+    use_fedcm_for_prompt: false
   });
 
   _gisInitialised = true;
