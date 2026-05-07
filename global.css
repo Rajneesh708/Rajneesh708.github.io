@@ -1,8 +1,25 @@
 /* ═══════════════════════════════════════════════════════════════════
-   MECULS - GLOBAL HEADER & FOOTER  v6
+   MECULS - GLOBAL HEADER & FOOTER  v6.1
    File: global.css
    Include this on EVERY page of the MECULS website.
    This file controls the navigation bar, tagline sub-bar, and footer.
+
+   What changed vs v6:
+   - Pinned font-family, line-height, and color on the four chrome
+     roots: .global-header, .gh-tagline-sub, .gh-mobile-menu,
+     .global-footer. These are the elements that hold the canonical
+     header/footer markup, and they previously inherited line-height
+     and font-family from each page's body. That meant the Services
+     dropdown rendered comfortably on pages whose body declared
+     line-height: 1.7 (e.g. corporate-programs.html), and tighter
+     on pages that didn't (e.g. services.html, service-hr-analytics,
+     service-data-science-analytics, service-market-actionable-
+     intelligence). The chrome HTML in those pages was already the
+     canonical block - the difference came entirely from body
+     inheritance. Pinning these properties at the chrome roots
+     makes the chrome self-contained, so it now renders identically
+     on every page regardless of what the page does to body.
+   - No other rules changed.
 
    What changed vs v5:
    - Added .gh-login-wrap / .gh-login-icon / .gh-login-dropdown rules
@@ -11,7 +28,6 @@
      opens a small dark dropdown with two items: "CV Portal - Login"
      and "CV Portal - Register". Hidden on mobile (the mobile menu
      carries the equivalent links instead).
-   - No other rules changed.
 
    What changed vs v4:
    - Hamburger breakpoint moved from 1099px to 899px so the full
@@ -60,6 +76,13 @@ body {
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--g-rule);
   transition: background 0.3s ease, border-color 0.3s ease;
+  /* Insulate global chrome from page-level body inheritance.
+     Without these, anything a page sets on body (line-height,
+     font-family, color) would silently flow into the dropdowns
+     and shift their rendering page-to-page. Pin once at the root. */
+  font-family: 'Archivo', sans-serif;
+  line-height: 1.7;
+  color: var(--g-soft);
 }
 
 .global-header.scrolled {
@@ -356,6 +379,10 @@ body {
   z-index: 890;
   max-height: calc(100vh - var(--g-nav-h));
   overflow-y: auto;
+  /* Insulate from page body inheritance (see .global-header). */
+  font-family: 'Archivo', sans-serif;
+  line-height: 1.7;
+  color: var(--g-soft);
 }
 .gh-mobile-menu.open { display: block; }
 
@@ -448,6 +475,10 @@ body {
   background: rgba(0,8,20,0.97);
   border-bottom: 1px solid rgba(212,175,55,0.10);
   padding: 0.32rem 5%;
+  /* Insulate from page body inheritance (see .global-header). */
+  font-family: 'Cormorant Garamond', serif;
+  line-height: 1.4;
+  color: rgba(255,255,255,0.62);
 }
 
 .gh-tagline-sub-text {
@@ -486,7 +517,12 @@ body {
   border-top: 1px solid var(--g-rule);
   padding: 4rem 5% 2rem;
   margin-top: auto;
+  /* Insulate from page body inheritance (see .global-header).
+     line-height stays at the original value (1); each footer
+     descendant that needs taller line-height sets its own. */
+  font-family: 'Archivo', sans-serif;
   line-height: 1;
+  color: var(--g-soft);
 }
 
 .gf-top {
