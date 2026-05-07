@@ -18,6 +18,34 @@
   <link rel="stylesheet" href="styles.css?v=25">
   <link rel="stylesheet" href="tier_shared.css?v=14">
   <link rel="stylesheet" href="auth.css?v=15">
+  <style>
+    /* Gmail hint — small, gentle, amber-tinted note that appears
+       below the email input when user types a @gmail.com address.
+       Suggests using the visible "Sign up with Google" button above. */
+    .gmail-hint {
+      margin-top: 8px;
+      margin-bottom: 0;
+      padding: 8px 12px;
+      background: rgba(201, 168, 76, 0.08);
+      border-left: 3px solid #c9a84c;
+      border-radius: 4px;
+      color: #d1d5db;
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+    .gmail-hint.hidden {
+      display: none;
+    }
+    /* Click-capture wrapper around GIS button — used to intercept
+       clicks when required consents aren't ticked, so the user
+       doesn't have to go through the whole Google popup before
+       getting the error. */
+    .gis-click-gate {
+      position: relative;
+      width: 100%;
+      margin-bottom: 16px;
+    }
+  </style>
 </head>
 <body class="auth-body">
 
@@ -43,21 +71,13 @@
     <div class="toast toast--error hidden" id="registerError" role="alert" aria-live="assertive"></div>
 
     <!-- Google Sign-Up via Google Identity Services (GIS).
-         The button is rendered by GIS into this container div ONLY
-         when both required consents (terms+age) are ticked. When
-         consents aren't ticked, the container is hidden via CSS
-         display:none and the googleHint banner appears instead.
-         Logic lives in register.js → refreshGoogleVisibility(). -->
-    <div id="googleSignInBtnContainer" class="gis-btn-container" style="display:none"></div>
-
-    <!--
-      Visible hint banner shown when required consents are not ticked.
-      JS toggles its 'hidden' class based on consent checkbox state.
-      Solves the discoverability problem where users would not know
-      why the Google sign-up button is missing.
-    -->
-    <div id="googleHint" class="google-hint">
-      Tick the two required consents below to enable Google sign-up
+         The button below is rendered by GIS into this container div
+         and is ALWAYS visible. If the user clicks it without ticking
+         the required consents, the .gis-click-gate wrapper intercepts
+         the click in capture phase and shows an error toast instead
+         of opening the Google popup. Logic in register.js. -->
+    <div class="gis-click-gate" id="gisClickGate">
+      <div id="googleSignInBtnContainer" class="gis-btn-container"></div>
     </div>
 
     <div class="auth-divider">
@@ -92,6 +112,9 @@
                  enterkeyhint="next"
                  required
                  aria-required="true">
+          <p class="gmail-hint hidden" id="gmailHint">
+            &#128161; You can also use 'Sign up with Google' above if you prefer.
+          </p>
         </div>
       </div>
 
@@ -273,7 +296,7 @@
      the library is available and shows the button only when the two
      required consents are ticked. -->
 <script src="https://accounts.google.com/gsi/client" async defer></script>
-<script src="register.js?v=18"></script>
+<script src="register.js?v=19"></script>
 
 </body>
 </html>

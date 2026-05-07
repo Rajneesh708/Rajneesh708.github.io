@@ -44,6 +44,7 @@ const backToLoginBtn      = document.getElementById("backToLoginBtn");
 const successState        = document.getElementById("successState");
 const successMsg          = document.getElementById("successMsg");
 const togglePassword      = document.getElementById("togglePassword");
+const gmailHint           = document.getElementById("gmailHint");
 
 /* Password-recovery DOM refs */
 const recoveryState       = document.getElementById("recoveryState");
@@ -468,6 +469,19 @@ togglePassword.addEventListener("click", () => {
   togglePassword.setAttribute("aria-pressed", isPassword ? "true" : "false");
   togglePassword.setAttribute("aria-label", isPassword ? "Hide password" : "Show password");
 });
+
+/* ── Gmail hint — show below email field when user types a gmail.com
+   address. Gentle suggestion to use the visible Google button above. */
+function _updateGmailHint() {
+  if (!gmailHint || !loginEmail) return;
+  const v = (loginEmail.value || "").trim().toLowerCase();
+  const isGmail = /@gmail\.com$/.test(v);
+  gmailHint.classList.toggle("hidden", !isGmail);
+}
+if (loginEmail) {
+  loginEmail.addEventListener("input", _updateGmailHint);
+  loginEmail.addEventListener("blur", _updateGmailHint);
+}
 
 /* ── Forgot password — request reset email ── */
 forgotLink.addEventListener("click", (e) => {

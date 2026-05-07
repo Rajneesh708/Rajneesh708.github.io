@@ -18,6 +18,25 @@
   <link rel="stylesheet" href="styles.css?v=25">
   <link rel="stylesheet" href="tier_shared.css?v=14">
   <link rel="stylesheet" href="auth.css?v=15">
+  <style>
+    /* Gmail hint — small, gentle, amber-tinted note that appears
+       below the email input when user types a @gmail.com address.
+       Suggests using the visible "Sign in with Google" button above. */
+    .gmail-hint {
+      margin-top: 8px;
+      margin-bottom: 0;
+      padding: 8px 12px;
+      background: rgba(201, 168, 76, 0.08);
+      border-left: 3px solid #c9a84c;
+      border-radius: 4px;
+      color: #d1d5db;
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+    .gmail-hint.hidden {
+      display: none;
+    }
+  </style>
 </head>
 <body class="auth-body">
 
@@ -59,6 +78,9 @@
         <input type="email" id="loginEmail" class="field-input"
                placeholder="your@email.com" autocomplete="email"
                inputmode="email" enterkeyhint="next" required aria-required="true">
+        <p class="gmail-hint hidden" id="gmailHint">
+          &#128161; You can also use 'Sign in with Google' above if you prefer.
+        </p>
       </div>
 
       <div class="field-group">
@@ -199,7 +221,7 @@
      and the ID token issuance flow. login.js initialises GIS once
      the library is available. -->
 <script src="https://accounts.google.com/gsi/client" async defer></script>
-<script src="login.js?v=25"></script>
+<script src="login.js?v=26"></script>
 
 </body>
 </html>

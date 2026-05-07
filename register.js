@@ -30,7 +30,7 @@ const registerBtn      = document.getElementById("registerBtn");
 const registerError    = document.getElementById("registerError");
 const captchaError     = document.getElementById("captchaError");
 const googleBtnContainer = document.getElementById("googleSignInBtnContainer");
-const googleHint       = document.getElementById("googleHint");
+const gmailHint        = document.getElementById("gmailHint");
 const toggleRegPwd     = document.getElementById("toggleRegPassword");
 const strengthBar      = document.getElementById("strengthBar");
 const strengthLabel    = document.getElementById("strengthLabel");
@@ -160,16 +160,26 @@ function refreshSubmitState() {
     registerBtn.classList.toggle("btn--disabled", !submitReady);
   }
 
-  /* Google button visibility — gated by required-consents state.
-     Delegated to refreshGoogleVisibility() defined below in the
-     GIS section so consent-change listeners can call either path. */
-  if (typeof refreshGoogleVisibility === "function") {
-    refreshGoogleVisibility();
-  }
+  /* Note: Google button is ALWAYS visible — visibility no longer
+     gated on consents. The .gis-click-gate wrapper intercepts clicks
+     when consents aren't ticked (see _initialiseGoogleSignIn). */
 }
 
 consentTerms.addEventListener("change", refreshSubmitState);
 consentAge.addEventListener("change", refreshSubmitState);
+
+/* ── Gmail hint — show below email field when user types a gmail.com
+   address. Gentle suggestion to use the visible Google button above. */
+function _updateGmailHint() {
+  if (!gmailHint || !regEmail) return;
+  const v = (regEmail.value || "").trim().toLowerCase();
+  const isGmail = /@gmail\.com$/.test(v);
+  gmailHint.classList.toggle("hidden", !isGmail);
+}
+if (regEmail) {
+  regEmail.addEventListener("input", _updateGmailHint);
+  regEmail.addEventListener("blur", _updateGmailHint);
+}
 
 /* ── Build consent metadata payload ── */
 function buildConsentMetadata(fullName) {
@@ -239,9 +249,13 @@ function isRateLimited() {
 
    Special handling for register flow:
    - Required consents (terms + age 18+) must be ticked BEFORE we let
-     the user sign up via Google. We hide the GIS button when consents
-     aren't ticked (instead of disabling — GIS controls its own enabled
-     state). The googleHint banner explains why.
+     the user sign up via Google. The GIS button is ALWAYS visible,
+     but the .gis-click-gate wrapper intercepts clicks in capture
+     phase when consents aren't ticked, showing an error toast
+     instead of opening the Google popup.
+   - Defence-in-depth: _handleGoogleCredentialResponse also checks
+     consents before calling signInWithIdToken — so even if the click
+     gate is bypassed somehow, we never create an unauthorised user.
    - Optional consents (email-share, notif, marketing) are collected
      in the existing checkboxes. AFTER GIS sign-in succeeds, we read
      these and write them to the user's profile row directly via
@@ -395,9 +409,26 @@ async function _initialiseGoogleSignIn() {
   });
 
   _gisInitialised = true;
-  /* Render the button if consents already ticked (e.g. on form re-show);
-     otherwise refreshGoogleVisibility() will render later. */
-  refreshGoogleVisibility();
+  /* Render the GIS button immediately — it's always visible now. */
+  _renderGoogleButton();
+  /* Install click-gate: intercepts clicks if consents not ticked. */
+  _installClickGate();
+}
+
+function _installClickGate() {
+  const gate = document.getElementById("gisClickGate");
+  if (!gate || gate._gateInstalled) return;
+  gate._gateInstalled = true;
+  /* Capture-phase listener — fires BEFORE the GIS button click. If
+     required consents aren't ticked, stop the click and show toast.
+     If ticked, do nothing (let GIS handle it normally). */
+  gate.addEventListener("click", function (e) {
+    if (!requiredConsentsTicked()) {
+      e.stopPropagation();
+      e.preventDefault();
+      showError("Please tick the two required consents (Terms and Age 18+) to continue.");
+    }
+  }, true /* useCapture */);
 }
 
 function _renderGoogleButton() {
@@ -415,24 +446,6 @@ function _renderGoogleButton() {
     logo_alignment: "left",
     width: container.offsetWidth || 320
   });
-}
-
-function refreshGoogleVisibility() {
-  /* Show or hide the GIS button container based on required-consents
-     state. When hidden, the googleHint banner explains why. */
-  const ready = requiredConsentsTicked();
-  const container = document.getElementById("googleSignInBtnContainer");
-  if (container) {
-    if (ready) {
-      container.style.display = "";
-      _renderGoogleButton();
-    } else {
-      container.style.display = "none";
-    }
-  }
-  if (googleHint) {
-    googleHint.classList.toggle("hidden", ready);
-  }
 }
 
 /* Kick off GIS setup once DOM is ready */
