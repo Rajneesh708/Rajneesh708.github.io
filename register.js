@@ -1,19 +1,19 @@
 "use strict";
 
 /* ============================================================
-   MECULS — register.js (v=20)
+   MECULS — register.js (v=21)
    Date: 2026-05-07
    ============================================================
-   Changes from v=19:
-   - Google sign-up button now ALWAYS visible (no longer hidden
-     until required consents are ticked).
-   - Removed googleHint banner and refreshGoogleVisibility().
-   - Consent validation moved to button click time: if user
-     clicks the Google button without required consents, an
-     error toast appears asking them to tick the consents.
-     This is the standard pattern (LinkedIn, etc.) and avoids
-     the contradiction where the gmail hint pointed to an
-     invisible button.
+   Changes from v=20:
+   - Switched from google.accounts.id.prompt() to renderButton()
+     in popup mode. Google's button rendered into a hidden div
+     overlaid on top of our custom MECULS button. Works for
+     BOTH logged-in and logged-out users (popup with sign-in
+     page if not logged in). No supabase.co text in either case.
+   - Consent gating: when required consents not ticked, GIS
+     overlay is hidden (display:none) — clicks fall through to
+     visible button which shows error toast. When consents ticked,
+     overlay catches clicks and opens Google's popup.
    ============================================================ */
 
 (function () {
@@ -100,12 +100,13 @@
 
   /* ============================================================
      Wire up consent change listeners — refresh submit button
-     state when any consent is toggled.
+     state and Google overlay visibility when any consent is toggled.
      ============================================================ */
   [consentTerms, consentAge, consentEmailShare, consentNotif, consentMarketing].forEach(cb => {
     if (cb) {
       cb.addEventListener("change", () => {
         refreshSubmitState();
+        refreshGoogleOverlay();
       });
     }
   });
@@ -287,6 +288,22 @@
 
   /* ============================================================
      Google Identity Services — custom button approach
+  /* ============================================================
+     Google Identity Services — invisible overlay button approach
+     ============================================================
+     We use google.accounts.id.renderButton() with ux_mode: 'popup'
+     to render Google's official sign-up button. Works for BOTH
+     logged-in users (one-tap) AND logged-out users (popup with
+     Google sign-in page).
+
+     The rendered button is placed in #gisHiddenBtn — invisible
+     overlay over our custom MECULS button. User sees our pretty
+     button; click hits Google's button.
+
+     Consent gating: when required consents are NOT ticked, we
+     hide the GIS overlay (display: none) so clicks fall through
+     to the visible button which shows an error toast. When
+     consents ARE ticked, overlay is active and clicks go to GIS.
      ============================================================ */
   function initGoogleSignIn() {
     if (_gisInitialized) return;
@@ -303,12 +320,52 @@
         nonce: hashedNonce,
         auto_select: false,
         cancel_on_tap_outside: true,
-        use_fedcm_for_prompt: true
+        ux_mode: "popup",
+        use_fedcm_for_prompt: false
       });
+
+      const hiddenContainer = document.getElementById("gisHiddenBtn");
+      if (hiddenContainer) {
+        try {
+          window.google.accounts.id.renderButton(hiddenContainer, {
+            type: "standard",
+            theme: "outline",
+            size: "large",
+            text: "signup_with",
+            shape: "rectangular",
+            logo_alignment: "center",
+            width: hiddenContainer.offsetWidth || 320
+          });
+        } catch (e) {
+          console.warn("[register] renderButton failed:", e);
+        }
+      }
+
       _gisInitialized = true;
+      /* Apply current consent state to overlay visibility */
+      refreshGoogleOverlay();
     }).catch((err) => {
       console.warn("[register] GIS init failed:", err);
     });
+  }
+
+  /* Show/hide the GIS overlay based on required consent state.
+     - Consents ticked → overlay visible (catches clicks for popup),
+       visible button decorative (tabindex=-1, aria-hidden)
+     - Consents not ticked → overlay hidden, visible button takes
+       over keyboard/screen-reader focus and shows error on click */
+  function refreshGoogleOverlay() {
+    const overlay = document.getElementById("gisHiddenBtn");
+    if (!overlay || !googleBtn) return;
+    if (requiredConsentsTicked()) {
+      overlay.style.display = "";
+      googleBtn.setAttribute("tabindex", "-1");
+      googleBtn.setAttribute("aria-hidden", "true");
+    } else {
+      overlay.style.display = "none";
+      googleBtn.setAttribute("tabindex", "0");
+      googleBtn.removeAttribute("aria-hidden");
+    }
   }
 
   function generateNonce() {
@@ -406,32 +463,16 @@
     window.location.href = "dashboard.html";
   }
 
-  /* ── Custom button click handler ── */
+  /* ── Visible button click handler — only fires when overlay is
+     hidden (consents not ticked). Shows error toast. ── */
   if (googleBtn) {
     googleBtn.addEventListener("click", () => {
       if (!requiredConsentsTicked()) {
         showError("Please tick the two required consents to continue.");
-        return;
       }
-      if (!_gisInitialized) {
-        initGoogleSignIn();
-        setTimeout(triggerGooglePrompt, 200);
-      } else {
-        triggerGooglePrompt();
-      }
+      /* If consents ARE ticked, the GIS overlay handles the click.
+         This handler still fires (event bubbles), but does nothing. */
     });
-  }
-
-  function triggerGooglePrompt() {
-    if (!window.google || !window.google.accounts || !window.google.accounts.id) {
-      showError("Google sign-in is not ready yet. Please try again in a moment.");
-      return;
-    }
-    try {
-      window.google.accounts.id.prompt();
-    } catch (e) {
-      showError("Could not open Google sign-in. Please try again.");
-    }
   }
 
   /* ── Wait for GIS library to load, then init ── */
@@ -448,6 +489,7 @@
      Initial state
      ============================================================ */
   refreshSubmitState();
+  refreshGoogleOverlay();
   updateGmailHint();
 
 })();
