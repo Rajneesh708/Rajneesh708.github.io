@@ -45,3 +45,21 @@ const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
    loads and renders.
    ─────────────────────────────────────────────────────────── */
 const TURNSTILE_SITE_KEY = "0x4AAAAAADGth_-6hJl4Fyzu";
+
+/* ── Google Identity Services Client ID (added 2026-05-07) ──
+   Used by login.js and register.js to render the Google Sign-In
+   button via Google Identity Services (GIS). With GIS, the OAuth
+   consent screen shows "to continue to meculs.com" instead of
+   the Supabase project URL — cleaner and more trustworthy.
+
+   This value is PUBLIC by design — it identifies the OAuth client.
+   The matching CLIENT SECRET stays in Supabase Dashboard → Auth →
+   Providers → Google (server-side, never in browser).
+
+   This must match the Client ID configured in Supabase's Google
+   provider settings, otherwise signInWithIdToken will reject the
+   token. Currently configured in Google Cloud Console under
+   project "MECULS - Ikshu CV Portal", OAuth client name
+   "MECULS - Ikshu CV Portal Web Client".
+   ─────────────────────────────────────────────────────────── */
+const GOOGLE_CLIENT_ID = "758323051819-e46f7vk0c1nlra2hc2140s0e8vtaoh9e.apps.googleusercontent.com";

@@ -137,6 +137,28 @@
   flex-shrink: 0;
 }
 
+/* ── Google Identity Services button container ──
+   The GIS library renders its own button into this div. We can't
+   style the button itself (Google controls it), but we can ensure
+   the container has the right spacing/alignment to fit our layout.
+   The min-height prevents layout shift while GIS is initialising. */
+.gis-btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 44px;
+  margin-bottom: 20px;
+}
+.gis-btn-container > div {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+.gis-btn-container iframe {
+  width: 100% !important;
+  margin: 0 auto !important;
+}
+
 /* ── Divider ── */
 .auth-divider {
   display: flex;

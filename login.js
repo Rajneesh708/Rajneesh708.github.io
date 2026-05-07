@@ -35,7 +35,7 @@ const loginPassword       = document.getElementById("loginPassword");
 const loginBtn            = document.getElementById("loginBtn");
 const loginError          = document.getElementById("loginError");
 const captchaError        = document.getElementById("captchaError");
-const googleBtn           = document.getElementById("googleSignInBtn");
+const googleBtnContainer  = document.getElementById("googleSignInBtnContainer");
 const forgotLink          = document.getElementById("forgotPasswordLink");
 const forgotState         = document.getElementById("forgotState");
 const resetEmail          = document.getElementById("resetEmail");
@@ -215,7 +215,7 @@ function showRecoveryUI() {
   if (loginForm)     loginForm.classList.add("hidden");
   if (forgotState)   forgotState.classList.add("hidden");
   if (successState)  successState.classList.add("hidden");
-  if (googleBtn)     googleBtn.style.display = "none";
+  if (googleBtnContainer) googleBtnContainer.style.display = "none";
   const dividers = document.querySelectorAll(".auth-divider");
   dividers.forEach(function (d) { d.style.display = "none"; });
   if (recoveryState) recoveryState.classList.remove("hidden");
@@ -278,27 +278,120 @@ function isRateLimited() {
   return false;
 }
 
-/* ── Google Sign In ── */
-googleBtn.addEventListener("click", async () => {
-  hideError();
+/* ── Google Sign In via Google Identity Services (GIS) ──
+   Why: we previously used sb.auth.signInWithOAuth({provider:'google'})
+   which redirects the user through Supabase's callback URL. That made
+   Google's consent screen show "to continue to fjxc...supabase.co" —
+   alarming for visitors. The GIS approach below keeps the entire flow
+   on meculs.com so Google's consent screen shows "to continue to
+   meculs.com" instead.
 
+   Flow:
+     1. Generate a fresh nonce (random hex, hashed with SHA-256)
+     2. GIS shows account chooser inside meculs.com (no redirect)
+     3. GIS returns an ID token signed by Google with our nonce
+     4. We pass that token + the raw nonce to supabase.auth.signInWithIdToken
+     5. Supabase verifies signature + nonce match, creates session
+     6. We redirect to dashboard
+
+   The visual button is rendered by GIS (google.accounts.id.renderButton)
+   into the #googleSignInBtnContainer div in the HTML. The original
+   custom <button> is removed. */
+
+let _gisNonce = null;       /* raw nonce we'll send to supabase   */
+let _gisHashedNonce = null; /* sha256 hash sent to Google         */
+
+async function _generateNoncePair() {
+  /* Generate a 32-byte random nonce, return raw (hex) and SHA-256 (hex) */
+  const arr = new Uint8Array(32);
+  crypto.getRandomValues(arr);
+  const raw = Array.from(arr).map(b => b.toString(16).padStart(2, "0")).join("");
+  const buf = new TextEncoder().encode(raw);
+  const hash = await crypto.subtle.digest("SHA-256", buf);
+  const hashed = Array.from(new Uint8Array(hash))
+    .map(b => b.toString(16).padStart(2, "0")).join("");
+  return { raw, hashed };
+}
+
+async function _handleGoogleCredentialResponse(response) {
+  /* Called by GIS when Google returns the ID token after user picks account */
+  hideError();
   if (isRateLimited()) {
     showError("Please wait a moment before trying again.");
     return;
   }
 
-  setLoading(googleBtn, true);
-  const { error } = await sb.auth.signInWithOAuth({
-    provider: "google",
-    options: {
-      redirectTo: window.location.origin + "/dashboard.html"
-    }
-  });
-  if (error) {
-    setLoading(googleBtn, false);
-    showError("Could not connect to Google. Please try again.");
+  const idToken = response && response.credential;
+  if (!idToken) {
+    showError("Google sign-in did not complete. Please try again.");
+    return;
   }
-});
+
+  const { data, error } = await sb.auth.signInWithIdToken({
+    provider: "google",
+    token: idToken,
+    nonce: _gisNonce
+  });
+
+  if (error) {
+    showError("Could not sign in with Google: " + (error.message || "unknown error"));
+    return;
+  }
+
+  if (!data || !data.session) {
+    showError("Google sign-in succeeded but no session was created. Please try again.");
+    return;
+  }
+
+  /* Successful sign-in — redirect to dashboard */
+  window.location.href = window.location.origin + "/dashboard.html";
+}
+
+async function _initialiseGoogleSignIn() {
+  /* Wait for GIS script to load before initialising */
+  if (typeof google === "undefined" || !google.accounts || !google.accounts.id) {
+    /* GIS not ready yet — retry shortly */
+    setTimeout(_initialiseGoogleSignIn, 100);
+    return;
+  }
+  if (typeof GOOGLE_CLIENT_ID === "undefined" || !GOOGLE_CLIENT_ID) {
+    console.error("[login.js] GOOGLE_CLIENT_ID not defined in config.js");
+    return;
+  }
+
+  const pair = await _generateNoncePair();
+  _gisNonce = pair.raw;
+  _gisHashedNonce = pair.hashed;
+
+  google.accounts.id.initialize({
+    client_id: GOOGLE_CLIENT_ID,
+    callback: _handleGoogleCredentialResponse,
+    nonce: _gisHashedNonce,
+    auto_select: false,
+    cancel_on_tap_outside: true,
+    use_fedcm_for_prompt: true
+  });
+
+  const container = document.getElementById("googleSignInBtnContainer");
+  if (container) {
+    google.accounts.id.renderButton(container, {
+      type: "standard",
+      theme: "outline",
+      size: "large",
+      text: "continue_with",
+      shape: "rectangular",
+      logo_alignment: "left",
+      width: container.offsetWidth || 320
+    });
+  }
+}
+
+/* Kick off GIS setup once DOM is ready */
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", _initialiseGoogleSignIn);
+} else {
+  _initialiseGoogleSignIn();
+}
 
 /* ── Email + Password Sign In ── */
 loginForm.addEventListener("submit", async (e) => {
@@ -495,7 +588,7 @@ if (recoverySubmitBtn) {
       successState.classList.add("hidden");
       if (recoveryState) recoveryState.classList.add("hidden");
       loginForm.classList.remove("hidden");
-      if (googleBtn) googleBtn.style.display = "";
+      if (googleBtnContainer) googleBtnContainer.style.display = "";
       const dividers = document.querySelectorAll(".auth-divider");
       dividers.forEach(function (d) { d.style.display = ""; });
     }, 3000);
