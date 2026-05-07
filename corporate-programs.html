@@ -1,35 +1,1401 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="MECULS Corporate Leadership Programs &ndash; The Executive Edge. 12-week leadership coaching powered by the 360° PULSE RATE™ model.">
-  <title>Corporate Leadership Programs &ndash; MECULS</title>
-  <link rel="stylesheet" href="global.css">
-  <link rel="stylesheet" href="corporate-programs.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Archivo:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' https://www.meculs.com; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The Executive Edge - 12-week corporate leadership coaching programme by MECULS. Powered by the 360 PULSE RATE Leadership Model. For newly promoted leaders, high-potential cohorts, and post-restructuring teams.">
+<title>Corporate Programmes - The Executive Edge | MECULS</title>
+<meta property="og:title" content="The Executive Edge - Corporate Programmes by MECULS">
+<meta property="og:description" content="A structured 12-week leadership coaching programme for newly promoted senior leaders. Powered by the 360 PULSE RATE Leadership Model.">
+<meta property="og:url" content="https://www.meculs.com/corporate-programs.html">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://www.meculs.com/corporate-programs.html">
+
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Archivo:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="global.css">
+
+<style>
+  :root {
+    --tagline-h: 28px;
+
+    /* Navy charcoal palette - this page only */
+    --cp-navy:     #0a1828;
+    --cp-navy-2:   #050f1c;
+    --cp-navy-3:   #0f2236;
+    --cp-cream:    #ebe1d3;
+    --cp-cream-2:  #f4ece4;
+    --cp-paper:    #fbf6ee;
+    --cp-ink:      #161412;
+    --cp-ink-2:    #2a2520;
+    --cp-on-dark-h:    rgba(255,255,255,0.96);
+    --cp-on-dark-body: rgba(255,255,255,0.86);
+    --cp-on-dark-soft: rgba(255,255,255,0.78);
+    --cp-on-dark-rule: rgba(255,255,255,0.10);
+    --cp-on-light-h:    var(--cp-ink);
+    --cp-on-light-body: #2e2a23;
+    --cp-on-light-soft: #3d3830;
+    --cp-on-light-rule: rgba(22,20,18,0.16);
+    --cp-on-light-rule-2: rgba(22,20,18,0.08);
+    --cp-gold:    #c9a14a;
+    --cp-gold-2:  #d4b15a;
+    --cp-gold-bg: rgba(201,161,74,0.10);
+    --cp-gold-border: rgba(201,161,74,0.30);
+
+    --display:  'Playfair Display', serif;
+    --serif:    'Cormorant Garamond', serif;
+    --sans:     'Archivo', sans-serif;
+    --mono:     'JetBrains Mono', monospace;
+
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--cp-navy);
+    color: var(--cp-on-dark-body);
+    font-family: var(--sans);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .page {
+    padding-top: calc(var(--g-nav-h, 72px) + var(--tagline-h, 28px));
+    background: var(--cp-navy);
+    min-height: 100vh;
+  }
+
+  ::selection { background: var(--cp-gold); color: var(--cp-navy); }
+
+  .rev {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.85s var(--ease), transform 0.85s var(--ease);
+  }
+  .rev.vis { opacity: 1; transform: none; }
+
+  /* ───────────── HERO ───────────── */
+  .cp-hero {
+    background: var(--cp-navy);
+    padding: 5.5rem 0 6.5rem;
+    border-bottom: 1px solid var(--cp-on-dark-rule);
+    position: relative;
+    overflow: hidden;
+  }
+  .cp-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(201,161,74,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,161,74,0.025) 1px, transparent 1px);
+    background-size: 80px 80px;
+    pointer-events: none;
+  }
+  .cp-hero-grid {
+    max-width: 1340px;
+    margin: 0 auto;
+    padding: 0 5%;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 5rem;
+    align-items: start;
+    position: relative;
+    z-index: 2;
+  }
+
+  .cp-eyebrow {
+    font-family: var(--sans);
+    font-size: 0.84rem;
+    font-weight: 700;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    color: var(--cp-gold);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .cp-eyebrow::before {
+    content: "";
+    width: 32px;
+    height: 1px;
+    background: var(--cp-gold);
+  }
+
+  .cp-hero-serial {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    color: var(--cp-on-dark-soft);
+    margin-bottom: 1.6rem;
+    padding: 0.4rem 0.7rem;
+    border: 1px solid var(--cp-gold-border);
+    display: inline-block;
+    background: var(--cp-gold-bg);
+  }
+  .cp-hero-serial span {
+    color: var(--cp-gold);
+    font-weight: 600;
+  }
+
+  .cp-hero-title {
+    font-family: var(--display);
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--cp-on-dark-h);
+    margin-bottom: 1.8rem;
+  }
+  .cp-hero-title em {
+    font-style: italic;
+    color: var(--cp-gold);
+    font-weight: 500;
+  }
+
+  .cp-hero-sub {
+    font-family: var(--serif);
+    font-size: clamp(1.32rem, 2vw, 1.65rem);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--cp-on-dark-body);
+    max-width: 580px;
+    margin-bottom: 2rem;
+  }
+
+  .cp-hero-stmt {
+    display: inline-block;
+    padding: 1rem 1.4rem;
+    border-left: 3px solid var(--cp-gold);
+    background: var(--cp-gold-bg);
+    font-family: var(--sans);
+    font-size: clamp(1.18rem, 1.5vw, 1.32rem);
+    line-height: 1.65;
+    color: var(--cp-on-dark-h);
+  }
+  .cp-hero-stmt strong {
+    color: var(--cp-gold);
+    font-weight: 600;
+  }
+
+  /* Programme meta rail */
+  .cp-meta-rail {
+    border: 1px solid var(--cp-gold-border);
+    background: rgba(255,255,255,0.02);
+    padding: 0;
+    position: relative;
+  }
+  .cp-meta-rail::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--cp-gold);
+  }
+  .cp-meta-head {
+    padding: 1.4rem 1.6rem 1rem;
+    border-bottom: 1px solid var(--cp-on-dark-rule);
+  }
+  .cp-meta-head-lbl {
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cp-gold);
+    margin-bottom: 0.4rem;
+  }
+  .cp-meta-head-name {
+    font-family: var(--display);
+    font-size: 1.55rem;
+    font-weight: 500;
+    color: var(--cp-on-dark-h);
+    line-height: 1.2;
+    letter-spacing: -0.005em;
+  }
+  .cp-meta-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .cp-meta-list li {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 1rem;
+    padding: 0.95rem 1.6rem;
+    border-bottom: 1px solid var(--cp-on-dark-rule);
+    align-items: center;
+  }
+  .cp-meta-list li:last-child { border-bottom: none; }
+  .cp-meta-key {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cp-on-dark-soft);
+  }
+  .cp-meta-val {
+    font-family: var(--display);
+    font-size: 1.18rem;
+    font-weight: 500;
+    color: var(--cp-on-dark-h);
+    line-height: 1.3;
+  }
+  .cp-meta-val span { color: var(--cp-gold); }
+
+  /* ───────────── SECTION SCAFFOLDING ───────────── */
+  .cp-section {
+    padding: 6.5rem 0;
+    border-bottom: 1px solid var(--cp-on-dark-rule);
+    position: relative;
+  }
+  .cp-section.deep {
+    background: var(--cp-navy-2);
+  }
+  .cp-section.cream {
+    background: var(--cp-cream);
+    color: var(--cp-on-light-body);
+    border-bottom: 1px solid var(--cp-on-light-rule-2);
+  }
+  .cp-wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 5%;
+  }
+
+  .cp-rule {
+    width: 44px;
+    height: 2px;
+    background: var(--cp-gold);
+    margin-bottom: 1.4rem;
+  }
+
+  .cp-label {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    color: var(--cp-gold);
+    margin-bottom: 1.4rem;
+  }
+
+  .cp-h2 {
+    font-family: var(--display);
+    font-size: clamp(2rem, 3.8vw, 3rem);
+    font-weight: 500;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    color: var(--cp-on-dark-h);
+    margin-bottom: 1.6rem;
+  }
+  .cp-section.cream .cp-h2 { color: var(--cp-on-light-h); }
+  .cp-h2 em { font-style: italic; color: var(--cp-gold); font-weight: 500; }
+
+  .cp-prose p {
+    font-family: var(--sans);
+    font-size: clamp(1.18rem, 1.5vw, 1.32rem);
+    font-weight: 400;
+    line-height: 1.78;
+    color: var(--cp-on-dark-body);
+    margin-bottom: 1.4rem;
+    max-width: 64ch;
+  }
+  .cp-section.cream .cp-prose p { color: var(--cp-on-light-body); }
+  .cp-prose p strong { color: var(--cp-on-dark-h); font-weight: 600; }
+  .cp-section.cream .cp-prose p strong { color: var(--cp-on-light-h); }
+
+  /* ───────────── PROBLEM SECTION ───────────── */
+  .cp-prob-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 4rem;
+    margin-top: 3.4rem;
+    align-items: start;
+  }
+  .cp-prob-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .cp-prob-item {
+    padding: 1.6rem 1.8rem;
+    border: 1px solid var(--cp-on-dark-rule);
+    border-left: 3px solid var(--cp-gold);
+    background: rgba(255,255,255,0.02);
+    margin-bottom: 1.2rem;
+    transition: background 0.3s var(--ease);
+  }
+  .cp-prob-item:hover { background: var(--cp-gold-bg); }
+  .cp-prob-ttl {
+    font-family: var(--display);
+    font-size: 1.18rem;
+    font-weight: 500;
+    color: var(--cp-on-dark-h);
+    margin-bottom: 0.6rem;
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+  }
+  .cp-prob-body {
+    font-family: var(--sans);
+    font-size: 1.08rem;
+    line-height: 1.7;
+    color: var(--cp-on-dark-body);
+  }
+
+  .cp-truth {
+    padding: 2.4rem 2.2rem;
+    border: 1px solid var(--cp-gold-border);
+    background: var(--cp-gold-bg);
+    position: sticky;
+    top: 120px;
+  }
+  .cp-truth-lbl {
+    font-family: var(--sans);
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    color: var(--cp-gold);
+    margin-bottom: 1.2rem;
+  }
+  .cp-truth-q {
+    font-family: var(--serif);
+    font-size: clamp(1.4rem, 2.2vw, 1.75rem);
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--cp-on-dark-h);
+    margin-bottom: 1.6rem;
+  }
+  .cp-truth-note {
+    font-family: var(--sans);
+    font-size: 1.08rem;
+    line-height: 1.7;
+    color: var(--cp-on-dark-body);
+    margin-bottom: 1rem;
+  }
+  .cp-truth-note:last-child { margin-bottom: 0; }
+  .cp-truth-note strong { color: var(--cp-on-dark-h); font-weight: 600; }
+
+  /* ───────────── PROGRAMME SECTION ───────────── */
+  .cp-prog-head {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 4rem;
+  }
+  .cp-prog-rule {
+    width: 44px;
+    height: 2px;
+    background: var(--cp-gold);
+    margin: 0 auto 1.4rem;
+  }
+  .cp-prog-name {
+    font-family: var(--display);
+    font-size: clamp(2.4rem, 4.4vw, 3.4rem);
+    font-weight: 500;
+    color: var(--cp-gold);
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+  }
+  .cp-prog-tagline {
+    font-family: var(--sans);
+    font-size: 0.86rem;
+    font-weight: 600;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    color: var(--cp-on-dark-soft);
+    margin-bottom: 1.6rem;
+  }
+  .cp-prog-desc {
+    font-family: var(--sans);
+    font-size: clamp(1.18rem, 1.5vw, 1.32rem);
+    line-height: 1.78;
+    color: var(--cp-on-dark-body);
+  }
+
+  /* Stat strip */
+  .cp-stats {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    margin: 3rem 0 4rem;
+    border-top: 1px solid var(--cp-gold-border);
+    border-bottom: 1px solid var(--cp-gold-border);
+  }
+  .cp-stat {
+    padding: 2rem 1rem;
+    text-align: center;
+    border-right: 1px solid var(--cp-on-dark-rule);
+  }
+  .cp-stat:last-child { border-right: none; }
+  .cp-stat-num {
+    font-family: var(--display);
+    font-size: clamp(2.4rem, 3.4vw, 3rem);
+    font-weight: 500;
+    color: var(--cp-gold);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+    letter-spacing: -0.02em;
+  }
+  .cp-stat-lbl {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cp-on-dark-soft);
+    line-height: 1.4;
+  }
+
+  /* Phases - calendar columns */
+  .cp-phases-head {
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+    margin-bottom: 1.4rem;
+    padding: 0 0.5rem;
+  }
+  .cp-phases-head-lbl {
+    font-family: var(--sans);
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cp-gold);
+    white-space: nowrap;
+  }
+  .cp-phases-head-line {
+    flex: 1;
+    height: 1px;
+    background: var(--cp-gold-border);
+  }
+  .cp-phases {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--cp-gold-border);
+    border-left: 1px solid var(--cp-gold-border);
+  }
+  .cp-phase {
+    padding: 2.2rem 1.8rem;
+    border-right: 1px solid var(--cp-gold-border);
+    border-bottom: 1px solid var(--cp-gold-border);
+    background: rgba(255,255,255,0.015);
+  }
+  .cp-phase-num {
+    font-family: var(--display);
+    font-size: 3rem;
+    font-weight: 300;
+    color: rgba(201,161,74,0.30);
+    line-height: 1;
+    margin-bottom: 0.8rem;
+    letter-spacing: -0.04em;
+  }
+  .cp-phase-wks {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--cp-gold);
+    margin-bottom: 0.6rem;
+  }
+  .cp-phase-ttl {
+    font-family: var(--display);
+    font-size: 1.32rem;
+    font-weight: 500;
+    color: var(--cp-on-dark-h);
+    margin-bottom: 1.1rem;
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+  }
+  .cp-phase-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .cp-phase-list li {
+    font-family: var(--sans);
+    font-size: 1.05rem;
+    line-height: 1.55;
+    color: var(--cp-on-dark-body);
+    padding: 0.5rem 0 0.5rem 1.4rem;
+    position: relative;
+    border-bottom: 1px solid var(--cp-on-dark-rule);
+  }
+  .cp-phase-list li:last-child { border-bottom: none; }
+  .cp-phase-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 1.05rem;
+    width: 8px;
+    height: 1px;
+    background: var(--cp-gold);
+  }
+
+  /* Deliverables */
+  .cp-deliv-head {
+    margin-top: 4rem;
+    margin-bottom: 1.6rem;
+  }
+  .cp-deliv-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.8rem;
+  }
+  .cp-deliv {
+    padding: 2.2rem 1.8rem;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--cp-gold-border);
+    border-top: 3px solid var(--cp-gold);
+    transition: background 0.3s var(--ease), transform 0.3s var(--ease);
+  }
+  .cp-deliv:hover {
+    background: var(--cp-gold-bg);
+    transform: translateY(-3px);
+  }
+  .cp-deliv-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1.2rem;
+    color: var(--cp-gold);
+  }
+  .cp-deliv-icon svg {
+    width: 100%;
+    height: 100%;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .cp-deliv-ttl {
+    font-family: var(--display);
+    font-size: 1.32rem;
+    font-weight: 500;
+    color: var(--cp-on-dark-h);
+    margin-bottom: 0.8rem;
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+  }
+  .cp-deliv-body {
+    font-family: var(--sans);
+    font-size: 1.08rem;
+    line-height: 1.65;
+    color: var(--cp-on-dark-body);
+  }
+
+  /* ───────────── PROFILING / DIFFERENCE SECTION ───────────── */
+  .cp-prof-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+    margin-top: 1rem;
+  }
+
+  /* "vs most assessment tools" comparison */
+  .cp-cmp {
+    margin-top: 2rem;
+  }
+  .cp-cmp-heads {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+  .cp-cmp-head {
+    font-family: var(--sans);
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 0.6rem 0.9rem;
+  }
+  .cp-cmp-head.theirs {
+    color: var(--cp-on-dark-soft);
+    border-bottom: 1px solid var(--cp-on-dark-rule);
+  }
+  .cp-cmp-head.ours {
+    color: var(--cp-gold);
+    border-bottom: 1px solid var(--cp-gold-border);
+    background: var(--cp-gold-bg);
+  }
+  .cp-cmp-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+  .cp-cmp-cell {
+    padding: 0.95rem 1rem;
+    font-family: var(--sans);
+    font-size: 1.05rem;
+    line-height: 1.5;
+    border: 1px solid var(--cp-on-dark-rule);
+  }
+  .cp-cmp-cell.theirs {
+    color: var(--cp-on-dark-soft);
+  }
+  .cp-cmp-cell.ours {
+    color: var(--cp-on-dark-h);
+    background: var(--cp-gold-bg);
+    border-color: var(--cp-gold-border);
+  }
+
+  /* Personality types grid */
+  .cp-types-lbl {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    color: var(--cp-gold);
+    margin-bottom: 1.4rem;
+  }
+  .cp-types {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .cp-type {
+    padding: 1.4rem 1.4rem;
+    border: 1px solid var(--cp-on-dark-rule);
+    background: rgba(255,255,255,0.02);
+    transition: background 0.3s var(--ease), transform 0.3s var(--ease);
+    position: relative;
+  }
+  .cp-type:hover {
+    background: var(--cp-gold-bg);
+    transform: translateY(-2px);
+  }
+  .cp-type-n {
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    font-weight: 500;
+    color: var(--cp-gold);
+    margin-bottom: 0.4rem;
+  }
+  .cp-type-name {
+    font-family: var(--display);
+    font-size: 1.18rem;
+    font-style: italic;
+    font-weight: 500;
+    color: var(--cp-on-dark-h);
+    margin-bottom: 0.5rem;
+    line-height: 1.25;
+    letter-spacing: -0.005em;
+  }
+  .cp-type-block {
+    font-family: var(--sans);
+    font-size: 1.02rem;
+    line-height: 1.55;
+    color: var(--cp-on-dark-body);
+  }
+  .cp-types-note {
+    grid-column: 1 / -1;
+    font-family: var(--serif);
+    font-size: 1.08rem;
+    font-style: italic;
+    color: var(--cp-on-dark-soft);
+    text-align: center;
+    padding: 0.6rem;
+  }
+
+  /* ───────────── CASE STUDY (CREAM) ───────────── */
+  .cp-case-head {
+    max-width: 800px;
+    margin-bottom: 3rem;
+  }
+  .cp-case-head .cp-rule { background: var(--cp-gold); }
+  .cp-case-head .cp-label { color: var(--cp-gold); }
+  .cp-case-head .cp-h2 { color: var(--cp-on-light-h); }
+
+  .cp-case-grid {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .cp-case-spec {
+    padding: 2.4rem 2.2rem;
+    border: 1px solid var(--cp-on-light-rule);
+    background: var(--cp-paper);
+    box-shadow: 0 18px 48px -28px rgba(22,20,18,0.16);
+    position: relative;
+  }
+  .cp-case-spec::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--cp-gold);
+  }
+  .cp-case-spec-lbl {
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cp-gold);
+    margin-bottom: 1.6rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--cp-on-light-rule-2);
+  }
+  .cp-case-rows {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .cp-case-rows li {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 1.4rem;
+    padding: 0.95rem 0;
+    border-bottom: 1px solid var(--cp-on-light-rule-2);
+    align-items: baseline;
+  }
+  .cp-case-rows li:last-child { border-bottom: none; }
+  .cp-case-key {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cp-gold);
+  }
+  .cp-case-val {
+    font-family: var(--sans);
+    font-size: 1.08rem;
+    line-height: 1.55;
+    color: var(--cp-on-light-body);
+  }
+  .cp-case-val strong {
+    color: var(--cp-on-light-h);
+    font-weight: 600;
+  }
+
+  .cp-out-lbl {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    color: var(--cp-gold);
+    margin-bottom: 1.6rem;
+  }
+  .cp-outcomes {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: out;
+  }
+  .cp-outcomes li {
+    display: flex;
+    gap: 1.4rem;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid var(--cp-on-light-rule-2);
+    align-items: flex-start;
+  }
+  .cp-outcomes li:last-child { border-bottom: none; }
+  .cp-outcomes li::before {
+    content: counter(out, decimal-leading-zero);
+    counter-increment: out;
+    font-family: var(--display);
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--cp-gold);
+    line-height: 1;
+    min-width: 36px;
+    padding-top: 0.1rem;
+  }
+  .cp-outcome-text {
+    font-family: var(--sans);
+    font-size: 1.08rem;
+    line-height: 1.65;
+    color: var(--cp-on-light-body);
+    flex: 1;
+  }
+  .cp-outcome-text strong {
+    color: var(--cp-on-light-h);
+    font-weight: 600;
+  }
+
+  /* ───────────── TESTIMONIAL (CREAM CONTINUES) ───────────── */
+  .cp-testi-section {
+    background: var(--cp-cream-2);
+    padding: 6rem 0;
+    border-bottom: 1px solid var(--cp-on-light-rule-2);
+  }
+  .cp-testi {
+    max-width: 880px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .cp-testi-mark {
+    font-family: var(--display);
+    font-size: 5rem;
+    line-height: 0.6;
+    color: rgba(201,161,74,0.30);
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+  .cp-testi-q {
+    font-family: var(--serif);
+    font-size: clamp(1.4rem, 2.4vw, 1.95rem);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--cp-on-light-h);
+    margin-bottom: 2rem;
+  }
+  .cp-testi-q strong {
+    color: var(--cp-gold);
+    font-style: normal;
+    font-weight: 600;
+  }
+  .cp-testi-div {
+    width: 50px;
+    height: 1px;
+    background: var(--cp-gold);
+    margin: 0 auto 1.2rem;
+    opacity: 0.6;
+  }
+  .cp-testi-attr {
+    font-family: var(--sans);
+    font-size: 0.86rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cp-gold);
+    margin-bottom: 0.4rem;
+  }
+  .cp-testi-role {
+    font-family: var(--serif);
+    font-size: 1.08rem;
+    font-style: italic;
+    color: var(--cp-on-light-soft);
+  }
+
+  /* ───────────── COST OF NOT ACTING (DEEP NAVY) ───────────── */
+  .cp-cost-grid {
+    display: grid;
+    grid-template-columns: 0.42fr 0.58fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .cp-cost-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .cp-cost-list li {
+    font-family: var(--sans);
+    font-size: clamp(1.18rem, 1.5vw, 1.32rem);
+    line-height: 1.7;
+    color: var(--cp-on-dark-body);
+    padding: 1.4rem 0;
+    border-bottom: 1px solid var(--cp-on-dark-rule);
+  }
+  .cp-cost-list li:first-child { padding-top: 0; }
+  .cp-cost-list li:last-child { border-bottom: none; }
+  .cp-cost-list li strong {
+    color: var(--cp-on-dark-h);
+    font-weight: 600;
+  }
+  .cp-cost-list li em {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 500;
+    color: var(--cp-gold-2);
+    text-transform: none;
+  }
+
+  /* ───────────── WHO IT'S FOR ───────────── */
+  .cp-for-head {
+    max-width: 800px;
+    margin-bottom: 3.6rem;
+  }
+  .cp-for-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.6rem;
+  }
+  .cp-for-card {
+    padding: 2rem 1.6rem;
+    border: 1px solid var(--cp-on-dark-rule);
+    background: rgba(255,255,255,0.02);
+    transition: background 0.3s var(--ease), border-color 0.3s var(--ease), transform 0.3s var(--ease);
+  }
+  .cp-for-card:hover {
+    background: var(--cp-gold-bg);
+    border-color: var(--cp-gold-border);
+    transform: translateY(-3px);
+  }
+  .cp-for-icon {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 1.1rem;
+    color: var(--cp-gold);
+  }
+  .cp-for-icon svg {
+    width: 100%;
+    height: 100%;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .cp-for-ttl {
+    font-family: var(--display);
+    font-size: 1.22rem;
+    font-weight: 500;
+    color: var(--cp-on-dark-h);
+    margin-bottom: 0.7rem;
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+  }
+  .cp-for-body {
+    font-family: var(--sans);
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: var(--cp-on-dark-body);
+  }
+
+  /* ───────────── DIFFERENCE / WHY THIS WORKS ───────────── */
+  .cp-diff-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .cp-diff-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: diff;
+  }
+  .cp-diff-list li {
+    display: flex;
+    gap: 1.4rem;
+    padding: 1.4rem 0;
+    border-bottom: 1px solid var(--cp-on-dark-rule);
+    align-items: flex-start;
+  }
+  .cp-diff-list li:last-child { border-bottom: none; }
+  .cp-diff-list li::before {
+    content: counter(diff, decimal-leading-zero);
+    counter-increment: diff;
+    font-family: var(--display);
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: rgba(201,161,74,0.40);
+    line-height: 1;
+    min-width: 38px;
+  }
+  .cp-diff-text {
+    flex: 1;
+  }
+  .cp-diff-ttl {
+    font-family: var(--display);
+    font-size: 1.18rem;
+    font-weight: 500;
+    color: var(--cp-on-dark-h);
+    margin-bottom: 0.6rem;
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+  }
+  .cp-diff-body {
+    font-family: var(--sans);
+    font-size: 1.08rem;
+    line-height: 1.7;
+    color: var(--cp-on-dark-body);
+  }
+
+  .cp-founder-pull {
+    padding: 2.6rem 2.2rem;
+    border: 1px solid var(--cp-gold-border);
+    background: var(--cp-gold-bg);
+    position: sticky;
+    top: 120px;
+  }
+  .cp-founder-pull blockquote {
+    font-family: var(--serif);
+    font-size: clamp(1.32rem, 2vw, 1.6rem);
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--cp-on-dark-h);
+    margin-bottom: 1.6rem;
+  }
+  .cp-founder-pull blockquote strong {
+    color: var(--cp-gold);
+    font-style: normal;
+    font-weight: 600;
+  }
+  .cp-founder-attr {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cp-gold);
+  }
+
+  /* ───────────── ACRONYM PLATE ───────────── */
+  .cp-acronym {
+    background: var(--cp-navy-3);
+    padding: 6rem 0;
+    border-bottom: 1px solid var(--cp-on-dark-rule);
+    position: relative;
+    overflow: hidden;
+  }
+  .cp-acronym::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 800px 600px at 50% 50%, rgba(201,161,74,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cp-acro-wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 5%;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+  .cp-acro-eyebrow {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--cp-gold);
+    margin-bottom: 1.4rem;
+  }
+  .cp-acro-h {
+    font-family: var(--display);
+    font-size: clamp(1.7rem, 2.6vw, 2.2rem);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--cp-on-dark-soft);
+    margin-bottom: 3.4rem;
+    letter-spacing: -0.01em;
+    line-height: 1.4;
+  }
+  .cp-acro-stack {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0;
+    margin-bottom: 2.6rem;
+    border-top: 1px solid var(--cp-gold-border);
+    border-bottom: 1px solid var(--cp-gold-border);
+  }
+  .cp-acro-cell {
+    padding: 1.8rem 0.6rem;
+    text-align: center;
+    border-right: 1px solid var(--cp-on-dark-rule);
+  }
+  .cp-acro-cell:last-child { border-right: none; }
+  .cp-acro-letter {
+    font-family: var(--display);
+    font-size: clamp(2.6rem, 4vw, 3.6rem);
+    font-weight: 600;
+    color: var(--cp-gold);
+    line-height: 1;
+    margin-bottom: 0.7rem;
+    letter-spacing: -0.02em;
+  }
+  .cp-acro-word {
+    font-family: var(--sans);
+    font-size: 0.86rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--cp-on-dark-h);
+    line-height: 1.35;
+  }
+  .cp-acro-word small {
+    display: block;
+    font-family: var(--serif);
+    font-size: 0.85rem;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--cp-on-dark-soft);
+    letter-spacing: 0;
+    margin-top: 0.3rem;
+  }
+  .cp-acro-bottom {
+    font-family: var(--serif);
+    font-size: clamp(1.18rem, 1.7vw, 1.4rem);
+    font-style: italic;
+    color: var(--cp-on-dark-body);
+    line-height: 1.5;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .cp-acro-bottom strong {
+    color: var(--cp-gold);
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  /* ───────────── METHODOLOGY BRIDGE ───────────── */
+  .cp-bridge {
+    padding: 4rem 0;
+    background: var(--cp-navy-2);
+    border-bottom: 1px solid var(--cp-on-dark-rule);
+    text-align: center;
+  }
+  .cp-bridge-wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 5%;
+  }
+  .cp-bridge-lbl {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--cp-gold);
+    margin-bottom: 1.4rem;
+  }
+  .cp-bridge-h {
+    font-family: var(--display);
+    font-size: clamp(1.5rem, 2.6vw, 2rem);
+    font-weight: 500;
+    color: var(--cp-on-dark-h);
+    margin-bottom: 1.2rem;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+  .cp-bridge-h em {
+    font-style: italic;
+    color: var(--cp-gold);
+    font-weight: 500;
+  }
+  .cp-bridge-body {
+    font-family: var(--sans);
+    font-size: 1.08rem;
+    line-height: 1.7;
+    color: var(--cp-on-dark-body);
+    margin-bottom: 1.8rem;
+  }
+  .cp-bridge-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--sans);
+    font-size: 0.86rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cp-gold);
+    text-decoration: none;
+    padding: 0.85rem 1.6rem;
+    border: 1px solid var(--cp-gold-border);
+    transition: background 0.25s var(--ease), border-color 0.25s var(--ease), transform 0.25s var(--ease);
+  }
+  .cp-bridge-link:hover {
+    background: var(--cp-gold);
+    border-color: var(--cp-gold);
+    color: var(--cp-navy);
+    transform: translateY(-2px);
+  }
+
+  /* ───────────── CTA ───────────── */
+  .cp-cta {
+    padding: 7rem 0 8rem;
+    text-align: center;
+    background: var(--cp-navy);
+    position: relative;
+    overflow: hidden;
+  }
+  .cp-cta::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 700px 500px at 50% 50%, rgba(201,161,74,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cp-cta-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 5%;
+    position: relative;
+    z-index: 2;
+  }
+  .cp-cta-lbl {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--cp-gold);
+    margin-bottom: 1.4rem;
+  }
+  .cp-cta-h {
+    font-family: var(--display);
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--cp-on-dark-h);
+    margin-bottom: 1.6rem;
+    letter-spacing: -0.02em;
+  }
+  .cp-cta-h em {
+    font-style: italic;
+    color: var(--cp-gold);
+    font-weight: 500;
+  }
+  .cp-cta-body {
+    font-family: var(--sans);
+    font-size: clamp(1.18rem, 1.5vw, 1.32rem);
+    line-height: 1.7;
+    color: var(--cp-on-dark-body);
+    margin-bottom: 2.4rem;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cp-cta-btns {
+    display: flex;
+    gap: 1.2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .cp-btn-gold {
+    display: inline-block;
+    padding: 1.1rem 2.4rem;
+    font-family: var(--sans);
+    font-size: 0.86rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: var(--cp-gold);
+    color: var(--cp-navy);
+    border: 1px solid var(--cp-gold);
+    transition: background 0.25s var(--ease), transform 0.25s var(--ease);
+  }
+  .cp-btn-gold:hover {
+    background: var(--cp-gold-2);
+    border-color: var(--cp-gold-2);
+    transform: translateY(-2px);
+  }
+  .cp-btn-outline {
+    display: inline-block;
+    padding: 1.1rem 2.4rem;
+    font-family: var(--sans);
+    font-size: 0.86rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: transparent;
+    color: var(--cp-gold);
+    border: 1px solid var(--cp-gold-border);
+    transition: background 0.25s var(--ease), border-color 0.25s var(--ease), transform 0.25s var(--ease);
+  }
+  .cp-btn-outline:hover {
+    background: var(--cp-gold-bg);
+    border-color: var(--cp-gold);
+    transform: translateY(-2px);
+  }
+
+  /* ───────────── RESPONSIVE ───────────── */
+  @media (max-width: 1024px) {
+    .cp-hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .cp-prob-grid { grid-template-columns: 1fr; gap: 2.4rem; }
+    .cp-truth { position: static; }
+    .cp-stats { grid-template-columns: repeat(5, 1fr); }
+    .cp-phases { grid-template-columns: 1fr; }
+    .cp-phase { border-right: none; }
+    .cp-deliv-grid { grid-template-columns: 1fr; }
+    .cp-prof-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .cp-types { grid-template-columns: 1fr 1fr; }
+    .cp-case-grid { grid-template-columns: 1fr; gap: 2.4rem; }
+    .cp-cost-grid { grid-template-columns: 1fr; gap: 2.2rem; }
+    .cp-for-grid { grid-template-columns: 1fr 1fr; }
+    .cp-diff-grid { grid-template-columns: 1fr; gap: 2.4rem; }
+    .cp-founder-pull { position: static; }
+    .cp-acro-stack { grid-template-columns: repeat(3, 1fr); }
+    .cp-acro-cell:nth-child(3) { border-right: none; }
+    .cp-acro-cell:nth-child(4),
+    .cp-acro-cell:nth-child(5),
+    .cp-acro-cell:nth-child(6) {
+      border-top: 1px solid var(--cp-on-dark-rule);
+    }
+  }
+  @media (max-width: 720px) {
+    .cp-hero { padding: 3.5rem 0 4.4rem; }
+    .cp-section { padding: 4.4rem 0; }
+    .cp-testi-section { padding: 4.4rem 0; }
+    .cp-cta { padding: 5rem 0 5.5rem; }
+    .cp-bridge { padding: 3rem 0; }
+    .cp-acronym { padding: 4.4rem 0; }
+    .cp-stats { grid-template-columns: repeat(2, 1fr); border-left: 1px solid var(--cp-gold-border); }
+    .cp-stat { border-bottom: 1px solid var(--cp-on-dark-rule); }
+    .cp-stat:last-child { border-right: 1px solid var(--cp-on-dark-rule); }
+    .cp-types { grid-template-columns: 1fr; }
+    .cp-for-grid { grid-template-columns: 1fr; }
+    .cp-acro-stack { grid-template-columns: repeat(2, 1fr); }
+    .cp-acro-cell { border-right: 1px solid var(--cp-on-dark-rule); border-bottom: 1px solid var(--cp-on-dark-rule); }
+    .cp-acro-cell:nth-child(2n) { border-right: none; }
+    .cp-acro-cell:nth-child(5),
+    .cp-acro-cell:nth-child(6) { border-bottom: none; }
+    .cp-cmp-row { grid-template-columns: 1fr; }
+    .cp-cmp-heads .cp-cmp-head.theirs { display: none; }
+    .cp-cmp-cell.theirs {
+      font-size: 0.92rem;
+      padding: 0.7rem 0.9rem;
+      border-color: var(--cp-on-dark-rule);
+    }
+    .cp-case-rows li { grid-template-columns: 1fr; gap: 0.3rem; }
+  }
+</style>
 </head>
 <body>
+<div class="page">
 
-<!-- GLOBAL HEADER -->
+<div class="gh-tagline-sub" id="ghTaglineSub">
+  <span class="gh-tagline-sub-text">
+    <strong>Feel Proud:</strong> Choosing to be courageous enough to feel proud of exactly who you are and what your life is &ndash; is seeing you are growing, expanding, and creating a better world
+  </span>
+</div>
+
 <header class="global-header">
   <a href="index.html" class="gh-logo" aria-label="MECULS home">
-    <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS">
+    <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS" loading="eager" width="140" height="36">
     <span class="gh-logo-text">MECULS</span>
   </a>
 
   <nav aria-label="Primary navigation">
     <ul class="gh-nav gh-nav-wrap">
+
       <li><a href="about-meculs.html">About MECULS</a></li>
 
       <li>
-        <a href="how-meculs-works.html">
-          How MECULS Works
-          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+        <a href="how-meculs-works.html">How MECULS Works
+          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
         <ul class="gh-dropdown">
           <li><a href="how-meculs-works.html">How MECULS Works</a></li>
@@ -41,23 +1407,21 @@
       </li>
 
       <li>
-        <a href="services.html">
-          Services
-          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+        <a href="services.html" class="active">Services
+          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
         <ul class="gh-dropdown">
           <li><a href="services.html">All Services</a></li>
+          <li><a href="corporate-programs.html" class="active">Corporate Programmes</a></li>
           <li><a href="360-pulse-rate.html">360&deg; PULSE RATE&trade;</a></li>
           <li><a href="service-personality-profiling.html">Personality Profiling</a></li>
           <li><a href="service-executive-search.html">Executive Search</a></li>
           <li><a href="bespoke-coaching.html">Executive Coaching &ndash; Bespoke</a></li>
-          <li><a href="corporate-programs.html">Corporate Programmes</a></li>
           <li><a href="service-hr-analytics.html">HR Analytics</a></li>
           <li><a href="service-data-science-analytics.html">Data Science &amp; Analytics</a></li>
           <li><a href="service-market-actionable-intelligence.html">Market Intelligence</a></li>
-          <div class="gh-dropdown-divider"></div>
+          <li><a href="organisational-health-consulting.html">Organisational Health</a></li>
+          <li class="gh-dropdown-divider" aria-hidden="true"></li>
           <li><a href="individual-services.html">Individual &amp; Wellness</a></li>
           <li><a href="service-consciousness-clarity.html">Consciousness &amp; Clarity</a></li>
           <li><a href="service-mind-wellness.html">Mind Wellness</a></li>
@@ -69,11 +1433,8 @@
       </li>
 
       <li>
-        <a href="the-approach.html">
-          The Approach
-          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+        <a href="the-approach.html">The Approach
+          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
         <ul class="gh-dropdown">
           <li><a href="the-approach.html">The Approach</a></li>
@@ -85,7 +1446,22 @@
 
       <li><a href="insights.html">Insights</a></li>
       <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+      <li><a href="cv-portal.html">The CV Portal</a></li>
       <li><a href="begin-conversation.html" class="gh-cta">Begin a Conversation</a></li>
+
+      <li class="gh-login-wrap">
+        <a href="login.html" class="gh-login-icon" aria-label="Sign in or register for The CV Portal" aria-haspopup="true" aria-expanded="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </a>
+        <ul class="gh-login-dropdown" role="menu" aria-label="The CV Portal account">
+          <li class="gh-login-dropdown-label">The CV Portal</li>
+          <li role="none"><a href="login.html" role="menuitem">CV Portal &ndash; Login</a></li>
+          <li role="none"><a href="register.html" role="menuitem">CV Portal &ndash; Register</a></li>
+        </ul>
+      </li>
 
     </ul>
   </nav>
@@ -97,6 +1473,9 @@
 
 <div class="gh-mobile-menu" id="ghMobileMenu" role="dialog" aria-label="Mobile navigation">
   <ul class="gh-mobile-nav">
+
+    <li><a href="about-meculs.html">About MECULS</a></li>
+
     <li>
       <a href="how-meculs-works.html">How MECULS Works</a>
       <ul class="gh-mobile-sub">
@@ -107,18 +1486,20 @@
         <li><a href="contemplative-practices.html">Contemplative Practices</a></li>
       </ul>
     </li>
+
     <li>
-      <a href="services.html">Services</a>
+      <a href="services.html" class="active">Services</a>
       <ul class="gh-mobile-sub">
         <li><a href="services.html">All Services</a></li>
+        <li><a href="corporate-programs.html" class="active">Corporate Programmes</a></li>
         <li><a href="360-pulse-rate.html">360&deg; PULSE RATE&trade;</a></li>
         <li><a href="service-personality-profiling.html">Personality Profiling</a></li>
         <li><a href="service-executive-search.html">Executive Search</a></li>
         <li><a href="bespoke-coaching.html">Executive Coaching &ndash; Bespoke</a></li>
-        <li><a href="corporate-programs.html">Corporate Programmes</a></li>
         <li><a href="service-hr-analytics.html">HR Analytics</a></li>
         <li><a href="service-data-science-analytics.html">Data Science &amp; Analytics</a></li>
         <li><a href="service-market-actionable-intelligence.html">Market Intelligence</a></li>
+        <li><a href="organisational-health-consulting.html">Organisational Health</a></li>
         <li><a href="individual-services.html">Individual &amp; Wellness</a></li>
         <li><a href="service-consciousness-clarity.html">Consciousness &amp; Clarity</a></li>
         <li><a href="service-mind-wellness.html">Mind Wellness</a></li>
@@ -128,6 +1509,7 @@
         <li><a href="service-zero-state-meditation.html">Meditation as Medicine</a></li>
       </ul>
     </li>
+
     <li>
       <a href="the-approach.html">The Approach</a>
       <ul class="gh-mobile-sub">
@@ -137,330 +1519,645 @@
         <li><a href="our-work-proof.html">Our Work Proof</a></li>
       </ul>
     </li>
+
     <li><a href="insights.html">Insights</a></li>
     <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+    <li><a href="cv-portal.html">The CV Portal</a></li>
+    <li><a href="login.html">CV Portal &ndash; Login</a></li>
+    <li><a href="register.html">CV Portal &ndash; Register</a></li>
   </ul>
   <a href="begin-conversation.html" class="gh-mobile-cta">Begin a Conversation</a>
 </div>
 
-
-<!-- HERO -->
+<!-- ════════════════════ HERO ════════════════════ -->
 <section class="cp-hero">
-  <div class="cp-hero-bgtext">LEADERSHIP</div>
-  <div class="cp-hero-grid"></div>
-  <div class="cp-hero-glow"></div>
-  <div class="cp-hero-content">
-    <div class="cp-hero-eyebrow">MECULS &nbsp;·&nbsp; Corporate Leadership Programs</div>
-    <h1 class="cp-hero-title">When leaders are promoted,<br>the real work<br><em>is invisible.</em></h1>
-    <p class="cp-hero-sub">Technical excellence earns the promotion. But what happens inside the leader &ndash; the hidden blocks, the unconscious patterns, the identity gaps &ndash; determines whether they truly lead.</p>
-    <div class="cp-hero-stmt">We work where most programs <strong>never go.</strong></div>
+  <div class="cp-hero-grid">
+
+    <div>
+      <div class="cp-eyebrow rev">MECULS &middot; Corporate Programmes</div>
+      <div class="cp-hero-serial rev"><span>PROGRAMME N&deg;</span> EE&middot;01 &middot; THE EXECUTIVE EDGE</div>
+
+      <h1 class="cp-hero-title rev">
+        When leaders are promoted, the real work<br>
+        <em>is invisible.</em>
+      </h1>
+
+      <p class="cp-hero-sub rev">
+        Technical excellence earns the promotion. What happens inside the leader &ndash; the hidden blocks, the unconscious patterns, the identity gap &ndash; determines whether they actually lead.
+      </p>
+
+      <div class="cp-hero-stmt rev">
+        We work where most leadership programmes <strong>never go.</strong>
+      </div>
+    </div>
+
+    <div class="cp-meta-rail rev">
+      <div class="cp-meta-head">
+        <div class="cp-meta-head-lbl">Programme Specification</div>
+        <div class="cp-meta-head-name">The Executive Edge</div>
+      </div>
+      <ul class="cp-meta-list">
+        <li>
+          <span class="cp-meta-key">Duration</span>
+          <span class="cp-meta-val"><span>12</span> weeks</span>
+        </li>
+        <li>
+          <span class="cp-meta-key">Phases</span>
+          <span class="cp-meta-val"><span>3</span> sequential</span>
+        </li>
+        <li>
+          <span class="cp-meta-key">Group sessions</span>
+          <span class="cp-meta-val"><span>4</span> across cohort</span>
+        </li>
+        <li>
+          <span class="cp-meta-key">1:1 sessions</span>
+          <span class="cp-meta-val"><span>3</span> per leader</span>
+        </li>
+        <li>
+          <span class="cp-meta-key">Format</span>
+          <span class="cp-meta-val">Cohort-based</span>
+        </li>
+        <li>
+          <span class="cp-meta-key">Powered by</span>
+          <span class="cp-meta-val">360&deg; PULSE RATE&trade;</span>
+        </li>
+      </ul>
+    </div>
+
   </div>
-  <div class="cp-scroll-hint"><span>Scroll</span><div class="cp-scroll-line"></div></div>
 </section>
 
-
-<!-- THE PROBLEM -->
+<!-- ════════════════════ THE PROBLEM ════════════════════ -->
 <section class="cp-section">
-  <div class="cp-container">
-    <div class="gold-line reveal"></div>
-    <div class="sec-label reveal">The Problem Every Organisation Faces</div>
-    <h2 class="sec-heading reveal">Your best performers<br><em>are struggling as leaders.</em></h2>
-    <div class="prob-grid">
-      <div class="prob-cards reveal-left">
-        <div class="prob-card">
-          <div class="prob-card-ttl">They were promoted for the wrong reason</div>
-          <p>Exceptional technical performance does not predict leadership capability. The skills that earn promotions are different from the skills that make leaders effective.</p>
-        </div>
-        <div class="prob-card">
-          <div class="prob-card-ttl">The real blocks are invisible</div>
-          <p>Fear of being exposed. Difficulty trusting others. Unconscious patterns of over-control. These don't show in performance reviews &ndash; but they destroy team performance.</p>
-        </div>
-        <div class="prob-card">
-          <div class="prob-card-ttl">Training teaches, but doesn't transform</div>
-          <p>Most L&D programs teach frameworks and models. A leader who is internally blocked will absorb information and change nothing. Real change requires going deeper.</p>
-        </div>
-        <div class="prob-card">
-          <div class="prob-card-ttl">No internal person can say the truth</div>
-          <p>Your HR team cannot tell a newly promoted DGM that his leadership style is built on fear of failure. Your own people cannot say what needs to be said. An external coach can.</p>
-        </div>
-      </div>
-      <div class="prob-truth reveal-right">
-        <div class="prob-truth-lbl">The Hard Truth</div>
-        <p class="prob-truth-q">"Leadership failure is rarely loud. It is silent, slow &ndash; and very expensive."</p>
-        <p class="prob-truth-note">Every year, companies invest in onboarding newly promoted leaders. Most of that investment produces polite compliance, not genuine transformation. The reason: the investment is made at the skill level, when the real problem is at the identity level.</p>
-        <br>
-        <p class="prob-truth-note">MECULS works at the identity level &ndash; powered by the 360° PULSE RATE™ Leadership Model. This is where real leadership change either happens, or doesn't.</p>
-      </div>
+  <div class="cp-wrap">
+    <div class="cp-rule rev"></div>
+    <div class="cp-label rev">The problem every organisation faces</div>
+    <h2 class="cp-h2 rev">Your best performers <em>are struggling as leaders.</em></h2>
+
+    <div class="cp-prob-grid">
+
+      <ul class="cp-prob-list">
+        <li class="cp-prob-item rev">
+          <div class="cp-prob-ttl">They were promoted for the wrong reason</div>
+          <p class="cp-prob-body">Exceptional technical performance does not predict leadership capability. The skills that earn promotions are different from the skills that make leaders effective.</p>
+        </li>
+        <li class="cp-prob-item rev">
+          <div class="cp-prob-ttl">The real blocks are invisible</div>
+          <p class="cp-prob-body">Fear of being exposed. Difficulty trusting others. Unconscious patterns of over-control. These do not show up in performance reviews &ndash; but they quietly destroy team performance.</p>
+        </li>
+        <li class="cp-prob-item rev">
+          <div class="cp-prob-ttl">Training teaches, but does not transform</div>
+          <p class="cp-prob-body">Most L&amp;D programmes teach frameworks and models. A leader who is internally blocked will absorb information and change nothing. Real change requires going deeper than information.</p>
+        </li>
+        <li class="cp-prob-item rev">
+          <div class="cp-prob-ttl">No internal person can say the truth</div>
+          <p class="cp-prob-body">Your HR team cannot tell a newly promoted DGM that their leadership style is built on fear of failure. Your own people cannot say what needs to be said. An external coach can.</p>
+        </li>
+      </ul>
+
+      <aside class="cp-truth rev">
+        <div class="cp-truth-lbl">The Hard Truth</div>
+        <p class="cp-truth-q">"Leadership failure is rarely loud. It is silent, slow &ndash; and very expensive."</p>
+        <p class="cp-truth-note">Every year, organisations invest in onboarding their newly promoted leaders. Most of that investment produces polite compliance, not genuine transformation. The reason: the investment is made at the skill level, when the real problem sits at the identity level.</p>
+        <p class="cp-truth-note"><strong>MECULS works at the identity level</strong> &ndash; powered by the 360&deg; PULSE RATE&trade; Leadership Model. This is where real leadership change either happens, or does not.</p>
+      </aside>
+
     </div>
   </div>
 </section>
 
+<!-- ════════════════════ THE PROGRAMME ════════════════════ -->
+<section class="cp-section deep" id="programme">
+  <div class="cp-wrap">
 
-<!-- THE PROGRAM -->
-<section class="cp-section cp-section-dark" id="program">
-  <div class="cp-container">
-    <div class="prog-header reveal">
-      <div class="gold-line" style="margin:0 auto 1.4rem;"></div>
-      <span class="prog-name">The Executive Edge</span>
-      <div class="prog-tagline">Where Vision Meets Execution</div>
-      <p class="prog-desc">A structured, 12-week leadership coaching program for newly promoted senior leaders &ndash; combining deep personality profiling, group sessions, and individual coaching to produce genuine, measurable behavioral change.</p>
+    <div class="cp-prog-head rev">
+      <div class="cp-prog-rule"></div>
+      <div class="cp-label" style="margin-bottom:1.4rem;">The Programme</div>
+      <div class="cp-prog-name">The Executive Edge</div>
+      <div class="cp-prog-tagline">Where Vision Meets Execution</div>
+      <p class="cp-prog-desc">A structured, 12-week leadership coaching programme for newly promoted senior leaders &ndash; combining deep personality profiling, group sessions, and individual coaching to produce genuine, measurable behavioural change.</p>
     </div>
-    <div class="prog-meta reveal">
-      <div><div class="meta-num">12</div><div class="meta-lbl">Weeks</div></div>
-      <div><div class="meta-num">3</div><div class="meta-lbl">Phases</div></div>
-      <div><div class="meta-num">4</div><div class="meta-lbl">Group Sessions</div></div>
-      <div><div class="meta-num">3</div><div class="meta-lbl">1:1 Sessions per Person</div></div>
-      <div><div class="meta-num">100%</div><div class="meta-lbl">Profile Accuracy</div></div>
+
+    <div class="cp-stats rev">
+      <div class="cp-stat">
+        <div class="cp-stat-num">12</div>
+        <div class="cp-stat-lbl">Weeks</div>
+      </div>
+      <div class="cp-stat">
+        <div class="cp-stat-num">3</div>
+        <div class="cp-stat-lbl">Phases</div>
+      </div>
+      <div class="cp-stat">
+        <div class="cp-stat-num">4</div>
+        <div class="cp-stat-lbl">Group Sessions</div>
+      </div>
+      <div class="cp-stat">
+        <div class="cp-stat-num">3</div>
+        <div class="cp-stat-lbl">1:1 Per Leader</div>
+      </div>
+      <div class="cp-stat">
+        <div class="cp-stat-num">100%</div>
+        <div class="cp-stat-lbl">Profile Accuracy</div>
+      </div>
     </div>
-    <div class="phases reveal">
-      <div class="phase">
-        <div class="phase-num">01</div>
-        <div class="phase-wks">Weeks 1–4</div>
-        <div class="phase-ttl">Baseline &amp; Deep Profiling</div>
-        <ul class="phase-list">
+
+    <div class="cp-phases-head rev">
+      <span class="cp-phases-head-lbl">Programme Calendar &middot; Phase 01 &rarr; Phase 03</span>
+      <span class="cp-phases-head-line"></span>
+    </div>
+    <div class="cp-phases rev">
+      <div class="cp-phase">
+        <div class="cp-phase-num">01</div>
+        <div class="cp-phase-wks">Weeks 1&ndash;4</div>
+        <div class="cp-phase-ttl">Baseline &amp; Deep Profiling</div>
+        <ul class="cp-phase-list">
           <li>Personality profiling for each leader</li>
-          <li>Core hidden block identified precisely</li>
+          <li>Core hidden block identified, precisely</li>
           <li>MECULS Personality Type assigned</li>
           <li>Baseline Report delivered to organisation</li>
           <li>Individual coaching tools prescribed</li>
         </ul>
       </div>
-      <div class="phase">
-        <div class="phase-num">02</div>
-        <div class="phase-wks">Weeks 5–8</div>
-        <div class="phase-ttl">Application &amp; Reinforcement</div>
-        <ul class="phase-list">
+      <div class="cp-phase">
+        <div class="cp-phase-num">02</div>
+        <div class="cp-phase-wks">Weeks 5&ndash;8</div>
+        <div class="cp-phase-ttl">Application &amp; Reinforcement</div>
+        <ul class="cp-phase-list">
           <li>Group sessions: communication, presence, team management</li>
           <li>Daily practice tools deployed</li>
-          <li>Real workplace challenges addressed in 1:1s</li>
+          <li>Real workplace challenges in 1:1s</li>
           <li>ACT Model and IRN Framework embedded</li>
           <li>Weekly accountability check-ins</li>
         </ul>
       </div>
-      <div class="phase">
-        <div class="phase-num">03</div>
-        <div class="phase-wks">Weeks 9–12</div>
-        <div class="phase-ttl">Assessment &amp; Final Report</div>
-        <ul class="phase-list">
+      <div class="cp-phase">
+        <div class="cp-phase-num">03</div>
+        <div class="cp-phase-wks">Weeks 9&ndash;12</div>
+        <div class="cp-phase-ttl">Assessment &amp; Final Report</div>
+        <ul class="cp-phase-list">
           <li>Coachability and readiness assessed per leader</li>
-          <li>Behavioral shift measured against baseline</li>
+          <li>Behavioural shift measured against baseline</li>
           <li>Further coaching requirements identified</li>
           <li>Final Report with Jungian typology mapping</li>
-          <li>Recommendations for each individual</li>
+          <li>Recommendations per individual</li>
         </ul>
       </div>
     </div>
-    <div class="deliverables reveal">
-      <div class="deliv"><div class="deliv-icon">📋</div><div class="deliv-ttl">Baseline Report</div><p>Individual personality insight, hidden block identified, and tailored coaching tools &ndash; for every participant, before the program begins.</p></div>
-      <div class="deliv"><div class="deliv-icon">🎯</div><div class="deliv-ttl">Final Assessment Report</div><p>Behavioral shift assessment, MECULS Personality Type with Jungian mapping, coachability rating, and development recommendations.</p></div>
-      <div class="deliv"><div class="deliv-icon">🧭</div><div class="deliv-ttl">Daily Practice Toolkit</div><p>Practical tools each leader uses daily &ndash; the ACT Model, IRN Framework, Perspective Shift, and Daily Practice Tracker.</p></div>
+
+    <div class="cp-deliv-head">
+      <div class="cp-rule rev"></div>
+      <div class="cp-label rev">Deliverables to the organisation</div>
     </div>
+    <div class="cp-deliv-grid rev">
+      <article class="cp-deliv">
+        <div class="cp-deliv-icon">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <rect x="9" y="6" width="30" height="36" rx="2"/>
+            <line x1="15" y1="16" x2="33" y2="16"/>
+            <line x1="15" y1="22" x2="33" y2="22"/>
+            <line x1="15" y1="28" x2="27" y2="28"/>
+            <line x1="15" y1="34" x2="30" y2="34"/>
+          </svg>
+        </div>
+        <h3 class="cp-deliv-ttl">Baseline Report</h3>
+        <p class="cp-deliv-body">Individual personality insight, hidden block identified, and tailored coaching tools &ndash; for every participant, before the programme begins.</p>
+      </article>
+      <article class="cp-deliv">
+        <div class="cp-deliv-icon">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <circle cx="24" cy="24" r="16"/>
+            <circle cx="24" cy="24" r="9"/>
+            <circle cx="24" cy="24" r="2.5" fill="currentColor"/>
+          </svg>
+        </div>
+        <h3 class="cp-deliv-ttl">Final Assessment Report</h3>
+        <p class="cp-deliv-body">Behavioural-shift assessment, MECULS Personality Type with Jungian mapping, coachability rating, and development recommendations.</p>
+      </article>
+      <article class="cp-deliv">
+        <div class="cp-deliv-icon">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <circle cx="24" cy="24" r="16"/>
+            <path d="M24 12 L24 16 M24 32 L24 36 M12 24 L16 24 M32 24 L36 24"/>
+            <path d="M24 24 L31 17"/>
+            <circle cx="24" cy="24" r="1.5" fill="currentColor"/>
+          </svg>
+        </div>
+        <h3 class="cp-deliv-ttl">Daily Practice Toolkit</h3>
+        <p class="cp-deliv-body">Practical tools each leader uses daily &ndash; the ACT Model, IRN Framework, Perspective Shift, and Daily Practice Tracker.</p>
+      </article>
+    </div>
+
   </div>
 </section>
 
+<!-- ════════════════════ DEPTH / PROFILING + TYPES ════════════════════ -->
+<section class="cp-section">
+  <div class="cp-wrap">
 
-<!-- PERSONALITY PROFILING -->
-<section class="cp-section" id="profiling">
-  <div class="cp-container">
-    <div class="prof-layout">
+    <div class="cp-prof-grid">
+
       <div>
-        <div class="gold-line reveal"></div>
-        <div class="sec-label reveal">MECULS 360° PULSE RATE™ Profiling</div>
-        <h2 class="sec-heading reveal">Depth that no test<br><em>can produce.</em></h2>
-        <p class="sec-body reveal">Organisations invest in Hogan, MBTI, and Deeper Signals. These tools produce personality typing. The MECULS 360° PULSE RATE™ Leadership Model goes beyond &ndash; delivering leadership clarity and measurable, sustainable impact through profiling that names the specific internal block driving each leader's behavior.</p>
-        <p class="sec-body reveal" style="margin-top:1rem;">PULSE &ndash; Personality Understanding for Leadership &amp; Strategy Excellence. RATE &ndash; Research on Personality Architecture Based on Jungian Typology for Executive &amp; Enterprise Impact.</p>
-        <div class="reveal" style="margin-top:2rem;">
-          <div class="cmp-head-row">
-            <span class="cmp-head theirs">Hogan / MBTI / Deeper Signals</span>
-            <span class="cmp-head ours">MECULS 360° PULSE RATE™</span>
+        <div class="cp-rule rev"></div>
+        <div class="cp-label rev">MECULS 360&deg; PULSE RATE&trade; profiling</div>
+        <h2 class="cp-h2 rev">Depth that no test <em>can produce.</em></h2>
+        <div class="cp-prose">
+          <p class="rev">Most assessment tools produce personality categories. MECULS 360&deg; PULSE RATE&trade; goes beyond &ndash; delivering leadership clarity and measurable, sustainable impact through profiling that names the specific internal block driving each leader's behaviour.</p>
+          <p class="rev"><strong>PULSE</strong> &ndash; Personality Understanding for Leadership &amp; Strategy Excellence. <strong>RATE</strong> &ndash; Research on Personality Architecture Based on Jungian Typology for Executive &amp; Enterprise Impact.</p>
+        </div>
+
+        <div class="cp-cmp rev">
+          <div class="cp-cmp-heads">
+            <span class="cp-cmp-head theirs">Most Assessment Tools</span>
+            <span class="cp-cmp-head ours">MECULS 360&deg; PULSE RATE&trade;</span>
           </div>
-          <div class="cmp-row"><div class="cmp-cell theirs">Produces personality categories</div><div class="cmp-cell ours">Reveals the specific hidden block</div></div>
-          <div class="cmp-row"><div class="cmp-cell theirs">Self-reported &ndash; easily gamed</div><div class="cmp-cell ours">Direct observation &ndash; cannot be gamed</div></div>
-          <div class="cmp-row"><div class="cmp-cell theirs">Generic recommendations</div><div class="cmp-cell ours">Tailored tools per individual</div></div>
-          <div class="cmp-row"><div class="cmp-cell theirs">Report sits in a drawer</div><div class="cmp-cell ours">Becomes the basis of all coaching work</div></div>
-          <div class="cmp-row"><div class="cmp-cell theirs">Personality typing only</div><div class="cmp-cell ours">Leadership clarity + measurable impact</div></div>
-        </div>
-      </div>
-      <div class="reveal-right">
-        <div class="sec-label" style="margin-bottom:1.4rem;">MECULS Personality Types &ndash; From Real Programs</div>
-        <div class="type-cards">
-          <div class="type-card"><div class="type-name">The Straightforward Realist</div><div class="type-block">Rejects diplomacy as manipulative &ndash; struggles to adapt in leadership forums</div></div>
-          <div class="type-card"><div class="type-name">The Pragmatic Executor</div><div class="type-block">Executes with discipline &ndash; micro-manages because trusting others feels like losing control</div></div>
-          <div class="type-card"><div class="type-name">The Guarded Supporter</div><div class="type-block">Loyal and dependable &ndash; collapses under CXO pressure because he doesn't trust his own abilities</div></div>
-          <div class="type-card"><div class="type-name">The Protective Harmonizer</div><div class="type-block">Creates harmony &ndash; but unknown fear prevents her from taking hard stands</div></div>
-          <div class="type-card"><div class="type-name">The Conviction Holder</div><div class="type-block">Holds strong convictions &ndash; resists feedback because being wrong feels like being worthless</div></div>
-          <div class="type-card"><div class="type-name">The Guarded Controller</div><div class="type-block">Does not trust anyone &ndash; because deep down, he does not trust himself</div></div>
-          <div class="type-note">Each type is proprietary to MECULS &ndash; named, precise, and immediately actionable</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- CASE STUDY -->
-<section class="cp-section cp-section-dark" id="case-study">
-  <div class="cp-container">
-    <div class="gold-line reveal"></div>
-    <div class="sec-label reveal">Delivered Program &ndash; Case Study</div>
-    <h2 class="sec-heading reveal">A leading Pharma company.<br><em>15 newly promoted DGMs.</em></h2>
-    <p class="sec-body reveal" style="margin-bottom:3rem;">A 12-week Executive Edge program delivered for a cohort of newly promoted Deputy General Managers across multiple functions &ndash; manufacturing, quality, finance, commercial, and engineering.</p>
-    <div class="case-layout">
-      <div class="case-box reveal-left">
-        <div class="case-box-lbl">Program Details</div>
-        <div class="case-facts">
-          <div class="cf"><div class="cf-key">Client</div><div class="cf-val">Leading Indian Pharma Company (name withheld on client request)</div></div>
-          <div class="cf"><div class="cf-key">Cohort</div><div class="cf-val">15 newly promoted DGMs across Oral Dosage, Quality, Commercial, Finance &amp; Engineering</div></div>
-          <div class="cf"><div class="cf-key">Duration</div><div class="cf-val">12 weeks &ndash; September to December 2025</div></div>
-          <div class="cf"><div class="cf-key">Format</div><div class="cf-val">4 group sessions + 3 individual 1:1 coaching sessions per participant</div></div>
-          <div class="cf"><div class="cf-key">Deliverables</div><div class="cf-val">Baseline Report, Program Overview &amp; Final Assessment with MECULS Personality Types</div></div>
-          <div class="cf"><div class="cf-key">Focus Areas</div><div class="cf-val">Effective Communication, Executive Presence, Team Management</div></div>
-        </div>
-      </div>
-      <div class="reveal-right">
-        <div class="out-lbl">What the Program Revealed &amp; Delivered</div>
-        <div class="outcomes">
-          <div class="outcome"><div class="out-n">01</div><div class="out-t">Every participant received a precise personality profile with their core hidden block identified &ndash; verified as accurate by the individuals themselves</div></div>
-          <div class="outcome"><div class="out-n">02</div><div class="out-t">15 unique MECULS Personality Types created &ndash; each with a one-line framing statement making the insight instantly memorable and actionable</div></div>
-          <div class="outcome"><div class="out-n">03</div><div class="out-t">Individual coaching tools prescribed per person &ndash; specific tools for each leader's specific block, not generic frameworks applied uniformly</div></div>
-          <div class="outcome"><div class="out-n">04</div><div class="out-t">Final Report mapped each leader's MECULS type to Jungian psychology &ndash; giving HR a rich, professional profile of each leader's developmental path</div></div>
-          <div class="outcome"><div class="out-n">05</div><div class="out-t">Coachability ratings and further coaching timelines provided &ndash; enabling HR to plan the next 6–12 months of development confidently</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- TESTIMONIAL -->
-<section class="cp-section">
-  <div class="cp-container">
-    <div class="testi-wrap reveal">
-      <span class="testi-mark">"</span>
-      <p class="testi-q">Rajneesh's ability to see what is actually happening inside each person &ndash; without any test, without any form to fill &ndash; is <strong>unlike anything we have experienced.</strong> He named things about our leaders that they themselves had never been able to articulate. The reports are professional, deep, and genuinely useful for planning their development.</p>
-      <div class="testi-div"></div>
-      <div class="testi-attr">Senior HR Leader</div>
-      <div class="testi-role">Leading Pharma Organisation, India</div>
-    </div>
-  </div>
-</section>
-
-
-<!-- WHO IS THIS FOR -->
-<section class="cp-section cp-section-dark">
-  <div class="cp-container">
-    <div class="gold-line reveal"></div>
-    <div class="sec-label reveal">Who This Program Is For</div>
-    <h2 class="sec-heading reveal">The right intervention<br><em>at the right moment.</em></h2>
-    <div class="for-grid">
-      <div class="for-card reveal"><div class="for-icon">🏭</div><div class="for-ttl">Manufacturing &amp; Pharma</div><p>New DGMs, plant heads, and functional leaders stepping into cross-functional accountability &ndash; where technical excellence no longer guarantees success.</p></div>
-      <div class="for-card reveal"><div class="for-icon">🏦</div><div class="for-ttl">Banking &amp; Financial Services</div><p>High-performing specialists promoted into leadership &ndash; struggling with the transition from individual contribution to leading teams under pressure.</p></div>
-      <div class="for-card reveal"><div class="for-icon">🌐</div><div class="for-ttl">Global Capability Centers</div><p>GCC leaders managing hybrid global-local teams &ndash; who need to project authority, manage across cultures, and navigate complex stakeholder environments.</p></div>
-      <div class="for-card reveal"><div class="for-icon">👥</div><div class="for-ttl">New Cohort Batches</div><p>Any organisation with a batch of newly promoted leaders where a structured, report-backed, time-bound program is needed to set them up for genuine success.</p></div>
-      <div class="for-card reveal"><div class="for-icon">⚡</div><div class="for-ttl">High-Potential Leaders</div><p>Identified HiPos being prepared for the next level &ndash; where a deep personality profile reveals whether they are truly ready, and what work needs to happen first.</p></div>
-      <div class="for-card reveal"><div class="for-icon">🔄</div><div class="for-ttl">Post-Restructuring Teams</div><p>Leaders navigating a restructuring or merger &ndash; where the psychological impact on identity and authority needs specific, honest work.</p></div>
-    </div>
-  </div>
-</section>
-
-
-<!-- WHAT MAKES US DIFFERENT -->
-<section class="cp-section">
-  <div class="cp-container">
-    <div class="gold-line reveal"></div>
-    <div class="sec-label reveal">What Makes This Different</div>
-    <h2 class="sec-heading reveal">Not a training program.<br><em>A diagnostic and transformation.</em></h2>
-    <div class="diff-grid">
-      <div class="diff-list">
-        <div class="diff-item reveal">
-          <div class="diff-n">01</div>
-          <div><div class="diff-ttl">We identify the actual block &ndash; not a personality type</div><p>Hogan tells you someone is "high adjustment." MECULS 360° PULSE RATE™ tells you: "He does not trust anyone because he does not trust himself." That is the difference between personality typing and leadership clarity.</p></div>
-        </div>
-        <div class="diff-item reveal">
-          <div class="diff-n">02</div>
-          <div><div class="diff-ttl">No test, no questionnaire, no form to fill</div><p>The profiling happens through direct interaction. Leaders cannot perform, cannot prepare, cannot game the process. What you see is what is actually there.</p></div>
-        </div>
-        <div class="diff-item reveal">
-          <div class="diff-n">03</div>
-          <div><div class="diff-ttl">Written reports HR can actually use</div><p>Every participant receives a baseline and a final assessment &ndash; with coaching tools, coachability ratings, and development timelines that HR can act on immediately.</p></div>
-        </div>
-        <div class="diff-item reveal">
-          <div class="diff-n">04</div>
-          <div><div class="diff-ttl">The work that cannot be done internally</div><p>Internal coaches carry politics, hierarchy, and self-interest. An external coach who sees people clearly can say what needs to be said. That is the work that actually moves people.</p></div>
-        </div>
-        <div class="diff-item reveal">
-          <div class="diff-n">05</div>
-          <div><div class="diff-ttl">Structured, time-bound, and repeatable</div><p>12 weeks. Clear phases. Defined deliverables. Measurable outcomes. You know what you are buying, and you know what you will receive.</p></div>
-        </div>
-      </div>
-      <div class="diff-box reveal-right">
-        <blockquote>"The organisations that lose good leaders are not the ones that underpay them. They are the ones that <strong>promoted them without preparing them</strong> &ndash; and then watched them fail silently."</blockquote>
-        <div class="diff-attr">&ndash; Rajneesh Jain, Founder, MECULS</div>
-        <div class="acronym-box">
-          <div class="acronym-lbl">MECULS Stands For</div>
-          <div class="acronym-text">
-            <strong style="color:var(--gold);">M</strong>omentum Architecture Orchestrating
-            <strong style="color:var(--gold);">E</strong>xecutive
-            <strong style="color:var(--gold);">C</strong>oaching for
-            <strong style="color:var(--gold);">U</strong>nlocking
-            <strong style="color:var(--gold);">L</strong>eadership
-            <strong style="color:var(--gold);">S</strong>ymphony
+          <div class="cp-cmp-row">
+            <div class="cp-cmp-cell theirs">Produce personality categories</div>
+            <div class="cp-cmp-cell ours">Reveals the specific hidden block</div>
           </div>
-          <div style="font-size:0.8rem;color:var(--muted);margin-top:0.8rem;line-height:1.65;font-style:italic;">Momentum Architecture™ &ndash; the discipline of orchestrating sustained leadership momentum by design, not motivation.</div>
+          <div class="cp-cmp-row">
+            <div class="cp-cmp-cell theirs">Self-reported &ndash; easily gamed</div>
+            <div class="cp-cmp-cell ours">Direct observation &ndash; cannot be gamed</div>
+          </div>
+          <div class="cp-cmp-row">
+            <div class="cp-cmp-cell theirs">Generic recommendations</div>
+            <div class="cp-cmp-cell ours">Tailored tools per individual</div>
+          </div>
+          <div class="cp-cmp-row">
+            <div class="cp-cmp-cell theirs">Report sits in a drawer</div>
+            <div class="cp-cmp-cell ours">Becomes the basis of all coaching work</div>
+          </div>
+          <div class="cp-cmp-row">
+            <div class="cp-cmp-cell theirs">Personality typing only</div>
+            <div class="cp-cmp-cell ours">Leadership clarity + measurable impact</div>
+          </div>
         </div>
       </div>
+
+      <div>
+        <div class="cp-types-lbl rev">MECULS Personality Types &ndash; from real programmes</div>
+        <div class="cp-types rev">
+          <article class="cp-type">
+            <div class="cp-type-n">01</div>
+            <div class="cp-type-name">The Straightforward Realist</div>
+            <div class="cp-type-block">Rejects diplomacy as manipulative &ndash; struggles to adapt in leadership forums.</div>
+          </article>
+          <article class="cp-type">
+            <div class="cp-type-n">02</div>
+            <div class="cp-type-name">The Pragmatic Executor</div>
+            <div class="cp-type-block">Executes with discipline &ndash; micro-manages because trusting others feels like losing control.</div>
+          </article>
+          <article class="cp-type">
+            <div class="cp-type-n">03</div>
+            <div class="cp-type-name">The Guarded Supporter</div>
+            <div class="cp-type-block">Loyal and dependable &ndash; collapses under CXO pressure because of unspoken self-doubt.</div>
+          </article>
+          <article class="cp-type">
+            <div class="cp-type-n">04</div>
+            <div class="cp-type-name">The Protective Harmoniser</div>
+            <div class="cp-type-block">Creates harmony &ndash; but an unnamed fear prevents the taking of hard stands.</div>
+          </article>
+          <article class="cp-type">
+            <div class="cp-type-n">05</div>
+            <div class="cp-type-name">The Conviction Holder</div>
+            <div class="cp-type-block">Holds strong convictions &ndash; resists feedback because being wrong feels like being worthless.</div>
+          </article>
+          <article class="cp-type">
+            <div class="cp-type-n">06</div>
+            <div class="cp-type-name">The Guarded Controller</div>
+            <div class="cp-type-block">Does not trust anyone &ndash; because deep down, the trust in oneself is missing.</div>
+          </article>
+          <p class="cp-types-note">Each type is proprietary to MECULS &ndash; named, precise, and immediately actionable.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
+<!-- ════════════════════ CASE STUDY (CREAM) ════════════════════ -->
+<section class="cp-section cream" id="case-study">
+  <div class="cp-wrap">
 
-<!-- PULSE RATE BAND -->
-<section class="pr-band">
-  <div class="cp-container">
-    <div class="pr-center reveal">
-      <div class="sec-label" style="text-align:center;">The Model Behind Everything</div>
-      <div class="pr-title">MECULS 360° PULSE RATE™ Leadership Model</div>
-      <p class="pr-sub">Momentum Architecture™ &ndash; the discipline of orchestrating sustained leadership momentum by design, not motivation.<br>We don't coach harder. We design how leadership moves.</p>
-      <div class="pr-cards">
-        <div class="pr-card">
-          <div class="pr-card-lbl">PULSE</div>
-          <div class="pr-card-ttl">Personality Understanding for Leadership &amp; Strategy Excellence</div>
-          <p>Identifies where leadership momentum breaks &ndash; through proprietary personality profiling that reveals the specific internal block, not just a category.</p>
-        </div>
-        <div class="pr-card">
-          <div class="pr-card-lbl">RATE</div>
-          <div class="pr-card-ttl">Research on Personality Architecture Based on Jungian Typology for Executive &amp; Enterprise Impact</div>
-          <p>Redesigns internal decision and behavior architecture &ndash; restoring sustained executive impact through immersive simulations and 360° coaching methodology.</p>
-        </div>
+    <div class="cp-case-head">
+      <div class="cp-rule rev"></div>
+      <div class="cp-label rev">Delivered programme &middot; Case file</div>
+      <h2 class="cp-h2 rev">Strides Pharma. <em>Fifteen newly promoted DGMs.</em></h2>
+      <div class="cp-prose">
+        <p class="rev">A 12-week Executive Edge programme delivered for a cohort of senior managers, newly promoted to Deputy General Manager, across multiple functions &ndash; manufacturing, quality, finance, commercial, and engineering.</p>
       </div>
-      <p class="pr-quote">"With MECULS 360° PULSE RATE™, leaders don't just understand themselves &ndash; they achieve clarity, collaboration, and impact that lasts."</p>
-      <div class="pr-tagline">When architecture is right, momentum becomes music.</div>
+    </div>
+
+    <div class="cp-case-grid">
+
+      <aside class="cp-case-spec rev">
+        <div class="cp-case-spec-lbl">Programme Details</div>
+        <ul class="cp-case-rows">
+          <li>
+            <span class="cp-case-key">Client</span>
+            <span class="cp-case-val"><strong>Strides Pharma Science Limited</strong></span>
+          </li>
+          <li>
+            <span class="cp-case-key">Cohort</span>
+            <span class="cp-case-val">15 newly promoted DGMs across Oral Dosage, Quality, Commercial, Finance &amp; Engineering</span>
+          </li>
+          <li>
+            <span class="cp-case-key">Duration</span>
+            <span class="cp-case-val">12 weeks &middot; September to December 2025</span>
+          </li>
+          <li>
+            <span class="cp-case-key">Format</span>
+            <span class="cp-case-val">4 group sessions + 3 individual 1:1 coaching sessions per participant</span>
+          </li>
+          <li>
+            <span class="cp-case-key">Deliverables</span>
+            <span class="cp-case-val">Baseline Report, Programme Overview &amp; Final Assessment with MECULS Personality Types</span>
+          </li>
+          <li>
+            <span class="cp-case-key">Focus Areas</span>
+            <span class="cp-case-val">Effective Communication, Executive Presence, Team Management</span>
+          </li>
+        </ul>
+      </aside>
+
+      <div class="rev">
+        <div class="cp-out-lbl">What the programme revealed &amp; delivered</div>
+        <ol class="cp-outcomes">
+          <li>
+            <span class="cp-outcome-text">Every participant received a precise personality profile with their core hidden block identified &ndash; <strong>verified as accurate by the individuals themselves.</strong></span>
+          </li>
+          <li>
+            <span class="cp-outcome-text">15 unique MECULS Personality Types created &ndash; each with a one-line framing statement making the insight instantly memorable and actionable.</span>
+          </li>
+          <li>
+            <span class="cp-outcome-text">Individual coaching tools prescribed per person &ndash; specific tools for each leader's specific block, not generic frameworks applied uniformly.</span>
+          </li>
+          <li>
+            <span class="cp-outcome-text">Final Report mapped each leader's MECULS type to Jungian psychology &ndash; giving HR a rich, professional profile of each leader's developmental path.</span>
+          </li>
+          <li>
+            <span class="cp-outcome-text">Coachability ratings and further coaching timelines provided &ndash; enabling HR to plan the next 6&ndash;12 months of development confidently.</span>
+          </li>
+        </ol>
+      </div>
+
     </div>
   </div>
 </section>
 
+<!-- ════════════════════ TESTIMONIAL (CREAM-2) ════════════════════ -->
+<section class="cp-testi-section">
+  <div class="cp-wrap">
+    <div class="cp-testi rev">
+      <span class="cp-testi-mark">&ldquo;</span>
+      <p class="cp-testi-q">Rajneesh's ability to see what is actually happening inside each person &ndash; without any test, without any form to fill &ndash; is <strong>unlike anything we have experienced.</strong> He named things about our leaders that they themselves had never been able to articulate. The reports are professional, deep, and genuinely useful for planning their development.</p>
+      <div class="cp-testi-div"></div>
+      <div class="cp-testi-attr">Senior HR Leader</div>
+      <div class="cp-testi-role">Strides Pharma Science Limited</div>
+    </div>
+  </div>
+</section>
 
-<!-- CLOSING CTA -->
+<!-- ════════════════════ COST OF NOT ACTING (DEEP NAVY) ════════════════════ -->
+<section class="cp-section deep">
+  <div class="cp-wrap">
+    <div class="cp-cost-grid">
+
+      <div>
+        <div class="cp-rule rev"></div>
+        <div class="cp-label rev">If the cohort stays stuck</div>
+        <h2 class="cp-h2 rev">The cost is real, and <em>it compounds.</em></h2>
+      </div>
+
+      <ul class="cp-cost-list">
+        <li class="rev">A newly promoted leader who never resolves their core block <strong>does not stop performing.</strong> They simply perform at the level of the block &ndash; permanently. The organisation pays a senior salary for mid-level leadership.</li>
+        <li class="rev">The cohort that follows them lands behind. <em>Bad leadership patterns transmit downward.</em> The team beneath learns what is tolerated, then becomes the next generation that does the tolerating.</li>
+        <li class="rev">Quiet attrition begins. The strongest people in the team leave first &ndash; and they do not say why. By the time HR notices, the cohort has lost <strong>two of its best.</strong></li>
+        <li class="rev">The L&amp;D budget keeps producing compliance, not change. The next workshop, the next book, the next motivational speaker. Information accumulates. <em>Nothing moves.</em></li>
+      </ul>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ WHO IT'S FOR ════════════════════ -->
+<section class="cp-section">
+  <div class="cp-wrap">
+
+    <div class="cp-for-head">
+      <div class="cp-rule rev"></div>
+      <div class="cp-label rev">Who this programme is for</div>
+      <h2 class="cp-h2 rev">The right intervention <em>at the right moment.</em></h2>
+    </div>
+
+    <div class="cp-for-grid rev">
+
+      <article class="cp-for-card">
+        <div class="cp-for-icon">
+          <svg viewBox="0 0 36 36" aria-hidden="true">
+            <path d="M5 30 L5 14 L13 14 L13 8 L23 8 L23 14 L31 14 L31 30 Z"/>
+            <line x1="9" y1="20" x2="9" y2="24"/>
+            <line x1="17" y1="14" x2="17" y2="18"/>
+            <line x1="17" y1="22" x2="17" y2="26"/>
+            <line x1="27" y1="20" x2="27" y2="24"/>
+          </svg>
+        </div>
+        <h3 class="cp-for-ttl">Manufacturing &amp; Pharma</h3>
+        <p class="cp-for-body">New DGMs, plant heads, and functional leaders stepping into cross-functional accountability &ndash; where technical excellence no longer guarantees success.</p>
+      </article>
+
+      <article class="cp-for-card">
+        <div class="cp-for-icon">
+          <svg viewBox="0 0 36 36" aria-hidden="true">
+            <path d="M4 14 L18 5 L32 14 Z"/>
+            <line x1="6" y1="14" x2="6" y2="26"/>
+            <line x1="14" y1="14" x2="14" y2="26"/>
+            <line x1="22" y1="14" x2="22" y2="26"/>
+            <line x1="30" y1="14" x2="30" y2="26"/>
+            <line x1="3" y1="30" x2="33" y2="30"/>
+          </svg>
+        </div>
+        <h3 class="cp-for-ttl">Banking &amp; Financial Services</h3>
+        <p class="cp-for-body">High-performing specialists promoted into leadership &ndash; struggling with the transition from individual contribution to leading teams under pressure.</p>
+      </article>
+
+      <article class="cp-for-card">
+        <div class="cp-for-icon">
+          <svg viewBox="0 0 36 36" aria-hidden="true">
+            <circle cx="18" cy="18" r="13"/>
+            <path d="M18 5 C12 12, 12 24, 18 31 M18 5 C24 12, 24 24, 18 31"/>
+            <line x1="5" y1="18" x2="31" y2="18"/>
+          </svg>
+        </div>
+        <h3 class="cp-for-ttl">Global Capability Centres</h3>
+        <p class="cp-for-body">GCC leaders managing hybrid global-local teams &ndash; who must project authority, manage across cultures, and navigate complex stakeholder environments.</p>
+      </article>
+
+      <article class="cp-for-card">
+        <div class="cp-for-icon">
+          <svg viewBox="0 0 36 36" aria-hidden="true">
+            <circle cx="11" cy="13" r="4"/>
+            <circle cx="25" cy="13" r="4"/>
+            <circle cx="18" cy="25" r="4"/>
+            <path d="M14 14 L22 14 M14 18 L17 22 M22 18 L19 22"/>
+          </svg>
+        </div>
+        <h3 class="cp-for-ttl">New Cohort Batches</h3>
+        <p class="cp-for-body">Any organisation with a batch of newly promoted leaders where a structured, report-backed, time-bound programme is needed to set them up for genuine success.</p>
+      </article>
+
+      <article class="cp-for-card">
+        <div class="cp-for-icon">
+          <svg viewBox="0 0 36 36" aria-hidden="true">
+            <path d="M14 4 L20 4 L17 16 L26 16 L13 32 L16 20 L8 20 Z"/>
+          </svg>
+        </div>
+        <h3 class="cp-for-ttl">High-Potential Leaders</h3>
+        <p class="cp-for-body">Identified HiPos being prepared for the next level &ndash; where a deep personality profile reveals whether they are truly ready, and what work needs to happen first.</p>
+      </article>
+
+      <article class="cp-for-card">
+        <div class="cp-for-icon">
+          <svg viewBox="0 0 36 36" aria-hidden="true">
+            <path d="M28 18 A10 10 0 1 1 18 8" />
+            <path d="M22 6 L28 8 L26 14"/>
+            <path d="M8 18 A10 10 0 1 1 18 28" />
+            <path d="M14 30 L8 28 L10 22"/>
+          </svg>
+        </div>
+        <h3 class="cp-for-ttl">Post-Restructuring Teams</h3>
+        <p class="cp-for-body">Leaders navigating a restructuring or merger &ndash; where the psychological impact on identity and authority needs specific, honest work.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ WHAT MAKES IT DIFFERENT ════════════════════ -->
+<section class="cp-section deep">
+  <div class="cp-wrap">
+
+    <div style="max-width:800px;margin-bottom:3rem;">
+      <div class="cp-rule rev"></div>
+      <div class="cp-label rev">What makes this different</div>
+      <h2 class="cp-h2 rev">Not a training programme. <em>A diagnostic and a transformation.</em></h2>
+    </div>
+
+    <div class="cp-diff-grid">
+
+      <ol class="cp-diff-list">
+        <li class="rev">
+          <div class="cp-diff-text">
+            <div class="cp-diff-ttl">We identify the actual block &ndash; not a personality category</div>
+            <p class="cp-diff-body">Most assessments tell you someone is "high adjustment" or a particular type. MECULS 360&deg; PULSE RATE&trade; tells you: <em>this leader does not trust anyone because they do not trust themselves.</em> That is the difference between personality typing and leadership clarity.</p>
+          </div>
+        </li>
+        <li class="rev">
+          <div class="cp-diff-text">
+            <div class="cp-diff-ttl">No test, no questionnaire, no form to fill</div>
+            <p class="cp-diff-body">The profiling happens through direct interaction. Leaders cannot perform, cannot prepare, cannot game the process. What you see is what is actually there.</p>
+          </div>
+        </li>
+        <li class="rev">
+          <div class="cp-diff-text">
+            <div class="cp-diff-ttl">Written reports HR can actually use</div>
+            <p class="cp-diff-body">Every participant receives a baseline and a final assessment &ndash; with coaching tools, coachability ratings, and development timelines that HR can act on immediately.</p>
+          </div>
+        </li>
+        <li class="rev">
+          <div class="cp-diff-text">
+            <div class="cp-diff-ttl">The work that cannot be done internally</div>
+            <p class="cp-diff-body">Internal coaches carry politics, hierarchy, and self-interest. An external coach who sees people clearly can say what needs to be said. That is the work that actually moves people.</p>
+          </div>
+        </li>
+        <li class="rev">
+          <div class="cp-diff-text">
+            <div class="cp-diff-ttl">Structured, time-bound, repeatable</div>
+            <p class="cp-diff-body">12 weeks. Clear phases. Defined deliverables. Measurable outcomes. You know what you are buying, and you know what you will receive.</p>
+          </div>
+        </li>
+      </ol>
+
+      <aside class="cp-founder-pull rev">
+        <blockquote>
+          The organisations that lose good leaders are not the ones that underpay them. They are the ones that <strong>promoted them without preparing them</strong> &ndash; and then watched them fail silently.
+        </blockquote>
+        <div class="cp-founder-attr">Rajneesh Jain &middot; Founder, MECULS</div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ ACRONYM PLATE ════════════════════ -->
+<section class="cp-acronym">
+  <div class="cp-acro-wrap">
+    <div class="cp-acro-eyebrow rev">MECULS &middot; The Corporate Acronym</div>
+    <h2 class="cp-acro-h rev">The architecture behind the name &ndash; <em>set down letter by letter.</em></h2>
+
+    <div class="cp-acro-stack rev">
+      <div class="cp-acro-cell">
+        <div class="cp-acro-letter">M</div>
+        <div class="cp-acro-word">Momentum<small>Architecture</small></div>
+      </div>
+      <div class="cp-acro-cell">
+        <div class="cp-acro-letter">E</div>
+        <div class="cp-acro-word">Executive<small>Orchestration</small></div>
+      </div>
+      <div class="cp-acro-cell">
+        <div class="cp-acro-letter">C</div>
+        <div class="cp-acro-word">Coaching<small>for</small></div>
+      </div>
+      <div class="cp-acro-cell">
+        <div class="cp-acro-letter">U</div>
+        <div class="cp-acro-word">Unlocking</div>
+      </div>
+      <div class="cp-acro-cell">
+        <div class="cp-acro-letter">L</div>
+        <div class="cp-acro-word">Leadership</div>
+      </div>
+      <div class="cp-acro-cell">
+        <div class="cp-acro-letter">S</div>
+        <div class="cp-acro-word">Symphony</div>
+      </div>
+    </div>
+
+    <p class="cp-acro-bottom rev">
+      <strong>Momentum Architecture&trade;</strong> &ndash; the discipline of orchestrating sustained leadership momentum by design, not motivation. <em>When architecture is right, momentum becomes music.</em>
+    </p>
+  </div>
+</section>
+
+<!-- ════════════════════ METHODOLOGY BRIDGE ════════════════════ -->
+<section class="cp-bridge">
+  <div class="cp-bridge-wrap">
+    <div class="cp-bridge-lbl rev">The Model Behind Every Programme</div>
+    <h2 class="cp-bridge-h rev">Powered by the <em>360&deg; PULSE RATE&trade;</em> Leadership Model.</h2>
+    <p class="cp-bridge-body rev">The methodology behind every programme &ndash; built on Jungian typology, fifteen years of fieldwork, and analytical rigour no questionnaire can match.</p>
+    <a href="360-pulse-rate.html" class="cp-bridge-link rev">Read the full methodology &rarr;</a>
+  </div>
+</section>
+
+<!-- ════════════════════ CTA ════════════════════ -->
 <section class="cp-cta">
-  <div class="cp-cta-inner reveal">
-    <div class="cp-cta-lbl">Take The Next Step</div>
-    <h2 class="cp-cta-h">Your leaders deserve<br><em>to know what is holding them back.</em></h2>
-    <p class="cp-cta-body">Whether you have a new cohort to develop, a high-potential leader to prepare, or a team struggling after restructuring &ndash; we can design a program that goes where other interventions don't.</p>
-    <div class="cp-btns">
-      <a href="begin-conversation.html" class="btn-gold">Begin a Conversation</a>
-      <a href="bespoke-coaching.html" class="btn-outline">Explore Bespoke Coaching</a>
+  <div class="cp-cta-inner">
+    <div class="cp-cta-lbl rev">Take the next step</div>
+    <h2 class="cp-cta-h rev">Your leaders deserve <em>to know what is holding them back.</em></h2>
+    <p class="cp-cta-body rev">Whether you have a new cohort to develop, a high-potential leader to prepare, or a team navigating restructuring &ndash; we can design a programme that goes where other interventions do not.</p>
+    <div class="cp-cta-btns rev">
+      <a href="begin-conversation.html" class="cp-btn-gold">Begin a Conversation</a>
+      <a href="bespoke-coaching.html" class="cp-btn-outline">Explore Bespoke Coaching</a>
     </div>
   </div>
 </section>
 
-
-<!-- GLOBAL FOOTER -->
+<!-- ════════════════════ FOOTER ════════════════════ -->
 <footer class="global-footer">
+
   <div class="gf-top">
 
     <div class="gf-brand">
       <div class="gf-logo">
-        <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS">
+        <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS" width="140" height="32">
         <span class="gf-logo-text" style="display:none">MECULS</span>
       </div>
       <p class="gf-tagline">Mind Enablement Centre for Unlocking Limitless Leadership &amp; Self-Potential</p>
@@ -470,20 +2167,20 @@
         <span>Delhi, India</span>
       </div>
       <div class="gf-social">
-        <a href="https://www.linkedin.com/in/rajneesh-jain-meculs" aria-label="LinkedIn" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        <a href="https://www.linkedin.com/in/rajneesh-jain-meculs" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
         </a>
-        <a href="https://www.youtube.com/@meculs" aria-label="YouTube" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.33zM9.75 15.02V8.48l5.75 3.27z"/></svg>
+        <a href="https://www.youtube.com/@meculs" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.33zM9.75 15.02V8.48l5.75 3.27z"/></svg>
         </a>
-        <a href="https://www.instagram.com/meculs_official" aria-label="Instagram" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg>
+        <a href="https://www.instagram.com/meculs_official" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg>
         </a>
-        <a href="https://x.com/meculs_official" aria-label="X / Twitter" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        <a href="https://x.com/meculs_official" aria-label="X / Twitter" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
         </a>
-        <a href="https://www.facebook.com/meculs" aria-label="Facebook" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        <a href="https://www.facebook.com/meculs" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
         </a>
       </div>
     </div>
@@ -491,16 +2188,15 @@
     <div>
       <span class="gf-col-title">Services</span>
       <ul class="gf-links">
-        <li><a href="services.html">All Services</a></li>
         <li><a href="360-pulse-rate.html">360&deg; PULSE RATE&trade;</a></li>
         <li><a href="service-personality-profiling.html">Personality Profiling</a></li>
-        <li><a href="service-executive-search.html">Executive Search</a></li>
         <li><a href="bespoke-coaching.html">Executive Coaching &ndash; Bespoke</a></li>
         <li><a href="corporate-programs.html">Corporate Programmes</a></li>
+        <li><a href="service-executive-search.html">Executive Search</a></li>
         <li><a href="service-hr-analytics.html">HR Analytics</a></li>
         <li><a href="service-data-science-analytics.html">Data Science &amp; Analytics</a></li>
         <li><a href="service-market-actionable-intelligence.html">Market Intelligence</a></li>
-        <li><a href="individual-services.html">Individual &amp; Wellness</a></li>
+        <li><a href="organisational-health-consulting.html">Organisational Health</a></li>
         <li><a href="service-consciousness-clarity.html">Consciousness &amp; Clarity</a></li>
         <li><a href="service-mind-wellness.html">Mind Wellness</a></li>
         <li><a href="service-addiction-freedom.html">Addiction Freedom</a></li>
@@ -513,6 +2209,7 @@
     <div>
       <span class="gf-col-title">Company</span>
       <ul class="gf-links">
+        <li><a href="about-meculs.html">About MECULS</a></li>
         <li><a href="about-rajneesh-jain.html">The Founder</a></li>
         <li><a href="how-meculs-works.html">How MECULS Works</a></li>
         <li><a href="the-approach.html">The Approach</a></li>
@@ -530,10 +2227,11 @@
     <div>
       <span class="gf-col-title">Connect</span>
       <ul class="gf-links">
+        <li><a href="cv-portal.html">The CV Portal</a></li>
         <li><a href="begin-conversation.html">Begin a Conversation</a></li>
         <li><a href="book-session.html">Book a Session</a></li>
       </ul>
-      <span class="gf-col-title" style="margin-top: 2rem;">Legal</span>
+      <span class="gf-col-title" style="margin-top:2rem;">Legal</span>
       <ul class="gf-links">
         <li><a href="privacy-policy.html">Privacy Policy</a></li>
         <li><a href="terms.html">Terms of Service</a></li>
@@ -546,7 +2244,6 @@
 
   <div class="gf-bottom">
     <p class="gf-ip">This website, its content, frameworks, methodologies, and design are conceptualised, created, and authored by Rajneesh Jain, Founder, MECULS. All methodologies are the original and exclusive intellectual property of Rajneesh Jain. Unauthorised reproduction or commercial use is prohibited.</p>
-
     <div class="gf-bottom-bar">
       <p class="gf-copy">&copy; 2026 MECULS. All rights reserved. Delhi, India.</p>
       <p class="gf-payment">Payment: PayUBiz &middot; Razorpay &middot; PayPal &middot; UPI &middot; Credit Card</p>
@@ -561,14 +2258,18 @@
 
 </footer>
 
+</div>
+
 <script src="global.js"></script>
 <script>
-  var ro = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (e.isIntersecting) { e.target.classList.add('vis'); ro.unobserve(e.target); }
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
-  document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(function(el){ ro.observe(el); });
+  (function(){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('vis'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.rev').forEach(function(el){ io.observe(el); });
+  })();
 </script>
 
 </body>
