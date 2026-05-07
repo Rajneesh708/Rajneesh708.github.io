@@ -10,7 +10,7 @@
        42 live indexable pages.
        Pages rebuilt this cycle: 360-pulse-rate.html, service-personality-profiling.html,
          corporate-programs.html, bespoke-coaching.html, service-executive-search.html,
-         service-hr-analytics.html (V6.5 rebuilds, 4-7 May 2026)
+         service-hr-analytics.html, service-data-science-analytics.html (V6.5 rebuilds, 4-7 May 2026)
        Maintained by: Rajneesh Jain / MECULS
   ═══════════════════════════════════════════════════════════ -->
 
@@ -143,7 +143,7 @@
   </url>
   <url>
     <loc>https://www.meculs.com/service-data-science-analytics.html</loc>
-    <lastmod>2026-04-19</lastmod>
+    <lastmod>2026-05-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
