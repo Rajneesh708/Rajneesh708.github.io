@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Education – MECULS</title>
+  <link rel="stylesheet" href="styles.css?v=25">
+  <link rel="stylesheet" href="education.css?v=24">
+</head>
+<body>
+
+<div class="form-container">
+
+  <!-- STICKY HEADER with progress indicator -->
+  <div class="sticky-header">
+    <div class="sticky-header__top">
+      <h2 class="page-title">Your Education</h2>
+      <div class="sticky-header__actions">
+        <button type="button" class="btn--save-now" id="saveNowBtn" aria-label="Save your progress now" title="Saves to your account when online; otherwise keeps a copy in this browser on this device.">
+          &#128190; Save Now
+        </button>
+        <span class="progress-badge">Step 6 of 11</span>
+      </div>
+    </div>
+    <div class="progress-bar-track" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" aria-label="Profile completion: step 6 of 11">
+      <div class="progress-bar-fill"></div>
+    </div>
+    <!-- Draft saved indicator (auto-save heartbeat — appears briefly after silent localStorage backup) -->
+    <span class="draft-status hidden" id="draftStatus" aria-live="polite">&check; Draft saved</span>
+  </div>
+
+  <!-- Draft-restore prompt (shown only when localStorage has an unsaved draft from a previous session) -->
+  <div class="draft-restore" id="draftRestorePrompt" role="status" aria-live="polite">
+    <div class="draft-restore__text" id="draftRestoreText">
+      We found work you started earlier. Would you like to continue from there?
+    </div>
+    <div class="draft-restore__actions">
+      <button type="button" class="draft-restore__btn draft-restore__btn--restore" id="draftRestoreBtn">Restore</button>
+      <button type="button" class="draft-restore__btn draft-restore__btn--discard" id="draftDiscardBtn">Start Fresh</button>
+    </div>
+  </div>
+
+  <!-- Comfort banner — sets expectations for this long, important section -->
+  <div class="completion-incentive">
+    <div class="completion-incentive__icon" aria-hidden="true">&#127891;</div>
+    <div>
+      <p class="completion-incentive__heading">Your Education Is Part of Your Foundation</p>
+      <p class="completion-incentive__text">
+        Your degrees, projects, and academic experiences shape how the world sees your potential.
+        Take your time &mdash; what you write here travels with you.
+      </p>
+      <p class="completion-incentive__text completion-incentive__text--mt">
+        <em>Tip:</em> use <strong>&#128190; Save Now</strong> at the top whenever you want to safely
+        store your work. Your progress is also backed up locally as you type.
+      </p>
+    </div>
+  </div>
+
+  <!-- ===== SAVED EDUCATION LIST (renders after each save) ===== -->
+  <div id="education-list"></div>
+
+  <!-- ================= PHASE A: CONTEXT GATE ================= -->
+  <form id="educationStep1" novalidate>
+
+    <div class="form-card">
+      <h3 id="eduNumberPage1" class="entry-title hidden">Education 1 — Currently Pursuing</h3>
+
+      <div class="field-group">
+        <label class="field-label">Are You Currently Pursuing Any Education? <span class="required">*</span></label>
+        <select id="currentlyPursuing" class="field-select" required>
+          <option value="">Select</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+      </div>
+
+      <!-- Current education block — shown only if Yes -->
+      <div id="currentEducationBlock" class="sub-card sub-card--blue hidden">
+
+        <div class="field-group">
+          <label class="field-label">Education Level You Are Pursuing <span class="required">*</span></label>
+          <select id="educationLevel" class="field-select">
+            <option value="">Select</option>
+            <option>Bachelor's Degree</option>
+            <option>Master's Degree</option>
+            <option>PhD</option>
+            <option>Diploma</option>
+            <option>Certification</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">Field / Stream of Study <span class="required">*</span></label>
+          <input type="text" id="fieldOfStudy" class="field-input" maxlength="100">
+          <p class="helper-text helper-text--mt-5">e.g. Computer Science, Mechanical, Physics, Commerce, Law</p>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">Institution Name <span class="required">*</span></label>
+          <input type="text" id="institutionName" class="field-input" maxlength="150">
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">Mode of Education <span class="required">*</span></label>
+          <select id="educationMode" class="field-select">
+            <option value="">Select</option>
+            <option>Online</option>
+            <option>Offline</option>
+            <option>Hybrid</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">Start Date <span class="required">*</span></label>
+          <div class="date-row">
+            <select id="eduStartMonth" class="field-select"></select>
+            <select id="eduStartYear" class="field-select"></select>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">Expected Month / Year of Passing <span class="required">*</span></label>
+          <div class="date-row">
+            <select id="eduEndMonth" class="field-select"></select>
+            <select id="eduEndYear" class="field-select"></select>
+          </div>
+        </div>
+
+      </div><!-- /currentEducationBlock -->
+    </div><!-- /form-card -->
+
+    <div class="form-card">
+      <div class="field-group">
+        <label class="field-label">Any Academic Project / Research You Have Done as Part of Your Current Education? <span class="required">*</span></label>
+        <select id="hasAcademicProject" class="field-select" required>
+          <option value="">Select</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+      </div>
+
+      <!-- Projects block — shown only if Yes -->
+      <div id="projectBlockStep1" class="sub-card sub-card--purple hidden">
+        <div id="projectsContainerStep1"></div>
+        <button type="button" class="btn btn--secondary" id="addProjectStep1Btn">
+          + Save &amp; Add Another Project
+        </button>
+      </div>
+    </div>
+
+    <!-- Phase A choice clarification — explains BOTH buttons clearly:
+         primary path is to add past education (optional but encouraged);
+         the Skills button proceeds to the next section, with a confirmation
+         popup shown only when no past education has been added. -->
+    <p class="phase-a-choice-hint">
+      <strong>If you have any past education</strong> &mdash; degrees, diplomas, or other academic
+      qualifications you have completed &mdash; please add them now using the button below.
+      You can add as many as you have, one entry at a time. Past education is optional but
+      strengthens your profile.
+      Once you have added all your past education (or if you have none to add), continue to
+      <em>Your Skills</em>.
+    </p>
+
+    <div class="btn-row">
+      <button type="submit" class="btn btn--secondary" id="step1SubmitBtn">
+        Save &amp; Add My Past Education &rarr;
+      </button>
+      <button type="button" class="btn btn--primary btn--continue-merged" id="step1ContinueBtn">
+        Save &amp; Continue to &ndash; Next step: &ldquo;Your Skills&rdquo; (Step 7 of 11)
+      </button>
+    </div>
+
+  </form><!-- /educationStep1 -->
+
+
+  <!-- ================= PHASE B: REPEATABLE EDUCATION ENTRY ================= -->
+  <form id="educationStep2" novalidate class="hidden">
+
+    <div class="step2-header">
+      <h3 id="eduNumberPage2" class="entry-title"></h3>
+      <button type="button" class="btn btn--ghost btn--small" id="editCurrentEducation">
+        ✏️ Edit Previously Answered Context
+      </button>
+    </div>
+
+    <div class="form-card">
+      <div class="field-group">
+        <label class="field-label">Institution Name <span class="required">*</span></label>
+        <input type="text" id="institution" class="field-input" required maxlength="150">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Degree <span class="required">*</span></label>
+        <input type="text" id="degree" class="field-input" required maxlength="100">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Field of Study</label>
+        <input type="text" id="field_of_study" class="field-input" maxlength="100">
+        <p class="helper-text helper-text--mt-5">e.g. Computer Science, Mechanical, Physics, Commerce, Law</p>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Start Date <span class="required">*</span></label>
+        <div class="date-row">
+          <select id="startMonth" class="field-select" required></select>
+          <select id="startYear" class="field-select" required></select>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">End Date</label>
+        <div class="date-row">
+          <select id="endMonth" class="field-select"></select>
+          <select id="endYear" class="field-select"></select>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Grade / Percentage</label>
+        <input type="text" id="grade" class="field-input" placeholder="e.g. 8.5 CGPA or 85%" maxlength="30">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Skills</label>
+        <input type="text" id="skills" class="field-input" placeholder="Comma separated e.g. Python, Research, Public Speaking" maxlength="200">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Activities &amp; Societies</label>
+        <textarea id="activities" class="field-textarea" placeholder="e.g. Debate Club, NSS, Student Council" maxlength="500"></textarea>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <div class="field-group">
+        <label class="field-label">Any Academic Project / Research for This Education? <span class="required">*</span></label>
+        <select id="hasAcademicProjectStep2" class="field-select" required>
+          <option value="">Select</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+      </div>
+
+      <div id="projectBlockStep2" class="sub-card sub-card--purple hidden">
+        <div id="projectsContainerStep2"></div>
+        <button type="button" class="btn btn--secondary" id="addProjectStep2Btn">
+          + Save &amp; Add Another Project
+        </button>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button type="button" class="btn btn--ghost hidden" id="cancelEditEducationBtn">
+        Cancel Edit
+      </button>
+      <button type="submit" class="btn btn--secondary" id="step2SubmitBtn">
+        Save &amp; Add Another Education
+      </button>
+      <button type="button" class="btn btn--primary btn--continue-merged" id="step2ContinueBtn">
+        Save &amp; Continue to &ndash; Next step: &ldquo;Your Skills&rdquo; (Step 7 of 11)
+      </button>
+    </div>
+
+  </form><!-- /educationStep2 -->
+
+</div><!-- /form-container -->
+
+
+<!-- Floating error popup — scroll-independent, fixed centre screen.
+     Hosts BOTH single-button (showPopup) and Yes/Cancel (showConfirm) modes.
+     Cancel button starts hidden; MC.showConfirm reveals it when needed. -->
+<div class="error-popup-overlay" id="errorPopupOverlay">
+  <div class="error-popup">
+    <div class="error-popup__icon">&#9888;</div>
+    <div class="error-popup__message" id="errorPopupMessage"></div>
+    <div class="error-popup__actions">
+      <button class="error-popup__secondary hidden" id="errorPopupCancel">Cancel</button>
+      <button class="error-popup__close" id="errorPopupClose">OK</button>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js?v=10"></script>
+<script src="mc_storage.js?v=22"></script>
+<script src="mc_supabase.js?v=23"></script>
+<script src="mc_helpers.js?v=10"></script>
+<script src="save_now.js?v=10"></script>
+<script src="education.js?v=13"></script>
+
+</body>
+</html>

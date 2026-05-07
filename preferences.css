@@ -1,0 +1,89 @@
+/* ============================================================
+   MECULS — preferences.css
+   Preferences & Availability section styles.
+   Consistent with established design system.
+   Zero inline styles in HTML.
+
+   Sticky header + progress bar base + draft-status:
+   all shared across main sections, defined globally in styles.css.
+   This page only overrides the per-step progress bar width.
+   ============================================================ */
+
+/* Step 10 of 11 — bar fill width corresponds to current step */
+.progress-bar-fill {
+  width: 91%;
+}
+/* ── Form card ── */
+.form-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+.field-group:last-child {
+  margin-bottom: 0;
+}
+
+/* Card-intro helper paragraph — sits between the .card-heading and
+   the first .field-group when a card needs an explanatory line
+   (e.g. "this section is optional"). Without this rule, the
+   default helper-text styling collapses the heading↔paragraph gap
+   and leaves the paragraph almost touching the first field label.
+   Margins here give it the same breathing room a heading would. */
+.helper-text--card-intro {
+  margin-top: 4px;
+  margin-bottom: 18px;
+  color: #4b5563;
+  line-height: 1.55;
+}
+/* ── Inputs & selects ── */
+.field-input,
+.field-select {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 0.9rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #1f2937;
+  box-sizing: border-box;
+  transition: border-color 0.15s;
+}
+
+.field-input:focus,
+.field-select:focus {
+  outline: none;
+  border-color: #4c73ff;
+  box-shadow: 0 0 0 3px rgba(76,115,255,0.1);
+}
+
+/* ── Inline row — CTC number + currency select side by side ── */
+.inline-2 {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  grid-template-columns: none;
+}
+
+.inline-2 input[type="number"] {
+  flex: 1;
+  min-width: 100px;
+}
+
+.inline-2 select {
+  flex: 1;
+  min-width: 130px;
+}
+
+.inline-2 input[type="text"] {
+  flex: 1;
+  min-width: 130px;
+}
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .inline-2 { flex-direction: column; }
+  .btn-row  { flex-direction: column; }
+}

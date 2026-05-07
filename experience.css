@@ -1,0 +1,200 @@
+/* ============================================================
+   MECULS — Experience Page Styles
+   Mirrors the education.css design system exactly.
+   All visual styling lives here. Zero inline styles in HTML.
+   ============================================================ */
+
+/* ── Sticky header + progress bar base + draft-status:
+   all shared across main sections, defined globally in styles.css.
+   This page only overrides the per-step progress bar width. ── */
+
+/* Step 5 of 11 — bar fill width corresponds to current step */
+.progress-bar-fill {
+  width: 45%;
+}
+
+/* ── Page title (used inside sticky-header) ── */
+.page-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 0;
+}/* ── Project card ── */
+.project-box {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 14px;
+}
+
+.project-box h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 12px;
+}
+
+/* ── Saved experience list cards ── */
+.exp-list-card {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.exp-list-card:hover {
+  border-color: #4c73ff;
+  background: #f5f7ff;
+}
+
+.exp-list-card__info {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Action buttons (Edit, Delete) on the right of each saved card */
+.exp-list-card__actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.exp-list-card__btn {
+  font-size: 0.82rem;
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  width: auto;
+  margin: 0;
+}
+
+.exp-list-card__btn--edit {
+  background: #ffffff;
+  border-color: #c7d2fe;
+  color: #4c73ff;
+}
+.exp-list-card__btn--edit:hover {
+  background: #4c73ff;
+  border-color: #4c73ff;
+  color: #ffffff;
+}
+
+.exp-list-card__btn--delete {
+  background: #ffffff;
+  border-color: #fecaca;
+  color: #dc2626;
+}
+.exp-list-card__btn--delete:hover {
+  background: #dc2626;
+  border-color: #dc2626;
+  color: #ffffff;
+}
+
+/* Mobile: stack info above actions */
+@media (max-width: 600px) {
+  .exp-list-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .exp-list-card__actions {
+    justify-content: flex-end;
+  }
+}
+
+.exp-list-card__info strong {
+  display: block;
+  font-size: 0.95rem;
+  color: #1f2937;
+}
+
+.exp-list-card__info span {
+  font-size: 0.82rem;
+  color: #4b5563;
+}
+
+/* ── Checkbox row ── */
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 0;
+  margin-bottom: 18px;
+}
+
+.checkbox-row input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.checkbox-row label {
+  font-size: 0.9rem;
+  color: #374151;
+  cursor: pointer;
+  margin: 0;
+}
+
+/* ── Inline row (for CTC number + currency) ── */
+.inline-2 {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  grid-template-columns: none;
+}
+
+.inline-2 input[type="number"] {
+  flex: 1;
+  min-width: 100px;
+}
+
+.inline-2 select {
+  flex: 1;
+  min-width: 120px;
+}
+
+.inline-2 input[type="text"] {
+  flex: 1;
+  min-width: 120px;
+}
+.field-group:last-child {
+  margin-bottom: 0;
+}
+/* ── Inputs, selects, textareas ── */
+.field-input,
+.field-select,
+.field-textarea {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 0.9rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #1f2937;
+  box-sizing: border-box;
+  transition: border-color 0.15s;
+}
+
+.field-input:focus,
+.field-select:focus,
+.field-textarea:focus {
+  outline: none;
+  border-color: #4c73ff;
+  box-shadow: 0 0 0 3px rgba(76,115,255,0.1);
+}.date-row .field-select {
+  flex: 1;
+}/* ── Responsive ── */
+@media (max-width: 600px) {
+  .date-row  { flex-direction: column; }
+  .btn-row   { flex-direction: column; }
+  .inline-2  { flex-direction: column; }
+}

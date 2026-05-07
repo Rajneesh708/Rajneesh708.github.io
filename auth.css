@@ -1,0 +1,830 @@
+/* ============================================================
+   MECULS — auth.css
+   Shared styles for login.html and register.html.
+   Loads alongside styles.css + tier_shared.css.
+
+   Colour palette:
+   Navy background  : #0b1120
+   Card background  : #111827
+   Border           : #1e2d40
+   Gold accent      : #c9a84c
+   Primary blue     : #4c73ff
+   ============================================================ */
+
+/* ── Page background ── */
+.auth-body {
+  min-height: 100vh;
+  background: #0b1120;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 16px 60px;
+}
+
+/* ── Outer container ── */
+.auth-container {
+  width: 100%;
+  max-width: 440px;
+}
+
+.auth-container--wide {
+  max-width: 500px;
+}
+
+/* ── Logo ── */
+.auth-logo {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.auth-logo__img {
+  height: 44px;
+  width: auto;
+}
+
+.auth-logo__text {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #c9a84c;
+  letter-spacing: 0.05em;
+}
+
+/* Sub-brand: Ikshu (इक्षु) | The CV Portal — matches the dashboard
+   wordmark exactly so the brand reads consistently across login,
+   register, and inside the product. */
+.auth-subbrand {
+  margin-top: 14px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: #c9a84c;
+  letter-spacing: 0.04em;
+  line-height: 1.35;
+}
+.auth-subbrand-deva {
+  font-family: 'Noto Sans Devanagari', 'Mangal', 'Hind', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.02rem;
+  letter-spacing: 0.05em;
+}
+
+/* Brand tagline — sits below the Ikshu sub-brand on auth pages.
+   Full opacity, full gold so it has presence equal to its meaning. */
+.auth-tagline {
+  margin-top: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.7rem;
+  color: #c9a84c;
+  letter-spacing: 0.02em;
+  line-height: 1.55;
+  text-align: center;
+  opacity: 1;
+}
+
+/* ── Card ── */
+.auth-card {
+  background: #111827;
+  border: 1px solid #1e2d40;
+  border-radius: 12px;
+  padding: 36px 32px;
+}
+
+.auth-card__heading {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #f9fafb;
+  margin: 0 0 6px 0;
+}
+
+.auth-card__sub {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  margin: 0 0 24px 0;
+  line-height: 1.5;
+}
+
+/* ── Google button ── */
+.btn-google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 11px 20px;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  transition: background 0.15s, box-shadow 0.15s;
+  margin-bottom: 20px;
+}
+
+.btn-google:hover {
+  background: #f9fafb;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+}
+
+.btn-google__icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* ── Divider ── */
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  color: #4b5563;
+  font-size: 0.8rem;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #1e2d40;
+}
+
+/* ── Field overrides for dark theme ── */
+.auth-card .field-label {
+  color: #d1d5db;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.auth-card .field-input {
+  background: #0b1120;
+  border-color: #1e2d40;
+  color: #f9fafb;
+}
+
+.auth-card .field-input:focus {
+  border-color: #4c73ff;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(76,115,255,0.15);
+}
+
+.auth-card .field-input::placeholder {
+  color: #4b5563;
+}
+
+/* ── Password field wrapper ── */
+.field-password-wrap {
+  position: relative;
+}
+
+.field-password-wrap .field-input {
+  padding-right: 44px;
+}
+
+.field-password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0;
+  color: #6b7280;
+  line-height: 1;
+}
+
+/* ── Password strength bar ── */
+.password-strength {
+  height: 4px;
+  background: #1e2d40;
+  border-radius: 2px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.password-strength__bar {
+  height: 100%;
+  width: 0;
+  border-radius: 2px;
+  transition: width 0.3s, background 0.3s;
+}
+
+/* ── Helper text in dark theme ── */
+.auth-card .helper-text {
+  color: #6b7280;
+}
+
+/* ── Auth link (inline) ── */
+.auth-link {
+  color: #4c73ff;
+  text-decoration: none;
+  font-size: inherit;
+}
+
+.auth-link:hover {
+  text-decoration: underline;
+}
+
+/* ── Primary button full width in dark context ── */
+.btn--full {
+  width: 100%;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+/* ── Account type selector ── */
+.auth-type-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.auth-type-option {
+  cursor: pointer;
+}
+
+.auth-type-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.auth-type-option__box {
+  display: block;
+  padding: 14px 12px;
+  background: #0b1120;
+  border: 1px solid #1e2d40;
+  border-radius: 8px;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.auth-type-option--selected .auth-type-option__box {
+  border-color: #4c73ff;
+  background: rgba(76,115,255,0.08);
+}
+
+.auth-type-option__title {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #f9fafb;
+  margin-bottom: 4px;
+}
+
+.auth-type-option__desc {
+  display: block;
+  font-size: 0.75rem;
+  color: #6b7280;
+  line-height: 1.4;
+}
+
+/* ── Checkbox row ── */
+.checkbox-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.checkbox-row input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  accent-color: #4c73ff;
+  cursor: pointer;
+}
+
+.checkbox-row label {
+  font-size: 0.8rem;
+  color: #9ca3af;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+/* ── Success state ── */
+.auth-success {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.auth-success__icon {
+  width: 52px;
+  height: 52px;
+  background: rgba(34,197,94,0.12);
+  border: 2px solid #22c55e;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: #22c55e;
+  margin: 0 auto 16px;
+}
+
+/* Heading above the success message — used on register.html
+   so the user clearly understands the next step is "check your inbox".
+   Higher specificity (.auth-card scope + element selector) so it
+   beats any cached browser default for h2. */
+.auth-card .auth-success h2.auth-success__heading {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #f9fafb;
+  margin: 0 auto 12px;
+  max-width: 320px;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.auth-success__msg {
+  font-size: 0.9rem;
+  color: #d1d5db;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Button inside the success state — used on register.html for "Go to Sign In".
+   Centers the button text and gives top margin to space it from the message. */
+.auth-success__btn {
+  margin-top: 20px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Footer text below card ── */
+.auth-footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+/* ── Error toast overrides for dark card ── */
+.auth-card .toast--error {
+  margin-bottom: 16px;
+}
+
+/* ── Required star ── */
+.auth-card .required {
+  color: #ef4444;
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 28px 20px;
+  }
+
+  .auth-type-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Cloudflare Turnstile CAPTCHA widget ──
+   Centered below the password field. Has its own height/padding from
+   Cloudflare; we just give it room to breathe. */
+.cf-turnstile {
+  margin: 16px 0 8px;
+  display: flex;
+  justify-content: center;
+  min-height: 65px;
+}
+
+/* When CAPTCHA fails or is missing, this message appears below the widget */
+.captcha-error {
+  font-size: 0.8rem;
+  color: #b91c1c;
+  margin-top: 4px;
+  text-align: center;
+}
+
+/* ============================================================
+   ── ADDITIONS (2026-05-05) — consent rebuild + UX polish ──
+   ============================================================
+   These rules were added on 2026-05-05 to support:
+   - Wider auth card on register page (.auth-card--wide)
+   - Two-column form fields (Name + Email side-by-side)
+   - Two-column consent grid (Required + Security | Optional)
+   - Brightened text colours on register/login (better contrast)
+   - SVG password show/hide toggle (replaces emoji)
+   - Disabled button visual state (.btn--disabled)
+   - Focus-visible keyboard navigation rings
+   - ARIA fieldset/legend reset for consent grouping
+
+   All rules are SCOPED so they only affect register.html /
+   login.html — they do not bleed into other pages because:
+   - .auth-card--wide is only on register.html's card
+   - .consent-* classes are unique to the new consent UI
+   - .btn--disabled / .btn-google overrides are guarded by
+     parent context where needed
+   - Brightening overrides target classes that exist only
+     inside .auth-card
+
+   Brand gold (#c9a84c) is used consistently — matches the
+   palette already declared at top of this file.
+   ============================================================ */
+
+/* ── Wider card option (used on register.html) ──
+   Replaces the default 440px max-width with a wider card to
+   accommodate the 2-column consent grid. Scoped to the modifier
+   so existing .auth-card use on login.html stays at 440px. */
+@media (min-width: 720px) and (max-width: 919px) {
+  .auth-container:has(.auth-card--wide),
+  .auth-container.auth-container--w720 {
+    max-width: 760px;
+  }
+  .auth-card.auth-card--wide {
+    max-width: 720px;
+  }
+}
+@media (min-width: 920px) {
+  .auth-container:has(.auth-card--wide),
+  .auth-container.auth-container--w720 {
+    max-width: 920px;
+  }
+  .auth-card.auth-card--wide {
+    max-width: 880px;
+  }
+}
+
+/* ── Two-column form row (Name + Email side-by-side on tablet+) ── */
+@media (min-width: 720px) {
+  .auth-card .form-row-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+}
+
+/* =================================================================
+   BRIGHTNESS OVERRIDES
+   --------------------------------------------------------------
+   The default greys in this stylesheet were chosen for the old
+   narrow card. The wider card with 2 consent columns has more
+   visual surface, and the muted greys read too dim. These
+   overrides brighten text in register.html / login.html only.
+   Scoped to .auth-card so they don't affect other pages.
+   ================================================================= */
+
+.auth-card .auth-card__sub {
+  color: #d1d5db;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.auth-card .auth-divider {
+  color: #cbd5e1;
+}
+
+.auth-card .field-label {
+  color: #f3f4f6;
+  font-weight: 600;
+}
+
+.auth-card .helper-text {
+  color: #cbd5e1;
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.auth-footer {
+  /* footer sits OUTSIDE .auth-card, so cannot be scoped to it.
+     Safe because .auth-footer is unique to auth pages. */
+  color: #d1d5db;
+}
+
+/* =================================================================
+   CONSENT GRID — register.html only
+   --------------------------------------------------------------
+   Layout breakpoints:
+     <720px           → single column (mobile), all stacked
+     >=720px          → 2 columns: [Required + Security] [Optional]
+   ================================================================= */
+
+.auth-card .consent-section {
+  margin: 14px 0 8px 0;
+}
+
+.auth-card .consent-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+@media (min-width: 720px) {
+  .auth-card .consent-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    align-items: stretch;
+  }
+}
+
+/* Reset fieldset default browser styling for consent groups */
+.auth-card .consent-fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+.auth-card .consent-required,
+.auth-card .consent-optional {
+  padding: 14px 16px;
+  border-radius: 6px;
+}
+
+.auth-card .consent-required {
+  background: rgba(201, 168, 76, 0.10);
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  border-left: 3px solid #c9a84c;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-card .consent-optional {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-left: 3px solid rgba(255, 255, 255, 0.30);
+}
+
+/* Security check sub-section divider inside Required box */
+.auth-card .security-section {
+  padding-top: 14px;
+  border-top: 1px solid rgba(201, 168, 76, 0.20);
+}
+
+/* Section legends */
+.auth-card .consent-section__legend {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #c9a84c;
+  margin-bottom: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0;
+  width: 100%;
+}
+.auth-card .consent-section__legend--optional,
+.auth-card .consent-section__legend--security {
+  color: #cbd5e1;
+}
+.auth-card .consent-section__legend--security {
+  margin-bottom: 12px;
+}
+
+/* Consent rows */
+.auth-card .consent-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 4px 0;
+}
+.auth-card .consent-row + .consent-row {
+  margin-top: 6px;
+}
+
+.auth-card .consent-row input[type="checkbox"] {
+  flex-shrink: 0;
+  margin-top: 3px;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: #c9a84c;
+}
+
+.auth-card .consent-row label {
+  font-size: 0.84rem;
+  line-height: 1.55;
+  color: #f3f4f6;
+  cursor: pointer;
+  flex: 1;
+  transition: color 200ms ease;
+}
+
+.auth-card .consent-row input[type="checkbox"]:checked + label {
+  color: #ffffff;
+}
+
+.auth-card .consent-row label a {
+  color: #c9a84c;
+  text-decoration: underline;
+  text-decoration-color: rgba(201, 168, 76, 0.5);
+}
+.auth-card .consent-row label a:hover {
+  text-decoration-color: #c9a84c;
+}
+
+.auth-card .consent-row label .required-mark {
+  color: #ef4444;
+  font-weight: 700;
+  margin-left: 3px;
+}
+
+/* Clarifier text under each optional consent */
+.auth-card .consent-clarifier {
+  font-size: 0.78rem;
+  color: #d1d5db;
+  line-height: 1.55;
+  margin: 4px 0 8px 26px;
+  font-style: normal;
+}
+
+/* Captcha wrap inside the required+security column */
+.auth-card .captcha-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* Repositioned captcha error message (smaller, gentler red) */
+.auth-card .captcha-error-msg {
+  font-size: 0.78rem;
+  color: #fca5a5;
+  margin-top: 8px;
+  text-align: center;
+}
+
+/* Submit button row sits below the consent grid */
+.auth-card .submit-row {
+  margin-top: 16px;
+}
+
+/* =================================================================
+   PASSWORD SHOW/HIDE TOGGLE — SVG icons (replaces emoji)
+   --------------------------------------------------------------
+   The existing .field-password-toggle rule (line 191 above)
+   provides positioning + base style. These additions handle:
+   - Icon sizing
+   - Swapping eye/eye-off based on aria-pressed state
+   - Better hover colour
+   ================================================================= */
+
+.auth-card .field-password-toggle {
+  /* Override font-size from base rule so SVG sizing dominates */
+  font-size: 0;
+  padding: 6px;
+  transition: color 150ms ease;
+}
+.auth-card .field-password-toggle:hover {
+  color: #f3f4f6;
+}
+.auth-card .field-password-toggle svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+/* When password is hidden (default): show eye, hide eye-off */
+.auth-card .field-password-toggle .icon-eye-off {
+  display: none;
+}
+/* When password is visible (aria-pressed=true): swap icons */
+.auth-card .field-password-toggle[aria-pressed="true"] .icon-eye {
+  display: none;
+}
+.auth-card .field-password-toggle[aria-pressed="true"] .icon-eye-off {
+  display: block;
+}
+
+/* =================================================================
+   DISABLED BUTTON VISUAL STATE
+   --------------------------------------------------------------
+   Used by JS when:
+   - Submit button needs CAPTCHA solved first
+   - Google button needs required consents ticked
+   ================================================================= */
+
+.btn--disabled,
+button.btn--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.btn--disabled:hover,
+button.btn--disabled:hover {
+  /* Stop the .btn-google:hover lift effect when disabled */
+  background: #fff;
+  box-shadow: none;
+}
+
+/* =================================================================
+   FOCUS-VISIBLE — keyboard navigation tracking
+   --------------------------------------------------------------
+   Browsers add :focus-visible automatically on keyboard nav,
+   suppress on mouse click. Adds a clear gold ring for
+   keyboard users without disturbing mouse users.
+   Scoped to .auth-card to avoid affecting other pages.
+   ================================================================= */
+
+.auth-card .field-input:focus-visible,
+.auth-card button:focus-visible,
+.auth-card input[type="checkbox"]:focus-visible,
+.auth-card a:focus-visible,
+.auth-footer a:focus-visible {
+  outline: 2px solid #c9a84c;
+  outline-offset: 2px;
+}
+
+/* =================================================================
+   ── ADDITIONS (2026-05-05 evening) — error UX fixes ──
+   =================================================================
+   Issue 1: Error toast at top of form was missed by users who
+            scroll to the bottom to click Submit. They saw nothing
+            happen.
+   Fix:     When .toast--error is inside .auth-card AND has the
+            class .toast--floating (added by JS), pin it to the
+            top of the viewport with a slide-down animation and
+            an auto-dismiss after 8 seconds (or click to dismiss).
+
+   Issue 2: Google button greyed out with no visible cue why
+            (tooltip only shown on desktop hover, invisible on mobile).
+   Fix:     Added .google-hint banner that JS shows directly under
+            the button when required consents are not ticked.
+   ================================================================= */
+
+/* Floating error toast — pinned to top of viewport */
+.auth-card .toast.toast--floating {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 32px);
+  max-width: 520px;
+  margin: 0;
+  padding: 14px 44px 14px 16px;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.40),
+              0 0 0 1px rgba(255,255,255,0.05);
+  z-index: 10000;
+  font-weight: 500;
+  display: block !important;
+  animation: toastSlideDown 220ms ease-out;
+}
+
+/* Close button (×) inside floating toast */
+.auth-card .toast.toast--floating .toast__close {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: #b91c1c;
+  padding: 4px 8px;
+  opacity: 0.7;
+  transition: opacity 150ms ease;
+}
+.auth-card .toast.toast--floating .toast__close:hover {
+  opacity: 1;
+}
+
+@keyframes toastSlideDown {
+  from { transform: translate(-50%, -16px); opacity: 0; }
+  to   { transform: translate(-50%, 0);     opacity: 1; }
+}
+
+/* ── Google-button hint banner ──
+   Shown directly under the Google button when required consents
+   are not ticked. Acts as a clear visible nudge. */
+.auth-card .google-hint {
+  font-size: 0.78rem;
+  color: #fcd34d;
+  background: rgba(251, 191, 36, 0.08);
+  border: 1px solid rgba(251, 191, 36, 0.25);
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin-top: -12px;
+  margin-bottom: 20px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.auth-card .google-hint::before {
+  content: "ℹ";
+  font-size: 0.95rem;
+  color: #fbbf24;
+  flex-shrink: 0;
+}
+
+/* When hidden (consents ticked), collapse it cleanly */
+.auth-card .google-hint.hidden {
+  display: none;
+}

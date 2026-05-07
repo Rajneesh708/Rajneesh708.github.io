@@ -1,0 +1,155 @@
+/* ============================================================
+   consulting_availability.css
+   Page-specific styles for Consulting Availability.
+   Loaded AFTER styles.css and tier_shared.css so this file
+   only contains rules unique to this page.
+   ============================================================ */
+
+/* ── Availability toggle cards (3 options) ──
+   Grid: 3 columns desktop, stacks 1-column on mobile. */
+.avail-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.avail-option {
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  padding: 16px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  user-select: none;
+  display: block;
+}
+.avail-option:hover {
+  border-color: #4c73ff;
+  background: #f8faff;
+}
+.avail-option.selected {
+  border-color: #4c73ff;
+  background: #eef4ff;
+}
+.avail-option input[type="radio"] {
+  display: none;
+}
+.avail-option__icon  {
+  font-size: 1.4rem;
+  margin-bottom: 6px;
+}
+.avail-option__title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 4px;
+}
+.avail-option__desc  {
+  font-size: 0.78rem;
+  color: #4b5563;
+  line-height: 1.4;
+}
+.avail-option.selected .avail-option__title {
+  color: #1d4ed8;
+}
+
+/* ── Domain & Industry tag widgets ──
+   Used by both the Domains list and the Industries list.
+   `.domain-tag--placeholder` is in tier_shared.css (greyed-out
+   state); the base tag styling lives here. */
+.domain-tag-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.domain-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 11px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1d4ed8;
+}
+.domain-tag__remove {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 0;
+  opacity: 0.55;
+  transition: opacity 0.15s;
+  line-height: 1;
+  color: inherit;
+  width: auto;
+  margin-top: 0;
+}
+.domain-tag__remove:hover {
+  opacity: 1;
+}
+
+.domain-add-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  align-items: stretch;
+}
+.domain-add-row .field-input {
+  flex: 1;
+}
+
+/* ── Rate range — single-row layout ──
+   On desktop:   [Currency] [From] – [To] per [Unit]
+   On mobile (<640px): stacks to 2 rows for readability. */
+.rate-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+.rate-row__currency {
+  flex: 0 0 90px;
+}
+.rate-row__amount {
+  flex: 1 1 100px;
+  min-width: 90px;
+}
+.rate-row__sep {
+  color: #4b5563;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.rate-row__per {
+  font-size: 0.875rem;
+  color: #4b5563;
+  flex-shrink: 0;
+}
+.rate-row__unit {
+  flex: 0 0 130px;
+}
+
+@media (max-width: 640px) {
+  .avail-grid {
+    grid-template-columns: 1fr;
+  }
+  .rate-row {
+    /* On narrow screens let the row wrap rather than scroll horizontally;
+       sep and "per" labels stay centred between the wrapped pieces. */
+    gap: 6px 8px;
+  }
+  .rate-row__currency,
+  .rate-row__unit {
+    flex: 0 0 calc(50% - 4px);
+  }
+  .rate-row__amount {
+    flex: 1 1 calc(50% - 4px);
+  }
+  .rate-row__sep {
+    flex: 0 0 100%;
+    text-align: center;
+  }
+}

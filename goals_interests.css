@@ -1,0 +1,447 @@
+/* ============================================================
+   MECULS — goals_interests.css
+   Your Goals & Interests section styles.
+   Consistent with established design system.
+   Zero inline styles in HTML.
+   ============================================================ */
+
+/* ── Sticky header + progress bar base + draft-status:
+   all shared across main sections, defined globally in styles.css.
+   This page only overrides the per-step progress bar width. ── */
+
+/* Step 1 of 11 — bar fill width corresponds to current step */
+.progress-bar-fill {
+  width: 9%;
+}
+
+/* ── Page title & subtitle ── */
+.page-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 0;
+}
+/* ── Card subtext ── */
+.card-subtext {
+  font-size: 0.845rem;
+  color: #4b5563;
+  line-height: 1.6;
+  margin: -12px 0 18px 0;
+}
+
+/* ── Field group modifiers ── */
+.field-group--spaced {
+  margin-top: 20px;
+}
+/* ── RI inner form card ── */
+.ri-form-inner {
+  margin-bottom: 0;
+  box-shadow: none;
+  border-color: #dbeafe;
+  background: #f8faff;
+}
+/* ── Matching preview note ── */
+.matching-preview-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px 18px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  transition: background 0.3s;
+}
+
+.matching-preview-note__icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.matching-preview-note__text {
+  font-size: 0.845rem;
+  color: #15803d;
+  line-height: 1.55;
+}
+
+/* ── Form card ── */
+.form-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+.field-group:last-child {
+  margin-bottom: 0;
+}
+/* ── Inputs, selects, textareas ── */
+.field-input,
+.field-select,
+.field-textarea {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 0.9rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #1f2937;
+  box-sizing: border-box;
+  transition: border-color 0.15s;
+}
+
+.field-input:focus,
+.field-select:focus,
+.field-textarea:focus {
+  outline: none;
+  border-color: #4c73ff;
+  box-shadow: 0 0 0 3px rgba(76,115,255,0.1);
+}
+
+.field-textarea {
+  resize: vertical;
+  min-height: 80px;
+  line-height: 1.55;
+}
+.conditional-block .field-group:last-child {
+  margin-bottom: 0;
+}
+.mobile-row .field-input:not(.field-input--code) {
+  flex: 1;
+  width: auto !important;
+  min-width: 0;
+}
+
+/* ── Button row, buttons, toast, loading spinner, error popup:
+   all now defined globally in styles.css ── */
+
+/* ── Referral value proposition block ── */
+.referral-value-block {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin-top: 20px;
+  margin-bottom: 24px;
+  padding: 18px 20px;
+  background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%);
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  border-left: 4px solid #4c73ff;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.referral-value-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.referral-value-body {
+  flex: 1;
+}
+
+.referral-value-heading {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  margin-bottom: 8px;
+}
+
+.referral-value-text {
+  font-size: 0.85rem;
+  color: #374151;
+  line-height: 1.6;
+  margin-bottom: 6px;
+}
+
+.referral-value-text strong {
+  color: #1f2937;
+}
+
+.referral-value-note {
+  font-size: 0.78rem;
+  color: #4b5563;
+  line-height: 1.5;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed #d1d5db;
+  margin-bottom: 0;
+}
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .mobile-row  { flex-direction: row; } /* keep side by side even on mobile */
+}
+
+/* ============================================================
+   TAG PICKER — used for howWeHelp and howHelpOthers fields
+   Select from dropdown → tag appears. Remove with ✕.
+   ============================================================ */
+
+/* ============================================================
+   Other (please specify) inline input — appears under the
+   dropdown when user picks Other. Supports Add + Cancel,
+   shows char counter (0/100) and an inline helper hint.
+   ============================================================ */
+
+/* Outer wrapper: input row + meta row stacked vertically */
+.tag-other-block {
+  margin-top: 10px;
+}
+
+/* Row containing Other text input + Add button + Cancel button */
+.tag-other-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.tag-other-row .field-input {
+  flex: 1;
+  margin-top: 0;
+}
+
+/* Meta row below the input: hint on left, counter on right */
+.tag-other-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 6px;
+  font-size: 0.78rem;
+  color: #4b5563;
+}
+
+.tag-other-hint {
+  flex: 1;
+  line-height: 1.4;
+}
+
+.tag-other-meta .char-counter-out {
+  flex-shrink: 0;
+  color: #6b7280;
+}
+
+/* Character counter colour states (drive via JS class toggle on counter element) */
+.char-counter-out--warn   { color: #d97706; }
+/* Tag display area */
+.tag-area {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+  min-height: 38px;
+  padding: 8px 10px;
+  border: 1px dashed #d1d5db;
+  border-radius: 8px;
+  background: #fafafa;
+  align-items: center;
+}
+
+/* Placeholder text when empty */
+.tag-area__empty {
+  font-size: 0.82rem;
+  color: #4b5563;
+  font-style: italic;
+}
+
+/* Individual tag */
+.goal-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1d4ed8;
+}
+
+/* Tag for howHelpOthers — slightly different colour */
+.goal-tag--help {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+  color: #15803d;
+}
+
+/* Custom / Other tags */
+.goal-tag--custom {
+  background: #fefce8;
+  border-color: #fde68a;
+  color: #92400e;
+}
+
+/* Remove button inside tag */
+.goal-tag__remove {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.88rem;
+  line-height: 1;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  opacity: 0.55;
+  transition: opacity 0.15s;
+  width: auto;
+  margin-top: 0;
+}
+
+.goal-tag__remove:hover { opacity: 1; }
+/* ============================================================
+   TAG ROWS WITH DESCRIPTION ACCORDION
+   Replaces inline flex-wrap tags for howWeHelp field.
+   Each selected option becomes a full-width row with
+   an expandable "Describe your ask" section.
+   ============================================================ */
+
+/* Override tag-area to be vertical for howWeHelp */
+#howWeHelpTags {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  min-height: 0;
+}
+
+/* Each tag row — full width card */
+.tag-row {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+/* Top line: pill + toggle + remove */
+.tag-row__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  gap: 10px;
+}
+
+/* The coloured pill — same look as before, now inline in header */
+.tag-row__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1d4ed8;
+  flex: 1;
+}
+
+.tag-row__pill--custom {
+  background: #fefce8;
+  border-color: #fde68a;
+  color: #92400e;
+}
+
+/* Right side: toggle + remove grouped together */
+.tag-row__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* "Describe ▼" toggle link */
+.tag-row__toggle {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #4c73ff;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background 0.12s;
+  white-space: nowrap;
+  width: auto;
+  margin-top: 0;
+}
+.tag-row__toggle:hover { background: #eff6ff; }
+
+/* Mandatory indicator on toggle when description is empty */
+.tag-row__toggle--empty { color: #ef4444; }
+.tag-row__toggle--filled { color: #15803d; }
+
+/* Remove button */
+.tag-row__remove {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 4px 6px;
+  color: #9ca3af;
+  transition: color 0.15s;
+  width: auto;
+  margin-top: 0;
+}
+.tag-row__remove:hover { color: #ef4444; }
+
+/* Description accordion body */
+.tag-row__body {
+  display: none;
+  padding: 0 14px 12px 14px;
+  border-top: 1px solid #f3f4f6;
+}
+
+.tag-row__body.open { display: block; }
+
+.tag-row__body textarea {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 0.85rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  resize: vertical;
+  min-height: 64px;
+  max-height: 120px;
+  box-sizing: border-box;
+  margin-top: 8px;
+  color: #1f2937;
+  line-height: 1.5;
+  transition: border-color 0.15s;
+}
+
+.tag-row__body textarea:focus {
+  outline: none;
+  border-color: #4c73ff;
+  box-shadow: 0 0 0 3px rgba(76,115,255,0.08);
+}
+
+.tag-row__body .char-counter-out {
+  margin-top: 4px;
+  text-align: right;
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.tag-row__body .tag-row__desc-hint {
+  font-size: 0.78rem;
+  color: #4b5563;
+  margin-top: 6px;
+  margin-bottom: 0;
+}
+
+/* Filled state — row gets a left accent */
+.tag-row--filled {
+  border-left: 3px solid #4c73ff;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}

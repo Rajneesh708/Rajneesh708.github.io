@@ -1,0 +1,59 @@
+/* ============================================================
+   MECULS — publications.css
+   Page-specific styles for the Publications & Media page.
+
+   Most styles come from the shared styles.css and tier_shared.css.
+   This file only contains classes that are specific to the saved-
+   item card actions (Edit / Delete) on this page.
+
+   Pattern matches key_achievements.css and other 1-to-many pages,
+   with a purple accent matching Publications' visual theme.
+   ============================================================ */
+
+/* ── Actions wrapper ──
+   Stacks Edit + Delete buttons vertically on each saved-item
+   card, matching the layout used on Key Achievements,
+   Experience, Education, etc. */
+.pub-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ── Saved-item card action buttons (Edit + Delete) ──
+   Used on each saved publication card. Matches the visual pattern
+   used on Key Achievements, Experience, Education, etc. */
+
+.pub-card__btn {
+  font-size: 0.82rem;
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  width: auto;
+  font-family: inherit;
+}
+
+.pub-card__btn--edit {
+  background: #ffffff;
+  border-color: #c7d2fe;
+  color: #4c73ff;
+}
+.pub-card__btn--edit:hover {
+  background: #4c73ff;
+  border-color: #4c73ff;
+  color: #ffffff;
+}
+
+.pub-card__btn--delete {
+  background: #ffffff;
+  border-color: #fecaca;
+  color: #dc2626;
+}
+.pub-card__btn--delete:hover {
+  background: #dc2626;
+  border-color: #dc2626;
+  color: #ffffff;
+}

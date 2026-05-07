@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Certifications – MECULS</title>
+  <link rel="stylesheet" href="styles.css?v=10">
+  <link rel="stylesheet" href="certifications.css?v=10">
+</head>
+<body>
+
+<div class="form-container">
+
+  <!-- STICKY HEADER with progress indicator -->
+  <div class="sticky-header">
+    <div class="sticky-header__top">
+      <h1 class="page-title" id="pageTitle">Add Certification-1</h1>
+      <div class="sticky-header__actions">
+        <button type="button" class="btn--save-now" id="saveNowBtn"
+          aria-label="Save your progress now"
+          title="Saves to your account when online; otherwise keeps a copy in this browser on this device.">
+          &#128190; Save Now
+        </button>
+        <span class="progress-badge">Step 8 of 11</span>
+      </div>
+    </div>
+    <p class="page-subtitle">
+      Add the certifications and courses you have completed (or are currently pursuing).
+      You can add as many as you have, one at a time. If you have none, you can skip
+      this section using the Save &amp; Continue button at the bottom.
+    </p>
+    <div class="progress-bar-track" role="progressbar" aria-valuenow="73" aria-valuemin="0" aria-valuemax="100" aria-label="Profile completion: step 8 of 11">
+      <div class="progress-bar-fill"></div>
+    </div>
+    <!-- Draft saved indicator (auto-save heartbeat) -->
+    <span class="draft-status hidden" id="draftStatus" aria-live="polite">&check; Draft saved</span>
+  </div>
+
+  <!-- Draft-restore prompt (shown only when localStorage has an unsaved draft from a previous session) -->
+  <div class="draft-restore" id="draftRestorePrompt" role="status" aria-live="polite">
+    <div class="draft-restore__text" id="draftRestoreText">
+      We found work you started earlier. Would you like to continue from there?
+    </div>
+    <div class="draft-restore__actions">
+      <button type="button" class="draft-restore__btn draft-restore__btn--restore" id="draftRestoreBtn">Restore</button>
+      <button type="button" class="draft-restore__btn draft-restore__btn--discard" id="draftDiscardBtn">Start Fresh</button>
+    </div>
+  </div>
+
+  <!-- Comfort banner — sets expectations for an entries-based section -->
+  <div class="completion-incentive">
+    <div class="completion-incentive__icon" aria-hidden="true">&#127919;</div>
+    <div>
+      <p class="completion-incentive__heading">Each certification or course you add strengthens your profile.</p>
+      <p class="completion-incentive__text">
+        This section is optional &mdash; some people have many certifications, some have none.
+        Add what you have, one at a time. Each entry makes your profile easier to match
+        with the right opportunities.
+      </p>
+      <p class="completion-incentive__text completion-incentive__text--mt">
+        <em>Tip:</em> use <strong>&#128190; Save Now</strong> at the top to safely store
+        what you have entered so far. Your work is also backed up locally as you type.
+      </p>
+    </div>
+  </div>
+
+  <!-- ===== SAVED CERTIFICATIONS LIST (renders after each save) ===== -->
+  <div id="certification-list"></div>
+
+  <form id="certificationForm" novalidate>
+
+    <!-- ================= CORE DETAILS ================= -->
+    <div class="form-card">
+
+      <div class="field-group">
+        <label class="field-label" for="certName">
+          Certification / Course Name <span class="required">*</span>
+        </label>
+        <input type="text" id="certName" class="field-input"
+               placeholder="e.g. PMP, Executive Coaching Program, AWS Solutions Architect"
+               maxlength="120"
+               required>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="issuer">
+          Issuing Organisation <span class="required">*</span>
+        </label>
+        <input type="text" id="issuer" class="field-input"
+               placeholder="e.g. PMI, ICF, Amazon, Coursera, Harvard"
+               maxlength="100"
+               required>
+      </div>
+
+      <!-- Shown only on Certification-1 -->
+      <div class="checkbox-row" id="currentCertCheckbox">
+        <input type="checkbox" id="isCurrent">
+        <label for="isCurrent">I am currently pursuing this certification / course</label>
+      </div>
+
+    </div><!-- /core details card -->
+
+    <!-- ================= DATES ================= -->
+    <div class="form-card">
+
+      <div class="field-group">
+        <label class="field-label">Start Date <span class="required">*</span></label>
+        <div class="date-row">
+          <select id="startMonth" class="field-select" required>
+            <option value="">Month</option>
+            <option value="01">January</option><option value="02">February</option>
+            <option value="03">March</option><option value="04">April</option>
+            <option value="05">May</option><option value="06">June</option>
+            <option value="07">July</option><option value="08">August</option>
+            <option value="09">September</option><option value="10">October</option>
+            <option value="11">November</option><option value="12">December</option>
+          </select>
+          <select id="startYear" class="field-select" required></select>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" id="endDateLabel">End Date / Expected Completion</label>
+        <div class="date-row">
+          <select id="endMonth" class="field-select">
+            <option value="">Month</option>
+            <option value="01">January</option><option value="02">February</option>
+            <option value="03">March</option><option value="04">April</option>
+            <option value="05">May</option><option value="06">June</option>
+            <option value="07">July</option><option value="08">August</option>
+            <option value="09">September</option><option value="10">October</option>
+            <option value="11">November</option><option value="12">December</option>
+          </select>
+          <select id="endYear" class="field-select"></select>
+        </div>
+        <!-- Shown only on Cert-2 onwards (set visible by certifications.js
+             applyPageRules) — explains why end date is required and why
+             the "currently pursuing" checkbox is no longer offered. -->
+        <p class="helper-text helper-text--mb-cert hidden" id="endDateRequiredHint">
+          You are adding a past certification, so the completion date is required.
+          Only your first certification (Certification-1) can be marked as currently in progress.
+        </p>
+      </div>
+
+    </div><!-- /dates card -->
+
+    <!-- ================= CREDENTIAL ================= -->
+    <div class="form-card">
+
+      <div class="field-group">
+        <label class="field-label" for="credentialUrl">
+          Credential URL
+        </label>
+        <p class="helper-text helper-text--mb-cert">
+          Optional. Paste the link to your certificate or credential verification page.
+          We'll automatically add <strong>https://</strong> if you forget it &mdash;
+          you can also use <strong>http://</strong> if your credential server requires it.
+        </p>
+        <input type="url" id="credentialUrl" class="field-input"
+               placeholder="https://www.credential.net/..."
+               maxlength="400">
+        <!-- Live URL hint — only appears if the URL is genuinely unfixable
+             (e.g. javascript:, missing host). Common typos and missing
+             protocol are auto-corrected, so this stays hidden in normal
+             use. Set visible/hidden by certifications.js on input. -->
+        <p class="helper-text helper-text--mb-cert helper-text--error hidden" id="credentialUrlHint" aria-live="polite">
+          &#9888; That doesn't look like a valid web link. Please paste the full URL of your credential page.
+        </p>
+      </div>
+
+    </div><!-- /credential card -->
+
+    <!-- ================= ACTIONS ================= -->
+    <div class="btn-row">
+      <button type="button" class="btn btn--ghost hidden" id="cancelEditCertBtn">
+        Cancel Edit
+      </button>
+      <button type="button" class="btn btn--secondary" id="saveAnotherCertBtn">
+        Save &amp; Add Another Certification / Course
+      </button>
+      <button type="button" class="btn btn--primary btn--continue-merged" id="saveContinueBtn">
+        Save &amp; Continue to &ndash; Next step: &ldquo;Your References&rdquo; (Step 9 of 11)
+      </button>
+    </div>
+    <div id="certInlineError" class="inline-error hidden"></div>
+
+  </form>
+
+</div><!-- /form-container -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js?v=10"></script>
+<script src="mc_storage.js?v=22"></script>
+<script src="mc_supabase.js?v=22"></script>
+<script src="mc_helpers.js?v=10"></script>
+<script src="save_now.js?v=10"></script>
+<script src="certifications.js?v=15"></script>
+
+<!-- Floating error popup — scroll-independent, fixed centre screen -->
+<div class="error-popup-overlay" id="errorPopupOverlay">
+  <div class="error-popup">
+    <div class="error-popup__icon">&#9888;&#65039;</div>
+    <div class="error-popup__message" id="errorPopupMessage"></div>
+    <button class="error-popup__close" id="errorPopupClose">OK</button>
+  </div>
+</div>
+
+</body>
+</html>

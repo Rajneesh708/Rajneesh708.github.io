@@ -1,0 +1,885 @@
+/* ============================================================
+   MECULS — styles.css
+   Global reset and base rules only.
+   This file sets NEUTRAL foundations.
+   All visual styling (colours, fonts, spacing) lives in
+   each page's own CSS file — never overridden from here.
+   ============================================================ */
+
+/* ── Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Form container ── */
+.form-container {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 0 20px 40px 20px;
+}
+
+/* ── Labels — neutral reset only ── */
+label {
+  display: block;
+}
+
+/* ── Inputs, selects, textareas — neutral reset ── */
+input:not([type="radio"]):not([type="checkbox"]),
+textarea,
+select {
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* ── Textarea base ── */
+textarea {
+  resize: vertical;
+  overflow: auto;
+}
+
+/* ── Buttons — neutral reset ONLY ── */
+button {
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  box-sizing: border-box;
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  width: auto;
+}
+
+/* ── Checkbox fix ── */
+input[type="checkbox"],
+input[type="radio"] {
+  width: auto;
+  cursor: pointer;
+}.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.checkbox-row label {
+  font-weight: normal;
+  cursor: pointer;
+}.char-counter-out {
+  text-align: right;
+  font-size: 0.75rem;
+  color: #6b7280;        /* was #9ca3af — brighter to match new helper-text level */
+  margin-top: 3px;
+}
+
+/* ── Helper text — canonical, used by every page.
+   Variants below cover the few pages that historically used different margins.
+   Visual polish 2026-05-05: brightened from #6b7280 → #4b5563 and bumped
+   font-size from 0.78rem → 0.82rem so descriptions, hints, and "Optional"
+   sub-labels are comfortably readable against white.
+   v=25: added margin-bottom: 8px so when helper-text sits between a label
+   and an input (the common Bonus-page pattern), the input no longer
+   touches the helper text. Variants below override this when needed. ── */
+.helper-text {
+  font-size: 0.82rem;
+  color: #4b5563;
+  margin-top: 6px;
+  margin-bottom: 8px;
+  line-height: 1.55;
+}
+
+/* Variant for certifications + professional_introduction pages.
+   Preserves their original margin-top: 4px (from old styles.css default)
+   plus margin-bottom: 8px (page-specific override they had). */
+.helper-text--mb-cert {
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+
+/* Variant for experience page.
+   Preserves its original margin-top: 0 plus margin-bottom: 8px. */
+.helper-text--mb-exp {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+/* Variant for education page.
+   Preserves margin-top: 5px and the historical browser-default line-height
+   (education.css's old rule had no line-height set). */
+.helper-text--mt-5 {
+  margin-top: 5px;
+  line-height: normal;
+}
+
+/* Variant for submission_complete page.
+   Preserves margin-top: 8px. */
+.helper-text--mt-8 {
+  margin-top: 8px;
+}
+
+/* ── Last form-card before button row — removes double spacing gap ── */
+.form-container .form-card:last-of-type {
+  margin-bottom: 0;
+}
+
+/* ── Button row — consistent on ALL pages ──
+   Works at ANY depth inside form-container (direct child or inside a form).
+   Full width buttons, stacked vertically, same gap and spacing everywhere. ── */
+.form-container .btn-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.form-container .btn-row > button {
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Compact btn-row — for buttons inside cards, not at page bottom ── */
+.form-container .btn-row--compact {
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+
+/* ── Iframe safety ── */
+iframe body {
+  max-width: none !important;
+  margin: 0 !important;
+}
+
+/* ── Resume-later banner (shown by guard.js when profile incomplete) ── */
+.resume-banner {
+  background: #fff3cd;
+  border: 1px solid #ffeeba;
+  padding: 12px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s, opacity 0.15s;
+}
+.btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+.btn--primary { background: #4c73ff; color: #ffffff; }
+.btn--primary:hover:not(:disabled) { background: #3a5fd9; }
+
+.btn--secondary { background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; }
+.btn--secondary:hover:not(:disabled) { background: #e5e7eb; }
+
+.btn--ghost { background: transparent; color: #4c73ff; border: 1px solid #4c73ff; }
+.btn--ghost:hover:not(:disabled) { background: #eef4ff; }
+
+.btn--small {
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.btn--save-later {
+  background: #ffffff;
+  color: #4c73ff;
+  border: 1px dashed #4c73ff;
+}
+.btn--save-later:hover:not(:disabled) { background: #eef4ff; }
+
+.btn--add-tag {
+  background: #4c73ff;
+  color: #ffffff;
+  padding: 8px 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+.btn--add-tag:hover:not(:disabled) { background: #3a5fd9; }
+
+.btn--danger-soft {
+  background: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fca5a5;
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: background 0.15s;
+}
+.btn--danger-soft:hover { background: #fecaca; }
+
+/* Merged Save & Continue button — used on pages where the button text
+   includes the next-step hint inline (e.g. "Save & Continue to – Next
+   step: 'Section Name' (Step N of M)"). Taller padding, relaxed line-
+   height, wraps cleanly on narrow screens. Loaded globally so any page
+   can opt in just by adding the .btn--continue-merged class. */
+.btn--continue-merged {
+  padding: 14px 22px;
+  line-height: 1.45;
+  text-align: center;
+  white-space: normal;
+  min-height: 48px;
+  margin-bottom: 32px;
+}
+
+/* Loading spinner appended to button text */
+.btn--loading::after {
+  content: "";
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: mc-spin 0.7s linear infinite;
+  margin-left: 8px;
+}
+@keyframes mc-spin { to { transform: rotate(360deg); } }
+
+/* ============================================================
+   Sticky page header with progress bar — shared across the
+   11 main profile sections so users always see where they are
+   in the flow.
+
+   STRUCTURE EXPECTED IN PAGE HTML:
+     <div class="sticky-header">
+       <div class="sticky-header__top">
+         <h2 class="page-title">...</h2>
+         <span class="progress-badge">Step N of 11</span>
+       </div>
+       <p class="page-subtitle">...</p>
+       <div class="progress-bar-track" role="progressbar" ...>
+         <div class="progress-bar-fill"></div>
+       </div>
+       <span class="draft-status hidden" id="draftStatus">...</span>
+     </div>
+
+   Each page provides its own .progress-bar-fill { width: NN%; }
+   in its page CSS file (Step 1=9%, 2=18%, 3=27%, 4=36%, 5=45%,
+   6=55%, 7=64%, 8=73%, 9=82%, 10=91%, 11=100%).
+   ============================================================ */
+
+.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #f9fafb;
+  padding: 16px 0 12px 0;
+  margin-bottom: 24px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.sticky-header__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.progress-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #4c73ff;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 20px;
+  padding: 3px 10px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.progress-bar-track {
+  height: 4px;
+  background: #e5e7eb;
+  border-radius: 4px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+/* Base — page CSS provides the per-step width override */
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4c73ff, #6b8fff);
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+/* Draft saved indicator (shown briefly when JS auto-saves form data) */
+.draft-status {
+  display: inline-block;
+  font-size: 0.75rem;
+  color: #15803d;
+  margin-top: 6px;
+  font-weight: 500;
+  animation: fadeInUp 0.25s ease;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   Sticky-header right-side cluster — holds the Save Now button
+   and the "Step N of 11" badge side-by-side.
+   ============================================================ */
+.sticky-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   Save Now button — small, lives inside the sticky header.
+   Founder-approved Option B: manual Save Now + silent
+   localStorage backup. Saves to backend; if unreachable,
+   falls back to localStorage so user never loses work.
+   States are toggled by JS via .btn--save-now--saving,
+   --saved, --offline modifier classes.
+   ============================================================ */
+.btn--save-now {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: 1px solid #4c73ff;
+  background: #ffffff;
+  color: #4c73ff;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease,
+    opacity 0.15s ease;
+  white-space: nowrap;
+  font-family: inherit;
+  line-height: 1.2;
+  min-width: 92px;
+  text-align: center;
+}
+
+.btn--save-now:hover:not(:disabled) {
+  background: #eff4ff;
+}
+
+.btn--save-now:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Saving state — disabled, keeps blue colour */
+.btn--save-now.btn--save-now--saving {
+  background: #eff4ff;
+  color: #4c73ff;
+}
+
+/* Saved state — green: backend confirmed the save */
+.btn--save-now.btn--save-now--saved {
+  background: #d1fae5;
+  color: #065f46;
+  border-color: #6ee7b7;
+}
+
+/* Offline state — amber: kept in this browser/device only.
+   Used either when the backend is unreachable (network or server
+   down) OR when the page has no backend endpoint to call (e.g.
+   Education Phase A context gate). The wording on the button
+   ("💻 Saved to this device") tells the user the data is safe
+   on their machine — not a warning that something is broken. */
+.btn--save-now.btn--save-now--offline {
+  background: #fef3c7;
+  color: #92400e;
+  border-color: #fcd34d;
+}
+
+/* ============================================================
+   Draft-restore prompt — shown on page load when localStorage
+   contains an unsaved draft (e.g., user closed the tab without
+   clicking Save & Continue last time).
+   ============================================================ */
+.draft-restore {
+  display: none;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  font-size: 0.88rem;
+  color: #1e40af;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.draft-restore.active {
+  display: flex;
+}
+
+.draft-restore__text {
+  flex: 1;
+  min-width: 200px;
+  line-height: 1.45;
+}
+
+.draft-restore__actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.draft-restore__btn {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid;
+  font-family: inherit;
+  transition: background 0.15s ease;
+}
+
+.draft-restore__btn--restore {
+  background: #4c73ff;
+  color: #ffffff;
+  border-color: #4c73ff;
+}
+.draft-restore__btn--restore:hover {
+  background: #3a5fd9;
+}
+
+.draft-restore__btn--discard {
+  background: #ffffff;
+  color: #6b7280;
+  border-color: #d1d5db;
+}
+.draft-restore__btn--discard:hover {
+  background: #f3f4f6;
+}
+
+/* ============================================================
+   Toast — inline status message at top of form-container.
+   Hidden by default (display:none), JS toggles display:block.
+   ============================================================ */
+.toast {
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  margin-bottom: 16px;
+  display: none;
+}.toast--error {
+  background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5;
+}.toast--success {
+  background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7;
+}
+.toast--info    { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+
+/* ============================================================
+   Completion-incentive banner — soft amber call-out used at
+   the top of long-form pages to set expectations / give comfort.
+   Loaded globally so any page can use it just by including the
+   class in its HTML.
+   ============================================================ */
+.completion-incentive {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 16px 20px;
+  background: #fefce8;
+  border: 1px solid #fde68a;
+  border-radius: 8px;
+  border-left: 4px solid #f59e0b;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-bottom: 24px;
+}
+
+.completion-incentive__icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.completion-incentive__heading {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #92400e;
+  margin-bottom: 5px;
+}
+
+.completion-incentive__text {
+  font-size: 0.82rem;
+  color: #78350f;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.completion-incentive__text strong,
+.completion-incentive__text em {
+  color: #451a03;
+}
+
+/* Multi-paragraph variant — top margin for second/third paragraph in the banner */
+.completion-incentive__text--mt { margin-top: 8px; }
+
+/* ============================================================
+   Floating error popup — fixed centre of screen, hidden by
+   default. ROOT-CAUSE FIX: without display:none here, the
+   popup HTML (which every page includes) rendered visibly at
+   the bottom of every page. This single rule fixes every page
+   whose own CSS file was missing the popup style.
+   ============================================================ */
+.error-popup-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 9000;
+  align-items: center;
+  justify-content: center;
+}
+.error-popup-overlay.active { display: flex; }
+
+.error-popup {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 28px 32px;
+  max-width: 380px;
+  width: 90%;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  text-align: center;
+}
+.error-popup__icon    { font-size: 2rem; margin-bottom: 12px; line-height: 1; }
+.error-popup__message { font-size: 0.9rem; color: #1f2937; line-height: 1.55; margin-bottom: 20px; }
+
+.error-popup__close {
+  background: #4c73ff;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 9px 28px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.error-popup__close:hover { background: #3a5fd9; }
+
+/* Two-button confirm-style popup. Actions row is flex; if secondary is
+   hidden the row collapses to just OK and looks identical to before. */
+.error-popup__actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.error-popup__secondary {
+  background: #f3f4f6;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 9px 22px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.error-popup__secondary:hover { background: #e5e7eb; }
+
+
+/* ============================================================
+   Consolidated shared classes (formerly duplicated across page
+   CSS files). Moved here so every page sees one canonical
+   definition. Each rule below is byte-identical to its prior
+   per-page versions.
+   ============================================================ */
+.field-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1f2937;        /* was #374151 — darker for stronger label presence */
+  margin-bottom: 10px;   /* was 6px — more breathing room between label and input */
+}
+
+.required {
+  color: #ef4444;
+  margin-left: 2px;
+}
+
+.date-row {
+  display: flex;
+  gap: 12px;
+}
+
+.inline-error {
+  font-size: 0.82rem;
+  color: #b91c1c;
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin-top: 8px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.sub-card {
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 16px;
+}
+
+.sub-card--blue {
+  background: #eef4ff;
+  border-left: 4px solid #4c73ff;
+}
+
+.sub-card--purple {
+  background: #f4f2f8;
+  border-left: 4px solid #7b5cff;
+}
+
+.field-input--reveal {
+  margin-top: 8px;
+}
+
+.char-counter-out--limit {
+  color: #b91c1c; font-weight: 600;
+}
+
+.field-group--last {
+  margin-bottom: 0;
+}
+
+.conditional-block {
+  margin-top: 16px;
+  padding: 16px 20px;
+  background: #f8faff;
+  border: 1px solid #dbeafe;
+  border-radius: 8px;
+  border-left: 3px solid #4c73ff;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.mobile-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.field-input--code {
+  width: 80px !important;
+  min-width: 80px !important;
+  max-width: 80px !important;
+  flex-shrink: 0 !important;
+  text-align: center;
+  font-weight: 600;
+  box-sizing: border-box;
+}
+
+.ri-list-heading {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #4c73ff;
+  margin: 0 0 10px 0;
+}
+
+/* Generic empty-state message above a saved-entries list.
+   Used when the user has zero saved items yet. Appears as a soft,
+   dashed-border placeholder inviting them to add their first entry. */
+.saved-list-empty {
+  text-align: center;
+  color: #4b5563;        /* was #9ca3af — brighter, readable empty-state hint */
+  font-size: 0.875rem;
+  padding: 28px 0;
+  border: 1px dashed #e5e7eb;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.ri-card__body {
+  flex: 1;
+}
+
+.ri-card__badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 2px 10px;
+  border-radius: 12px;
+  margin-bottom: 8px;
+}
+
+.ri-card__badge--Researcher {
+  background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe;
+}
+
+.ri-card__badge--Innovator {
+  background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0;
+}
+
+.ri-card__badge--Patent {
+  background: #fefce8; color: #92400e; border: 1px solid #fde68a;
+}
+
+.ri-card__domain {
+  font-size: 0.95rem; font-weight: 700; color: #1f2937; margin-bottom: 3px;
+}
+
+.ri-card__meta {
+  font-size: 0.82rem; color: #4b5563; margin-bottom: 4px;
+}
+
+.ri-card__skills {
+  font-size: 0.82rem; color: #374151; margin-bottom: 4px;
+}
+
+.ri-card__about {
+  font-size: 0.82rem; color: #4b5563; line-height: 1.5; white-space: pre-wrap;
+  display: -webkit-box; -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical; overflow: hidden;
+}
+
+.ri-card__actions {
+  flex-shrink: 0;
+}
+
+.quota-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+
+
+/* Drift resolution: canonical versions of classes that had drifted
+   across page CSS files. Pages with truly different visuals keep
+   their original override in their own page CSS. */
+
+.btn-row--compact {
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+
+.card-heading {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 20px 0;
+}
+
+.char-counter {
+  text-align: right;
+  font-size: 0.75rem;
+  color: #6b7280;        /* was #9ca3af — brighter to match new char-counter-out */
+  margin-top: 3px;
+}
+
+.char-counter-out--warn {
+  color: #d97706; font-weight: 600;
+}
+
+.entry-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #4c73ff;
+  margin-bottom: 16px;
+}
+
+.field-group {
+  margin-bottom: 22px;   /* was 18px — better vertical rhythm between field groups */
+}
+
+.field-textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.form-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.inline-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.page-subtitle {
+  font-size: 0.9rem;     /* was 0.875rem — tiny bump for readability */
+  color: #4b5563;        /* was #6b7280 — darker, comfortable to read against white */
+  margin-bottom: 4px;
+  line-height: 1.6;
+}
+
+.page-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 6px;
+}
+
+.quota-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+}
+
+.ri-card {
+  background: #f8faff;
+  border: 1px solid #dbeafe;
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  border-left: 3px solid #4c73ff;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+/* ── "Other" category custom-label input shown when category=other.
+   Used by Skills, AI Tools, and any future "select with Other" pattern. */
+.field-input--other {
+  margin-top: 8px;
+}

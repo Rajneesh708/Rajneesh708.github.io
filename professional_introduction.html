@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About You – MECULS</title>
+  <link rel="stylesheet" href="styles.css?v=10">
+  <link rel="stylesheet" href="professional_introduction.css?v=11">
+</head>
+<body>
+
+<div class="form-container">
+
+  <!-- STICKY HEADER with progress indicator -->
+  <div class="sticky-header">
+    <div class="sticky-header__top">
+      <h1 class="page-title">About You</h1>
+      <div class="sticky-header__actions">
+        <button type="button" class="btn--save-now" id="saveNowBtn" aria-label="Save your progress now" title="Saves to your account when online; otherwise keeps a copy in this browser on this device.">
+          &#128190; Save Now
+        </button>
+        <span class="progress-badge">Step 4 of 11</span>
+      </div>
+    </div>
+    <p class="page-subtitle">
+      This section helps people understand who you are beyond your job titles.
+      Fill in every field carefully &mdash; this forms the backbone of your profile.
+    </p>
+    <div class="progress-bar-track" role="progressbar" aria-valuenow="36" aria-valuemin="0" aria-valuemax="100" aria-label="Profile completion: step 4 of 11">
+      <div class="progress-bar-fill"></div>
+    </div>
+    <!-- Draft saved indicator (auto-save heartbeat — appears briefly after silent localStorage backup) -->
+    <span class="draft-status hidden" id="draftStatus" aria-live="polite">&check; Draft saved</span>
+  </div>
+
+  <!-- Draft-restore prompt (shown only when localStorage has an unsaved draft from a previous session) -->
+  <div class="draft-restore" id="draftRestorePrompt" role="status" aria-live="polite">
+    <div class="draft-restore__text" id="draftRestoreText">
+      We found work you started earlier on this page. Would you like to continue from there?
+    </div>
+    <div class="draft-restore__actions">
+      <button type="button" class="draft-restore__btn draft-restore__btn--restore" id="draftRestoreBtn">Restore</button>
+      <button type="button" class="draft-restore__btn draft-restore__btn--discard" id="draftDiscardBtn">Start Fresh</button>
+    </div>
+  </div>
+
+  <form id="profileForm" novalidate>
+
+    <!-- =====================================================
+         SECTION A — YOUR KEY PROFESSIONAL SUMMARY
+         Shown to all user types
+    ====================================================== -->
+    <div class="section-block" id="workingProfessionalSection">
+
+      <h2 class="section-heading">Your Key Professional Summary</h2>
+
+      <div class="form-card">
+
+        <div class="field-group">
+          <label class="field-label" for="headline">
+            Professional Headline <span class="required">*</span>
+          </label>
+          <p class="helper-text helper-text--mb-cert">
+            Define your professional identity in one line — your expertise, what you stand for,
+            and what makes you distinctive. (Max 250 characters)
+          </p>
+          <textarea id="headline" class="field-textarea" maxlength="250" required></textarea>
+          <div class="char-counter-out" id="headlineCounter">0 / 250</div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="summary">
+            Professional Summary <span class="required">*</span>
+          </label>
+          <p class="helper-text helper-text--mb-cert">
+            In your own words, describe your total years of experience, your industry and skills,
+            your role and impact, and your key achievements from your present and past experiences.
+            (Max 3,000 characters)
+          </p>
+          <textarea id="summary" class="field-textarea" maxlength="3000" required></textarea>
+          <div class="char-counter-out" id="summaryCounter">0 / 3,000</div>
+        </div>
+
+      </div><!-- /form-card -->
+
+      <!-- ── RESIDENCE ADDRESS ── -->
+      <div class="form-card">
+        <h3 class="card-heading">Residence Address</h3>
+
+        <div class="field-group">
+          <label class="field-label" for="resAddress">
+            Address <span class="required">*</span>
+          </label>
+          <textarea id="resAddress" class="field-textarea" required maxlength="250"></textarea>
+        </div>
+
+        <div class="inline-2">
+          <div class="field-group">
+            <label class="field-label" for="resPinCode">PIN Code <span class="required">*</span></label>
+            <input type="number" id="resPinCode" class="field-input" placeholder="e.g. 400001" required>
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="resState">State <span class="required">*</span></label>
+            <input type="text" id="resState" class="field-input" required maxlength="60">
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="resCountry">Country <span class="required">*</span></label>
+          <select id="resCountry" class="field-select" required>
+            <option value="">Select</option>
+            <option>India</option><option>United States</option><option>United Kingdom</option>
+            <option>Canada</option><option>Australia</option><option>Germany</option>
+            <option>France</option><option>Italy</option><option>Spain</option>
+            <option>Netherlands</option><option>Belgium</option><option>Sweden</option>
+            <option>Norway</option><option>Denmark</option><option>Finland</option>
+            <option>Switzerland</option><option>Austria</option><option>Ireland</option>
+            <option>Singapore</option><option>Japan</option><option>South Korea</option>
+            <option>China</option><option>Hong Kong</option><option>United Arab Emirates</option>
+            <option>Saudi Arabia</option><option>Qatar</option><option>Oman</option>
+            <option>South Africa</option><option>New Zealand</option>
+            <option>Other (please specify)</option>
+          </select>
+          <input id="resCountryOther" class="field-input field-input--reveal hidden"
+                 placeholder="Specify country">
+        </div>
+
+        <div class="field-group">
+          <div class="checkbox-row" id="sameAddressRow">
+            <input type="checkbox" id="sameAddress">
+            <label for="sameAddress">My permanent address is the same as my residence address</label>
+          </div>
+        </div>
+      </div><!-- /residence card -->
+
+      <!-- ── PERMANENT ADDRESS ── -->
+      <div class="form-card" id="permAddressCard">
+        <h3 class="card-heading">Permanent Address</h3>
+
+        <div class="field-group">
+          <label class="field-label" for="permAddress">
+            Address <span class="required">*</span>
+          </label>
+          <textarea id="permAddress" class="field-textarea" required maxlength="250"></textarea>
+        </div>
+
+        <div class="inline-2">
+          <div class="field-group">
+            <label class="field-label" for="permPinCode">PIN Code <span class="required">*</span></label>
+            <input type="number" id="permPinCode" class="field-input" placeholder="e.g. 400001" required>
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="permState">State <span class="required">*</span></label>
+            <input type="text" id="permState" class="field-input" required maxlength="60">
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="permCountry">Country <span class="required">*</span></label>
+          <select id="permCountry" class="field-select" required>
+            <option value="">Select</option>
+            <option>India</option><option>United States</option><option>United Kingdom</option>
+            <option>Canada</option><option>Australia</option><option>Germany</option>
+            <option>France</option><option>Italy</option><option>Spain</option>
+            <option>Netherlands</option><option>Belgium</option><option>Sweden</option>
+            <option>Norway</option><option>Denmark</option><option>Finland</option>
+            <option>Switzerland</option><option>Austria</option><option>Ireland</option>
+            <option>Singapore</option><option>Japan</option><option>South Korea</option>
+            <option>China</option><option>Hong Kong</option><option>United Arab Emirates</option>
+            <option>Saudi Arabia</option><option>Qatar</option><option>Oman</option>
+            <option>South Africa</option><option>New Zealand</option>
+            <option>Other (please specify)</option>
+          </select>
+          <input id="permCountryOther" class="field-input field-input--reveal hidden"
+                 placeholder="Specify country">
+        </div>
+      </div><!-- /permanent address card -->
+
+      <!-- ── EXPERIENCE & PREFERENCES ── -->
+      <div class="form-card">
+
+        <div class="field-group">
+          <label class="field-label" for="totalExperience">
+            Total Experience (Years) <span class="required">*</span>
+          </label>
+          <input type="number" id="totalExperience" class="field-input" min="0" step="1" required>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="preferredCountries">
+            Preferred Countries for Work <span class="required">*</span>
+          </label>
+          <p class="helper-text helper-text--mb-cert">Hold Ctrl (Windows) or Cmd (Mac) to select multiple countries.</p>
+          <select id="preferredCountries" class="field-select field-select--multi" multiple required>
+            <option>India</option>
+            <option>United States</option>
+            <option>United Kingdom</option>
+            <option>Canada</option>
+            <option>Australia</option>
+            <option>Germany</option>
+            <option>France</option>
+            <option>Singapore</option>
+            <option>United Arab Emirates</option>
+            <option>Other country / countries (please specify, separated by comma)</option>
+          </select>
+          <textarea id="preferredCountriesOther" class="field-textarea hidden"
+            placeholder="Specify other country / countries, separated by comma" maxlength="200"></textarea>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="preferredIndiaLocations">
+            Preferred Locations in India (Max 5, comma separated)
+          </label>
+          <p class="helper-text helper-text--mb-cert" id="indiaLocHint">
+            Select "India" in Preferred Countries above to enable this field.
+          </p>
+          <textarea id="preferredIndiaLocations" class="field-textarea" disabled maxlength="300"></textarea>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="foreignVisa">
+            Do You Hold Any Foreign Country Work Visa? <span class="required">*</span>
+          </label>
+          <select id="foreignVisa" class="field-select" required>
+            <option value="">Select</option>
+            <option>Yes</option>
+            <option>No</option>
+          </select>
+        </div>
+
+        <div class="field-group hidden" id="foreignVisaDetailsGroup">
+          <label class="field-label" for="foreignVisaDetails">
+            If yes, specify which foreign country work visa(s) you hold <span class="required">*</span>
+          </label>
+          <input type="text" id="foreignVisaDetails" class="field-input" maxlength="100">
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="willingToRelocate">
+            Willing to Relocate? <span class="required">*</span>
+          </label>
+          <select id="willingToRelocate" class="field-select" required>
+            <option value="">Select</option>
+            <option>Yes</option>
+            <option>No</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="industryType">
+            Current Industry <span class="required">*</span>
+          </label>
+          <select id="industryType" class="field-select" required>
+            <option value="">Select</option>
+            <option>IT</option>
+            <option>Non-IT</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="currentPosition">
+            Current Position <span class="required">*</span>
+          </label>
+          <input type="text" id="currentPosition" class="field-input" required maxlength="100">
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="skillsTop5">
+            Skills — Top 5 (comma separated) <span class="required">*</span>
+          </label>
+          <p class="helper-text helper-text--mb-cert">Enter your top 5 skills separated by commas. Maximum 5 skills allowed.</p>
+          <textarea id="skillsTop5" class="field-textarea" required maxlength="500"></textarea>
+        </div>
+
+      </div><!-- /experience & preferences card -->
+
+    </div><!-- /workingProfessionalSection -->
+
+
+    <!-- =====================================================
+         SECTION B — DEFENSE PERSONNEL
+         Shown only when user_type === "defense"
+    ====================================================== -->
+    <div class="section-block hidden" id="defenseSection">
+      <h2 class="section-heading">Additional Details — Defense Personnel</h2>
+
+      <div class="form-card">
+
+        <div class="field-group">
+          <label class="field-label" for="serviceBranch">
+            Service Branch <span class="required">*</span>
+          </label>
+          <select id="serviceBranch" class="field-select">
+            <option value="">Select</option>
+            <option>Army</option>
+            <option>Navy</option>
+            <option>Air Force</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="yearsOfService">
+            Years of Service <span class="required">*</span>
+          </label>
+          <input type="number" id="yearsOfService" class="field-input" min="0" max="50">
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="rankDesignation">
+            Rank / Designation <span class="required">*</span>
+          </label>
+          <input type="text" id="rankDesignation" class="field-input" maxlength="100">
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="defenseSkills">
+            Skills &amp; Expertise <span class="required">*</span>
+          </label>
+          <textarea id="defenseSkills" class="field-textarea" maxlength="500"></textarea>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="careerTransition">
+            Career Transition Interest <span class="required">*</span>
+          </label>
+          <select id="careerTransition" class="field-select">
+            <option value="">Select</option>
+            <option>Corporate Jobs</option>
+            <option>Government Roles</option>
+            <option>Consulting</option>
+            <option>Training / Teaching</option>
+          </select>
+        </div>
+
+      </div>
+    </div><!-- /defenseSection -->
+
+
+    <!-- =====================================================
+         SECTION C — FAMILY MEMBER OF DEFENSE PERSONNEL
+         Shown only when user_type === "defense_family"
+    ====================================================== -->
+    <div class="section-block hidden" id="defenseFamilySection">
+      <h2 class="section-heading">Additional Details — Family Member of Defense Personnel</h2>
+
+      <div class="form-card">
+
+        <div class="field-group">
+          <label class="field-label" for="relationship">
+            Relationship <span class="required">*</span>
+          </label>
+          <select id="relationship" class="field-select">
+            <option value="">Select</option>
+            <option>Spouse</option>
+            <option>Dependent</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="employmentStatus">
+            Current Employment Status <span class="required">*</span>
+          </label>
+          <select id="employmentStatus" class="field-select">
+            <option value="">Select</option>
+            <option>Employed</option>
+            <option>Seeking Employment</option>
+            <option>Student</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="defFamilySkills">
+            Skills / Qualifications <span class="required">*</span>
+          </label>
+          <textarea id="defFamilySkills" class="field-textarea" maxlength="500"></textarea>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="supportLookingFor">
+            Support / Opportunity Looking For <span class="required">*</span>
+          </label>
+          <select id="supportLookingFor" class="field-select">
+            <option value="">Select</option>
+            <option>Job Opportunities</option>
+            <option>Skill Training</option>
+            <option>Career Guidance</option>
+          </select>
+        </div>
+
+      </div>
+    </div><!-- /defenseFamilySection -->
+
+
+    <!-- =====================================================
+         SECTION D — RESEARCHER / INNOVATOR / PATENT HOLDER
+         Shown only when user_type === "researcher"
+    ====================================================== -->
+    <div class="section-block hidden" id="researcherSection">
+      <h2 class="section-heading">Additional Details &#8212; Researcher / Innovator</h2>
+
+      <!-- Type selector -->
+      <div class="form-card">
+        <div class="field-group field-group--last">
+          <label class="field-label" for="riType">
+            Are You <span class="required">*</span>
+          </label>
+          <select id="riType" class="field-select">
+            <option value="">Select</option>
+            <option value="Researcher">Researcher</option>
+            <option value="Innovator">Innovator</option>
+            <option value="Patent Holder">Patent Holder</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Saved entries list — populated by JS -->
+      <div id="riEntriesList"></div>
+
+      <!-- Entry form — shown after riType is selected, fields labelled by JS -->
+      <div class="form-card hidden" id="riFormCard">
+        <h3 class="card-heading" id="riFormHeading">Add Entry</h3>
+
+        <div class="field-group">
+          <label class="field-label" id="riDomainLabel">Domain <span class="required">*</span></label>
+          <input type="text" id="riDomain" class="field-input"
+                 placeholder="e.g. Biotechnology, Renewable Energy, AI" maxlength="80">
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" id="riSubTypeLabel">Type <span class="required">*</span></label>
+          <select id="riSubType" class="field-select">
+            <option value="">Select</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" id="riSkillsLabel">Skills <span class="required">*</span></label>
+          <input type="text" id="riSkills" class="field-input"
+                 placeholder="Mention up to 3 skills separated by comma" maxlength="200">
+          <p class="helper-text helper-text--mb-cert">Enter up to 3 skills, separated by commas.</p>
+        </div>
+
+        <div class="field-group field-group--last">
+          <label class="field-label" id="riAboutLabel">About <span class="required">*</span></label>
+          <textarea id="riAbout" class="field-textarea" maxlength="1500"
+                    placeholder="Describe in up to 1,500 characters&#8230;"></textarea>
+          <div class="char-counter-out" id="riAboutCounter">0 / 1,500</div>
+        </div>
+
+        <div class="btn-row btn-row--compact">
+          <button type="button" class="btn btn--secondary" id="riAddBtn">
+            + Add to List
+          </button>
+        </div>
+
+      </div><!-- /riFormCard -->
+
+    </div><!-- /researcherSection -->
+
+
+    <!-- ── ACTION ── -->
+    <div class="btn-row">
+      <button type="submit" class="btn btn--primary btn--continue-merged" id="saveBtn">
+        Save &amp; Continue to &ndash; Next step: &ldquo;Your Experience&rdquo; (Step 5 of 11)
+      </button>
+    </div>
+
+  </form>
+</div><!-- /form-container -->
+
+<!-- Supabase JS library + shared MC_SB helper -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js?v=10"></script>
+<script src="mc_storage.js?v=22"></script>
+<script src="mc_supabase.js?v=22"></script>
+<script src="mc_helpers.js?v=10"></script>
+<script src="save_now.js?v=10"></script>
+<script src="professional_introduction.js?v=13"></script>
+
+
+<!-- Floating error popup — scroll-independent, fixed centre screen -->
+<div class="error-popup-overlay" id="errorPopupOverlay">
+  <div class="error-popup">
+    <div class="error-popup__icon">&#9888;&#65039;</div>
+    <div class="error-popup__message" id="errorPopupMessage"></div>
+    <button class="error-popup__close" id="errorPopupClose">OK</button>
+  </div>
+</div>
+</body>
+</html>

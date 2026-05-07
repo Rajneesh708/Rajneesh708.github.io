@@ -1,0 +1,132 @@
+/* ============================================================
+   portfolio.css
+   Page-specific styles for Work Portfolio.
+   Loaded AFTER styles.css and tier_shared.css so this file
+   only contains rules unique to this page.
+
+   Most styles for this page are reused from shared CSS:
+     - .item-card / .item-card--accent-blue + sub-elements
+       (used for the saved-portfolio-items list)
+     - .list-heading (used for "Your Portfolio (N)" heading)
+     - .saved-list-empty (empty state placeholder)
+     - .completion-incentive (comfort banner)
+     - .step-badge--bonus (gold "Bonus 5 of 7" badge)
+     - .checkbox-row (shared — used for the Show on Profile toggle)
+     - .form-card / .field-group / .field-input / .field-textarea /
+       .char-counter-out, etc. (all in shared CSS)
+
+   This page only needs ONE unique widget:
+     1. Type-chip-grid (work-type radio chips)
+   …plus Edit/Delete button styles for the saved-list cards.
+
+   The previous file-upload zone (.upload-zone*) and 3-way
+   visibility radio cards (.visibility-grid / .visibility-option*)
+   were removed in the simplification pass.
+   ============================================================ */
+
+/* ============================================================
+   1. TYPE-CHIP GRID — work-type radio chips
+   ============================================================ */
+
+.type-chip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 8px;
+}
+
+.type-chip {
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 10px 6px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #374151;
+  transition: border-color 0.15s, background 0.15s;
+  user-select: none;
+}
+
+.type-chip:hover {
+  border-color: #4c73ff;
+  background: #f0f5ff;
+}
+
+.type-chip.selected {
+  border-color: #4c73ff;
+  background: #eef4ff;
+  color: #1d4ed8;
+  font-weight: 700;
+}
+
+.type-chip input[type="radio"] {
+  display: none;
+}
+
+.type-chip__icon {
+  font-size: 1.2rem;
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* ============================================================
+   2. EDIT / DELETE BUTTONS ON SAVED PORTFOLIO CARDS
+   ============================================================
+   Mirrors the Edit/Delete pattern used on Experience, Certifications,
+   References, Key Achievements. Stacked vertical layout per card. */
+
+.pf-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pf-card__btn {
+  font-size: 0.82rem;
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  width: auto;
+  margin: 0;
+}
+
+.pf-card__btn--edit {
+  background: #ffffff;
+  border-color: #c7d2fe;
+  color: #4c73ff;
+}
+.pf-card__btn--edit:hover {
+  background: #4c73ff;
+  border-color: #4c73ff;
+  color: #ffffff;
+}
+
+.pf-card__btn--delete {
+  background: #ffffff;
+  border-color: #fecaca;
+  color: #dc2626;
+}
+.pf-card__btn--delete:hover {
+  background: #dc2626;
+  border-color: #dc2626;
+  color: #ffffff;
+}
+
+/* Hover state on whole card to indicate clickable body */
+.item-card.item-card--accent-blue {
+  transition: border-color 0.15s, background 0.15s;
+}
+.item-card.item-card--accent-blue:hover {
+  border-color: #4c73ff;
+  background: #f5f7ff;
+}
+
+@media (max-width: 640px) {
+  .pf-actions {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+}

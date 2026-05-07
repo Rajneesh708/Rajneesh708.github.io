@@ -1,0 +1,130 @@
+/* ============================================================
+   MECULS — Profile Category Page Styles
+   Consistent with education.css / experience.css design system.
+   Zero inline styles in HTML.
+   ============================================================ */
+
+/* ── Sticky header + progress bar base + draft-status:
+   all shared across main sections, defined globally in styles.css.
+   This page only overrides the per-step progress bar width. ── */
+
+/* Step 3 of 11 — bar fill width corresponds to current step */
+.progress-bar-fill {
+  width: 27%;
+}
+
+/* ── Field divider ── */
+.field-divider {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 20px 0;
+}
+
+/* ── Field note (privacy / contextual explanation) ── */
+.field-note {
+  font-size: 0.78rem;
+  color: #4b5563;
+  line-height: 1.55;
+  margin-bottom: 8px;
+  padding: 8px 12px;
+  background: #f9fafb;
+  border-radius: 6px;
+  border-left: 3px solid #d1d5db;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+/* Disclaimer variant — used for the support disclaimer that appears when
+   the user picks Yes on "Do you require any kind of support?". Soft amber
+   accent communicates "informational, please read" without alarm. */
+.field-note--disclaimer {
+  background: #fffbeb;
+  border-left-color: #f59e0b;
+  color: #78350f;
+  margin-top: 12px;
+  margin-bottom: 0;
+}
+/* ── Textarea inside abled block ── */
+.field-textarea-abled {
+  min-height: 80px;
+  resize: vertical;
+  line-height: 1.55;
+}
+
+/* ── Char counter ── */
+.char-counter-abled {
+  text-align: right;
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-top: 3px;
+}
+/* ── Step next hint ── */
+.step-next-hint {
+  font-size: 0.8rem;
+  color: #4b5563;
+  text-align: center;
+  margin-top: 6px;
+  margin-bottom: 32px;
+}
+
+/* ── Page title ── */
+.page-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 0;
+}
+.field-group:last-child {
+  margin-bottom: 0;
+}
+/* ── Select ── */
+.field-select {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 0.9rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #1f2937;
+  box-sizing: border-box;
+  transition: border-color 0.15s;
+}
+
+.field-select:focus {
+  outline: none;
+  border-color: #4c73ff;
+  box-shadow: 0 0 0 3px rgba(76,115,255,0.1);
+}
+
+/* ── Auto message block ── */
+.auto-message {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-radius: 8px;
+  background: #f0f7ff;
+  border: 1px solid #bfdbfe;
+}
+
+.auto-message__next {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1e40af;
+  margin: 0 0 4px 0;
+}
+
+.auto-message__skip {
+  font-size: 0.85rem;
+  color: #b91c1c;
+  margin: 6px 0 0 0;
+}
+
+/* ── Page subtitle (used inside sticky-header) ── */
+.page-subtitle {
+  font-size: 0.9rem;
+  color: #4b5563;
+  margin-bottom: 4px;
+  line-height: 1.6;
+}
+/* ── Responsive ── */
+@media (max-width: 600px) {
+}

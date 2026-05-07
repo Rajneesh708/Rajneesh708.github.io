@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Goals &amp; Interests – MECULS</title>
+  <link rel="stylesheet" href="styles.css?v=25">
+  <link rel="stylesheet" href="goals_interests.css?v=24">
+</head>
+<body>
+
+<div class="form-container">
+
+  <!-- STICKY HEADER with progress indicator -->
+  <div class="sticky-header">
+    <div class="sticky-header__top">
+      <h2 class="page-title">What Are You Here to Build?</h2>
+      <div class="sticky-header__actions">
+        <button type="button" class="btn--save-now" id="saveNowBtn"
+          aria-label="Save your progress now"
+          title="Saves to your account when online; otherwise keeps a copy in this browser on this device.">
+          &#128190; Save Now
+        </button>
+        <span class="progress-badge">Step 1 of 11</span>
+      </div>
+    </div>
+    <p class="page-subtitle">
+      Your answers help us find the right people for you — those who can help you grow,
+      and those you can help in return. There are no wrong answers.
+    </p>
+    <div class="progress-bar-track" role="progressbar" aria-valuenow="9" aria-valuemin="0" aria-valuemax="100" aria-label="Profile completion: step 1 of 11">
+      <div class="progress-bar-fill"></div>
+    </div>
+    <!-- Draft saved indicator (auto-save heartbeat) -->
+    <span class="draft-status hidden" id="draftStatus" aria-live="polite">&check; Draft saved</span>
+  </div>
+
+  <!-- Draft-restore prompt (shown only when localStorage has an unsaved draft from a previous session) -->
+  <div class="draft-restore" id="draftRestorePrompt" role="status" aria-live="polite">
+    <div class="draft-restore__text" id="draftRestoreText">
+      We found work you started earlier. Would you like to continue from there?
+    </div>
+    <div class="draft-restore__actions">
+      <button type="button" class="draft-restore__btn draft-restore__btn--restore" id="draftRestoreBtn">Restore</button>
+      <button type="button" class="draft-restore__btn draft-restore__btn--discard" id="draftDiscardBtn">Start Fresh</button>
+    </div>
+  </div>
+
+  <!-- Comfort banner — sets expectations for this important first section -->
+  <div class="completion-incentive">
+    <div class="completion-incentive__icon" aria-hidden="true">&#127919;</div>
+    <div>
+      <p class="completion-incentive__heading">This Section Sets the Tone for Everything Else</p>
+      <p class="completion-incentive__text">
+        Your goals here decide what we surface for you &mdash; the people we connect you with,
+        the opportunities we show you, the way your profile is read.
+        Take your time. There are no wrong answers.
+      </p>
+      <p class="completion-incentive__text completion-incentive__text--mt">
+        <em>Tip:</em> use <strong>&#128190; Save Now</strong> at the top whenever you want to safely
+        store your progress. Your work is also backed up locally as you type.
+      </p>
+    </div>
+  </div>
+
+  <!-- ===== CARD 1: HOW YOU FOUND US ===== -->
+  <div class="form-card">
+    <h3 class="card-heading">How Did You Find Us?</h3>
+
+    <div class="field-group">
+      <label class="field-label" for="heardAboutUs">
+        How did you come to know about us?
+        <span class="required" aria-hidden="true">*</span>
+      </label>
+      <select id="heardAboutUs" class="field-select" aria-required="true">
+        <option value="">Select a channel</option>
+        <option value="LinkedIn">LinkedIn</option>
+        <option value="X (Twitter)">X (Twitter)</option>
+        <option value="Facebook">Facebook</option>
+        <option value="Instagram">Instagram</option>
+        <option value="Word of Mouth">Word of Mouth</option>
+        <option value="Google Search">Google Search</option>
+        <option value="Our Website (meculs.com)">Our Website (meculs.com)</option>
+      </select>
+    </div>
+
+    <!-- Referral value proposition — placed BEFORE the referral question to motivate honest referrals -->
+    <div class="referral-value-block">
+      <div class="referral-value-icon" aria-hidden="true">🔗</div>
+      <div class="referral-value-body">
+        <p class="referral-value-heading">Refer People — Get Connected in Return</p>
+        <p class="referral-value-text">
+          When you refer people to Ikshu (the CV portal of MECULS) and they register with us, we connect you — free of charge —
+          with an equal number of people from our network at a similar level to yours.
+        </p>
+        <p class="referral-value-text">
+          Refer <strong>10 people</strong> → we connect you with <strong>10 people in return</strong>:
+          5 peers at your level, and 5 senior professionals who can open new doors for you.
+        </p>
+        <p class="referral-value-note">
+          <strong>Please note:</strong> This is a goodwill exchange, not a guarantee.
+          We connect referrers with available members in our network &mdash; matches depend on who is registered
+          at the time of your request, their consent to be connected, and timing.
+          MECULS does not guarantee a specific number of connections, the seniority of those connections,
+          or the timeline for making them. By participating, you accept that connections are best-effort
+          and made in good faith. All connections are made via email ID only and are completely free of cost.
+        </p>
+      </div>
+    </div>
+
+    <!-- Referred by registered user -->
+    <div class="field-group">
+      <label class="field-label" for="isReferred">
+        Were you referred to us by a registered Ikshu member?
+        <span class="required" aria-hidden="true">*</span>
+      </label>
+      <select id="isReferred" class="field-select" aria-required="true">
+        <option value="">Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+    </div>
+
+    <!-- Referral details — shown only when isReferred = Yes -->
+    <div class="conditional-block hidden" id="referralBlock" aria-live="polite">
+      <div class="field-group">
+        <label class="field-label" for="referrerName">
+          Referrer's Name
+          <span class="required" aria-hidden="true">*</span>
+        </label>
+        <input type="text" id="referrerName" class="field-input"
+               placeholder="e.g. Arjun Mehta" aria-required="true" maxlength="100">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="referrerEmail">
+          Referrer's Email ID
+          <span class="required" aria-hidden="true">*</span>
+        </label>
+        <input type="email" id="referrerEmail" class="field-input"
+               placeholder="e.g. arjun.mehta@email.com" aria-required="true" maxlength="120">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">
+          Referrer's Mobile Number
+          <span class="required" aria-hidden="true">*</span>
+        </label>
+        <div class="mobile-row">
+          <input type="text" id="referrerCountryCode" class="field-input field-input--code"
+                 placeholder="+91" maxlength="6" aria-label="Country code">
+          <input type="tel" id="referrerMobile" class="field-input"
+                 placeholder="Mobile number" aria-label="Mobile number" aria-required="true" maxlength="20">
+        </div>
+        <p class="helper-text">
+          Country code first (e.g. +91 for India, +1 for US).
+        </p>
+      </div>
+    </div><!-- /referralBlock -->
+
+    <!-- Consent field -->
+    <div class="field-group field-group--spaced">
+      <label class="field-label" for="connectionConsent">
+        Do you consent to us connecting you — by sharing your email ID — with people at a similar level and at a level senior to yours?
+        <span class="required" aria-hidden="true">*</span>
+      </label>
+      <select id="connectionConsent" class="field-select" aria-required="true">
+        <option value="">Select</option>
+        <option value="Yes">Yes, I give my consent</option>
+        <option value="No">No, I do not give my consent at this time</option>
+      </select>
+      <p class="helper-text" id="consentHelperNote">
+        Your email ID will only be shared with registered Ikshu members. You can update this at any time from your profile settings.
+      </p>
+    </div>
+
+  </div><!-- /card 1 -->
+
+  <!-- ===== CARD 2: HOW CAN WE HELP YOU ===== -->
+  <div class="form-card">
+    <h3 class="card-heading">What Are You Looking For?</h3>
+    <p class="card-subtext">
+      This is the core of your Ikshu profile. Your selections here determine who we connect you with.
+      Be specific — the more clearly you describe what you need, the better your matches will be.
+    </p>
+
+    <div class="field-group">
+      <label class="field-label" for="howWeHelpSelect">
+        What are you primarily looking for?
+      </label>
+      <p class="helper-text">Select one or more options. For each selection, you'll be asked to briefly describe your specific need — this is what our matching uses.</p>
+
+      <select id="howWeHelpSelect" class="field-select">
+        <option value="">Choose an option to add</option>
+        <optgroup label="── Career &amp; Professional ──">
+          <option value="Seeking Full-time Employment">Seeking Full-time Employment</option>
+          <option value="Seeking Part-time / Consulting Work">Seeking Part-time / Consulting Work</option>
+          <option value="Seeking Internship">Seeking Internship</option>
+          <option value="Want to be a Freelancer">Want to be a Freelancer</option>
+          <option value="Seeking Professional Network">Seeking Professional Network</option>
+          <option value="Looking for a Mentor in My Field(s)">Looking for a Mentor in My Field(s)</option>
+          <option value="Looking for Knowledge in Particular Field(s)">Looking for Knowledge in Particular Field(s)</option>
+        </optgroup>
+        <optgroup label="── Business &amp; Entrepreneurship ──">
+          <option value="Wish to be an Entrepreneur">Wish to be an Entrepreneur</option>
+          <option value="Looking for Co-founders / Business Partners">Looking for Co-founders / Business Partners</option>
+          <option value="Looking for Investors for My Startup">Looking for Investors for My Startup</option>
+          <option value="Want to Collaborate on a Social / NGO Project">Want to Collaborate on a Social / NGO Project</option>
+        </optgroup>
+        <optgroup label="── Research &amp; Innovation ──">
+          <option value="Seeking Mentorship">Seeking Mentorship</option>
+          <option value="Want to Pitch My Research / Innovation to Industry">Want to Pitch My Research / Innovation to Industry</option>
+          <option value="Want to Pitch My Research / Innovation to Government">Want to Pitch My Research / Innovation to Government</option>
+        </optgroup>
+        <optgroup label="── Agriculture &amp; Environment ──">
+          <option value="Seeking Agricultural Land on Lease (Organic Farming)">Seeking Agricultural Land on Lease (Organic Farming)</option>
+          <option value="Looking for Help in Plantation">Looking for Help in Plantation</option>
+          <option value="Looking for Help in Protecting Trees &amp; Nature">Looking for Help in Protecting Trees &amp; Nature</option>
+          <option value="Looking for Help in Reviving Water Bodies">Looking for Help in Reviving Water Bodies</option>
+        </optgroup>
+        <optgroup label="── Personal &amp; Wellbeing ──">
+          <option value="Looking for Help to Pursue My Hobbies &amp; Passions">Looking for Help to Pursue My Hobbies &amp; Passions</option>
+          <option value="Looking for Help in Managing Stress / Healthy Mental Health">Looking for Help in Managing Stress / Healthy Mental Health</option>
+        </optgroup>
+        <option value="__other__">Other (please specify)</option>
+      </select>
+
+      <!-- Other custom input — appears when user picks "Other (please specify)" -->
+      <div class="hidden tag-other-block" id="howWeHelpOtherGroup">
+        <div class="tag-other-row">
+          <input type="text" id="howWeHelpOther" class="field-input"
+                 maxlength="80"
+                 placeholder="Describe your specific need, then press Enter or click Add">
+          <button type="button" class="btn btn--add-tag" id="howWeHelpOtherAdd">Add</button>
+          <button type="button" class="btn btn--secondary btn--small" id="howWeHelpOtherCancel">Cancel</button>
+        </div>
+        <div class="tag-other-meta">
+          <span class="tag-other-hint">Type your specific need, then press Enter or click Add. Click Cancel to remove.</span>
+          <span class="char-counter-out" id="howWeHelpOtherCounter">0 / 100</span>
+        </div>
+      </div>
+
+      <!-- Selected tags — aria-live so screen readers announce additions -->
+      <div class="tag-area" id="howWeHelpTags" aria-live="polite" aria-label="Selected goals">
+        <span class="tag-area__empty" id="howWeHelpTagsEmpty">No options selected yet. Use the dropdown above to add what you're looking for.</span>
+      </div>
+    </div>
+
+  </div><!-- /card 2 -->
+
+  <!-- ===== CARD 2b: RESEARCHER / INNOVATOR DETAILS ===== -->
+  <div class="form-card hidden" id="giResearcherCard">
+
+    <h3 class="card-heading">Your Research &amp; Innovation Details</h3>
+    <p class="card-subtext">
+      Since you wish to pitch your research or innovation, please add details below.
+      Each entry helps us match you with the right industry or government contacts.
+      You can add more than one entry.
+    </p>
+
+    <div class="field-group">
+      <label class="field-label" for="gi_riType">
+        In what capacity? <span class="required" aria-hidden="true">*</span>
+      </label>
+      <select id="gi_riType" class="field-select" aria-required="true">
+        <option value="">Select</option>
+        <option value="Researcher">Researcher</option>
+        <option value="Innovator">Innovator</option>
+        <option value="Patent Holder">Patent Holder</option>
+      </select>
+    </div>
+
+    <div id="gi_riEntriesList"></div>
+
+    <div class="form-card hidden ri-form-inner" id="gi_riFormCard">
+      <h3 class="card-heading" id="gi_riFormHeading">Add Entry</h3>
+
+      <div class="field-group">
+        <label class="field-label" id="gi_riDomainLabel">Domain <span class="required" aria-hidden="true">*</span></label>
+        <input type="text" id="gi_riDomain" class="field-input"
+               placeholder="e.g. Biotechnology, Renewable Energy, AI" maxlength="80">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" id="gi_riSubTypeLabel">Type <span class="required" aria-hidden="true">*</span></label>
+        <select id="gi_riSubType" class="field-select">
+          <option value="">Select</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" id="gi_riSkillsLabel">Skills <span class="required" aria-hidden="true">*</span></label>
+        <input type="text" id="gi_riSkills" class="field-input"
+               placeholder="Up to 3 skills, separated by commas" maxlength="200">
+        <p class="helper-text">Enter up to 3 skills, separated by commas.</p>
+      </div>
+
+      <div class="field-group field-group--last">
+        <label class="field-label" id="gi_riAboutLabel">About <span class="required" aria-hidden="true">*</span></label>
+        <textarea id="gi_riAbout" class="field-textarea" maxlength="1500"
+                  placeholder="Describe your work in up to 1,500 characters. What problem does it solve? What stage is it at?"></textarea>
+        <div class="char-counter-out" id="gi_riAboutCounter">0 / 1,500</div>
+      </div>
+
+      <div class="btn-row btn-row--compact">
+        <button type="button" class="btn btn--secondary" id="gi_riAddBtn">
+          + Add to List
+        </button>
+      </div>
+
+    </div><!-- /gi_riFormCard -->
+
+  </div><!-- /giResearcherCard -->
+
+  <!-- ===== CARD 3: CONTRIBUTE TO OTHERS ===== -->
+  <div class="form-card">
+    <h3 class="card-heading">What Can You Offer Others?</h3>
+    <p class="card-subtext">
+      Ikshu is a two-way platform. The people who get the most out of it are those who also give.
+      Even small contributions — sharing knowledge, expanding someone's network, offering a perspective —
+      create a ripple effect. What would you be willing to offer?
+    </p>
+
+    <div class="field-group">
+      <label class="field-label" for="wouldHelpOthers">
+        Are you open to contributing to others?
+        <span class="required" aria-hidden="true">*</span>
+      </label>
+      <select id="wouldHelpOthers" class="field-select" aria-required="true">
+        <option value="">Select</option>
+        <option value="Yes">Yes, I'd like to contribute</option>
+        <option value="No">Not at this time</option>
+      </select>
+    </div>
+
+    <!-- How to help — shown only when wouldHelpOthers = Yes -->
+    <div class="conditional-block hidden" id="helpOthersBlock" aria-live="polite">
+
+      <div class="field-group">
+        <label class="field-label" for="howHelpOthersSelect">
+          How would you like to contribute?
+        </label>
+        <p class="helper-text">Select one or more — each will appear as a tag below.</p>
+
+        <select id="howHelpOthersSelect" class="field-select">
+          <option value="">Choose an option to add</option>
+          <optgroup label="── Career &amp; Employment ──">
+            <option value="Give full-time employment">Give full-time employment</option>
+            <option value="Provide freelancing opportunities">Provide freelancing opportunities</option>
+            <option value="Help people expand their professional network">Help people expand their professional network</option>
+          </optgroup>
+          <optgroup label="── Investment &amp; Entrepreneurship ──">
+            <option value="Be an investor in businesses">Be an investor in businesses</option>
+          </optgroup>
+          <optgroup label="── Knowledge &amp; Mentorship ──">
+            <option value="Share knowledge in any field">Share knowledge in any field</option>
+            <option value="Offer mentorship in my field of expertise">Offer mentorship in my field of expertise</option>
+          </optgroup>
+          <optgroup label="── Agriculture &amp; Environment ──">
+            <option value="Provide agricultural land on lease (organic farming)">Provide agricultural land on lease (organic farming)</option>
+            <option value="Help in plantation">Help in plantation</option>
+            <option value="Help in protecting trees &amp; nature">Help in protecting trees &amp; nature</option>
+            <option value="Help reviving water bodies">Help reviving water bodies</option>
+          </optgroup>
+          <optgroup label="── Personal &amp; Wellbeing ──">
+            <option value="Help people pursue their hobbies &amp; passions">Help people pursue their hobbies &amp; passions</option>
+            <option value="Support people facing mental health challenges">Support people facing mental health challenges</option>
+          </optgroup>
+          <option value="__other__">Other (please specify)</option>
+        </select>
+
+        <!-- Other custom input — appears when user picks "Other (please specify)" -->
+        <div class="hidden tag-other-block" id="howHelpOthersOtherGroup">
+          <div class="tag-other-row">
+            <input type="text" id="howHelpOthersOther" class="field-input"
+                   maxlength="80"
+                   placeholder="Describe your contribution, then press Enter or click Add">
+            <button type="button" class="btn btn--add-tag" id="howHelpOthersOtherAdd">Add</button>
+            <button type="button" class="btn btn--secondary btn--small" id="howHelpOthersOtherCancel">Cancel</button>
+          </div>
+          <div class="tag-other-meta">
+            <span class="tag-other-hint">Type your contribution, then press Enter or click Add. Click Cancel to remove.</span>
+            <span class="char-counter-out" id="howHelpOthersOtherCounter">0 / 100</span>
+          </div>
+        </div>
+
+        <div class="tag-area" id="howHelpOthersTags" aria-live="polite" aria-label="Selected contributions">
+          <span class="tag-area__empty" id="howHelpOthersTagsEmpty">No options selected yet. Use the dropdown above to add how you'd like to help.</span>
+        </div>
+      </div>
+
+      <!-- Knowledge fields — shown when "Share knowledge in any field" is selected -->
+      <div class="conditional-block hidden" id="knowledgeBlock" aria-live="polite">
+
+        <div class="field-group">
+          <label class="field-label" for="knowledgeFields">
+            Which fields would you like to share knowledge in?
+            <span class="required" aria-hidden="true">*</span>
+          </label>
+          <input type="text" id="knowledgeFields" class="field-input"
+                 placeholder="e.g. Finance, Marketing, Data Science, Leadership" maxlength="300">
+          <p class="helper-text">
+            Up to 5 fields, separated by commas.
+          </p>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="knowledgeFree">
+            Would you be willing to share this knowledge for free?
+            <span class="required" aria-hidden="true">*</span>
+          </label>
+          <select id="knowledgeFree" class="field-select" aria-required="true">
+            <option value="">Select</option>
+            <option value="Yes">Yes, happy to share for free</option>
+            <option value="No">No, I would charge for this</option>
+          </select>
+        </div>
+
+      </div><!-- /knowledgeBlock -->
+
+    </div><!-- /helpOthersBlock -->
+
+  </div><!-- /card 3 -->
+
+  <!-- ===== MATCHING PREVIEW NOTE ===== -->
+  <div class="matching-preview-note" id="matchingPreviewNote" aria-live="polite">
+    <span class="matching-preview-note__icon" aria-hidden="true">🎯</span>
+    <span class="matching-preview-note__text">
+      Complete this section and we'll start finding the right people for you.
+    </span>
+  </div>
+
+  <!-- ===== ACTION ===== -->
+  <div class="btn-row">
+    <button type="button" class="btn btn--primary btn--continue-merged" id="saveContinueBtn">
+      Save &amp; Continue to &ndash; Next step: &ldquo;Upload Photo &amp; CV&rdquo; (Step 2 of 11)
+    </button>
+  </div>
+
+</div><!-- /form-container -->
+
+<!-- Supabase JS library + shared MC_SB helper — needed by goals_interests.js -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js?v=8"></script>
+<script src="mc_storage.js?v=22"></script>
+<script src="mc_supabase.js?v=23"></script>
+<script src="mc_helpers.js?v=10"></script>
+<script src="save_now.js?v=8"></script>
+<script src="goals_interests.js?v=11"></script>
+
+<!-- Floating popup — single OK by default; second button shown only for confirm-style prompts -->
+<div class="error-popup-overlay" id="errorPopupOverlay" role="dialog" aria-modal="true" aria-labelledby="errorPopupMessage">
+  <div class="error-popup">
+    <div class="error-popup__icon" aria-hidden="true">&#9888;</div>
+    <div class="error-popup__message" id="errorPopupMessage"></div>
+    <div class="error-popup__actions">
+      <button class="error-popup__close" id="errorPopupClose">OK</button>
+      <button class="error-popup__secondary hidden" id="errorPopupSecondary"></button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

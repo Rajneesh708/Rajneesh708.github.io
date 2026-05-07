@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Consulting Availability &ndash; MECULS</title>
+  <link rel="stylesheet" href="styles.css?v=25">
+  <link rel="stylesheet" href="tier_shared.css?v=11">
+  <link rel="stylesheet" href="consulting_availability.css?v=24">
+</head>
+<body>
+<div class="form-container">
+
+  <!-- STICKY HEADER -->
+  <div class="sticky-header">
+    <div class="sticky-header__top">
+      <h2 class="page-title">Consulting Availability</h2>
+      <div class="sticky-header__actions">
+        <button type="button" class="btn--save-now" id="saveNowBtn"
+          aria-label="Save your progress now"
+          title="Saves to your account when online; otherwise keeps a copy in this browser on this device.">
+          &#128190; Save Now
+        </button>
+        <span class="step-badge step-badge--bonus">Bonus 2 of 7</span>
+      </div>
+    </div>
+    <p class="page-subtitle">
+      Are you open to consulting, advisory, or freelance work?
+      Let organisations know what you can offer and on what terms.
+    </p>
+    <span class="draft-status hidden" id="draftStatus" aria-live="polite">&check; Draft saved</span>
+  </div>
+
+  <!-- Draft-restore prompt -->
+  <div class="draft-restore" id="draftRestorePrompt" role="status" aria-live="polite">
+    <div class="draft-restore__text" id="draftRestoreText">
+      We found work you started earlier. Would you like to continue from there?
+    </div>
+    <div class="draft-restore__actions">
+      <button type="button" class="draft-restore__btn draft-restore__btn--restore" id="draftRestoreBtn">Restore</button>
+      <button type="button" class="draft-restore__btn draft-restore__btn--discard" id="draftDiscardBtn">Start Fresh</button>
+    </div>
+  </div>
+
+  <!-- Comfort banner — addresses the most common anxiety candidates have
+       about this section: "will my employer see this and think I'm
+       moonlighting?" — explicitly answer that worry up front. -->
+  <div class="completion-incentive">
+    <div class="completion-incentive__icon" aria-hidden="true">&#128221;</div>
+    <div>
+      <p class="completion-incentive__heading">Your full-time job status is unaffected.</p>
+      <p class="completion-incentive__text">
+        This section is <strong>optional but valuable</strong>. Many MECULS members secure
+        consulting and advisory engagements through their profile alone &mdash; without
+        ever leaving their primary job.
+      </p>
+      <p class="completion-incentive__text completion-incentive__text--mt">
+        You control whether this section appears on your public profile (toggle below).
+        Pick &ldquo;Not Available&rdquo; anytime to switch it off without losing your data.
+      </p>
+    </div>
+  </div>
+
+  <!-- ===== AVAILABILITY STATUS (3 options) ===== -->
+  <div class="form-card">
+    <h3 class="card-heading">Consulting Availability Status <span class="required">*</span></h3>
+    <p class="helper-text helper-text--spaced">
+      How open are you to taking on consulting, advisory, or freelance work right now?
+    </p>
+
+    <div class="avail-grid" id="availGrid">
+      <label class="avail-option" data-value="Available">
+        <input type="radio" name="consultAvail" value="Available">
+        <div class="avail-option__icon">&#9989;</div>
+        <div class="avail-option__title">Available Now</div>
+        <div class="avail-option__desc">
+          Actively open to consulting and advisory engagements.
+        </div>
+      </label>
+      <label class="avail-option" data-value="Selective">
+        <input type="radio" name="consultAvail" value="Selective">
+        <div class="avail-option__icon">&#128270;</div>
+        <div class="avail-option__title">Open to Selective Opportunities</div>
+        <div class="avail-option__desc">
+          Open to the right brief &mdash; not actively hunting, but ready to discuss.
+        </div>
+      </label>
+      <label class="avail-option" data-value="Not Available">
+        <input type="radio" name="consultAvail" value="Not Available">
+        <div class="avail-option__icon">&#9940;</div>
+        <div class="avail-option__title">Not Available</div>
+        <div class="avail-option__desc">
+          Not open to consulting work at this time. Detail fields will be hidden.
+        </div>
+      </label>
+    </div>
+  </div>
+
+  <!-- ===== CONSULTING DETAILS — hidden when "Not Available" ===== -->
+  <div id="consultDetailsSection">
+
+    <!-- AREAS OF EXPERTISE -->
+    <div class="form-card">
+      <h3 class="card-heading">Areas of Expertise</h3>
+
+      <!-- Domains -->
+      <div class="field-group">
+        <label class="field-label">Consulting Domains <span class="required">*</span></label>
+        <p class="helper-text">
+          Functional areas where you can advise &mdash; e.g. Talent Strategy, Org Design,
+          L&amp;D, HR Technology, Compensation, Diversity. Type and click Add. Up to 15.
+        </p>
+        <div class="domain-tag-wrap" id="domainTagWrap">
+          <span class="domain-tag domain-tag--placeholder" id="domainPlaceholder">
+            No domains added yet
+          </span>
+        </div>
+        <div class="domain-add-row">
+          <input type="text" id="domainInput" class="field-input"
+                 placeholder="e.g. Talent Strategy"
+                 maxlength="80">
+          <button type="button" class="btn btn--secondary btn--nowrap" id="addDomainBtn">
+            + Add Domain
+          </button>
+        </div>
+      </div>
+
+      <!-- Industries -->
+      <div class="field-group">
+        <label class="field-label">Industries / Sectors</label>
+        <p class="helper-text">
+          Sectors you have direct consulting experience in &mdash; e.g. FMCG, Pharma,
+          IT Services, Banking, Manufacturing. Helps match you with
+          relevant briefs. Up to 10.
+        </p>
+        <div class="domain-tag-wrap" id="industryTagWrap">
+          <span class="domain-tag domain-tag--placeholder" id="industryPlaceholder">
+            No industries added yet
+          </span>
+        </div>
+        <div class="domain-add-row">
+          <input type="text" id="industryInput" class="field-input"
+                 placeholder="e.g. FMCG, Pharma, IT Services"
+                 maxlength="60">
+          <button type="button" class="btn btn--secondary btn--nowrap" id="addIndustryBtn">
+            + Add Industry
+          </button>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="field-group">
+        <label class="field-label" for="consultDesc">
+          Consulting Profile Description <span class="required">*</span>
+        </label>
+        <p class="helper-text">
+          Two or three sentences on what you offer as a consultant &mdash; your
+          methodology, the kind of brief you do best, and typical outcomes.
+        </p>
+        <textarea id="consultDesc" class="field-textarea" maxlength="500"
+                  placeholder="e.g. I help mid-size firms redesign their HR operating model and rollout learning programmes. Recent engagements have reduced time-to-hire by 35% and improved internal mobility."></textarea>
+        <div class="char-counter-out" id="consultDescCounter">0 / 500</div>
+      </div>
+    </div>
+
+    <!-- ENGAGEMENT PREFERENCES -->
+    <div class="form-card">
+      <h3 class="card-heading">Engagement Preferences</h3>
+
+      <div class="field-group">
+        <label class="field-label" for="engagementType">Preferred Engagement Type</label>
+        <select id="engagementType" class="field-select">
+          <option value="">Select</option>
+          <option value="Project-based">Project-based</option>
+          <option value="Retainer">Retainer / Ongoing</option>
+          <option value="Advisory Board">Advisory Board Seat</option>
+          <option value="Hourly">Hourly / As-needed</option>
+          <option value="Open to all">Open to all types</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="companySizePref">Company Size Preference</label>
+        <p class="helper-text">
+          Which kind of organisation do you typically advise?
+        </p>
+        <select id="companySizePref" class="field-select">
+          <option value="">Any size &mdash; no preference</option>
+          <option value="Startup">Startups (under 50 employees)</option>
+          <option value="Mid-size">Mid-size (50&ndash;500 employees)</option>
+          <option value="Large">Large (500+ employees)</option>
+          <option value="Enterprise">Enterprise / Listed companies only</option>
+        </select>
+      </div>
+
+      <!-- Rate range — single row + privacy toggle -->
+      <div class="field-group">
+        <label class="field-label">Daily / Hourly Rate (Optional)</label>
+        <p class="helper-text">
+          Providing a range helps organisations shortlist you faster. Senior
+          consultants often prefer to discuss rates privately &mdash; tick the box
+          below if that's you.
+        </p>
+
+        <!-- Privacy toggle -->
+        <div class="checkbox-row">
+          <input type="checkbox" id="rateDiscussPrivately">
+          <label for="rateDiscussPrivately">
+            Prefer to discuss rates privately (don't display on profile)
+          </label>
+        </div>
+
+        <!-- Rate input row — hidden when privacy toggle is on -->
+        <div class="rate-row" id="rateInputRow">
+          <select id="rateCurrency" class="field-select rate-row__currency"
+                  aria-label="Rate currency">
+            <option value="INR">INR</option>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            <option value="AED">AED</option>
+            <option value="SGD">SGD</option>
+          </select>
+          <input type="number" id="rateMin" class="field-input rate-row__amount"
+                 min="0" step="100"
+                 placeholder="From"
+                 aria-label="Minimum rate">
+          <span class="rate-row__sep" aria-hidden="true">&ndash;</span>
+          <input type="number" id="rateMax" class="field-input rate-row__amount"
+                 min="0" step="100"
+                 placeholder="To"
+                 aria-label="Maximum rate">
+          <span class="rate-row__per">per</span>
+          <select id="rateUnit" class="field-select rate-row__unit"
+                  aria-label="Rate unit">
+            <option value="Hour">Hour</option>
+            <option value="Day">Day</option>
+            <option value="Month">Month</option>
+            <option value="Project">Project (fixed)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAST CONSULTING WORK -->
+    <div class="form-card">
+      <h3 class="card-heading">Past Consulting Work to Highlight</h3>
+      <div class="field-group">
+        <label class="field-label" for="pastConsultWork">Brief description (optional)</label>
+        <p class="helper-text">
+          Share one specific consulting engagement or advisory role you've held.
+          Mention the outcome achieved &mdash; numbers and impact land best.
+        </p>
+        <textarea id="pastConsultWork" class="field-textarea" maxlength="400"
+                  placeholder="e.g. Led a 6-month talent strategy project for a mid-size FMCG company; reduced attrition by 18%."></textarea>
+        <div class="char-counter-out" id="pastConsultCounter">0 / 400</div>
+      </div>
+    </div>
+
+    <!-- VISIBILITY -->
+    <div class="form-card">
+      <h3 class="card-heading">Profile Visibility</h3>
+      <div class="field-group">
+        <div class="checkbox-row">
+          <input type="checkbox" id="showOnProfile" checked>
+          <label for="showOnProfile">
+            <strong>Show this section on my public profile.</strong> Untick to hide
+            your consulting availability without erasing what you've entered &mdash;
+            useful during a busy quarter at your day job.
+          </label>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /consultDetailsSection -->
+
+  <!-- ACTIONS -->
+  <div class="btn-row">
+    <button type="button" class="btn btn--primary btn--continue-merged" id="saveContinueBtn">
+      Save &amp; Continue to &ndash; Next step: &ldquo;Key Achievements&rdquo; (Bonus 3 of 7)
+    </button>
+  </div>
+
+</div><!-- /form-container -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js?v=11"></script>
+<script src="mc_storage.js?v=22"></script>
+<script src="mc_supabase.js?v=23"></script>
+<script src="mc_helpers.js?v=11"></script>
+<script src="save_now.js?v=11"></script>
+<script src="consulting_availability.js?v=12"></script>
+
+<!-- Floating error popup -->
+<div class="error-popup-overlay" id="errorPopupOverlay">
+  <div class="error-popup">
+    <div class="error-popup__icon">&#9888;</div>
+    <div class="error-popup__message" id="errorPopupMessage"></div>
+    <div class="error-popup__actions">
+      <button class="error-popup__secondary hidden" id="errorPopupCancel" type="button">Cancel</button>
+      <button class="error-popup__close" id="errorPopupClose" type="button">OK</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

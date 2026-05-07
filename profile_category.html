@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Profile Category – MECULS</title>
+  <link rel="stylesheet" href="styles.css?v=25">
+  <link rel="stylesheet" href="profile_category.css?v=24">
+</head>
+<body>
+
+<div class="form-container">
+
+  <!-- STICKY HEADER with progress indicator -->
+  <div class="sticky-header">
+    <div class="sticky-header__top">
+      <h2 class="page-title">Your Profile Category</h2>
+      <span class="progress-badge">Step 3 of 11</span>
+    </div>
+    <p class="page-subtitle">
+      Select what best describes your current professional status.
+      Your selection determines which sections are shown to you next &mdash;
+      so we only ask you for information that is actually relevant to your profile.
+    </p>
+    <div class="progress-bar-track" role="progressbar" aria-valuenow="27" aria-valuemin="0" aria-valuemax="100" aria-label="Profile completion: step 3 of 11">
+      <div class="progress-bar-fill"></div>
+    </div>
+    <!-- Draft saved indicator (placeholder for future draft-save logic on this page) -->
+    <span class="draft-status hidden" id="draftStatus" aria-live="polite">&check; Draft saved</span>
+  </div>
+
+  <div class="form-card">
+
+    <!-- Profile Category -->
+    <div class="field-group">
+      <label class="field-label" for="profileCategory">
+        Your Profile Category <span class="required" aria-hidden="true">*</span>
+      </label>
+      <select id="profileCategory" class="field-select" required aria-required="true">
+        <option value="">Select</option>
+        <option value="student_0xp">Currently a Student (No Work Experience)</option>
+        <option value="student_intern">Currently a Student (With Internships)</option>
+        <option value="student_xp">Student with Prior / Current Work Experience</option>
+        <option value="fresher">Fresher</option>
+        <option value="working_professional">Working Professional</option>
+        <option value="researcher">Researcher / Innovator</option>
+        <option value="defense">Defense Personnel</option>
+        <option value="defense_family">Family Member of Defense Personnel</option>
+      </select>
+    </div>
+
+    <!-- Defense-family follow-up: shown only when "Family Member of Defense Personnel" is selected.
+         User tells us their own status; routing then follows this second selection. -->
+    <div class="field-group hidden" id="defenseFamilyBlock" aria-live="polite">
+      <label class="field-label" for="defenseFamilyRole">
+        Are You? <span class="required" aria-hidden="true">*</span>
+      </label>
+      <select id="defenseFamilyRole" class="field-select" aria-required="true">
+        <option value="">Select</option>
+        <option value="student_0xp">Currently a Student (No Work Experience)</option>
+        <option value="student_intern">Currently a Student (With Internships)</option>
+        <option value="student_xp">Student with Prior / Current Work Experience</option>
+        <option value="fresher">Fresher</option>
+        <option value="working_professional">Working Professional</option>
+        <option value="researcher">Researcher / Innovator</option>
+        <option value="defense">Defense Personnel</option>
+      </select>
+    </div>
+
+    <!-- AUTO MESSAGE -->
+    <div id="autoMessage" class="auto-message hidden" aria-live="polite">
+      <p class="auto-message__next" id="msgNext"></p>
+      <p class="auto-message__skip hidden" id="msgSkip"></p>
+    </div>
+
+    <!-- Divider -->
+    <div class="field-divider"></div>
+
+    <!-- Abled / Especially-abled -->
+    <div class="field-group">
+      <label class="field-label" for="abledStatus">
+        Are you fully abled or especially-abled?
+        <span class="required" aria-hidden="true">*</span>
+      </label>
+      <p class="field-note">
+        This information is kept strictly confidential and is used only to ensure
+        we consider your needs appropriately and can connect you with relevant opportunities or support.
+        It will never be shared with employers without your explicit consent.
+      </p>
+      <select id="abledStatus" class="field-select" required aria-required="true">
+        <option value="">Select</option>
+        <option value="fully_abled">Fully Abled</option>
+        <option value="especially_abled">Especially-Abled (Person with Disability)</option>
+        <option value="prefer_not_to_say">Prefer Not to Say</option>
+      </select>
+    </div>
+
+    <!-- Especially-abled details — shown when especially_abled is selected -->
+    <div class="conditional-block hidden" id="especiallyAbledBlock" aria-live="polite">
+      <div class="field-group">
+        <label class="field-label" for="especiallyAbledDetails">
+          Please describe your condition or disability
+          <span class="required" aria-hidden="true">*</span>
+        </label>
+        <p class="field-note">
+          You can be as general or specific as you are comfortable with.
+          For example: "Visual impairment", "Hearing impairment", "Mobility limitation",
+          "Learning disability", or any other description that applies.
+        </p>
+        <textarea id="especiallyAbledDetails" class="field-select field-textarea-abled"
+                  maxlength="500"
+                  placeholder="Describe in your own words — as specific or as general as you prefer."
+                  aria-required="true"></textarea>
+        <div class="char-counter-abled" id="abledCounter">0 / 500</div>
+      </div>
+
+      <div class="field-group field-group--last">
+        <label class="field-label" for="needsAccommodation">
+          Do you require any kind of support?
+          <span class="required" aria-hidden="true">*</span>
+        </label>
+        <select id="needsAccommodation" class="field-select" aria-required="true">
+          <option value="">Select</option>
+          <option value="yes">Yes &mdash; please reach out to me about this</option>
+          <option value="no">No &mdash; I do not need any support at this time</option>
+        </select>
+
+        <!-- Support disclaimer — appears only when "Yes" is selected. Sets honest
+             expectations positively: MECULS connects users with relevant organisations
+             or authorities; cannot promise specific outcomes, only best-effort connection. -->
+        <div class="conditional-block hidden" id="supportDisclaimerBlock" aria-live="polite">
+          <p class="field-note field-note--disclaimer">
+            <strong>Please note:</strong> MECULS connects you with relevant organisations or authorities
+            who may be able to help. By indicating Yes, you give us permission to reach out to you
+            about this. We cannot promise any specific outcome &mdash; only our best effort to connect
+            you with the right people.
+          </p>
+        </div>
+
+        <!-- Support description — appears alongside the disclaimer when "Yes" is selected.
+             User describes the kind of support they need in their own words.
+             Required when Yes is picked; cleared when user switches to No. -->
+        <div class="conditional-block hidden" id="supportDescriptionBlock" aria-live="polite">
+          <label class="field-label" for="supportDescription">
+            Briefly describe the support you need
+            <span class="required" aria-hidden="true">*</span>
+          </label>
+          <textarea id="supportDescription" class="field-select field-textarea-abled"
+                    maxlength="300"
+                    placeholder="Describe in your own words what kind of support would help you. The more specific, the better we can route you to the right people."
+                    aria-required="true"></textarea>
+          <div class="char-counter-abled" id="supportDescriptionCounter">0 / 300</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="btn-row">
+    <button id="saveContinueBtn" class="btn btn--primary">
+      Save &amp; Continue
+    </button>
+  </div>
+
+  <p class="step-next-hint">Next step depends on your profile category selection above.</p>
+
+</div>
+
+<!-- Supabase JS library + shared MC_SB helper -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js?v=8"></script>
+<script src="mc_storage.js?v=22"></script>
+<script src="mc_supabase.js?v=23"></script>
+<script src="mc_helpers.js?v=10"></script>
+<script src="profile_category.js?v=10"></script>
+
+<!-- Floating error popup — shown by JS via showPopup() -->
+<div class="error-popup-overlay" id="errorPopupOverlay" role="dialog" aria-modal="true" aria-labelledby="errorPopupMessage">
+  <div class="error-popup">
+    <div class="error-popup__icon" aria-hidden="true">&#9888;</div>
+    <div class="error-popup__message" id="errorPopupMessage"></div>
+    <button class="error-popup__close" id="errorPopupClose">OK</button>
+  </div>
+</div>
+</body>
+</html>

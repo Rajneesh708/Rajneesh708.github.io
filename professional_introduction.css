@@ -1,0 +1,166 @@
+/* ============================================================
+   MECULS — Professional Introduction (About You) Styles
+   Consistent with education.css / experience.css design system.
+   Zero inline styles in HTML.
+   ============================================================ */
+
+/* ── Sticky header + progress bar base + draft-status:
+   all shared across main sections, defined globally in styles.css.
+   This page only overrides the per-step progress bar width. ── */
+
+/* Step 4 of 11 — bar fill width corresponds to current step */
+.progress-bar-fill {
+  width: 36%;
+}
+/* ── Section block (wraps a named group of cards) ── */
+.section-block {
+  margin-bottom: 8px;
+}
+
+/* ── Section heading (h2 above a group of cards) ── */
+.section-heading {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 28px 0 12px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+/* ── Card heading (h3 inside a card) ── */
+.card-heading {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #374151;
+  margin: 0 0 16px 0;
+}
+
+/* ── Form card ── */
+.form-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+/* ── Field group ── */
+.field-group {
+  margin-bottom: 20px;
+}
+
+.field-group:last-child {
+  margin-bottom: 0;
+}
+/* ── Inputs, selects, textareas ── */
+.field-input,
+.field-select,
+.field-textarea {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 0.9rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #1f2937;
+  box-sizing: border-box;
+  transition: border-color 0.15s;
+}
+
+.field-input:focus,
+.field-select:focus,
+.field-textarea:focus {
+  outline: none;
+  border-color: #4c73ff;
+  box-shadow: 0 0 0 3px rgba(76,115,255,0.1);
+}
+/* ── Multi-select ── */
+.field-select--multi {
+  min-height: 140px;
+}
+/* ── Multi-select option spacing ──
+   Native <select multiple> renders option items tightly packed together
+   with no padding by default. For Preferred Countries (where users see
+   a list of country names), this made the options look cramped and
+   "almost touching" each other. The padding below adds breathing room.
+   Browser support for styling <option> is limited but this works
+   consistently in Chrome, Edge, and Firefox on desktop. */
+.field-select--multi option {
+  padding: 6px 10px;
+  line-height: 1.4;
+}
+/* ── Char counter ── */
+.char-counter-out {
+  text-align: right;
+  font-size: 0.75rem;
+  color: #9ca3af;
+  margin-top: 4px;
+}
+
+/* ── Checkbox row ── */
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 0;
+}
+
+.checkbox-row input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.checkbox-row label {
+  font-size: 0.875rem;
+  color: #374151;
+  cursor: pointer;
+  font-weight: 400;
+  margin: 0;
+}
+
+/* ── Disabled field (greyed out, not editable) ── */
+.field-input:disabled,
+.field-select:disabled,
+.field-textarea:disabled {
+  background: #f3f4f6;
+  color: #9ca3af;
+  cursor: not-allowed;
+  border-color: #e5e7eb;
+}
+
+/* ── Toast, buttons, loading spinner, error popup:
+   all now defined globally in styles.css ── */
+
+/* ── Compact btn-row (inside cards, not direct child of form-container) ── */
+.btn-row--compact {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+/* ── Inactive section (shown but all fields disabled) ── */
+.section-block.inactive {
+  opacity: 0.5;
+  pointer-events: none;
+}
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .inline-2 { grid-template-columns: 1fr; }
+  .btn-row  { flex-direction: column; }
+}
+/* Individual saved entry card */
+.ri-card {
+  background: #f8faff;
+  border: 1px solid #dbeafe;
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  border-left: 3px solid #4c73ff;
+}

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In &ndash; MECULS</title>
+
+  <!-- ============================================================
+       MECULS — login.html (v=23)
+       Date: 2026-05-05
+       ============================================================
+       Identical to v=22 except:
+       - login.js cache buster bumped from v=22 to v=23
+         (login.js v=23 wipes stale MECULS data on sign-in success
+         to fix cross-user photo-leak bug)
+       ============================================================ -->
+
+  <link rel="stylesheet" href="styles.css?v=14">
+  <link rel="stylesheet" href="tier_shared.css?v=14">
+  <link rel="stylesheet" href="auth.css?v=14">
+</head>
+<body class="auth-body">
+
+<div class="auth-container">
+
+  <!-- Logo -->
+  <div class="auth-logo">
+    <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS" class="auth-logo__img"
+         onerror="this.style.display='none';document.getElementById('authLogoText').style.display='block'">
+    <span id="authLogoText" class="auth-logo__text" style="display:none">MECULS</span>
+    <div class="auth-subbrand">
+      Ikshu <span class="auth-subbrand-deva">( इक्षु )</span> | The CV Portal
+    </div>
+    <div class="auth-tagline">The recognition true capability deserves</div>
+  </div>
+
+  <!-- Card -->
+  <div class="auth-card">
+    <h1 class="auth-card__heading">Welcome back</h1>
+    <p class="auth-card__sub">Sign in to your account</p>
+
+    <div class="toast toast--error hidden" id="loginError" role="alert" aria-live="assertive"></div>
+
+    <!-- Google sign-in -->
+    <button type="button" class="btn-google" id="googleSignInBtn">
+      <svg class="btn-google__icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/>
+        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+      </svg>
+      Continue with Google
+    </button>
+
+    <div class="auth-divider">
+      <span>or sign in with email</span>
+    </div>
+
+    <form id="loginForm" novalidate autocomplete="on">
+      <div class="field-group">
+        <label class="field-label" for="loginEmail">Email Address</label>
+        <input type="email" id="loginEmail" class="field-input"
+               placeholder="your@email.com" autocomplete="email"
+               inputmode="email" enterkeyhint="next" required aria-required="true">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="loginPassword">
+          Password
+          <a href="#" class="auth-link" id="forgotPasswordLink">Forgot password?</a>
+        </label>
+        <div class="field-password-wrap">
+          <input type="password" id="loginPassword" class="field-input"
+                 placeholder="Your password" autocomplete="current-password"
+                 enterkeyhint="done" required aria-required="true">
+          <button type="button" class="field-password-toggle" id="togglePassword"
+                  aria-label="Show password" aria-pressed="false">
+            <svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+            <svg class="icon-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+              <line x1="1" y1="1" x2="23" y2="23"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <div class="cf-turnstile" id="turnstileWidget"
+             data-callback="onCaptchaSuccess"
+             data-error-callback="onCaptchaError"
+             data-expired-callback="onCaptchaExpired"></div>
+        <p class="captcha-error hidden" id="captchaError" role="alert">Please complete the security check above.</p>
+      </div>
+
+      <button type="submit" class="btn btn--primary btn--full btn--disabled" id="loginBtn" disabled>
+        Sign In
+      </button>
+    </form>
+
+    <div class="hidden" id="forgotState">
+      <p class="auth-card__sub" style="margin-bottom:16px;">
+        Enter your email and we'll send a password reset link.
+      </p>
+      <div class="field-group">
+        <label class="field-label" for="resetEmail">Email Address</label>
+        <input type="email" id="resetEmail" class="field-input"
+               placeholder="your@email.com" autocomplete="email"
+               inputmode="email" enterkeyhint="send">
+      </div>
+      <button type="button" class="btn btn--primary btn--full" id="sendResetBtn">
+        Send Reset Link
+      </button>
+      <button type="button" class="btn btn--ghost btn--full" id="backToLoginBtn"
+              style="margin-top:10px;">
+        &larr; Back to Sign In
+      </button>
+    </div>
+
+    <div class="hidden" id="recoveryState">
+      <h2 class="auth-card__heading" style="font-size:1.2rem; margin-bottom:6px;">Set a new password</h2>
+      <p class="auth-card__sub" style="margin-bottom:20px;">
+        Choose a strong password to secure your account.
+      </p>
+
+      <div class="field-group">
+        <label class="field-label" for="recoveryNewPassword">New Password</label>
+        <div class="field-password-wrap">
+          <input type="password" id="recoveryNewPassword" class="field-input"
+                 placeholder="Create a strong password"
+                 autocomplete="new-password" enterkeyhint="next">
+          <button type="button" class="field-password-toggle" id="toggleRecoveryPassword"
+                  aria-label="Show password" aria-pressed="false">
+            <svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+            <svg class="icon-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+              <line x1="1" y1="1" x2="23" y2="23"/>
+            </svg>
+          </button>
+        </div>
+        <p class="helper-text">Use at least 8 characters with one capital letter, one number, and one special character (e.g. !@#$%).</p>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="recoveryConfirmPassword">Confirm New Password</label>
+        <div class="field-password-wrap">
+          <input type="password" id="recoveryConfirmPassword" class="field-input"
+                 placeholder="Re-type your new password"
+                 autocomplete="new-password" enterkeyhint="done">
+          <button type="button" class="field-password-toggle" id="toggleRecoveryConfirmPassword"
+                  aria-label="Show password" aria-pressed="false">
+            <svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+            <svg class="icon-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+              <line x1="1" y1="1" x2="23" y2="23"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn--primary btn--full" id="recoverySubmitBtn">
+        Update Password
+      </button>
+    </div>
+
+    <div class="hidden auth-success" id="successState" role="status" aria-live="polite">
+      <div class="auth-success__icon">&check;</div>
+      <p class="auth-success__msg" id="successMsg"></p>
+    </div>
+
+  </div>
+
+  <p class="auth-footer">
+    Don't have an account?
+    <a href="register.html" class="auth-link">Create one free</a>
+  </p>
+
+</div>
+
+<!-- Load order: config → mc_storage → supabase library → login.js -->
+<script src="config.js?v=14"></script>
+<script src="mc_storage.js?v=22"></script>
+<script>
+  (function () {
+    var w = document.getElementById("turnstileWidget");
+    if (w && typeof TURNSTILE_SITE_KEY !== "undefined") {
+      w.setAttribute("data-sitekey", TURNSTILE_SITE_KEY);
+    }
+  })();
+</script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="login.js?v=23"></script>
+
+</body>
+</html>

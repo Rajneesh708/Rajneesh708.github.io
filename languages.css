@@ -1,0 +1,267 @@
+/* ============================================================
+   MECULS — languages.css
+   Languages & Additional Information section styles.
+   Consistent with established design system.
+   Zero inline styles in HTML.
+
+   Sticky header + progress bar base + draft-status:
+   all shared across main sections, defined globally in styles.css.
+   This page only overrides the per-step progress bar width.
+   ============================================================ */
+
+/* Step 11 of 11 — final step, full bar */
+.progress-bar-fill {
+  width: 100%;
+}
+/* ── Form card ── */
+.form-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+.field-group:last-child {
+  margin-bottom: 0;
+}
+/* ── Char counter ── */
+.char-counter {
+  font-size: 0.75rem;
+  color: #6b7280;
+  text-align: right;
+  margin-top: 4px;
+}
+
+.char-counter.near-limit {
+  color: #f59e0b;
+}
+
+.char-counter.at-limit {
+  color: #ef4444;
+}
+
+/* ── Inputs, selects, textareas ── */
+.field-input,
+.field-select,
+.field-textarea {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 0.9rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #1f2937;
+  box-sizing: border-box;
+  transition: border-color 0.15s;
+}
+
+.field-input:focus,
+.field-select:focus,
+.field-textarea:focus {
+  outline: none;
+  border-color: #4c73ff;
+  box-shadow: 0 0 0 3px rgba(76,115,255,0.1);
+}
+
+/* Soft-invalid state for live URL validation. Doesn't block saving;
+   just signals "this doesn't look right" while typing. The hard
+   validation runs on Save & Submit. */
+.field-input--invalid {
+  border-color: #fca5a5;
+  background: #fef2f2;
+}
+
+/* Soft-warn helper text — amber tint, used for non-blocking hints
+   like "this doesn't look like a LinkedIn URL." User can still save. */
+.helper-text--soft-warn {
+  color: #92400e;
+  background: #fffbeb;
+  border-left: 3px solid #f59e0b;
+  border-radius: 4px;
+  padding: 6px 10px;
+  margin-top: 4px;
+  margin-bottom: 0;
+}
+
+.field-textarea {
+  resize: vertical;
+  min-height: 90px;
+  line-height: 1.55;
+}
+
+/* ── Language input row: name + proficiency side by side ── */
+.lang-input-row {
+  display: grid;
+  grid-template-columns: 1fr 180px;
+  gap: 10px;
+  align-items: end;
+}
+
+/* ── Language tags display area ── */
+.lang-tags-area {
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px dashed #d1d5db;
+  border-radius: 8px;
+  background: #f9fafb;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-top: 14px;
+}
+
+.lang-tags-area--empty {
+  color: #4b5563;
+  font-size: 0.82rem;
+  font-style: italic;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+/* ── Language tags ── */
+.lang-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  border: 1px solid transparent;
+}
+
+/* Proficiency colour coding */
+.lang-tag--Basic {
+  background: #f9fafb;
+  border-color: #e5e7eb;
+  color: #374151;
+}
+
+.lang-tag--Conversational {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+  color: #1d4ed8;
+}
+
+.lang-tag--Fluent {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+  color: #15803d;
+}
+
+.lang-tag--Native {
+  background: #fefce8;
+  border-color: #fde68a;
+  color: #92400e;
+}
+
+.lang-tag__level {
+  font-size: 0.72rem;
+  opacity: 0.7;
+  font-weight: 400;
+}
+
+.lang-tag__remove {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  line-height: 1;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  opacity: 0.5;
+  transition: opacity 0.15s;
+  width: auto;
+  margin-top: 0;
+}
+
+.lang-tag__remove:hover {
+  opacity: 1;
+}
+
+/* ── Language count badge ── */
+.lang-count {
+  display: inline-block;
+  background: #e0e7ff;
+  color: #3730a3;
+  border-radius: 12px;
+  padding: 2px 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-left: 8px;
+}
+
+/* Stacked-action button row — for pages with two alternative actions
+   (e.g., final-step Submit vs Continue-to-Bonus). Tighter gap so the
+   pair reads as one decision unit, not two unrelated CTAs. */
+.btn-row--stacked {
+  gap: 8px !important;
+}
+
+/* ── Profile links section ── */
+.link-row {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.link-row:last-child {
+  margin-bottom: 0;
+}
+
+.link-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+/* Input + open-icon container — flex row so the icon sits at the
+   right edge of the input. The input flex-grows to fill space. */
+.link-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;   /* allow input to shrink in narrow viewports */
+}
+
+.link-input-wrap .field-input {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Open-link icon — small arrow that opens the URL in a new tab.
+   Hidden by default, shown via JS only when the field has a valid
+   http(s):// URL. */
+.link-open {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: #f3f4f6;
+  color: #4c73ff;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  border: 1px solid #e5e7eb;
+  transition: background 0.15s, border-color 0.15s;
+  flex-shrink: 0;
+}
+
+.link-open:hover {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+}
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .lang-input-row  { grid-template-columns: 1fr; }
+  .link-row        { grid-template-columns: 1fr; }
+  .btn-row         { flex-direction: column; }
+}

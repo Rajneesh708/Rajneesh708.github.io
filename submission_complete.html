@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile Submitted &ndash; MECULS</title>
+  <link rel="stylesheet" href="styles.css?v=10">
+  <link rel="stylesheet" href="submission_complete.css?v=12">
+</head>
+<body>
+
+<div class="form-container">
+
+  <!-- ═══ 1. WELCOME HERO — brand identity, no fake celebration ═══ -->
+  <div class="welcome-hero">
+
+    <!-- Dark band: logo + sub-brand sit on Prussian-blue gradient
+         (same context the gold-white logo was designed for, so the
+         white parts of the logo stay readable) -->
+    <div class="welcome-hero__band">
+      <img
+        class="welcome-hero__logo"
+        src="images/logo/MECULS-gold-white-bold.png"
+        alt="MECULS"
+        id="brandImg"
+        onerror="this.style.display='none'; var t=document.getElementById('brandText'); if(t) t.style.display='block';"
+      >
+      <div class="welcome-hero__logo-text" id="brandText">MECULS</div>
+
+      <div class="welcome-hero__subbrand">
+        Ikshu <span class="welcome-hero__subbrand-deva">( इक्षु )</span> | The CV Portal
+      </div>
+    </div>
+
+    <!-- White area: tagline first, then personal welcome, then body line -->
+    <p class="welcome-hero__tagline">
+      Where true capability gets recognised.
+    </p>
+
+    <h1 class="welcome-hero__heading">
+      Welcomes You.
+    </h1>
+
+    <div class="welcome-hero__divider">
+      <span></span><span></span><span></span>
+    </div>
+
+    <p class="welcome-hero__body">
+      Your profile is now part of the Ikshu CV database.
+      It is online and shareable.
+    </p>
+
+  </div>
+
+  <!-- ═══ 2. PROFILE STRENGTH ═══ -->
+  <div class="form-card" id="completionCard">
+
+    <h2 class="card-heading">Your Profile Strength</h2>
+
+    <div class="strength-bar-wrap">
+      <div class="strength-bar__track">
+        <div class="strength-bar__fill" id="strengthFill"></div>
+      </div>
+    </div>
+
+    <p class="strength-summary" id="strengthSummary">
+      <!-- Populated by JS: "You've completed X of 18 sections." -->
+    </p>
+
+    <p class="strength-note" id="strengthNote">
+      <!-- Populated by JS: hint about adding bonus sections, only shown if any pending -->
+    </p>
+
+  </div>
+
+  <!-- ═══ 3. STRENGTHEN PROFILE — bonus sections (only shown if any pending) ═══ -->
+  <div class="form-card" id="bonusCard">
+    <h2 class="card-heading">Strengthen Your Profile <span class="card-heading__hint">(optional)</span></h2>
+    <p class="card-sub">
+      These sections are optional, but each one you add gives a fuller picture
+      of who you are. You can come back anytime to fill them.
+    </p>
+
+    <div class="bonus-grid" id="bonusGrid">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+
+  <!-- ═══ 4. REFER SOMEONE ═══ -->
+  <div class="form-card refer-card">
+    <div class="refer-card__content">
+      <div class="refer-card__icon" aria-hidden="true">&#129309;</div>
+      <div class="refer-card__body">
+        <h2 class="card-heading">Know Someone Who Deserves to Be Found?</h2>
+        <p class="card-sub">
+          MECULS grows through trust. If you know a professional who would benefit
+          from being on this platform, share this link with them.
+        </p>
+        <div class="refer-link-row">
+          <input type="text" id="referLink" class="refer-link-input" readonly
+                 value="https://meculs.com/join">
+          <button type="button" class="btn btn--secondary" id="copyLinkBtn">
+            Copy Link
+          </button>
+        </div>
+        <p class="helper-text helper-text--mt-8" id="copyConfirm" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 5. REVIEW / EDIT ═══ -->
+  <div class="review-row">
+    <p class="review-row__text">
+      Want to update something? You can review and edit your profile anytime.
+    </p>
+    <button type="button" class="btn btn--ghost" id="reviewProfileBtn">
+      Review &amp; Edit My Profile
+    </button>
+  </div>
+
+</div><!-- /form-container -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js?v=10"></script>
+<script src="mc_storage.js?v=22"></script>
+<script src="mc_supabase.js?v=22"></script>
+<script src="mc_helpers.js?v=10"></script>
+<script src="submission_complete.js?v=13"></script>
+
+</body>
+</html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Experience – MECULS</title>
+  <link rel="stylesheet" href="styles.css?v=11">
+  <link rel="stylesheet" href="experience.css?v=11">
+</head>
+<body>
+
+<div class="form-container">
+
+  <!-- STICKY HEADER with progress indicator -->
+  <div class="sticky-header">
+    <div class="sticky-header__top">
+      <h1 class="page-title" id="pageTitle">Add Experience-1</h1>
+      <div class="sticky-header__actions">
+        <button type="button" class="btn--save-now" id="saveNowBtn" aria-label="Save your progress now" title="Saves to your account when online; otherwise keeps a copy in this browser on this device.">
+          &#128190; Save Now
+        </button>
+        <span class="progress-badge">Step 5 of 11</span>
+      </div>
+    </div>
+    <div class="progress-bar-track" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" aria-label="Profile completion: step 5 of 11">
+      <div class="progress-bar-fill"></div>
+    </div>
+    <!-- Draft saved indicator (auto-save heartbeat — appears briefly after silent localStorage backup) -->
+    <span class="draft-status hidden" id="draftStatus" aria-live="polite">&check; Draft saved</span>
+  </div>
+
+  <!-- Draft-restore prompt (shown only when localStorage has an unsaved draft from a previous session) -->
+  <div class="draft-restore" id="draftRestorePrompt" role="status" aria-live="polite">
+    <div class="draft-restore__text" id="draftRestoreText">
+      We found work you started earlier on this experience. Would you like to continue from there?
+    </div>
+    <div class="draft-restore__actions">
+      <button type="button" class="draft-restore__btn draft-restore__btn--restore" id="draftRestoreBtn">Restore</button>
+      <button type="button" class="draft-restore__btn draft-restore__btn--discard" id="draftDiscardBtn">Start Fresh</button>
+    </div>
+  </div>
+
+  <!-- ===== SAVED EXPERIENCE LIST ===== -->
+  <div id="experience-list"></div>
+
+  <!-- Comfort banner — sets expectations for this long, important section -->
+  <div class="completion-incentive">
+    <div class="completion-incentive__icon" aria-hidden="true">🎯</div>
+    <div class="completion-incentive__body">
+      <p class="completion-incentive__heading">This section is the heart of your professional story.</p>
+      <p class="completion-incentive__text">
+        It's the engine that drives everything our matching system understands about you.
+        It will take longer than the others, and that's okay. Fill it with calm and patience &mdash;
+        what you put here is what shapes the connections you'll receive.
+      </p>
+      <p class="completion-incentive__text completion-incentive__text--mt">
+        <strong>Tip:</strong> save your progress frequently using <em>"Save &amp; Add Another Experience"</em>
+        or <em>"Save &amp; Continue"</em> &mdash; that's how your work gets recorded right now.
+        We're working on automatic saving for future versions.
+      </p>
+    </div>
+  </div>
+
+  <form id="experienceForm" novalidate>
+
+    <!-- ================= COMPANY ================= -->
+    <div class="form-card">
+      <div class="field-group">
+        <label class="field-label">Company Name <span class="required">*</span></label>
+        <input type="text" id="company" class="field-input" required maxlength="120">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Designation <span class="required">*</span></label>
+        <input type="text" id="designation" class="field-input" required maxlength="100">
+      </div>
+
+      <div class="checkbox-row" id="currentWorkCheckbox">
+        <input type="checkbox" id="isCurrent">
+        <label for="isCurrent">Are you currently working here?</label>
+      </div>
+    </div>
+
+    <!-- ================= ROLE ================= -->
+    <div class="form-card">
+      <div class="field-group">
+        <label class="field-label">Role Headline (Max. 300 characters) <span class="required">*</span></label>
+        <p class="helper-text helper-text--mb-exp">A one-line summary of your role &mdash; e.g. "Led product strategy for B2B SaaS team across India and SEA."</p>
+        <textarea id="roleHeadline" class="field-textarea" maxlength="300" required></textarea>
+        <div class="char-counter-out" id="rh">0 / 300</div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Role Description (Max. 2,000 characters) <span class="required">*</span></label>
+        <p class="helper-text helper-text--mb-exp">What you actually did &mdash; key responsibilities, scope, projects, outcomes. Be specific; this is what people skim first.</p>
+        <textarea id="roleDescription" class="field-textarea" maxlength="2000" required></textarea>
+        <div class="char-counter-out" id="rd">0 / 2,000</div>
+      </div>
+    </div>
+
+    <!-- ================= EMPLOYMENT ================= -->
+    <div class="form-card">
+      <div class="field-group">
+        <label class="field-label">Employment Type <span class="required">*</span></label>
+        <select id="employmentType" class="field-select" required>
+          <option value="">Select</option>
+          <option>Full-time</option>
+          <option>Contract</option>
+          <option>Freelance</option>
+          <option>Internship</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Sector <span class="required">*</span></label>
+        <p class="helper-text helper-text--mb-exp">Choose the type of organization you work for</p>
+        <select id="sector" class="field-select" required>
+          <option value="">Select</option>
+          <option>Private</option>
+          <option>Public / Government</option>
+          <option>Startup</option>
+          <option>Non-Profit</option>
+          <option>Self-Employed / Freelancer</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- ================= INDUSTRY ================= -->
+    <div class="form-card">
+      <div class="field-group">
+        <label class="field-label">Industry <span class="required">*</span></label>
+        <p class="helper-text helper-text--mb-exp">Select the industry your organization primarily operates in</p>
+        <select id="industry" class="field-select" required>
+          <option value="">Select</option>
+          <option>Information Technology</option>
+          <option>Healthcare</option>
+          <option>Banking &amp; Financial Services</option>
+          <option>Insurance</option>
+          <option>Manufacturing</option>
+          <option>Education</option>
+          <option>Retail</option>
+          <option>FMCG</option>
+          <option>Telecommunications</option>
+          <option>Energy &amp; Utilities</option>
+          <option>Pharmaceuticals</option>
+          <option>Real Estate</option>
+          <option>Logistics &amp; Supply Chain</option>
+          <option>Media &amp; Entertainment</option>
+          <option>Hospitality &amp; Travel</option>
+          <option>Agriculture</option>
+          <option>Automobile</option>
+          <option>Construction &amp; Infrastructure</option>
+          <option>Other (please specify)</option>
+        </select>
+        <input id="industry_other" class="field-input field-input--reveal hidden" placeholder="Specify industry" maxlength="100">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Industry Function <span class="required">*</span></label>
+        <p class="helper-text helper-text--mb-exp">What you actually do in your role — e.g. Talent Acquisition, Backend Development</p>
+        <textarea id="industryFunction" class="field-textarea" required maxlength="500"></textarea>
+      </div>
+    </div>
+
+    <!-- ================= DEPARTMENT ================= -->
+    <div class="form-card">
+      <div class="field-group">
+        <label class="field-label">Department <span class="required">*</span></label>
+        <p class="helper-text helper-text--mb-exp">The internal department or team you belong to</p>
+        <select id="department" class="field-select" required>
+          <option value="">Select</option>
+          <option>Human Resources</option>
+          <option>Sales</option>
+          <option>Marketing</option>
+          <option>Finance</option>
+          <option>Operations</option>
+          <option>Engineering / IT</option>
+          <option>Product</option>
+          <option>Customer Support</option>
+          <option>Legal</option>
+          <option>Procurement</option>
+          <option>Research &amp; Development</option>
+          <option>Learning &amp; Development</option>
+          <option>Administration</option>
+          <option>Quality Assurance</option>
+          <option>Other (please specify)</option>
+        </select>
+        <input id="department_other" class="field-input field-input--reveal hidden" placeholder="Specify department" maxlength="100">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Domain Specialization <span class="required">*</span></label>
+        <p class="helper-text helper-text--mb-exp">Maximum 5 areas, separated by commas &mdash; e.g. "Data Science, Executive Coaching, FinTech, Cloud Security"</p>
+        <textarea id="domainSpecialization" class="field-textarea" required maxlength="500"></textarea>
+      </div>
+    </div>
+
+    <!-- ================= CTC ================= -->
+    <div class="form-card">
+      <div class="field-group">
+        <label class="field-label" id="ctcFixedLabel">Current / Last Drawn CTC (Fixed) <span class="required">*</span></label>
+        <p class="helper-text helper-text--mb-exp" id="ctcFixedHelper">Pick a currency below first; we'll show how to enter the amount.</p>
+        <div class="inline-2">
+          <input type="number" id="ctcFixed" class="field-input" step="0.01" min="0" required>
+          <select id="ctcFixedCurrency" class="field-select" required>
+            <option value="">Currency</option>
+            <option>INR</option><option>USD</option><option>EUR</option>
+            <option>GBP</option><option>AED</option><option>SGD</option>
+            <option>AUD</option><option>CAD</option><option>JPY</option>
+            <option>Other (please specify)</option>
+          </select>
+          <input id="ctcFixedCurrencyOther" class="field-input hidden" placeholder="Specify currency" maxlength="100">
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" id="ctcVarLabel">Current / Last Drawn CTC (Variable)</label>
+        <p class="helper-text helper-text--mb-exp" id="ctcVarHelper">Optional. Pick a currency below first; we'll show how to enter the amount.</p>
+        <div class="inline-2">
+          <input type="number" id="ctcVariable" class="field-input" step="0.01" min="0">
+          <select id="ctcVarCurrency" class="field-select">
+            <option value="">Currency</option>
+            <option>INR</option><option>USD</option><option>EUR</option>
+            <option>GBP</option><option>AED</option><option>SGD</option>
+            <option>AUD</option><option>CAD</option><option>JPY</option>
+            <option>Other (please specify)</option>
+          </select>
+          <input id="ctcVarCurrencyOther" class="field-input hidden" placeholder="Specify currency" maxlength="100">
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= LOCATION ================= -->
+    <div class="form-card">
+      <div class="field-group">
+        <label class="field-label">Country <span class="required">*</span></label>
+        <select id="country" class="field-select" required>
+          <option value="">Select</option>
+          <option>India</option>
+          <option>United States</option>
+          <option>United Kingdom</option>
+          <option>Canada</option>
+          <option>Australia</option>
+          <option>Germany</option>
+          <option>France</option>
+          <option>Singapore</option>
+          <option>United Arab Emirates</option>
+          <option>Other (please specify)</option>
+        </select>
+        <input id="country_other" class="field-input field-input--reveal hidden" placeholder="Specify country" maxlength="100">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">State <span class="required">*</span></label>
+        <input type="text" id="state" class="field-input" required maxlength="60">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">City <span class="required">*</span></label>
+        <input type="text" id="city" class="field-input" required maxlength="60">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Location Type <span class="required">*</span></label>
+        <select id="locationType" class="field-select" required>
+          <option value="">Select</option>
+          <option>On-site</option>
+          <option>Hybrid</option>
+          <option>Remote</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- ================= SKILLS ================= -->
+    <div class="form-card">
+      <div class="field-group">
+        <label class="field-label">Domain Specific Skills (Max. 3) <span class="required">*</span></label>
+        <p class="helper-text helper-text--mb-exp">Skills specific to your domain or industry. Separate with commas. Maximum 3.</p>
+        <textarea id="domainSkills" class="field-textarea" required maxlength="500"></textarea>
+        <div class="char-counter-out" id="domainSkillsCount">0 / 3 skills</div>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Technical Skills (Max. 3) <span class="required">*</span></label>
+        <p class="helper-text helper-text--mb-exp">Tools, technologies, or technical methods you use. Separate with commas. Maximum 3.</p>
+        <textarea id="techSkills" class="field-textarea" required maxlength="500"></textarea>
+        <div class="char-counter-out" id="techSkillsCount">0 / 3 skills</div>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Soft Skills (Max. 3) <span class="required">*</span></label>
+        <p class="helper-text helper-text--mb-exp">Communication, leadership, interpersonal strengths. Separate with commas. Maximum 3.</p>
+        <textarea id="softSkills" class="field-textarea" required maxlength="500"></textarea>
+        <div class="char-counter-out" id="softSkillsCount">0 / 3 skills</div>
+      </div>
+    </div>
+
+    <!-- ================= DATES ================= -->
+    <div class="form-card">
+      <div class="field-group">
+        <label class="field-label">Start Date <span class="required">*</span></label>
+        <div class="date-row">
+          <select id="startMonth" class="field-select" required>
+            <option value="">Month</option>
+            <option value="01">January</option><option value="02">February</option>
+            <option value="03">March</option><option value="04">April</option>
+            <option value="05">May</option><option value="06">June</option>
+            <option value="07">July</option><option value="08">August</option>
+            <option value="09">September</option><option value="10">October</option>
+            <option value="11">November</option><option value="12">December</option>
+          </select>
+          <select id="startYear" class="field-select" required></select>
+        </div>
+      </div>
+
+      <!-- End Date — hidden when "currently working here" is checked -->
+      <div class="field-group" id="endDateGroup">
+        <label class="field-label" id="endDateLabel">End Date <span class="required">*</span></label>
+        <div class="date-row">
+          <select id="endMonth" class="field-select">
+            <option value="">Month</option>
+            <option value="01">January</option><option value="02">February</option>
+            <option value="03">March</option><option value="04">April</option>
+            <option value="05">May</option><option value="06">June</option>
+            <option value="07">July</option><option value="08">August</option>
+            <option value="09">September</option><option value="10">October</option>
+            <option value="11">November</option><option value="12">December</option>
+          </select>
+          <select id="endYear" class="field-select"></select>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= PROJECTS ================= -->
+    <div class="form-card">
+      <div class="field-group">
+        <label class="field-label">Any Projects You Did / Currently Doing?</label>
+        <select id="hasProjects" class="field-select">
+          <option value="no">No</option>
+          <option value="yes">Yes</option>
+        </select>
+      </div>
+
+      <div id="projectSection" class="sub-card sub-card--purple hidden">
+        <div id="projects"></div>
+        <button type="button" class="btn btn--secondary" id="addProjectBtn">
+          + Save &amp; Add Another Project
+        </button>
+      </div>
+    </div>
+
+    <!-- ================= ACTIONS ================= -->
+    <div class="btn-row">
+      <button type="button" class="btn btn--ghost hidden" id="cancelEditBtn">
+        Cancel Edit
+      </button>
+      <button type="button" class="btn btn--secondary" id="saveAnotherExperienceBtn">
+        <span class="btn-icon">&#10133;</span> Save &amp; Add Another Experience
+      </button>
+      <button type="button" class="btn btn--primary btn--continue-merged" id="saveContinueBtn">
+        Save &amp; Continue to &ndash; Next step: &ldquo;Your Education&rdquo; (Step 6 of 11)
+      </button>
+    </div>
+
+  </form>
+
+</div>
+
+
+<!-- Floating error popup — scroll-independent, fixed centre screen -->
+<div class="error-popup-overlay" id="errorPopupOverlay">
+  <div class="error-popup">
+    <div class="error-popup__icon">&#9888;</div>
+    <div class="error-popup__message" id="errorPopupMessage"></div>
+    <button class="error-popup__close" id="errorPopupClose">OK</button>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js?v=11"></script>
+<script src="mc_storage.js?v=22"></script>
+<script src="mc_supabase.js?v=22"></script>
+<script src="mc_helpers.js?v=11"></script>
+<script src="save_now.js?v=11"></script>
+<script src="experience.js?v=15"></script>
+
+</body>
+</html>

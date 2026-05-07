@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Work Portfolio &ndash; MECULS</title>
+  <link rel="stylesheet" href="styles.css?v=25">
+  <link rel="stylesheet" href="tier_shared.css?v=14">
+  <link rel="stylesheet" href="portfolio.css?v=14">
+</head>
+<body>
+<div class="form-container">
+
+  <!-- STICKY HEADER -->
+  <div class="sticky-header">
+    <div class="sticky-header__top">
+      <h2 class="page-title">Work Portfolio &amp; Proof of Work</h2>
+      <div class="sticky-header__actions">
+        <button type="button" class="btn--save-now" id="saveNowBtn"
+          aria-label="Save your progress now"
+          title="Saves to your account when online; otherwise keeps a copy in this browser on this device.">
+          &#128190; Save Now
+        </button>
+        <span class="step-badge step-badge--bonus">Bonus 5 of 7</span>
+        <button type="button" class="skip-section-pill" id="skipBtn"
+          aria-label="Skip this section — Not relevant to me"
+          title="Skip this section if it doesn't apply to you. You can always come back later.">
+          Skip section &rarr;
+        </button>
+      </div>
+    </div>
+    <p class="page-subtitle">
+      Share samples of your actual work &mdash; presentations, reports, case
+      studies, code. Concrete proof of capability speaks louder than a CV.
+    </p>
+    <div class="quota-row">
+      <div class="quota-badge quota-badge--blue">
+        Items added: <span id="pfCount">0</span> / 8
+      </div>
+    </div>
+    <span class="draft-status hidden" id="draftStatus" aria-live="polite">&check; Draft saved</span>
+  </div>
+
+  <!-- Draft-restore prompt -->
+  <div class="draft-restore" id="draftRestorePrompt" role="status" aria-live="polite">
+    <div class="draft-restore__text" id="draftRestoreText">
+      We found work you started earlier. Would you like to continue from there?
+    </div>
+    <div class="draft-restore__actions">
+      <button type="button" class="draft-restore__btn draft-restore__btn--restore" id="draftRestoreBtn">Restore</button>
+      <button type="button" class="draft-restore__btn draft-restore__btn--discard" id="draftDiscardBtn">Start Fresh</button>
+    </div>
+  </div>
+
+  <!-- Comfort banner -->
+  <div class="completion-incentive">
+    <div class="completion-incentive__icon" aria-hidden="true">&#127919;</div>
+    <div>
+      <p class="completion-incentive__heading">This section is optional &mdash; but high-value.</p>
+      <p class="completion-incentive__text">
+        Concrete proof of capability speaks louder than a CV. Pick the work
+        that <strong>best demonstrates what you do</strong> &mdash; your
+        strongest 3&ndash;5 pieces beat 15 mediocre ones.
+      </p>
+      <p class="completion-incentive__text completion-incentive__text--mt">
+        Each item needs a link to where the work is hosted &mdash;
+        Google Drive, GitHub, YouTube, LinkedIn, or your personal site.
+        Use the <strong>Show on profile</strong> toggle to temporarily
+        hide an item without deleting it.
+      </p>
+    </div>
+  </div>
+
+  <!-- ===== SAVED LIST (above the form, so progress stays visible) ===== -->
+  <div id="portfolioList"></div>
+
+  <!-- ===== ADD A PORTFOLIO ITEM ===== -->
+
+  <!-- WORK TYPE -->
+  <div class="form-card">
+    <h3 class="card-heading">What type of work is this? <span class="required">*</span></h3>
+    <p class="helper-text helper-text--spaced">Pick the closest match.</p>
+    <div class="type-chip-grid" id="typeChipGrid">
+      <label class="type-chip" data-value="Presentation / Deck">
+        <input type="radio" name="workType" value="Presentation / Deck">
+        <span class="type-chip__icon">&#128202;</span>Presentation / Deck
+      </label>
+      <label class="type-chip" data-value="Document / Report">
+        <input type="radio" name="workType" value="Document / Report">
+        <span class="type-chip__icon">&#128196;</span>Document / Report
+      </label>
+      <label class="type-chip" data-value="Dashboard / Analysis">
+        <input type="radio" name="workType" value="Dashboard / Analysis">
+        <span class="type-chip__icon">&#128200;</span>Dashboard / Analysis
+      </label>
+      <label class="type-chip" data-value="Code / Repository">
+        <input type="radio" name="workType" value="Code / Repository">
+        <span class="type-chip__icon">&#128187;</span>Code / Repository
+      </label>
+      <label class="type-chip" data-value="Video / Media">
+        <input type="radio" name="workType" value="Video / Media">
+        <span class="type-chip__icon">&#127909;</span>Video / Media
+      </label>
+      <label class="type-chip" data-value="Other">
+        <input type="radio" name="workType" value="Other">
+        <span class="type-chip__icon">&#128193;</span>Other
+      </label>
+    </div>
+  </div>
+
+  <!-- ITEM DETAILS -->
+  <div class="form-card">
+    <h3 class="card-heading">Item Details</h3>
+
+    <div class="field-group">
+      <label class="field-label" for="pfTitle">Title <span class="required">*</span></label>
+      <p class="helper-text">A clear name for this work.</p>
+      <input type="text" id="pfTitle" class="field-input" maxlength="120"
+             placeholder="e.g. Q3 2023 Business Strategy Deck">
+      <div class="char-counter-out" id="pfTitleCounter">0 / 120</div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label" for="pfDesc">Description <span class="required">*</span></label>
+      <p class="helper-text">
+        What is this work, and what did it achieve? Use numbers and concrete
+        outcomes wherever possible.
+      </p>
+      <textarea id="pfDesc" class="field-textarea" maxlength="400"
+                placeholder="e.g. Q3 strategy deck for a 3,000-person FMCG; outlined a market-entry plan for South India that drove revenue +28% in 4 quarters."></textarea>
+      <div class="char-counter-out" id="pfDescCounter">0 / 400</div>
+    </div>
+  </div>
+
+  <!-- LINK TO YOUR WORK -->
+  <div class="form-card">
+    <h3 class="card-heading">Link to Your Work <span class="required">*</span></h3>
+    <p class="helper-text helper-text--spaced">
+      Paste a link to where this work is hosted &mdash; Google Drive,
+      GitHub, YouTube, LinkedIn, your personal site, anything publicly
+      viewable. The link is what viewers of your profile will click on.
+    </p>
+
+    <div class="field-group">
+      <label class="field-label" for="pfUrl">URL <span class="required">*</span></label>
+      <input type="url" id="pfUrl" class="field-input" maxlength="500"
+             placeholder="https://docs.google.com/&hellip; or https://github.com/&hellip;">
+      <p class="helper-text">
+        The link should lead to the actual file or page (not your homepage).
+        We'll automatically add <strong>https://</strong> if you forget it.
+      </p>
+    </div>
+  </div>
+
+  <!-- PROFILE VISIBILITY -->
+  <div class="form-card">
+    <h3 class="card-heading">Profile Visibility</h3>
+    <div class="field-group">
+      <div class="checkbox-row">
+        <input type="checkbox" id="pfShowOnProfile" checked>
+        <label for="pfShowOnProfile">
+          <strong>Show this item on my public profile.</strong> Untick to
+          temporarily hide this portfolio item without erasing what you've
+          entered &mdash; useful if a piece is no longer current but you may
+          want to bring it back later.
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTIONS -->
+  <div class="btn-row">
+    <button type="button" class="btn btn--ghost hidden" id="cancelEditPfBtn">
+      Cancel Edit
+    </button>
+    <button type="button" class="btn btn--secondary" id="saveAnotherBtn">
+      Save &amp; Add Another Item
+    </button>
+    <button type="button" class="btn btn--primary btn--continue-merged" id="saveContinueBtn">
+      Save &amp; Continue to &ndash; Next step: &ldquo;Publications &amp; Media&rdquo; (Bonus 6 of 7)
+    </button>
+  </div>
+
+</div><!-- /form-container -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js?v=14"></script>
+<script src="mc_storage.js?v=22"></script>
+<script src="mc_supabase.js?v=23"></script>
+<script src="mc_helpers.js?v=14"></script>
+<script src="save_now.js?v=14"></script>
+<script src="portfolio.js?v=15"></script>
+
+<!-- Floating error popup -->
+<div class="error-popup-overlay" id="errorPopupOverlay">
+  <div class="error-popup">
+    <div class="error-popup__icon">&#9888;</div>
+    <div class="error-popup__message" id="errorPopupMessage"></div>
+    <div class="error-popup__actions">
+      <button class="error-popup__secondary hidden" id="errorPopupCancel" type="button">Cancel</button>
+      <button class="error-popup__close" id="errorPopupClose" type="button">OK</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

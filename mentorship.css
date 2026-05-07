@@ -1,0 +1,170 @@
+/* ============================================================
+   mentorship.css
+   Page-specific styles for Mentorship & Coaching.
+   Loaded AFTER styles.css and tier_shared.css so this file
+   only contains rules unique to this page.
+
+   Most styles for this page are reused from shared CSS:
+     - .completion-incentive (comfort banner — styles.css)
+     - .step-badge--bonus (gold badge — tier_shared.css)
+     - .checkbox-row (visibility toggle — tier_shared.css)
+     - .form-card / .field-group / .field-label / .field-input /
+       .field-select / .field-textarea / .char-counter-out
+       (all in shared CSS)
+   This page only needs the role-option widget unique to it.
+   ============================================================ */
+
+/* ── Role-selection grid (Mentor / Mentee / Coach / Coachee) ──
+   2 columns on desktop, stacks 1-column on mobile. */
+.role-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.role-option {
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  padding: 14px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  user-select: none;
+  position: relative;
+  display: block;
+}
+
+.role-option:hover {
+  border-color: #4c73ff;
+  background: #f8faff;
+}
+
+/* When SELECTED, role cards adopt their section's colour family —
+   so the user can visually trace which card maps to which form below.
+   Mentor + Coach => BLUE family ("offering" side)
+   Mentee + Coachee => GREEN family ("seeking" side)
+   This is the same colour mapping used on the section headings,
+   so the connection is reinforced both ways. */
+
+/* Mentor / Coach selected (BLUE) */
+.role-option[data-value="Mentor"].selected,
+.role-option[data-value="Coach"].selected {
+  border-color: #4c73ff;
+  background: #eef4ff;
+}
+.role-option[data-value="Mentor"].selected .role-option__title,
+.role-option[data-value="Coach"].selected .role-option__title {
+  color: #1d4ed8;
+}
+.role-option[data-value="Mentor"] input[type="checkbox"],
+.role-option[data-value="Coach"] input[type="checkbox"] {
+  accent-color: #4c73ff;
+}
+
+/* Mentee / Coachee selected (GREEN) */
+.role-option[data-value="Mentee"].selected,
+.role-option[data-value="Coachee"].selected {
+  border-color: #16a34a;
+  background: #f0fdf4;
+}
+.role-option[data-value="Mentee"].selected .role-option__title,
+.role-option[data-value="Coachee"].selected .role-option__title {
+  color: #15803d;
+}
+.role-option[data-value="Mentee"] input[type="checkbox"],
+.role-option[data-value="Coachee"] input[type="checkbox"] {
+  accent-color: #16a34a;
+}
+
+/* Default checkbox accent for unselected hover state */
+.role-option input[type="checkbox"] {
+  accent-color: #4c73ff;
+}
+
+/* Checkbox positioned in the top-right of each card */
+.role-option input[type="checkbox"] {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: #4c73ff;
+}
+
+.role-option__icon {
+  font-size: 1.4rem;
+  margin-bottom: 6px;
+}
+
+.role-option__title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 3px;
+}
+
+.role-option__desc {
+  font-size: 0.78rem;
+  color: #4b5563;
+  line-height: 1.4;
+}
+
+/* ── Section heading boxes for the two adaptive forms ──
+   When the user picks multiple roles, they see two long forms below.
+   These tinted heading boxes make it crystal-clear which form maps
+   to which role(s) selected above. The colour family on each box
+   matches the role-card tints used for that side:
+     Mentor/Coach Profile heading  =>  BLUE  (offering)
+     Seeker (Mentee/Coachee) heading =>  GREEN (seeking)
+   The result: a Mentor card I tap (blue) leads me to a blue heading
+   box; a Mentee card I tap (green) leads me to a green heading box.
+   No ambiguity even when both forms are visible at once. */
+
+.section-heading-box {
+  display: block;
+  margin: 0 -8px 14px -8px;        /* slight bleed past the form-card padding */
+  padding: 14px 18px 12px;
+  border-radius: 10px;
+  border-left: 4px solid;          /* color set by modifier class */
+  border-top: 1px solid;
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+}
+
+.section-heading-box__title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+  line-height: 1.3;
+}
+
+.section-heading-box__sub {
+  font-size: 0.85rem;
+  margin: 0;
+  line-height: 1.45;
+  font-weight: 500;
+}
+
+/* BLUE variant — Mentor/Coach Profile (the "offering" side) */
+.section-heading-box--blue {
+  background: #eef4ff;
+  border-color: #bfdbfe;
+  border-left-color: #4c73ff;
+}
+.section-heading-box--blue .section-heading-box__title { color: #1d4ed8; }
+.section-heading-box--blue .section-heading-box__sub   { color: #1e40af; }
+
+/* GREEN variant — Mentee/Seeker (the "seeking" side) */
+.section-heading-box--green {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+  border-left-color: #16a34a;
+}
+.section-heading-box--green .section-heading-box__title { color: #15803d; }
+.section-heading-box--green .section-heading-box__sub   { color: #166534; }
+
+@media (max-width: 640px) {
+  .role-grid {
+    grid-template-columns: 1fr;
+  }
+}

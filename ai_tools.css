@@ -1,0 +1,94 @@
+/* ============================================================
+   ai_tools.css
+   Page-specific styles for AI Tools & Digital Literacy.
+   Loaded AFTER styles.css and tier_shared.css so this file
+   only contains rules unique to this page.
+   ============================================================ */
+
+/* ── Add-tool form: single-row grid on desktop, stacks on mobile ──
+   Layout:
+     [ Tool Name (1.5fr) ] [ Category (1fr) ] [ Proficiency (1fr) ] [ + Add (auto) ]
+   Mobile (<640px): all four fields stack vertically, Add button full-width.
+   The Add button aligns to the bottom of its column so it sits at the same
+   visual baseline as the input fields when the labels above wrap to 2 lines. */
+.tool-add-form {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr auto;
+  gap: 12px;
+  align-items: end;
+}
+
+.tool-add-form__field { min-width: 0; }   /* lets flex/grid items shrink */
+
+.tool-add-form__action {
+  display: flex;
+  align-items: flex-end;
+}
+
+.tool-add-form__action .btn {
+  white-space: nowrap;
+  margin: 0;
+}
+
+/* "Other" category row sits BELOW the single-row grid, full-width when
+   revealed, so the user gets a comfortable text input to type the custom
+   category name instead of a cramped grid cell. */
+.tool-add-form__other-row {
+  margin-top: 12px;
+}
+
+@media (max-width: 640px) {
+  .tool-add-form {
+    grid-template-columns: 1fr;
+  }
+  .tool-add-form__action .btn {
+    width: 100%;
+  }
+}
+
+/* ── Saved tool card ── */
+.tool-card {
+  background: #f8faff;
+  border: 1px solid #dbeafe;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+.tool-card__body { flex: 1; min-width: 0; }
+.tool-card__name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 3px;
+}
+.tool-card__meta { font-size: 0.82rem; color: #4b5563; }
+
+/* ── Category sub-heading inside the grouped saved-tools list ── */
+.tool-list-category-heading {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #4b5563;
+  margin-top: 14px;
+  margin-bottom: 8px;
+}
+.tool-list-category-heading:first-child { margin-top: 4px; }
+
+/* ── Role Identity description text ──
+   Shown below the Role Identity dropdown when an option is selected.
+   Subtle styling so the dropdown remains the focal element. */
+.role-identity-desc {
+  margin-top: 10px;
+  padding: 10px 14px;
+  background: #f0f7ff;
+  border-left: 3px solid #4c73ff;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  color: #1e3a5f;
+  line-height: 1.55;
+}

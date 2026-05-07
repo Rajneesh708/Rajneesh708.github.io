@@ -1,0 +1,381 @@
+/* ============================================================
+   MECULS — submission_complete.css
+   Post-submission page.
+
+   Hero uses a two-zone layout: a Prussian-blue gradient band
+   hosting the gold-white logo + sub-brand, then a white area
+   for the tagline, welcome line, and body copy. The gold-white
+   logo only renders correctly on a dark background, so we give
+   it one inside the card.
+
+   Brand gold tokens used here:
+   - #c9a84c (lighter gold) — only on dark backgrounds (the
+     band) and the small decorative deva script "( इक्षु )".
+   - #a88a2e (darker gold)  — for any gold text on white. Same
+     hue family but with proper AA contrast on white.
+
+   No celebration overlay, no fake "active matching" timeline,
+   no recruiter wording. Just: welcome, here's what you've done,
+   here's what you can still add, share with others, edit anytime.
+   ============================================================ */
+
+/* ── Welcome hero — two-zone layout ──
+   TOP: dark Prussian-blue gradient band (where the gold-white logo
+        and the sub-brand sit — same dark context the logo was
+        designed for, so the white parts of the logo render correctly).
+   BOTTOM: white content area with the tagline, welcome line,
+        divider, and body text.
+
+   Note on gold colours used here:
+   - #c9a84c (lighter gold) — used only inside the dark band where it
+     reads brightly, AND for the small deva script "( इक्षु )" which
+     is decorative and small enough that contrast is acceptable.
+   - #a88a2e (darker gold)  — used for the tagline on the WHITE area.
+     This is the same hue family but darker, so it has proper AA
+     contrast on white. The lighter #c9a84c looked dampened on white,
+     so we step it down here while preserving the brand feel. */
+
+.welcome-hero {
+  margin-bottom: 24px;
+  border: 1px solid #f0e8d0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+/* Dark band that hosts the logo + sub-brand.
+   Same Prussian-blue family as the dashboard sidebar. */
+.welcome-hero__band {
+  background: linear-gradient(180deg, #0d1f3a 0%, #1a2f4d 100%);
+  padding: 28px 24px 22px;
+  text-align: center;
+}
+
+.welcome-hero__logo {
+  max-width: 140px;
+  height: auto;
+  display: inline-block;
+}
+
+/* Hidden by default — only shown if logo image fails to load. */
+.welcome-hero__logo-text {
+  display: none;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.03em;
+}
+
+/* Sub-brand sits inside the dark band, so it can use white + light
+   gold without contrast issues. */
+.welcome-hero__subbrand {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: 10px;
+  letter-spacing: 0.01em;
+}
+
+.welcome-hero__subbrand-deva {
+  color: #c9a84c;
+  font-weight: 600;
+}
+
+/* White content area below the band */
+.welcome-hero__tagline {
+  text-align: center;
+  font-size: 1.05rem;
+  font-style: italic;
+  color: #a88a2e;            /* darker gold — readable on white */
+  margin: 28px 24px 6px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.welcome-hero__heading {
+  text-align: center;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 24px 16px;
+  line-height: 1.2;
+}
+
+/* Three small dots — visual breath between heading and body */
+.welcome-hero__divider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin: 0 auto 18px;
+}
+
+.welcome-hero__divider span {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #a88a2e;       /* match the darker gold used on white */
+  opacity: 0.55;
+}
+
+.welcome-hero__body {
+  text-align: center;
+  font-size: 0.96rem;
+  color: #4b5563;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 0 24px 32px;
+  line-height: 1.7;
+}
+
+/* ── Form card (re-used pattern) ── */
+.form-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 28px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+/* ── Card heading ── */
+.card-heading {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 6px 0;
+}
+
+.card-heading__hint {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #4b5563;
+  font-style: italic;
+}
+
+/* ── Card subtitle ── */
+.card-sub {
+  font-size: 0.875rem;
+  color: #4b5563;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+/* ── Profile strength bar — no percentage, no threshold ── */
+.strength-bar-wrap {
+  margin: 16px 0;
+}
+
+.strength-bar__track {
+  height: 10px;
+  background: #f3f4f6;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.strength-bar__fill {
+  height: 100%;
+  background: linear-gradient(90deg, #a88a2e, #c9a84c);
+  border-radius: 5px;
+  width: 0%;
+  transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.strength-summary {
+  font-size: 0.95rem;
+  color: #1f2937;
+  margin: 12px 0 4px 0;
+  font-weight: 600;
+}
+
+.strength-note {
+  font-size: 0.875rem;
+  color: #4b5563;
+  margin: 4px 0 0 0;
+  line-height: 1.6;
+}
+
+/* Hide the note when JS sets it to empty */
+.strength-note:empty {
+  display: none;
+}
+
+/* ── Bonus sections grid ── */
+.bonus-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.bonus-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #f9fafb;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.bonus-item:hover {
+  border-color: #4c73ff;
+  background: #f0f4ff;
+}
+
+.bonus-item--done {
+  border-color: #6ee7b7;
+  background: #f0fdf4;
+  cursor: default;
+}
+
+.bonus-item--done:hover {
+  border-color: #6ee7b7;
+  background: #f0fdf4;
+}
+
+.bonus-item--skipped {
+  border-color: #fde68a;
+  background: #fffbeb;
+}
+
+.bonus-item--skipped:hover {
+  border-color: #4c73ff;
+  background: #f0f4ff;
+}
+
+.bonus-item__label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #374151;
+  flex: 1;
+}
+
+.bonus-item--done .bonus-item__label {
+  color: #065f46;
+}
+
+.bonus-item__status {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.bonus-item__status--pending {
+  background: #eff6ff;
+  color: #4c73ff;
+  border: 1px solid #bfdbfe;
+}
+
+.bonus-item__status--done {
+  background: #d1fae5;
+  color: #065f46;
+  border: 1px solid #6ee7b7;
+}
+
+.bonus-item__status--skipped {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+
+/* ── Refer card ── */
+.refer-card {
+  border-color: #e0e7ff;
+  background: linear-gradient(135deg, #f8faff 0%, #ffffff 100%);
+}
+
+.refer-card__content {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.refer-card__icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+.refer-card__body {
+  flex: 1;
+}
+
+.refer-link-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+  align-items: center;
+}
+
+.refer-link-input {
+  flex: 1;
+  padding: 9px 12px;
+  font-size: 0.85rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #f3f4f6;
+  color: #6b7280;
+  box-sizing: border-box;
+  cursor: text;
+  font-family: inherit;
+}
+
+.helper-text--mt-8 {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: #16a34a;
+  min-height: 1.2em;
+}
+
+/* ── Buttons —
+   .btn / .btn--primary / .btn--secondary / .btn--ghost are
+   defined in styles.css and apply globally. We only override
+   :hover here. */
+.btn--primary:hover {
+  background: #3a5fd9;
+}
+.btn--secondary:hover {
+  background: #e5e7eb;
+}
+.btn--ghost:hover {
+  background: #eff6ff;
+}
+
+/* ── Review row ── */
+.review-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 0 8px;
+  flex-wrap: wrap;
+}
+
+.review-row__text {
+  font-size: 0.875rem;
+  color: #4b5563;
+  margin: 0;
+}
+
+/* Hide bonusCard entirely when JS marks all sections complete */
+#bonusCard.bonus-card--all-done {
+  display: none;
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .welcome-hero__heading { font-size: 1.6rem; }
+  .welcome-hero__tagline { font-size: 0.95rem; }
+  .bonus-grid            { grid-template-columns: 1fr; }
+  .refer-card__content   { flex-direction: column; }
+  .refer-link-row        { flex-direction: column; }
+  .refer-link-input      { width: 100%; }
+  .review-row            { flex-direction: column; align-items: flex-start; }
+}

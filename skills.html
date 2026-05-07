@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Skills – MECULS</title>
+  <link rel="stylesheet" href="styles.css?v=25">
+  <link rel="stylesheet" href="skills.css?v=24">
+</head>
+<body>
+
+<div class="form-container">
+
+  <!-- STICKY HEADER with progress indicator -->
+  <div class="sticky-header">
+    <div class="sticky-header__top">
+      <h2 class="page-title">Your Skills</h2>
+      <div class="sticky-header__actions">
+        <button type="button" class="btn--save-now" id="saveNowBtn"
+          aria-label="Save your progress now"
+          title="Saves to your account when online; otherwise keeps a copy in this browser on this device.">
+          &#128190; Save Now
+        </button>
+        <span class="progress-badge">Step 7 of 11</span>
+      </div>
+    </div>
+    <p class="page-subtitle">
+      Add the skills that best represent your professional abilities.
+      Add a minimum of 3 skills and up to 30 maximum. Organise them
+      by category so anyone reviewing your profile can quickly understand your strengths.
+    </p>
+    <div class="progress-bar-track" role="progressbar" aria-valuenow="64" aria-valuemin="0" aria-valuemax="100" aria-label="Profile completion: step 7 of 11">
+      <div class="progress-bar-fill"></div>
+    </div>
+    <!-- Draft saved indicator (auto-save heartbeat) -->
+    <span class="draft-status hidden" id="draftStatus" aria-live="polite">&check; Draft saved</span>
+  </div>
+
+  <!-- Draft-restore prompt (shown only when localStorage has an unsaved draft from a previous session) -->
+  <div class="draft-restore" id="draftRestorePrompt" role="status" aria-live="polite">
+    <div class="draft-restore__text" id="draftRestoreText">
+      We found work you started earlier. Would you like to continue from there?
+    </div>
+    <div class="draft-restore__actions">
+      <button type="button" class="draft-restore__btn draft-restore__btn--restore" id="draftRestoreBtn">Restore</button>
+      <button type="button" class="draft-restore__btn draft-restore__btn--discard" id="draftDiscardBtn">Start Fresh</button>
+    </div>
+  </div>
+
+  <!-- ================= ADD A SKILL ================= -->
+  <div class="form-card">
+    <h3 class="card-heading">Add a Skill</h3>
+
+    <div class="skill-input-grid">
+
+      <div class="field-group">
+        <label class="field-label" for="skillName">
+          Skill Name <span class="required">*</span>
+        </label>
+        <input type="text" id="skillName" class="field-input"
+               placeholder="e.g. Python, Leadership, SQL, Figma"
+               maxlength="60">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="skillCategory">
+          Category <span class="required">*</span>
+        </label>
+        <select id="skillCategory" class="field-select">
+          <option value="">Select category</option>
+          <option value="Technical">Technical</option>
+          <option value="Domain">Domain / Industry</option>
+          <option value="Soft">Soft Skills</option>
+          <option value="Tools">Tools &amp; Software</option>
+          <option value="Language">Languages</option>
+          <option value="Other">Other</option>
+        </select>
+        <!-- Shown only when Other is selected -->
+        <input type="text" id="skillCategoryOther" class="field-input field-input--other hidden"
+               placeholder="Type your category"
+               maxlength="40">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="skillLevel">
+          Proficiency <span class="required">*</span>
+        </label>
+        <select id="skillLevel" class="field-select">
+          <option value="">Select proficiency</option>
+          <option value="Beginner">Beginner</option>
+          <option value="Intermediate">Intermediate</option>
+          <option value="Advanced">Advanced</option>
+          <option value="Expert">Expert</option>
+        </select>
+      </div>
+
+    </div><!-- /skill-input-grid -->
+
+    <div class="btn-row btn-row--compact">
+      <button type="button" class="btn btn--secondary" id="addSkillBtn">
+        + Add Skill to List
+      </button>
+    </div>
+
+  </div><!-- /form-card add skill -->
+
+
+  <!-- ================= SKILLS PREVIEW ================= -->
+  <div class="form-card" id="skillsPreviewCard">
+    <div class="preview-header">
+      <h3 class="card-heading">Your Added Skills <span id="skillCount" class="skill-count">0 added</span></h3>
+      <p class="helper-text" id="skillsMinHint">Add at least 3 skills before saving. Maximum 30 skills allowed.</p>
+    </div>
+
+    <!-- Skills grouped by category, rendered dynamically -->
+    <div id="skillsGroupedList">
+      <div class="skills-empty-state" id="skillsEmptyState">
+        No skills added yet. Use the form above to add your first skill.
+      </div>
+    </div>
+  </div><!-- /skills preview -->
+
+
+  <!-- ================= ACTION ================= -->
+  <div class="btn-row">
+    <button type="button" class="btn btn--primary btn--continue-merged" id="saveSkillsBtn">
+      Save &amp; Continue to &ndash; Next step: &ldquo;Your Certifications&rdquo; (Step 8 of 11)
+    </button>
+  </div>
+
+</div><!-- /form-container -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js?v=11"></script>
+<script src="mc_storage.js?v=22"></script>
+<script src="mc_supabase.js?v=23"></script>
+<script src="mc_helpers.js?v=11"></script>
+<script src="save_now.js?v=11"></script>
+<script src="skills.js?v=13"></script>
+
+<!-- Floating error popup — scroll-independent, fixed centre screen -->
+<div class="error-popup-overlay" id="errorPopupOverlay">
+  <div class="error-popup">
+    <div class="error-popup__icon">&#9888;</div>
+    <div class="error-popup__message" id="errorPopupMessage"></div>
+    <button class="error-popup__close" id="errorPopupClose">OK</button>
+  </div>
+</div>
+
+</body>
+</html>

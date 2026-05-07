@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your References – MECULS</title>
+  <link rel="stylesheet" href="styles.css?v=25">
+  <link rel="stylesheet" href="references.css?v=24">
+</head>
+<body>
+
+<div class="form-container">
+
+  <!-- STICKY HEADER with progress indicator -->
+  <div class="sticky-header">
+    <div class="sticky-header__top">
+      <h2 class="page-title">Your References</h2>
+      <div class="sticky-header__actions">
+        <button type="button" class="btn--save-now" id="saveNowBtn"
+          aria-label="Save your progress now"
+          title="Saves to your account when online; otherwise keeps a copy in this browser on this device.">
+          &#128190; Save Now
+        </button>
+        <span class="progress-badge">Step 9 of 11</span>
+      </div>
+    </div>
+    <p class="page-subtitle">
+      Add people who can vouch for your professional or academic abilities.
+      You can add up to 2 Academic and 2 Industry references.
+    </p>
+    <div class="progress-bar-track" role="progressbar" aria-valuenow="82" aria-valuemin="0" aria-valuemax="100" aria-label="Profile completion: step 9 of 11">
+      <div class="progress-bar-fill"></div>
+    </div>
+    <!-- Reference type quota tracker -->
+    <div class="quota-row">
+      <div class="quota-badge quota-badge--academic">
+        Academic: <span id="academicCount">0</span> / 2
+      </div>
+      <div class="quota-badge quota-badge--industry">
+        Industry: <span id="industryCount">0</span> / 2
+      </div>
+    </div>
+    <!-- Draft saved indicator (auto-save heartbeat) -->
+    <span class="draft-status hidden" id="draftStatus" aria-live="polite">&check; Draft saved</span>
+  </div><!-- /sticky-header -->
+
+  <!-- Draft-restore prompt (shown only when localStorage has an unsaved draft from a previous session) -->
+  <div class="draft-restore" id="draftRestorePrompt" role="status" aria-live="polite">
+    <div class="draft-restore__text" id="draftRestoreText">
+      We found a reference you started filling earlier. Would you like to continue from there?
+    </div>
+    <div class="draft-restore__actions">
+      <button type="button" class="draft-restore__btn draft-restore__btn--restore" id="draftRestoreBtn">Restore</button>
+      <button type="button" class="draft-restore__btn draft-restore__btn--discard" id="draftDiscardBtn">Start Fresh</button>
+    </div>
+  </div>
+
+  <!-- Comfort banner — sets expectations -->
+  <div class="completion-incentive">
+    <div class="completion-incentive__icon" aria-hidden="true">&#127919;</div>
+    <div>
+      <p class="completion-incentive__heading">Strong references give your profile real weight.</p>
+      <p class="completion-incentive__text">
+        Add people you have actually worked with or studied under &mdash; their voice
+        carries more weight than any line on your CV. We will only contact your references
+        with your knowledge.
+      </p>
+      <p class="completion-incentive__text completion-incentive__text--mt">
+        <em>Tip:</em> use <strong>&#128190; Save Now</strong> at the top to safely store
+        your in-progress reference. Your work is also backed up locally as you type.
+      </p>
+    </div>
+  </div>
+
+  <!-- ===== SAVED REFERENCES LIST ===== -->
+  <div id="reference-list"></div>
+
+  <!-- ===== ADD A REFERENCE FORM ===== -->
+  <div class="form-card">
+    <h3 class="card-heading">Add a Reference</h3>
+
+    <div class="field-group">
+      <label class="field-label" for="referenceType">
+        Reference Type <span class="required">*</span>
+      </label>
+      <select id="referenceType" class="field-select" required>
+        <option value="">Select type</option>
+        <option value="Academic">Academic</option>
+        <option value="Industry">Industry</option>
+      </select>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label" for="refName">
+        Full Name <span class="required">*</span>
+      </label>
+      <input type="text" id="refName" class="field-input"
+             placeholder="e.g. Dr. Anita Sharma"
+             maxlength="100"
+             required>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label" for="refOrg">
+        Organisation / Institution <span class="required">*</span>
+      </label>
+      <input type="text" id="refOrg" class="field-input"
+             placeholder="e.g. IIM Ahmedabad, Tata Consultancy Services"
+             maxlength="120"
+             required>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label" for="refTitle">
+        Designation / Title <span class="required">*</span>
+      </label>
+      <input type="text" id="refTitle" class="field-input"
+             placeholder="e.g. Professor, Senior Manager, Director"
+             maxlength="100"
+             required>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">
+        Mobile Number <span class="required">*</span>
+      </label>
+      <div class="mobile-row">
+        <input type="text" id="refCountryCode" class="field-input field-input--code"
+               placeholder="+91" maxlength="6">
+        <input type="tel" id="refMobile" class="field-input"
+               placeholder="Enter mobile number"
+               maxlength="20"
+               required>
+      </div>
+      <p class="helper-text">
+        Enter country code (e.g. +91 for India, +1 for US) followed by the mobile number.
+      </p>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label" for="refEmail">
+        Email Address <span class="required">*</span>
+      </label>
+      <input type="email" id="refEmail" class="field-input"
+             placeholder="e.g. anita.sharma@iima.ac.in"
+             maxlength="120"
+             required>
+    </div>
+
+    <div class="btn-row">
+      <button type="button" class="btn btn--ghost hidden" id="cancelEditRefBtn">
+        Cancel Edit
+      </button>
+      <button type="button" class="btn btn--secondary" id="addReferenceBtn">
+        + Add Reference to List
+      </button>
+    </div>
+
+  </div><!-- /add reference card -->
+
+  <!-- ===== ACTION ===== -->
+  <div class="btn-row">
+    <button type="button" class="btn btn--primary btn--continue-merged" id="saveContinueBtn">
+      Save &amp; Continue to &ndash; Next step: &ldquo;Your Preferences&rdquo; (Step 10 of 11)
+    </button>
+  </div>
+  <div id="refInlineError" class="inline-error hidden"></div>
+
+</div><!-- /form-container -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js?v=10"></script>
+<script src="mc_storage.js?v=22"></script>
+<script src="mc_supabase.js?v=23"></script>
+<script src="mc_helpers.js?v=10"></script>
+<script src="save_now.js?v=10"></script>
+<script src="references.js?v=11"></script>
+
+<!-- Floating error popup — scroll-independent, fixed centre screen -->
+<div class="error-popup-overlay" id="errorPopupOverlay">
+  <div class="error-popup">
+    <div class="error-popup__icon">&#9888;&#65039;</div>
+    <div class="error-popup__message" id="errorPopupMessage"></div>
+    <button class="error-popup__close" id="errorPopupClose">OK</button>
+  </div>
+</div>
+
+</body>
+</html>

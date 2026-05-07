@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Key Achievements &ndash; MECULS</title>
+  <link rel="stylesheet" href="styles.css?v=25">
+  <link rel="stylesheet" href="tier_shared.css?v=13">
+  <link rel="stylesheet" href="key_achievements.css?v=13">
+</head>
+<body>
+<div class="form-container">
+
+  <!-- STICKY HEADER -->
+  <div class="sticky-header">
+    <div class="sticky-header__top">
+      <h2 class="page-title">Key Achievements</h2>
+      <div class="sticky-header__actions">
+        <button type="button" class="btn--save-now" id="saveNowBtn"
+          aria-label="Save your progress now"
+          title="Saves to your account when online; otherwise keeps a copy in this browser on this device.">
+          &#128190; Save Now
+        </button>
+        <span class="step-badge step-badge--bonus">Bonus 3 of 7</span>
+        <button type="button" class="skip-section-pill" id="skipBtn"
+          aria-label="Skip this section — Not relevant to me"
+          title="Skip this section if it doesn't apply to you. You can always come back later.">
+          Skip section &rarr;
+        </button>
+      </div>
+    </div>
+    <p class="page-subtitle">
+      Highlight the most important outcomes you have delivered in your career.
+      Strong achievements are specific, quantified, and clearly impactful.
+    </p>
+    <div class="quota-row">
+      <div class="quota-badge quota-badge--yellow">
+        Achievements added: <span id="achCount">0</span> / 7
+      </div>
+    </div>
+    <span class="draft-status hidden" id="draftStatus" aria-live="polite">&check; Draft saved</span>
+  </div>
+
+  <!-- Draft-restore prompt -->
+  <div class="draft-restore" id="draftRestorePrompt" role="status" aria-live="polite">
+    <div class="draft-restore__text" id="draftRestoreText">
+      We found work you started earlier. Would you like to continue from there?
+    </div>
+    <div class="draft-restore__actions">
+      <button type="button" class="draft-restore__btn draft-restore__btn--restore" id="draftRestoreBtn">Restore</button>
+      <button type="button" class="draft-restore__btn draft-restore__btn--discard" id="draftDiscardBtn">Start Fresh</button>
+    </div>
+  </div>
+
+  <!-- Comfort banner: encourages CURATION over volume.
+       This is the opposite of the bloated "list everything" instinct. -->
+  <div class="completion-incentive">
+    <div class="completion-incentive__icon" aria-hidden="true">&#127942;</div>
+    <div>
+      <p class="completion-incentive__heading">Pick your strongest achievements &mdash; not all of them.</p>
+      <p class="completion-incentive__text">
+        Three sharp, specific achievements beat ten vague ones. People reviewing your profile look for
+        <strong>numbers, percentages, and concrete outcomes</strong>.
+        Add up to 7 &mdash; quality matters far more than quantity.
+      </p>
+      <p class="completion-incentive__text completion-incentive__text--mt">
+        If you have a public reference (LinkedIn post, press release, award page,
+        case study), add it as a <strong>verification link</strong> &mdash; verified
+        achievements stand out on your profile.
+      </p>
+    </div>
+  </div>
+
+  <!-- ===== SAVED LIST (above the form, so progress stays visible) ===== -->
+  <div id="achList"></div>
+
+  <!-- ===== ADD AN ACHIEVEMENT ===== -->
+  <div class="form-card">
+    <h3 class="card-heading">Add an Achievement</h3>
+
+    <!-- Title -->
+    <div class="field-group">
+      <label class="field-label" for="achTitle">
+        Achievement Title <span class="required">*</span>
+      </label>
+      <p class="helper-text">
+        One clear, powerful headline. Lead with the outcome.
+      </p>
+      <input type="text" id="achTitle" class="field-input" maxlength="120"
+             placeholder="e.g. Reduced Hiring Time by 40% at Pan-India Scale">
+      <div class="char-counter-out" id="achTitleCounter">0 / 120</div>
+    </div>
+
+    <!-- Category -->
+    <div class="field-group">
+      <label class="field-label" for="achCategory">
+        Category <span class="required">*</span>
+      </label>
+      <select id="achCategory" class="field-select">
+        <option value="">Select category</option>
+        <option value="Revenue / Growth">Revenue / Growth</option>
+        <option value="Cost Savings">Cost Savings</option>
+        <option value="People & Culture">People &amp; Culture</option>
+        <option value="Process Improvement">Process Improvement</option>
+        <option value="Technology / Digital">Technology / Digital</option>
+        <option value="Awards & Recognition">Awards &amp; Recognition</option>
+        <option value="Crisis Management">Crisis Management</option>
+        <option value="Innovation">Innovation</option>
+        <option value="Leadership">Leadership</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+
+    <!-- Impact (merged Action + Result, the heart of the achievement) -->
+    <div class="field-group">
+      <label class="field-label" for="achImpact">
+        What You Did and the Impact <span class="required">*</span>
+      </label>
+      <p class="helper-text">
+        Describe what you personally did and the measurable outcome.
+        Use numbers, percentages, and timeframes wherever possible.
+        Tap a phrase below to insert it.
+      </p>
+
+      <!-- Metric chips: tap to insert at cursor position -->
+      <div class="metric-chips" id="metricChips">
+        <span class="metric-chip" data-insert="% reduction in ">% reduction in</span>
+        <span class="metric-chip" data-insert="% increase in ">% increase in</span>
+        <span class="metric-chip" data-insert="saved &#8377;">saved &#8377;</span>
+        <span class="metric-chip" data-insert="within X months">within X months</span>
+        <span class="metric-chip" data-insert="across X people">across X people</span>
+        <span class="metric-chip" data-insert="from X to Y">from X to Y</span>
+      </div>
+
+      <textarea id="achImpact" class="field-textarea field-textarea--mt"
+                maxlength="400"
+                placeholder="e.g. Designed and launched a structured career development programme across 15 functions; attrition fell from 35% to 19% within 12 months, saving the company &#8377;2.3 crore in rehiring costs."></textarea>
+      <div class="char-counter-out" id="achImpactCounter">0 / 400</div>
+    </div>
+
+    <!-- Verification URL (optional, but valuable) -->
+    <div class="field-group">
+      <label class="field-label" for="achVerifyUrl">
+        Verification Link (optional)
+      </label>
+      <p class="helper-text">
+        Public proof of this achievement &mdash; LinkedIn post, press release,
+        award page, published case study. Verified achievements stand out.
+        We'll automatically add <strong>https://</strong> if you forget it.
+      </p>
+      <input type="url" id="achVerifyUrl" class="field-input" maxlength="300"
+             placeholder="https://&hellip;">
+    </div>
+  </div><!-- /add-achievement form -->
+
+  <!-- ACTIONS -->
+  <div class="btn-row">
+    <button type="button" class="btn btn--ghost hidden" id="cancelEditAchBtn">
+      Cancel Edit
+    </button>
+    <button type="button" class="btn btn--secondary" id="saveAnotherBtn">
+      Save &amp; Add Another Achievement
+    </button>
+    <button type="button" class="btn btn--primary btn--continue-merged" id="saveContinueBtn">
+      Save &amp; Continue to &ndash; Next step: &ldquo;Mentorship &amp; Coaching&rdquo; (Bonus 4 of 7)
+    </button>
+  </div>
+
+</div><!-- /form-container -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js?v=13"></script>
+<script src="mc_storage.js?v=22"></script>
+<script src="mc_supabase.js?v=23"></script>
+<script src="mc_helpers.js?v=13"></script>
+<script src="save_now.js?v=13"></script>
+<script src="key_achievements.js?v=14"></script>
+
+<!-- Floating error popup -->
+<div class="error-popup-overlay" id="errorPopupOverlay">
+  <div class="error-popup">
+    <div class="error-popup__icon">&#9888;</div>
+    <div class="error-popup__message" id="errorPopupMessage"></div>
+    <div class="error-popup__actions">
+      <button class="error-popup__secondary hidden" id="errorPopupCancel" type="button">Cancel</button>
+      <button class="error-popup__close" id="errorPopupClose" type="button">OK</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload Photo & CV – MECULS</title>
+  <link rel="stylesheet" href="styles.css?v=25">
+  <link rel="stylesheet" href="upload_photo_cv.css?v=24">
+</head>
+<body>
+
+<div class="form-container">
+
+  <!-- STICKY HEADER with progress indicator -->
+  <div class="sticky-header">
+    <div class="sticky-header__top">
+      <h2 class="page-title">Upload Photo &amp; CV</h2>
+      <span class="progress-badge">Step 2 of 11</span>
+    </div>
+    <p class="page-subtitle">
+      Your photo and CV are the first things our matching system reads.
+      A clear photo and a well-formatted CV significantly improve your match quality.
+    </p>
+    <div class="progress-bar-track" role="progressbar" aria-valuenow="18" aria-valuemin="0" aria-valuemax="100" aria-label="Profile completion: step 2 of 11">
+      <div class="progress-bar-fill"></div>
+    </div>
+    <!-- Draft saved indicator (placeholder for future draft-save logic on this page) -->
+    <span class="draft-status hidden" id="draftStatus" aria-live="polite">✓ Draft saved</span>
+  </div>
+
+  <!-- ── Why complete this? Banner ── -->
+  <div class="completion-incentive">
+    <div class="completion-incentive__icon" aria-hidden="true">🎯</div>
+    <div class="completion-incentive__body">
+      <p class="completion-incentive__heading">Take your time with this.</p>
+      <p class="completion-incentive__text">
+        Ikshu (the CV portal of MECULS) isn't a profile to fill — it's a way to be understood.
+        The more you share, the more clearly we can introduce you to the right people.
+        But there's no quota and no scoring. Save what you have today, come back when there's more to say.
+        We'll work with whatever you give us, in good faith.
+      </p>
+    </div>
+  </div>
+
+  <!-- ================= PHOTO ================= -->
+  <div class="form-card">
+
+    <!-- Photo error banner — TOP of the card, full-width, impossible
+         to miss. Sits above the photo heading so user sees it FIRST
+         when scanning the card after a failed upload attempt. -->
+    <div id="photoError" class="photo-banner-error hidden" role="alert" aria-live="assertive"></div>
+
+    <div class="card-section-label">
+      Your Photograph<span class="cv-required-mark" aria-label="required">*</span>
+    </div>
+    <p class="field-hint">
+      A clear, professional photo with a neutral background helps people
+      put a face to your profile and builds trust in connections.
+    </p>
+
+    <div class="upload-row">
+
+      <div class="photo-dropzone-wrap">
+        <div class="photo-dropzone" id="photoDropzone" role="button" tabindex="0"
+             aria-label="Click or drag to upload your photograph">
+          <img id="photoPreview" class="photo-preview hidden" alt="Your photo preview">
+          <div id="photoPlaceholder" class="dropzone-placeholder">
+            <div class="dropzone-icon" aria-hidden="true">📷</div>
+            <div class="dropzone-text">Drag &amp; drop your photo<br>or <span class="link-text">click to upload</span></div>
+          </div>
+        </div>
+        <!-- Success message stays inline below the circle (non-critical info) -->
+        <div id="photoSuccess" class="photo-inline-success hidden" aria-live="polite"></div>
+        <!-- Photo size info — appears after a successful upload showing
+             the optimization result. Only the final optimized size is shown. -->
+        <div class="photo-size-info hidden" id="photoSizeInfo" aria-live="polite"></div>
+        <!-- Change-photo link: always visible below the circle once a
+             photo is uploaded. Hidden by default. Clicking reopens the
+             file picker. -->
+        <button type="button" class="photo-change-link hidden" id="photoChangeLink">
+          <span class="photo-change-link__icon" aria-hidden="true">📷</span>
+          <span class="photo-change-link__text">Change photo</span>
+        </button>
+      </div>
+
+      <div class="guidelines-box guidelines-box--photo">
+        <p class="guidelines-title">📋 Photo Guidelines</p>
+
+        <p class="guidelines-subhead guidelines-subhead--required">⚠️ Required &mdash; your upload will fail or won't help us if you ignore these:</p>
+        <ul class="guidelines-list guidelines-list--required">
+          <li><strong>Format:</strong> JPG, JPEG, or PNG only</li>
+          <li><strong>Minimum size:</strong> 400 &times; 400 pixels and 100 KB</li>
+          <li><strong>Maximum size:</strong> 5 MB</li>
+          <li><strong>Face clearly visible</strong>, looking at the camera</li>
+          <li><strong>No group photos, filters, or sunglasses</strong></li>
+        </ul>
+
+        <p class="guidelines-subhead guidelines-subhead--recommended">✨ Recommended &mdash; for the best match quality:</p>
+        <ul class="guidelines-list guidelines-list--recommended">
+          <li>Neutral or plain background</li>
+          <li>Good lighting on your face (no harsh shadows)</li>
+          <li>Recent photo (within the last 2 years)</li>
+        </ul>
+
+        <p class="guidelines-tip">💡 We&rsquo;ll automatically optimise your photo for web display. Most phone photos work well &mdash; just upload, we&rsquo;ll handle the rest.</p>
+      </div>
+
+    </div>
+
+    <input type="file" id="photoInput" accept=".jpg,.jpeg,.png" class="hidden-input">
+
+  </div>
+
+  <!-- ================= CVs BY DOMAIN ================= -->
+  <div class="form-card">
+
+    <div class="cv-section-header">
+      <div class="cv-section-header__title">
+        Your CV Links by Domain<span class="cv-required-mark" aria-label="required">*</span>
+      </div>
+      <p class="cv-section-header__subtitle">
+        Add up to <strong>6 CV links</strong> &mdash; one per domain &mdash; so we can match you to opportunities
+        across every area of your expertise. If you only work in one domain, add just one CV.
+      </p>
+    </div>
+
+    <!-- Critical rules block — RED warning, distinct from the amber "Take your time" banner above -->
+    <div class="cv-alert" role="alert">
+      <div class="cv-alert__icon" aria-hidden="true">⛔</div>
+      <div class="cv-alert__body">
+        <p class="cv-alert__title">Read this carefully &mdash; broken links cannot be fixed later</p>
+        <ol class="cv-alert__list">
+          <li>
+            <strong>We accept ONLY 3 services:</strong>
+            Google Drive, OneDrive, or Dropbox. Links from any other source
+            (iCloud, WeTransfer, personal websites, etc.) will be <strong>rejected</strong>.
+          </li>
+          <li>
+            <strong>The link must point to a single CV document</strong> &mdash;
+            <strong>not a folder</strong> containing your CV.
+            Open your CV file first, then copy its URL from the browser address bar.
+          </li>
+          <li>
+            <strong>Set sharing to "Anyone with the link can view"</strong> &mdash;
+            not "restricted" or "private".
+            <span class="cv-alert__highlight">This is the #1 reason links break.</span>
+          </li>
+          <li>
+            <strong>Test each link in a private / incognito browser tab</strong>
+            before adding it here. If it doesn't open for an anonymous viewer,
+            it won't open for our matching team either.
+          </li>
+          <li>
+            <strong>Each CV must be a readable, text-based document</strong> &mdash;
+            not a scanned image or photo of a CV.
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- 💡 Helper hint about sub-domains — separate light-blue callout, distinct from the red warning -->
+    <div class="cv-tip">
+      <div class="cv-tip__icon" aria-hidden="true">💡</div>
+      <div class="cv-tip__body">
+        <strong>Tip:</strong> If you have multiple domains (e.g. HR + Recruitment, or Data Analytics + AI),
+        add a separate CV for each. The <em>Sub-domain</em> field (optional) helps narrow your focus &mdash;
+        for Data Analytics you might enter "Healthcare Analytics" or "Marketing Analytics" as the sub-domain.
+      </div>
+    </div>
+
+    <!-- Small section divider before the actual CV input cards begin -->
+    <div class="cv-rows-heading">Add Your CV(s) Below</div>
+
+    <!-- Dynamic CV rows are appended here by JS. Row 1 is added on page load. -->
+    <div id="cvRowsContainer"></div>
+
+    <div class="cv-add-row-wrap">
+      <button type="button" class="btn btn--secondary cv-add-btn" id="addCvDomainBtn">
+        <span aria-hidden="true">+</span> Add another CV for a different domain
+      </button>
+      <p class="cv-count-hint" id="cvCountHint">
+        You can add up to 6 CVs.
+      </p>
+    </div>
+
+    <div id="cvLinksError" class="field-error hidden"></div>
+
+  </div>
+
+  <!-- ================= ACTIONS ================= -->
+  <!-- Save & Come Back Later sits FIRST so the user immediately sees they
+       have the option to leave without losing progress. The blue primary
+       Continue button is below it — visual prominence still belongs to
+       the primary action, but list-order signals freedom over urgency. -->
+  <div class="btn-row">
+    <button id="saveLaterBtn" class="btn btn--save-later">
+      Save &amp; Come Back Later
+    </button>
+    <button id="saveContinueBtn" class="btn btn--primary btn--continue-merged">
+      Save &amp; Continue to &ndash; Next step: &ldquo;Your Profile Category&rdquo; (Step 3 of 11)
+    </button>
+  </div>
+
+</div>
+
+<!-- Supabase JS library + shared MC_SB helper -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js?v=8"></script>
+<script src="mc_storage.js?v=22"></script>
+<script src="mc_supabase.js?v=23"></script>
+<script src="mc_helpers.js?v=10"></script>
+<script src="upload_photo_cv.js?v=23"></script>
+
+<div class="error-popup-overlay" id="errorPopupOverlay" role="dialog" aria-modal="true" aria-labelledby="errorPopupMessage">
+  <div class="error-popup">
+    <div class="error-popup__icon" aria-hidden="true">&#9888;&#65039;</div>
+    <div class="error-popup__message" id="errorPopupMessage"></div>
+    <div class="error-popup__actions">
+      <button class="error-popup__secondary hidden" id="errorPopupCancel">Cancel</button>
+      <button class="error-popup__close" id="errorPopupClose">OK</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>

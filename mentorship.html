@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mentorship &amp; Coaching &ndash; MECULS</title>
+  <link rel="stylesheet" href="styles.css?v=25">
+  <link rel="stylesheet" href="tier_shared.css?v=14">
+  <link rel="stylesheet" href="mentorship.css?v=24">
+</head>
+<body>
+<div class="form-container">
+
+  <!-- STICKY HEADER -->
+  <div class="sticky-header">
+    <div class="sticky-header__top">
+      <h2 class="page-title">Mentorship &amp; Coaching</h2>
+      <div class="sticky-header__actions">
+        <button type="button" class="btn--save-now" id="saveNowBtn"
+          aria-label="Save your progress now"
+          title="Saves to your account when online; otherwise keeps a copy in this browser on this device.">
+          &#128190; Save Now
+        </button>
+        <span class="step-badge step-badge--bonus">Bonus 4 of 7</span>
+        <button type="button" class="skip-section-pill" id="skipBtn"
+          aria-label="Skip this section — Not relevant to me"
+          title="Skip this section if it doesn't apply to you. You can always come back later.">
+          Skip section &rarr;
+        </button>
+      </div>
+    </div>
+    <p class="page-subtitle">
+      Are you open to mentoring others, being mentored, offering coaching, or seeking a coach?
+      Share your role and availability so we can match you appropriately.
+    </p>
+    <span class="draft-status hidden" id="draftStatus" aria-live="polite">&check; Draft saved</span>
+  </div>
+
+  <!-- Draft-restore prompt -->
+  <div class="draft-restore" id="draftRestorePrompt" role="status" aria-live="polite">
+    <div class="draft-restore__text" id="draftRestoreText">
+      We found work you started earlier. Would you like to continue from there?
+    </div>
+    <div class="draft-restore__actions">
+      <button type="button" class="draft-restore__btn draft-restore__btn--restore" id="draftRestoreBtn">Restore</button>
+      <button type="button" class="draft-restore__btn draft-restore__btn--discard" id="draftDiscardBtn">Start Fresh</button>
+    </div>
+  </div>
+
+  <!-- Comfort banner -->
+  <div class="completion-incentive">
+    <div class="completion-incentive__icon" aria-hidden="true">&#127775;</div>
+    <div>
+      <p class="completion-incentive__heading">This section is optional &mdash; but high-value.</p>
+      <p class="completion-incentive__text">
+        Mentors and coaches with detailed profiles get matched with high-potential
+        candidates and executives on the MECULS platform. Equally, mentees and
+        coachees with clear goals get matched with the right guides.
+      </p>
+    </div>
+  </div>
+
+  <!-- ===== ROLE SELECTION ===== -->
+  <div class="form-card">
+    <h3 class="card-heading">What are you open to?</h3>
+    <p class="helper-text helper-text--spaced">Select all that apply.</p>
+
+    <div class="role-grid" id="roleGrid">
+
+      <label class="role-option" data-value="Mentor">
+        <input type="checkbox" name="mentorRole" value="Mentor">
+        <div class="role-option__icon">&#127775;</div>
+        <div class="role-option__title">Mentor</div>
+        <div class="role-option__desc">I can guide and advise others in their career journey.</div>
+      </label>
+
+      <label class="role-option" data-value="Mentee">
+        <input type="checkbox" name="mentorRole" value="Mentee">
+        <div class="role-option__icon">&#127793;</div>
+        <div class="role-option__title">Mentee</div>
+        <div class="role-option__desc">I am looking for a mentor to guide me in my career.</div>
+      </label>
+
+      <label class="role-option" data-value="Coach">
+        <input type="checkbox" name="mentorRole" value="Coach">
+        <div class="role-option__icon">&#127919;</div>
+        <div class="role-option__title">Coach</div>
+        <div class="role-option__desc">I provide professional coaching (certified or experienced).</div>
+      </label>
+
+      <label class="role-option" data-value="Coachee">
+        <input type="checkbox" name="mentorRole" value="Coachee">
+        <div class="role-option__icon">&#128301;</div>
+        <div class="role-option__title">Seeking Coaching</div>
+        <div class="role-option__desc">I am looking for a professional coach for my development.</div>
+      </label>
+
+    </div>
+  </div>
+
+  <!-- ===== MENTOR / COACH PROFILE (shown when Mentor or Coach is checked) ===== -->
+  <div id="mentorCoachSection" class="hidden">
+
+    <div class="form-card">
+      <div class="section-heading-box section-heading-box--blue">
+        <h3 class="section-heading-box__title" id="mentorCoachHeading">Your Profile as Mentor / Coach</h3>
+        <p class="section-heading-box__sub" id="mentorCoachLink" aria-live="polite">
+          These details apply when you are matched as a Mentor or Coach.
+        </p>
+      </div>
+      <p class="helper-text helper-text--spaced">
+        They appear on your profile when matched with a mentee or coachee.
+      </p>
+
+      <div class="field-group">
+        <label class="field-label" for="mentSpeciality">
+          Speciality / Focus Area <span class="required">*</span>
+        </label>
+        <p class="helper-text">
+          A short headline that tells people what you can help with.
+        </p>
+        <input type="text" id="mentSpeciality" class="field-input" maxlength="150"
+               placeholder="e.g. First-time managers, Career transitions, Women in Leadership, HR Tech">
+        <div class="char-counter-out" id="mentSpecialityCounter">0 / 150</div>
+      </div>
+
+      <div class="inline-2">
+        <div class="field-group">
+          <label class="field-label" for="mentYearsExp">
+            Years of Relevant Experience <span class="required">*</span>
+          </label>
+          <select id="mentYearsExp" class="field-select">
+            <option value="">Select</option>
+            <option value="1-3">1&ndash;3 years</option>
+            <option value="3-5">3&ndash;5 years</option>
+            <option value="5-10">5&ndash;10 years</option>
+            <option value="10-15">10&ndash;15 years</option>
+            <option value="15-20">15&ndash;20 years</option>
+            <option value="20+">More than 20 years</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="mentTargetAudience">Who Do You Work With?</label>
+          <select id="mentTargetAudience" class="field-select">
+            <option value="">Select (optional)</option>
+            <option value="Early career (0-3 years)">Early career (0&ndash;3 years)</option>
+            <option value="Mid-career (3-10 years)">Mid-career (3&ndash;10 years)</option>
+            <option value="Senior professionals (10+ years)">Senior professionals (10+ years)</option>
+            <option value="Leaders & CXOs">Leaders &amp; CXOs</option>
+            <option value="Entrepreneurs / Founders">Entrepreneurs / Founders</option>
+            <option value="Students & freshers">Students &amp; freshers</option>
+            <option value="Anyone">Open to all levels</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="mentBio">
+          Mentor / Coach Bio <span class="required">*</span>
+        </label>
+        <p class="helper-text">
+          Describe your approach and what mentees or coachees typically achieve
+          working with you. Numbers and concrete outcomes land best.
+        </p>
+        <textarea id="mentBio" class="field-textarea" maxlength="500"
+                  placeholder="e.g. I work with first-time HR managers transitioning into senior leadership. My approach combines structured frameworks with practical coaching. Past mentees have moved from manager to director within 18-24 months."></textarea>
+        <div class="char-counter-out" id="mentBioCounter">0 / 500</div>
+      </div>
+
+      <div class="inline-2">
+        <div class="field-group">
+          <label class="field-label" for="mentFee">Fee / Compensation</label>
+          <select id="mentFee" class="field-select">
+            <option value="">Select (optional)</option>
+            <option value="Pro bono">Pro bono &mdash; free of charge</option>
+            <option value="Nominal">Nominal fee (mention in bio)</option>
+            <option value="Paid">Paid &mdash; professional rates</option>
+            <option value="Open to discussion">Open to discussion</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="mentCertification">Certification (Coaches only)</label>
+          <input type="text" id="mentCertification" class="field-input" maxlength="120"
+                 placeholder="e.g. ICF-ACC, Marshall Goldsmith, etc.">
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="mentContactUrl">
+          Contact / Booking Link (optional)
+        </label>
+        <p class="helper-text">
+          LinkedIn profile, Calendly link, or any URL where mentees can reach you.
+          Without this, your profile is decorative &mdash; mentees can't actually
+          contact you. We'll automatically add <strong>https://</strong> if you forget it.
+        </p>
+        <input type="url" id="mentContactUrl" class="field-input" maxlength="300"
+               placeholder="https://linkedin.com/in/&hellip; or https://calendly.com/&hellip;">
+      </div>
+
+      <div class="field-group">
+        <div class="checkbox-row">
+          <input type="checkbox" id="showOnProfile" checked>
+          <label for="showOnProfile">
+            <strong>Show this section on my public profile.</strong> Untick to
+            temporarily hide your mentor/coach profile (e.g. during a busy
+            quarter) without losing what you've entered.
+          </label>
+        </div>
+      </div>
+
+    </div><!-- /mentor profile card -->
+
+  </div><!-- /mentorCoachSection -->
+
+  <!-- ===== MENTEE / SEEKING COACHING (shown when Mentee or Coachee is checked) ===== -->
+  <div id="menteeSection" class="hidden">
+
+    <div class="form-card">
+      <div class="section-heading-box section-heading-box--green">
+        <h3 class="section-heading-box__title" id="seekerHeading">What You Are Looking For</h3>
+        <p class="section-heading-box__sub" id="seekerLink" aria-live="polite">
+          These details apply when you are matched as a Mentee or Seeker of Coaching.
+        </p>
+      </div>
+      <p class="helper-text helper-text--spaced">
+        They help us match you with the right mentor or coach.
+      </p>
+
+      <div class="field-group">
+        <label class="field-label" for="menteeGoal">
+          Your Development Goal <span class="required">*</span>
+        </label>
+        <p class="helper-text">
+          What do you want to achieve? What does success look like?
+        </p>
+        <textarea id="menteeGoal" class="field-textarea" maxlength="300"
+                  placeholder="e.g. I want to transition from HR Operations to a strategic CHRO role within 3 years."></textarea>
+        <div class="char-counter-out" id="menteeGoalCounter">0 / 300</div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="menteeIdealMentor">
+          Ideal Mentor / Coach Profile (optional)
+        </label>
+        <p class="helper-text">
+          Industry, seniority, or specific experience you're looking for.
+        </p>
+        <textarea id="menteeIdealMentor" class="field-textarea" maxlength="200"
+                  placeholder="e.g. A CHRO or VP HR with experience in FMCG or Retail, ideally someone who has navigated a similar career pivot."></textarea>
+        <div class="char-counter-out" id="menteeIdealCounter">0 / 200</div>
+      </div>
+
+    </div>
+
+  </div><!-- /menteeSection -->
+
+  <!-- ACTIONS -->
+  <div class="btn-row">
+    <button type="button" class="btn btn--primary btn--continue-merged" id="saveContinueBtn">
+      Save &amp; Continue to &ndash; Next step: &ldquo;Work Portfolio&rdquo; (Bonus 5 of 7)
+    </button>
+  </div>
+
+</div><!-- /form-container -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js?v=14"></script>
+<script src="mc_storage.js?v=22"></script>
+<script src="mc_supabase.js?v=23"></script>
+<script src="mc_helpers.js?v=14"></script>
+<script src="save_now.js?v=14"></script>
+<script src="mentorship.js?v=15"></script>
+
+<!-- Floating error popup -->
+<div class="error-popup-overlay" id="errorPopupOverlay">
+  <div class="error-popup">
+    <div class="error-popup__icon">&#9888;</div>
+    <div class="error-popup__message" id="errorPopupMessage"></div>
+    <div class="error-popup__actions">
+      <button class="error-popup__secondary hidden" id="errorPopupCancel" type="button">Cancel</button>
+      <button class="error-popup__close" id="errorPopupClose" type="button">OK</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

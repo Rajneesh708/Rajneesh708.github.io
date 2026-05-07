@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Preferences – MECULS</title>
+  <link rel="stylesheet" href="styles.css?v=25">
+  <link rel="stylesheet" href="preferences.css?v=24">
+</head>
+<body>
+
+<div class="form-container">
+
+  <!-- STICKY HEADER with progress indicator -->
+  <div class="sticky-header">
+    <div class="sticky-header__top">
+      <h2 class="page-title">Your Preferences</h2>
+      <div class="sticky-header__actions">
+        <button type="button" class="btn--save-now" id="saveNowBtn"
+          aria-label="Save your progress now"
+          title="Saves to your account when online; otherwise keeps a copy in this browser on this device.">
+          &#128190; Save Now
+        </button>
+        <span class="progress-badge">Step 10 of 11</span>
+      </div>
+    </div>
+    <p class="page-subtitle">
+      Tell us what you&rsquo;re looking for in your next role &mdash; availability, expected
+      compensation, preferred industries, and work preferences.
+    </p>
+    <div class="progress-bar-track" role="progressbar" aria-valuenow="91" aria-valuemin="0" aria-valuemax="100" aria-label="Profile completion: step 10 of 11">
+      <div class="progress-bar-fill"></div>
+    </div>
+    <!-- Draft saved indicator (auto-save heartbeat) -->
+    <span class="draft-status hidden" id="draftStatus" aria-live="polite">&check; Draft saved</span>
+  </div><!-- /sticky-header -->
+
+  <!-- Draft-restore prompt (shown only when localStorage has an unsaved draft from a previous session) -->
+  <div class="draft-restore" id="draftRestorePrompt" role="status" aria-live="polite">
+    <div class="draft-restore__text" id="draftRestoreText">
+      We found preferences you started filling earlier. Would you like to continue from there?
+    </div>
+    <div class="draft-restore__actions">
+      <button type="button" class="draft-restore__btn draft-restore__btn--restore" id="draftRestoreBtn">Restore</button>
+      <button type="button" class="draft-restore__btn draft-restore__btn--discard" id="draftDiscardBtn">Start Fresh</button>
+    </div>
+  </div>
+
+  <!-- Comfort banner — sets expectations -->
+  <div class="completion-incentive">
+    <div class="completion-incentive__icon" aria-hidden="true">&#127919;</div>
+    <div>
+      <p class="completion-incentive__heading">Be honest about what you want.</p>
+      <p class="completion-incentive__text">
+        These preferences shape who reaches out to you and what they offer. If you ask
+        for what you actually want &mdash; the role, the location, the compensation
+        &mdash; you&rsquo;ll get matched with opportunities that fit, not ones you have
+        to negotiate against.
+      </p>
+      <p class="completion-incentive__text completion-incentive__text--mt">
+        <em>Tip:</em> use <strong>&#128190; Save Now</strong> at the top whenever you
+        want to safely store your progress. Your work is also backed up locally as you type.
+      </p>
+    </div>
+  </div>
+
+  <!-- ===== AVAILABILITY ===== -->
+  <div class="form-card">
+    <h3 class="card-heading">Availability &amp; Work Preferences</h3>
+
+    <div class="field-group">
+      <label class="field-label" for="availability">
+        Employment Availability <span class="required">*</span>
+      </label>
+      <select id="availability" class="field-select" required>
+        <option value="">Select</option>
+        <option value="Immediate">Immediate</option>
+        <option value="15 days">15 days</option>
+        <option value="30 days">30 days</option>
+        <option value="60 days">60 days</option>
+        <option value="90 days">90 days</option>
+        <option value="120 days">120 days</option>
+        <option value="150 days">150 days</option>
+        <option value="180 days">180 days</option>
+        <option value="More than 180 days">More than 180 days</option>
+      </select>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label" for="workMode">
+        Preferred Work Mode <span class="required">*</span>
+      </label>
+      <select id="workMode" class="field-select" required>
+        <option value="">Select</option>
+        <option value="On-site">On-site</option>
+        <option value="Remote">Remote</option>
+        <option value="Hybrid">Hybrid</option>
+        <option value="Open to all">Open to all</option>
+      </select>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label" for="relocation">
+        Open to Relocation? <span class="required">*</span>
+      </label>
+      <select id="relocation" class="field-select" required>
+        <option value="">Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        <option value="Open to discussion">Open to discussion</option>
+      </select>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label" for="preferredLocations">
+        Preferred Location(s)
+      </label>
+      <input type="text" id="preferredLocations" class="field-input"
+             placeholder="e.g. Mumbai, Bangalore, Hyderabad"
+             maxlength="200">
+      <p class="helper-text">Enter city or country names, comma separated. Leave blank if open to any location.</p>
+    </div>
+
+  </div><!-- /availability card -->
+
+  <!-- ===== EXPECTED CTC ===== -->
+  <div class="form-card">
+    <h3 class="card-heading">Expected Compensation</h3>
+    <p class="helper-text helper-text--card-intro">
+      Optional. If you'd rather discuss compensation later, leave this section blank.
+      If you do fill it in, please complete both Min and Max with currencies so the range
+      is meaningful.
+    </p>
+
+    <!-- Min CTC -->
+    <div class="field-group">
+      <label class="field-label" for="ctcMin" id="ctcMinLabel">
+        Expected CTC (Min)
+      </label>
+      <div class="inline-2">
+        <input type="number" id="ctcMin" class="field-input"
+               step="0.25" min="0" placeholder="e.g. 12.00">
+        <select id="ctcMinCurrency" class="field-select">
+          <option value="">Currency</option>
+          <option value="INR">INR</option>
+          <option value="USD">USD</option>
+          <option value="EUR">EUR</option>
+          <option value="GBP">GBP</option>
+          <option value="AED">AED</option>
+          <option value="SGD">SGD</option>
+          <option value="AUD">AUD</option>
+          <option value="CAD">CAD</option>
+          <option value="JPY">JPY</option>
+          <option value="Other (please specify)">Other (please specify)</option>
+        </select>
+        <input type="text" id="ctcMinCurrencyOther" class="field-input hidden"
+               placeholder="Specify currency"
+               maxlength="20">
+      </div>
+      <p class="helper-text" id="ctcMinHint">Pick a currency to see the expected unit.</p>
+    </div>
+
+    <!-- Max CTC -->
+    <div class="field-group">
+      <label class="field-label" for="ctcMax" id="ctcMaxLabel">
+        Expected CTC (Max)
+      </label>
+      <div class="inline-2">
+        <input type="number" id="ctcMax" class="field-input"
+               step="0.25" min="0" placeholder="e.g. 18.00">
+        <select id="ctcMaxCurrency" class="field-select">
+          <option value="">Currency</option>
+          <option value="INR">INR</option>
+          <option value="USD">USD</option>
+          <option value="EUR">EUR</option>
+          <option value="GBP">GBP</option>
+          <option value="AED">AED</option>
+          <option value="SGD">SGD</option>
+          <option value="AUD">AUD</option>
+          <option value="CAD">CAD</option>
+          <option value="JPY">JPY</option>
+          <option value="Other (please specify)">Other (please specify)</option>
+        </select>
+        <input type="text" id="ctcMaxCurrencyOther" class="field-input hidden"
+               placeholder="Specify currency"
+               maxlength="20">
+      </div>
+      <p class="helper-text" id="ctcMaxHint">Max must be greater than or equal to Min.</p>
+    </div>
+
+  </div><!-- /ctc card -->
+
+  <!-- ===== ROLE & INDUSTRY PREFERENCES ===== -->
+  <div class="form-card">
+    <h3 class="card-heading">Role &amp; Industry Preferences</h3>
+
+    <div class="field-group">
+      <label class="field-label" for="roles">
+        Preferred Roles <span class="required">*</span>
+      </label>
+      <input type="text" id="roles" class="field-input"
+             placeholder="e.g. HR Head, L&D Director, CHRO"
+             maxlength="300">
+      <p class="helper-text">Enter role titles separated by commas.</p>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label" for="industries">
+        Preferred Industries
+      </label>
+      <input type="text" id="industries" class="field-input"
+             placeholder="e.g. IT, Consulting, FMCG, Banking"
+             maxlength="300">
+      <p class="helper-text">Enter industries separated by commas. Leave blank if open to any industry.</p>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label" for="employmentType">
+        Preferred Employment Type
+      </label>
+      <select id="employmentType" class="field-select">
+        <option value="">Select</option>
+        <option value="Full-time">Full-time</option>
+        <option value="Part-time">Part-time</option>
+        <option value="Contract">Contract</option>
+        <option value="Freelance">Freelance</option>
+        <option value="Open to all">Open to all</option>
+      </select>
+    </div>
+
+  </div><!-- /role card -->
+
+  <!-- ===== ACTION ===== -->
+  <div class="btn-row">
+    <button type="button" class="btn btn--primary btn--continue-merged" id="saveContinueBtn">
+      Save &amp; Continue to &ndash; Next step: &ldquo;Your Languages&rdquo; (Step 11 of 11)
+    </button>
+  </div>
+
+</div><!-- /form-container -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js?v=11"></script>
+<script src="mc_storage.js?v=22"></script>
+<script src="mc_supabase.js?v=23"></script>
+<script src="mc_helpers.js?v=11"></script>
+<script src="save_now.js?v=11"></script>
+<script src="preferences.js?v=13"></script>
+
+<!-- Floating error popup — scroll-independent, fixed centre screen.
+     Now includes a Cancel button (hidden by default) so MC.showConfirm
+     can render a 2-button confirm dialog inline. MC.showPopup hides it. -->
+<div class="error-popup-overlay" id="errorPopupOverlay">
+  <div class="error-popup">
+    <div class="error-popup__icon">&#9888;</div>
+    <div class="error-popup__message" id="errorPopupMessage"></div>
+    <div class="error-popup__actions">
+      <button class="error-popup__secondary hidden" id="errorPopupCancel" type="button">Cancel</button>
+      <button class="error-popup__close" id="errorPopupClose" type="button">OK</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

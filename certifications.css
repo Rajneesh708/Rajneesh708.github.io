@@ -1,0 +1,190 @@
+/* ============================================================
+   MECULS — Certifications / Courses Page Styles
+   Mirrors experience.css design system exactly.
+   Zero inline styles in HTML.
+
+   Sticky header + progress bar base + draft-status:
+   all shared across main sections, defined globally in styles.css.
+   This page only overrides the per-step progress bar width.
+   ============================================================ */
+
+/* Step 8 of 11 — bar fill width corresponds to current step */
+.progress-bar-fill {
+  width: 73%;
+}
+
+/* ── Page title ── */
+.page-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 0;
+}
+/* ── Saved certifications list cards ── */
+.cert-list-card {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.cert-list-card:hover {
+  border-color: #4c73ff;
+  background: #f5f7ff;
+}
+
+.cert-list-card__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.cert-list-card__info strong {
+  display: block;
+  font-size: 0.95rem;
+  color: #1f2937;
+}
+
+.cert-list-card__info span {
+  font-size: 0.82rem;
+  color: #4b5563;
+}
+
+.cert-list-card__info a {
+  font-size: 0.8rem;
+  color: #4c73ff;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 4px;
+}
+
+.cert-list-card__info a:hover {
+  text-decoration: underline;
+}
+
+/* Action buttons (Edit, Delete) */
+.cert-list-card__actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.cert-list-card__btn {
+  font-size: 0.82rem;
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  width: auto;
+  margin: 0;
+}
+
+.cert-list-card__btn--edit {
+  background: #ffffff;
+  border-color: #c7d2fe;
+  color: #4c73ff;
+}
+.cert-list-card__btn--edit:hover {
+  background: #4c73ff;
+  border-color: #4c73ff;
+  color: #ffffff;
+}
+
+.cert-list-card__btn--delete {
+  background: #ffffff;
+  border-color: #fecaca;
+  color: #dc2626;
+}
+.cert-list-card__btn--delete:hover {
+  background: #dc2626;
+  border-color: #dc2626;
+  color: #ffffff;
+}
+
+/* ── Saved list heading ── */
+.entry-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #4c73ff;
+  margin-bottom: 12px;
+}
+.field-group:last-child {
+  margin-bottom: 0;
+}
+/* Helper text in error state — used for live validation hints
+   such as the credential URL format check. Soft red on a tinted
+   background; same shape as the static helper-text. */
+.helper-text--error {
+  color: #b91c1c;
+  background: #fef2f2;
+  border-left: 3px solid #ef4444;
+  border-radius: 4px;
+  padding: 6px 10px;
+  margin-top: 6px;
+  margin-bottom: 0;
+}
+
+/* ── Inputs, selects ── */
+.field-input,
+.field-select {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 0.9rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #1f2937;
+  box-sizing: border-box;
+  transition: border-color 0.15s;
+}
+
+.field-input:focus,
+.field-select:focus {
+  outline: none;
+  border-color: #4c73ff;
+  box-shadow: 0 0 0 3px rgba(76,115,255,0.1);
+}
+
+.field-input:disabled,
+.field-select:disabled {
+  background: #f3f4f6;
+  color: #9ca3af;
+  cursor: not-allowed;
+  border-color: #e5e7eb;
+}
+.date-row .field-select {
+  flex: 1;
+}
+.checkbox-row input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.checkbox-row label {
+  font-size: 0.875rem;
+  color: #374151;
+  cursor: pointer;
+  font-weight: 400;
+  margin: 0;
+}
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .date-row  { flex-direction: column; }
+  .btn-row   { flex-direction: column; }
+  .cert-list-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .cert-list-card__actions {
+    justify-content: flex-end;
+  }
+}

@@ -1,0 +1,214 @@
+/* ============================================================
+   MECULS — References Page Styles
+   Consistent with the established design system.
+   Zero inline styles in HTML.
+
+   Sticky header + progress bar base + draft-status:
+   all shared across main sections, defined globally in styles.css.
+   This page only overrides the per-step progress bar width.
+   ============================================================ */
+
+/* Step 9 of 11 — bar fill width corresponds to current step */
+.progress-bar-fill {
+  width: 82%;
+}.quota-badge--academic {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+  color: #1d4ed8;
+}
+
+.quota-badge--industry {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+  color: #15803d;
+}
+
+/* ── Saved reference cards list ── */
+.ref-list-heading {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #4c73ff;
+  margin-bottom: 12px;
+}
+
+.ref-card {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.ref-card__body {
+  flex: 1;
+}
+
+.ref-card__type {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 2px 10px;
+  border-radius: 12px;
+  margin-bottom: 8px;
+}
+
+.ref-card__type--Academic {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+}
+
+.ref-card__type--Industry {
+  background: #f0fdf4;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+}
+
+.ref-card__name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 2px;
+}
+
+.ref-card__org {
+  font-size: 0.85rem;
+  color: #374151;
+  margin-bottom: 2px;
+}
+
+.ref-card__title {
+  font-size: 0.82rem;
+  color: #4b5563;
+  margin-bottom: 6px;
+}
+
+.ref-card__contact {
+  font-size: 0.82rem;
+  color: #4b5563;
+}
+
+.ref-card__contact span {
+  display: inline-block;
+  margin-right: 16px;
+}
+
+.ref-card__actions {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Edit + Delete buttons on each saved reference card.
+   Mirrors .exp-list-card__btn / .cert-list-card__btn pattern. */
+.ref-card__btn {
+  font-size: 0.82rem;
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  width: auto;
+  margin: 0;
+}
+
+.ref-card__btn--edit {
+  background: #ffffff;
+  border-color: #c7d2fe;
+  color: #4c73ff;
+}
+.ref-card__btn--edit:hover {
+  background: #4c73ff;
+  border-color: #4c73ff;
+  color: #ffffff;
+}
+
+.ref-card__btn--delete {
+  background: #ffffff;
+  border-color: #fecaca;
+  color: #dc2626;
+}
+.ref-card__btn--delete:hover {
+  background: #dc2626;
+  border-color: #dc2626;
+  color: #ffffff;
+}
+
+/* Hover state on the whole card to indicate the body is clickable */
+.ref-card:hover {
+  border-color: #4c73ff;
+  background: #f5f7ff;
+}
+
+.ref-card {
+  transition: border-color 0.15s, background 0.15s;
+}
+
+/* ── Form card ── */
+.form-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+.field-group:last-child {
+  margin-bottom: 0;
+}
+/* ── Inputs & selects ── */
+.field-input,
+.field-select {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 0.9rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #1f2937;
+  box-sizing: border-box;
+  transition: border-color 0.15s;
+}
+
+.field-input:focus,
+.field-select:focus {
+  outline: none;
+  border-color: #4c73ff;
+  box-shadow: 0 0 0 3px rgba(76,115,255,0.1);
+}
+/* Country code box — narrow fixed width.
+   !important needed to override global styles.css input { width: 100% } */
+.field-input--code {
+  width: 80px !important;
+  min-width: 80px !important;
+  max-width: 80px !important;
+  flex-shrink: 0 !important;
+  text-align: center;
+  font-weight: 600;
+  box-sizing: border-box;
+}
+
+/* Mobile number field takes remaining space */
+.mobile-row .field-input:not(.field-input--code) {
+  flex: 1;
+  width: auto !important;
+  min-width: 0;
+}
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .quota-row    { flex-direction: column; }
+  .ref-card     { flex-direction: column; }
+  .btn-row      { flex-direction: column; }
+  .ref-card__actions {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+}

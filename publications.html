@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Publications &amp; Media &ndash; MECULS</title>
+  <link rel="stylesheet" href="styles.css?v=25">
+  <link rel="stylesheet" href="tier_shared.css?v=10">
+  <link rel="stylesheet" href="publications.css?v=11">
+</head>
+<body>
+<div class="form-container">
+
+  <!-- STICKY HEADER -->
+  <div class="sticky-header">
+    <div class="sticky-header__top">
+      <h2 class="page-title">Publications &amp; Media</h2>
+      <div class="sticky-header__actions">
+        <button type="button" class="btn--save-now" id="saveNowBtn"
+          aria-label="Save your progress now"
+          title="Saves to your account when online; otherwise keeps a copy in this browser on this device.">
+          &#128190; Save Now
+        </button>
+        <span class="step-badge step-badge--bonus">Bonus 6 of 7</span>
+        <button type="button" class="skip-section-pill" id="skipBtn"
+          aria-label="Skip this section — Not relevant to me"
+          title="Skip this section if it doesn't apply to you. You can always come back later.">
+          Skip section &rarr;
+        </button>
+      </div>
+    </div>
+    <p class="page-subtitle">
+      Articles, books, whitepapers, podcasts, webinars, media interviews,
+      conference talks, research papers &mdash; if you've contributed to
+      published thought leadership, add it here.
+    </p>
+    <div class="quota-row">
+      <div class="quota-badge quota-badge--purple">
+        Items added: <span id="pubCount">0</span> / 12
+      </div>
+    </div>
+    <span class="draft-status hidden" id="draftStatus" aria-live="polite">&check; Draft saved</span>
+  </div>
+
+  <!-- Draft-restore prompt -->
+  <div class="draft-restore" id="draftRestorePrompt" role="status" aria-live="polite">
+    <div class="draft-restore__text" id="draftRestoreText">
+      We found work you started earlier. Would you like to continue from there?
+    </div>
+    <div class="draft-restore__actions">
+      <button type="button" class="draft-restore__btn draft-restore__btn--restore" id="draftRestoreBtn">Restore</button>
+      <button type="button" class="draft-restore__btn draft-restore__btn--discard" id="draftDiscardBtn">Start Fresh</button>
+    </div>
+  </div>
+
+  <!-- Comfort banner -->
+  <div class="completion-incentive">
+    <div class="completion-incentive__icon" aria-hidden="true">&#128214;</div>
+    <div>
+      <p class="completion-incentive__heading">Even one published piece counts.</p>
+      <p class="completion-incentive__text">
+        Thought leadership signals expertise and credibility. A LinkedIn article,
+        a podcast guest appearance, a co-authored whitepaper, a conference keynote
+        &mdash; if it has a public link, it belongs here.
+      </p>
+    </div>
+  </div>
+
+  <!-- ===== SAVED LIST (above the form, so progress stays visible) ===== -->
+  <div id="pubList"></div>
+
+  <!-- ===== ADD A PUBLICATION ===== -->
+  <div class="form-card">
+    <h3 class="card-heading">Add a Publication or Media Appearance</h3>
+    <p class="helper-text helper-text--spaced">
+      Fill in the details below, then click <strong>+ Add to List</strong>. You
+      can add up to 12 items.
+    </p>
+
+    <div class="field-group">
+      <label class="field-label" for="pubType">
+        Type <span class="required">*</span>
+      </label>
+      <select id="pubType" class="field-select">
+        <option value="">Select type</option>
+        <option value="Article / Blog">Article / Blog Post</option>
+        <option value="Book / Whitepaper">Book / Whitepaper / Long-form</option>
+        <option value="Podcast / Audio">Podcast / Audio</option>
+        <option value="Video / Webinar">Video / Webinar</option>
+        <option value="Media Interview">Media Interview</option>
+        <option value="Conference Talk / Keynote">Conference Talk / Keynote</option>
+        <option value="Research / Academic Paper">Research / Academic Paper</option>
+      </select>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label" for="pubTitle">
+        Title <span class="required">*</span>
+      </label>
+      <p class="helper-text">The title of the article, book, episode, talk, or paper.</p>
+      <input type="text" id="pubTitle" class="field-input" maxlength="200"
+             placeholder='e.g. "The Future of HR in the Age of AI"'>
+      <div class="char-counter-out" id="pubTitleCounter">0 / 200</div>
+    </div>
+
+    <div class="inline-2">
+      <div class="field-group">
+        <label class="field-label" for="pubOutlet">Publisher / Platform</label>
+        <p class="helper-text">Where was it published or hosted.</p>
+        <input type="text" id="pubOutlet" class="field-input" maxlength="120"
+               placeholder="e.g. Forbes India, Spotify, LinkedIn">
+      </div>
+      <div class="field-group">
+        <label class="field-label" for="pubYear">Year (optional)</label>
+        <p class="helper-text">When it went live.</p>
+        <select id="pubYear" class="field-select">
+          <option value="">Select year</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label" for="pubUrl">Link / URL (optional)</label>
+      <p class="helper-text">
+        A direct link so people can read or listen. Without a link, the entry is just a claim.
+        We'll automatically add <strong>https://</strong> if you forget it.
+      </p>
+      <input type="url" id="pubUrl" class="field-input" maxlength="500"
+             placeholder="https://&hellip;">
+    </div>
+
+    <div class="field-group">
+      <label class="field-label" for="pubDesc">Description / Summary (optional)</label>
+      <p class="helper-text">
+        What was this about? What was the key point? Numbers and concrete
+        outcomes land best.
+      </p>
+      <textarea id="pubDesc" class="field-textarea" maxlength="300"
+                placeholder="e.g. A practical guide to building psychological safety in remote teams &mdash; 80,000+ reads."></textarea>
+      <div class="char-counter-out" id="pubDescCounter">0 / 300</div>
+    </div>
+
+    <div class="btn-row btn-row--compact">
+      <button type="button" class="btn btn--ghost hidden" id="cancelEditBtn">
+        Cancel Edit
+      </button>
+      <button type="button" class="btn btn--secondary" id="addPubBtn">
+        + Add to List
+      </button>
+    </div>
+  </div>
+
+  <!-- ACTIONS -->
+  <div class="btn-row">
+    <button type="button" class="btn btn--primary btn--continue-merged" id="saveContinueBtn">
+      Save &amp; Continue to &ndash; Next step: &ldquo;Volunteering&rdquo; (Bonus 7 of 7)
+    </button>
+  </div>
+
+</div><!-- /form-container -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js?v=10"></script>
+<script src="mc_storage.js?v=22"></script>
+<script src="mc_supabase.js?v=23"></script>
+<script src="mc_helpers.js?v=10"></script>
+<script src="save_now.js?v=10"></script>
+<script src="publications.js?v=13"></script>
+
+<!-- Floating error popup -->
+<div class="error-popup-overlay" id="errorPopupOverlay">
+  <div class="error-popup">
+    <div class="error-popup__icon">&#9888;</div>
+    <div class="error-popup__message" id="errorPopupMessage"></div>
+    <div class="error-popup__actions">
+      <button class="error-popup__secondary hidden" id="errorPopupCancel" type="button">Cancel</button>
+      <button class="error-popup__close" id="errorPopupClose" type="button">OK</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,219 @@
+/* ============================================================
+   MECULS — Skills Page Styles
+   Consistent with the established design system.
+   Zero inline styles in HTML.
+
+   Sticky header + progress bar base + draft-status:
+   all shared across main sections, defined globally in styles.css.
+   This page only overrides the per-step progress bar width.
+   ============================================================ */
+
+/* Step 7 of 11 — bar fill width corresponds to current step */
+.progress-bar-fill {
+  width: 64%;
+}
+/* ── Card heading ── */
+.card-heading {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 16px 0;
+  display: inline;
+}
+
+/* ── Preview header row ── */
+.preview-header {
+  margin-bottom: 16px;
+}
+
+/* ── Skill count badge ── */
+.skill-count {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: #eef4ff;
+  color: #4c73ff;
+  border-radius: 20px;
+  padding: 2px 10px;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+/* ── Skill input grid (3 columns on desktop) ── */
+.skill-input-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+/* ── Field group ── */
+.field-group {
+  margin-bottom: 0;
+}
+/* ── Helper text states for the min-skills hint
+     (replaces inline style.color set by JS) ── */
+.helper-text--success {
+  color: #065f46;
+}
+.helper-text--neutral {
+  color: #4b5563;
+}
+
+/* ── Inputs & selects ── */
+.field-input,
+.field-select {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 0.9rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #1f2937;
+  box-sizing: border-box;
+  transition: border-color 0.15s;
+}
+
+.field-input:focus,
+.field-select:focus {
+  outline: none;
+  border-color: #4c73ff;
+  box-shadow: 0 0 0 3px rgba(76,115,255,0.1);
+}
+
+/* ── Empty state ── */
+.skills-empty-state {
+  text-align: center;
+  color: #4b5563;
+  font-size: 0.875rem;
+  padding: 28px 0;
+  border: 1px dashed #e5e7eb;
+  border-radius: 8px;
+}
+
+/* ── Category group ── */
+.skill-category-group {
+  margin-bottom: 20px;
+}
+
+.skill-category-group:last-child {
+  margin-bottom: 0;
+}
+
+.skill-category-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #4b5563;
+  margin-bottom: 10px;
+}
+
+/* ── Skill tags row ── */
+.skill-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ── Individual skill tag ── */
+.skill-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  border: 1px solid transparent;
+}
+
+/* Category colour coding */
+.skill-tag--Technical {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+  color: #1d4ed8;
+}
+
+.skill-tag--Domain {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+  color: #15803d;
+}
+
+.skill-tag--Soft {
+  background: #fefce8;
+  border-color: #fde68a;
+  color: #92400e;
+}
+
+.skill-tag--Tools {
+  background: #fdf4ff;
+  border-color: #e9d5ff;
+  color: #7e22ce;
+}
+
+.skill-tag--Language {
+  background: #fff7ed;
+  border-color: #fed7aa;
+  color: #c2410c;
+}
+
+.skill-tag--Other {
+  background: #f9fafb;
+  border-color: #e5e7eb;
+  color: #374151;
+}
+
+/* ── Custom-category sub-label inside the tag (used when user picked
+     "Other" and typed a custom category like "Cooking" or "Photography").
+     Renders smaller & muted so the skill name remains primary. ── */
+.skill-tag__custom-cat {
+  font-size: 0.7rem;
+  opacity: 0.7;
+  font-weight: 400;
+  margin-left: 2px;
+  font-style: italic;
+}
+
+/* ── Proficiency dot inside tag ── */
+.skill-tag__proficiency {
+  font-size: 0.72rem;
+  opacity: 0.75;
+  font-weight: 400;
+}
+
+/* ── Remove button inside tag ── */
+.skill-tag__remove {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  line-height: 1;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  opacity: 0.55;
+  transition: opacity 0.15s;
+  width: auto;
+  margin-top: 0;
+}
+
+.skill-tag__remove:hover {
+  opacity: 1;
+}
+
+/* ── Button row, buttons, toast, loading spinner, error popup:
+   all now defined globally in styles.css ── */
+
+/* ── "Other" category text input — shown below select when Other is chosen ── */
+.field-input--other {
+  margin-top: 8px;
+}
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .skill-input-grid {
+    grid-template-columns: 1fr;
+  }
+  .btn-row  { flex-direction: column; }
+}
