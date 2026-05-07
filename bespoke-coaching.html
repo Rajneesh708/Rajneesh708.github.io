@@ -1,41 +1,1137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="MECULS Bespoke L&D Coaching — Leadership Quality is a Business Risk.">
-  <title>Bespoke L&D Coaching — MECULS</title>
-  <!-- Global styles (header + footer) -->
-  <link rel="stylesheet" href="global.css">
-  <!-- Page-specific styles -->
-  <link rel="stylesheet" href="bespoke-coaching.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Archivo:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' https://www.meculs.com; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="MECULS Bespoke Executive Coaching - the work that goes where standard L&D never reaches. One leader, one engagement, one set of hidden patterns identified and worked with - personally by Rajneesh Jain.">
+<title>Bespoke Executive Coaching | MECULS &middot; Rajneesh Jain</title>
+<meta property="og:title" content="Bespoke Executive Coaching - MECULS">
+<meta property="og:description" content="Leadership Quality is a Business Risk. We work in the invisible layer of leadership where most L&D programmes never reach.">
+<meta property="og:url" content="https://www.meculs.com/bespoke-coaching.html">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://www.meculs.com/bespoke-coaching.html">
+
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Archivo:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="global.css">
+
+<style>
+  :root {
+    --tagline-h: 28px;
+
+    /* This page: midnight-burgundy - the inner layer of pressure */
+    --bg-deep:      #150a0d;
+    --bg:           #1a0d12;
+    --bg-2:         #221218;
+    --bg-3:         #2a161e;
+    --gold:         #c9a14a;
+    --gold-2:       #d4b15a;
+    --gold-deep:    #8a6d1a;
+    --gold-dim:     rgba(201,161,74,0.10);
+    --gold-border:  rgba(201,161,74,0.28);
+    --crimson:      #9a3140;
+    --crimson-soft: rgba(154,49,64,0.18);
+    --on-dark-h:    rgba(255,255,255,0.96);
+    --on-dark-body: rgba(255,255,255,0.86);
+    --on-dark-soft: rgba(255,255,255,0.78);
+    --on-dark-rule: rgba(255,255,255,0.10);
+
+    --cream:        #f4ece4;
+    --cream-2:      #ebe1d3;
+    --paper:        #fbf6ee;
+    --ink:          #161412;
+    --ink-2:        #2a2520;
+    --on-light-body: #2e2a23;
+    --on-light-soft: #3d3830;
+    --on-light-muted:#5a5248;
+    --on-light-rule: rgba(22,20,18,0.18);
+    --on-light-rule-soft: rgba(22,20,18,0.08);
+
+    --display:      'Playfair Display', serif;
+    --serif:        'Cormorant Garamond', serif;
+    --sans:         'Archivo', sans-serif;
+    --mono:         'JetBrains Mono', monospace;
+    --ease:         cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--on-dark-body);
+    font-family: var(--sans);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .page {
+    padding-top: calc(var(--g-nav-h, 72px) + var(--tagline-h, 28px));
+    background: var(--bg);
+  }
+  ::selection { background: var(--gold); color: var(--bg); }
+
+  .wrap          { max-width: 1180px; margin: 0 auto; padding: 0 5%; }
+  .wrap-narrow   { max-width: 820px; margin: 0 auto; padding: 0 5%; }
+
+  .rev {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 1.0s var(--ease), transform 1.0s var(--ease);
+  }
+  .rev.vis { opacity: 1; transform: none; }
+
+  /* Chapter label */
+  .chapter-label {
+    display: inline-flex; align-items: center; gap: 14px;
+    font-family: var(--sans);
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.22em;
+    text-transform: uppercase; margin-bottom: 1.6rem;
+  }
+  .chapter-label::before {
+    content: ''; width: 48px; height: 1px; background: currentColor; opacity: 0.7;
+  }
+  .chapter-num {
+    font-family: var(--display);
+    font-size: 0.92rem; font-weight: 500; letter-spacing: 0.05em;
+  }
+
+  /* ═══════════════════════ HERO ═══════════════════════ */
+  .b-hero {
+    min-height: 88vh; position: relative;
+    display: flex; align-items: center;
+    padding: 6rem 0;
+    background:
+      radial-gradient(ellipse at 18% 30%, rgba(154,49,64,0.22) 0%, transparent 50%),
+      radial-gradient(ellipse at 82% 78%, rgba(201,161,74,0.10) 0%, transparent 48%),
+      linear-gradient(165deg, var(--bg-deep) 0%, var(--bg) 50%, var(--bg-2) 100%);
+    overflow: hidden;
+    color: var(--on-dark-h);
+  }
+  .b-hero::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(201,161,74,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,161,74,0.025) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse 80% 75% at 38% 50%, #000 22%, transparent 76%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 75% at 38% 50%, #000 22%, transparent 76%);
+  }
+  .b-hero-bg-text {
+    position: absolute;
+    top: 50%; right: -3%;
+    transform: translateY(-50%);
+    font-family: var(--display);
+    font-size: clamp(8rem, 22vw, 22rem);
+    font-weight: 700;
+    color: rgba(201,161,74,0.025);
+    letter-spacing: -0.05em; line-height: 0.85;
+    pointer-events: none; user-select: none;
+    white-space: nowrap;
+  }
+  .b-hero-grid {
+    position: relative; z-index: 2;
+    width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 5%;
+    display: grid; grid-template-columns: 1.2fr 0.8fr;
+    gap: 5rem; align-items: center;
+  }
+  .b-hero .chapter-label { color: var(--gold); }
+  .b-hero h1 {
+    font-family: var(--display);
+    font-size: clamp(2.6rem, 5.4vw, 4.6rem);
+    font-weight: 500; line-height: 1.06;
+    letter-spacing: -0.025em; margin-bottom: 1.8rem;
+    color: var(--on-dark-h);
+  }
+  .b-hero h1 em {
+    font-style: italic; color: var(--gold);
+    font-weight: 500;
+  }
+  .b-hero-sub {
+    font-family: var(--serif);
+    font-size: clamp(1.32rem, 1.85vw, 1.6rem);
+    font-style: italic; line-height: 1.55;
+    color: var(--on-dark-body);
+    max-width: 580px; margin-bottom: 2.4rem;
+  }
+  .b-hero-stmt {
+    display: inline-block;
+    padding: 1.2rem 1.6rem;
+    border-left: 3px solid var(--gold);
+    background: var(--gold-dim);
+    font-family: var(--sans);
+    font-size: clamp(1.18rem, 1.5vw, 1.32rem);
+    font-weight: 500; line-height: 1.65;
+    color: var(--on-dark-h);
+    max-width: 540px;
+  }
+  .b-hero-stmt strong { color: var(--gold); font-weight: 600; }
+
+  /* Hero emblem - inward-spiralling concentric forms */
+  .b-hero-emblem {
+    max-width: 400px; margin: 0 auto; width: 100%;
+    aspect-ratio: 1; position: relative;
+  }
+  .b-hero-emblem svg { width: 100%; height: 100%; }
+  @keyframes slowSpinA { to { transform: rotate(360deg); } }
+  @keyframes slowSpinB { to { transform: rotate(-360deg); } }
+  @keyframes pulseDot  {
+    0%, 100% { opacity: 1; r: 5; }
+    50%      { opacity: 0.6; r: 7; }
+  }
+  .b-emblem-outer {
+    animation: slowSpinA 220s linear infinite;
+    transform-origin: center;
+  }
+  .b-emblem-mid {
+    animation: slowSpinB 160s linear infinite;
+    transform-origin: center;
+  }
+  .b-emblem-inner {
+    animation: slowSpinA 110s linear infinite;
+    transform-origin: center;
+  }
+  .b-emblem-core {
+    animation: pulseDot 4s ease-in-out infinite;
+    transform-origin: center;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .b-emblem-outer, .b-emblem-mid, .b-emblem-inner, .b-emblem-core { animation: none; }
+  }
+
+  /* ═══════════════════════ POSITION (cream) ═══════════════════════ */
+  .b-position {
+    padding: 7rem 0 6rem;
+    background: var(--cream);
+    color: var(--on-light-body);
+    position: relative;
+  }
+  .b-position::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(138,109,26,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(138,109,26,0.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: linear-gradient(180deg, transparent, #000 15%, #000 85%, transparent);
+    -webkit-mask-image: linear-gradient(180deg, transparent, #000 15%, #000 85%, transparent);
+  }
+  .b-position .wrap-narrow { position: relative; z-index: 2; }
+  .b-position .chapter-label { color: var(--gold-deep); }
+  .b-position h2 {
+    font-family: var(--display);
+    font-size: clamp(2.1rem, 4.2vw, 3.4rem);
+    font-weight: 500; line-height: 1.14;
+    letter-spacing: -0.02em; margin-bottom: 2rem;
+    color: var(--ink);
+  }
+  .b-position h2 em { font-style: italic; color: var(--gold-deep); font-weight: 500; }
+  .b-position p {
+    font-family: var(--serif);
+    font-size: clamp(1.22rem, 1.65vw, 1.42rem);
+    font-weight: 400; line-height: 1.78;
+    color: var(--on-light-body); margin-bottom: 1.4rem;
+  }
+  .b-position p:last-child { margin-bottom: 0; }
+  .b-position p em { font-style: italic; color: var(--gold-deep); font-weight: 500; }
+
+  .b-position-pull {
+    margin-top: 3rem;
+    padding: 1.8rem 2.2rem;
+    background: rgba(138,109,26,0.06);
+    border-left: 2px solid var(--gold-deep);
+  }
+  .b-position-pull-label {
+    display: block;
+    font-family: var(--sans);
+    font-size: 0.74rem; font-weight: 700; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--gold-deep);
+    margin-bottom: 0.7rem;
+  }
+  .b-position-pull p {
+    font-family: var(--serif);
+    font-size: clamp(1.18rem, 1.5vw, 1.32rem);
+    font-style: italic;
+    color: var(--on-light-body); line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  /* ═══════════════════════ AUDIENCE (with photo) ═══════════════════════ */
+  .b-audience {
+    padding: 0;
+    background: var(--bg);
+    position: relative;
+  }
+  .b-audience-photo {
+    position: relative;
+    height: 56vh; min-height: 420px;
+    overflow: hidden;
+    background:
+      linear-gradient(180deg, transparent 60%, rgba(26,13,18,0.55) 92%, var(--bg) 100%),
+      url('images/bespoke-coaching/bespoke-coaching-isolation.jpg') center/cover no-repeat,
+      var(--bg-deep);
+  }
+  .b-audience-photo::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, var(--bg) 0%, transparent 6%, transparent 94%, var(--bg) 100%);
+    pointer-events: none;
+  }
+  .b-audience-photo-caption {
+    position: absolute;
+    left: 5%; bottom: 3rem;
+    max-width: 520px;
+    z-index: 2;
+  }
+  .b-audience-photo-caption-lbl {
+    font-family: var(--mono);
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gold);
+    display: block; margin-bottom: 0.7rem;
+  }
+  .b-audience-photo-caption-line {
+    font-family: var(--display);
+    font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+    font-weight: 500; font-style: italic;
+    color: var(--on-dark-h); line-height: 1.3;
+    letter-spacing: -0.005em;
+  }
+
+  .b-audience-content {
+    padding: 6rem 0 7rem;
+    background: var(--bg);
+  }
+  .b-audience-head {
+    max-width: 820px; margin: 0 auto 4rem;
+    padding: 0 5%;
+  }
+  .b-audience .chapter-label { color: var(--gold); }
+  .b-audience-head h2 {
+    font-family: var(--display);
+    font-size: clamp(2.1rem, 4.2vw, 3.4rem);
+    font-weight: 500; line-height: 1.14;
+    letter-spacing: -0.02em; margin-bottom: 1.6rem;
+    color: var(--on-dark-h);
+  }
+  .b-audience-head h2 em { font-style: italic; color: var(--gold); }
+  .b-audience-head p {
+    font-family: var(--serif);
+    font-size: clamp(1.22rem, 1.65vw, 1.4rem);
+    font-weight: 400; line-height: 1.72;
+    color: var(--on-dark-body);
+  }
+
+  .b-audience-cards {
+    max-width: 1180px; margin: 0 auto; padding: 0 5%;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.8rem;
+  }
+  .b-card {
+    padding: 2.6rem 2.4rem;
+    border: 1px solid var(--gold-border);
+    background: rgba(255,255,255,0.02);
+    transition: background 0.4s var(--ease), border-color 0.4s var(--ease), transform 0.4s var(--ease);
+  }
+  .b-card:hover {
+    background: rgba(201,161,74,0.04);
+    border-color: rgba(201,161,74,0.45);
+    transform: translateY(-3px);
+  }
+  .b-card-num {
+    font-family: var(--display);
+    font-size: 3rem; font-weight: 300;
+    color: rgba(201,161,74,0.30);
+    line-height: 1; margin-bottom: 0.6rem;
+    letter-spacing: -0.04em;
+  }
+  .b-card-tag {
+    font-family: var(--sans);
+    font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.20em; text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.4rem; display: block;
+  }
+  .b-card h3 {
+    font-family: var(--display);
+    font-size: clamp(1.5rem, 2.4vw, 2rem);
+    font-weight: 500; font-style: italic;
+    color: var(--on-dark-h);
+    line-height: 1.2; margin-bottom: 1.6rem;
+    letter-spacing: -0.01em;
+  }
+  .b-card h3 em { color: var(--gold); }
+  .b-card-block {
+    padding: 1.2rem 0;
+    border-bottom: 1px solid var(--on-dark-rule);
+  }
+  .b-card-block:last-of-type { border-bottom: none; }
+  .b-card-block-lbl {
+    display: block;
+    font-family: var(--sans);
+    font-size: 0.74rem; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+  .b-card-block-lbl.assumption { color: var(--on-dark-soft); }
+  .b-card-block-lbl.ground     { color: var(--gold); }
+  .b-card-block-lbl.provide    { color: var(--gold); }
+  .b-card-block-text {
+    font-family: var(--serif);
+    font-size: clamp(1.18rem, 1.5vw, 1.3rem);
+    line-height: 1.65;
+    color: var(--on-dark-body);
+  }
+  .b-card-block-text.assumption {
+    font-style: italic;
+    color: var(--on-dark-soft);
+  }
+
+  .b-card-list {
+    list-style: none;
+    margin-top: 0.7rem;
+  }
+  .b-card-list li {
+    font-family: var(--sans);
+    font-size: clamp(1.08rem, 1.4vw, 1.18rem);
+    line-height: 1.65;
+    color: var(--on-dark-body);
+    padding: 0.5rem 0 0.5rem 1.2rem;
+    position: relative;
+    border-bottom: 1px solid var(--on-dark-rule);
+  }
+  .b-card-list li:last-child { border-bottom: none; }
+  .b-card-list li::before {
+    content: '';
+    position: absolute; left: 0; top: 1rem;
+    width: 8px; height: 1px; background: var(--gold);
+  }
+
+  /* feedback formula sub-block */
+  .b-feedback {
+    margin-top: 0.6rem;
+    padding: 1rem 1.2rem;
+    border: 1px solid var(--on-dark-rule);
+    background: rgba(0,0,0,0.18);
+  }
+  .b-feedback-row {
+    display: flex; align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--on-dark-rule);
+    gap: 0.8rem;
+  }
+  .b-feedback-row:last-child { border-bottom: none; }
+  .b-feedback-row span {
+    font-family: var(--sans);
+    font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+    font-weight: 500;
+    color: var(--on-dark-body);
+    flex: 1;
+  }
+  .b-feedback-row .x {
+    font-family: var(--display);
+    font-size: 1.2rem; font-style: italic;
+    color: var(--gold);
+    flex: 0 0 auto;
+    text-align: center;
+    min-width: 28px;
+  }
+  .b-feedback-q {
+    margin-top: 1.1rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--gold-border);
+    font-family: var(--serif);
+    font-size: clamp(1.08rem, 1.4vw, 1.2rem);
+    font-style: italic;
+    color: var(--on-dark-body); line-height: 1.5;
+  }
+  .b-feedback-q em { color: var(--gold); font-weight: 500; }
+
+  .b-card-quote {
+    margin-top: 1.6rem;
+    padding-top: 1.4rem;
+    border-top: 1px solid var(--gold-border);
+    font-family: var(--serif);
+    font-size: clamp(1.18rem, 1.5vw, 1.3rem);
+    font-style: italic;
+    color: var(--on-dark-h);
+    line-height: 1.55;
+  }
+
+  /* ═══════════════════════ STATS (cream) ═══════════════════════ */
+  .b-stats {
+    padding: 7rem 0;
+    background: var(--cream-2);
+    color: var(--on-light-body);
+  }
+  .b-stats-head {
+    max-width: 820px; margin: 0 auto 3.6rem;
+    padding: 0 5%;
+    text-align: center;
+  }
+  .b-stats .chapter-label {
+    color: var(--gold-deep);
+    justify-content: center;
+  }
+  .b-stats .chapter-label::after {
+    content: ''; width: 48px; height: 1px; background: var(--gold-deep); opacity: 0.7;
+  }
+  .b-stats-head h2 {
+    font-family: var(--display);
+    font-size: clamp(2.1rem, 4.2vw, 3.4rem);
+    font-weight: 500; line-height: 1.14;
+    letter-spacing: -0.02em; margin-bottom: 1.4rem;
+    color: var(--ink);
+  }
+  .b-stats-head h2 em { font-style: italic; color: var(--gold-deep); }
+  .b-stats-head p {
+    font-family: var(--serif);
+    font-size: clamp(1.22rem, 1.65vw, 1.4rem);
+    font-weight: 400; line-height: 1.7;
+    color: var(--on-light-body);
+  }
+
+  .b-stats-grid {
+    max-width: 1180px; margin: 0 auto; padding: 0 5%;
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    border-top: 1px solid var(--gold-deep);
+    border-bottom: 1px solid var(--gold-deep);
+    background: var(--paper);
+  }
+  .b-stat {
+    padding: 2.4rem 1.4rem;
+    border-right: 1px solid var(--on-light-rule-soft);
+    text-align: center;
+    display: flex; flex-direction: column;
+  }
+  .b-stat:last-child { border-right: none; }
+  .b-stat-num {
+    font-family: var(--display);
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 500; color: var(--gold-deep);
+    line-height: 1; margin-bottom: 0.7rem;
+    letter-spacing: -0.02em;
+  }
+  .b-stat-desc {
+    font-family: var(--sans);
+    font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+    font-weight: 500; line-height: 1.5;
+    color: var(--ink);
+    margin-bottom: 0.7rem;
+  }
+  .b-stat-insight {
+    margin-top: auto;
+    padding-top: 0.7rem;
+    border-top: 1px solid var(--on-light-rule-soft);
+    font-family: var(--serif);
+    font-size: clamp(0.98rem, 1.25vw, 1.08rem);
+    font-style: italic;
+    color: var(--on-light-soft); line-height: 1.5;
+  }
+
+  /* MECULS proof block - separate from industry stats */
+  .b-meculs-proof {
+    max-width: 1080px; margin: 4rem auto 0;
+    padding: 0 5%;
+  }
+  .b-meculs-proof-inner {
+    background: var(--ink);
+    color: var(--on-dark-h);
+    border-top: 4px solid var(--gold-deep);
+    padding: 3rem 3rem 2.6rem;
+    display: grid; grid-template-columns: 0.85fr 1.15fr;
+    gap: 3rem; align-items: center;
+  }
+  .b-meculs-proof-lbl {
+    font-family: var(--mono);
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .b-meculs-proof-num {
+    font-family: var(--display);
+    font-size: clamp(3.6rem, 7vw, 5.5rem);
+    font-weight: 500; color: var(--gold);
+    line-height: 1; letter-spacing: -0.03em;
+  }
+  .b-meculs-proof-num small {
+    display: block;
+    font-family: var(--sans);
+    font-size: 0.92rem; font-weight: 600;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--on-dark-soft);
+    margin-top: 0.7rem;
+  }
+  .b-meculs-proof-text {
+    font-family: var(--serif);
+    font-size: clamp(1.22rem, 1.65vw, 1.4rem);
+    font-weight: 400; line-height: 1.65;
+    color: var(--on-dark-body);
+  }
+  .b-meculs-proof-text em {
+    font-style: italic; color: var(--gold-2); font-weight: 500;
+  }
+
+  /* ═══════════════════════ DISTINCTION (dark + bars + table) ═══════════════════════ */
+  .b-distinction {
+    padding: 8rem 0;
+    background: var(--bg-2);
+    color: var(--on-dark-body);
+    position: relative; overflow: hidden;
+  }
+  .b-distinction::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse at 80% 30%, rgba(154,49,64,0.16) 0%, transparent 50%);
+  }
+  .b-distinction-grid {
+    max-width: 1180px; margin: 0 auto; padding: 0 5%;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: start;
+    position: relative; z-index: 2;
+  }
+  .b-distinction .chapter-label { color: var(--gold); }
+  .b-distinction h2 {
+    font-family: var(--display);
+    font-size: clamp(2rem, 3.8vw, 3rem);
+    font-weight: 500; line-height: 1.14;
+    letter-spacing: -0.02em; margin-bottom: 1.6rem;
+    color: var(--on-dark-h);
+  }
+  .b-distinction h2 em { font-style: italic; color: var(--gold); }
+  .b-distinction-intro p {
+    font-family: var(--serif);
+    font-size: clamp(1.22rem, 1.65vw, 1.4rem);
+    font-weight: 400; line-height: 1.72;
+    color: var(--on-dark-body);
+    margin-bottom: 2.2rem;
+  }
+
+  /* Transfer bars */
+  .b-transfer {
+    margin-top: 1.4rem;
+    padding: 1.8rem 0;
+    border-top: 1px solid var(--gold-border);
+    border-bottom: 1px solid var(--gold-border);
+  }
+  .b-transfer-row {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 1.4rem;
+    align-items: center;
+    margin-bottom: 1.6rem;
+  }
+  .b-transfer-row:last-child { margin-bottom: 0; }
+  .b-transfer-pct {
+    font-family: var(--display);
+    font-size: clamp(1.7rem, 2.4vw, 2.1rem);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    text-align: right;
+  }
+  .b-transfer-pct.low  { color: var(--on-dark-soft); }
+  .b-transfer-pct.high { color: var(--gold); }
+  .b-transfer-bar-wrap {
+    height: 10px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--on-dark-rule);
+    overflow: hidden; position: relative;
+  }
+  .b-transfer-bar {
+    height: 100%; width: 0;
+    transition: width 1.6s var(--ease);
+  }
+  .b-transfer-bar.low  { background: rgba(255,255,255,0.20); }
+  .b-transfer-bar.high {
+    background: linear-gradient(90deg, var(--gold), var(--gold-2));
+  }
+  .b-transfer-label {
+    grid-column: 2 / -1;
+    font-family: var(--sans);
+    font-size: clamp(1.0rem, 1.3vw, 1.12rem);
+    color: var(--on-dark-soft);
+    margin-top: 0.4rem;
+    line-height: 1.5;
+  }
+
+  /* Comparison table */
+  .b-table {
+    border: 1px solid var(--gold-border);
+    background: rgba(0,0,0,0.20);
+  }
+  .b-table-head {
+    display: grid; grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid var(--gold-border);
+  }
+  .b-table-h {
+    padding: 1.1rem 1.4rem;
+    font-family: var(--sans);
+    font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+  }
+  .b-table-h.theirs {
+    color: var(--on-dark-soft);
+    border-right: 1px solid var(--gold-border);
+  }
+  .b-table-h.ours {
+    color: var(--gold);
+    background: var(--gold-dim);
+  }
+  .b-table-row {
+    display: grid; grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid var(--on-dark-rule);
+  }
+  .b-table-row:last-child { border-bottom: none; }
+  .b-table-cell {
+    padding: 1.1rem 1.4rem;
+    font-family: var(--serif);
+    font-size: clamp(1.12rem, 1.4vw, 1.22rem);
+    line-height: 1.5;
+  }
+  .b-table-cell.theirs {
+    color: var(--on-dark-soft);
+    border-right: 1px solid var(--on-dark-rule);
+  }
+  .b-table-cell.ours {
+    color: var(--on-dark-h);
+    background: rgba(201,161,74,0.04);
+  }
+
+  /* ═══════════════════════ METHOD (dark + photo) ═══════════════════════ */
+  .b-method {
+    padding: 0;
+    background: var(--bg);
+  }
+  .b-method-photo {
+    position: relative;
+    height: 60vh; min-height: 460px;
+    overflow: hidden;
+    background:
+      linear-gradient(180deg, transparent 60%, rgba(26,13,18,0.55) 92%, var(--bg) 100%),
+      url('images/bespoke-coaching/bespoke-coaching-method.jpg') center/cover no-repeat,
+      var(--bg-deep);
+  }
+  .b-method-photo::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, var(--bg-2) 0%, transparent 6%, transparent 94%, var(--bg) 100%);
+    pointer-events: none;
+  }
+  .b-method-photo-caption {
+    position: absolute;
+    left: 5%; bottom: 3rem;
+    max-width: 540px;
+    z-index: 2;
+  }
+  .b-method-photo-caption-lbl {
+    font-family: var(--mono);
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gold);
+    display: block; margin-bottom: 0.7rem;
+  }
+  .b-method-photo-caption-line {
+    font-family: var(--display);
+    font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+    font-weight: 500; font-style: italic;
+    color: var(--on-dark-h); line-height: 1.3;
+    letter-spacing: -0.005em;
+  }
+  /* Close-photo caption (matches audience-photo and method-photo pattern) */
+  .b-close-photo {
+    display: flex; align-items: flex-end;
+  }
+  .b-close-photo-caption {
+    position: relative; z-index: 2;
+    padding: 0 5% 3rem;
+    max-width: 760px;
+  }
+  .b-close-photo-caption-lbl {
+    font-family: var(--mono);
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gold);
+    display: block; margin-bottom: 0.7rem;
+  }
+  .b-close-photo-caption-line {
+    font-family: var(--display);
+    font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+    font-weight: 500; font-style: italic;
+    color: var(--on-dark-h); line-height: 1.3;
+    letter-spacing: -0.005em;
+  }
+  .b-close-photo-caption-line em {
+    color: var(--gold);
+  }
+
+
+  .b-method-content {
+    padding: 6rem 0 8rem;
+    background: var(--bg);
+  }
+  .b-method-grid {
+    max-width: 1180px; margin: 0 auto; padding: 0 5%;
+    display: grid; grid-template-columns: 0.95fr 1.05fr;
+    gap: 5rem; align-items: start;
+  }
+  .b-method .chapter-label { color: var(--gold); }
+  .b-method h2 {
+    font-family: var(--display);
+    font-size: clamp(2rem, 3.8vw, 3rem);
+    font-weight: 500; line-height: 1.14;
+    letter-spacing: -0.02em; margin-bottom: 1.6rem;
+    color: var(--on-dark-h);
+  }
+  .b-method h2 em { font-style: italic; color: var(--gold); }
+  .b-method-text p {
+    font-family: var(--serif);
+    font-size: clamp(1.22rem, 1.65vw, 1.4rem);
+    font-weight: 400; line-height: 1.72;
+    color: var(--on-dark-body);
+    margin-bottom: 1.4rem;
+  }
+  .b-method-text p:last-child { margin-bottom: 0; }
+  .b-method-text p em { font-style: italic; color: var(--gold); font-weight: 500; }
+
+  .b-method-big {
+    margin-top: 2.4rem;
+    padding: 1.8rem 2rem;
+    border-left: 3px solid var(--gold);
+    background: var(--gold-dim);
+  }
+  .b-method-big-num {
+    font-family: var(--display);
+    font-size: clamp(2.8rem, 5vw, 3.8rem);
+    font-weight: 500; color: var(--gold);
+    line-height: 1; letter-spacing: -0.02em;
+    margin-bottom: 0.8rem;
+  }
+  .b-method-big-text {
+    font-family: var(--serif);
+    font-size: clamp(1.18rem, 1.5vw, 1.32rem);
+    font-style: italic; line-height: 1.55;
+    color: var(--on-dark-body);
+  }
+
+  .b-method-metrics {
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .b-method-metric {
+    padding: 1.6rem 1.8rem;
+    border: 1px solid var(--gold-border);
+    background: rgba(255,255,255,0.02);
+    display: grid; grid-template-columns: auto 1fr;
+    gap: 1.4rem; align-items: center;
+    transition: background 0.4s var(--ease), border-color 0.4s var(--ease);
+  }
+  .b-method-metric:hover {
+    background: var(--gold-dim);
+    border-color: rgba(201,161,74,0.45);
+  }
+  .b-method-metric-num {
+    font-family: var(--display);
+    font-size: clamp(1.7rem, 2.6vw, 2.2rem);
+    font-weight: 500; color: var(--gold);
+    line-height: 1; letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+  .b-method-metric-text {
+    font-family: var(--sans);
+    font-size: clamp(1.05rem, 1.35vw, 1.18rem);
+    line-height: 1.55;
+    color: var(--on-dark-body);
+  }
+
+  .b-method-trends {
+    margin-top: 1.8rem;
+    padding: 1.4rem 1.8rem;
+    border-top: 1px solid var(--on-dark-rule);
+  }
+  .b-method-trends-lbl {
+    font-family: var(--sans);
+    font-size: 0.74rem; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.9rem; display: block;
+  }
+  .b-method-trends-list {
+    display: flex; flex-wrap: wrap; gap: 0.6rem;
+  }
+  .b-method-trend {
+    padding: 0.55rem 1rem;
+    border: 1px solid var(--gold-border);
+    font-family: var(--sans);
+    font-size: 0.94rem; font-weight: 500;
+    color: var(--on-dark-body);
+  }
+
+  /* ═══════════════════════ COST OF NOT ACTING (deeper dark) ═══════════════════════ */
+  .b-cost {
+    padding: 7rem 0;
+    background: var(--bg-deep);
+    color: var(--on-dark-body);
+    border-top: 1px solid var(--on-dark-rule);
+    border-bottom: 1px solid var(--on-dark-rule);
+  }
+  .b-cost-grid {
+    max-width: 1180px; margin: 0 auto; padding: 0 5%;
+    display: grid; grid-template-columns: 0.42fr 0.58fr;
+    gap: 5rem; align-items: start;
+  }
+  .b-cost .chapter-label { color: var(--gold); }
+  .b-cost h2 {
+    font-family: var(--display);
+    font-size: clamp(2rem, 3.8vw, 3rem);
+    font-weight: 500; line-height: 1.14;
+    letter-spacing: -0.02em; margin-bottom: 1.4rem;
+    color: var(--on-dark-h);
+  }
+  .b-cost h2 em { font-style: italic; color: var(--gold); }
+  .b-cost-list {
+    list-style: none;
+  }
+  .b-cost-list li {
+    font-family: var(--sans);
+    font-size: clamp(1.18rem, 1.5vw, 1.32rem);
+    font-weight: 400; line-height: 1.7;
+    color: var(--on-dark-body);
+    padding: 1.4rem 0;
+    border-bottom: 1px solid var(--on-dark-rule);
+  }
+  .b-cost-list li:first-child { padding-top: 0; }
+  .b-cost-list li:last-child { border-bottom: none; }
+  .b-cost-list li strong {
+    color: var(--on-dark-h); font-weight: 600;
+  }
+  .b-cost-list li em {
+    font-family: var(--display);
+    font-style: italic; font-weight: 500;
+    color: var(--gold-2);
+  }
+
+  /* ═══════════════════════ CONVICTION CLOSE (with photo) ═══════════════════════ */
+  .b-close {
+    padding: 0;
+    background: var(--bg);
+  }
+  .b-close-photo {
+    position: relative;
+    height: 56vh; min-height: 420px;
+    overflow: hidden;
+    background:
+      linear-gradient(180deg, rgba(21,10,13,0.55) 0%, rgba(21,10,13,0.18) 28%, transparent 55%, rgba(26,13,18,0.45) 92%, var(--bg) 100%),
+      url('images/bespoke-coaching/bespoke-coaching-dawn.jpg') center/cover no-repeat,
+      var(--bg-deep);
+  }
+  .b-close-photo::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, var(--bg) 0%, transparent 5%, transparent 95%, var(--bg) 100%);
+    pointer-events: none;
+  }
+
+  .b-close-content {
+    padding: 6rem 0 7rem;
+    text-align: center;
+    background: var(--bg);
+    position: relative;
+    overflow: hidden;
+  }
+  .b-close-content::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse at 50% 30%, rgba(201,161,74,0.08) 0%, transparent 55%);
+  }
+  .b-close-inner {
+    position: relative; z-index: 2;
+    max-width: 880px; margin: 0 auto; padding: 0 5%;
+  }
+  .b-close .chapter-label {
+    color: var(--gold); justify-content: center;
+  }
+  .b-close .chapter-label::after {
+    content: ''; width: 48px; height: 1px; background: var(--gold); opacity: 0.7;
+  }
+  .b-close h2 {
+    font-family: var(--display);
+    font-size: clamp(2.2rem, 4.4vw, 3.6rem);
+    font-weight: 500; line-height: 1.14;
+    letter-spacing: -0.02em; margin-bottom: 2rem;
+    color: var(--on-dark-h);
+  }
+  .b-close h2 em { font-style: italic; color: var(--gold); }
+  .b-close p {
+    font-family: var(--serif);
+    font-size: clamp(1.22rem, 1.65vw, 1.4rem);
+    font-weight: 400; line-height: 1.72;
+    color: var(--on-dark-body);
+    margin-bottom: 1.4rem;
+  }
+  .b-close-rule {
+    width: 1px; height: 52px;
+    background: linear-gradient(180deg, transparent, var(--gold), transparent);
+    margin: 2.4rem auto;
+  }
+  .b-close-line {
+    font-family: var(--display);
+    font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+    font-weight: 500; font-style: italic;
+    color: var(--on-dark-h); line-height: 1.4;
+    max-width: 720px; margin: 0 auto 2.8rem;
+    letter-spacing: -0.005em;
+  }
+  .b-close-line strong {
+    font-style: normal; font-weight: 600;
+    color: var(--gold);
+  }
+  .b-close-cta {
+    display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap;
+  }
+
+  /* ═══════════════════════ NEXT (forward) ═══════════════════════ */
+  .b-next {
+    padding: 6rem 0;
+    background: linear-gradient(170deg, var(--bg) 0%, var(--bg-deep) 100%);
+    color: var(--on-dark-h);
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .b-next::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(201,161,74,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,161,74,0.025) 1px, transparent 1px);
+    background-size: 88px 88px;
+    mask-image: radial-gradient(ellipse at center, #000 22%, transparent 76%);
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 22%, transparent 76%);
+  }
+  .b-next-inner {
+    position: relative; z-index: 2;
+    max-width: 760px; margin: 0 auto; padding: 0 5%;
+  }
+  .b-next .chapter-label {
+    color: var(--gold); justify-content: center;
+  }
+  .b-next .chapter-label::after {
+    content: ''; width: 48px; height: 1px; background: var(--gold); opacity: 0.7;
+  }
+  .b-next h2 {
+    font-family: var(--display);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 500; line-height: 1.14;
+    letter-spacing: -0.02em; margin-bottom: 1.6rem;
+    color: var(--on-dark-h);
+  }
+  .b-next h2 em { font-style: italic; color: var(--gold); }
+  .b-next p {
+    font-family: var(--serif);
+    font-size: clamp(1.22rem, 1.65vw, 1.4rem);
+    font-weight: 400; font-style: italic;
+    color: var(--on-dark-body); line-height: 1.65;
+    margin-bottom: 2.4rem;
+  }
+  .b-next-btns {
+    display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap;
+  }
+
+  /* Buttons */
+  .btn-gold {
+    padding: 1.1rem 2.6rem; background: var(--gold); color: var(--bg);
+    font-family: var(--sans);
+    font-size: 0.86rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; text-decoration: none;
+    border: 1px solid var(--gold);
+    transition: background 0.3s var(--ease), transform 0.2s var(--ease);
+    display: inline-block;
+  }
+  .btn-gold:hover {
+    background: var(--gold-2); border-color: var(--gold-2);
+    transform: translateY(-2px);
+  }
+  .btn-outline {
+    padding: 1.1rem 2.6rem;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--gold-border);
+    color: var(--gold);
+    font-family: var(--sans);
+    font-size: 0.86rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; text-decoration: none;
+    transition: background 0.3s var(--ease), border-color 0.3s var(--ease), transform 0.2s var(--ease);
+    display: inline-block;
+  }
+  .btn-outline:hover {
+    background: var(--gold-dim); border-color: var(--gold);
+    transform: translateY(-2px);
+  }
+
+  /* ═══════════════════════ RESPONSIVE ═══════════════════════ */
+  @media (max-width: 1024px) {
+    .b-hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .b-hero-emblem { max-width: 320px; }
+    .b-audience-cards { grid-template-columns: 1fr; }
+    .b-stats-grid { grid-template-columns: repeat(3, 1fr); }
+    .b-stat:nth-child(3) { border-right: none; }
+    .b-stat:nth-child(4),
+    .b-stat:nth-child(5) {
+      border-top: 1px solid var(--on-light-rule-soft);
+    }
+    .b-meculs-proof-inner { grid-template-columns: 1fr; gap: 1.8rem; }
+    .b-distinction-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .b-method-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .b-cost-grid { grid-template-columns: 1fr; gap: 2.4rem; }
+  }
+  @media (max-width: 720px) {
+    .b-hero { min-height: 70vh; padding: 4rem 0; }
+    .b-position, .b-audience-content, .b-stats, .b-distinction,
+    .b-method-content, .b-cost, .b-close-content, .b-next {
+      padding-top: 4.4rem; padding-bottom: 4.4rem;
+    }
+    .b-stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .b-stat:nth-child(2) { border-right: none; }
+    .b-stat:nth-child(3) { border-right: 1px solid var(--on-light-rule-soft); }
+    .b-stat:nth-child(5) {
+      grid-column: 1 / -1;
+      border-right: none;
+    }
+    .b-table-row { grid-template-columns: 1fr; }
+    .b-table-cell.theirs { border-right: none; border-bottom: 1px solid var(--on-dark-rule); }
+    .b-table-head { grid-template-columns: 1fr; }
+    .b-table-h.theirs { border-right: none; border-bottom: 1px solid var(--gold-border); }
+    .b-method-metric { grid-template-columns: 1fr; gap: 0.5rem; }
+    .b-meculs-proof-inner { padding: 2.2rem 1.8rem; }
+    .b-audience-photo, .b-method-photo {
+      height: 44vh; min-height: 320px;
+    }
+    .b-close-photo {
+      height: 32vh; min-height: 240px;
+    }
+    .b-feedback-row { flex-wrap: wrap; }
+    .b-card { padding: 2rem 1.7rem; }
+  }
+</style>
 </head>
 <body>
+<div class="page">
 
-  <!-- ═══════════════════════════════════════════════
-       GLOBAL HEADER — same on every MECULS page
-       To change logo: update src="images/logo/MECULS-gold-white-bold.png"
-       To change nav links: edit the <li> items below
-  ═══════════════════════════════════════════════ -->
-  <header class="global-header">
+<!-- TAGLINE SUB-BAR -->
+<div class="gh-tagline-sub" id="ghTaglineSub">
+  <span class="gh-tagline-sub-text">
+    <strong>Feel Proud:</strong> Choosing to be courageous enough to feel proud of exactly who you are and what your life is &ndash; is seeing you are growing, expanding, and creating a better world
+  </span>
+</div>
+
+<header class="global-header">
   <a href="index.html" class="gh-logo" aria-label="MECULS home">
-    <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS">
+    <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS" loading="eager" width="140" height="36">
     <span class="gh-logo-text">MECULS</span>
   </a>
 
   <nav aria-label="Primary navigation">
     <ul class="gh-nav gh-nav-wrap">
+
       <li><a href="about-meculs.html">About MECULS</a></li>
 
       <li>
-        <a href="how-meculs-works.html">
-          How MECULS Works
-          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+        <a href="how-meculs-works.html">How MECULS Works
+          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
         <ul class="gh-dropdown">
           <li><a href="how-meculs-works.html">How MECULS Works</a></li>
@@ -47,23 +1143,21 @@
       </li>
 
       <li>
-        <a href="services.html">
-          Services
-          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+        <a href="services.html" class="active">Services
+          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
         <ul class="gh-dropdown">
           <li><a href="services.html">All Services</a></li>
+          <li><a href="corporate-programs.html">Corporate Programmes</a></li>
           <li><a href="360-pulse-rate.html">360&deg; PULSE RATE&trade;</a></li>
           <li><a href="service-personality-profiling.html">Personality Profiling</a></li>
           <li><a href="service-executive-search.html">Executive Search</a></li>
-          <li><a href="bespoke-coaching.html">Executive Coaching &ndash; Bespoke</a></li>
-          <li><a href="corporate-programs.html">Corporate Programmes</a></li>
+          <li><a href="bespoke-coaching.html" class="active">Executive Coaching &ndash; Bespoke</a></li>
           <li><a href="service-hr-analytics.html">HR Analytics</a></li>
           <li><a href="service-data-science-analytics.html">Data Science &amp; Analytics</a></li>
           <li><a href="service-market-actionable-intelligence.html">Market Intelligence</a></li>
-          <div class="gh-dropdown-divider"></div>
+          <li><a href="organisational-health-consulting.html">Organisational Health</a></li>
+          <li class="gh-dropdown-divider" aria-hidden="true"></li>
           <li><a href="individual-services.html">Individual &amp; Wellness</a></li>
           <li><a href="service-consciousness-clarity.html">Consciousness &amp; Clarity</a></li>
           <li><a href="service-mind-wellness.html">Mind Wellness</a></li>
@@ -75,11 +1169,8 @@
       </li>
 
       <li>
-        <a href="the-approach.html">
-          The Approach
-          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+        <a href="the-approach.html">The Approach
+          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
         <ul class="gh-dropdown">
           <li><a href="the-approach.html">The Approach</a></li>
@@ -91,7 +1182,22 @@
 
       <li><a href="insights.html">Insights</a></li>
       <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+      <li><a href="cv-portal.html">The CV Portal</a></li>
       <li><a href="begin-conversation.html" class="gh-cta">Begin a Conversation</a></li>
+
+      <li class="gh-login-wrap">
+        <a href="login.html" class="gh-login-icon" aria-label="Sign in or register for The CV Portal" aria-haspopup="true" aria-expanded="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </a>
+        <ul class="gh-login-dropdown" role="menu" aria-label="The CV Portal account">
+          <li class="gh-login-dropdown-label">The CV Portal</li>
+          <li role="none"><a href="login.html" role="menuitem">CV Portal &ndash; Login</a></li>
+          <li role="none"><a href="register.html" role="menuitem">CV Portal &ndash; Register</a></li>
+        </ul>
+      </li>
 
     </ul>
   </nav>
@@ -101,9 +1207,11 @@
   </button>
 </header>
 
-  <!-- Mobile menu panel -->
-  <div class="gh-mobile-menu" id="ghMobileMenu" role="dialog" aria-label="Mobile navigation">
+<div class="gh-mobile-menu" id="ghMobileMenu" role="dialog" aria-label="Mobile navigation">
   <ul class="gh-mobile-nav">
+
+    <li><a href="about-meculs.html">About MECULS</a></li>
+
     <li>
       <a href="how-meculs-works.html">How MECULS Works</a>
       <ul class="gh-mobile-sub">
@@ -114,18 +1222,20 @@
         <li><a href="contemplative-practices.html">Contemplative Practices</a></li>
       </ul>
     </li>
+
     <li>
-      <a href="services.html">Services</a>
+      <a href="services.html" class="active">Services</a>
       <ul class="gh-mobile-sub">
         <li><a href="services.html">All Services</a></li>
+        <li><a href="corporate-programs.html">Corporate Programmes</a></li>
         <li><a href="360-pulse-rate.html">360&deg; PULSE RATE&trade;</a></li>
         <li><a href="service-personality-profiling.html">Personality Profiling</a></li>
         <li><a href="service-executive-search.html">Executive Search</a></li>
-        <li><a href="bespoke-coaching.html">Executive Coaching &ndash; Bespoke</a></li>
-        <li><a href="corporate-programs.html">Corporate Programmes</a></li>
+        <li><a href="bespoke-coaching.html" class="active">Executive Coaching &ndash; Bespoke</a></li>
         <li><a href="service-hr-analytics.html">HR Analytics</a></li>
         <li><a href="service-data-science-analytics.html">Data Science &amp; Analytics</a></li>
         <li><a href="service-market-actionable-intelligence.html">Market Intelligence</a></li>
+        <li><a href="organisational-health-consulting.html">Organisational Health</a></li>
         <li><a href="individual-services.html">Individual &amp; Wellness</a></li>
         <li><a href="service-consciousness-clarity.html">Consciousness &amp; Clarity</a></li>
         <li><a href="service-mind-wellness.html">Mind Wellness</a></li>
@@ -135,6 +1245,7 @@
         <li><a href="service-zero-state-meditation.html">Meditation as Medicine</a></li>
       </ul>
     </li>
+
     <li>
       <a href="the-approach.html">The Approach</a>
       <ul class="gh-mobile-sub">
@@ -144,374 +1255,449 @@
         <li><a href="our-work-proof.html">Our Work Proof</a></li>
       </ul>
     </li>
+
     <li><a href="insights.html">Insights</a></li>
     <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+    <li><a href="cv-portal.html">The CV Portal</a></li>
+    <li><a href="login.html">CV Portal &ndash; Login</a></li>
+    <li><a href="register.html">CV Portal &ndash; Register</a></li>
   </ul>
   <a href="begin-conversation.html" class="gh-mobile-cta">Begin a Conversation</a>
 </div>
-  <!-- END GLOBAL HEADER -->
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg-text">LEADERSHIP</div>
-  <div class="hero-grid-lines"></div>
-  <div class="hero-glow"></div>
-  <div class="hero-content">
-    <div class="hero-eyebrow">MECULS &nbsp;·&nbsp; Bespoke L&D Coaching</div>
-    <h1 class="hero-title">
-      Leadership Quality<br>
-      is a <em>Business Risk</em>
-    </h1>
-    <p class="hero-subtitle">
-      L&D is about investing in what leaders actually live with — the human reality inside roles.
-    </p>
-    <div class="hero-risk-statement">
-      We work in the <strong>invisible layer</strong> of leadership<br>
-      that most L&D programs never touch.
+<!-- ════════════════════ I &middot; HERO ════════════════════ -->
+<section class="b-hero">
+  <div class="b-hero-bg-text" aria-hidden="true">LEADERSHIP</div>
+  <div class="b-hero-grid">
+
+    <div>
+      <div class="chapter-label">
+        <span class="chapter-num">I</span>
+        <span>Bespoke Executive Coaching</span>
+      </div>
+      <h1>
+        Leadership quality<br>
+        is a <em>business risk.</em>
+      </h1>
+      <p class="b-hero-sub">
+        L&amp;D is investment in what leaders actually live with &ndash; the human reality inside roles, not the theory delivered to a room.
+      </p>
+      <div class="b-hero-stmt">
+        We work in the <strong>invisible layer</strong> of leadership that most L&amp;D programmes never reach.
+      </div>
     </div>
-  </div>
-  <div class="hero-scroll">
-    <span>Scroll</span>
-    <div class="scroll-line"></div>
+
+    <div class="b-hero-emblem" aria-hidden="true">
+      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" fill="none">
+        <g class="b-emblem-outer">
+          <circle cx="200" cy="200" r="186" stroke="rgba(201,161,74,0.18)" stroke-width="0.6"/>
+          <circle cx="200" cy="200" r="186" stroke="rgba(201,161,74,0.50)" stroke-width="0.6" stroke-dasharray="2 18"/>
+        </g>
+        <g class="b-emblem-mid">
+          <circle cx="200" cy="200" r="138" stroke="rgba(201,161,74,0.30)" stroke-width="0.5"/>
+          <circle cx="200" cy="200" r="138" stroke="rgba(201,161,74,0.55)" stroke-width="0.7" stroke-dasharray="1 26"/>
+        </g>
+        <g class="b-emblem-inner">
+          <circle cx="200" cy="200" r="92" stroke="rgba(201,161,74,0.42)" stroke-width="0.5"/>
+          <circle cx="200" cy="200" r="92" stroke="rgba(201,161,74,0.60)" stroke-width="0.7" stroke-dasharray="0.6 18"/>
+        </g>
+        <g stroke="rgba(201,161,74,0.18)" stroke-width="0.4">
+          <line x1="200" y1="50" x2="200" y2="350"/>
+          <line x1="50" y1="200" x2="350" y2="200"/>
+        </g>
+        <g fill="none" stroke="rgba(201,161,74,0.55)" stroke-width="0.7">
+          <polygon points="200,140 260,200 200,260 140,200"/>
+          <polygon points="200,158 242,200 200,242 158,200" stroke="rgba(201,161,74,0.40)"/>
+        </g>
+        <g fill="rgba(201,161,74,0.65)" stroke="rgba(201,161,74,0.85)" stroke-width="0.6">
+          <circle cx="200" cy="140" r="3"/>
+          <circle cx="260" cy="200" r="3"/>
+          <circle cx="200" cy="260" r="3"/>
+          <circle cx="140" cy="200" r="3"/>
+        </g>
+        <circle class="b-emblem-core" cx="200" cy="200" r="6" fill="#c9a14a" stroke="rgba(201,161,74,0.40)" stroke-width="3" />
+      </svg>
+    </div>
+
   </div>
 </section>
 
-<!-- REAL ADVANTAGE -->
-<section class="section advantage-section">
-  <div class="section-inner">
-    <div class="gold-line reveal"></div>
-    <div class="section-label reveal">Our Real, Rare Advantage</div>
-    <h2 class="section-heading reveal" style="margin-bottom:4rem;">
-      Not routine.<br><em>Transformational.</em>
-    </h2>
-
-    <div class="advantage-grid reveal">
-      <!-- THEIRS -->
-      <div class="advantage-col is-theirs">
-        <div class="advantage-col-label">What Most L&D Does</div>
-        <div class="advantage-items">
-          <div class="advantage-item">
-            <div class="adv-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
-            </div>
-            <div class="adv-text">Teaches skills</div>
-          </div>
-          <div class="advantage-item">
-            <div class="adv-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-            </div>
-            <div class="adv-text">Delivers events</div>
-          </div>
-          <div class="advantage-item">
-            <div class="adv-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-            </div>
-            <div class="adv-text">Measures attendance</div>
-          </div>
-          <div class="advantage-item">
-            <div class="adv-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-            </div>
-            <div class="adv-text">Experience &amp; certifications as core value</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- OURS -->
-      <div class="advantage-col is-ours">
-        <div class="advantage-col-label">What We Do</div>
-        <div class="advantage-items">
-          <div class="advantage-item">
-            <div class="adv-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 8v4l3 3"/></svg>
-            </div>
-            <div class="adv-text">Work with <strong>identity, pressure &amp; inner dialogue</strong></div>
-          </div>
-          <div class="advantage-item">
-            <div class="adv-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-            </div>
-            <div class="adv-text">Convert <strong>psychological truth → managerial action</strong></div>
-          </div>
-          <div class="advantage-item">
-            <div class="adv-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-            </div>
-            <div class="adv-text">End-to-end, <strong>bespoke, human-level</strong> intervention</div>
-          </div>
-          <div class="advantage-item">
-            <div class="adv-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            </div>
-            <div class="adv-text">Behavioral translation that <strong>sticks</strong></div>
-          </div>
-        </div>
-      </div>
+<!-- ════════════════════ II &middot; THE POSITION ════════════════════ -->
+<section class="b-position">
+  <div class="wrap-narrow rev">
+    <div class="chapter-label">
+      <span class="chapter-num">II</span>
+      <span>The Position</span>
     </div>
+    <h2>Most L&amp;D teaches skills.<br><em>We work where skill alone cannot reach.</em></h2>
+    <p>Skill development is necessary, well-understood, and widely available. A leader who is internally clear absorbs new skills and uses them. A leader who is internally stuck absorbs the same skills and changes nothing about how they actually lead. The gap between the two is not in the curriculum. It is in the leader.</p>
+    <p>MECULS bespoke coaching works at the level beneath the skill &ndash; <em>identity, pressure, inner dialogue, the unconscious patterns that shape every decision a leader makes when no one is teaching them how to behave.</em> The work is one-to-one, designed around a specific leader inside a specific organisation, and personally undertaken by Rajneesh.</p>
+    <p>This is not a programme that scales by replication. It is the work that goes where standard L&amp;D never reaches &ndash; and produces the kind of change that does not unwind the moment the engagement ends.</p>
 
-    <div class="advantage-statement reveal">
-      <p>We work in the invisible layer of leadership — <strong>identity, pressure, and behavioral truth</strong> — where real change either happens or doesn't.</p>
+    <div class="b-position-pull">
+      <span class="b-position-pull-label">What this means</span>
+      <p>The invisible layer of leadership &ndash; identity, pressure, and behavioural truth &ndash; is where real change either happens or does not. Everything else is theatre.</p>
     </div>
   </div>
 </section>
 
-<!-- FOR WHOM -->
-<section class="section audience-section">
-  <div class="section-inner">
-    <div class="audience-intro reveal">
-      <div class="gold-line"></div>
-      <div class="section-label">We Are For</div>
-      <h2 class="section-heading">Two kinds of leaders.<br><em>One invisible problem.</em></h2>
-      <p>The leaders who need us most are rarely the ones who ask for help. We go to where leadership actually breaks down.</p>
+<!-- ════════════════════ III &middot; THE TWO AUDIENCES ════════════════════ -->
+<section class="b-audience">
+
+  <div class="b-audience-photo" aria-hidden="true">
+    <div class="b-audience-photo-caption">
+      <span class="b-audience-photo-caption-lbl">The room of solitary decision</span>
+      <span class="b-audience-photo-caption-line">
+        Senior leadership is, finally, <em>a private negotiation</em> with one&rsquo;s own thinking.
+      </span>
+    </div>
+  </div>
+
+  <div class="b-audience-content">
+    <div class="b-audience-head rev">
+      <div class="chapter-label">
+        <span class="chapter-num">III</span>
+        <span>The Two Audiences</span>
+      </div>
+      <h2>Two kinds of leaders.<br><em>One invisible problem.</em></h2>
+      <p>The leaders who need this work most are rarely the ones who ask for it. We go where leadership actually breaks down &ndash; the seat that is too senior to admit struggle, and the seat that has just been handed authority without the inner equipment to carry it.</p>
     </div>
 
-    <div class="audience-cards">
-      <!-- SENIOR LEADERS -->
-      <div class="audience-card reveal-left">
-        <div class="card-number">01</div>
-        <div class="audience-tag">Senior Leaders</div>
-        <h3 class="audience-title">Strategic isolation<br>is the silent risk.</h3>
+    <div class="b-audience-cards">
 
-        <div class="reality-block">
-          <div class="reality-label assumption">Common Assumption</div>
-          <div class="reality-text assumption">They are leaders. They have it figured out.</div>
+      <div class="b-card rev">
+        <div class="b-card-num">01</div>
+        <span class="b-card-tag">Senior Leaders</span>
+        <h3>Strategic isolation<br>is the silent risk.</h3>
+
+        <div class="b-card-block">
+          <span class="b-card-block-lbl assumption">Common Assumption</span>
+          <div class="b-card-block-text assumption">They are leaders. They have it figured out.</div>
         </div>
 
-        <div class="reality-block">
-          <div class="reality-label ground">Ground Reality</div>
-          <div class="reality-text ground">Senior leaders absorb shocks, carry unspoken pressure, and navigate ambiguity without a safe space to think aloud. They lead in isolation.</div>
+        <div class="b-card-block">
+          <span class="b-card-block-lbl ground">Ground Reality</span>
+          <div class="b-card-block-text">Senior leaders absorb shocks, carry unspoken pressure, and navigate ambiguity without a safe space to think aloud. They lead in isolation &ndash; and isolation costs more than anyone admits.</div>
         </div>
 
-        <div class="we-provide">
-          <div class="we-provide-label">We Provide</div>
-          <ul class="provide-list">
+        <div class="b-card-block">
+          <span class="b-card-block-lbl provide">We Provide</span>
+          <ul class="b-card-list">
             <li>Process pressure without image risk</li>
-            <li>Recalibrate judgment under uncertainty</li>
+            <li>Recalibrate judgement under uncertainty</li>
             <li>Convert internal clarity into visible leadership presence</li>
           </ul>
         </div>
 
-        <div class="card-bottom-quote">
-          "Strong leaders need space where honesty is finally allowed — not more tools."
+        <div class="b-card-quote">
+          &ldquo;Strong leaders need a space where honesty is finally allowed &ndash; not more tools.&rdquo;
         </div>
       </div>
 
-      <!-- NEW MANAGERS -->
-      <div class="audience-card reveal-right">
-        <div class="card-number">02</div>
-        <div class="audience-tag">New Managers · At Scale</div>
-        <h3 class="audience-title">Bad feedback.<br><em>Silent culture decay.</em></h3>
+      <div class="b-card rev">
+        <div class="b-card-num">02</div>
+        <span class="b-card-tag">New Managers &middot; At Scale</span>
+        <h3>Bad feedback.<br><em>Silent culture decay.</em></h3>
 
-        <div class="reality-block">
-          <div class="reality-label assumption">Common Assumption</div>
-          <div class="reality-text assumption">Managerial capability will develop naturally over time.</div>
+        <div class="b-card-block">
+          <span class="b-card-block-lbl assumption">Common Assumption</span>
+          <div class="b-card-block-text assumption">Managerial capability will develop naturally over time.</div>
         </div>
 
-        <div class="reality-block">
-          <div class="reality-label ground">Ground Reality</div>
-          <div class="reality-text ground">Managers are rarely taught what managerial capability truly is. Weak feedback silently creates toxic culture, attrition, low ownership, and high stress.</div>
+        <div class="b-card-block">
+          <span class="b-card-block-lbl ground">Ground Reality</span>
+          <div class="b-card-block-text">New managers are rarely taught what managerial capability truly is. Weak feedback silently breeds toxic culture, attrition, low ownership, and high stress &ndash; long before anyone names it.</div>
         </div>
 
-        <div class="we-provide">
-          <div class="we-provide-label">Feedback is a Judgment Skill — Not Communication</div>
-          <div class="feedback-demands">
-            <div class="demand-row">
+        <div class="b-card-block">
+          <span class="b-card-block-lbl provide">Feedback is a Judgement Skill &ndash; Not Communication</span>
+          <div class="b-feedback">
+            <div class="b-feedback-row">
               <span>Emotional intelligence</span>
-              <span class="demand-x">×</span>
+              <span class="x">&times;</span>
               <span>Rational clarity</span>
             </div>
-            <div class="demand-row">
+            <div class="b-feedback-row">
               <span>Cultural sensitivity</span>
-              <span class="demand-x">×</span>
-              <span>Behavioral precision</span>
+              <span class="x">&times;</span>
+              <span>Behavioural precision</span>
             </div>
-            <div class="demand-row">
+            <div class="b-feedback-row">
               <span>Decency</span>
-              <span class="demand-x">×</span>
+              <span class="x">&times;</span>
               <span>Decisiveness</span>
             </div>
-          </div>
-          <div class="feedback-question">
-            It must clearly answer: <em>What needs to change? What exact behavior will demonstrate that change?</em>
-          </div>
-        </div>
-
-        <div class="card-bottom-quote">
-          "We help rewire thinking &amp; behavior aligned to culture, context, and consequence."
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- STATS -->
-<section class="section stats-section">
-  <div class="section-inner">
-    <div class="stats-header reveal">
-      <div class="gold-line" style="margin:0 auto 1.5rem;"></div>
-      <div class="section-label">Facts &amp; Trends in Leadership Capability</div>
-      <h2 class="section-heading">The numbers<br><em>don't lie.</em></h2>
-    </div>
-
-    <div class="stats-grid stagger">
-      <div class="stat-card reveal" style="--i:0;">
-        <div class="stat-number">~85%</div>
-        <div class="stat-desc">of organizations say leadership development is a top priority</div>
-        <div class="stat-insight">Yet fewer than 15% report having strong leadership pipelines.</div>
-      </div>
-      <div class="stat-card reveal" style="--i:1;">
-        <div class="stat-number">&gt;65%</div>
-        <div class="stat-desc">of senior leaders report feeling lonely or unsupported in decision-making</div>
-        <div class="stat-insight">Isolation at the top is the norm, not the exception.</div>
-      </div>
-      <div class="stat-card reveal" style="--i:2;">
-        <div class="stat-number">&gt;60%</div>
-        <div class="stat-desc">of leadership failures are attributed to behavioral and emotional gaps — not skill gaps</div>
-        <div class="stat-insight">Traditional L&D focuses on visible competence; failures originate in invisible cognition.</div>
-      </div>
-      <div class="stat-card reveal" style="--i:3;">
-        <div class="stat-number">&gt;70%</div>
-        <div class="stat-desc">performance gain through our bespoke coaching — with 5–7× RoI</div>
-        <div class="stat-insight">Organizations no longer want training. They want risk mitigation at the leadership level.</div>
-      </div>
-      <div class="stat-card reveal" style="--i:4;">
-        <div class="stat-number">2.5×</div>
-        <div class="stat-desc">more likely — high-performing organizations using customized coaching over standardized programs</div>
-        <div class="stat-insight">Bespoke is not a luxury. It is a competitive necessity.</div>
-      </div>
-      <div class="stat-card reveal" style="--i:5;">
-        <div class="stat-number">&gt;80%</div>
-        <div class="stat-desc">acceleration in capability development through simulation-based learning</div>
-        <div class="stat-insight">The future of leadership development is experiential, pressure-tested, and psychologically real.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- COMPARISON -->
-<section class="section comparison-section">
-  <div class="section-inner">
-    <div class="comparison-wrap">
-      <div class="comparison-intro reveal-left">
-        <div class="gold-line"></div>
-        <div class="section-label">The Distinction</div>
-        <h2 class="section-heading">Why bespoke<br><em>always wins.</em></h2>
-        <p>Bespoke coaching works because it intervenes where decisions are actually made — in the mind, under pressure, in the moment.</p>
-
-        <div class="transfer-stats">
-          <div class="transfer-row">
-            <div class="transfer-pct low">&lt;12%</div>
-            <div class="transfer-bar-wrap">
-              <div class="transfer-bar low" id="barLow"></div>
+            <div class="b-feedback-q">
+              It must clearly answer: <em>What needs to change? What exact behaviour will demonstrate that change?</em>
             </div>
-            <div class="transfer-label">Other programs that transfer to behavior</div>
           </div>
-          <div class="transfer-row">
-            <div class="transfer-pct high">&gt;60%</div>
-            <div class="transfer-bar-wrap">
-              <div class="transfer-bar high" id="barHigh"></div>
-            </div>
-            <div class="transfer-label">Our coaching that transfers to behavior</div>
-          </div>
+        </div>
+
+        <div class="b-card-quote">
+          &ldquo;We help rewire thinking and behaviour aligned to culture, context, and consequence.&rdquo;
         </div>
       </div>
 
-      <div class="comparison-table reveal-right">
-        <div class="table-header">
-          <div class="table-col-head traditional">Traditional L&D</div>
-          <div class="table-col-head bespoke">Bespoke Coaching</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ IV &middot; THE NUMBERS ════════════════════ -->
+<section class="b-stats">
+  <div class="b-stats-head rev">
+    <div class="chapter-label">
+      <span class="chapter-num">IV</span>
+      <span>The Numbers</span>
+    </div>
+    <h2>What the leadership-development field<br><em>is finally admitting.</em></h2>
+    <p>Five facts from across the L&amp;D research literature. They each say the same thing in different words: traditional leadership development invests in the visible and ignores the invisible &ndash; and pays for the gap, every year, in attrition and underperformance.</p>
+  </div>
+
+  <div class="b-stats-grid rev">
+    <div class="b-stat">
+      <div class="b-stat-num">~85%</div>
+      <div class="b-stat-desc">of organisations name leadership development a top priority</div>
+      <div class="b-stat-insight">Yet fewer than 15% report having strong leadership pipelines.</div>
+    </div>
+    <div class="b-stat">
+      <div class="b-stat-num">&gt;65%</div>
+      <div class="b-stat-desc">of senior leaders report feeling lonely or unsupported in decision-making</div>
+      <div class="b-stat-insight">Isolation at the top is the norm, not the exception.</div>
+    </div>
+    <div class="b-stat">
+      <div class="b-stat-num">&gt;60%</div>
+      <div class="b-stat-desc">of leadership failures are attributed to behavioural and emotional gaps &ndash; not skill gaps</div>
+      <div class="b-stat-insight">Traditional L&amp;D measures the visible; failures originate in the invisible.</div>
+    </div>
+    <div class="b-stat">
+      <div class="b-stat-num">2.5&times;</div>
+      <div class="b-stat-desc">more likely &ndash; high-performing organisations using customised coaching over standardised programmes</div>
+      <div class="b-stat-insight">Bespoke is not a luxury. It is a competitive necessity.</div>
+    </div>
+    <div class="b-stat">
+      <div class="b-stat-num">&gt;80%</div>
+      <div class="b-stat-desc">acceleration in capability development through simulation-based learning</div>
+      <div class="b-stat-insight">The future of leadership development is experiential and pressure-tested.</div>
+    </div>
+  </div>
+
+  <div class="b-meculs-proof rev">
+    <div class="b-meculs-proof-inner">
+      <div>
+        <span class="b-meculs-proof-lbl">MECULS Bespoke Coaching &middot; Delivered Outcome</span>
+        <div class="b-meculs-proof-num">&gt;70%
+          <small>Performance gain &middot; 5&ndash;7&times; RoI</small>
         </div>
-        <div class="table-row">
-          <div class="table-cell traditional">Content-driven</div>
-          <div class="table-cell bespoke">Context-driven</div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell traditional">Event-based</div>
-          <div class="table-cell bespoke">Process-based</div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell traditional">Same for all</div>
-          <div class="table-cell bespoke">Designed per leader</div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell traditional">Measures attendance</div>
-          <div class="table-cell bespoke">Measures behavior shift</div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell traditional">Short-term recall</div>
-          <div class="table-cell bespoke">Long-term capability</div>
-        </div>
+      </div>
+      <div class="b-meculs-proof-text">
+        Where the industry struggles to convert L&amp;D investment into behavioural change, MECULS bespoke coaching produces <em>more than seventy percent</em> measurable performance gain at the leader level &ndash; with five to seven times return on investment, across engagements where the work has been seen through.
       </div>
     </div>
   </div>
 </section>
 
-<!-- SIMULATIONS -->
-<section class="section simulations-section">
-  <div class="section-inner">
-    <div class="sim-layout">
-      <div class="sim-left reveal-left">
-        <div class="gold-line"></div>
-        <div class="section-label">Simulation-Based Learning</div>
-        <h2 class="section-heading">Pressure-tested.<br><em>Psychologically real.</em></h2>
-        <p>Simulation-based leadership learning improves retention by 40–60%. The fastest-growing L&D investments are behavioral simulations, role-based leadership gaming, and real-time feedback scenarios.</p>
+<!-- ════════════════════ V &middot; THE DISTINCTION ════════════════════ -->
+<section class="b-distinction">
+  <div class="b-distinction-grid">
 
-        <div class="sim-big-stat">
-          <div class="sim-big-number">&gt;80%</div>
-          <div class="sim-big-desc">Acceleration in capability through our simulation-based learning</div>
+    <div class="b-distinction-intro rev">
+      <div class="chapter-label">
+        <span class="chapter-num">V</span>
+        <span>The Distinction</span>
+      </div>
+      <h2>Why bespoke<br><em>always wins.</em></h2>
+      <p>Bespoke coaching works because it intervenes where decisions are actually made &ndash; in the mind, under pressure, in the moment. Generic programmes intervene in classrooms, where pressure is simulated and decisions have no consequence.</p>
+
+      <div class="b-transfer">
+        <div class="b-transfer-row">
+          <div class="b-transfer-pct low">&lt;12%</div>
+          <div class="b-transfer-bar-wrap">
+            <div class="b-transfer-bar low" id="barLow"></div>
+          </div>
+          <div></div>
+          <div class="b-transfer-label">Standard L&amp;D programmes that transfer to real behaviour</div>
+        </div>
+        <div class="b-transfer-row">
+          <div class="b-transfer-pct high">&gt;60%</div>
+          <div class="b-transfer-bar-wrap">
+            <div class="b-transfer-bar high" id="barHigh"></div>
+          </div>
+          <div></div>
+          <div class="b-transfer-label">MECULS bespoke coaching that transfers to real behaviour</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="b-table rev">
+      <div class="b-table-head">
+        <div class="b-table-h theirs">Traditional L&amp;D</div>
+        <div class="b-table-h ours">Bespoke Coaching</div>
+      </div>
+      <div class="b-table-row">
+        <div class="b-table-cell theirs">Content-driven</div>
+        <div class="b-table-cell ours">Context-driven</div>
+      </div>
+      <div class="b-table-row">
+        <div class="b-table-cell theirs">Event-based</div>
+        <div class="b-table-cell ours">Process-based</div>
+      </div>
+      <div class="b-table-row">
+        <div class="b-table-cell theirs">Same for all</div>
+        <div class="b-table-cell ours">Designed per leader</div>
+      </div>
+      <div class="b-table-row">
+        <div class="b-table-cell theirs">Measures attendance</div>
+        <div class="b-table-cell ours">Measures behaviour shift</div>
+      </div>
+      <div class="b-table-row">
+        <div class="b-table-cell theirs">Short-term recall</div>
+        <div class="b-table-cell ours">Long-term capability</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════ VI &middot; THE METHOD ════════════════════ -->
+<section class="b-method">
+
+  <div class="b-method-photo" aria-hidden="true">
+    <div class="b-method-photo-caption">
+      <span class="b-method-photo-caption-lbl">The seat of pressure-tested practice</span>
+      <span class="b-method-photo-caption-line">
+        Capability is built where the consequence <em>is real, but the cost of failure is not.</em>
+      </span>
+    </div>
+  </div>
+
+  <div class="b-method-content">
+    <div class="b-method-grid">
+
+      <div class="b-method-text rev">
+        <div class="chapter-label">
+          <span class="chapter-num">VI</span>
+          <span>The Method</span>
+        </div>
+        <h2>Pressure-tested.<br><em>Psychologically real.</em></h2>
+        <p>The fastest-growing investments in serious leadership development are not classroom modules. They are <em>behavioural simulations, role-based leadership scenarios, and real-time feedback events</em> &ndash; environments where the leader makes a decision, sees the consequence, and is coached on the gap between what they intended and what they actually did.</p>
+        <p>MECULS bespoke coaching works in this register. Each engagement is designed around the specific pressures the leader is actually facing &ndash; the team that is not aligned, the stakeholder relationship that is fraying, the decision under uncertainty that has been deferred for three months. The work is not about teaching a framework. It is about <em>watching the leader meet the situation and naming what is happening underneath</em>.</p>
+
+        <div class="b-method-big">
+          <div class="b-method-big-num">&gt;80%</div>
+          <div class="b-method-big-text">acceleration in capability development through MECULS simulation-based and live-pressure work.</div>
         </div>
       </div>
 
-      <div class="sim-right reveal-right">
-        <div class="sim-metrics">
-          <div class="sim-metric">
-            <div class="sim-metric-num">40–60%</div>
-            <div class="sim-metric-text">Improvement in leadership learning retention through simulation-based experiences</div>
-          </div>
-          <div class="sim-metric">
-            <div class="sim-metric-num">&gt;30%</div>
-            <div class="sim-metric-text">Faster capability development in organizations using decision simulations</div>
-          </div>
-          <div class="sim-metric">
-            <div class="sim-metric-num">&gt;25%</div>
-            <div class="sim-metric-text">Improvement in judgment under pressure through simulation methodology</div>
-          </div>
+      <div class="b-method-metrics rev">
+        <div class="b-method-metric">
+          <div class="b-method-metric-num">40&ndash;60%</div>
+          <div class="b-method-metric-text">Improvement in leadership learning retention through simulation-based experiences</div>
+        </div>
+        <div class="b-method-metric">
+          <div class="b-method-metric-num">&gt;30%</div>
+          <div class="b-method-metric-text">Faster capability development in organisations using decision simulations</div>
+        </div>
+        <div class="b-method-metric">
+          <div class="b-method-metric-num">&gt;25%</div>
+          <div class="b-method-metric-text">Improvement in judgement under pressure through simulation methodology</div>
         </div>
 
-        <div class="sim-trends">
-          <div class="sim-trends-label">Fastest-Growing L&D Investments</div>
-          <div class="sim-trend-items">
-            <div class="sim-trend-item">Behavioral simulations</div>
-            <div class="sim-trend-item">Role-based leadership gaming</div>
-            <div class="sim-trend-item">Real-time feedback scenarios</div>
+        <div class="b-method-trends">
+          <span class="b-method-trends-lbl">Fastest-growing L&amp;D investments</span>
+          <div class="b-method-trends-list">
+            <div class="b-method-trend">Behavioural simulations</div>
+            <div class="b-method-trend">Role-based leadership scenarios</div>
+            <div class="b-method-trend">Real-time feedback events</div>
           </div>
         </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ VII &middot; THE COST ════════════════════ -->
+<section class="b-cost">
+  <div class="b-cost-grid">
+
+    <div class="rev">
+      <div class="chapter-label">
+        <span class="chapter-num">VII</span>
+        <span>The Cost of the Wrong Choice</span>
+      </div>
+      <h2>If the work is needed<br>and not done.</h2>
+    </div>
+
+    <ul class="b-cost-list">
+      <li class="rev">A senior leader with an unresolved hidden block <strong>does not stop performing.</strong> They perform at the level of the block &ndash; permanently. The organisation pays a senior salary for mid-level leadership.</li>
+      <li class="rev">A new manager whose feedback is judgement-poor produces a team that <em>silently learns what is tolerated.</em> Eighteen months later, that team becomes the next generation of managers &ndash; and tolerates the same things.</li>
+      <li class="rev">The strongest people leave first, and they do not say why. By the time HR notices, the team has lost <strong>two of its best</strong> &ndash; and the L&amp;D budget has produced compliance, not change.</li>
+      <li class="rev">The next standard programme is commissioned. The next book is bought. The next motivational speaker is booked. <em>Information accumulates. Nothing moves.</em></li>
+    </ul>
+
+  </div>
+</section>
+
+<!-- ════════════════════ VIII &middot; THE CLOSE (with photo) ════════════════════ -->
+<section class="b-close">
+
+  <div class="b-close-photo">
+    <div class="b-close-photo-caption">
+      <span class="b-close-photo-caption-lbl">The view at the end of the work</span>
+      <span class="b-close-photo-caption-line">
+        The room is finally quiet. <em>The decisions remain.</em>
+      </span>
+    </div>
+  </div>
+
+  <div class="b-close-content">
+    <div class="b-close-inner">
+      <div class="chapter-label rev">
+        <span class="chapter-num">VIII</span>
+        <span>The Point</span>
+      </div>
+      <h2 class="rev">Leadership failure is rarely loud.<br><em>It is silent, slow, and very expensive.</em></h2>
+      <p class="rev">The leaders who quietly hold an organisation back are not the loud failures. They are the senior people whose performance reviews look adequate, whose teams keep delivering on the visible metrics, and whose hidden patterns &ndash; control, avoidance, image-protection, the inability to receive an uncomfortable truth &ndash; cost the organisation a layer of velocity that no one ever quantifies.</p>
+      <p class="rev">Bespoke coaching is the work that goes into that hidden layer and does something about it. Not by adding skills the leader already has. By <em>identifying the specific pattern</em> that is shaping every decision underneath the visible behaviour, and working with that pattern until the leader can recognise it themselves.</p>
+
+      <div class="b-close-rule" aria-hidden="true"></div>
+
+      <div class="b-close-line rev">
+        Most L&amp;D ends when the workshop ends. <strong>This work ends when the leader has actually changed.</strong>
+      </div>
+
+      <div class="b-close-cta rev">
+        <a href="begin-conversation.html" class="btn-gold">Begin a Conversation</a>
+        <a href="360-pulse-rate.html" class="btn-outline">The Methodology Behind It</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CLOSING QUOTE -->
-<section class="closing-section">
-  <div class="closing-quote-mark">"</div>
-  <blockquote class="closing-quote reveal">
-    Because leadership failure is rarely loud — it's <strong>silent, slow,</strong> and extremely expensive.
-  </blockquote>
-  <a href="#" class="closing-cta reveal">Begin the Conversation</a>
+<!-- ════════════════════ IX &middot; THE NEXT PAGE ════════════════════ -->
+<section class="b-next">
+  <div class="b-next-inner">
+    <div class="chapter-label rev">
+      <span class="chapter-num">IX</span>
+      <span>The Next Page</span>
+    </div>
+    <h2 class="rev">The same work, applied <em>at cohort scale.</em></h2>
+    <p class="rev">Bespoke coaching works one leader at a time. Where a whole cohort of newly promoted leaders needs the same depth of work in a structured, time-bound, deliverable-backed format &ndash; that is The Executive Edge corporate programme.</p>
+    <div class="b-next-btns rev">
+      <a href="corporate-programs.html" class="btn-gold">Corporate Programmes</a>
+      <a href="services.html" class="btn-outline">All Services</a>
+    </div>
+  </div>
 </section>
 
+<!-- ════════════════════ FOOTER ════════════════════ -->
+<footer class="global-footer">
 
-  <!-- ═══════════════════════════════════════════════
-       GLOBAL FOOTER — same on every MECULS page
-       To change links: edit the <li> items below
-       To change logo: update src="images/logo/..."
-  ═══════════════════════════════════════════════ -->
-  <footer class="global-footer">
   <div class="gf-top">
 
     <div class="gf-brand">
       <div class="gf-logo">
-        <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS">
+        <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS" width="140" height="32">
         <span class="gf-logo-text" style="display:none">MECULS</span>
       </div>
       <p class="gf-tagline">Mind Enablement Centre for Unlocking Limitless Leadership &amp; Self-Potential</p>
@@ -521,20 +1707,20 @@
         <span>Delhi, India</span>
       </div>
       <div class="gf-social">
-        <a href="https://www.linkedin.com/in/rajneesh-jain-meculs" aria-label="LinkedIn" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        <a href="https://www.linkedin.com/in/rajneesh-jain-meculs" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
         </a>
-        <a href="https://www.youtube.com/@meculs" aria-label="YouTube" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.33zM9.75 15.02V8.48l5.75 3.27z"/></svg>
+        <a href="https://www.youtube.com/@meculs" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.33zM9.75 15.02V8.48l5.75 3.27z"/></svg>
         </a>
-        <a href="https://www.instagram.com/meculs_official" aria-label="Instagram" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg>
+        <a href="https://www.instagram.com/meculs_official" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg>
         </a>
-        <a href="https://x.com/meculs_official" aria-label="X / Twitter" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        <a href="https://x.com/meculs_official" aria-label="X / Twitter" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
         </a>
-        <a href="https://www.facebook.com/meculs" aria-label="Facebook" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        <a href="https://www.facebook.com/meculs" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
         </a>
       </div>
     </div>
@@ -542,16 +1728,15 @@
     <div>
       <span class="gf-col-title">Services</span>
       <ul class="gf-links">
-        <li><a href="services.html">All Services</a></li>
         <li><a href="360-pulse-rate.html">360&deg; PULSE RATE&trade;</a></li>
         <li><a href="service-personality-profiling.html">Personality Profiling</a></li>
-        <li><a href="service-executive-search.html">Executive Search</a></li>
         <li><a href="bespoke-coaching.html">Executive Coaching &ndash; Bespoke</a></li>
         <li><a href="corporate-programs.html">Corporate Programmes</a></li>
+        <li><a href="service-executive-search.html">Executive Search</a></li>
         <li><a href="service-hr-analytics.html">HR Analytics</a></li>
         <li><a href="service-data-science-analytics.html">Data Science &amp; Analytics</a></li>
         <li><a href="service-market-actionable-intelligence.html">Market Intelligence</a></li>
-        <li><a href="individual-services.html">Individual &amp; Wellness</a></li>
+        <li><a href="organisational-health-consulting.html">Organisational Health</a></li>
         <li><a href="service-consciousness-clarity.html">Consciousness &amp; Clarity</a></li>
         <li><a href="service-mind-wellness.html">Mind Wellness</a></li>
         <li><a href="service-addiction-freedom.html">Addiction Freedom</a></li>
@@ -564,6 +1749,7 @@
     <div>
       <span class="gf-col-title">Company</span>
       <ul class="gf-links">
+        <li><a href="about-meculs.html">About MECULS</a></li>
         <li><a href="about-rajneesh-jain.html">The Founder</a></li>
         <li><a href="how-meculs-works.html">How MECULS Works</a></li>
         <li><a href="the-approach.html">The Approach</a></li>
@@ -581,10 +1767,11 @@
     <div>
       <span class="gf-col-title">Connect</span>
       <ul class="gf-links">
+        <li><a href="cv-portal.html">The CV Portal</a></li>
         <li><a href="begin-conversation.html">Begin a Conversation</a></li>
         <li><a href="book-session.html">Book a Session</a></li>
       </ul>
-      <span class="gf-col-title" style="margin-top: 2rem;">Legal</span>
+      <span class="gf-col-title" style="margin-top:2rem;">Legal</span>
       <ul class="gf-links">
         <li><a href="privacy-policy.html">Privacy Policy</a></li>
         <li><a href="terms.html">Terms of Service</a></li>
@@ -597,7 +1784,6 @@
 
   <div class="gf-bottom">
     <p class="gf-ip">This website, its content, frameworks, methodologies, and design are conceptualised, created, and authored by Rajneesh Jain, Founder, MECULS. All methodologies are the original and exclusive intellectual property of Rajneesh Jain. Unauthorised reproduction or commercial use is prohibited.</p>
-
     <div class="gf-bottom-bar">
       <p class="gf-copy">&copy; 2026 MECULS. All rights reserved. Delhi, India.</p>
       <p class="gf-payment">Payment: PayUBiz &middot; Razorpay &middot; PayPal &middot; UPI &middot; Credit Card</p>
@@ -611,11 +1797,37 @@
   </div>
 
 </footer>
-  <!-- END GLOBAL FOOTER -->
 
-  <!-- Global JS (header + footer behaviour) -->
-  <script src="global.js"></script>
-  <!-- Page-specific JS -->
-  <script src="bespoke-coaching.js"></script>
+</div>
+
+<script src="global.js"></script>
+<script>
+  (function(){
+    /* Scroll-reveal observer */
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('vis'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.rev').forEach(function(el){ io.observe(el); });
+
+    /* Animate transfer bars on scroll into view */
+    var bLow = document.getElementById('barLow');
+    var bHigh = document.getElementById('barHigh');
+    if (bLow && bHigh) {
+      var barIo = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){
+            bLow.style.width = '12%';
+            bHigh.style.width = '60%';
+            barIo.disconnect();
+          }
+        });
+      }, { threshold: 0.4 });
+      barIo.observe(document.querySelector('.b-transfer'));
+    }
+  })();
+</script>
+
 </body>
 </html>
