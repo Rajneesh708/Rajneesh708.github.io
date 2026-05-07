@@ -101,12 +101,12 @@
     <div class="toast toast--error hidden" id="registerError" role="alert" aria-live="assertive"></div>
 
     <!-- Google Sign-Up via Google Identity Services (GIS).
-         Custom MECULS-styled button shown ONLY when both required
-         consents (terms+age) are ticked. When clicked, calls
-         google.accounts.id.prompt() programmatically — Google's
-         account chooser appears showing "to continue to meculs.com"
-         (no supabase.co). Logic in register.js → refreshGoogleVisibility(). -->
-    <button type="button" id="googleCustomBtn" class="btn-google-custom" style="display:none">
+         Custom MECULS-styled button — always visible. When clicked,
+         register.js validates that both required consents are ticked;
+         if not, shows an error toast. If consents are ticked, calls
+         google.accounts.id.prompt() — Google's account chooser appears
+         showing "to continue to meculs.com" (no supabase.co). -->
+    <button type="button" id="googleCustomBtn" class="btn-google-custom">
       <svg class="btn-google-custom__icon" viewBox="0 0 24 24" aria-hidden="true">
         <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
         <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
@@ -115,16 +115,6 @@
       </svg>
       <span class="btn-google-custom__label">Sign up with Google</span>
     </button>
-
-    <!--
-      Visible hint banner shown when required consents are not ticked.
-      JS toggles its 'hidden' class based on consent checkbox state.
-      Solves the discoverability problem where users would not know
-      why the Google sign-up button is missing.
-    -->
-    <div id="googleHint" class="google-hint">
-      Tick the two required consents below to enable Google sign-up
-    </div>
 
     <div class="auth-divider">
       <span>or register with email</span>
@@ -342,7 +332,7 @@
      the library is available and shows the button only when the two
      required consents are ticked. -->
 <script src="https://accounts.google.com/gsi/client" async defer></script>
-<script src="register.js?v=19"></script>
+<script src="register.js?v=20"></script>
 
 </body>
 </html>

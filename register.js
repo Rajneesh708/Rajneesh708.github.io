@@ -1,19 +1,19 @@
 "use strict";
 
 /* ============================================================
-   MECULS — register.js (v=19)
+   MECULS — register.js (v=20)
    Date: 2026-05-07
    ============================================================
-   Changes from v=18:
-   - Replaced GIS rendered button with custom-styled button.
-     Custom MECULS-styled button (in HTML) calls
-     google.accounts.id.prompt() programmatically. User stays
-     on meculs.com — no supabase.co text in OAuth flow.
-   - Added gmail-typing hint: when user types a gmail.com
-     email, a small note appears below the field gently
-     suggesting they can use "Sign up with Google" above.
-   - Custom button hidden until both required consents ticked.
-     googleHint banner shown when button is hidden.
+   Changes from v=19:
+   - Google sign-up button now ALWAYS visible (no longer hidden
+     until required consents are ticked).
+   - Removed googleHint banner and refreshGoogleVisibility().
+   - Consent validation moved to button click time: if user
+     clicks the Google button without required consents, an
+     error toast appears asking them to tick the consents.
+     This is the standard pattern (LinkedIn, etc.) and avoids
+     the contradiction where the gmail hint pointed to an
+     invisible button.
    ============================================================ */
 
 (function () {
@@ -40,7 +40,6 @@
   const consentNotif     = document.getElementById("consentNotif");
   const consentMarketing = document.getElementById("consentMarketing");
   const googleBtn        = document.getElementById("googleCustomBtn");
-  const googleHint       = document.getElementById("googleHint");
   const gmailHint        = document.getElementById("gmailHint");
 
   /* ── State ── */
@@ -100,27 +99,13 @@
   }
 
   /* ============================================================
-     Google button visibility — only shown when required consents
-     are ticked. When hidden, googleHint banner appears.
+     Wire up consent change listeners — refresh submit button
+     state when any consent is toggled.
      ============================================================ */
-  function refreshGoogleVisibility() {
-    if (!googleBtn) return;
-    const ready = requiredConsentsTicked();
-    if (ready) {
-      googleBtn.style.display = "";
-      if (googleHint) googleHint.classList.add("hidden");
-    } else {
-      googleBtn.style.display = "none";
-      if (googleHint) googleHint.classList.remove("hidden");
-    }
-  }
-
-  /* ── Wire up consent change listeners ── */
   [consentTerms, consentAge, consentEmailShare, consentNotif, consentMarketing].forEach(cb => {
     if (cb) {
       cb.addEventListener("change", () => {
         refreshSubmitState();
-        refreshGoogleVisibility();
       });
     }
   });
@@ -463,7 +448,6 @@
      Initial state
      ============================================================ */
   refreshSubmitState();
-  refreshGoogleVisibility();
   updateGmailHint();
 
 })();
