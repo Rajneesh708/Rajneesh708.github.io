@@ -19,20 +19,8 @@
   <link rel="stylesheet" href="tier_shared.css?v=14">
   <link rel="stylesheet" href="auth.css?v=15">
   <style>
-    /* Google sign-in button — MECULS-styled visible layer + invisible
-       Google button overlay on top.
-
-       Layer 1 (visible): .btn-google-custom — our brand button
-       Layer 2 (invisible, click target): #gisHiddenBtn — Google's real
-                                          rendered button, opacity 0,
-                                          positioned over the visible one.
-
-       User sees our button. Click hits Google's button. Best of both. */
-    .google-btn-wrap {
-      position: relative;
-      width: 100%;
-      margin-bottom: 16px;
-    }
+    /* Custom Google sign-in button — matches MECULS dark+gold aesthetic.
+       Full card width, centered text, subtle hover, accessible focus ring. */
     .btn-google-custom {
       display: flex;
       align-items: center;
@@ -49,14 +37,18 @@
       font-weight: 500;
       cursor: pointer;
       transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
-      pointer-events: none;  /* clicks pass through to GIS overlay */
+      margin-bottom: 4px;
     }
-    .google-btn-wrap:hover .btn-google-custom {
+    .btn-google-custom:hover {
       background: #f9fafb;
       border-color: #9ca3af;
       box-shadow: 0 1px 3px rgba(0,0,0,0.08);
     }
-    .google-btn-wrap:active .btn-google-custom {
+    .btn-google-custom:focus-visible {
+      outline: 2px solid #c9a84c;
+      outline-offset: 2px;
+    }
+    .btn-google-custom:active {
       background: #f3f4f6;
     }
     .btn-google-custom__icon {
@@ -68,22 +60,14 @@
       font-weight: 500;
       letter-spacing: 0.01em;
     }
-    /* GIS rendered button: invisible overlay on top of our custom button.
-       Sits absolutely positioned over the visible button. opacity:0 hides
-       it visually but it still receives clicks. */
-    .gis-hidden-btn {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      cursor: pointer;
-      z-index: 2;
-    }
-    .gis-hidden-btn > div {
-      width: 100% !important;
-      height: 100% !important;
+    /* Small note below the Google button explaining the prerequisite. */
+    .google-btn-note {
+      margin-top: 0;
+      margin-bottom: 16px;
+      font-size: 0.78rem;
+      line-height: 1.5;
+      color: #9ca3af;
+      text-align: center;
     }
     /* Gmail hint — small, gentle, amber-ish. Sits below email input. */
     .gmail-hint {
@@ -125,27 +109,24 @@
     <div class="toast toast--error hidden" id="loginError" role="alert" aria-live="assertive"></div>
 
     <!-- Google Sign-In via Google Identity Services (GIS).
-         The wrapper holds two stacked elements:
-           1. Our custom MECULS-styled button (visible)
-           2. Google's actual GIS button (invisible overlay on top)
-         When user clicks the wrapper, the click hits Google's
-         invisible button which opens the popup (works for both
-         logged-in and logged-out Google users). No supabase.co
-         text appears anywhere in the flow. -->
-    <div class="google-btn-wrap">
-      <button type="button" id="googleCustomBtn" class="btn-google-custom" tabindex="-1" aria-hidden="true">
-        <svg class="btn-google-custom__icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-        </svg>
-        <span class="btn-google-custom__label">Sign in with Google</span>
-      </button>
-      <!-- Google renders its real button into this div via JS.
-           CSS makes it invisible but click-through to GIS button. -->
-      <div id="gisHiddenBtn" class="gis-hidden-btn"></div>
-    </div>
+         Custom MECULS-styled button. When clicked, calls
+         google.accounts.id.prompt() which displays the FedCM
+         account chooser. User stays on meculs.com (no supabase.co).
+         Note: requires user to be signed into Google in their
+         browser — the prerequisite is shown to user via the
+         note below the button. -->
+    <button type="button" id="googleCustomBtn" class="btn-google-custom">
+      <svg class="btn-google-custom__icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+      </svg>
+      <span class="btn-google-custom__label">Sign in with Google</span>
+    </button>
+    <p class="google-btn-note">
+      Please sign into your Google account first to use this option.
+    </p>
 
     <div class="auth-divider">
       <span>or sign in with email</span>
@@ -300,7 +281,7 @@
      and the ID token issuance flow. login.js initialises GIS once
      the library is available. -->
 <script src="https://accounts.google.com/gsi/client" async defer></script>
-<script src="login.js?v=27"></script>
+<script src="login.js?v=28"></script>
 
 </body>
 </html>

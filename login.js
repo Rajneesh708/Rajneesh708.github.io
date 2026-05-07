@@ -1,17 +1,16 @@
 "use strict";
 
 /* ============================================================
-   MECULS — login.js (v=27)
+   MECULS — login.js (v=28)
    Date: 2026-05-07
    ============================================================
-   Changes from v=26:
-   - Replaced google.accounts.id.prompt() with renderButton()
-     in popup mode. Google's button is rendered into a hidden
-     div positioned over our custom MECULS-styled button.
-     User sees our button; click handled by Google's button
-     underneath. Works for BOTH logged-in and logged-out users
-     (popup opens to Google sign-in page if not logged in).
-     No supabase.co text in either case.
+   Changes from v=27:
+   - Reverted the invisible GIS overlay approach (didn't reliably
+     pass clicks through to Google's button across browsers).
+   - Restored the simpler v=26 approach: custom button + prompt().
+   - Added a small note below the button telling users they must
+     be signed into Google to use this option (since prompt() only
+     works when the user has an active Google session).
    ============================================================ */
 
 (function () {
@@ -372,23 +371,18 @@
   }
 
   /* ============================================================
-     Google Identity Services — invisible overlay button approach
+     Google Identity Services — custom button + prompt()
      ============================================================
-     We use google.accounts.id.renderButton() with ux_mode: 'popup'
-     to render Google's official sign-in button. This button works
-     for BOTH logged-in users (one-tap account chooser) AND
-     logged-out users (popup with Google sign-in page).
+     We use a custom MECULS-styled button (in HTML) that, when
+     clicked, calls google.accounts.id.prompt() which displays
+     the FedCM account chooser. User stays on meculs.com (no
+     supabase.co text in the OAuth flow).
 
-     The rendered button is placed inside #gisHiddenBtn, which is
-     positioned absolutely OVER our custom MECULS-styled button
-     (#googleCustomBtn) with opacity: 0. The user sees our pretty
-     button but actually clicks Google's button underneath.
-
-     Result:
-       - User sees branded MECULS button
-       - Click is handled by GIS (works for logged-in AND logged-out)
-       - Popup hosted by Google at accounts.google.com (no supabase.co)
-       - signInWithIdToken exchanges the credential for Supabase session
+     Important: prompt() requires the user to have an active
+     Google session in their browser. If the user is logged out
+     of Google, prompt() does nothing visible. We mitigate this
+     by showing a small note below the button telling the user
+     they must be signed into Google to use this option.
      ============================================================ */
   function initGoogleSignIn() {
     if (_gisInitialized) return;
@@ -405,30 +399,8 @@
         nonce: hashedNonce,
         auto_select: false,
         cancel_on_tap_outside: true,
-        ux_mode: "popup",
-        use_fedcm_for_prompt: false
+        use_fedcm_for_prompt: true
       });
-
-      /* Render Google's actual button into the hidden container.
-         This button handles its own clicks — it knows how to open
-         the popup whether user is signed in to Google or not. */
-      const hiddenContainer = document.getElementById("gisHiddenBtn");
-      if (hiddenContainer) {
-        try {
-          window.google.accounts.id.renderButton(hiddenContainer, {
-            type: "standard",
-            theme: "outline",
-            size: "large",
-            text: "signin_with",
-            shape: "rectangular",
-            logo_alignment: "center",
-            width: hiddenContainer.offsetWidth || 320
-          });
-        } catch (e) {
-          console.warn("[login] renderButton failed:", e);
-        }
-      }
-
       _gisInitialized = true;
     }).catch((err) => {
       console.warn("[login] GIS init failed:", err);
@@ -467,6 +439,30 @@
       await handleLoginSuccess(data.session);
     } catch (err) {
       showError("Google sign-in error: " + (err.message || "network issue"));
+    }
+  }
+
+  /* ── Custom button click handler ── */
+  if (googleBtn) {
+    googleBtn.addEventListener("click", () => {
+      if (!_gisInitialized) {
+        initGoogleSignIn();
+        setTimeout(triggerGooglePrompt, 200);
+      } else {
+        triggerGooglePrompt();
+      }
+    });
+  }
+
+  function triggerGooglePrompt() {
+    if (!window.google || !window.google.accounts || !window.google.accounts.id) {
+      showError("Google sign-in is not ready yet. Please try again in a moment.");
+      return;
+    }
+    try {
+      window.google.accounts.id.prompt();
+    } catch (e) {
+      showError("Could not open Google sign-in. Please try again.");
     }
   }
 
