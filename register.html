@@ -18,73 +18,6 @@
   <link rel="stylesheet" href="styles.css?v=25">
   <link rel="stylesheet" href="tier_shared.css?v=14">
   <link rel="stylesheet" href="auth.css?v=15">
-  <style>
-    /* Custom Google sign-up button — matches MECULS dark+gold aesthetic.
-       Full card width, centered text, subtle hover, accessible focus ring. */
-    .btn-google-custom {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      width: 100%;
-      padding: 12px 16px;
-      background: #ffffff;
-      color: #1f2937;
-      border: 1px solid #d1d5db;
-      border-radius: 8px;
-      font-family: inherit;
-      font-size: 0.95rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
-      margin-bottom: 4px;
-    }
-    .btn-google-custom:hover {
-      background: #f9fafb;
-      border-color: #9ca3af;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-    }
-    .btn-google-custom:focus-visible {
-      outline: 2px solid #c9a84c;
-      outline-offset: 2px;
-    }
-    .btn-google-custom:active {
-      background: #f3f4f6;
-    }
-    .btn-google-custom__icon {
-      width: 20px;
-      height: 20px;
-      flex-shrink: 0;
-    }
-    .btn-google-custom__label {
-      font-weight: 500;
-      letter-spacing: 0.01em;
-    }
-    /* Small note below the Google button explaining the prerequisite. */
-    .google-btn-note {
-      margin-top: 0;
-      margin-bottom: 16px;
-      font-size: 0.78rem;
-      line-height: 1.5;
-      color: #9ca3af;
-      text-align: center;
-    }
-    /* Gmail hint — small, gentle, amber-ish. Sits below email input. */
-    .gmail-hint {
-      margin-top: 8px;
-      margin-bottom: 0;
-      padding: 8px 12px;
-      background: rgba(201, 168, 76, 0.08);
-      border-left: 3px solid #c9a84c;
-      border-radius: 4px;
-      color: #d1d5db;
-      font-size: 0.82rem;
-      line-height: 1.5;
-    }
-    .gmail-hint.hidden {
-      display: none;
-    }
-  </style>
 </head>
 <body class="auth-body">
 
@@ -110,25 +43,22 @@
     <div class="toast toast--error hidden" id="registerError" role="alert" aria-live="assertive"></div>
 
     <!-- Google Sign-Up via Google Identity Services (GIS).
-         Custom MECULS-styled button. When clicked, register.js
-         validates that both required consents are ticked; if not,
-         shows an error toast. If consents are ticked, calls
-         google.accounts.id.prompt() — Google's account chooser
-         appears showing "to continue to meculs.com" (no supabase.co).
-         Note: requires user to be signed into Google in their
-         browser — prerequisite shown via the note below the button. -->
-    <button type="button" id="googleCustomBtn" class="btn-google-custom">
-      <svg class="btn-google-custom__icon" viewBox="0 0 24 24" aria-hidden="true">
-        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-      </svg>
-      <span class="btn-google-custom__label">Sign up with Google</span>
-    </button>
-    <p class="google-btn-note">
-      Please sign into your Google account first to use this option.
-    </p>
+         The button is rendered by GIS into this container div ONLY
+         when both required consents (terms+age) are ticked. When
+         consents aren't ticked, the container is hidden via CSS
+         display:none and the googleHint banner appears instead.
+         Logic lives in register.js → refreshGoogleVisibility(). -->
+    <div id="googleSignInBtnContainer" class="gis-btn-container" style="display:none"></div>
+
+    <!--
+      Visible hint banner shown when required consents are not ticked.
+      JS toggles its 'hidden' class based on consent checkbox state.
+      Solves the discoverability problem where users would not know
+      why the Google sign-up button is missing.
+    -->
+    <div id="googleHint" class="google-hint">
+      Tick the two required consents below to enable Google sign-up
+    </div>
 
     <div class="auth-divider">
       <span>or register with email</span>
@@ -162,9 +92,6 @@
                  enterkeyhint="next"
                  required
                  aria-required="true">
-          <p class="gmail-hint hidden" id="gmailHint">
-            &#128161; You can also use 'Sign up with Google' above if you prefer.
-          </p>
         </div>
       </div>
 
@@ -346,7 +273,7 @@
      the library is available and shows the button only when the two
      required consents are ticked. -->
 <script src="https://accounts.google.com/gsi/client" async defer></script>
-<script src="register.js?v=22"></script>
+<script src="register.js?v=18"></script>
 
 </body>
 </html>
