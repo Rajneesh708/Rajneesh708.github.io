@@ -1,8 +1,17 @@
 /* ═══════════════════════════════════════════════════════════════════
-   MECULS - GLOBAL HEADER & FOOTER  v5
+   MECULS - GLOBAL HEADER & FOOTER  v6
    File: global.css
    Include this on EVERY page of the MECULS website.
    This file controls the navigation bar, tagline sub-bar, and footer.
+
+   What changed vs v5:
+   - Added .gh-login-wrap / .gh-login-icon / .gh-login-dropdown rules
+     for the circular login icon that sits at the right edge of the
+     desktop nav, after the "Begin a Conversation" CTA. Hover/focus
+     opens a small dark dropdown with two items: "CV Portal - Login"
+     and "CV Portal - Register". Hidden on mobile (the mobile menu
+     carries the equivalent links instead).
+   - No other rules changed.
 
    What changed vs v4:
    - Hamburger breakpoint moved from 1099px to 899px so the full
@@ -199,6 +208,116 @@ body {
   background: var(--g-gold-dim) !important;
   border-color: var(--g-gold) !important;
   color: var(--g-gold) !important;
+}
+
+/* ── Login Icon + Dropdown (circular icon after CTA) ── */
+/* The icon is the rightmost item in the desktop nav. Hovering or
+   keyboard-focusing the wrapper opens a small dropdown with two links:
+   "CV Portal - Login" and "CV Portal - Register". Hidden below 899px;
+   the mobile menu carries the equivalent links. */
+.gh-login-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.gh-login-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--g-gold-border);
+  border-radius: 50%;
+  color: var(--g-gold);
+  text-decoration: none;
+  margin-left: 0.6rem;
+  transition: background 0.25s, border-color 0.25s, transform 0.2s;
+  cursor: pointer;
+}
+.gh-login-icon:hover,
+.gh-login-wrap:hover .gh-login-icon,
+.gh-login-wrap:focus-within .gh-login-icon {
+  background: var(--g-gold-dim);
+  border-color: var(--g-gold);
+  transform: translateY(-1px);
+}
+.gh-login-icon svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.gh-login-dropdown {
+  position: absolute;
+  top: calc(100% + 14px);
+  right: 0;
+  min-width: 240px;
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 0;
+  background: #001428;
+  border: 1px solid var(--g-gold-border);
+  border-radius: 3px;
+  box-shadow: 0 18px 48px -22px rgba(0,0,0,0.55);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+  z-index: 1100;
+}
+.gh-login-dropdown::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--g-gold);
+}
+.gh-login-wrap:hover .gh-login-dropdown,
+.gh-login-wrap:focus-within .gh-login-dropdown,
+.gh-login-wrap.open .gh-login-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.gh-login-dropdown li { list-style: none; }
+.gh-login-dropdown a {
+  display: block;
+  padding: 0.65rem 1.4rem;
+  font-family: 'Archivo', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--g-soft);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
+}
+.gh-login-dropdown a:hover,
+.gh-login-dropdown a:focus-visible {
+  color: var(--g-gold);
+  background: var(--g-gold-dim);
+  border-left-color: var(--g-gold);
+  outline: none;
+}
+.gh-login-dropdown-label {
+  display: block;
+  padding: 0.45rem 1.4rem 0.55rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--g-gold);
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--g-rule);
+  margin-bottom: 0.3rem;
+}
+
+@media (max-width: 899px) {
+  .gh-login-wrap { display: none; }
 }
 
 /* ── Mobile Hamburger ── */
