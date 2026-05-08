@@ -9,8 +9,9 @@
 
 /* Phase 1 Step 3 build marker — verify in console with:
    window.PROFESSIONAL_INTRODUCTION_VERSION
-   "phase1-step3" means this file (with JSONB save) is loaded. */
-window.PROFESSIONAL_INTRODUCTION_VERSION = "phase1-step3";
+   "phase1-step3-v14" means this file (with localStorage-guard
+   removed) is loaded. */
+window.PROFESSIONAL_INTRODUCTION_VERSION = "phase1-step3-v14";
 
 /* ── Config ──
    candidateId now comes from MC.candidateId (mc_helpers.js).
@@ -600,10 +601,26 @@ function validate() {
 profileForm.addEventListener("submit", async e => {
   e.preventDefault();
 
-  if (!localStorage.getItem("profile_category_completed")) {
-    showToast('Please complete "Your Profile Category" before filling this section.', "error");
-    return;
-  }
+  /* v=14 (2026-05-08): Removed the localStorage guard that
+     blocked Save & Continue when "profile_category_completed"
+     was missing from localStorage.
+
+     WHY IT WAS BROKEN:
+     localStorage is wiped on logout (cross-user data isolation
+     fix from earlier). After logout/login, the key was gone, so
+     this guard fired silently — Save & Continue did nothing,
+     no toast visible, no error in console. Users had to navigate
+     back to Profile Category and re-save to repopulate
+     localStorage before Intro's Save would work.
+
+     WHY REMOVING IT IS SAFE:
+     The save itself doesn't depend on Profile Category being
+     saved first — apiSaveProfile() writes to its own JSONB key
+     (data.introduction). Dashboard.js already tracks completion
+     from server data via COMPLETION_PREDICATES (which read from
+     PROFILE_CACHE, not localStorage). The build flow's section
+     ordering is enforced visually in the sidebar, not by per-page
+     guards. */
 
   if (!validate()) return;
 
