@@ -4,6 +4,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Page Not Found — MECULS</title>
+
+  <!-- ============================================================
+       Public Profile URL redirect (added 2026-05-08)
+       ============================================================
+       When a visitor hits meculs.com/p/<slug>, GitHub Pages serves
+       this 404.html file (since /p/ isn't a real folder). This
+       script detects the /p/<slug> pattern and silently redirects
+       to /p.html?slug=<slug>, which is a real file that renders
+       the public profile.
+
+       Placed right after <title> so it runs BEFORE the page's
+       fonts and CSS load — the user never sees the 404 flash.
+       Other 404s (e.g. /typo) skip past this and render normally.
+       ============================================================ -->
+  <script>
+  (function () {
+    /* Match /p/<slug> where slug = letters/digits/dashes (1+ chars).
+       Case-insensitive on the /p/ prefix; slug is lowercased before
+       redirect to match how slugs are stored in the database. */
+    var m = window.location.pathname.match(/^\/p\/([a-z0-9][a-z0-9-]*)\/?$/i);
+    if (m && m[1]) {
+      var slug = m[1].toLowerCase();
+      /* replace() so the back button skips this 404 entry */
+      window.location.replace("/p.html?slug=" + encodeURIComponent(slug));
+    }
+  })();
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Archivo:wght@300;400;500;600&display=swap" rel="stylesheet">

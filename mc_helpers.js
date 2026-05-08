@@ -468,3 +468,107 @@ MC.loadProfileFields = async function (fieldNames) {
   }
   return data || {};
 };
+
+/* ── Public Profile Slug Generator ─────────────────────────────
+   Generates a URL-safe, unique slug for a user's public profile
+   page (e.g. "Rajneesh Jain" → "rajneesh-jain").
+
+   - Idempotent: if the user already has a slug, returns it without
+     touching anything.
+   - Handles collisions: if "rajneesh-jain" is taken by another user,
+     tries "rajneesh-jain-2", then "-3", etc. up to "-99".
+   - Strips diacritics, special chars, leading/trailing dashes.
+   - Falls back to a short random string if name is empty/garbled.
+   - Saves via MC.saveProfileFields when a new slug is generated.
+
+   Usage:
+     const slug = await MC.ensureSlug("Rajneesh Jain");
+     // → "rajneesh-jain" (or existing slug if user already has one)
+
+   Why a single helper: consistent slug logic across signup paths
+   (email/password, Google) and across pages (lazy backfill on
+   profile_category save). One source of truth.
+   ────────────────────────────────────────────────────────────── */
+
+MC._slugify = function (rawName) {
+  if (!rawName || typeof rawName !== "string") return "";
+  /* Normalise diacritics: "José" → "jose" */
+  let s = rawName.normalize("NFKD").replace(/[\u0300-\u036f]/g, "");
+  s = s.toLowerCase();
+  /* Replace anything that isn't a-z/0-9 with a dash */
+  s = s.replace(/[^a-z0-9]+/g, "-");
+  /* Strip leading/trailing dashes */
+  s = s.replace(/^-+|-+$/g, "");
+  /* Limit overall length so we don't get URL-busting slugs */
+  if (s.length > 60) s = s.slice(0, 60).replace(/-+$/g, "");
+  return s;
+};
+
+MC.ensureSlug = async function (fullName) {
+  if (typeof window.MC_SB === "undefined" || !window.MC_SB.getClient) {
+    throw new Error("MC.ensureSlug: mc_supabase.js not loaded");
+  }
+  const sb = window.MC_SB.getClient();
+  const uid = await window.MC_SB.getCandidateId();
+  if (!uid) throw new Error("MC.ensureSlug: no authenticated user");
+
+  /* Step 1: idempotent check — return existing slug if one is set */
+  const { data: existing, error: fetchErr } = await sb
+    .from("profiles")
+    .select("slug")
+    .eq("user_id", uid)
+    .single();
+  if (fetchErr) {
+    console.error("[MC.ensureSlug] fetch existing failed:", fetchErr);
+    throw fetchErr;
+  }
+  if (existing && existing.slug) {
+    return existing.slug;
+  }
+
+  /* Step 2: build a candidate slug from the name */
+  let base = MC._slugify(fullName);
+  if (!base || base.length < 2) {
+    /* Fallback: 8-char random alphanumeric. Rare but covers garbage input. */
+    base = "user-" + Math.random().toString(36).slice(2, 10);
+  }
+
+  /* Step 3: check the DB for collisions, append -2, -3, ... if needed.
+     Up to 99 tries. After that we give up and append the user's own
+     uid prefix (guaranteed-unique fallback). */
+  let candidate = base;
+  for (let i = 1; i <= 99; i++) {
+    if (i > 1) candidate = base + "-" + i;
+    const { data: clash, error: clashErr } = await sb
+      .from("profiles")
+      .select("user_id")
+      .eq("slug", candidate)
+      .maybeSingle();
+    if (clashErr) {
+      console.error("[MC.ensureSlug] collision check failed:", clashErr);
+      throw clashErr;
+    }
+    if (!clash) break;  /* slug is free, use it */
+    if (i === 99) {
+      /* All numbered variants taken — fallback to uid prefix */
+      candidate = base + "-" + uid.slice(0, 6);
+    }
+  }
+
+  /* Step 4: persist the chosen slug */
+  try {
+    await MC.saveProfileFields({ slug: candidate });
+  } catch (saveErr) {
+    /* Race condition: another tab beat us to it. Re-fetch and return whatever stuck. */
+    console.warn("[MC.ensureSlug] save failed, re-fetching:", saveErr);
+    const { data: refetch } = await sb
+      .from("profiles")
+      .select("slug")
+      .eq("user_id", uid)
+      .single();
+    if (refetch && refetch.slug) return refetch.slug;
+    throw saveErr;
+  }
+
+  return candidate;
+};

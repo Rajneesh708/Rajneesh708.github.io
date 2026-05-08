@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ============================================================
+       MECULS — p.html  (Public Profile renderer)
+       Date: 2026-05-08
+       ============================================================
+       Renders a sanitised public-profile view of a candidate from
+       the slug in the URL.
+
+       URL patterns supported:
+         meculs.com/p.html?slug=<slug>   ← direct (always works)
+         meculs.com/p/<slug>             ← via 404.html redirect
+
+       The actual data fetch goes through the get_public_profile()
+       SQL function (see public_profile_setup.sql), which strips
+       all private fields server-side. p.html only renders what
+       the function returns — no client-side filtering can leak
+       private data.
+       ============================================================ -->
+
+  <title>Profile — MECULS</title>
+
+  <!-- Open Graph (placeholder — populated by JS once profile loads) -->
+  <meta property="og:type" content="profile">
+  <meta property="og:site_name" content="MECULS">
+  <meta property="og:title" id="ogTitle" content="Profile — MECULS">
+  <meta property="og:description" id="ogDesc" content="A professional profile on MECULS.">
+  <meta property="og:image" id="ogImage" content="https://meculs.com/images/og/meculs-og-default.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fjxcphhhddfwrlkpshyw.supabase.co">
+
+  <style>
+    /* ── Brand tokens (mirrors meculs.com global.css) ── */
+    :root {
+      --ink-deep:  #0b1426;
+      --ink:       #0f1a30;
+      --ink-soft:  #1a2640;
+      --gold:      #c9a84c;
+      --gold-soft: #d4b86a;
+      --paper:     #f4f0e6;
+      --text-dim:  #c4ccda;
+      --text-muted:#8a92a6;
+      --hairline:  rgba(212, 184, 106, 0.18);
+      --shadow-1:  0 8px 24px rgba(0, 0, 0, 0.25);
+      --radius-l:  16px;
+      --radius-m:  10px;
+      --radius-s:  6px;
+      --serif:     "Cormorant Garamond", Georgia, serif;
+      --sans:      "Archivo", "Inter", system-ui, sans-serif;
+    }
+
+    /* ── Web fonts ── */
+    @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Archivo:wght@400;500;600;700&display=swap");
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      background: var(--ink-deep);
+      color: var(--text-dim);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ── Page shell ── */
+    .pp-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Slim global nav ── */
+    .pp-nav {
+      padding: 18px 28px;
+      border-bottom: 1px solid var(--hairline);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--ink);
+    }
+    .pp-nav__brand {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 1.4rem;
+      color: var(--gold);
+      letter-spacing: 0.02em;
+      text-decoration: none;
+    }
+    .pp-nav__cta {
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      text-decoration: none;
+      padding: 8px 16px;
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-s);
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .pp-nav__cta:hover {
+      background: var(--gold);
+      color: var(--ink-deep);
+      border-color: var(--gold);
+    }
+
+    /* ── Main content frame ── */
+    .pp-main {
+      flex: 1;
+      max-width: 880px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 56px 28px 80px;
+    }
+
+    /* ── Loading & error states ── */
+    .pp-state {
+      text-align: center;
+      padding: 80px 20px;
+      font-family: var(--serif);
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+    .pp-state__title {
+      font-size: 1.6rem;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+    }
+    .pp-state__msg {
+      font-size: 1rem;
+      font-family: var(--sans);
+      color: var(--text-muted);
+    }
+
+    /* ── Hero (photo + name + category + tagline) ── */
+    .pp-hero {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 32px;
+      align-items: center;
+      margin-bottom: 40px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .pp-hero__photo {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--gold);
+      box-shadow: var(--shadow-1);
+      background: var(--ink-soft);
+    }
+    .pp-hero__name {
+      font-family: var(--serif);
+      font-size: 2.4rem;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 0.005em;
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+    .pp-hero__category {
+      font-size: 0.85rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .pp-hero__headline {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--text-dim);
+      line-height: 1.4;
+    }
+    .pp-hero__location {
+      margin-top: 10px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* ── Status badges (consulting / mentorship) ── */
+    .pp-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .pp-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      background: rgba(201, 168, 76, 0.12);
+      color: var(--gold);
+      border: 1px solid var(--hairline);
+    }
+    .pp-badge::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #58c896;
+    }
+
+    /* ── Section ── */
+    .pp-section {
+      margin-bottom: 48px;
+    }
+    .pp-section__heading {
+      font-family: var(--serif);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    /* ── Bio section ── */
+    .pp-bio {
+      font-family: var(--serif);
+      font-size: 1.18rem;
+      font-weight: 400;
+      line-height: 1.65;
+      color: #e8ecf3;
+      white-space: pre-wrap;
+    }
+
+    /* ── Experience timeline ── */
+    .pp-exp {
+      position: relative;
+      padding-left: 28px;
+      border-left: 2px solid var(--hairline);
+    }
+    .pp-exp__item {
+      position: relative;
+      padding-bottom: 28px;
+    }
+    .pp-exp__item:last-child { padding-bottom: 0; }
+    .pp-exp__item::before {
+      content: "";
+      position: absolute;
+      left: -35px;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 3px solid var(--ink-deep);
+    }
+    .pp-exp__role {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 2px;
+    }
+    .pp-exp__company {
+      font-size: 1rem;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+    .pp-exp__meta {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .pp-exp__desc {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+
+    /* ── Education list ── */
+    .pp-edu__item {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .pp-edu__item:last-child { border-bottom: 0; }
+    .pp-edu__degree {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 2px;
+    }
+    .pp-edu__inst {
+      font-size: 0.95rem;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+    .pp-edu__year {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* ── Skills tag layout ── */
+    .pp-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .pp-skill {
+      padding: 6px 14px;
+      border-radius: var(--radius-s);
+      background: var(--ink-soft);
+      color: var(--text-dim);
+      font-size: 0.88rem;
+      border: 1px solid var(--hairline);
+    }
+
+    /* ── CTA at the bottom ── */
+    .pp-cta {
+      margin-top: 64px;
+      padding: 36px 28px;
+      background: var(--ink-soft);
+      border-radius: var(--radius-l);
+      border: 1px solid var(--hairline);
+      text-align: center;
+    }
+    .pp-cta__title {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .pp-cta__sub {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+    .pp-cta__btn {
+      display: inline-block;
+      padding: 12px 32px;
+      background: var(--gold);
+      color: var(--ink-deep);
+      text-decoration: none;
+      border-radius: var(--radius-s);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .pp-cta__btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(201, 168, 76, 0.35);
+    }
+
+    /* ── Footer ── */
+    .pp-foot {
+      padding: 20px 28px;
+      border-top: 1px solid var(--hairline);
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      background: var(--ink);
+    }
+    .pp-foot a { color: var(--gold); text-decoration: none; }
+    .pp-foot a:hover { text-decoration: underline; }
+
+    /* ── Mobile ── */
+    @media (max-width: 640px) {
+      .pp-main { padding: 32px 18px 60px; }
+      .pp-hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 18px;
+      }
+      .pp-hero__photo { margin: 0 auto; width: 130px; height: 130px; }
+      .pp-hero__name { font-size: 1.9rem; }
+      .pp-badges { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="pp-page">
+
+  <nav class="pp-nav">
+    <a href="https://meculs.com/cv-portal.html" class="pp-nav__brand">MECULS</a>
+    <a href="https://meculs.com/register.html" class="pp-nav__cta">Build your profile</a>
+  </nav>
+
+  <main class="pp-main">
+
+    <!-- Loading state (default) -->
+    <div id="ppLoading" class="pp-state">
+      <div class="pp-state__title">Loading profile&hellip;</div>
+      <div class="pp-state__msg">Fetching the latest details</div>
+    </div>
+
+    <!-- Error states -->
+    <div id="ppNotFound" class="pp-state" hidden>
+      <div class="pp-state__title">Profile not found</div>
+      <div class="pp-state__msg">This profile link doesn't exist or has been removed.</div>
+    </div>
+
+    <div id="ppPending" class="pp-state" hidden>
+      <div class="pp-state__title">Profile being built</div>
+      <div class="pp-state__msg" id="ppPendingMsg">This member is still completing their profile. Check back soon.</div>
+    </div>
+
+    <!-- Profile content (rendered by JS) -->
+    <div id="ppContent" hidden>
+      <header class="pp-hero">
+        <img id="ppPhoto" class="pp-hero__photo" alt="" src="">
+        <div>
+          <div id="ppCategory" class="pp-hero__category"></div>
+          <h1 id="ppName" class="pp-hero__name"></h1>
+          <p id="ppHeadline" class="pp-hero__headline"></p>
+          <p id="ppLocation" class="pp-hero__location"></p>
+          <div id="ppBadges" class="pp-badges"></div>
+        </div>
+      </header>
+
+      <section id="ppBioSection" class="pp-section" hidden>
+        <h2 class="pp-section__heading">About</h2>
+        <p id="ppBio" class="pp-bio"></p>
+      </section>
+
+      <section id="ppExpSection" class="pp-section" hidden>
+        <h2 class="pp-section__heading">Experience</h2>
+        <div id="ppExpList" class="pp-exp"></div>
+      </section>
+
+      <section id="ppEduSection" class="pp-section" hidden>
+        <h2 class="pp-section__heading">Education</h2>
+        <div id="ppEduList"></div>
+      </section>
+
+      <section id="ppSkillsSection" class="pp-section" hidden>
+        <h2 class="pp-section__heading">Skills</h2>
+        <div id="ppSkillsList" class="pp-skills"></div>
+      </section>
+
+      <div class="pp-cta">
+        <div class="pp-cta__title">Get in touch</div>
+        <div class="pp-cta__sub">Reach out via MECULS &mdash; we'll forward your message.</div>
+        <a class="pp-cta__btn" id="ppContactLink" href="https://meculs.com/begin-conversation.html">Send a message</a>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="pp-foot">
+    Profile hosted on <a href="https://meculs.com">MECULS</a>
+    &middot;
+    <a href="https://meculs.com/privacy-policy.html">Privacy</a>
+  </footer>
+
+</div>
+
+<!-- Supabase JS — minimal usage: only call the public RPC -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js?v=15"></script>
+<script>
+(function () {
+  "use strict";
+
+  /* ── Read slug from query string OR pretty URL ──
+     Supports both meculs.com/p.html?slug=<slug> and (via 404.html
+     redirect) meculs.com/p/<slug>. */
+  function getSlug() {
+    /* Direct query string */
+    const params = new URLSearchParams(window.location.search);
+    const q = (params.get("slug") || "").trim();
+    if (q) return q;
+    /* Pretty URL: /p/<slug> — only if 404.html sets a hash like #/p/foo */
+    const m = window.location.pathname.match(/\/p\/([a-z0-9][a-z0-9-]*)\/?$/i);
+    if (m && m[1]) return m[1];
+    /* Hash fallback (some redirect tricks use this) */
+    const h = window.location.hash.match(/\/p\/([a-z0-9][a-z0-9-]*)/i);
+    if (h && h[1]) return h[1];
+    return "";
+  }
+
+  function show(id) {
+    const el = document.getElementById(id);
+    if (el) el.hidden = false;
+  }
+  function hide(id) {
+    const el = document.getElementById(id);
+    if (el) el.hidden = true;
+  }
+  function setText(id, text) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = text || "";
+  }
+  function escapeHtml(s) {
+    if (!s) return "";
+    return String(s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  /* Format experience date range */
+  function formatDateRange(item) {
+    const start = item.start_year ? String(item.start_year) : "";
+    const end = item.is_current ? "Present" :
+                (item.end_year ? String(item.end_year) : "");
+    if (start && end) return start + " — " + end;
+    if (start) return start + " — Present";
+    return "";
+  }
+
+  function renderHero(p) {
+    if (p.photo_path) {
+      const img = document.getElementById("ppPhoto");
+      img.src = p.photo_path;
+      img.alt = p.name + " — profile photo";
+    }
+    setText("ppName", p.name);
+    /* Category — map user_type to a friendlier label */
+    const catMap = {
+      "working_professional": "Working Professional",
+      "fresher":              "Fresher",
+      "homemaker":            "Homemaker / Returning to Work",
+      "student":              "Student",
+      "self_employed":        "Self-Employed",
+      "retired":              "Retired Professional",
+      "defense_family":       "Defense Family Member"
+    };
+    const cat = (p.profile_category && p.profile_category.user_type) || "";
+    setText("ppCategory", catMap[cat] || cat.replace(/_/g, " "));
+
+    const intro = p.introduction || {};
+    setText("ppHeadline", intro.headline || "");
+    /* Location string from country/state */
+    const loc = [intro.res_state, intro.res_country].filter(Boolean).join(", ");
+    setText("ppLocation", loc);
+
+    /* Badges */
+    const bWrap = document.getElementById("ppBadges");
+    bWrap.innerHTML = "";
+    if (p.consulting && p.consulting.availability_status &&
+        p.consulting.availability_status !== "not_available") {
+      const b = document.createElement("span");
+      b.className = "pp-badge";
+      b.textContent = "Available for consulting";
+      bWrap.appendChild(b);
+    }
+    if (p.mentorship && Array.isArray(p.mentorship.roles) && p.mentorship.roles.length) {
+      const b = document.createElement("span");
+      b.className = "pp-badge";
+      b.textContent = "Open to mentoring";
+      bWrap.appendChild(b);
+    }
+  }
+
+  function renderBio(p) {
+    const intro = p.introduction || {};
+    if (intro.summary) {
+      setText("ppBio", intro.summary);
+      show("ppBioSection");
+    }
+  }
+
+  function renderExperience(p) {
+    if (!Array.isArray(p.experiences) || !p.experiences.length) return;
+    const list = document.getElementById("ppExpList");
+    list.innerHTML = "";
+    /* Sort by experience_number desc (most recent first) */
+    const sorted = p.experiences.slice().sort(function (a, b) {
+      return (b.experience_number || 0) - (a.experience_number || 0);
+    });
+    sorted.forEach(function (e) {
+      const item = document.createElement("div");
+      item.className = "pp-exp__item";
+      const meta = [
+        formatDateRange(e),
+        e.country
+      ].filter(Boolean).join(" · ");
+      item.innerHTML =
+        '<div class="pp-exp__role">' + escapeHtml(e.designation || e.role_headline || "") + '</div>' +
+        '<div class="pp-exp__company">' + escapeHtml(e.company_name || "") + '</div>' +
+        '<div class="pp-exp__meta">' + escapeHtml(meta) + '</div>' +
+        (e.role_description ? '<div class="pp-exp__desc">' + escapeHtml(e.role_description) + '</div>' : '');
+      list.appendChild(item);
+    });
+    show("ppExpSection");
+  }
+
+  function renderEducation(p) {
+    const list = document.getElementById("ppEduList");
+    list.innerHTML = "";
+    let any = false;
+
+    /* Current education first if present */
+    if (p.education_current && (p.education_current.institution || p.education_current.degree)) {
+      const c = p.education_current;
+      const item = document.createElement("div");
+      item.className = "pp-edu__item";
+      item.innerHTML =
+        '<div class="pp-edu__degree">' + escapeHtml((c.degree || "") + (c.field ? " — " + c.field : "")) + '</div>' +
+        '<div class="pp-edu__inst">' + escapeHtml(c.institution || "") + '</div>' +
+        '<div class="pp-edu__year">In progress' + (c.expected_year ? " · expected " + c.expected_year : "") + '</div>';
+      list.appendChild(item);
+      any = true;
+    }
+
+    /* Past education */
+    if (Array.isArray(p.education) && p.education.length) {
+      p.education.forEach(function (e) {
+        const item = document.createElement("div");
+        item.className = "pp-edu__item";
+        const yearStr = e.year_completed || e.year || "";
+        item.innerHTML =
+          '<div class="pp-edu__degree">' + escapeHtml((e.degree || "") + (e.field ? " — " + e.field : "")) + '</div>' +
+          '<div class="pp-edu__inst">' + escapeHtml(e.institution || "") + '</div>' +
+          (yearStr ? '<div class="pp-edu__year">' + escapeHtml(yearStr) + '</div>' : '');
+        list.appendChild(item);
+        any = true;
+      });
+    }
+
+    if (any) show("ppEduSection");
+  }
+
+  function renderSkills(p) {
+    if (!Array.isArray(p.skills) || !p.skills.length) return;
+    const list = document.getElementById("ppSkillsList");
+    list.innerHTML = "";
+    p.skills.forEach(function (s) {
+      const tag = document.createElement("span");
+      tag.className = "pp-skill";
+      const label = (typeof s === "string") ? s : (s.skill || s.name || s.label || "");
+      if (label) {
+        tag.textContent = label;
+        list.appendChild(tag);
+      }
+    });
+    show("ppSkillsSection");
+  }
+
+  /* Set Open Graph + page title once we know the name */
+  function setPageMeta(p) {
+    const title = p.name + " — MECULS";
+    document.title = title;
+    const ogT = document.getElementById("ogTitle");
+    const ogD = document.getElementById("ogDesc");
+    const ogI = document.getElementById("ogImage");
+    if (ogT) ogT.setAttribute("content", title);
+    if (ogD) ogD.setAttribute("content",
+      (p.introduction && p.introduction.headline) ||
+      "A professional profile on MECULS.");
+    if (ogI && p.photo_path) ogI.setAttribute("content", p.photo_path);
+  }
+
+  async function loadProfile() {
+    const slug = getSlug();
+    if (!slug) {
+      hide("ppLoading");
+      show("ppNotFound");
+      return;
+    }
+
+    if (typeof SUPABASE_URL === "undefined" || typeof SUPABASE_ANON_KEY === "undefined") {
+      console.error("[p.html] config.js not loaded");
+      hide("ppLoading");
+      show("ppNotFound");
+      return;
+    }
+
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const { data, error } = await sb.rpc("get_public_profile", { p_slug: slug });
+
+    if (error) {
+      console.error("[p.html] RPC error:", error);
+      hide("ppLoading");
+      show("ppNotFound");
+      return;
+    }
+
+    if (!data) {
+      hide("ppLoading");
+      show("ppNotFound");
+      return;
+    }
+
+    if (data.publishable === false) {
+      hide("ppLoading");
+      setText("ppPendingMsg", (data.name || "This member") + " is still completing their profile. Check back soon.");
+      show("ppPending");
+      return;
+    }
+
+    /* Profile is publishable — render */
+    setPageMeta(data);
+    renderHero(data);
+    renderBio(data);
+    renderExperience(data);
+    renderEducation(data);
+    renderSkills(data);
+
+    hide("ppLoading");
+    show("ppContent");
+  }
+
+  /* Kick off */
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", loadProfile);
+  } else {
+    loadProfile();
+  }
+})();
+</script>
+
+</body>
+</html>

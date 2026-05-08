@@ -342,6 +342,27 @@ saveBtn.addEventListener("click", async () => {
     };
 
     await MC.saveSection("profile_category", payload);
+
+    /* ── Public Profile Slug Backfill ──
+       This is the FIRST build page after signup, so it's the
+       earliest reliable point to ensure every user has a slug.
+       MC.ensureSlug is idempotent — if the user already has a
+       slug, this is a fast no-op. If not (e.g. legacy users from
+       before this feature, or any race condition where signup
+       didn't generate one), we generate it now from the user's
+       full name in auth metadata.
+       Failure here is non-fatal: the user can still proceed with
+       their profile build. We just log and continue. */
+    try {
+      const sb = window.MC_SB && window.MC_SB.getClient && window.MC_SB.getClient();
+      if (sb) {
+        const { data: u } = await sb.auth.getUser();
+        const name = (u && u.user && u.user.user_metadata && u.user.user_metadata.full_name) || "";
+        if (name) await MC.ensureSlug(name);
+      }
+    } catch (slugErr) {
+      console.warn("[profile_category] slug backfill skipped:", slugErr);
+    }
   } catch (err) {
     console.error("[profile_category] save error:", err);
     showPopup("Could not save to server. Please try again.\n\n" + (err.message || err));
