@@ -908,17 +908,17 @@
   }
   .h-photo-img {
     position: absolute; inset: 0;
-    background-image: url('images/organisational-health-consulting/org-health-roots.jpg');
+    background-image: url('images/organisational-health-consulting/org-health-ancient-tree.jpg');
     background-size: cover;
-    background-position: center 60%;
-    opacity: 0.32;
+    background-position: center 50%;
+    opacity: 0.78;
   }
   .h-photo-img::after {
     content: '';
     position: absolute; inset: 0;
     background:
-      linear-gradient(180deg, rgba(13,31,23,0.78) 0%, rgba(13,31,23,0.55) 50%, rgba(13,31,23,0.92) 100%),
-      radial-gradient(ellipse 60% 50% at 50% 50%, rgba(212,175,55,0.06) 0%, transparent 70%);
+      radial-gradient(ellipse 55% 60% at 50% 50%, rgba(13,31,23,0.72) 0%, rgba(13,31,23,0.42) 50%, transparent 80%),
+      linear-gradient(180deg, rgba(13,31,23,0.30) 0%, rgba(13,31,23,0.15) 50%, rgba(13,31,23,0.55) 100%);
   }
   .h-inner {
     position: relative; z-index: 2;
@@ -942,6 +942,23 @@
     flex-wrap: wrap;
     margin-bottom: 2.4rem;
   }
+  .h-photo-caption {
+    position: absolute;
+    left: 5%;
+    bottom: 1.6rem;
+    z-index: 2;
+    max-width: 320px;
+    padding-left: 0.9rem;
+    border-left: 1px solid rgba(212,175,55,0.45);
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.86);
+    line-height: 1.55;
+  }
+  .h-photo-caption em {
+    font-style: italic;
+    font-weight: 400;
+  }
   .h-next {
     display: inline-block;
     font-family: var(--serif);
@@ -955,21 +972,6 @@
     margin-right: 0.4rem;
     transform: translateY(-1px);
   }
-  .h-photo-cap {
-    position: absolute;
-    left: 5%;
-    bottom: 1.4rem;
-    z-index: 2;
-    max-width: 320px;
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 0.95rem;
-    color: rgba(255,255,255,0.85);
-    line-height: 1.55;
-    padding-left: 0.9rem;
-    border-left: 1px solid rgba(212,175,55,0.4);
-  }
-
   /* ══════════════════════════════════════════════════════════════════
      RESPONSIVE
      ══════════════════════════════════════════════════════════════════ */
@@ -1021,15 +1023,15 @@
       text-align: left;
     }
 
-    .h-photo-cap {
+    .h-photo-caption {
       position: static;
       max-width: none;
-      margin: 2rem auto 0;
-      text-align: center;
+      margin: 1.6rem auto 0;
       padding: 0 5%;
+      padding-left: 5%;
       border-left: none;
-      border-top: 1px solid rgba(212,175,55,0.3);
-      padding-top: 1rem;
+      text-align: center;
+      font-size: 0.92rem;
     }
 
     .sec-b, .sec-c, .sec-e, .sec-f, .sec-g, .sec-h { padding: 4rem 0; }
@@ -1625,8 +1627,8 @@
     <span class="h-next"><span class="h-next-arrow">&rarr;</span> Next chapter &ndash; <em>The Approach.</em></span>
   </div>
 
-  <div class="h-photo-cap">
-    Tree roots photograph &ndash; <em>Zach Reiner, Unsplash.</em> The system holds because of what it grew around, long before the current leadership arrived.
+  <div class="h-photo-caption" aria-hidden="true">
+    <em>The system holds because of what it grew around, long before the current leadership arrived.</em>
   </div>
 </section>
 
