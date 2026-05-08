@@ -6,18 +6,17 @@
 
   <!-- ═══════════════════════════════════════════════════════════
        MECULS.COM SITEMAP - COMPLETE
-       Last updated: 2026-05-07
+       Last updated: 2026-05-08
        42 live indexable pages.
-       Pages rebuilt this cycle: 360-pulse-rate.html, service-personality-profiling.html,
-         corporate-programs.html, bespoke-coaching.html, service-executive-search.html,
-         service-hr-analytics.html, service-data-science-analytics.html, service-market-actionable-intelligence.html (V6.5 rebuilds, 4-7 May 2026)
+       Pages refreshed this cycle (2026-05-08, V6.5 batch sync from delivered HTML):
+         360-pulse-rate.html, about-meculs.html, contexts.html, corporate-programs.html, how-meculs-works.html, index.html, service-data-science-analytics.html, service-hr-analytics.html, service-market-actionable-intelligence.html, service-personality-profiling.html, services.html, the-journey.html
        Maintained by: Rajneesh Jain / MECULS
   ═══════════════════════════════════════════════════════════ -->
 
   <!-- ─── HOMEPAGE ──────────────────────────────────────────── -->
   <url>
     <loc>https://www.meculs.com/</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-04-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -39,7 +38,7 @@
   <!-- ─── FLAGSHIP SERVICE ───────────────────────────────────── -->
   <url>
     <loc>https://www.meculs.com/360-pulse-rate.html</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-05-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -47,7 +46,7 @@
   <!-- ─── ABOUT / FOUNDER ────────────────────────────────────── -->
   <url>
     <loc>https://www.meculs.com/about-meculs.html</loc>
-    <lastmod>2026-03-21</lastmod>
+    <lastmod>2026-04-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -61,7 +60,7 @@
   <!-- ─── COMPANY / HOW IT WORKS ─────────────────────────────── -->
   <url>
     <loc>https://www.meculs.com/how-meculs-works.html</loc>
-    <lastmod>2026-04-03</lastmod>
+    <lastmod>2026-04-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -73,7 +72,7 @@
   </url>
   <url>
     <loc>https://www.meculs.com/the-journey.html</loc>
-    <lastmod>2026-04-09</lastmod>
+    <lastmod>2026-04-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -91,7 +90,7 @@
   </url>
   <url>
     <loc>https://www.meculs.com/contexts.html</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-04-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -99,7 +98,7 @@
   <!-- ─── SERVICES HUB PAGES ─────────────────────────────────── -->
   <url>
     <loc>https://www.meculs.com/services.html</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-05-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -119,13 +118,13 @@
   </url>
   <url>
     <loc>https://www.meculs.com/corporate-programs.html</loc>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-05-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.meculs.com/service-personality-profiling.html</loc>
-    <lastmod>2026-05-05</lastmod>
+    <lastmod>2026-05-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
