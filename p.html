@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- ============================================================
-       MECULS — p.html  (Public Profile renderer)
+       MECULS — p.html  (Public Profile renderer) — Round 1 polish
        Date: 2026-05-08
        ============================================================
        Renders a sanitised public-profile view of a candidate from
@@ -20,6 +20,19 @@
        all private fields server-side. p.html only renders what
        the function returns — no client-side filtering can leak
        private data.
+
+       Round 1 changes (from v1):
+       - Logo image replaces text brand (with text fallback)
+       - Removed top-right "Build your profile" CTA (replaced with
+         a softer "Create yours free" link in footer)
+       - Photo loads from Supabase Storage public URL
+       - Avatar fallback (initials in gold circle) when no photo
+       - Placeholder shows checklist of missing items
+       - Renders additional intro fields: current_position,
+         industry, total_experience, skills_top5, plus
+         defense fields where applicable
+       - skills_top5 from intro is rendered as Skills section
+         when the dedicated skills array is empty
        ============================================================ -->
 
   <title>Profile — MECULS</title>
@@ -93,6 +106,17 @@
       color: var(--gold);
       letter-spacing: 0.02em;
       text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+    }
+    .pp-nav__logo {
+      height: 32px;
+      width: auto;
+      display: block;
+    }
+    .pp-nav__brand-text {
+      font-family: var(--serif);
+      color: var(--gold);
     }
     .pp-nav__cta {
       font-family: var(--sans);
@@ -138,6 +162,69 @@
       color: var(--text-muted);
     }
 
+    /* ── Pending-state checklist (shown when profile not yet
+       publishable). Items toggle done/pending via .done class. ── */
+    .pp-checklist {
+      max-width: 420px;
+      margin: 32px auto 0;
+      padding: 24px 28px;
+      background: var(--ink);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-m);
+      text-align: left;
+    }
+    .pp-checklist__heading {
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .pp-checklist__list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .pp-checklist__item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 0;
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      color: var(--text-dim);
+    }
+    .pp-check {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      border: 1.5px solid var(--text-muted);
+      position: relative;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .pp-checklist__item.done .pp-check {
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+    .pp-checklist__item.done .pp-check::after {
+      content: "";
+      position: absolute;
+      left: 4px;
+      top: 1px;
+      width: 5px;
+      height: 10px;
+      border-right: 2px solid var(--ink-deep);
+      border-bottom: 2px solid var(--ink-deep);
+      transform: rotate(45deg);
+    }
+    .pp-checklist__item.done {
+      color: var(--text-muted);
+      text-decoration: line-through;
+      text-decoration-color: var(--hairline);
+    }
+
     /* ── Hero (photo + name + category + tagline) ── */
     .pp-hero {
       display: grid;
@@ -156,6 +243,25 @@
       border: 2px solid var(--gold);
       box-shadow: var(--shadow-1);
       background: var(--ink-soft);
+    }
+    /* Avatar fallback when no photo. Shows the user's initials
+       in a gold-bordered circle. Same visual size as .pp-hero__photo
+       so the layout is consistent whether or not a photo is set. */
+    .pp-hero__avatar {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      background: linear-gradient(135deg, var(--ink-soft), var(--ink));
+      box-shadow: var(--shadow-1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-family: var(--serif);
+      font-size: 3.2rem;
+      font-weight: 600;
+      user-select: none;
     }
     .pp-hero__name {
       font-family: var(--serif);
@@ -180,10 +286,37 @@
       color: var(--text-dim);
       line-height: 1.4;
     }
+    /* Current position — shown if intro.current_position is set.
+       Subtle, slightly less prominent than headline. */
+    .pp-hero__current-position {
+      margin-top: 8px;
+      font-size: 0.95rem;
+      color: var(--text-dim);
+    }
     .pp-hero__location {
       margin-top: 10px;
       font-size: 0.85rem;
       color: var(--text-muted);
+    }
+    /* Meta row — small "•"-separated chips for industry, total
+       experience etc. shown beneath location. */
+    .pp-hero__meta {
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      align-items: center;
+    }
+    .pp-hero__meta-item {
+      display: inline-flex;
+      align-items: center;
+    }
+    .pp-hero__meta-item:not(:last-child)::after {
+      content: "•";
+      margin-left: 14px;
+      color: var(--hairline);
     }
 
     /* ── Status badges (consulting / mentorship) ── */
@@ -367,6 +500,11 @@
       color: var(--text-muted);
       background: var(--ink);
     }
+    .pp-foot__row { line-height: 1.7; }
+    .pp-foot__row--cta {
+      margin-top: 4px;
+      color: var(--text-dim);
+    }
     .pp-foot a { color: var(--gold); text-decoration: none; }
     .pp-foot a:hover { text-decoration: underline; }
 
@@ -389,8 +527,14 @@
 <div class="pp-page">
 
   <nav class="pp-nav">
-    <a href="https://meculs.com/cv-portal.html" class="pp-nav__brand">MECULS</a>
-    <a href="https://meculs.com/register.html" class="pp-nav__cta">Build your profile</a>
+    <a href="https://meculs.com/cv-portal.html" class="pp-nav__brand" aria-label="MECULS">
+      <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS"
+           class="pp-nav__logo"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+      <span class="pp-nav__brand-text" style="display:none">MECULS</span>
+    </a>
+    <!-- Top-right CTA intentionally removed (Round 1 polish).
+         Replaced by a softer "Create yours free" link in the footer. -->
   </nav>
 
   <main class="pp-main">
@@ -410,17 +554,36 @@
     <div id="ppPending" class="pp-state" hidden>
       <div class="pp-state__title">Profile being built</div>
       <div class="pp-state__msg" id="ppPendingMsg">This member is still completing their profile. Check back soon.</div>
+      <!-- Checklist of what's missing — populated by renderPending().
+           Hidden by default; only shown when we have missing-flags
+           data from the SQL function. Helps profile owners see
+           what to complete next. Visitors who don't own this profile
+           also benefit from the transparency. -->
+      <div id="ppPendingChecklist" class="pp-checklist" hidden>
+        <div class="pp-checklist__heading">To publish this profile, complete:</div>
+        <ul class="pp-checklist__list">
+          <li id="pcPhoto"            class="pp-checklist__item"><span class="pp-check"></span><span>Profile photo</span></li>
+          <li id="pcCategory"         class="pp-checklist__item"><span class="pp-check"></span><span>Profile category</span></li>
+          <li id="pcIntro"            class="pp-checklist__item"><span class="pp-check"></span><span>About You (headline or summary)</span></li>
+          <li id="pcExpOrEdu"         class="pp-checklist__item"><span class="pp-check"></span><span>At least one experience or education entry</span></li>
+        </ul>
+      </div>
     </div>
 
     <!-- Profile content (rendered by JS) -->
     <div id="ppContent" hidden>
       <header class="pp-hero">
-        <img id="ppPhoto" class="pp-hero__photo" alt="" src="">
+        <!-- Photo OR initials-fallback. Only one of #ppPhoto and
+             #ppAvatar is visible at a time, set by JS in renderHero. -->
+        <img id="ppPhoto" class="pp-hero__photo" alt="" src="" hidden>
+        <div id="ppAvatar" class="pp-hero__avatar" aria-hidden="true"></div>
         <div>
           <div id="ppCategory" class="pp-hero__category"></div>
           <h1 id="ppName" class="pp-hero__name"></h1>
           <p id="ppHeadline" class="pp-hero__headline"></p>
+          <p id="ppCurrentPosition" class="pp-hero__current-position" hidden></p>
           <p id="ppLocation" class="pp-hero__location"></p>
+          <div id="ppMeta" class="pp-hero__meta" hidden></div>
           <div id="ppBadges" class="pp-badges"></div>
         </div>
       </header>
@@ -455,9 +618,14 @@
   </main>
 
   <footer class="pp-foot">
-    Profile hosted on <a href="https://meculs.com">MECULS</a>
-    &middot;
-    <a href="https://meculs.com/privacy-policy.html">Privacy</a>
+    <div class="pp-foot__row">
+      Profile hosted on <a href="https://meculs.com">MECULS</a>
+      &middot;
+      <a href="https://meculs.com/privacy-policy.html">Privacy</a>
+    </div>
+    <div class="pp-foot__row pp-foot__row--cta">
+      Want a profile like this? <a href="https://meculs.com/register.html">Create yours free on MECULS</a>
+    </div>
   </footer>
 
 </div>
@@ -518,21 +686,74 @@
     return "";
   }
 
+  /* Build a Supabase Storage public URL for a path like
+     "<uid>/photo.webp". Returns null if path is empty. */
+  function buildPhotoUrl(path) {
+    if (!path) return null;
+    /* Handle if for some reason path is already a full URL */
+    if (/^https?:\/\//i.test(path)) return path;
+    return SUPABASE_URL.replace(/\/+$/, "") +
+           "/storage/v1/object/public/photos/" +
+           path.split("/").map(encodeURIComponent).join("/");
+  }
+
+  /* Compute initials from a full name. "Rajneesh Jain" → "RJ". */
+  function initialsFromName(name) {
+    if (!name) return "•";
+    const parts = String(name).trim().split(/\s+/);
+    if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+  }
+
   function renderHero(p) {
-    if (p.photo_path) {
-      const img = document.getElementById("ppPhoto");
-      img.src = p.photo_path;
-      img.alt = p.name + " — profile photo";
+    const photoEl  = document.getElementById("ppPhoto");
+    const avatarEl = document.getElementById("ppAvatar");
+    const photoUrl = buildPhotoUrl(p.photo_path);
+
+    /* Default to avatar (initials) — switch to photo only when
+       it loads successfully. This handles three cases cleanly:
+         - No photo: always shows initials
+         - Photo path set but bucket private/missing: image's
+           onerror fires → we keep showing initials
+         - Photo path set and loads: image swaps in, avatar hides */
+    if (avatarEl) {
+      avatarEl.textContent = initialsFromName(p.name);
+      avatarEl.hidden = false;
     }
+    if (photoEl) {
+      photoEl.hidden = true;
+      photoEl.alt = ""; /* no alt-text bleed during load */
+      photoEl.removeAttribute("src");
+      if (photoUrl) {
+        photoEl.onload = function () {
+          photoEl.hidden = false;
+          if (avatarEl) avatarEl.hidden = true;
+        };
+        photoEl.onerror = function () {
+          /* Keep showing avatar — silent fall-through */
+          photoEl.hidden = true;
+          if (avatarEl) avatarEl.hidden = false;
+        };
+        photoEl.alt = (p.name || "Profile") + " — profile photo";
+        photoEl.src = photoUrl;
+      }
+    }
+
     setText("ppName", p.name);
-    /* Category — map user_type to a friendlier label */
+
+    /* Category — map user_type to a friendlier label.
+       Covers all user_types from profile_category.html. */
     const catMap = {
       "working_professional": "Working Professional",
       "fresher":              "Fresher",
+      "student_0xp":          "Student",
+      "student_intern":       "Student (with internships)",
+      "student_xp":           "Student (with work experience)",
       "homemaker":            "Homemaker / Returning to Work",
-      "student":              "Student",
       "self_employed":        "Self-Employed",
       "retired":              "Retired Professional",
+      "researcher":           "Researcher / Innovator",
+      "defense":              "Defense Personnel",
       "defense_family":       "Defense Family Member"
     };
     const cat = (p.profile_category && p.profile_category.user_type) || "";
@@ -540,9 +761,45 @@
 
     const intro = p.introduction || {};
     setText("ppHeadline", intro.headline || "");
-    /* Location string from country/state */
+
+    /* Current position — only show if non-empty */
+    const cpEl = document.getElementById("ppCurrentPosition");
+    if (cpEl) {
+      if (intro.current_position && String(intro.current_position).trim()) {
+        cpEl.textContent = intro.current_position;
+        cpEl.hidden = false;
+      } else {
+        cpEl.hidden = true;
+      }
+    }
+
+    /* Location string from state + country */
     const loc = [intro.res_state, intro.res_country].filter(Boolean).join(", ");
     setText("ppLocation", loc);
+
+    /* Meta row — industry, total experience, defense fields where
+       applicable. Only renders if there's something to show. */
+    const metaEl = document.getElementById("ppMeta");
+    if (metaEl) {
+      metaEl.innerHTML = "";
+      const items = [];
+      if (intro.industry)         items.push(intro.industry);
+      if (intro.total_experience) items.push(intro.total_experience + " yrs experience");
+      /* Defense personnel — show service branch and rank.
+         These columns are only populated when user_type=defense. */
+      if (cat === "defense") {
+        if (intro.service_branch)   items.push(intro.service_branch);
+        if (intro.rank_designation) items.push(intro.rank_designation);
+        if (intro.years_of_service) items.push(intro.years_of_service + " yrs of service");
+      }
+      items.forEach(function (txt) {
+        const el = document.createElement("span");
+        el.className = "pp-hero__meta-item";
+        el.textContent = txt;
+        metaEl.appendChild(el);
+      });
+      metaEl.hidden = items.length === 0;
+    }
 
     /* Badges */
     const bWrap = document.getElementById("ppBadges");
@@ -632,17 +889,36 @@
   }
 
   function renderSkills(p) {
-    if (!Array.isArray(p.skills) || !p.skills.length) return;
+    /* Prefer the dedicated p.skills array (from the Skills page).
+       Fall back to intro.skills_top5 — an array of strings — when
+       skills array is empty. About You's "Top 5 skills" field is
+       filled before the Skills page exists, so this gives us a
+       Skills section earlier in the build flow. */
+    let labels = [];
+    if (Array.isArray(p.skills) && p.skills.length) {
+      labels = p.skills.map(function (s) {
+        return (typeof s === "string") ? s : (s.skill || s.name || s.label || "");
+      });
+    } else {
+      const top5 = (p.introduction && p.introduction.skills_top5) || [];
+      if (Array.isArray(top5)) {
+        labels = top5.slice();
+      } else if (typeof top5 === "string" && top5.trim()) {
+        /* Defensive: if for any reason it's stored as a string
+           (legacy data), still handle gracefully */
+        labels = top5.split(",").map(function (s) { return s.trim(); });
+      }
+    }
+    labels = labels.filter(function (s) { return !!s; });
+    if (!labels.length) return;
+
     const list = document.getElementById("ppSkillsList");
     list.innerHTML = "";
-    p.skills.forEach(function (s) {
+    labels.forEach(function (label) {
       const tag = document.createElement("span");
       tag.className = "pp-skill";
-      const label = (typeof s === "string") ? s : (s.skill || s.name || s.label || "");
-      if (label) {
-        tag.textContent = label;
-        list.appendChild(tag);
-      }
+      tag.textContent = label;
+      list.appendChild(tag);
     });
     show("ppSkillsSection");
   }
@@ -658,7 +934,10 @@
     if (ogD) ogD.setAttribute("content",
       (p.introduction && p.introduction.headline) ||
       "A professional profile on MECULS.");
-    if (ogI && p.photo_path) ogI.setAttribute("content", p.photo_path);
+    if (ogI && p.photo_path) {
+      const ogPhotoUrl = buildPhotoUrl(p.photo_path);
+      if (ogPhotoUrl) ogI.setAttribute("content", ogPhotoUrl);
+    }
   }
 
   async function loadProfile() {
@@ -695,6 +974,25 @@
     if (data.publishable === false) {
       hide("ppLoading");
       setText("ppPendingMsg", (data.name || "This member") + " is still completing their profile. Check back soon.");
+      /* If we have a 'missing' object, render the checklist
+         showing exactly what needs to be completed. */
+      if (data.missing && typeof data.missing === "object") {
+        const m = data.missing;
+        const map = {
+          pcPhoto:     m.photo,
+          pcCategory:  m.profile_category,
+          pcIntro:     m.introduction,
+          pcExpOrEdu:  m.experience_or_education
+        };
+        Object.keys(map).forEach(function (id) {
+          const el = document.getElementById(id);
+          if (!el) return;
+          /* Item is "done" when it's NOT missing */
+          el.classList.toggle("done", !map[id]);
+        });
+        const list = document.getElementById("ppPendingChecklist");
+        if (list) list.hidden = false;
+      }
       show("ppPending");
       return;
     }
