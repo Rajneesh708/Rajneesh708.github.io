@@ -1,8 +1,8 @@
 /* ============================================================
-   MECULS — login.js (v=27)
-   Date: 2026-05-08 (login-via-Google-without-register block)
+   MECULS — login.js (v=28)
+   Date: 2026-05-08 (orphan-block speed-up)
    ============================================================
-   Carried forward from v=26:
+   Carried forward from v=27:
    - Email confirmation flow (?confirmed=1)
    - Password recovery flow (#type=recovery)
    - Floating error toast
@@ -11,35 +11,33 @@
    - Cross-user data leak fix (MC_STORAGE.wipeMeculsAppDataOnly)
    - Gmail hint when @gmail.com typed in email field
    - Google Identity Services (GIS) sign-in flow
+   - Block "Google sign-in for unregistered users" via terms_consent
+     check + sign-out + redirect to register.html
 
-   New in v=27 — block "Google sign-in for unregistered users":
+   New in v=28 — speed up the orphan-block redirect:
    ----------------------------------------------------------
-   PROBLEM IT FIXES:
-     supabase.auth.signInWithIdToken({provider:'google'}) silently
-     CREATES an account if none exists. So a user who clicks
-     "Sign in with Google" on login.html (intending to log in)
-     gets an account auto-created with terms_consent=false,
-     age_18_confirmed=false, etc. — bypassing all consent UI.
-     This is a DPDP/legal problem.
+   PROBLEM:
+     v=27 took ~10-15 seconds total for the block-and-redirect:
+       1. signInWithIdToken roundtrip (~1-3s)
+       2. profile select roundtrip (~1-2s)
+       3. signOut SERVER roundtrip (~1-3s)
+       4. 3-second setTimeout before redirect
+       5. register.html load (~1-2s)
+     Items 3 and 4 are unnecessarily slow.
 
    THE FIX:
-     After signInWithIdToken succeeds, we read the user's
-     terms_consent flag from the profiles table.
-       - If terms_consent === true: legitimate returning user,
-         proceed to dashboard.
-       - If terms_consent === false (or NULL): this Google account
-         has never properly registered. Sign them out immediately
-         and tell them to register via register.html. The orphan
-         auth.users row stays harmless — when they later register
-         via register.html with the same Google account, Supabase
-         recognises the existing auth row and register.js's
-         _writeConsentsForNewUser writes the consents properly.
+     - signOut({ scope: "local" }) instead of signOut() — clears
+       the session from this browser only, skips the server
+       roundtrip. The auth row stays orphaned on Supabase but
+       that's harmless — register.js v=21 handles the existing-row
+       case correctly when the user re-enters via register.html.
+     - 1500ms timeout instead of 3000ms — long enough to read
+       the message, short enough not to feel broken.
 
-   WHY check terms_consent (not "is this a new user"):
-     The created_at===updated_at heuristic register.js uses
-     would also flag the orphan-row scenario ABOVE as "new user"
-     on the second registration attempt. Reading terms_consent
-     directly from profiles is the source of truth.
+   EXPECTED IMPACT:
+     ~10-15s → ~4-7s end-to-end. The unavoidable slow parts
+     (steps 1, 2, 5 above) remain — they're network round trips
+     that have to happen.
    ============================================================ */
 
 "use strict";
@@ -391,7 +389,9 @@ async function _handleGoogleCredentialResponse(response) {
      succeed on retry once the transient issue resolves. */
   if (profileCheck.error) {
     console.warn("[login.js] Could not verify profile consents:", profileCheck.error.message);
-    await sb.auth.signOut();
+    /* v=28: local-scope signOut — same reasoning as the orphan-block
+       path below. Fast, no server roundtrip needed. */
+    await sb.auth.signOut({ scope: "local" });
     showError("Could not verify your account. Please try signing in again, or register a new account.");
     return;
   }
@@ -402,19 +402,23 @@ async function _handleGoogleCredentialResponse(response) {
     /* Orphan Google account — never properly registered. Sign them
        out and direct them to register.html. The auth.users row stays
        behind harmlessly; when they register properly, register.js
-       handles the existing-row case and writes consents correctly. */
-    await sb.auth.signOut();
+       handles the existing-row case and writes consents correctly.
+
+       v=28: signOut with scope:"local" clears the session from
+       this browser only — no server roundtrip. The session token
+       expires naturally on Supabase's server within an hour.
+       Since we wipe it from the only browser that has it, this
+       is functionally equivalent to a full signOut here. */
+    await sb.auth.signOut({ scope: "local" });
     showError(
       "No account found for this Google account. " +
       "Redirecting you to the registration page..."
     );
-    /* Auto-redirect after 3 seconds so the user isn't stuck staring
-       at an error toast. They land on register.html where they can
-       tick consents and click the same Google button to complete
-       proper registration. */
+    /* v=28: 1500ms — long enough to read the message, short
+       enough that the user doesn't think the page is broken. */
     setTimeout(function () {
       window.location.href = window.location.origin + "/register.html";
-    }, 3000);
+    }, 1500);
     return;
   }
 
