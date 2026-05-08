@@ -1,38 +1,47 @@
 /* ============================================================
-   MECULS — register.js (v=20)
-   Date: 2026-05-08 (orphan-recovery for login.js v=27)
+   MECULS — register.js (v=21)
+   Date: 2026-05-08 (silent UPDATE failure fix)
    ============================================================
-   Carried forward from v=19:
+   Carried forward from v=20:
    - Soft Gmail hint feature kept removed
    - emailRedirectTo with ?confirmed=1
    - Google Identity Services (GIS) sign-up flow
    - Required-consent gate before Google button enabled
-   - _writeConsentsForNewUser writes consent flags after Google
-     sign-up (since signInWithIdToken can't pass arbitrary metadata)
+   - _writeConsentsForNewUser handles fresh signup AND orphan rows
 
-   New in v=20 — orphan-recovery support:
+   New in v=21 — fix silent UPDATE failure that left ALL Google
+   sign-ups with terms_consent=false:
    ----------------------------------------------------------
    PROBLEM IT FIXES:
-     login.js v=27 blocks Google sign-in on login.html for users
-     who haven't properly registered. It signs them out and
-     redirects them to register.html. When they then click
-     Google sign-in HERE on register.html with consents ticked,
-     supabase.auth.signInWithIdToken recognises the existing
-     auth.users row (created during their attempted login).
-     `data.user.created_at` is from the failed login attempt
-     and `data.user.updated_at` is from now — more than 5
-     seconds apart. The old `isFreshSignup` heuristic in
-     _writeConsentsForNewUser would say "this is a returning
-     user, don't write consents", leaving terms_consent=false
-     and trapping them in an infinite redirect loop.
+     v=20's consent payload included `user_type: "candidate"`,
+     but the profiles table has NO column named user_type.
+     PostgreSQL rejected the entire UPDATE with "column user_type
+     of relation profiles does not exist". The error was caught
+     as a console.warn — invisible in production. Result: every
+     Google signup left terms_consent=false in the database,
+     making the account non-functional once login.js v=27's
+     consent-check landed.
+
+     The user_type column was a relic from an earlier schema
+     where profile category was a top-level column. It's now
+     stored in data.profile_category (JSONB) instead, set by
+     the profile_category page during onboarding.
 
    THE FIX:
-     The check is now "fresh signup OR existing user with
-     empty consents". If terms_consent is currently false in
-     the profiles row, we treat this as the user's first
-     proper consent collection and write the values. If
-     terms_consent is already true, we leave them alone
-     (genuine returning user — consents already valid).
+     - Remove user_type from the UPDATE payload entirely.
+     - Set timestamps (*_consent_at) for ALL consents that are
+       set to true, not just marketing. Previously we only
+       stamped marketing_consent_at, leaving the other four
+       timestamps NULL even when consents were true. The
+       handle_new_user trigger does this correctly when consent
+       metadata is present in raw_user_meta_data, but on the
+       Google path that metadata is empty, so we must set
+       timestamps here.
+
+   AUDIT-COMPLETENESS:
+     For DPDP/GDPR compliance, recording the precise moment a
+     user gave each consent matters. Setting all *_at columns
+     means every consent has both a value AND a timestamp.
    ============================================================ */
 
 "use strict";
@@ -345,33 +354,70 @@ async function _writeConsentsForNewUser(user) {
     return;
   }
 
-  /* Build the consent payload from what the user just ticked */
+  /* Build the consent payload from what the user just ticked.
+     v=21: removed `user_type` (column doesn't exist on profiles
+     table — caused entire UPDATE to fail silently). Profile
+     category is now stored in data.profile_category JSONB,
+     populated when the user fills the profile_category page.
+
+     We also stamp timestamps for ALL consents that are true, not
+     just marketing — required for DPDP audit completeness. Each
+     consent value should have a paired timestamp recording when
+     it was granted. */
+  const nowIso = new Date().toISOString();
   const consentPayload = {
     terms_consent       : !!consentTerms.checked,
     age_18_confirmed    : !!consentAge.checked,
     email_share_consent : !!consentEmailShare.checked,
     notif_consent       : !!consentNotif.checked,
-    marketing_consent   : !!consentMarketing.checked,
-    user_type           : "candidate"
+    marketing_consent   : !!consentMarketing.checked
   };
 
-  /* If marketing consent ticked, also stamp marketing_consent_at */
-  if (consentPayload.marketing_consent) {
-    consentPayload.marketing_consent_at = new Date().toISOString();
-  }
+  /* Pair every TRUE consent with its timestamp. False consents
+     leave the *_at column NULL (which is correct — there's no
+     consent grant moment to record). */
+  if (consentPayload.terms_consent)       consentPayload.terms_consent_at        = nowIso;
+  if (consentPayload.age_18_confirmed)    consentPayload.age_18_confirmed_at     = nowIso;
+  if (consentPayload.email_share_consent) consentPayload.email_share_consent_at  = nowIso;
+  if (consentPayload.notif_consent)       consentPayload.notif_consent_at        = nowIso;
+  if (consentPayload.marketing_consent)   consentPayload.marketing_consent_at    = nowIso;
 
   try {
-    const { error } = await sb
+    const { error: updateErr } = await sb
       .from("profiles")
       .update(consentPayload)
       .eq("user_id", user.id);
-    if (error) {
-      console.warn("[register.js] Could not write consents to profile:", error.message);
-      /* Not catastrophic — user is signed in, can update consents
-         later via Settings page. */
+    if (updateErr) {
+      console.error("[register.js] CRITICAL: consent UPDATE failed:", updateErr.message, updateErr);
+      /* Don't silently continue — this is the bug we're fixing.
+         If the UPDATE fails, the user will be stuck (login.js will
+         block them on next login). Surface the error. */
+      throw new Error("Consent write failed: " + (updateErr.message || "unknown"));
+    }
+
+    /* Verify the write actually persisted. Defence-in-depth — if
+       a future schema change causes the UPDATE to "succeed" with
+       0 rows affected (e.g. RLS quietly filters), we catch it
+       here instead of letting the user reach a broken state. */
+    const { data: verifyData, error: verifyErr } = await sb
+      .from("profiles")
+      .select("terms_consent")
+      .eq("user_id", user.id)
+      .maybeSingle();
+    if (verifyErr) {
+      console.error("[register.js] Consent verification read failed:", verifyErr);
+      /* Verification failed but write may have succeeded. Don't
+         throw — the next login will reveal the truth. Just log. */
+    } else if (!verifyData || verifyData.terms_consent !== true) {
+      console.error("[register.js] CRITICAL: consents not persisted after UPDATE. Row state:", verifyData);
+      throw new Error("Consents did not persist. Please contact support.");
     }
   } catch (e) {
-    console.warn("[register.js] Exception writing consents:", e.message);
+    /* v=21: re-throw so the caller (_handleGoogleCredentialResponse)
+       can show the error to the user rather than silently sending
+       them to a broken dashboard. */
+    console.error("[register.js] Exception writing consents:", e);
+    throw e;
   }
 }
 
@@ -412,8 +458,24 @@ async function _handleGoogleCredentialResponse(response) {
     return;
   }
 
-  /* Write consent flags to profile row (only for first-time signups) */
-  await _writeConsentsForNewUser(data.user);
+  /* Write consent flags to profile row.
+     v=21: if the consent write fails, we surface the error and
+     sign the user out instead of pushing them into a broken
+     dashboard state. The next sign-in attempt will be blocked by
+     login.js v=27 until the underlying issue is resolved. */
+  try {
+    await _writeConsentsForNewUser(data.user);
+  } catch (consentErr) {
+    /* Sign out (local-scope = fast, no server roundtrip) so the
+       user isn't left holding a session with no valid consents. */
+    try { await sb.auth.signOut({ scope: "local" }); } catch (_e) {}
+    showError(
+      "We couldn't save your consent preferences. " +
+      "Please try again, or contact support if the problem persists. " +
+      "(Error: " + (consentErr.message || "unknown") + ")"
+    );
+    return;
+  }
 
   /* Success — redirect to dashboard */
   window.location.href = window.location.origin + "/dashboard.html";
