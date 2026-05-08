@@ -263,6 +263,15 @@
       font-weight: 600;
       user-select: none;
     }
+    /* Round 1.5 fix: ensure the [hidden] attribute reliably hides
+       both the photo and the avatar even though .pp-hero__avatar
+       has explicit display:flex. Without these rules the explicit
+       display values override the user-agent default `display:none`
+       that [hidden] applies, causing both circles to render. */
+    .pp-hero__photo[hidden],
+    .pp-hero__avatar[hidden] {
+      display: none !important;
+    }
     .pp-hero__name {
       font-family: var(--serif);
       font-size: 2.4rem;
@@ -401,15 +410,46 @@
       color: #fff;
       margin-bottom: 2px;
     }
+    /* Round 1.5: subtitle under designation when role_headline differs */
+    .pp-exp__headline {
+      font-size: 0.92rem;
+      color: var(--text-dim);
+      font-style: italic;
+      margin-bottom: 4px;
+    }
     .pp-exp__company {
       font-size: 1rem;
       color: var(--gold);
       margin-bottom: 4px;
     }
+    /* Round 1.5: domain specialization — small annotation under company */
+    .pp-exp__domain {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      margin-bottom: 6px;
+    }
     .pp-exp__meta {
       font-size: 0.82rem;
       color: var(--text-muted);
       margin-bottom: 8px;
+    }
+    /* Round 1.5: chip row for employment_type / location_type */
+    .pp-exp__chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    .pp-exp__chip {
+      display: inline-block;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--hairline);
+      color: var(--text-dim);
+      background: rgba(255, 255, 255, 0.02);
     }
     .pp-exp__desc {
       font-size: 0.95rem;
@@ -676,11 +716,20 @@
       .replace(/'/g, "&#39;");
   }
 
-  /* Format experience date range */
+  /* Format experience date range with month precision when available.
+     Examples: "Jul 2024 — Present", "Jan 2020 — Mar 2024", "2018 — 2020". */
   function formatDateRange(item) {
-    const start = item.start_year ? String(item.start_year) : "";
+    const monthNames = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    function fmt(year, month) {
+      if (!year) return "";
+      const m = parseInt(month, 10);
+      if (m >= 1 && m <= 12) return monthNames[m] + " " + year;
+      return String(year);
+    }
+    const start = fmt(item.start_year, item.start_month);
     const end = item.is_current ? "Present" :
-                (item.end_year ? String(item.end_year) : "");
+                fmt(item.end_year, item.end_month);
     if (start && end) return start + " — " + end;
     if (start) return start + " — Present";
     return "";
@@ -838,15 +887,54 @@
     sorted.forEach(function (e) {
       const item = document.createElement("div");
       item.className = "pp-exp__item";
-      const meta = [
-        formatDateRange(e),
-        e.country
-      ].filter(Boolean).join(" · ");
-      item.innerHTML =
-        '<div class="pp-exp__role">' + escapeHtml(e.designation || e.role_headline || "") + '</div>' +
-        '<div class="pp-exp__company">' + escapeHtml(e.company_name || "") + '</div>' +
-        '<div class="pp-exp__meta">' + escapeHtml(meta) + '</div>' +
-        (e.role_description ? '<div class="pp-exp__desc">' + escapeHtml(e.role_description) + '</div>' : '');
+
+      /* Build location: "City, State, Country" from whichever
+         components exist. Falls back gracefully. */
+      const locationParts = [e.city, e.state, e.country].filter(function (s) {
+        return s && String(s).trim();
+      });
+      const location = locationParts.join(", ");
+
+      /* Meta line: dates · location */
+      const meta = [formatDateRange(e), location].filter(Boolean).join(" · ");
+
+      /* Chips: employment_type, location_type. Only render
+         when the value is meaningful. */
+      const chips = [];
+      if (e.employment_type) chips.push(e.employment_type);
+      if (e.location_type)   chips.push(e.location_type);
+
+      /* Designation is the primary line. role_headline is shown
+         as a subtitle ONLY if it's distinct (not a duplicate of
+         designation). domain_specialization is a small italic
+         annotation under designation when present. */
+      const designation   = e.designation   || "";
+      const roleHeadline  = e.role_headline || "";
+      const showHeadline  = roleHeadline && roleHeadline !== designation;
+      const domainSpec    = e.domain_specialization || "";
+
+      let html = "";
+      html += '<div class="pp-exp__role">' + escapeHtml(designation || roleHeadline) + '</div>';
+      if (showHeadline) {
+        html += '<div class="pp-exp__headline">' + escapeHtml(roleHeadline) + '</div>';
+      }
+      html += '<div class="pp-exp__company">' + escapeHtml(e.company_name || "") + '</div>';
+      if (domainSpec) {
+        html += '<div class="pp-exp__domain">' + escapeHtml(domainSpec) + '</div>';
+      }
+      html += '<div class="pp-exp__meta">' + escapeHtml(meta) + '</div>';
+      if (chips.length) {
+        html += '<div class="pp-exp__chips">';
+        chips.forEach(function (c) {
+          html += '<span class="pp-exp__chip">' + escapeHtml(c) + '</span>';
+        });
+        html += '</div>';
+      }
+      if (e.role_description) {
+        html += '<div class="pp-exp__desc">' + escapeHtml(e.role_description) + '</div>';
+      }
+
+      item.innerHTML = html;
       list.appendChild(item);
     });
     show("ppExpSection");
