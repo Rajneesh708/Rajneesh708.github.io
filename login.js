@@ -1,26 +1,45 @@
 /* ============================================================
-   MECULS — login.js (v=23)
-   Date: 2026-05-05 (cross-user data leak fix session)
+   MECULS — login.js (v=27)
+   Date: 2026-05-08 (login-via-Google-without-register block)
    ============================================================
-   Carried forward from v=22:
+   Carried forward from v=26:
    - Email confirmation flow (?confirmed=1)
    - Password recovery flow (#type=recovery)
    - Floating error toast
    - Captcha integration, password show/hide, rate limiting
-   - Hedged forgot-password message ("If an account exists...")
+   - Hedged forgot-password message
+   - Cross-user data leak fix (MC_STORAGE.wipeMeculsAppDataOnly)
+   - Gmail hint when @gmail.com typed in email field
+   - Google Identity Services (GIS) sign-in flow
 
-   New in v=23:
-   - On successful sign-in, clears any stale MECULS data left
-     in localStorage from a previous user on the same browser
-     BEFORE redirecting to dashboard. This is the critical fix
-     for the cross-user photo-leak bug:
-       Without this, User A signs out → photo data still in
-       localStorage → User B signs in → User B's dashboard
-       loads User A's photo as a "fast cache" hit.
-     With this, MC_STORAGE.wipeMeculsAppDataOnly() runs after
-     authentication succeeds but before the dashboard loads.
-     Auth tokens are deliberately preserved — wiping them would
-     log the user out immediately.
+   New in v=27 — block "Google sign-in for unregistered users":
+   ----------------------------------------------------------
+   PROBLEM IT FIXES:
+     supabase.auth.signInWithIdToken({provider:'google'}) silently
+     CREATES an account if none exists. So a user who clicks
+     "Sign in with Google" on login.html (intending to log in)
+     gets an account auto-created with terms_consent=false,
+     age_18_confirmed=false, etc. — bypassing all consent UI.
+     This is a DPDP/legal problem.
+
+   THE FIX:
+     After signInWithIdToken succeeds, we read the user's
+     terms_consent flag from the profiles table.
+       - If terms_consent === true: legitimate returning user,
+         proceed to dashboard.
+       - If terms_consent === false (or NULL): this Google account
+         has never properly registered. Sign them out immediately
+         and tell them to register via register.html. The orphan
+         auth.users row stays harmless — when they later register
+         via register.html with the same Google account, Supabase
+         recognises the existing auth row and register.js's
+         _writeConsentsForNewUser writes the consents properly.
+
+   WHY check terms_consent (not "is this a new user"):
+     The created_at===updated_at heuristic register.js uses
+     would also flag the orphan-row scenario ABOVE as "new user"
+     on the second registration attempt. Reading terms_consent
+     directly from profiles is the source of truth.
    ============================================================ */
 
 "use strict";
@@ -339,12 +358,77 @@ async function _handleGoogleCredentialResponse(response) {
     return;
   }
 
-  if (!data || !data.session) {
+  if (!data || !data.session || !data.user) {
     showError("Google sign-in succeeded but no session was created. Please try again.");
     return;
   }
 
-  /* Successful sign-in — redirect to dashboard */
+  /* ── v=27 — block unregistered users ──
+     Read terms_consent from the user's profile row to verify
+     this Google account has properly registered through
+     register.html (where consents are collected). If not,
+     sign them out and tell them to register first.
+
+     Why this works:
+       - Properly-registered users have terms_consent=true
+         (set by handle_new_user trigger reading raw_user_meta_data,
+         OR by register.js _writeConsentsForNewUser after Google
+         signup on register.html).
+       - Users who Google-signed-in directly from login.html
+         (the bug we're fixing) have terms_consent=false because
+         no consent UI was ever shown.
+       - The profile row exists either way — handle_new_user
+         creates it on every auth.users INSERT.
+  */
+  const profileCheck = await sb
+    .from("profiles")
+    .select("terms_consent")
+    .eq("user_id", data.user.id)
+    .maybeSingle();
+
+  /* If we couldn't read the profile (RLS, network, etc.), be safe
+     and block the user. They can retry; legitimate users will
+     succeed on retry once the transient issue resolves. */
+  if (profileCheck.error) {
+    console.warn("[login.js] Could not verify profile consents:", profileCheck.error.message);
+    await sb.auth.signOut();
+    showError("Could not verify your account. Please try signing in again, or register a new account.");
+    return;
+  }
+
+  const hasConsents = !!(profileCheck.data && profileCheck.data.terms_consent === true);
+
+  if (!hasConsents) {
+    /* Orphan Google account — never properly registered. Sign them
+       out and direct them to register.html. The auth.users row stays
+       behind harmlessly; when they register properly, register.js
+       handles the existing-row case and writes consents correctly. */
+    await sb.auth.signOut();
+    showError(
+      "No account found for this Google account. " +
+      "Redirecting you to the registration page..."
+    );
+    /* Auto-redirect after 3 seconds so the user isn't stuck staring
+       at an error toast. They land on register.html where they can
+       tick consents and click the same Google button to complete
+       proper registration. */
+    setTimeout(function () {
+      window.location.href = window.location.origin + "/register.html";
+    }, 3000);
+    return;
+  }
+
+  /* Legitimate returning user — wipe stale MECULS data from any
+     previous user on this browser (preserves v=26 cross-user fix),
+     then redirect to dashboard. */
+  if (window.MC_STORAGE && typeof window.MC_STORAGE.wipeMeculsAppDataOnly === "function") {
+    try {
+      window.MC_STORAGE.wipeMeculsAppDataOnly();
+    } catch (e) {
+      console.warn("[login.js] wipeMeculsAppDataOnly failed (non-fatal):", e);
+    }
+  }
+
   window.location.href = window.location.origin + "/dashboard.html";
 }
 

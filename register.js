@@ -1,19 +1,38 @@
 /* ============================================================
-   MECULS — register.js (v=16)
-   Date: 2026-05-05 (final rev)
+   MECULS — register.js (v=20)
+   Date: 2026-05-08 (orphan-recovery for login.js v=27)
    ============================================================
-   Changes vs v=15:
-   - Removed the soft Gmail hint feature. The Google sign-up
-     button is already prominent at the top of the page; users
-     who want it will use it. A nudge that says "no password
-     needed" is misleading for users who aren't already signed
-     into Gmail (they DO need their Google password in that
-     case). Cleaner to omit.
+   Carried forward from v=19:
+   - Soft Gmail hint feature kept removed
+   - emailRedirectTo with ?confirmed=1
+   - Google Identity Services (GIS) sign-up flow
+   - Required-consent gate before Google button enabled
+   - _writeConsentsForNewUser writes consent flags after Google
+     sign-up (since signInWithIdToken can't pass arbitrary metadata)
 
-   Carried forward from v=15:
-   - emailRedirectTo appends "?confirmed=1" so login.js can
-     detect a user arriving from the email-confirmation link
-     and route them through proper "please sign in" flow
+   New in v=20 — orphan-recovery support:
+   ----------------------------------------------------------
+   PROBLEM IT FIXES:
+     login.js v=27 blocks Google sign-in on login.html for users
+     who haven't properly registered. It signs them out and
+     redirects them to register.html. When they then click
+     Google sign-in HERE on register.html with consents ticked,
+     supabase.auth.signInWithIdToken recognises the existing
+     auth.users row (created during their attempted login).
+     `data.user.created_at` is from the failed login attempt
+     and `data.user.updated_at` is from now — more than 5
+     seconds apart. The old `isFreshSignup` heuristic in
+     _writeConsentsForNewUser would say "this is a returning
+     user, don't write consents", leaving terms_consent=false
+     and trapping them in an infinite redirect loop.
+
+   THE FIX:
+     The check is now "fresh signup OR existing user with
+     empty consents". If terms_consent is currently false in
+     the profiles row, we treat this as the user's first
+     proper consent collection and write the values. If
+     terms_consent is already true, we leave them alone
+     (genuine returning user — consents already valid).
    ============================================================ */
 
 "use strict";
@@ -284,28 +303,49 @@ async function _generateNoncePair() {
 }
 
 async function _writeConsentsForNewUser(user) {
-  /* For first-time Google sign-ups, write consent flags to the
-     profiles table. The handle_new_user trigger will have already
-     created the profile row when auth.users got the new entry —
-     we just need to populate the consent columns now. We DON'T
-     overwrite existing rows for returning users. */
+  /* For Google sign-ups via register.html, write consent flags to
+     the profiles table. The handle_new_user trigger creates the
+     profile row when auth.users got the new entry — we just need
+     to populate the consent columns now.
+
+     v=20 logic: "fresh signup OR orphan row".
+     ----------------------------------------------
+     We read terms_consent FIRST to decide whether to write:
+       - terms_consent = true   → genuine returning user, leave alone
+       - terms_consent = false  → either a fresh signup OR an orphan
+                                  row from a blocked login.html
+                                  attempt. Either way, this is the
+                                  user's first proper consent
+                                  collection, so we write the values.
+       - terms_consent = null   → same as false (treat as not-yet-
+                                  consented). Defensive against
+                                  schema variations.
+
+     This replaces the old created_at/updated_at heuristic, which
+     incorrectly classified orphan-row second attempts as "returning
+     users" and skipped writing consents.
+  */
   if (!user || !user.id) return;
 
-  /* Heuristic: if created_at and updated_at are within 5 seconds of
-     each other, this is a fresh signup. Otherwise it's a returning
-     user we shouldn't overwrite consents for. */
-  const created = new Date(user.created_at).getTime();
-  const updated = new Date(user.updated_at || user.created_at).getTime();
-  const isFreshSignup = Math.abs(updated - created) < 5000;
+  /* Step 1 — Read current consent state */
+  const { data: existingProfile, error: fetchErr } = await sb
+    .from("profiles")
+    .select("terms_consent")
+    .eq("user_id", user.id)
+    .maybeSingle();
 
-  if (!isFreshSignup) {
-    /* Returning user — leave their existing consents alone */
+  if (fetchErr) {
+    console.warn("[register.js] Could not read existing consents (proceeding to write):", fetchErr.message);
+    /* If we can't read, fall through to write — the alternative
+       is leaving the user stuck without consents, which is worse. */
+  }
+
+  /* Returning user with consents already valid — leave alone */
+  if (existingProfile && existingProfile.terms_consent === true) {
     return;
   }
 
-  /* Build the consent payload — same shape as buildConsentMetadata
-     but with the values direct (no full_name, no user_type — those
-     are set elsewhere, full_name comes from Google's id_token). */
+  /* Build the consent payload from what the user just ticked */
   const consentPayload = {
     terms_consent       : !!consentTerms.checked,
     age_18_confirmed    : !!consentAge.checked,
