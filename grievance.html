@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grievance Officer — MECULS</title>
+  <meta name="description" content="MECULS Grievance Officer contact details under India's Digital Personal Data Protection Act, 2023.">
+
+  <!-- ============================================================
+       MECULS — grievance.html
+       Date: 2026-05-09
+       Cache buster: v=1
+       ============================================================
+       Public-facing page that names the Grievance Officer and
+       lists contact details, response timelines, and escalation
+       path. Required by India's Digital Personal Data Protection
+       Act, 2023 (DPDP Act, sec. 8(10) and rules thereunder).
+
+       Design language matches settings.html / goodbye.html:
+       navy topbar, cream content surface, EB Garamond + Jost.
+
+       When grievance@meculs.com mailbox is set up later, change
+       the single line marked "TODO: switch to grievance@" below.
+       ============================================================ -->
+
+  <link rel="icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── Brand tokens — synced with rest of site ────────────── */
+    :root {
+      --blue-900:  #0c1a2e;
+      --gold:        #c8973d;
+      --gold-light:  #ddb060;
+      --gold-pale:   #eecb88;
+      --surface:     #f6f4ef;
+      --surface-2:   #ffffff;
+      --border:      #dedad3;
+      --border-soft: #ede9e2;
+      --hairline-gold: rgba(200,151,61,0.22);
+      --hairline-gold-strong: rgba(200,151,61,0.5);
+      --text-h:      #161412;
+      --text-body:   #3d3830;
+      --text-soft:   #6e6860;
+      --text-muted:  #9c9590;
+      --on-dark-mid: rgba(255,255,255,0.78);
+      --serif: 'EB Garamond', Georgia, serif;
+      --sans:  'Jost', system-ui, sans-serif;
+      --content-max: 760px;
+      --topbar-h: 56px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      background: var(--surface);
+      color: var(--text-body);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.65;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .gv-page { min-height: 100vh; display: flex; flex-direction: column; }
+
+    /* ── Topbar (navy, like other pages) ─────────────────────── */
+    .gv-top {
+      height: var(--topbar-h);
+      background: var(--blue-900);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .gv-top::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, var(--gold) 25%,
+                                        var(--gold-pale) 60%, transparent 100%);
+      opacity: 0.6;
+    }
+    .gv-top__inner {
+      max-width: var(--content-max);
+      margin: 0 auto;
+      height: 100%;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .gv-top__brand {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .gv-top__logo { height: 28px; width: auto; display: block; }
+    .gv-top__brand-text {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      color: var(--gold-light);
+      letter-spacing: 0.04em;
+    }
+    .gv-top__back {
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      color: var(--on-dark-mid);
+      text-decoration: none;
+      padding: 7px 14px;
+      border-radius: 4px;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .gv-top__back:hover {
+      background: rgba(200, 151, 61, 0.10);
+      color: var(--gold-pale);
+      border-color: rgba(180,140,50,0.25);
+    }
+
+    /* ── Header ──────────────────────────────────────────────── */
+    .gv-header {
+      max-width: var(--content-max);
+      margin: 0 auto;
+      padding: 56px 32px 24px;
+      width: 100%;
+    }
+    .gv-eyebrow {
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .gv-title {
+      font-family: var(--serif);
+      font-size: 2.4rem;
+      font-weight: 500;
+      color: var(--text-h);
+      letter-spacing: -0.012em;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+    .gv-lede {
+      font-family: var(--serif);
+      font-size: 1.18rem;
+      color: var(--text-body);
+      line-height: 1.7;
+      font-style: italic;
+    }
+
+    /* ── Main content ────────────────────────────────────────── */
+    .gv-main {
+      flex: 1;
+      max-width: var(--content-max);
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 32px 80px;
+    }
+
+    .gv-section {
+      margin-top: 48px;
+      scroll-margin-top: calc(var(--topbar-h) + 24px);
+    }
+    .gv-section__heading {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-h);
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--hairline-gold);
+      letter-spacing: -0.005em;
+    }
+    .gv-section p {
+      margin-bottom: 14px;
+      max-width: 70ch;
+    }
+    .gv-section p:last-child { margin-bottom: 0; }
+
+    /* ── Officer card ────────────────────────────────────────── */
+    .gv-officer {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 28px 32px;
+      margin-top: 8px;
+    }
+    .gv-officer__row {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 20px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border-soft);
+      align-items: baseline;
+    }
+    .gv-officer__row:first-child { padding-top: 0; }
+    .gv-officer__row:last-child { padding-bottom: 0; border-bottom: 0; }
+    .gv-officer__label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .gv-officer__value {
+      font-size: 1rem;
+      color: var(--text-h);
+      font-weight: 500;
+    }
+    .gv-officer__value a {
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid var(--hairline-gold);
+      padding-bottom: 1px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .gv-officer__value a:hover {
+      color: var(--text-h);
+      border-bottom-color: var(--gold);
+    }
+    .gv-officer__value--name {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+
+    /* ── Timeline list ──────────────────────────────────────── */
+    .gv-timeline {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 8px 28px;
+      margin-top: 8px;
+    }
+    .gv-timeline__item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 20px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border-soft);
+      align-items: baseline;
+    }
+    .gv-timeline__item:last-child { border-bottom: 0; }
+    .gv-timeline__when {
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+    }
+    .gv-timeline__what {
+      font-size: 0.95rem;
+      color: var(--text-body);
+      line-height: 1.6;
+    }
+    .gv-timeline__what strong { color: var(--text-h); font-weight: 600; }
+
+    /* ── Subtle note ────────────────────────────────────────── */
+    .gv-note {
+      background: var(--surface-2);
+      border-left: 3px solid var(--gold);
+      padding: 16px 20px;
+      margin-top: 16px;
+      font-size: 0.92rem;
+      color: var(--text-soft);
+      line-height: 1.6;
+    }
+    .gv-note strong { color: var(--text-h); }
+
+    /* ── Footer ─────────────────────────────────────────────── */
+    .gv-footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 32px;
+      max-width: var(--content-max);
+      margin: 0 auto;
+      width: 100%;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .gv-footer a {
+      color: var(--text-soft);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .gv-footer a:hover {
+      color: var(--gold);
+      border-bottom-color: var(--hairline-gold);
+    }
+
+    /* ── Mobile ─────────────────────────────────────────────── */
+    @media (max-width: 720px) {
+      .gv-header { padding: 36px 20px 20px; }
+      .gv-title { font-size: 1.9rem; }
+      .gv-lede { font-size: 1.05rem; }
+      .gv-main { padding: 0 20px 56px; }
+      .gv-officer { padding: 20px 18px; }
+      .gv-officer__row { grid-template-columns: 1fr; gap: 4px; }
+      .gv-officer__label { font-size: 0.72rem; }
+      .gv-timeline { padding: 4px 18px; }
+      .gv-timeline__item { grid-template-columns: 1fr; gap: 4px; }
+      .gv-section__heading { font-size: 1.3rem; }
+      .gv-top__inner { padding: 0 20px; }
+      .gv-top__back { font-size: 0.82rem; padding: 6px 10px; }
+      .gv-footer { padding: 24px 20px; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="gv-page">
+
+  <!-- Topbar -->
+  <header class="gv-top">
+    <div class="gv-top__inner">
+      <a href="https://meculs.com/" class="gv-top__brand" aria-label="MECULS home">
+        <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS"
+             class="gv-top__logo"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+        <span class="gv-top__brand-text" style="display:none">MECULS</span>
+      </a>
+      <a href="https://meculs.com/" class="gv-top__back">← Back to home</a>
+    </div>
+  </header>
+
+  <!-- Page header -->
+  <header class="gv-header">
+    <div class="gv-eyebrow">Data protection</div>
+    <h1 class="gv-title">Grievance Officer</h1>
+    <p class="gv-lede">
+      Under India's Digital Personal Data Protection Act, 2023, every organisation
+      that processes personal data must designate a Grievance Officer to address
+      privacy-related concerns. If you believe your data has been mishandled,
+      this is the person to write to.
+    </p>
+  </header>
+
+  <main class="gv-main">
+
+    <!-- Officer details -->
+    <section class="gv-section">
+      <h2 class="gv-section__heading">Officer details</h2>
+
+      <div class="gv-officer">
+        <div class="gv-officer__row">
+          <div class="gv-officer__label">Name</div>
+          <div class="gv-officer__value gv-officer__value--name">Rajneesh Jain</div>
+        </div>
+        <div class="gv-officer__row">
+          <div class="gv-officer__label">Role</div>
+          <div class="gv-officer__value">Founder &amp; Grievance Officer, MECULS</div>
+        </div>
+        <div class="gv-officer__row">
+          <div class="gv-officer__label">Email</div>
+          <div class="gv-officer__value">
+            <!-- TODO: switch to grievance@meculs.com once the alias is set up -->
+            <a href="mailto:Jain.Rajneesh@meculs.com">Jain.Rajneesh@meculs.com</a>
+          </div>
+        </div>
+        <div class="gv-officer__row">
+          <div class="gv-officer__label">Phone</div>
+          <div class="gv-officer__value">
+            <a href="tel:+919911220922">+91 99112 20922</a>
+          </div>
+        </div>
+        <div class="gv-officer__row">
+          <div class="gv-officer__label">Postal address</div>
+          <div class="gv-officer__value" style="font-weight:400; color:var(--text-soft);">
+            Available on request via email.
+          </div>
+        </div>
+      </div>
+
+      <div class="gv-note">
+        <strong>When writing,</strong> please include your registered email
+        address, a brief description of your concern, and any reference numbers
+        or screenshots that help us locate the relevant data. This helps us
+        respond faster and more accurately.
+      </div>
+    </section>
+
+    <!-- What to write about -->
+    <section class="gv-section">
+      <h2 class="gv-section__heading">What you can write to us about</h2>
+      <p>You can contact the Grievance Officer about any concern relating to
+         your personal data on MECULS, including:</p>
+      <ul style="margin: 14px 0 14px 22px; color: var(--text-body); line-height: 1.8;">
+        <li>Requesting a copy of the personal data we hold about you</li>
+        <li>Correcting inaccurate or outdated information in your profile</li>
+        <li>Withdrawing your consent for any specific processing activity</li>
+        <li>Asking for your account and data to be permanently deleted</li>
+        <li>Raising a concern about how your data is being used or shared</li>
+        <li>Reporting suspected misuse of MECULS by another user</li>
+        <li>Any other privacy-related question or complaint</li>
+      </ul>
+      <p>Many of these can also be done directly inside your account, under
+         <a href="settings.html" style="color:var(--gold); text-decoration:none; border-bottom:1px solid var(--hairline-gold);">Settings</a>.
+         The Grievance Officer is here for anything that can't be resolved
+         through self-service, or for formal complaints.</p>
+    </section>
+
+    <!-- Response timeline -->
+    <section class="gv-section">
+      <h2 class="gv-section__heading">Our response timeline</h2>
+      <p>We take privacy concerns seriously. Here's what you can expect after
+         you write to the Grievance Officer:</p>
+
+      <div class="gv-timeline">
+        <div class="gv-timeline__item">
+          <div class="gv-timeline__when">Within 48 hours</div>
+          <div class="gv-timeline__what">
+            <strong>Acknowledgement.</strong> We confirm we received your
+            grievance and assign it a tracking reference. If we need
+            additional information from you, we ask for it at this stage.
+          </div>
+        </div>
+        <div class="gv-timeline__item">
+          <div class="gv-timeline__when">Within 30 days</div>
+          <div class="gv-timeline__what">
+            <strong>Resolution.</strong> We investigate and respond with a
+            decision or action. For complex issues that need more time, we
+            tell you why and give a revised date — but we will not leave
+            you without an update.
+          </div>
+        </div>
+        <div class="gv-timeline__item">
+          <div class="gv-timeline__when">After resolution</div>
+          <div class="gv-timeline__what">
+            <strong>Closure.</strong> If you're satisfied, we close the
+            grievance. If not, we explain your escalation options
+            (see below).
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Escalation -->
+    <section class="gv-section">
+      <h2 class="gv-section__heading">If you're not satisfied with our response</h2>
+      <p>If we fail to address your grievance within the timelines above, or
+         if you disagree with our resolution, you may escalate to the
+         <strong>Data Protection Board of India</strong>, the regulator
+         established under the DPDP Act, 2023.</p>
+      <p>Details of the Data Protection Board, including its current
+         contact information and complaint procedure, are available on the
+         official Government of India publication once notified. Until the
+         Board is fully operational, you may also reach out to the
+         <a href="https://www.meity.gov.in" target="_blank" rel="noopener"
+            style="color:var(--gold); text-decoration:none; border-bottom:1px solid var(--hairline-gold);">Ministry
+         of Electronics and Information Technology (MeitY)</a>.</p>
+    </section>
+
+    <!-- Last updated -->
+    <section class="gv-section">
+      <h2 class="gv-section__heading">About this page</h2>
+      <p>This page was last reviewed on <strong>9 May 2026</strong>. We
+         update it whenever the named officer, contact details, or response
+         commitments change. The most current version always lives at
+         <a href="https://meculs.com/grievance.html" style="color:var(--gold); text-decoration:none; border-bottom:1px solid var(--hairline-gold);">meculs.com/grievance.html</a>.</p>
+      <p>For our broader privacy practices, please see our
+         <a href="https://www.meculs.com/privacy-policy" target="_blank" rel="noopener"
+            style="color:var(--gold); text-decoration:none; border-bottom:1px solid var(--hairline-gold);">Privacy
+         Policy</a> and
+         <a href="https://www.meculs.com/terms" target="_blank" rel="noopener"
+            style="color:var(--gold); text-decoration:none; border-bottom:1px solid var(--hairline-gold);">Terms
+         of Service</a>.</p>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="gv-footer">
+    <div>&copy; 2026 MECULS. All rights reserved.</div>
+    <div>
+      <a href="https://www.meculs.com/privacy-policy" target="_blank" rel="noopener">Privacy</a>
+      &nbsp;·&nbsp;
+      <a href="https://www.meculs.com/terms" target="_blank" rel="noopener">Terms</a>
+      &nbsp;·&nbsp;
+      <a href="grievance.html">Grievance Officer</a>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>
