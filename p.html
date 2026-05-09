@@ -5,34 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- ============================================================
-       MECULS — p.html  (Public Profile renderer) — Round 3 (Redesign)
+       MECULS — p.html  (Public Profile renderer) — Round 4
        Date: 2026-05-09
        ============================================================
-       FULL REDESIGN. Built from a written design intent, not from
-       turn-by-turn iteration.
+       LIGHT-THEME REDESIGN. Matches dashboard.html visual language:
+         - Cream surface (#f6f4ef) for body content
+         - Navy hero band (#0c1a2e) with gold accents for "name plate"
+         - Navy header (#0c1a2e) — logo is white, sits naturally
+         - EB Garamond + Jost (same fonts as dashboard)
+         - Gold #c8973d accents (matching dashboard --gold)
+         - Dark text #161412 / #3d3830 / #6e6860 hierarchy
 
-       Reference anchors (style only, not copying):
-         - Stripe Press / Stripe About: typographic confidence,
-           generous whitespace, content speaks for itself
-         - Read.cv: profile rhythm, no chips, no parsing-required labels
-         - Pitchfork long-reads: serif headline + sans body editorial pairing
+       Architecture: hero is a full-bleed navy band right under the
+       header. Below the hero, content sits on cream like a printed
+       CV. The two zones are visually distinct — hero is "the person",
+       content is "their work".
 
-       What MECULS adds: dark navy + gold palette, Cormorant Garamond
-       for names/headings, hairline gold dividers, gold-caps eyebrow.
+       SECTIONS rendered (all from get_public_profile RPC):
+         Hero: photo, category, name, position@company, location/years,
+               headline, status badges
+         About (introduction.summary)
+         Experience (sanitised, salary stripped server-side)
+         Education (current + past)
+         Skills (grouped by category, falls back to skills_top5)
+         Key Achievements
+         Certifications
+         Publications
+         Portfolio (only show_on_profile items)
+         Languages + Awards + Public Links
+         Volunteering
+         Consulting (full details if availability_status active)
+         Mentorship (full details if roles non-empty)
+         CTA — Get in touch
+         Footer
 
-       Hard rules (no exceptions):
-         - No chips anywhere
-         - No boxes around content
-         - No labels on skills lists
-         - Project Ask / My role / Outcome each on its own line, gold label
-         - Hero name dominates (3.2rem serif)
-         - Position-at-Company is the second-strongest line, gold
-         - Headline LAST in hero, italic serif, full-width, no bar
+       HARD RULES (no exceptions):
+         - No chips, no boxes around content
+         - Project Ask / My role / Outcome each on own line, gold label
+         - "25 years of experience" — never "25 years" alone
+         - Headline LAST in hero, italic serif, no bar
+         - Skills as middle-dot lists, no labels on rows
        ============================================================ -->
 
   <title>Profile — MECULS</title>
 
-  <!-- Open Graph (placeholder — populated by JS once profile loads) -->
   <meta property="og:type" content="profile">
   <meta property="og:site_name" content="MECULS">
   <meta property="og:title" id="ogTitle" content="Profile — MECULS">
@@ -41,36 +57,62 @@
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fjxcphhhddfwrlkpshyw.supabase.co">
 
   <style>
     /* ─────────────────────────────────────────────────────────
-       BRAND TOKENS
+       BRAND TOKENS — synced with dashboard.html
     ───────────────────────────────────────────────────────── */
     :root {
-      --ink-deep:  #0b1426;
-      --ink:       #0f1a30;
-      --ink-soft:  #1a2640;
-      --gold:      #c9a84c;
-      --gold-soft: #d4b86a;
-      --paper:     #f4f0e6;
-      --text:      #e8ecf3;
-      --text-dim:  #c4ccda;
-      --text-muted:#8a92a6;
-      --hairline:  rgba(212, 184, 106, 0.18);
-      --hairline-strong: rgba(212, 184, 106, 0.32);
-      --shadow-1:  0 12px 32px rgba(0, 0, 0, 0.32);
-      --serif:     "Cormorant Garamond", Georgia, serif;
-      --sans:      "Archivo", "Inter", system-ui, sans-serif;
-    }
+      /* Navy palette (header, hero band) */
+      --blue-950:  #070d18;
+      --blue-900:  #0c1a2e;
+      --blue-800:  #102238;
+      --blue-700:  #152c48;
+      --blue-border: rgba(255,255,255,0.08);
+      --blue-border-gold: rgba(180,140,50,0.25);
 
-    @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Archivo:wght@400;500;600;700&display=swap");
+      /* Gold */
+      --gold:        #c8973d;
+      --gold-light:  #ddb060;
+      --gold-pale:   #eecb88;
+
+      /* Cream surface (content) */
+      --surface:     #f6f4ef;
+      --surface-2:   #ffffff;
+      --border:      #dedad3;
+      --border-soft: #ede9e2;
+      --hairline-gold: rgba(200,151,61,0.22);
+      --hairline-gold-strong: rgba(200,151,61,0.5);
+
+      /* Text on light */
+      --text-h:      #161412;
+      --text-body:   #3d3830;
+      --text-soft:   #6e6860;
+      --text-muted:  #9c9590;
+
+      /* Text on dark (hero band) */
+      --on-dark-high:   rgba(255,255,255,0.96);
+      --on-dark-mid:    rgba(255,255,255,0.78);
+      --on-dark-low:    rgba(255,255,255,0.62);
+      --on-dark-muted:  rgba(255,255,255,0.45);
+
+      --serif: 'EB Garamond', Georgia, serif;
+      --sans:  'Jost', system-ui, sans-serif;
+
+      --shadow-photo: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255,255,255,0.05);
+
+      --content-max: 880px;
+    }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     html, body {
-      background: var(--ink-deep);
-      color: var(--text-dim);
+      background: var(--surface);
+      color: var(--text-body);
       font-family: var(--sans);
       font-size: 16px;
       line-height: 1.6;
@@ -78,49 +120,212 @@
       -moz-osx-font-smoothing: grayscale;
     }
 
-    /* PAGE SHELL */
     .pp-page {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
 
-    /* NAV — minimal, just the logo */
-    .pp-nav {
-      padding: 20px 32px;
-      border-bottom: 1px solid var(--hairline);
-      background: var(--ink);
+    /* ─────────────────────────────────────────────────────────
+       HEADER — matches dashboard topbar but full-width-bleed
+    ───────────────────────────────────────────────────────── */
+    .pp-header {
+      background: var(--blue-900);
+      border-bottom: 1px solid var(--blue-border);
+      position: relative;
     }
-    .pp-nav__brand {
-      font-family: var(--serif);
-      font-weight: 600;
-      font-size: 1.4rem;
-      color: var(--gold);
-      letter-spacing: 0.02em;
-      text-decoration: none;
-      display: inline-flex;
+    .pp-header::after {
+      /* gold accent rule below header */
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        var(--gold) 25%,
+        var(--gold-pale) 60%,
+        transparent 100%
+      );
+      opacity: 0.6;
+    }
+    .pp-header__inner {
+      max-width: var(--content-max);
+      margin: 0 auto;
+      padding: 18px 32px;
+      display: flex;
       align-items: center;
     }
-    .pp-nav__logo {
-      height: 32px;
+    .pp-header__brand {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .pp-header__logo {
+      height: 30px;
       width: auto;
       display: block;
     }
-    .pp-nav__brand-text {
+    .pp-header__brand-text {
       font-family: var(--serif);
-      color: var(--gold);
+      font-size: 1.4rem;
+      color: var(--gold-light);
+      letter-spacing: 0.04em;
     }
 
-    /* MAIN FRAME */
+    /* ═════════════════════════════════════════════════════════
+       HERO BAND — full-bleed navy, contains the "name plate"
+       Photo + name + position + location + headline live here.
+       Visually distinct from the cream content below.
+       ═════════════════════════════════════════════════════════ */
+    .pp-hero-band {
+      background: var(--blue-900);
+      background-image:
+        radial-gradient(
+          ellipse 800px 400px at 0% 0%,
+          rgba(200, 151, 61, 0.10) 0%,
+          transparent 60%
+        );
+      padding: 64px 0 72px;
+      border-bottom: 1px solid var(--blue-border);
+    }
+    .pp-hero {
+      max-width: var(--content-max);
+      margin: 0 auto;
+      padding: 0 32px;
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .pp-hero__photo {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--gold);
+      box-shadow: var(--shadow-photo);
+      background: var(--blue-800);
+    }
+    .pp-hero__avatar {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 3px solid var(--gold);
+      background: linear-gradient(135deg, var(--blue-700), var(--blue-900));
+      box-shadow: var(--shadow-photo);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-light);
+      font-family: var(--serif);
+      font-size: 3.6rem;
+      font-weight: 600;
+      user-select: none;
+    }
+    .pp-hero__photo[hidden],
+    .pp-hero__avatar[hidden] {
+      display: none !important;
+    }
+
+    /* Eyebrow — gold caps category */
+    .pp-hero__category {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 14px;
+    }
+    /* Name — DOMINATES, white serif */
+    .pp-hero__name {
+      font-family: var(--serif);
+      font-size: 3.4rem;
+      font-weight: 500;
+      color: var(--on-dark-high);
+      letter-spacing: -0.012em;
+      line-height: 1.02;
+      margin-bottom: 14px;
+    }
+    /* Position at Company — gold light, second-strongest */
+    .pp-hero__current-position {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-style: italic;
+      color: var(--gold-pale);
+      font-weight: 400;
+      line-height: 1.4;
+      margin-bottom: 12px;
+    }
+    /* Bio meta — Location · Years of experience */
+    .pp-hero__bio-line {
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      color: var(--on-dark-mid);
+      line-height: 1.5;
+      margin-bottom: 22px;
+      letter-spacing: 0.01em;
+    }
+    .pp-hero__bio-line .pp-hero__sep {
+      color: var(--on-dark-muted);
+      margin: 0 12px;
+    }
+    /* Headline — italic serif, last position, max-width for readability */
+    .pp-hero__headline {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--on-dark-mid);
+      line-height: 1.65;
+      max-width: 60ch;
+      margin-bottom: 24px;
+      font-weight: 400;
+    }
+    /* Hidden helpers (legacy DOM compat) */
+    .pp-hero__location[hidden],
+    .pp-hero__meta[hidden] { display: none; }
+
+    /* Status badges — gold tint pills, only place pills are allowed */
+    .pp-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .pp-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      background: rgba(200, 151, 61, 0.14);
+      color: var(--gold-pale);
+      border: 1px solid var(--blue-border-gold);
+    }
+    .pp-badge::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #6dd3a1;
+    }
+
+    /* ═════════════════════════════════════════════════════════
+       CONTENT AREA — cream surface, dark text
+       ═════════════════════════════════════════════════════════ */
     .pp-main {
       flex: 1;
-      max-width: 820px;
+      max-width: var(--content-max);
       width: 100%;
       margin: 0 auto;
       padding: 64px 32px 96px;
     }
 
-    /* STATES */
+    /* Loading / error states */
     .pp-state {
       text-align: center;
       padding: 96px 20px;
@@ -128,25 +333,27 @@
     .pp-state__title {
       font-family: var(--serif);
       font-weight: 500;
-      font-size: 1.8rem;
-      color: var(--text);
+      font-size: 1.9rem;
+      color: var(--text-h);
       margin-bottom: 10px;
     }
     .pp-state__msg {
+      font-family: var(--sans);
       font-size: 1rem;
-      color: var(--text-muted);
+      color: var(--text-soft);
     }
     .pp-checklist {
-      max-width: 440px;
+      max-width: 460px;
       margin: 36px auto 0;
       padding: 28px 32px;
-      background: var(--ink);
-      border: 1px solid var(--hairline);
-      border-radius: 12px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
       text-align: left;
     }
     .pp-checklist__heading {
-      font-size: 0.78rem;
+      font-family: var(--sans);
+      font-size: 0.76rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--gold);
@@ -159,8 +366,9 @@
       align-items: center;
       gap: 14px;
       padding: 9px 0;
+      font-family: var(--sans);
       font-size: 0.95rem;
-      color: var(--text-dim);
+      color: var(--text-body);
     }
     .pp-check {
       width: 18px;
@@ -182,163 +390,51 @@
       top: 1px;
       width: 5px;
       height: 10px;
-      border-right: 2px solid var(--ink-deep);
-      border-bottom: 2px solid var(--ink-deep);
+      border-right: 2px solid #fff;
+      border-bottom: 2px solid #fff;
       transform: rotate(45deg);
     }
     .pp-checklist__item.done {
       color: var(--text-muted);
       text-decoration: line-through;
-      text-decoration-color: var(--hairline);
+      text-decoration-color: var(--border);
     }
 
-    /* ═══════════════════════════════════════════════════════════
-       HERO
-       ═══════════════════════════════════════════════════════════ */
-    .pp-hero {
-      display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 40px;
-      align-items: center;
+    /* Section — cream, dark text. Editorial hierarchy. */
+    .pp-section {
       margin-bottom: 56px;
-      padding-bottom: 40px;
-      border-bottom: 1px solid var(--hairline);
     }
-    .pp-hero__photo {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid var(--gold);
-      box-shadow: var(--shadow-1);
-      background: var(--ink-soft);
-    }
-    .pp-hero__avatar {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      border: 2px solid var(--gold);
-      background: linear-gradient(135deg, var(--ink-soft), var(--ink));
-      box-shadow: var(--shadow-1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--gold);
-      font-family: var(--serif);
-      font-size: 3.2rem;
-      font-weight: 600;
-      user-select: none;
-    }
-    .pp-hero__photo[hidden],
-    .pp-hero__avatar[hidden] {
-      display: none !important;
-    }
-
-    .pp-hero__category {
-      font-size: 0.78rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--gold);
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-    .pp-hero__name {
-      font-family: var(--serif);
-      font-size: 3.2rem;
-      font-weight: 600;
-      color: var(--text);
-      letter-spacing: -0.015em;
-      line-height: 1.0;
-      margin-bottom: 14px;
-    }
-    .pp-hero__current-position {
-      font-size: 1.3rem;
-      color: var(--gold);
-      font-weight: 500;
-      line-height: 1.35;
-      margin-bottom: 10px;
-    }
-    .pp-hero__bio-line {
-      font-size: 0.92rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-      margin-bottom: 24px;
-    }
-    .pp-hero__bio-line .pp-hero__sep {
-      color: var(--hairline-strong);
-      margin: 0 10px;
-    }
-    .pp-hero__headline {
-      font-family: var(--serif);
-      font-size: 1.15rem;
-      font-style: italic;
-      color: var(--text-dim);
-      line-height: 1.7;
-      max-width: 64ch;
-      margin-bottom: 22px;
-    }
-    .pp-hero__location[hidden],
-    .pp-hero__meta[hidden] { display: none; }
-
-    /* Status badges — only place where soft pills are allowed */
-    .pp-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .pp-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 6px 13px;
-      border-radius: 999px;
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.02em;
-      background: rgba(201, 168, 76, 0.10);
-      color: var(--gold);
-      border: 1px solid var(--hairline);
-    }
-    .pp-badge::before {
-      content: "";
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #58c896;
-    }
-
-    /* SECTIONS */
-    .pp-section { margin-bottom: 56px; }
     .pp-section:last-of-type { margin-bottom: 0; }
     .pp-section__heading {
-      font-size: 0.82rem;
+      font-family: var(--sans);
+      font-size: 0.78rem;
       font-weight: 600;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--gold);
       padding-bottom: 12px;
-      margin-bottom: 24px;
-      border-bottom: 1px solid var(--hairline);
+      margin-bottom: 28px;
+      border-bottom: 1px solid var(--hairline-gold);
     }
 
-    /* ABOUT */
+    /* About — flowing serif, comfortable read */
     .pp-bio {
       font-family: var(--serif);
-      font-size: 1.18rem;
+      font-size: 1.25rem;
       font-weight: 400;
       line-height: 1.7;
-      color: var(--text);
+      color: var(--text-h);
       white-space: pre-wrap;
       max-width: 64ch;
     }
 
-    /* ═══════════════════════════════════════════════════════════
-       EXPERIENCE
-       ═══════════════════════════════════════════════════════════ */
+    /* ═════════════════════════════════════════════════════════
+       EXPERIENCE — gold-dot timeline, no chips, no boxes
+       ═════════════════════════════════════════════════════════ */
     .pp-exp {
       position: relative;
       padding-left: 32px;
-      border-left: 2px solid var(--hairline);
+      border-left: 1px solid var(--hairline-gold);
     }
     .pp-exp__item {
       position: relative;
@@ -348,63 +444,66 @@
     .pp-exp__item::before {
       content: "";
       position: absolute;
-      left: -39px;
-      top: 10px;
+      left: -38px;
+      top: 8px;
       width: 12px;
       height: 12px;
       border-radius: 50%;
       background: var(--gold);
-      border: 3px solid var(--ink-deep);
+      border: 3px solid var(--surface);
     }
-
     .pp-exp__role {
       font-family: var(--serif);
-      font-size: 1.6rem;
+      font-size: 1.7rem;
       font-weight: 600;
-      color: var(--text);
+      color: var(--text-h);
       line-height: 1.2;
-      letter-spacing: -0.01em;
+      letter-spacing: -0.005em;
       margin-bottom: 4px;
     }
     .pp-exp__company {
+      font-family: var(--sans);
       font-size: 1.1rem;
       color: var(--gold);
-      font-weight: 500;
+      font-weight: 600;
       line-height: 1.4;
       margin-bottom: 4px;
     }
     .pp-exp__dateloc {
-      font-size: 0.88rem;
-      color: var(--text-muted);
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      color: var(--text-soft);
       line-height: 1.5;
       margin-bottom: 14px;
     }
     .pp-exp__sep {
-      color: var(--hairline-strong);
+      color: var(--text-muted);
       margin: 0 10px;
     }
     .pp-exp__what {
-      font-size: 0.95rem;
-      color: var(--text-dim);
+      font-family: var(--sans);
+      font-size: 0.96rem;
+      color: var(--text-body);
       line-height: 1.55;
       margin-bottom: 18px;
     }
     .pp-exp__desc {
+      font-family: var(--sans);
       font-size: 0.96rem;
-      color: var(--text-dim);
+      color: var(--text-body);
       line-height: 1.75;
       white-space: pre-wrap;
       margin-bottom: 22px;
       max-width: 64ch;
     }
-
-    /* Projects — NO box. Whitespace separation. */
+    /* Projects — NO box. Whitespace only. */
     .pp-exp__projects {
-      margin-top: 22px;
+      margin-top: 24px;
       margin-bottom: 22px;
     }
     .pp-exp__projects-label {
-      font-size: 0.78rem;
+      font-family: var(--sans);
+      font-size: 0.74rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--gold);
@@ -414,19 +513,21 @@
     .pp-exp__project { margin-bottom: 22px; }
     .pp-exp__project:last-child { margin-bottom: 0; }
     .pp-exp__project-header {
+      font-family: var(--sans);
       font-size: 0.96rem;
-      color: var(--text-muted);
+      color: var(--text-soft);
       line-height: 1.55;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
     .pp-exp__project-name {
-      color: var(--text);
+      color: var(--text-h);
       font-weight: 600;
     }
-    /* Each project field on its own line, gold bold label */
+    /* Each Ask/Role/Outcome on own line, gold bold label */
     .pp-exp__project-line {
+      font-family: var(--sans);
       font-size: 0.93rem;
-      color: var(--text-dim);
+      color: var(--text-body);
       line-height: 1.7;
       margin-top: 4px;
       max-width: 64ch;
@@ -436,40 +537,34 @@
       font-weight: 600;
       margin-right: 6px;
     }
-
     /* Skills row — middle-dot, no label */
     .pp-exp__skills-line {
+      font-family: var(--sans);
       font-size: 0.92rem;
-      color: var(--text-dim);
+      color: var(--text-body);
       line-height: 1.7;
       margin-top: 18px;
       max-width: 64ch;
     }
-    .pp-exp__skills-sep { color: var(--hairline-strong); }
-
-    /* Hide legacy Experience classes */
-    .pp-exp__line,
-    .pp-exp__headline,
-    .pp-exp__domain,
-    .pp-exp__industry-function,
-    .pp-exp__function,
-    .pp-exp__meta,
-    .pp-exp__chips,
-    .pp-exp__skills,
-    .pp-exp__skill-row,
-    .pp-exp__tagline,
-    .pp-exp__project-body,
-    .pp-exp__skills-label,
-    .pp-exp__project-meta {
+    .pp-exp__skills-sep {
+      color: var(--gold);
+      opacity: 0.5;
+    }
+    /* Hide legacy classes */
+    .pp-exp__line, .pp-exp__headline, .pp-exp__domain,
+    .pp-exp__industry-function, .pp-exp__function,
+    .pp-exp__meta, .pp-exp__chips, .pp-exp__skills,
+    .pp-exp__skill-row, .pp-exp__tagline, .pp-exp__project-body,
+    .pp-exp__skills-label, .pp-exp__project-meta {
       display: none !important;
     }
 
-    /* ═══════════════════════════════════════════════════════════
-       EDUCATION
-       ═══════════════════════════════════════════════════════════ */
+    /* ═════════════════════════════════════════════════════════
+       EDUCATION — same rhythm as Experience
+       ═════════════════════════════════════════════════════════ */
     .pp-edu__item {
-      padding: 18px 0;
-      border-bottom: 1px solid var(--hairline);
+      padding: 22px 0;
+      border-bottom: 1px solid var(--hairline-gold);
     }
     .pp-edu__item:first-child { padding-top: 0; }
     .pp-edu__item:last-child {
@@ -478,35 +573,39 @@
     }
     .pp-edu__degree {
       font-family: var(--serif);
-      font-size: 1.25rem;
+      font-size: 1.35rem;
       font-weight: 600;
-      color: var(--text);
+      color: var(--text-h);
       line-height: 1.3;
       margin-bottom: 4px;
     }
     .pp-edu__inst {
-      font-size: 1rem;
+      font-family: var(--sans);
+      font-size: 1.02rem;
       color: var(--gold);
-      font-weight: 500;
+      font-weight: 600;
       margin-bottom: 4px;
     }
     .pp-edu__year {
-      font-size: 0.86rem;
-      color: var(--text-muted);
+      font-family: var(--sans);
+      font-size: 0.88rem;
+      color: var(--text-soft);
       margin-bottom: 8px;
     }
     .pp-edu__mode {
-      font-size: 0.88rem;
-      color: var(--text-dim);
+      font-family: var(--sans);
+      font-size: 0.92rem;
+      color: var(--text-body);
       margin-bottom: 4px;
     }
     .pp-edu__mode-label {
-      color: var(--text-muted);
+      color: var(--text-soft);
       margin-right: 6px;
     }
     .pp-edu__grade {
-      font-size: 0.92rem;
-      color: var(--text-dim);
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      color: var(--text-body);
       margin-top: 6px;
     }
     .pp-edu__grade-label {
@@ -515,22 +614,27 @@
       margin-right: 6px;
     }
     .pp-edu__skills-line {
-      font-size: 0.9rem;
-      color: var(--text-dim);
+      font-family: var(--sans);
+      font-size: 0.92rem;
+      color: var(--text-body);
       line-height: 1.6;
-      margin-top: 8px;
+      margin-top: 10px;
       max-width: 64ch;
     }
     .pp-edu__skills-label {
-      color: var(--text-muted);
+      color: var(--text-soft);
       margin-right: 6px;
     }
-    .pp-edu__skills-sep { color: var(--hairline-strong); }
+    .pp-edu__skills-sep {
+      color: var(--gold);
+      opacity: 0.5;
+    }
     .pp-edu__activities {
-      font-size: 0.92rem;
-      color: var(--text-dim);
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      color: var(--text-body);
       line-height: 1.6;
-      margin-top: 10px;
+      margin-top: 12px;
       white-space: pre-wrap;
       max-width: 64ch;
     }
@@ -541,7 +645,8 @@
     }
     .pp-edu__projects { margin-top: 14px; }
     .pp-edu__projects-label {
-      font-size: 0.74rem;
+      font-family: var(--sans);
+      font-size: 0.72rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--gold);
@@ -551,14 +656,16 @@
     .pp-edu__project { margin-bottom: 14px; }
     .pp-edu__project:last-child { margin-bottom: 0; }
     .pp-edu__project-name {
-      font-size: 0.95rem;
+      font-family: var(--sans);
+      font-size: 0.96rem;
       font-weight: 600;
-      color: var(--text);
+      color: var(--text-h);
       margin-bottom: 4px;
     }
     .pp-edu__project-line {
-      font-size: 0.9rem;
-      color: var(--text-dim);
+      font-family: var(--sans);
+      font-size: 0.92rem;
+      color: var(--text-body);
       line-height: 1.65;
       margin-top: 3px;
     }
@@ -567,20 +674,18 @@
       font-weight: 600;
       margin-right: 6px;
     }
-    .pp-edu__chips,
-    .pp-edu__chip,
-    .pp-edu__skills,
-    .pp-edu__skill {
+    .pp-edu__chips, .pp-edu__chip,
+    .pp-edu__skills, .pp-edu__skill {
       display: none !important;
     }
 
-    /* ═══════════════════════════════════════════════════════════
-       SKILLS — NO chips. Category eyebrow + middle-dot list.
-       ═══════════════════════════════════════════════════════════ */
+    /* ═════════════════════════════════════════════════════════
+       SKILLS — grouped, NO chips
+       ═════════════════════════════════════════════════════════ */
     .pp-skills {
       display: flex;
       flex-direction: column;
-      gap: 22px;
+      gap: 24px;
     }
     .pp-skill-group {
       display: flex;
@@ -588,104 +693,293 @@
       gap: 10px;
     }
     .pp-skill-group__label {
-      font-size: 0.74rem;
+      font-family: var(--sans);
+      font-size: 0.72rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--gold);
       font-weight: 600;
     }
     .pp-skill-line {
-      font-size: 0.96rem;
-      color: var(--text-dim);
-      line-height: 1.7;
+      font-family: var(--sans);
+      font-size: 1rem;
+      color: var(--text-body);
+      line-height: 1.75;
       max-width: 64ch;
     }
-    .pp-skill-sep { color: var(--hairline-strong); }
+    .pp-skill-sep {
+      color: var(--gold);
+      opacity: 0.5;
+    }
     .pp-skill__level {
-      color: var(--text-muted);
+      color: var(--text-soft);
       font-size: 0.86rem;
     }
-    .pp-skill-row,
-    .pp-skill {
-      display: contents;
+    .pp-skill-row, .pp-skill { display: contents; }
+
+    /* ═════════════════════════════════════════════════════════
+       SIMPLE LIST SECTIONS — Achievements, Certs, Pubs, Volunteering
+       Each entry: title (serif), org/year (gold + muted), description.
+       ═════════════════════════════════════════════════════════ */
+    .pp-list__item {
+      padding: 18px 0;
+      border-bottom: 1px solid var(--hairline-gold);
+    }
+    .pp-list__item:first-child { padding-top: 0; }
+    .pp-list__item:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+    .pp-list__title {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-h);
+      line-height: 1.3;
+      margin-bottom: 4px;
+    }
+    .pp-list__sub {
+      font-family: var(--sans);
+      font-size: 1rem;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .pp-list__meta {
+      font-family: var(--sans);
+      font-size: 0.88rem;
+      color: var(--text-soft);
+      margin-bottom: 8px;
+    }
+    .pp-list__desc {
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      color: var(--text-body);
+      line-height: 1.65;
+      white-space: pre-wrap;
+      max-width: 64ch;
+      margin-top: 6px;
+    }
+    .pp-list__link {
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 500;
+      margin-top: 6px;
+      display: inline-block;
+      border-bottom: 1px solid var(--hairline-gold);
+      padding-bottom: 1px;
+    }
+    .pp-list__link:hover {
+      color: var(--text-h);
+      border-bottom-color: var(--gold);
+    }
+    .pp-list__sep {
+      color: var(--text-muted);
+      margin: 0 8px;
     }
 
-    /* CTA */
+    /* ═════════════════════════════════════════════════════════
+       LANGUAGES — single-line group, name · proficiency
+       ═════════════════════════════════════════════════════════ */
+    .pp-langs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 28px;
+      font-family: var(--sans);
+      font-size: 1rem;
+      color: var(--text-body);
+      line-height: 1.7;
+    }
+    .pp-lang__name { color: var(--text-h); font-weight: 600; }
+    .pp-lang__level {
+      color: var(--text-soft);
+      font-size: 0.88rem;
+      margin-left: 4px;
+    }
+    .pp-lang__sep {
+      color: var(--gold);
+      opacity: 0.5;
+      margin: 0 14px;
+    }
+
+    /* ═════════════════════════════════════════════════════════
+       PROFESSIONAL LINKS — small label + link rows
+       ═════════════════════════════════════════════════════════ */
+    .pp-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-family: var(--sans);
+    }
+    .pp-links__row {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      font-size: 0.96rem;
+    }
+    .pp-links__label {
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      min-width: 90px;
+    }
+    .pp-links__url {
+      color: var(--text-body);
+      text-decoration: none;
+      border-bottom: 1px solid var(--hairline-gold);
+      padding-bottom: 1px;
+      word-break: break-all;
+    }
+    .pp-links__url:hover {
+      color: var(--text-h);
+      border-bottom-color: var(--gold);
+    }
+
+    /* ═════════════════════════════════════════════════════════
+       CONSULTING / MENTORSHIP — descriptive blocks
+       ═════════════════════════════════════════════════════════ */
+    .pp-block {
+      font-family: var(--sans);
+    }
+    .pp-block__intro {
+      font-family: var(--serif);
+      font-size: 1.18rem;
+      color: var(--text-h);
+      line-height: 1.65;
+      white-space: pre-wrap;
+      margin-bottom: 22px;
+      max-width: 64ch;
+    }
+    .pp-block__row {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+    .pp-block__label {
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      min-width: 130px;
+      padding-top: 3px;
+    }
+    .pp-block__value {
+      color: var(--text-body);
+      flex: 1;
+      max-width: 60ch;
+    }
+    .pp-block__inline-list {
+      font-size: 0.95rem;
+      color: var(--text-body);
+      line-height: 1.7;
+    }
+    .pp-block__inline-sep {
+      color: var(--gold);
+      opacity: 0.5;
+    }
+
+    /* ═════════════════════════════════════════════════════════
+       CTA — Get in touch (cream surface block)
+       ═════════════════════════════════════════════════════════ */
     .pp-cta {
       margin-top: 80px;
-      padding: 44px 36px;
-      background: var(--ink);
-      border-radius: 12px;
-      border: 1px solid var(--hairline);
+      padding: 48px 36px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
       text-align: center;
     }
     .pp-cta__title {
       font-family: var(--serif);
-      font-size: 1.6rem;
+      font-size: 1.7rem;
       font-weight: 500;
-      color: var(--text);
+      color: var(--text-h);
       margin-bottom: 8px;
     }
     .pp-cta__sub {
+      font-family: var(--sans);
       font-size: 0.95rem;
-      color: var(--text-muted);
-      margin-bottom: 22px;
+      color: var(--text-soft);
+      margin-bottom: 24px;
     }
     .pp-cta__btn {
       display: inline-block;
       padding: 13px 36px;
       background: var(--gold);
-      color: var(--ink-deep);
+      color: #fff;
+      font-family: var(--sans);
       text-decoration: none;
-      border-radius: 6px;
+      border-radius: 4px;
       font-weight: 600;
       letter-spacing: 0.02em;
-      transition: transform 0.15s, box-shadow 0.15s;
+      transition: background 0.18s, transform 0.18s, box-shadow 0.18s;
     }
     .pp-cta__btn:hover {
+      background: #b58731;
       transform: translateY(-1px);
-      box-shadow: 0 6px 18px rgba(201, 168, 76, 0.35);
+      box-shadow: 0 6px 18px rgba(200, 151, 61, 0.3);
     }
 
-    /* FOOTER */
+    /* ═════════════════════════════════════════════════════════
+       FOOTER — navy, matching header
+       ═════════════════════════════════════════════════════════ */
     .pp-foot {
-      padding: 22px 32px;
-      border-top: 1px solid var(--hairline);
+      padding: 28px 32px;
+      border-top: 1px solid var(--blue-border);
       text-align: center;
+      font-family: var(--sans);
       font-size: 0.82rem;
-      color: var(--text-muted);
-      background: var(--ink);
+      color: var(--on-dark-mid);
+      background: var(--blue-900);
     }
     .pp-foot__row { line-height: 1.7; }
     .pp-foot__row--cta {
       margin-top: 4px;
-      color: var(--text-dim);
+      color: var(--on-dark-mid);
     }
-    .pp-foot a { color: var(--gold); text-decoration: none; }
-    .pp-foot a:hover { text-decoration: underline; }
+    .pp-foot a { color: var(--gold-light); text-decoration: none; }
+    .pp-foot a:hover { color: var(--gold-pale); text-decoration: underline; }
 
-    /* MOBILE */
-    @media (max-width: 700px) {
-      .pp-main { padding: 36px 20px 64px; }
+    /* ═════════════════════════════════════════════════════════
+       MOBILE
+       ═════════════════════════════════════════════════════════ */
+    @media (max-width: 720px) {
+      .pp-header__inner { padding: 16px 20px; }
+      .pp-hero-band { padding: 44px 0 52px; }
       .pp-hero {
         grid-template-columns: 1fr;
         text-align: center;
-        gap: 24px;
-        margin-bottom: 40px;
-        padding-bottom: 32px;
+        gap: 28px;
+        padding: 0 20px;
       }
       .pp-hero__photo,
-      .pp-hero__avatar { margin: 0 auto; width: 140px; height: 140px; }
-      .pp-hero__avatar { font-size: 2.6rem; }
-      .pp-hero__name { font-size: 2.2rem; }
-      .pp-hero__current-position { font-size: 1.1rem; }
+      .pp-hero__avatar { margin: 0 auto; width: 144px; height: 144px; }
+      .pp-hero__avatar { font-size: 2.7rem; }
+      .pp-hero__name { font-size: 2.4rem; }
+      .pp-hero__current-position { font-size: 1.2rem; }
+      .pp-hero__bio-line { font-size: 0.9rem; }
       .pp-hero__headline { font-size: 1.05rem; max-width: none; }
       .pp-badges { justify-content: center; }
-      .pp-section { margin-bottom: 40px; }
+      .pp-main { padding: 40px 20px 64px; }
+      .pp-section { margin-bottom: 44px; }
       .pp-exp { padding-left: 24px; }
-      .pp-exp__item::before { left: -31px; }
-      .pp-exp__role { font-size: 1.35rem; }
-      .pp-bio { font-size: 1.05rem; }
+      .pp-exp__item::before { left: -30px; }
+      .pp-exp__role { font-size: 1.4rem; }
+      .pp-bio { font-size: 1.1rem; }
+      .pp-block__row {
+        flex-direction: column;
+        gap: 4px;
+      }
+      .pp-block__label { min-width: 0; }
+      .pp-links__row { flex-direction: column; gap: 4px; }
+      .pp-links__label { min-width: 0; }
     }
   </style>
 </head>
@@ -693,17 +987,39 @@
 
 <div class="pp-page">
 
-  <nav class="pp-nav">
-    <a href="https://meculs.com/cv-portal.html" class="pp-nav__brand" aria-label="MECULS">
-      <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS"
-           class="pp-nav__logo"
-           onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
-      <span class="pp-nav__brand-text" style="display:none">MECULS</span>
-    </a>
-  </nav>
+  <!-- HEADER (navy, matches dashboard) -->
+  <header class="pp-header">
+    <div class="pp-header__inner">
+      <a href="https://meculs.com/cv-portal.html" class="pp-header__brand" aria-label="MECULS">
+        <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS"
+             class="pp-header__logo"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+        <span class="pp-header__brand-text" style="display:none">MECULS</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO BAND (navy, full bleed) — only renders when profile loads -->
+  <div id="ppHeroBand" class="pp-hero-band" hidden>
+    <header class="pp-hero">
+      <img id="ppPhoto" class="pp-hero__photo" alt="" src="" hidden>
+      <div id="ppAvatar" class="pp-hero__avatar" aria-hidden="true"></div>
+      <div>
+        <div id="ppCategory" class="pp-hero__category"></div>
+        <h1 id="ppName" class="pp-hero__name"></h1>
+        <p id="ppCurrentPosition" class="pp-hero__current-position" hidden></p>
+        <p id="ppBioLine" class="pp-hero__bio-line" hidden></p>
+        <p id="ppLocation" class="pp-hero__location" hidden></p>
+        <div id="ppMeta" class="pp-hero__meta" hidden></div>
+        <p id="ppHeadline" class="pp-hero__headline"></p>
+        <div id="ppBadges" class="pp-badges"></div>
+      </div>
+    </header>
+  </div>
 
   <main class="pp-main">
 
+    <!-- States -->
     <div id="ppLoading" class="pp-state">
       <div class="pp-state__title">Loading profile&hellip;</div>
       <div class="pp-state__msg">Fetching the latest details</div>
@@ -728,21 +1044,8 @@
       </div>
     </div>
 
+    <!-- Content -->
     <div id="ppContent" hidden>
-      <header class="pp-hero">
-        <img id="ppPhoto" class="pp-hero__photo" alt="" src="" hidden>
-        <div id="ppAvatar" class="pp-hero__avatar" aria-hidden="true"></div>
-        <div>
-          <div id="ppCategory" class="pp-hero__category"></div>
-          <h1 id="ppName" class="pp-hero__name"></h1>
-          <p id="ppCurrentPosition" class="pp-hero__current-position" hidden></p>
-          <p id="ppBioLine" class="pp-hero__bio-line" hidden></p>
-          <p id="ppLocation" class="pp-hero__location" hidden></p>
-          <div id="ppMeta" class="pp-hero__meta" hidden></div>
-          <p id="ppHeadline" class="pp-hero__headline"></p>
-          <div id="ppBadges" class="pp-badges"></div>
-        </div>
-      </header>
 
       <section id="ppBioSection" class="pp-section" hidden>
         <h2 class="pp-section__heading">About</h2>
@@ -762,6 +1065,51 @@
       <section id="ppSkillsSection" class="pp-section" hidden>
         <h2 class="pp-section__heading">Skills</h2>
         <div id="ppSkillsList" class="pp-skills"></div>
+      </section>
+
+      <section id="ppAchSection" class="pp-section" hidden>
+        <h2 class="pp-section__heading">Key Achievements</h2>
+        <div id="ppAchList"></div>
+      </section>
+
+      <section id="ppCertSection" class="pp-section" hidden>
+        <h2 class="pp-section__heading">Certifications</h2>
+        <div id="ppCertList"></div>
+      </section>
+
+      <section id="ppPubSection" class="pp-section" hidden>
+        <h2 class="pp-section__heading">Publications</h2>
+        <div id="ppPubList"></div>
+      </section>
+
+      <section id="ppPortSection" class="pp-section" hidden>
+        <h2 class="pp-section__heading">Portfolio</h2>
+        <div id="ppPortList"></div>
+      </section>
+
+      <section id="ppVolSection" class="pp-section" hidden>
+        <h2 class="pp-section__heading">Volunteering</h2>
+        <div id="ppVolList"></div>
+      </section>
+
+      <section id="ppLangSection" class="pp-section" hidden>
+        <h2 class="pp-section__heading">Languages</h2>
+        <div id="ppLangList" class="pp-langs"></div>
+      </section>
+
+      <section id="ppLinksSection" class="pp-section" hidden>
+        <h2 class="pp-section__heading">Professional Links</h2>
+        <div id="ppLinksList" class="pp-links"></div>
+      </section>
+
+      <section id="ppConsSection" class="pp-section" hidden>
+        <h2 class="pp-section__heading">Consulting</h2>
+        <div id="ppConsBlock" class="pp-block"></div>
+      </section>
+
+      <section id="ppMentSection" class="pp-section" hidden>
+        <h2 class="pp-section__heading">Mentorship</h2>
+        <div id="ppMentBlock" class="pp-block"></div>
       </section>
 
       <div class="pp-cta">
@@ -792,6 +1140,7 @@
 (function () {
   "use strict";
 
+  /* ── Helpers ────────────────────────────────────────────── */
   function getSlug() {
     const params = new URLSearchParams(window.location.search);
     const q = (params.get("slug") || "").trim();
@@ -817,6 +1166,20 @@
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#39;");
+  }
+  function escapeAttr(s) { return escapeHtml(s); }
+
+  /* Strip http(s):// for display, keep the link's href intact */
+  function prettyUrl(url) {
+    if (!url) return "";
+    return String(url).replace(/^https?:\/\//i, "").replace(/\/$/, "");
+  }
+  function safeHref(url) {
+    if (!url) return "";
+    const s = String(url).trim();
+    if (/^https?:\/\//i.test(s)) return s;
+    if (/^[\w.-]+\.[a-z]{2,}/i.test(s)) return "https://" + s;
+    return s;
   }
 
   function formatDateRange(item) {
@@ -866,7 +1229,14 @@
     return String(s).split(",").map(function (x) { return x.trim(); }).filter(Boolean);
   }
 
-  /* HERO */
+  /* Title-case a snake_case key for display ("end_to_end" → "End To End") */
+  function titleize(s) {
+    if (!s) return "";
+    return String(s).replace(/_/g, " ")
+      .replace(/\b\w/g, function (c) { return c.toUpperCase(); });
+  }
+
+  /* ── HERO ────────────────────────────────────────────────── */
   function renderHero(p) {
     const photoEl  = document.getElementById("ppPhoto");
     const avatarEl = document.getElementById("ppAvatar");
@@ -944,7 +1314,7 @@
       }
     }
 
-    /* Bio meta line */
+    /* Bio meta — Location · "X years of experience" (never just "X years") */
     const loc = [intro.res_state, intro.res_country].filter(Boolean).join(", ");
     const bioEl = document.getElementById("ppBioLine");
     if (bioEl) {
@@ -955,7 +1325,7 @@
         if (intro.rank_designation) parts.push(intro.rank_designation);
         if (intro.years_of_service) parts.push(intro.years_of_service + " years of service");
       } else {
-        if (intro.total_experience) parts.push(intro.total_experience + " years");
+        if (intro.total_experience) parts.push(intro.total_experience + " years of experience");
       }
       if (parts.length) {
         bioEl.innerHTML = parts.map(escapeHtml)
@@ -989,9 +1359,12 @@
       b.textContent = "Open to civilian roles";
       bWrap.appendChild(b);
     }
+
+    /* Reveal the navy hero band itself (it's hidden until data loads) */
+    show("ppHeroBand");
   }
 
-  /* ABOUT */
+  /* ── ABOUT ───────────────────────────────────────────────── */
   function renderBio(p) {
     const intro = p.introduction || {};
     if (intro.summary) {
@@ -1000,7 +1373,7 @@
     }
   }
 
-  /* EXPERIENCE */
+  /* ── EXPERIENCE ──────────────────────────────────────────── */
   function renderExperience(p) {
     if (!Array.isArray(p.experiences) || !p.experiences.length) return;
     const list = document.getElementById("ppExpList");
@@ -1036,23 +1409,17 @@
         .concat(splitList(e.soft_skills));
 
       let html = "";
-
       html += '<div class="pp-exp__role">' +
-              escapeHtml(e.designation || e.role_headline || "") +
-              '</div>';
-
+              escapeHtml(e.designation || e.role_headline || "") + '</div>';
       if (e.company_name) {
         html += '<div class="pp-exp__company">' + escapeHtml(e.company_name) + '</div>';
       }
-
       if (dateLocLine) {
         html += '<div class="pp-exp__dateloc">' + dateLocLine + '</div>';
       }
-
       if (fnLine) {
         html += '<div class="pp-exp__what">' + escapeHtml(fnLine) + '</div>';
       }
-
       if (e.role_description) {
         html += '<div class="pp-exp__desc">' + escapeHtml(e.role_description) + '</div>';
       }
@@ -1075,11 +1442,9 @@
               const t = parseInt(proj.team_size, 10);
               headerBits.push(escapeHtml("Team of " + t));
             }
-
             html += '<div class="pp-exp__project">';
             html += '<div class="pp-exp__project-header">' +
-                    headerBits.join('<span class="pp-exp__sep">·</span>') +
-                    '</div>';
+                    headerBits.join('<span class="pp-exp__sep">·</span>') + '</div>';
             if (proj.ask) {
               html += '<div class="pp-exp__project-line">' +
                       '<span class="pp-exp__project-key">Ask:</span>' +
@@ -1114,7 +1479,7 @@
     show("ppExpSection");
   }
 
-  /* EDUCATION */
+  /* ── EDUCATION ───────────────────────────────────────────── */
   function renderEducation(p) {
     const list = document.getElementById("ppEduList");
     list.innerHTML = "";
@@ -1170,13 +1535,9 @@
       if (c.currently_pursuing === "yes" || c.currently_pursuing === true) {
         dateStr = start ? (start + " — Present") : "In progress";
         if (end) dateStr = start + " — Expected " + end;
-      } else if (start && end) {
-        dateStr = start + " — " + end;
-      } else if (start) {
-        dateStr = start + " — Present";
-      } else if (end) {
-        dateStr = "Expected " + end;
-      }
+      } else if (start && end) dateStr = start + " — " + end;
+      else if (start) dateStr = start + " — Present";
+      else if (end) dateStr = "Expected " + end;
 
       const degreeLine = (c.education_level || "") +
         (c.field_of_study ? " — " + c.field_of_study : "");
@@ -1256,7 +1617,7 @@
     if (any) show("ppEduSection");
   }
 
-  /* SKILLS */
+  /* ── SKILLS ──────────────────────────────────────────────── */
   function renderSkills(p) {
     let groups = [];
     let flatItems = null;
@@ -1298,9 +1659,8 @@
     } else {
       const top5 = (p.introduction && p.introduction.skills_top5) || [];
       let labels = [];
-      if (Array.isArray(top5)) {
-        labels = top5.slice();
-      } else if (typeof top5 === "string" && top5.trim()) {
+      if (Array.isArray(top5)) labels = top5.slice();
+      else if (typeof top5 === "string" && top5.trim()) {
         labels = top5.split(",").map(function (s) { return s.trim(); });
       }
       labels = labels.filter(Boolean);
@@ -1357,12 +1717,374 @@
         list.appendChild(groupEl);
       });
     }
-
     show("ppSkillsSection");
   }
 
+  /* ── KEY ACHIEVEMENTS ────────────────────────────────────── */
+  function renderAchievements(p) {
+    if (!Array.isArray(p.key_achievements) || !p.key_achievements.length) return;
+    const list = document.getElementById("ppAchList");
+    list.innerHTML = "";
+    p.key_achievements.forEach(function (a) {
+      if (!a || !a.title) return;
+      const item = document.createElement("div");
+      item.className = "pp-list__item";
+      let html = '<div class="pp-list__title">' + escapeHtml(a.title) + '</div>';
+      if (a.category) {
+        html += '<div class="pp-list__sub">' + escapeHtml(a.category) + '</div>';
+      }
+      if (a.impact) {
+        html += '<div class="pp-list__desc">' + escapeHtml(a.impact) + '</div>';
+      }
+      if (a.verify_url) {
+        html += '<a class="pp-list__link" href="' + escapeAttr(safeHref(a.verify_url)) +
+                '" target="_blank" rel="noopener noreferrer">' +
+                escapeHtml(prettyUrl(a.verify_url)) + '</a>';
+      }
+      item.innerHTML = html;
+      list.appendChild(item);
+    });
+    if (list.children.length) show("ppAchSection");
+  }
+
+  /* ── CERTIFICATIONS ──────────────────────────────────────── */
+  function renderCertifications(p) {
+    if (!Array.isArray(p.certifications) || !p.certifications.length) return;
+    const list = document.getElementById("ppCertList");
+    list.innerHTML = "";
+    const sorted = p.certifications.slice().sort(function (a, b) {
+      if (a.is_current && !b.is_current) return -1;
+      if (b.is_current && !a.is_current) return 1;
+      return (b.start_year || 0) - (a.start_year || 0);
+    });
+    sorted.forEach(function (c) {
+      if (!c || !c.name) return;
+      const item = document.createElement("div");
+      item.className = "pp-list__item";
+
+      const monthNames = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                              "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      function fmt(y, m) {
+        if (!y) return "";
+        const mm = parseInt(m, 10);
+        return (mm >= 1 && mm <= 12 ? monthNames[mm] + " " : "") + y;
+      }
+      const start = fmt(c.start_year, c.start_month);
+      const end   = c.is_current ? "" : fmt(c.end_year, c.end_month);
+      let dateStr = "";
+      if (start && end) dateStr = start + " — " + end;
+      else if (start && c.is_current) dateStr = start + " — No expiry";
+      else if (start) dateStr = "Issued " + start;
+      else if (end) dateStr = "Valid until " + end;
+
+      let html = '<div class="pp-list__title">' + escapeHtml(c.name) + '</div>';
+      if (c.issuing_org) {
+        html += '<div class="pp-list__sub">' + escapeHtml(c.issuing_org) + '</div>';
+      }
+      if (dateStr) {
+        html += '<div class="pp-list__meta">' + escapeHtml(dateStr) + '</div>';
+      }
+      if (c.credential_url) {
+        html += '<a class="pp-list__link" href="' + escapeAttr(safeHref(c.credential_url)) +
+                '" target="_blank" rel="noopener noreferrer">' +
+                escapeHtml(prettyUrl(c.credential_url)) + '</a>';
+      }
+      item.innerHTML = html;
+      list.appendChild(item);
+    });
+    if (list.children.length) show("ppCertSection");
+  }
+
+  /* ── PUBLICATIONS ────────────────────────────────────────── */
+  function renderPublications(p) {
+    if (!Array.isArray(p.publications) || !p.publications.length) return;
+    const list = document.getElementById("ppPubList");
+    list.innerHTML = "";
+    const sorted = p.publications.slice().sort(function (a, b) {
+      return (b.year || 0) - (a.year || 0);
+    });
+    sorted.forEach(function (pub) {
+      if (!pub || !pub.title) return;
+      const item = document.createElement("div");
+      item.className = "pp-list__item";
+
+      let html = '<div class="pp-list__title">' + escapeHtml(pub.title) + '</div>';
+      const subBits = [];
+      if (pub.outlet) subBits.push(escapeHtml(pub.outlet));
+      if (pub.year) subBits.push(escapeHtml(String(pub.year)));
+      if (pub.pub_type) subBits.push(escapeHtml(titleize(pub.pub_type)));
+      if (subBits.length) {
+        html += '<div class="pp-list__meta">' +
+                subBits.join('<span class="pp-list__sep">·</span>') + '</div>';
+      }
+      if (pub.description) {
+        html += '<div class="pp-list__desc">' + escapeHtml(pub.description) + '</div>';
+      }
+      if (pub.url) {
+        html += '<a class="pp-list__link" href="' + escapeAttr(safeHref(pub.url)) +
+                '" target="_blank" rel="noopener noreferrer">' +
+                escapeHtml(prettyUrl(pub.url)) + '</a>';
+      }
+      item.innerHTML = html;
+      list.appendChild(item);
+    });
+    if (list.children.length) show("ppPubSection");
+  }
+
+  /* ── PORTFOLIO (only show_on_profile items) ──────────────── */
+  function renderPortfolio(p) {
+    if (!Array.isArray(p.portfolio) || !p.portfolio.length) return;
+    const list = document.getElementById("ppPortList");
+    list.innerHTML = "";
+    p.portfolio.forEach(function (po) {
+      if (!po || !po.title) return;
+      /* Server already filters but defend in client too */
+      if (po.show_on_profile === false) return;
+
+      const item = document.createElement("div");
+      item.className = "pp-list__item";
+      let html = '<div class="pp-list__title">' + escapeHtml(po.title) + '</div>';
+      if (po.work_type) {
+        html += '<div class="pp-list__sub">' + escapeHtml(titleize(po.work_type)) + '</div>';
+      }
+      if (po.description) {
+        html += '<div class="pp-list__desc">' + escapeHtml(po.description) + '</div>';
+      }
+      if (po.url) {
+        html += '<a class="pp-list__link" href="' + escapeAttr(safeHref(po.url)) +
+                '" target="_blank" rel="noopener noreferrer">' +
+                escapeHtml(prettyUrl(po.url)) + '</a>';
+      }
+      item.innerHTML = html;
+      list.appendChild(item);
+    });
+    if (list.children.length) show("ppPortSection");
+  }
+
+  /* ── VOLUNTEERING ────────────────────────────────────────── */
+  function renderVolunteering(p) {
+    if (!Array.isArray(p.volunteering) || !p.volunteering.length) return;
+    const list = document.getElementById("ppVolList");
+    list.innerHTML = "";
+    const sorted = p.volunteering.slice().sort(function (a, b) {
+      if (a.is_ongoing && !b.is_ongoing) return -1;
+      if (b.is_ongoing && !a.is_ongoing) return 1;
+      return (b.from_year || 0) - (a.from_year || 0);
+    });
+    sorted.forEach(function (v) {
+      if (!v || !v.role) return;
+      const item = document.createElement("div");
+      item.className = "pp-list__item";
+
+      let dateStr = "";
+      if (v.from_year && v.is_ongoing) dateStr = v.from_year + " — Present";
+      else if (v.from_year && v.to_year) dateStr = v.from_year + " — " + v.to_year;
+      else if (v.from_year) dateStr = String(v.from_year);
+      else if (v.to_year) dateStr = String(v.to_year);
+
+      let html = '<div class="pp-list__title">' + escapeHtml(v.role) + '</div>';
+      if (v.organisation) {
+        html += '<div class="pp-list__sub">' + escapeHtml(v.organisation) + '</div>';
+      }
+      const metaBits = [];
+      if (v.cause) metaBits.push(escapeHtml(v.cause));
+      if (dateStr) metaBits.push(escapeHtml(dateStr));
+      if (metaBits.length) {
+        html += '<div class="pp-list__meta">' +
+                metaBits.join('<span class="pp-list__sep">·</span>') + '</div>';
+      }
+      if (v.description) {
+        html += '<div class="pp-list__desc">' + escapeHtml(v.description) + '</div>';
+      }
+      item.innerHTML = html;
+      list.appendChild(item);
+    });
+    if (list.children.length) show("ppVolSection");
+  }
+
+  /* ── LANGUAGES ───────────────────────────────────────────── */
+  function renderLanguages(p) {
+    const langs = p.languages || {};
+    const items = Array.isArray(langs.languages) ? langs.languages : [];
+    if (!items.length) return;
+    const list = document.getElementById("ppLangList");
+    list.innerHTML = "";
+    const valid = items.filter(function (l) { return l && l.name; });
+    if (!valid.length) return;
+    valid.forEach(function (l, i) {
+      const span = document.createElement("span");
+      let html = '<span class="pp-lang__name">' + escapeHtml(l.name) + '</span>';
+      if (l.proficiency) {
+        html += '<span class="pp-lang__level">· ' + escapeHtml(l.proficiency) + '</span>';
+      }
+      span.innerHTML = html;
+      list.appendChild(span);
+      if (i < valid.length - 1) {
+        const sep = document.createElement("span");
+        sep.className = "pp-lang__sep";
+        sep.textContent = "·";
+        list.appendChild(sep);
+      }
+    });
+    show("ppLangSection");
+  }
+
+  /* ── PROFESSIONAL LINKS ──────────────────────────────────── */
+  function renderLinks(p) {
+    const langs = p.languages || {};
+    const linkRows = [
+      { label: "LinkedIn",  url: langs.link_linkedin },
+      { label: "GitHub",    url: langs.link_github },
+      { label: "Portfolio", url: langs.link_portfolio },
+      { label: "Other",     url: langs.link_other }
+    ].filter(function (r) { return r.url && String(r.url).trim(); });
+
+    if (!linkRows.length) return;
+    const list = document.getElementById("ppLinksList");
+    list.innerHTML = "";
+    linkRows.forEach(function (r) {
+      const row = document.createElement("div");
+      row.className = "pp-links__row";
+      row.innerHTML =
+        '<div class="pp-links__label">' + escapeHtml(r.label) + '</div>' +
+        '<a class="pp-links__url" href="' + escapeAttr(safeHref(r.url)) +
+        '" target="_blank" rel="noopener noreferrer">' +
+        escapeHtml(prettyUrl(r.url)) + '</a>';
+      list.appendChild(row);
+    });
+    show("ppLinksSection");
+  }
+
+  /* ── CONSULTING ──────────────────────────────────────────── */
+  function renderConsulting(p) {
+    const c = p.consulting;
+    if (!c || !c.show_on_profile) return;
+    if (c.availability_status === "not_available") return;
+    /* Need at least description or one structural field to bother rendering */
+    if (!c.profile_description && !c.consulting_domains &&
+        !c.consulting_industries && !c.engagement_type &&
+        !c.past_work_highlight) return;
+
+    const block = document.getElementById("ppConsBlock");
+    block.innerHTML = "";
+    let html = "";
+
+    if (c.profile_description) {
+      html += '<div class="pp-block__intro">' + escapeHtml(c.profile_description) + '</div>';
+    }
+
+    function renderRow(label, valueHtml) {
+      if (!valueHtml) return "";
+      return '<div class="pp-block__row">' +
+             '<div class="pp-block__label">' + escapeHtml(label) + '</div>' +
+             '<div class="pp-block__value">' + valueHtml + '</div>' +
+             '</div>';
+    }
+
+    function listToInlineHtml(arr) {
+      const items = splitList(arr);
+      if (!items.length) return "";
+      return items.map(escapeHtml)
+        .join('<span class="pp-block__inline-sep"> · </span>');
+    }
+
+    const domainsHtml = listToInlineHtml(c.consulting_domains);
+    if (domainsHtml) html += renderRow("Domains", domainsHtml);
+
+    const indHtml = listToInlineHtml(c.consulting_industries);
+    if (indHtml) html += renderRow("Industries", indHtml);
+
+    if (c.engagement_type) {
+      const eng = Array.isArray(c.engagement_type)
+        ? c.engagement_type.map(titleize).join(" · ")
+        : titleize(c.engagement_type);
+      html += renderRow("Engagement", escapeHtml(eng));
+    }
+
+    if (c.company_size_preference) {
+      const csz = Array.isArray(c.company_size_preference)
+        ? c.company_size_preference.map(titleize).join(" · ")
+        : titleize(c.company_size_preference);
+      html += renderRow("Company size", escapeHtml(csz));
+    }
+
+    if (c.past_work_highlight) {
+      html += renderRow("Past work", escapeHtml(c.past_work_highlight));
+    }
+
+    /* Rate — only render if user did NOT mark "discuss privately" AND
+       provided at least one bound */
+    if (!c.rate_discuss_privately && (c.rate_min || c.rate_max)) {
+      const cur = c.rate_currency || "INR";
+      const unit = c.rate_unit ? " / " + titleize(c.rate_unit) : "";
+      let rateStr = "";
+      if (c.rate_min && c.rate_max) {
+        rateStr = cur + " " + c.rate_min + " — " + c.rate_max + unit;
+      } else if (c.rate_min) {
+        rateStr = "From " + cur + " " + c.rate_min + unit;
+      } else if (c.rate_max) {
+        rateStr = "Up to " + cur + " " + c.rate_max + unit;
+      }
+      if (rateStr) html += renderRow("Rate", escapeHtml(rateStr));
+    } else if (c.rate_discuss_privately) {
+      html += renderRow("Rate", '<span style="color:var(--text-soft)">Discussed privately</span>');
+    }
+
+    if (html) {
+      block.innerHTML = html;
+      show("ppConsSection");
+    }
+  }
+
+  /* ── MENTORSHIP ──────────────────────────────────────────── */
+  function renderMentorship(p) {
+    const m = p.mentorship;
+    if (!m) return;
+    const roles = Array.isArray(m.roles) ? m.roles : [];
+    if (!roles.length) return;
+
+    const block = document.getElementById("ppMentBlock");
+    block.innerHTML = "";
+
+    /* If user is a mentor, render mentor_profile (only if show_on_profile) */
+    const isMentor = roles.indexOf("mentor") !== -1;
+    const mp = m.mentor_profile || {};
+
+    if (isMentor && mp.show_on_profile) {
+      let html = "";
+      if (mp.bio) {
+        html += '<div class="pp-block__intro">' + escapeHtml(mp.bio) + '</div>';
+      }
+      function row(label, val) {
+        if (!val) return;
+        html += '<div class="pp-block__row">' +
+                '<div class="pp-block__label">' + escapeHtml(label) + '</div>' +
+                '<div class="pp-block__value">' + escapeHtml(val) + '</div>' +
+                '</div>';
+      }
+      if (mp.speciality) row("Speciality", mp.speciality);
+      if (mp.years_experience) row("Experience", mp.years_experience + " years");
+      if (mp.target_audience) row("Mentors", mp.target_audience);
+      if (mp.fee) row("Fee", mp.fee);
+      if (mp.certification) row("Certification", mp.certification);
+      if (html) {
+        block.innerHTML = html;
+        show("ppMentSection");
+        return;
+      }
+    }
+
+    /* Fallback: just say they're a mentor, no details (still useful) */
+    if (isMentor) {
+      block.innerHTML =
+        '<div class="pp-block__intro" style="color:var(--text-soft)">Open to mentoring others. Reach out via the contact button below to learn more.</div>';
+      show("ppMentSection");
+    }
+  }
+
+  /* ── Open Graph ──────────────────────────────────────────── */
   function setPageMeta(p) {
-    const title = p.name + " — MECULS";
+    const title = (p.name || "Profile") + " — MECULS";
     document.title = title;
     const ogT = document.getElementById("ogTitle");
     const ogD = document.getElementById("ogDesc");
@@ -1377,6 +2099,7 @@
     }
   }
 
+  /* ── LOAD ────────────────────────────────────────────────── */
   async function loadProfile() {
     const slug = getSlug();
     if (!slug) {
@@ -1438,6 +2161,15 @@
     renderExperience(data);
     renderEducation(data);
     renderSkills(data);
+    renderAchievements(data);
+    renderCertifications(data);
+    renderPublications(data);
+    renderPortfolio(data);
+    renderVolunteering(data);
+    renderLanguages(data);
+    renderLinks(data);
+    renderConsulting(data);
+    renderMentorship(data);
 
     hide("ppLoading");
     show("ppContent");
