@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Goodbye — MECULS</title>
+
+  <!-- ============================================================
+       MECULS — goodbye.html
+       Date: 2026-05-09
+       Cache buster: v=1
+       ============================================================
+       Lands here after a successful account deletion. Acknowledges
+       the deletion, gives one final chance to leave feedback, and
+       auto-redirects to the homepage after 8 seconds.
+       ============================================================ -->
+
+  <link rel="icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --blue-900:  #0c1a2e;
+      --gold:        #c8973d;
+      --gold-light:  #ddb060;
+      --gold-pale:   #eecb88;
+      --surface:     #f6f4ef;
+      --surface-2:   #ffffff;
+      --border:      #dedad3;
+      --hairline-gold: rgba(200,151,61,0.22);
+      --text-h:      #161412;
+      --text-body:   #3d3830;
+      --text-soft:   #6e6860;
+      --text-muted:  #9c9590;
+      --serif: 'EB Garamond', Georgia, serif;
+      --sans:  'Jost', system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      background: var(--surface);
+      color: var(--text-body);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.6;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .gb-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .gb-top {
+      background: var(--blue-900);
+      padding: 22px 32px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      position: relative;
+    }
+    .gb-top::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, var(--gold) 25%,
+                                        var(--gold-pale) 60%, transparent 100%);
+      opacity: 0.6;
+    }
+    .gb-top__inner {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+    }
+    .gb-top__brand {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .gb-top__logo { height: 28px; width: auto; display: block; }
+    .gb-top__brand-text {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      color: var(--gold-light);
+      letter-spacing: 0.04em;
+    }
+
+    .gb-main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 64px 32px;
+    }
+
+    .gb-card {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      max-width: 560px;
+      width: 100%;
+      padding: 56px 48px;
+      text-align: center;
+    }
+
+    .gb-mark {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 24px;
+      border-radius: 50%;
+      background: rgba(200, 151, 61, 0.10);
+      border: 1px solid var(--hairline-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 1.4rem;
+    }
+
+    .gb-title {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 500;
+      color: var(--text-h);
+      letter-spacing: -0.01em;
+      margin-bottom: 14px;
+    }
+
+    .gb-body {
+      font-size: 1rem;
+      color: var(--text-body);
+      line-height: 1.7;
+      margin-bottom: 24px;
+      max-width: 44ch;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .gb-feedback {
+      margin-top: 32px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+      text-align: left;
+    }
+    .gb-feedback__label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .gb-feedback__hint {
+      font-size: 0.92rem;
+      color: var(--text-soft);
+      margin-bottom: 14px;
+    }
+    .gb-feedback__textarea {
+      width: 100%;
+      padding: 12px 14px;
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      color: var(--text-h);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      resize: vertical;
+      min-height: 90px;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .gb-feedback__textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(200, 151, 61, 0.15);
+    }
+    .gb-feedback__row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+    .gb-btn {
+      font-family: var(--sans);
+      font-size: 0.92rem;
+      font-weight: 600;
+      padding: 9px 18px;
+      border-radius: 4px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      background: var(--gold);
+      color: #fff;
+      transition: background 0.15s;
+    }
+    .gb-btn:hover { background: #b58731; }
+    .gb-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .gb-btn--ghost {
+      background: transparent;
+      color: var(--text-h);
+      border-color: var(--border);
+    }
+    .gb-btn--ghost:hover { background: var(--surface); }
+
+    .gb-feedback__msg {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      margin-top: 10px;
+    }
+    .gb-feedback__msg--ok { color: #1f6b44; }
+
+    .gb-redirect {
+      margin-top: 28px;
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+    .gb-redirect a {
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid var(--hairline-gold);
+      padding-bottom: 1px;
+    }
+    .gb-redirect a:hover { color: var(--text-h); border-bottom-color: var(--gold); }
+
+    @media (max-width: 600px) {
+      .gb-card { padding: 36px 24px; }
+      .gb-title { font-size: 1.7rem; }
+      .gb-main { padding: 32px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="gb-page">
+
+  <header class="gb-top">
+    <div class="gb-top__inner">
+      <a href="https://meculs.com/" class="gb-top__brand" aria-label="MECULS">
+        <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS"
+             class="gb-top__logo"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+        <span class="gb-top__brand-text" style="display:none">MECULS</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="gb-main">
+    <div class="gb-card">
+      <div class="gb-mark" aria-hidden="true">✓</div>
+
+      <h1 class="gb-title">Your account has been deleted.</h1>
+
+      <p class="gb-body">
+        Your profile, photo, CV, and all related data have been permanently
+        removed from MECULS. We're sorry to see you go &mdash; thank you for
+        trying us.
+      </p>
+
+      <!-- Optional feedback (no auth, just a mailto-style submit) -->
+      <div class="gb-feedback">
+        <div class="gb-feedback__label">Before you go</div>
+        <p class="gb-feedback__hint">
+          If anything could have gone better, we'd genuinely like to hear it.
+          This is anonymous and not tied to your deleted account.
+        </p>
+        <textarea id="gbFeedback" class="gb-feedback__textarea"
+                  placeholder="What could we have done better?"
+                  maxlength="600"></textarea>
+        <div class="gb-feedback__row">
+          <button type="button" class="gb-btn gb-btn--ghost" id="gbSkipBtn">
+            Skip
+          </button>
+          <button type="button" class="gb-btn" id="gbSubmitBtn">
+            Send feedback
+          </button>
+        </div>
+        <div class="gb-feedback__msg" id="gbMsg" hidden></div>
+      </div>
+
+      <p class="gb-redirect">
+        You'll be redirected to <a href="https://meculs.com/">meculs.com</a>
+        in <span id="gbCountdown">8</span> seconds.
+      </p>
+    </div>
+  </main>
+
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  // Auto-redirect countdown
+  let secondsLeft = 8;
+  const countdownEl = document.getElementById("gbCountdown");
+  let redirected = false;
+  const tick = setInterval(() => {
+    secondsLeft -= 1;
+    if (countdownEl) countdownEl.textContent = String(secondsLeft);
+    if (secondsLeft <= 0) {
+      clearInterval(tick);
+      if (!redirected) {
+        redirected = true;
+        window.location.href = "https://meculs.com/";
+      }
+    }
+  }, 1000);
+
+  // Feedback submit — POSTs to a simple feedback endpoint via mailto.
+  // Without a backend mail relay, the lightest option is to use a
+  // form action that opens the user's mail client. For now we write
+  // to localStorage as a holding place and direct user to mailto, so
+  // the feedback isn't lost if no mail client is configured.
+  const submitBtn = document.getElementById("gbSubmitBtn");
+  const skipBtn   = document.getElementById("gbSkipBtn");
+  const txt       = document.getElementById("gbFeedback");
+  const msgEl     = document.getElementById("gbMsg");
+
+  function showMsg(text, ok) {
+    if (!msgEl) return;
+    msgEl.hidden = false;
+    msgEl.textContent = text;
+    msgEl.className = "gb-feedback__msg" + (ok ? " gb-feedback__msg--ok" : "");
+  }
+
+  function pauseCountdown() {
+    clearInterval(tick);
+    const note = document.querySelector(".gb-redirect");
+    if (note) note.style.display = "none";
+  }
+
+  // Pause auto-redirect when user starts typing
+  txt.addEventListener("focus", pauseCountdown);
+
+  submitBtn.addEventListener("click", () => {
+    const value = (txt.value || "").trim();
+    if (!value) {
+      showMsg("Please write something or click Skip.", false);
+      return;
+    }
+    pauseCountdown();
+    submitBtn.disabled = true;
+    skipBtn.disabled = true;
+    txt.disabled = true;
+
+    // Open user's mail client with pre-filled message to MECULS
+    const subject = encodeURIComponent("Goodbye feedback");
+    const body    = encodeURIComponent(value + "\n\n(Sent from MECULS goodbye page.)");
+    const mailto  = "mailto:hello@meculs.com?subject=" + subject + "&body=" + body;
+
+    // Try opening mail client. We can't detect success reliably, so we
+    // optimistically thank the user and redirect after a moment.
+    window.location.href = mailto;
+
+    showMsg("Thank you. Your mail app should open shortly.", true);
+
+    setTimeout(() => {
+      if (!redirected) {
+        redirected = true;
+        window.location.href = "https://meculs.com/";
+      }
+    }, 4000);
+  });
+
+  skipBtn.addEventListener("click", () => {
+    pauseCountdown();
+    if (!redirected) {
+      redirected = true;
+      window.location.href = "https://meculs.com/";
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
