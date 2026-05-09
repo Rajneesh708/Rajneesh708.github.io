@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- ============================================================
-       MECULS — p.html  (Public Profile renderer) — Round 1 polish
+       MECULS — p.html  (Public Profile renderer) — Round 2A
        Date: 2026-05-08
        ============================================================
        Renders a sanitised public-profile view of a candidate from
@@ -23,16 +23,38 @@
 
        Round 1 changes (from v1):
        - Logo image replaces text brand (with text fallback)
-       - Removed top-right "Build your profile" CTA (replaced with
-         a softer "Create yours free" link in footer)
+       - Removed top-right "Build your profile" CTA
        - Photo loads from Supabase Storage public URL
        - Avatar fallback (initials in gold circle) when no photo
        - Placeholder shows checklist of missing items
-       - Renders additional intro fields: current_position,
-         industry, total_experience, skills_top5, plus
-         defense fields where applicable
-       - skills_top5 from intro is rendered as Skills section
-         when the dedicated skills array is empty
+       - Renders additional intro fields
+
+       Round 1.5 fix:
+       - CSS [hidden] selector ensures only ONE circle visible
+       - Richer Experience entries with month-precise dates,
+         full City/State/Country location, role headline subtitle,
+         employment_type and location_type chips, domain spec line
+
+       Round 2A — make existing sections render the data they have:
+       - Hero: defense-personnel layout (service branch + rank +
+         years of service first; civilian fields hidden for them).
+         Career-transition badge for defense → civilian intent.
+       - Experience: sector + industry chips, function·department
+         line, tech/soft/domain skills row, key projects subsection
+         with name, ask, role, deliverable per project.
+       - Education: corrected field-name handling (current uses
+         education_level/field_of_study/institution_name; past uses
+         degree/field_of_study/institution + grade/skills/activities).
+         Date precision with months, education_mode chip, grade,
+         per-entry skills, activities, academic projects subsection.
+       - Skills: category grouping (one group per category, gold
+         label above each row) + proficiency-level suffix on each
+         chip. Defense_skills text rendered as its own group at
+         the end of Skills.
+
+       Round 2A does NOT add new sections (achievements, certifications,
+       publications, portfolio, languages, volunteering, consulting,
+       mentorship, professional links, awards) — those are Round 2B.
        ============================================================ -->
 
   <title>Profile — MECULS</title>
@@ -458,6 +480,95 @@
       white-space: pre-wrap;
     }
 
+    /* ── Round 2A: experience extras ── */
+    /* Function · Department line — subtle, between company and meta */
+    .pp-exp__function {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      letter-spacing: 0.02em;
+    }
+    /* Skills row inside an experience entry. Tech/Domain/Soft groups,
+       each with a small label and a row of small tags. */
+    .pp-exp__skills {
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .pp-exp__skill-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+    }
+    .pp-exp__skill-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-right: 4px;
+      min-width: 50px;
+    }
+    .pp-exp__skill-tag {
+      display: inline-block;
+      font-size: 0.78rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      color: var(--text-dim);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--hairline);
+    }
+    /* Key Projects subsection inside an experience entry */
+    .pp-exp__projects {
+      margin-top: 14px;
+      padding: 12px 14px;
+      background: rgba(255, 255, 255, 0.02);
+      border-left: 2px solid var(--gold);
+      border-radius: 0 4px 4px 0;
+    }
+    .pp-exp__projects-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .pp-exp__project {
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed var(--hairline);
+    }
+    .pp-exp__project:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+    .pp-exp__project-name {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 2px;
+    }
+    .pp-exp__project-meta {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .pp-exp__project-line {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.55;
+      margin-bottom: 2px;
+    }
+    .pp-exp__project-key {
+      color: var(--gold);
+      font-weight: 600;
+      margin-right: 4px;
+    }
+
     /* ── Education list ── */
     .pp-edu__item {
       padding: 14px 0;
@@ -479,9 +590,114 @@
       font-size: 0.82rem;
       color: var(--text-muted);
     }
+    /* ── Round 2A: education extras ── */
+    .pp-edu__chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 4px 0 6px;
+    }
+    .pp-edu__chip {
+      display: inline-block;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--hairline);
+      color: var(--text-dim);
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .pp-edu__grade {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      margin-top: 4px;
+    }
+    .pp-edu__skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .pp-edu__skill {
+      display: inline-block;
+      font-size: 0.78rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      color: var(--text-dim);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--hairline);
+    }
+    .pp-edu__activities {
+      font-size: 0.92rem;
+      color: var(--text-dim);
+      line-height: 1.55;
+      margin-top: 8px;
+      white-space: pre-wrap;
+    }
+    .pp-edu__projects {
+      margin-top: 12px;
+      padding: 12px 14px;
+      background: rgba(255, 255, 255, 0.02);
+      border-left: 2px solid var(--gold);
+      border-radius: 0 4px 4px 0;
+    }
+    .pp-edu__projects-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .pp-edu__project {
+      margin-bottom: 8px;
+      padding-bottom: 6px;
+      border-bottom: 1px dashed var(--hairline);
+    }
+    .pp-edu__project:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+    .pp-edu__project-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 2px;
+    }
+    .pp-edu__project-line {
+      font-size: 0.84rem;
+      color: var(--text-dim);
+      line-height: 1.55;
+      margin-bottom: 2px;
+    }
+    .pp-edu__project-key {
+      color: var(--gold);
+      font-weight: 600;
+      margin-right: 4px;
+    }
 
     /* ── Skills tag layout ── */
     .pp-skills {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    /* Round 2A: grouped skills (one group per category) */
+    .pp-skill-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .pp-skill-group__label {
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .pp-skill-row {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
@@ -493,6 +709,10 @@
       color: var(--text-dim);
       font-size: 0.88rem;
       border: 1px solid var(--hairline);
+    }
+    .pp-skill__level {
+      color: var(--text-muted);
+      font-size: 0.8rem;
     }
 
     /* ── CTA at the bottom ── */
@@ -827,19 +1047,22 @@
     setText("ppLocation", loc);
 
     /* Meta row — industry, total experience, defense fields where
-       applicable. Only renders if there's something to show. */
+       applicable. Only renders if there's something to show.
+
+       Round 2A: for defense personnel we put service_branch +
+       rank_designation FIRST (more relevant identity), then
+       years_of_service. For civilians we use industry + total years. */
     const metaEl = document.getElementById("ppMeta");
     if (metaEl) {
       metaEl.innerHTML = "";
       const items = [];
-      if (intro.industry)         items.push(intro.industry);
-      if (intro.total_experience) items.push(intro.total_experience + " yrs experience");
-      /* Defense personnel — show service branch and rank.
-         These columns are only populated when user_type=defense. */
       if (cat === "defense") {
         if (intro.service_branch)   items.push(intro.service_branch);
         if (intro.rank_designation) items.push(intro.rank_designation);
         if (intro.years_of_service) items.push(intro.years_of_service + " yrs of service");
+      } else {
+        if (intro.industry)         items.push(intro.industry);
+        if (intro.total_experience) items.push(intro.total_experience + " yrs experience");
       }
       items.forEach(function (txt) {
         const el = document.createElement("span");
@@ -850,7 +1073,7 @@
       metaEl.hidden = items.length === 0;
     }
 
-    /* Badges */
+    /* Badges — consulting / mentorship / career transition */
     const bWrap = document.getElementById("ppBadges");
     bWrap.innerHTML = "";
     if (p.consulting && p.consulting.availability_status &&
@@ -864,6 +1087,18 @@
       const b = document.createElement("span");
       b.className = "pp-badge";
       b.textContent = "Open to mentoring";
+      bWrap.appendChild(b);
+    }
+    /* Defense → civilian transition badge.
+       Renders only for defense personnel who indicated they're
+       open to (or already in) a civilian role transition. The
+       career_transition field accepts "Yes" or "Maybe" or "No";
+       we badge for the first two. */
+    if (cat === "defense" && intro.career_transition &&
+        /^(yes|maybe)$/i.test(String(intro.career_transition))) {
+      const b = document.createElement("span");
+      b.className = "pp-badge";
+      b.textContent = "Open to civilian roles";
       bWrap.appendChild(b);
     }
   }
@@ -898,11 +1133,13 @@
       /* Meta line: dates · location */
       const meta = [formatDateRange(e), location].filter(Boolean).join(" · ");
 
-      /* Chips: employment_type, location_type. Only render
-         when the value is meaningful. */
+      /* Chips: employment_type, location_type, sector, industry.
+         Round 2A: added sector + industry to give richer context. */
       const chips = [];
       if (e.employment_type) chips.push(e.employment_type);
       if (e.location_type)   chips.push(e.location_type);
+      if (e.sector)          chips.push(e.sector);          /* Private/Public/Govt */
+      if (e.industry)        chips.push(e.industry);        /* Industry name */
 
       /* Designation is the primary line. role_headline is shown
          as a subtitle ONLY if it's distinct (not a duplicate of
@@ -913,6 +1150,26 @@
       const showHeadline  = roleHeadline && roleHeadline !== designation;
       const domainSpec    = e.domain_specialization || "";
 
+      /* Round 2A: build a subtle sub-line for industry_function +
+         department, e.g. "Operations Strategy · Marketing". These
+         add useful context but shouldn't dominate the entry. */
+      const fnDeptParts = [e.industry_function, e.department].filter(function (s) {
+        return s && String(s).trim();
+      });
+      const fnDept = fnDeptParts.join(" · ");
+
+      /* Round 2A: collect tech/soft/domain skills into a single
+         row at the bottom of the entry. Each is a comma-separated
+         string in the source data; we split, dedupe, and tag. */
+      function splitSkills(s) {
+        if (!s) return [];
+        return String(s).split(",").map(function (x) { return x.trim(); })
+                        .filter(function (x) { return !!x; });
+      }
+      const techSkills   = splitSkills(e.tech_skills);
+      const softSkills   = splitSkills(e.soft_skills);
+      const domainSkills = splitSkills(e.domain_skills);
+
       let html = "";
       html += '<div class="pp-exp__role">' + escapeHtml(designation || roleHeadline) + '</div>';
       if (showHeadline) {
@@ -921,6 +1178,9 @@
       html += '<div class="pp-exp__company">' + escapeHtml(e.company_name || "") + '</div>';
       if (domainSpec) {
         html += '<div class="pp-exp__domain">' + escapeHtml(domainSpec) + '</div>';
+      }
+      if (fnDept) {
+        html += '<div class="pp-exp__function">' + escapeHtml(fnDept) + '</div>';
       }
       html += '<div class="pp-exp__meta">' + escapeHtml(meta) + '</div>';
       if (chips.length) {
@@ -934,6 +1194,60 @@
         html += '<div class="pp-exp__desc">' + escapeHtml(e.role_description) + '</div>';
       }
 
+      /* Round 2A: skills row. Tech/Soft/Domain shown as small
+         labelled chips. Skipped entirely if all three are empty. */
+      if (techSkills.length || softSkills.length || domainSkills.length) {
+        html += '<div class="pp-exp__skills">';
+        function renderSkillGroup(label, arr) {
+          if (!arr.length) return "";
+          let group = '<div class="pp-exp__skill-group">';
+          group += '<span class="pp-exp__skill-label">' + escapeHtml(label) + '</span>';
+          arr.forEach(function (s) {
+            group += '<span class="pp-exp__skill-tag">' + escapeHtml(s) + '</span>';
+          });
+          group += '</div>';
+          return group;
+        }
+        html += renderSkillGroup("Tech",   techSkills);
+        html += renderSkillGroup("Domain", domainSkills);
+        html += renderSkillGroup("Soft",   softSkills);
+        html += '</div>';
+      }
+
+      /* Round 2A: projects subsection. Each project has name, ask,
+         role, deliverable, plus optional duration_months and
+         team_size. Render as a compact list under the experience. */
+      if (Array.isArray(e.projects) && e.projects.length) {
+        html += '<div class="pp-exp__projects">';
+        html += '<div class="pp-exp__projects-label">Key Projects</div>';
+        e.projects.forEach(function (proj) {
+          if (!proj || !proj.name) return;
+          html += '<div class="pp-exp__project">';
+          html += '<div class="pp-exp__project-name">' + escapeHtml(proj.name) + '</div>';
+          const projMetaParts = [];
+          if (proj.duration_months) projMetaParts.push(proj.duration_months + " mo");
+          if (proj.team_size)       projMetaParts.push("Team of " + proj.team_size);
+          if (projMetaParts.length) {
+            html += '<div class="pp-exp__project-meta">' +
+                    escapeHtml(projMetaParts.join(" · ")) + '</div>';
+          }
+          if (proj.ask) {
+            html += '<div class="pp-exp__project-line"><span class="pp-exp__project-key">Ask:</span> ' +
+                    escapeHtml(proj.ask) + '</div>';
+          }
+          if (proj.role) {
+            html += '<div class="pp-exp__project-line"><span class="pp-exp__project-key">Role:</span> ' +
+                    escapeHtml(proj.role) + '</div>';
+          }
+          if (proj.deliverable) {
+            html += '<div class="pp-exp__project-line"><span class="pp-exp__project-key">Outcome:</span> ' +
+                    escapeHtml(proj.deliverable) + '</div>';
+          }
+          html += '</div>';
+        });
+        html += '</div>';
+      }
+
       item.innerHTML = html;
       list.appendChild(item);
     });
@@ -945,29 +1259,154 @@
     list.innerHTML = "";
     let any = false;
 
-    /* Current education first if present */
-    if (p.education_current && (p.education_current.institution || p.education_current.degree)) {
+    /* Format education date range (with months when available).
+       Reuses the same monthNames as formatDateRange but for
+       education start/end fields (current uses edu_start_year etc.). */
+    const monthNames = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    function fmtMY(year, month) {
+      if (!year) return "";
+      const m = parseInt(month, 10);
+      if (m >= 1 && m <= 12) return monthNames[m] + " " + year;
+      return String(year);
+    }
+
+    /* Helper: render a projects subsection (education_current may
+       have current_projects; past entries have projects). Education
+       projects have a simpler shape than experience projects:
+       { name, ask, role, deliverable }. */
+    function projectsHtml(arr, label) {
+      if (!Array.isArray(arr) || !arr.length) return "";
+      const valid = arr.filter(function (proj) { return proj && proj.name; });
+      if (!valid.length) return "";
+      let html = '<div class="pp-edu__projects">';
+      html += '<div class="pp-edu__projects-label">' + escapeHtml(label || "Academic Projects") + '</div>';
+      valid.forEach(function (proj) {
+        html += '<div class="pp-edu__project">';
+        html += '<div class="pp-edu__project-name">' + escapeHtml(proj.name) + '</div>';
+        if (proj.ask) {
+          html += '<div class="pp-edu__project-line"><span class="pp-edu__project-key">Ask:</span> ' +
+                  escapeHtml(proj.ask) + '</div>';
+        }
+        if (proj.role) {
+          html += '<div class="pp-edu__project-line"><span class="pp-edu__project-key">Role:</span> ' +
+                  escapeHtml(proj.role) + '</div>';
+        }
+        if (proj.deliverable) {
+          html += '<div class="pp-edu__project-line"><span class="pp-edu__project-key">Outcome:</span> ' +
+                  escapeHtml(proj.deliverable) + '</div>';
+        }
+        html += '</div>';
+      });
+      html += '</div>';
+      return html;
+    }
+
+    /* Current education first if present.
+       Round 2A: actual saved fields are education_level, field_of_study,
+       institution_name, education_mode, edu_start_month/year,
+       edu_end_month/year, currently_pursuing, current_projects. */
+    if (p.education_current &&
+        (p.education_current.institution_name ||
+         p.education_current.education_level ||
+         p.education_current.field_of_study)) {
       const c = p.education_current;
       const item = document.createElement("div");
       item.className = "pp-edu__item";
-      item.innerHTML =
-        '<div class="pp-edu__degree">' + escapeHtml((c.degree || "") + (c.field ? " — " + c.field : "")) + '</div>' +
-        '<div class="pp-edu__inst">' + escapeHtml(c.institution || "") + '</div>' +
-        '<div class="pp-edu__year">In progress' + (c.expected_year ? " · expected " + c.expected_year : "") + '</div>';
+
+      const start = fmtMY(c.edu_start_year, c.edu_start_month);
+      const end   = fmtMY(c.edu_end_year,   c.edu_end_month);
+      let dateStr = "";
+      if (c.currently_pursuing === "yes" || c.currently_pursuing === true) {
+        dateStr = start ? (start + " — Present") : "In progress";
+        if (end) dateStr = start + " — Expected " + end;
+      } else if (start && end) {
+        dateStr = start + " — " + end;
+      } else if (start) {
+        dateStr = start + " — Present";
+      } else if (end) {
+        dateStr = "Expected " + end;
+      }
+
+      const degreeLine = (c.education_level || "") +
+        (c.field_of_study ? " — " + c.field_of_study : "");
+
+      let html = "";
+      html += '<div class="pp-edu__degree">' + escapeHtml(degreeLine) + '</div>';
+      if (c.institution_name) {
+        html += '<div class="pp-edu__inst">' + escapeHtml(c.institution_name) + '</div>';
+      }
+      const eduChips = [];
+      if (c.education_mode) eduChips.push(c.education_mode);
+      if (eduChips.length) {
+        html += '<div class="pp-edu__chips">';
+        eduChips.forEach(function (ch) {
+          html += '<span class="pp-edu__chip">' + escapeHtml(ch) + '</span>';
+        });
+        html += '</div>';
+      }
+      if (dateStr) {
+        html += '<div class="pp-edu__year">' + escapeHtml(dateStr) + '</div>';
+      }
+      html += projectsHtml(c.current_projects, "Current Projects");
+
+      item.innerHTML = html;
       list.appendChild(item);
       any = true;
     }
 
-    /* Past education */
+    /* Past education entries.
+       Round 2A: fields are degree, field_of_study, institution,
+       start_month/year, end_month/year, grade, skills, activities,
+       has_academic_project, projects. */
     if (Array.isArray(p.education) && p.education.length) {
-      p.education.forEach(function (e) {
+      const sorted = p.education.slice().sort(function (a, b) {
+        return (b.education_number || 0) - (a.education_number || 0);
+      });
+      sorted.forEach(function (e) {
         const item = document.createElement("div");
         item.className = "pp-edu__item";
-        const yearStr = e.year_completed || e.year || "";
-        item.innerHTML =
-          '<div class="pp-edu__degree">' + escapeHtml((e.degree || "") + (e.field ? " — " + e.field : "")) + '</div>' +
-          '<div class="pp-edu__inst">' + escapeHtml(e.institution || "") + '</div>' +
-          (yearStr ? '<div class="pp-edu__year">' + escapeHtml(yearStr) + '</div>' : '');
+
+        const start = fmtMY(e.start_year, e.start_month);
+        const end   = fmtMY(e.end_year,   e.end_month);
+        let dateStr = "";
+        if (start && end) dateStr = start + " — " + end;
+        else if (start)   dateStr = start;
+        else if (end)     dateStr = end;
+
+        const degreeLine = (e.degree || "") +
+          (e.field_of_study ? " — " + e.field_of_study : "");
+
+        let html = "";
+        html += '<div class="pp-edu__degree">' + escapeHtml(degreeLine) + '</div>';
+        if (e.institution) {
+          html += '<div class="pp-edu__inst">' + escapeHtml(e.institution) + '</div>';
+        }
+        if (dateStr) {
+          html += '<div class="pp-edu__year">' + escapeHtml(dateStr) + '</div>';
+        }
+        if (e.grade) {
+          html += '<div class="pp-edu__grade">Grade: ' + escapeHtml(e.grade) + '</div>';
+        }
+        if (e.skills) {
+          /* skills is a comma-separated string in past education entries */
+          const eduSkills = String(e.skills).split(",")
+              .map(function (s) { return s.trim(); })
+              .filter(function (s) { return !!s; });
+          if (eduSkills.length) {
+            html += '<div class="pp-edu__skills">';
+            eduSkills.forEach(function (s) {
+              html += '<span class="pp-edu__skill">' + escapeHtml(s) + '</span>';
+            });
+            html += '</div>';
+          }
+        }
+        if (e.activities) {
+          html += '<div class="pp-edu__activities">' + escapeHtml(e.activities) + '</div>';
+        }
+        html += projectsHtml(e.projects, "Academic Projects");
+
+        item.innerHTML = html;
         list.appendChild(item);
         any = true;
       });
@@ -977,37 +1416,136 @@
   }
 
   function renderSkills(p) {
-    /* Prefer the dedicated p.skills array (from the Skills page).
-       Fall back to intro.skills_top5 — an array of strings — when
-       skills array is empty. About You's "Top 5 skills" field is
-       filled before the Skills page exists, so this gives us a
-       Skills section earlier in the build flow. */
-    let labels = [];
+    /* Round 2A — Skills with category grouping + proficiency level.
+
+       PRIMARY shape (from skills.js): array of objects
+         { id, name, category, proficiency, customLabel? }
+       FALLBACK 1: array of strings (legacy or other data)
+       FALLBACK 2: intro.skills_top5 array of strings — used when
+         the dedicated Skills page hasn't been filled yet, so the
+         Top 5 from About You still produces a Skills section.
+
+       Grouping behaviour:
+         - If we have category info, group by category. Categories
+           appear as small uppercase labels above each group.
+         - If no category info (e.g. fallback to skills_top5),
+           render as one flat row.
+         - Proficiency, when present, shows as a subtle ' • Expert'
+           suffix on each chip. */
+
+    let groups = []; // [{ category, items: [{ name, proficiency }] }]
+    let flatItems = null; // used for fallback flat rendering
+
     if (Array.isArray(p.skills) && p.skills.length) {
-      labels = p.skills.map(function (s) {
-        return (typeof s === "string") ? s : (s.skill || s.name || s.label || "");
+      const byCategory = new Map();
+      let anyCategory = false;
+      p.skills.forEach(function (s) {
+        if (!s) return;
+        const name = (typeof s === "string") ? s : (s.name || s.skill || s.label || "");
+        if (!name) return;
+        const cat = (typeof s === "object" && s.category) ? s.category : "";
+        const prof = (typeof s === "object" && s.proficiency) ? s.proficiency : "";
+        if (cat) anyCategory = true;
+        const key = cat || "_uncategorised";
+        if (!byCategory.has(key)) byCategory.set(key, []);
+        byCategory.get(key).push({ name: name, proficiency: prof });
       });
+      if (anyCategory) {
+        /* Render category-by-category. Order: alphabetical except
+           "Other" (and uncategorised) at the end. */
+        const cats = Array.from(byCategory.keys()).sort(function (a, b) {
+          if (a === "_uncategorised") return 1;
+          if (b === "_uncategorised") return -1;
+          if (a === "Other") return 1;
+          if (b === "Other") return -1;
+          return a.localeCompare(b);
+        });
+        cats.forEach(function (cat) {
+          groups.push({
+            category: cat === "_uncategorised" ? "" : cat,
+            items: byCategory.get(cat)
+          });
+        });
+      } else {
+        /* No categories anywhere — render flat */
+        flatItems = [];
+        byCategory.forEach(function (arr) {
+          arr.forEach(function (it) { flatItems.push(it); });
+        });
+      }
     } else {
       const top5 = (p.introduction && p.introduction.skills_top5) || [];
+      let labels = [];
       if (Array.isArray(top5)) {
         labels = top5.slice();
       } else if (typeof top5 === "string" && top5.trim()) {
-        /* Defensive: if for any reason it's stored as a string
-           (legacy data), still handle gracefully */
         labels = top5.split(",").map(function (s) { return s.trim(); });
       }
+      labels = labels.filter(function (s) { return !!s; });
+      if (labels.length) {
+        flatItems = labels.map(function (l) { return { name: l, proficiency: "" }; });
+      }
     }
-    labels = labels.filter(function (s) { return !!s; });
-    if (!labels.length) return;
+
+    /* Round 2A: defense_skills text block — comma-separated skills
+       acquired during military service. We render this as its own
+       group at the END of the skills list so it's clearly distinct
+       from civilian skill categories. */
+    const intro = p.introduction || {};
+    if (intro.defense_skills && String(intro.defense_skills).trim()) {
+      const defSkills = String(intro.defense_skills).split(",")
+          .map(function (s) { return s.trim(); })
+          .filter(function (s) { return !!s; });
+      if (defSkills.length) {
+        const defGroup = {
+          category: "Defense Skills",
+          items: defSkills.map(function (s) { return { name: s, proficiency: "" }; })
+        };
+        groups.push(defGroup);
+      }
+    }
+
+    /* Nothing to show? skip the section. */
+    if (!groups.length && (!flatItems || !flatItems.length)) return;
 
     const list = document.getElementById("ppSkillsList");
     list.innerHTML = "";
-    labels.forEach(function (label) {
+
+    function renderChip(item) {
       const tag = document.createElement("span");
       tag.className = "pp-skill";
-      tag.textContent = label;
-      list.appendChild(tag);
-    });
+      if (item.proficiency) {
+        tag.innerHTML = escapeHtml(item.name) +
+          ' <span class="pp-skill__level">· ' + escapeHtml(item.proficiency) + '</span>';
+      } else {
+        tag.textContent = item.name;
+      }
+      return tag;
+    }
+
+    if (flatItems && flatItems.length) {
+      const row = document.createElement("div");
+      row.className = "pp-skill-row";
+      flatItems.forEach(function (it) { row.appendChild(renderChip(it)); });
+      list.appendChild(row);
+    } else {
+      groups.forEach(function (g) {
+        const groupEl = document.createElement("div");
+        groupEl.className = "pp-skill-group";
+        if (g.category) {
+          const lbl = document.createElement("div");
+          lbl.className = "pp-skill-group__label";
+          lbl.textContent = g.category;
+          groupEl.appendChild(lbl);
+        }
+        const row = document.createElement("div");
+        row.className = "pp-skill-row";
+        g.items.forEach(function (it) { row.appendChild(renderChip(it)); });
+        groupEl.appendChild(row);
+        list.appendChild(groupEl);
+      });
+    }
+
     show("ppSkillsSection");
   }
 
