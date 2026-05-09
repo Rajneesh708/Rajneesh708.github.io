@@ -315,19 +315,16 @@
       color: var(--hairline);
       margin: 0 10px;
     }
-    /* Headline — Round 2A.2: rendered as a serif italic block with
-       a gold left-bar accent. Sets it apart visually as the
-       person's positioning statement, not a chip-list item. */
+    /* Headline — italic serif text, no decorative bar. Wider so it
+       uses the available space and doesn't break onto extra lines. */
     .pp-hero__headline {
       font-family: var(--serif);
       font-size: 1.05rem;
       font-style: italic;
       color: var(--text-dim);
       line-height: 1.6;
-      margin: 0 0 18px 0;
-      padding-left: 14px;
-      border-left: 2px solid var(--gold);
-      max-width: 64ch;
+      margin: 8px 0 18px 0;
+      max-width: 78ch;
     }
     /* Hidden helpers — these elements are still in DOM for backward
        compat with older JS paths but we don't render them anymore. */
@@ -466,12 +463,13 @@
       margin-bottom: 14px;
     }
 
-    /* Projects subsection — Round 2A.2: tighter, compact pattern.
-       Each project is ONE block: a header line (name · duration ·
-       team) then a body line that flows ask → role → outcome. */
+    /* Projects subsection — Round 2A.2 v3: NO box, NO diamond
+       bullet, NO border. Just whitespace-separated text blocks
+       like a regular CV. Section label in gold caps for hierarchy,
+       then projects flow as paragraphs. */
     .pp-exp__projects {
-      margin-top: 8px;
-      margin-bottom: 14px;
+      margin-top: 18px;
+      margin-bottom: 16px;
     }
     .pp-exp__projects-label {
       font-size: 0.78rem;
@@ -479,20 +477,10 @@
       text-transform: uppercase;
       color: var(--gold);
       font-weight: 600;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
     .pp-exp__project {
-      margin-bottom: 12px;
-      padding-left: 16px;
-      position: relative;
-    }
-    .pp-exp__project::before {
-      content: "◆";
-      position: absolute;
-      left: 0;
-      top: 1px;
-      color: var(--gold);
-      font-size: 0.7rem;
+      margin-bottom: 14px;
     }
     .pp-exp__project:last-child {
       margin-bottom: 0;
@@ -518,14 +506,13 @@
       margin-right: 2px;
     }
 
-    /* Skills used: one line, comma-separated, sits at the bottom */
+    /* Skills used: simple trailing line, NO border-top, NO dashed
+       separator. Just margin for breathing room. */
     .pp-exp__skills-line {
       font-size: 0.9rem;
       color: var(--text-dim);
       line-height: 1.6;
-      margin-top: 6px;
-      padding-top: 12px;
-      border-top: 1px dashed var(--hairline);
+      margin-top: 16px;
     }
     .pp-exp__skills-label {
       color: var(--gold);
@@ -1270,7 +1257,7 @@
                   '</div>';
           if (descParts.length) {
             html += '<div class="pp-exp__project-body">' +
-                    descParts.join(' &nbsp; ') + '</div>';
+                    descParts.join('<span class="pp-exp__sep">·</span>') + '</div>';
           }
           html += '</div>';
         });
