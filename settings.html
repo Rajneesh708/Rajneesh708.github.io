@@ -552,11 +552,13 @@
       color: var(--text-soft);
       font-size: 1.05rem;
     }
-    /* Defeat the display:flex specificity so the HTML [hidden]
-       attribute reliably hides the spinner. Without this the
-       spinner stays visible alongside loaded content (the class
-       rule above wins over the user-agent [hidden] default). */
-    .st-page-loading[hidden] { display: none !important; }
+    /* Universal [hidden] rule — ensures the HTML hidden attribute
+       reliably hides any element regardless of explicit display
+       values applied by class rules. Without this, .st-field uses
+       display:grid and .st-page-loading uses display:flex, both
+       of which override the user-agent [hidden] { display:none }
+       default and break the [hidden] attribute. */
+    [hidden] { display: none !important; }
 
     /* ── Mobile ────────────────────────────────────────────── */
     @media (max-width: 820px) {
