@@ -5,53 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- ============================================================
-       MECULS — p.html  (Public Profile renderer) — Round 2A.1
-       Date: 2026-05-08
+       MECULS — p.html  (Public Profile renderer) — Round 2A.2
+       Date: 2026-05-09
        ============================================================
-       This is a polish round on top of Round 2A. Same data shape
-       from get_public_profile(), but:
+       FULL REDESIGN of Hero + Experience using a CV reading
+       pattern. No more turn-by-turn polish patches.
 
-       Hero re-ordering (matches founder's intent):
-         1. Photo + WORKING PROFESSIONAL label
-         2. Name
-         3. Position · Company  (e.g., "Founder · MECULS",
-            auto-derived from current_position + most-recent
-            experience's company_name)
-         4. Location (City/State, Country)
-         5. "X years experience"
-         6. Italic professional headline (LAST, can be long)
-         No more industry chip in hero — it was redundant with
-         the per-experience industry rendering.
+       Hero (CV-feel):
+         WORKING PROFESSIONAL  (gold category)
+         Rajneesh Jain          (large serif name)
+         Founder · MECULS       (primary identifier line)
+         Delhi, India · 25 years experience  (single bio line)
+         "[italic headline with gold left-bar accent]"
+         [Status badges row]
 
-       Experience entry re-ordering and clean-up:
-         1. Designation (bold)
-         2. Company name (gold)
-         3. industry_function (e.g., "Executive Search ·
-            Leadership Coaching · Data Analytics") — promoted
-            from subtle gray line to a properly visible line.
-         4. Function · Department (subtle, e.g., "Business Owner
-            · Human Resources")
-         5. Date · Location ("Jul 2024 — Present · Delhi, India")
-         6. Description paragraphs
-         7. Skills (one row, no Tech/Domain/Soft labels — they
-            were confusing; chips alone carry meaning)
-         8. Key Projects subsection (months instead of "mo")
-         No chips row (employment_type, location_type, sector,
-         industry chips removed — they were noise per founder
-         feedback).
+       Experience entry (CV-feel):
+         Designation                          (large bold)
+         Company · Location · Dates           (one line, gold company)
+         Industry function (what they do)
+         Optional italic role headline
+         Description paragraphs
+         Key projects (each as compact two-line block:
+           name · duration · team / Ask role outcome flowing)
+         Skills used: a, b, c, d   (one trailing line)
 
-       "Other (Please Specify)" fix:
-         When industry / department / country / industry_function
-         equals "Other (Please Specify)" or "Other" and there's a
-         matching *_other field with the user's typed value, we
-         render the typed value instead of the literal "Other"
-         text.
-
-       Project duration:
-         "5 mo" → "5 months", "1 mo" → "1 month".
-
-       No SQL changes in this round. The fields used are already
-       returned by get_public_profile() (Round 2A SQL).
+       What was REMOVED to match CV reading patterns:
+         - Stacked location + meta rows in hero (now ONE line)
+         - All experience chips (Full-time, On-site, Private,
+           Sector, Industry, etc.) — were noise
+         - Tech / Domain / Soft skill labels — chips alone now,
+           collapsed into one inline "Skills used:" line
+         - Sector · Department subtle gray subtitle in experience
+         - State from inline meta line (City, Country only)
+         - Stacked Ask/Role/Outcome lines for projects (now flowing)
        ============================================================ -->
 
   <title>Profile — MECULS</title>
@@ -293,65 +279,61 @@
     }
     .pp-hero__name {
       font-family: var(--serif);
-      font-size: 2.4rem;
+      font-size: 2.6rem;
       font-weight: 600;
       color: #fff;
       letter-spacing: 0.005em;
-      line-height: 1.15;
-      margin-bottom: 8px;
+      line-height: 1.1;
+      margin-bottom: 6px;
     }
     .pp-hero__category {
-      font-size: 0.85rem;
-      letter-spacing: 0.18em;
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--gold);
       margin-bottom: 14px;
+      font-weight: 500;
     }
-    /* Round 2A.1: headline moved to last position. Adjusted to be
-       a slightly smaller closing italic note rather than dominating
-       the hero. Top margin separates it from the meta line above. */
+    /* Round 2A.2: position · company sits right under the name as
+       the primary identifier line. Larger and cleaner than the meta
+       row that follows. */
+    .pp-hero__current-position {
+      font-size: 1.1rem;
+      color: #fff;
+      margin: 0 0 6px 0;
+      line-height: 1.4;
+    }
+    /* Single meta line — location + total experience, separated by
+       a bullet. Replaces the stacked location-then-meta-row pattern. */
+    .pp-hero__bio-line {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      margin: 0 0 18px 0;
+      line-height: 1.5;
+    }
+    .pp-hero__bio-line .pp-hero__sep {
+      color: var(--hairline);
+      margin: 0 10px;
+    }
+    /* Headline — Round 2A.2: rendered as a serif italic block with
+       a gold left-bar accent. Sets it apart visually as the
+       person's positioning statement, not a chip-list item. */
     .pp-hero__headline {
       font-family: var(--serif);
       font-size: 1.05rem;
       font-style: italic;
       color: var(--text-dim);
-      line-height: 1.55;
-      margin-top: 16px;
-      max-width: 56ch;
+      line-height: 1.6;
+      margin: 0 0 18px 0;
+      padding-left: 14px;
+      border-left: 2px solid var(--gold);
+      max-width: 64ch;
     }
-    /* Current position · Company — sits directly under name.
-       Larger and more readable than before; this is the primary
-       identifier line ("Founder · MECULS"). */
-    .pp-hero__current-position {
-      margin-top: 6px;
-      font-size: 1.05rem;
-      color: #fff;
-      font-weight: 500;
-    }
-    .pp-hero__location {
-      margin-top: 8px;
-      font-size: 0.9rem;
-      color: var(--text-dim);
-    }
-    /* Meta row — now mostly just "X years experience" since we
-       removed the industry chip per founder feedback. */
-    .pp-hero__meta {
-      margin-top: 6px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px 14px;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      align-items: center;
-    }
-    .pp-hero__meta-item {
-      display: inline-flex;
-      align-items: center;
-    }
-    .pp-hero__meta-item:not(:last-child)::after {
-      content: "•";
-      margin-left: 14px;
-      color: var(--hairline);
+    /* Hidden helpers — these elements are still in DOM for backward
+       compat with older JS paths but we don't render them anymore. */
+    .pp-hero__location[hidden],
+    .pp-hero__meta[hidden] {
+      display: none;
     }
 
     /* ── Status badges (consulting / mentorship) ── */
@@ -416,180 +398,158 @@
     }
     .pp-exp__item {
       position: relative;
-      padding-bottom: 28px;
+      padding-bottom: 40px;
     }
     .pp-exp__item:last-child { padding-bottom: 0; }
     .pp-exp__item::before {
       content: "";
       position: absolute;
       left: -35px;
-      top: 6px;
+      top: 8px;
       width: 12px;
       height: 12px;
       border-radius: 50%;
       background: var(--gold);
       border: 3px solid var(--ink-deep);
     }
+    /* ── Experience entries (Round 2A.2 — CV-feel) ── */
+    /* Designation = the title. Larger, sharper.
+       The company/dates/location appear as ONE line below it. */
     .pp-exp__role {
-      font-size: 1.15rem;
+      font-size: 1.25rem;
       font-weight: 600;
       color: #fff;
-      margin-bottom: 2px;
-    }
-    /* Round 1.5: subtitle under designation when role_headline differs */
-    .pp-exp__headline {
-      font-size: 0.92rem;
-      color: var(--text-dim);
-      font-style: italic;
       margin-bottom: 4px;
+      letter-spacing: -0.005em;
     }
-    .pp-exp__company {
-      font-size: 1rem;
+    /* Single identifying line: Company · Location · Dates. The
+       company name is in gold to anchor the eye; the location and
+       dates are dim but still readable. */
+    .pp-exp__line {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      margin-bottom: 4px;
+      line-height: 1.55;
+    }
+    .pp-exp__line :first-child {
       color: var(--gold);
-      margin-bottom: 4px;
+      font-weight: 500;
     }
-    /* Round 1.5: domain specialization — small annotation under company */
-    .pp-exp__domain {
-      font-size: 0.85rem;
+    .pp-exp__sep {
+      color: var(--hairline);
+      margin: 0 8px;
+    }
+    /* What the company / role does — sits right under the line */
+    .pp-exp__what {
+      font-size: 0.9rem;
       color: var(--text-dim);
-      margin-bottom: 6px;
-    }
-    .pp-exp__meta {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-    }
-    /* Round 1.5: chip row for employment_type / location_type */
-    .pp-exp__chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
       margin-bottom: 10px;
+      line-height: 1.55;
     }
-    .pp-exp__chip {
-      display: inline-block;
-      font-size: 0.72rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 3px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--hairline);
+    /* Italic tagline (role_headline) — appears between meta and
+       description as a one-line positioning statement. Only shown
+       if it's distinct from the designation. */
+    .pp-exp__tagline {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-style: italic;
       color: var(--text-dim);
-      background: rgba(255, 255, 255, 0.02);
+      margin-bottom: 14px;
+      line-height: 1.5;
     }
+    /* Description — flowing prose paragraphs */
     .pp-exp__desc {
       font-size: 0.95rem;
       color: var(--text-dim);
-      line-height: 1.6;
+      line-height: 1.7;
       white-space: pre-wrap;
+      margin-bottom: 14px;
     }
 
-    /* ── Round 2A: experience extras ── */
-    /* Industry-function line — Round 2A.1: PROMOTED to a clearly
-       readable line directly under company name. Shows what the
-       business does (e.g., "Executive Search · Leadership
-       Coaching · Data Analytics"). Same color as text-dim with
-       slightly larger size than meta lines. */
-    .pp-exp__industry-function {
-      font-size: 0.95rem;
-      color: var(--text-dim);
-      margin-bottom: 4px;
-      line-height: 1.4;
-    }
-    /* Sector · Department line — kept subtle and secondary */
-    .pp-exp__function {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-      letter-spacing: 0.02em;
-    }
-    /* Round 2A.1: Skills row — single row, no group labels.
-       Replaces the Tech/Domain/Soft labelled groups. */
-    .pp-exp__skill-row {
-      margin-top: 14px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-    /* Skills row inside an experience entry. Tech/Domain/Soft groups,
-       each with a small label and a row of small tags. */
-    .pp-exp__skills {
-      margin-top: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .pp-exp__skill-group {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 6px;
-    }
-    .pp-exp__skill-label {
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--gold);
-      font-weight: 600;
-      margin-right: 4px;
-      min-width: 50px;
-    }
-    .pp-exp__skill-tag {
-      display: inline-block;
-      font-size: 0.78rem;
-      padding: 2px 8px;
-      border-radius: 4px;
-      color: var(--text-dim);
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--hairline);
-    }
-    /* Key Projects subsection inside an experience entry */
+    /* Projects subsection — Round 2A.2: tighter, compact pattern.
+       Each project is ONE block: a header line (name · duration ·
+       team) then a body line that flows ask → role → outcome. */
     .pp-exp__projects {
-      margin-top: 14px;
-      padding: 12px 14px;
-      background: rgba(255, 255, 255, 0.02);
-      border-left: 2px solid var(--gold);
-      border-radius: 0 4px 4px 0;
+      margin-top: 8px;
+      margin-bottom: 14px;
     }
     .pp-exp__projects-label {
-      font-size: 0.72rem;
-      letter-spacing: 0.14em;
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--gold);
       font-weight: 600;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
     .pp-exp__project {
-      margin-bottom: 10px;
-      padding-bottom: 8px;
-      border-bottom: 1px dashed var(--hairline);
+      margin-bottom: 12px;
+      padding-left: 16px;
+      position: relative;
+    }
+    .pp-exp__project::before {
+      content: "◆";
+      position: absolute;
+      left: 0;
+      top: 1px;
+      color: var(--gold);
+      font-size: 0.7rem;
     }
     .pp-exp__project:last-child {
       margin-bottom: 0;
-      padding-bottom: 0;
-      border-bottom: 0;
+    }
+    .pp-exp__project-header {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      margin-bottom: 4px;
+      line-height: 1.55;
     }
     .pp-exp__project-name {
-      font-size: 0.92rem;
-      font-weight: 600;
       color: #fff;
-      margin-bottom: 2px;
+      font-weight: 600;
     }
-    .pp-exp__project-meta {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-    }
-    .pp-exp__project-line {
-      font-size: 0.85rem;
+    .pp-exp__project-body {
+      font-size: 0.92rem;
       color: var(--text-dim);
-      line-height: 1.55;
-      margin-bottom: 2px;
+      line-height: 1.7;
     }
     .pp-exp__project-key {
       color: var(--gold);
       font-weight: 600;
-      margin-right: 4px;
+      margin-right: 2px;
+    }
+
+    /* Skills used: one line, comma-separated, sits at the bottom */
+    .pp-exp__skills-line {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+      margin-top: 6px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--hairline);
+    }
+    .pp-exp__skills-label {
+      color: var(--gold);
+      font-weight: 600;
+      margin-right: 6px;
+    }
+
+    /* Hide the Round-2A elements we no longer use (kept in DOM
+       for backward compat with the old renderExperience paths). */
+    .pp-exp__headline,
+    .pp-exp__company,
+    .pp-exp__domain,
+    .pp-exp__industry-function,
+    .pp-exp__function,
+    .pp-exp__meta,
+    .pp-exp__chips,
+    .pp-exp__skills,
+    .pp-exp__skill-row {
+      /* not rendered by renderExperience anymore — defensive only */
+    }
+    /* Old project body styles — keep for compat but no instances now */
+    .pp-exp__project-meta,
+    .pp-exp__project-line {
+      display: none;
     }
 
     /* ── Education list ── */
@@ -864,7 +824,8 @@
           <div id="ppCategory" class="pp-hero__category"></div>
           <h1 id="ppName" class="pp-hero__name"></h1>
           <p id="ppCurrentPosition" class="pp-hero__current-position" hidden></p>
-          <p id="ppLocation" class="pp-hero__location"></p>
+          <p id="ppBioLine" class="pp-hero__bio-line" hidden></p>
+          <p id="ppLocation" class="pp-hero__location" hidden></p>
           <div id="ppMeta" class="pp-hero__meta" hidden></div>
           <p id="ppHeadline" class="pp-hero__headline"></p>
           <div id="ppBadges" class="pp-badges"></div>
@@ -1092,31 +1053,36 @@
     const loc = [intro.res_state, intro.res_country].filter(Boolean).join(", ");
     setText("ppLocation", loc);
 
-    /* Meta row — Round 2A.1: simplified.
-       For civilians: only "X years experience" (industry chip
-         removed per founder feedback — it was redundant and
-         visually busy).
-       For defense personnel: service_branch + rank_designation
-         + years_of_service (unchanged from Round 2A). */
-    const metaEl = document.getElementById("ppMeta");
-    if (metaEl) {
-      metaEl.innerHTML = "";
-      const items = [];
+    /* Round 2A.2: BIO LINE — location + experience on one line.
+       Replaces the previously stacked location and meta rows.
+       For civilians:  "Delhi, India  ·  25 years experience"
+       For defense:    "Delhi, India  ·  Indian Army  ·  Lt. Col."
+                       (service identity instead of years) */
+    const bioEl = document.getElementById("ppBioLine");
+    if (bioEl) {
+      const parts = [];
+      if (loc) parts.push(loc);
       if (cat === "defense") {
-        if (intro.service_branch)   items.push(intro.service_branch);
-        if (intro.rank_designation) items.push(intro.rank_designation);
-        if (intro.years_of_service) items.push(intro.years_of_service + " years of service");
+        if (intro.service_branch)   parts.push(intro.service_branch);
+        if (intro.rank_designation) parts.push(intro.rank_designation);
+        if (intro.years_of_service) parts.push(intro.years_of_service + " years of service");
       } else {
-        if (intro.total_experience) items.push(intro.total_experience + " years experience");
+        if (intro.total_experience) parts.push(intro.total_experience + " years experience");
       }
-      items.forEach(function (txt) {
-        const el = document.createElement("span");
-        el.className = "pp-hero__meta-item";
-        el.textContent = txt;
-        metaEl.appendChild(el);
-      });
-      metaEl.hidden = items.length === 0;
+      if (parts.length) {
+        bioEl.innerHTML = parts.map(escapeHtml)
+          .join('<span class="pp-hero__sep">·</span>');
+        bioEl.hidden = false;
+      } else {
+        bioEl.hidden = true;
+      }
     }
+
+    /* Meta row — Round 2A.2: SUPPRESSED. The single bio line above
+       has replaced this. We still set it to hidden defensively in
+       case CSS fallback ever changes. */
+    const metaEl = document.getElementById("ppMeta");
+    if (metaEl) { metaEl.innerHTML = ""; metaEl.hidden = true; }
 
     /* Badges — consulting / mentorship / career transition */
     const bWrap = document.getElementById("ppBadges");
@@ -1176,158 +1142,147 @@
     if (!Array.isArray(p.experiences) || !p.experiences.length) return;
     const list = document.getElementById("ppExpList");
     list.innerHTML = "";
+
     /* Sort: current role first, then by experience_number desc */
     const sorted = p.experiences.slice().sort(function (a, b) {
       if (a.is_current && !b.is_current) return -1;
       if (b.is_current && !a.is_current) return 1;
       return (b.experience_number || 0) - (a.experience_number || 0);
     });
+
     sorted.forEach(function (e) {
       const item = document.createElement("div");
       item.className = "pp-exp__item";
 
-      /* Resolve "Other" → custom value for fields that have a
-         matching *_other variant (Round 2A.1 fix). */
-      const industry   = preferCustom(e.industry,   e.industry_other);
-      const department = preferCustom(e.department, e.department_other);
-      const country    = preferCustom(e.country,    e.country_other);
+      /* Resolve "Other" → custom value where applicable */
+      const country  = preferCustom(e.country, e.country_other);
 
-      /* Build location: "City, State, Country" */
-      const locationParts = [e.city, e.state, country].filter(function (s) {
+      /* Build location: "City, Country" — Round 2A.2: dropped state
+         from the inline meta line because "City, State, Country"
+         takes too much space and "City, Country" reads cleaner.
+         State info is rarely material at CV scan-time. */
+      const locParts = [e.city, country].filter(function (s) {
         return s && String(s).trim();
       });
-      const location = locationParts.join(", ");
+      const location = locParts.join(", ");
 
-      /* Date · Location line */
-      const meta = [formatDateRange(e), location].filter(Boolean).join(" · ");
+      /* ONE meta line: Company  ·  Location  ·  Dates. This is the
+         identifying stripe — same role across every CV format. */
+      const metaParts = [];
+      if (e.company_name) metaParts.push(escapeHtml(e.company_name));
+      if (location)       metaParts.push(escapeHtml(location));
+      const dateStr = formatDateRange(e);
+      if (dateStr)        metaParts.push(escapeHtml(dateStr));
+      const metaHtml = metaParts.join('<span class="pp-exp__sep">·</span>');
 
-      /* industry_function — promoted from subtle gray line to a
-         clearly readable line under company name. Multiple values
-         separated by · for natural flow. */
-      function splitFunc(s) {
+      /* industry_function — what the company / role actually does.
+         Comma-separated values render with bullet separators. */
+      function splitList(s) {
         if (!s) return [];
         return String(s).split(",").map(function (x) { return x.trim(); })
                         .filter(function (x) { return !!x; });
       }
-      const fnList = splitFunc(e.industry_function);
-      const fnLine = fnList.join(" · ");
+      const fnLine = splitList(e.industry_function).join(" · ");
 
-      /* Function/department subtle line — combines the dropdown
-         "industry_function" sense (e.g., "Business Owner") with
-         "department" (e.g., "Human Resources"). These are two
-         dashboard fields that read naturally as a combined
-         secondary label. Note: e.industry_function is the
-         comma-separated services list; "function" in the form
-         actually meant "department-level function" — confusingly
-         named in the original schema. We use department here. */
-      /* Build "Sector · Department" subtle line where Sector is
-         the resolved sector text (Private/Public/etc.) and
-         Department is the user's department. Skip if both empty. */
-      const subtleParts = [];
-      if (e.sector) subtleParts.push(e.sector);
-      if (department) subtleParts.push(department);
-      const subtleLine = subtleParts.join(" · ");
-
-      /* Designation + role headline subtitle */
-      const designation   = e.designation   || "";
-      const roleHeadline  = e.role_headline || "";
-      const showHeadline  = roleHeadline && roleHeadline !== designation;
-      const domainSpec    = e.domain_specialization || "";
-
-      /* Skills — Round 2A.1: one row, NO Tech/Domain/Soft labels.
-         Order: domain (most role-specific) → tech → soft. */
-      function splitSkills(s) {
-        if (!s) return [];
-        return String(s).split(",").map(function (x) { return x.trim(); })
-                        .filter(function (x) { return !!x; });
-      }
+      /* Skills — Round 2A.2: collapsed into ONE inline line.
+         Combine domain + tech + soft (in that order; most
+         role-specific first). Render as a single "Skills used: ..."
+         line with comma separators — standard CV pattern. */
       const allSkills = []
-        .concat(splitSkills(e.domain_skills))
-        .concat(splitSkills(e.tech_skills))
-        .concat(splitSkills(e.soft_skills));
+        .concat(splitList(e.domain_skills))
+        .concat(splitList(e.tech_skills))
+        .concat(splitList(e.soft_skills));
+      const skillsLine = allSkills.join(", ");
 
+      /* Build the entry */
       let html = "";
-      /* 1. Designation (bold) */
-      html += '<div class="pp-exp__role">' + escapeHtml(designation || roleHeadline) + '</div>';
-      /* 2. Role headline (italic subtitle, only if distinct) */
-      if (showHeadline) {
-        html += '<div class="pp-exp__headline">' + escapeHtml(roleHeadline) + '</div>';
+
+      /* 1. Designation (the title — bold) */
+      html += '<div class="pp-exp__role">' + escapeHtml(e.designation || e.role_headline || "") + '</div>';
+
+      /* 2. Single identifying line: Company · Location · Dates */
+      if (metaHtml) {
+        html += '<div class="pp-exp__line">' + metaHtml + '</div>';
       }
-      /* 3. Company (gold) */
-      html += '<div class="pp-exp__company">' + escapeHtml(e.company_name || "") + '</div>';
-      /* 4. industry_function — promoted to primary line. This is
-         what businesses do (e.g., "Executive Search · Leadership
-         Coaching · Data Analytics"). */
+
+      /* 3. industry_function — what they do at this role/company */
       if (fnLine) {
-        html += '<div class="pp-exp__industry-function">' + escapeHtml(fnLine) + '</div>';
+        html += '<div class="pp-exp__what">' + escapeHtml(fnLine) + '</div>';
       }
-      /* 5. Domain specialization (italic, optional) */
-      if (domainSpec) {
-        html += '<div class="pp-exp__domain">' + escapeHtml(domainSpec) + '</div>';
-      }
-      /* 6. Subtle Sector · Department line */
-      if (subtleLine) {
-        html += '<div class="pp-exp__function">' + escapeHtml(subtleLine) + '</div>';
-      }
-      /* 7. Date · Location */
-      html += '<div class="pp-exp__meta">' + escapeHtml(meta) + '</div>';
 
-      /* CHIPS REMOVED in Round 2A.1 (founder feedback: not required).
-         Industry chip also removed — industry value lives in the
-         industry_function line above for context. */
+      /* 4. role_headline — italic subtitle ONLY if distinct from
+         designation. Sits like a tagline before the description. */
+      const designation  = e.designation  || "";
+      const roleHeadline = e.role_headline || "";
+      if (roleHeadline && roleHeadline !== designation) {
+        html += '<div class="pp-exp__tagline">' + escapeHtml(roleHeadline) + '</div>';
+      }
 
-      /* 8. Description paragraphs */
+      /* 5. role_description — the meat. Multiple paragraphs preserved. */
       if (e.role_description) {
         html += '<div class="pp-exp__desc">' + escapeHtml(e.role_description) + '</div>';
       }
 
-      /* 9. Skills row (one row, no group labels — chips alone
-         carry the meaning). */
-      if (allSkills.length) {
-        html += '<div class="pp-exp__skill-row">';
-        allSkills.forEach(function (s) {
-          html += '<span class="pp-exp__skill-tag">' + escapeHtml(s) + '</span>';
-        });
-        html += '</div>';
-      }
-
-      /* 10. Key Projects subsection */
+      /* 6. Projects subsection — Round 2A.2: each project on a
+         compact two-line pattern.
+         Line 1: Project name · Duration · Team size
+         Line 2: One flowing sentence combining Ask · Role · Outcome */
       if (Array.isArray(e.projects) && e.projects.length) {
         html += '<div class="pp-exp__projects">';
-        html += '<div class="pp-exp__projects-label">Key Projects</div>';
+        html += '<div class="pp-exp__projects-label">Key projects</div>';
         e.projects.forEach(function (proj) {
           if (!proj || !proj.name) return;
-          html += '<div class="pp-exp__project">';
-          html += '<div class="pp-exp__project-name">' + escapeHtml(proj.name) + '</div>';
-          const projMetaParts = [];
+
+          const projHeader = [];
+          projHeader.push('<span class="pp-exp__project-name">' +
+                          escapeHtml(proj.name) + '</span>');
           if (proj.duration_months) {
             const n = parseInt(proj.duration_months, 10);
             const word = (n === 1) ? "month" : "months";
-            projMetaParts.push(n + " " + word);
+            projHeader.push(escapeHtml(n + " " + word));
           }
           if (proj.team_size) {
             const t = parseInt(proj.team_size, 10);
-            projMetaParts.push("Team of " + t);
+            const tword = (t === 1) ? "person" : "people";
+            projHeader.push(escapeHtml("Team of " + t + " " + tword));
           }
-          if (projMetaParts.length) {
-            html += '<div class="pp-exp__project-meta">' +
-                    escapeHtml(projMetaParts.join(" · ")) + '</div>';
-          }
+
+          /* Build one flowing description from ask/role/outcome.
+             Each piece keeps a subtle gold key but is on the SAME
+             line as a continuous narrative — not stacked rows. */
+          const descParts = [];
           if (proj.ask) {
-            html += '<div class="pp-exp__project-line"><span class="pp-exp__project-key">Ask:</span> ' +
-                    escapeHtml(proj.ask) + '</div>';
+            descParts.push('<span class="pp-exp__project-key">Ask:</span> ' +
+                           escapeHtml(proj.ask));
           }
           if (proj.role) {
-            html += '<div class="pp-exp__project-line"><span class="pp-exp__project-key">Role:</span> ' +
-                    escapeHtml(proj.role) + '</div>';
+            descParts.push('<span class="pp-exp__project-key">Role:</span> ' +
+                           escapeHtml(proj.role));
           }
           if (proj.deliverable) {
-            html += '<div class="pp-exp__project-line"><span class="pp-exp__project-key">Outcome:</span> ' +
-                    escapeHtml(proj.deliverable) + '</div>';
+            descParts.push('<span class="pp-exp__project-key">Outcome:</span> ' +
+                           escapeHtml(proj.deliverable));
+          }
+
+          html += '<div class="pp-exp__project">';
+          html += '<div class="pp-exp__project-header">' +
+                  projHeader.join('<span class="pp-exp__sep">·</span>') +
+                  '</div>';
+          if (descParts.length) {
+            html += '<div class="pp-exp__project-body">' +
+                    descParts.join(' &nbsp; ') + '</div>';
           }
           html += '</div>';
         });
         html += '</div>';
+      }
+
+      /* 7. Skills used — single inline line, comma-separated */
+      if (skillsLine) {
+        html += '<div class="pp-exp__skills-line">' +
+                '<span class="pp-exp__skills-label">Skills used:</span> ' +
+                escapeHtml(skillsLine) +
+                '</div>';
       }
 
       item.innerHTML = html;
