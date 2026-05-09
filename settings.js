@@ -1,7 +1,11 @@
 /* ════════════════════════════════════════════════════════════
-   MECULS — settings.js (v=2)
+   MECULS — settings.js (v=3)
    Date: 2026-05-09
    ════════════════════════════════════════════════════════════
+   v=3 changes:
+     - Eye-icon show/hide toggle on both password inputs (only
+       visible to non-Google users since the password section
+       itself is hidden for Google sign-in users)
    v=2 fixes (from v=1):
      - Sign-in method detection now uses app_metadata.providers
        (authoritative), not identities[] (which falsely showed
@@ -271,6 +275,15 @@
     // Password change
     $("stChangePwBtn").addEventListener("click", onChangePassword);
 
+    // Password show/hide toggles. Each eye button has data-target
+    // pointing at the input it toggles. We attach one listener per
+    // toggle (the toggles only exist in the DOM if the password
+    // section is rendered, i.e. for non-Google users).
+    ["stNewPwToggle", "stConfirmPwToggle"].forEach(id => {
+      const btn = $(id);
+      if (btn) btn.addEventListener("click", onPasswordToggle);
+    });
+
     // Sign out everywhere
     $("stSignOutBtn").addEventListener("click", onSignOutEverywhere);
 
@@ -341,6 +354,25 @@
   }
 
   // ── Security actions ────────────────────────────────────────
+
+  /* Password show/hide toggle. Reads data-target on the button
+     to find the input it controls. Flipping type between
+     "password" and "text" lets the user see what they typed —
+     standard pattern for password fields. We also flip aria-label
+     so screen readers announce the new state. */
+  function onPasswordToggle(e) {
+    const btn = e.currentTarget;
+    const targetId = btn.getAttribute("data-target");
+    const input = $(targetId);
+    if (!input) return;
+    const isCurrentlyPassword = input.type === "password";
+    input.type = isCurrentlyPassword ? "text" : "password";
+    btn.classList.toggle("is-showing", isCurrentlyPassword);
+    const newLabel = isCurrentlyPassword ? "Hide password" : "Show password";
+    btn.setAttribute("aria-label", newLabel);
+    btn.setAttribute("title", newLabel);
+  }
+
   async function onChangePassword() {
     const btn = $("stChangePwBtn");
     const newPw  = $("stNewPassword").value;
