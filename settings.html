@@ -8,12 +8,15 @@
   <!-- ============================================================
        MECULS — settings.html
        Date: 2026-05-09
-       Cache buster: v=3 — fixes:
+       Cache buster: v=4 — adds:
+         - "Last active" display with 24-month retention notice
+       v=3 changes:
+         - Eye icon to show/hide password in both fields
+       v=2 fixes:
          - spinner stuck visible (CSS specificity)
          - password section showing for Google-only users
          - password change form leaking through hidden attribute
-         - eye icon to show/hide password in both fields
-         - settings.js bumped to v=3 alongside
+         - settings.js bumped to v=4 alongside
        ============================================================
        Standalone settings page (not inside dashboard chrome).
        Sections: Profile · Security · Consents · Visibility · Danger
@@ -732,6 +735,20 @@
               </div>
               <div class="st-field__value" id="stMemberSince">—</div>
             </div>
+            <div class="st-field">
+              <div class="st-field__label">
+                Last active
+                <div class="st-field__hint">Updated when you sign in or use the dashboard.</div>
+              </div>
+              <div class="st-field__value">
+                <div id="stLastActive">—</div>
+                <div style="font-size:0.84rem; color:var(--text-soft); margin-top:6px; line-height:1.5;">
+                  Inactive accounts are archived after 24 months and permanently deleted
+                  6 months later. We email you 30 days and 3 days before each step so you
+                  can keep your profile active.
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -1014,7 +1031,7 @@
 <script src="mc_storage.js?v=2"></script>
 <script src="mc_supabase.js?v=4"></script>
 <script src="mc_helpers.js?v=14"></script>
-<script src="settings.js?v=3"></script>
+<script src="settings.js?v=4"></script>
 
 </body>
 </html>

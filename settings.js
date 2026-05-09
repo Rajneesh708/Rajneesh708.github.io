@@ -1,7 +1,12 @@
 /* ════════════════════════════════════════════════════════════
-   MECULS — settings.js (v=3)
+   MECULS — settings.js (v=4)
    Date: 2026-05-09
    ════════════════════════════════════════════════════════════
+   v=4 changes:
+     - Calls record_user_activity() on load — bumps last_active_at
+       and auto-restores archived users
+     - Populates new "Last active" field with relative time
+       ("3 months ago" alongside the date)
    v=3 changes:
      - Eye-icon show/hide toggle on both password inputs (only
        visible to non-Google users since the password section
@@ -116,6 +121,26 @@
     }
     CURRENT_PROFILE = prof || {};
 
+    /* Record activity. This bumps last_active_at to NOW() and
+       auto-restores the user if their account was archived.
+       We update the local CURRENT_PROFILE so the "Last active"
+       display shows the freshest value. Failures are non-fatal —
+       the function may not be deployed yet on older databases. */
+    try {
+      const { data: act, error: actErr } = await SB.rpc("record_user_activity");
+      if (!actErr && act && act.last_active_at) {
+        CURRENT_PROFILE.last_active_at = act.last_active_at;
+        if (act.restored) {
+          /* User was archived and we just auto-restored them.
+             Clear the archived state in our local copy. */
+          CURRENT_PROFILE.account_status = "active";
+          CURRENT_PROFILE.archived_at = null;
+        }
+      }
+    } catch (e) {
+      console.warn("[settings] record_user_activity unavailable:", e);
+    }
+
     // Populate the page
     populateProfile();
     populateSecurity();
@@ -154,6 +179,39 @@
 
     const created = CURRENT_USER.created_at || p.created_at;
     $("stMemberSince").textContent = fmtDateLong(created);
+
+    /* Last active — show formatted date plus relative time
+       ("today", "5 days ago", "3 months ago"). When we just
+       called record_user_activity it bumps to NOW(), so the
+       freshest value appears. */
+    const lastActive = p.last_active_at || created;
+    const el = $("stLastActive");
+    if (el) {
+      const dateStr = fmtDateLong(lastActive);
+      const rel = relativeTimeAgo(lastActive);
+      el.textContent = rel ? (dateStr + " · " + rel) : dateStr;
+    }
+  }
+
+  /* Returns "today", "yesterday", "N days ago", "N months ago" etc.
+     for use alongside the formatted date. Returns empty string for
+     null/invalid input or for dates in the future. */
+  function relativeTimeAgo(iso) {
+    if (!iso) return "";
+    const then = new Date(iso);
+    if (isNaN(then)) return "";
+    const diffMs = Date.now() - then.getTime();
+    if (diffMs < 0) return "";
+    const days = Math.floor(diffMs / 86400000);
+    if (days === 0)   return "today";
+    if (days === 1)   return "yesterday";
+    if (days < 30)    return days + " days ago";
+    if (days < 365)   {
+      const months = Math.floor(days / 30);
+      return months === 1 ? "1 month ago" : months + " months ago";
+    }
+    const years = Math.floor(days / 365);
+    return years === 1 ? "1 year ago" : years + " years ago";
   }
 
   function populateSecurity() {

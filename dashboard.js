@@ -561,6 +561,24 @@ async function ensureLoggedInAndShowUser() {
     localStorage.setItem("candidate_id", userData.user.id);
   } catch (e) { /* localStorage may be disabled in private mode */ }
 
+  /* Record user activity. This:
+       - bumps profiles.last_active_at to NOW() (prevents archive)
+       - auto-restores the user if their account was archived
+     Failure is non-fatal (function may not be deployed on older
+     databases — page still works without it). Fire-and-forget; we
+     don't await it because we don't need to block dashboard render. */
+  sb.rpc("record_user_activity").then(({ data, error }) => {
+    if (error) {
+      console.warn("[dashboard] record_user_activity failed:", error.message);
+      return;
+    }
+    if (data && data.restored) {
+      console.log("[dashboard] Account auto-restored from archived state");
+    }
+  }).catch((e) => {
+    console.warn("[dashboard] record_user_activity unavailable:", e);
+  });
+
   /* Wire the Sign Out button */
   if (topbarSignOutBtn) {
     topbarSignOutBtn.addEventListener("click", async () => {
