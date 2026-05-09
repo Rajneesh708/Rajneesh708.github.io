@@ -5,22 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- ============================================================
-       MECULS — p.html  (Public Profile renderer) — Round 5
+       MECULS — p.html  (Public Profile renderer) — Round 6
        Date: 2026-05-09
        ============================================================
-       WIDTH FIX. Round 4 used 880px content width and 60ch headline
-       cap — both produced sad narrow islands of content on wide
-       monitors with vast empty margins. Round 5:
-         - Content max-width 880 → 1080px (fills wide canvas)
-         - Headline max-width cap REMOVED (flows naturally on 1-2 lines)
-         - Hero photo 180 → 220px (commands attention)
-         - Hero name 3.4 → 4rem
-         - Position-at-company 1.5 → 1.7rem
-         - Headline 1.2 → 1.35rem
-         - Body paragraph caps 64ch → 78ch
-         - About body 1.25 → 1.32rem
-         - Experience role title 1.7 → 1.85rem
-         - Mobile breakpoint 720 → 820px to match new scale
+       HERO TIGHTENED. Round 5's hero was too tall and oversized:
+         - Photo 220 → 168px (was dominating the layout)
+         - Name 4 → 3rem (was disproportionate)
+         - Position 1.7 → 1.4rem
+         - Headline 1.35 → 1.18rem (now fits on 2 lines, not 3)
+         - Hero band padding 80/88 → 48/52px (kills empty space)
+         - Hero stack gaps tightened throughout
+         - Photo + text now centre-aligned (was top-aligned, looked off
+           when text block was much taller than photo)
          - Cream surface (#f6f4ef) for body content
          - Navy hero band (#0c1a2e) with gold accents for "name plate"
          - Navy header (#0c1a2e) — logo is white, sits naturally
@@ -200,7 +196,7 @@
           rgba(200, 151, 61, 0.10) 0%,
           transparent 60%
         );
-      padding: 80px 0 88px;
+      padding: 48px 0 52px;
       border-bottom: 1px solid var(--blue-border);
     }
     .pp-hero {
@@ -208,13 +204,13 @@
       margin: 0 auto;
       padding: 0 40px;
       display: grid;
-      grid-template-columns: 220px 1fr;
-      gap: 56px;
-      align-items: start;
+      grid-template-columns: 168px 1fr;
+      gap: 44px;
+      align-items: center;
     }
     .pp-hero__photo {
-      width: 220px;
-      height: 220px;
+      width: 168px;
+      height: 168px;
       border-radius: 50%;
       object-fit: cover;
       border: 3px solid var(--gold);
@@ -222,8 +218,8 @@
       background: var(--blue-800);
     }
     .pp-hero__avatar {
-      width: 220px;
-      height: 220px;
+      width: 168px;
+      height: 168px;
       border-radius: 50%;
       border: 3px solid var(--gold);
       background: linear-gradient(135deg, var(--blue-700), var(--blue-900));
@@ -233,7 +229,7 @@
       justify-content: center;
       color: var(--gold-light);
       font-family: var(--serif);
-      font-size: 4.4rem;
+      font-size: 3.4rem;
       font-weight: 600;
       user-select: none;
     }
@@ -250,50 +246,50 @@
       letter-spacing: 0.24em;
       text-transform: uppercase;
       color: var(--gold-light);
-      margin-bottom: 14px;
+      margin-bottom: 10px;
     }
-    /* Name — DOMINATES, white serif, scaled for wider canvas */
+    /* Name — DOMINATES, white serif, tightened scale */
     .pp-hero__name {
       font-family: var(--serif);
-      font-size: 4rem;
+      font-size: 3rem;
       font-weight: 500;
       color: var(--on-dark-high);
       letter-spacing: -0.012em;
-      line-height: 1.02;
-      margin-bottom: 16px;
+      line-height: 1.05;
+      margin-bottom: 10px;
     }
     /* Position at Company — gold light, second-strongest */
     .pp-hero__current-position {
       font-family: var(--serif);
-      font-size: 1.7rem;
+      font-size: 1.4rem;
       font-style: italic;
       color: var(--gold-pale);
       font-weight: 400;
-      line-height: 1.4;
-      margin-bottom: 14px;
+      line-height: 1.35;
+      margin-bottom: 10px;
     }
     /* Bio meta — Location · Years of experience */
     .pp-hero__bio-line {
       font-family: var(--sans);
-      font-size: 1rem;
+      font-size: 0.94rem;
       color: var(--on-dark-mid);
       line-height: 1.5;
-      margin-bottom: 26px;
+      margin-bottom: 18px;
       letter-spacing: 0.01em;
     }
     .pp-hero__bio-line .pp-hero__sep {
       color: var(--on-dark-muted);
       margin: 0 12px;
     }
-    /* Headline — italic serif, last position. Flows to natural width.
-       No max-width cap — was forcing 3-line wrap on a single sentence. */
+    /* Headline — italic serif, last position. Slightly smaller so it
+       fits on 2 lines instead of 3 in the available width. */
     .pp-hero__headline {
       font-family: var(--serif);
-      font-size: 1.35rem;
+      font-size: 1.18rem;
       font-style: italic;
       color: var(--on-dark-mid);
       line-height: 1.55;
-      margin-bottom: 24px;
+      margin-bottom: 18px;
       font-weight: 400;
     }
     /* Hidden helpers (legacy DOM compat) */
