@@ -5,39 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- ============================================================
-       MECULS — p.html  (Public Profile renderer) — Round 2A.2
+       MECULS — p.html  (Public Profile renderer) — Round 3 (Redesign)
        Date: 2026-05-09
        ============================================================
-       FULL REDESIGN of Hero + Experience using a CV reading
-       pattern. No more turn-by-turn polish patches.
+       FULL REDESIGN. Built from a written design intent, not from
+       turn-by-turn iteration.
 
-       Hero (CV-feel):
-         WORKING PROFESSIONAL  (gold category)
-         Rajneesh Jain          (large serif name)
-         Founder · MECULS       (primary identifier line)
-         Delhi, India · 25 years experience  (single bio line)
-         "[italic headline with gold left-bar accent]"
-         [Status badges row]
+       Reference anchors (style only, not copying):
+         - Stripe Press / Stripe About: typographic confidence,
+           generous whitespace, content speaks for itself
+         - Read.cv: profile rhythm, no chips, no parsing-required labels
+         - Pitchfork long-reads: serif headline + sans body editorial pairing
 
-       Experience entry (CV-feel):
-         Designation                          (large bold)
-         Company · Location · Dates           (one line, gold company)
-         Industry function (what they do)
-         Optional italic role headline
-         Description paragraphs
-         Key projects (each as compact two-line block:
-           name · duration · team / Ask role outcome flowing)
-         Skills used: a, b, c, d   (one trailing line)
+       What MECULS adds: dark navy + gold palette, Cormorant Garamond
+       for names/headings, hairline gold dividers, gold-caps eyebrow.
 
-       What was REMOVED to match CV reading patterns:
-         - Stacked location + meta rows in hero (now ONE line)
-         - All experience chips (Full-time, On-site, Private,
-           Sector, Industry, etc.) — were noise
-         - Tech / Domain / Soft skill labels — chips alone now,
-           collapsed into one inline "Skills used:" line
-         - Sector · Department subtle gray subtitle in experience
-         - State from inline meta line (City, Country only)
-         - Stacked Ask/Role/Outcome lines for projects (now flowing)
+       Hard rules (no exceptions):
+         - No chips anywhere
+         - No boxes around content
+         - No labels on skills lists
+         - Project Ask / My role / Outcome each on its own line, gold label
+         - Hero name dominates (3.2rem serif)
+         - Position-at-Company is the second-strongest line, gold
+         - Headline LAST in hero, italic serif, full-width, no bar
        ============================================================ -->
 
   <title>Profile — MECULS</title>
@@ -54,7 +44,9 @@
   <link rel="preconnect" href="https://fjxcphhhddfwrlkpshyw.supabase.co">
 
   <style>
-    /* ── Brand tokens (mirrors meculs.com global.css) ── */
+    /* ─────────────────────────────────────────────────────────
+       BRAND TOKENS
+    ───────────────────────────────────────────────────────── */
     :root {
       --ink-deep:  #0b1426;
       --ink:       #0f1a30;
@@ -62,18 +54,16 @@
       --gold:      #c9a84c;
       --gold-soft: #d4b86a;
       --paper:     #f4f0e6;
+      --text:      #e8ecf3;
       --text-dim:  #c4ccda;
       --text-muted:#8a92a6;
       --hairline:  rgba(212, 184, 106, 0.18);
-      --shadow-1:  0 8px 24px rgba(0, 0, 0, 0.25);
-      --radius-l:  16px;
-      --radius-m:  10px;
-      --radius-s:  6px;
+      --hairline-strong: rgba(212, 184, 106, 0.32);
+      --shadow-1:  0 12px 32px rgba(0, 0, 0, 0.32);
       --serif:     "Cormorant Garamond", Georgia, serif;
       --sans:      "Archivo", "Inter", system-ui, sans-serif;
     }
 
-    /* ── Web fonts ── */
     @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Archivo:wght@400;500;600;700&display=swap");
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -88,20 +78,17 @@
       -moz-osx-font-smoothing: grayscale;
     }
 
-    /* ── Page shell ── */
+    /* PAGE SHELL */
     .pp-page {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
 
-    /* ── Slim global nav ── */
+    /* NAV — minimal, just the logo */
     .pp-nav {
-      padding: 18px 28px;
+      padding: 20px 32px;
       border-bottom: 1px solid var(--hairline);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
       background: var(--ink);
     }
     .pp-nav__brand {
@@ -123,80 +110,55 @@
       font-family: var(--serif);
       color: var(--gold);
     }
-    .pp-nav__cta {
-      font-family: var(--sans);
-      font-size: 0.85rem;
-      color: var(--text-dim);
-      text-decoration: none;
-      padding: 8px 16px;
-      border: 1px solid var(--hairline);
-      border-radius: var(--radius-s);
-      transition: background 0.2s, color 0.2s, border-color 0.2s;
-    }
-    .pp-nav__cta:hover {
-      background: var(--gold);
-      color: var(--ink-deep);
-      border-color: var(--gold);
-    }
 
-    /* ── Main content frame ── */
+    /* MAIN FRAME */
     .pp-main {
       flex: 1;
-      max-width: 880px;
+      max-width: 820px;
       width: 100%;
       margin: 0 auto;
-      padding: 56px 28px 80px;
+      padding: 64px 32px 96px;
     }
 
-    /* ── Loading & error states ── */
+    /* STATES */
     .pp-state {
       text-align: center;
-      padding: 80px 20px;
-      font-family: var(--serif);
-      font-weight: 500;
-      color: var(--text-muted);
+      padding: 96px 20px;
     }
     .pp-state__title {
-      font-size: 1.6rem;
-      color: var(--text-dim);
-      margin-bottom: 8px;
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: 1.8rem;
+      color: var(--text);
+      margin-bottom: 10px;
     }
     .pp-state__msg {
       font-size: 1rem;
-      font-family: var(--sans);
       color: var(--text-muted);
     }
-
-    /* ── Pending-state checklist (shown when profile not yet
-       publishable). Items toggle done/pending via .done class. ── */
     .pp-checklist {
-      max-width: 420px;
-      margin: 32px auto 0;
-      padding: 24px 28px;
+      max-width: 440px;
+      margin: 36px auto 0;
+      padding: 28px 32px;
       background: var(--ink);
       border: 1px solid var(--hairline);
-      border-radius: var(--radius-m);
+      border-radius: 12px;
       text-align: left;
     }
     .pp-checklist__heading {
-      font-family: var(--sans);
       font-size: 0.78rem;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 14px;
+      margin-bottom: 16px;
+      font-weight: 600;
     }
-    .pp-checklist__list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
+    .pp-checklist__list { list-style: none; }
     .pp-checklist__item {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 8px 0;
-      font-family: var(--sans);
+      gap: 14px;
+      padding: 9px 0;
       font-size: 0.95rem;
       color: var(--text-dim);
     }
@@ -230,14 +192,16 @@
       text-decoration-color: var(--hairline);
     }
 
-    /* ── Hero (photo + name + category + tagline) ── */
+    /* ═══════════════════════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════════════════════ */
     .pp-hero {
       display: grid;
       grid-template-columns: 160px 1fr;
-      gap: 32px;
+      gap: 40px;
       align-items: center;
-      margin-bottom: 40px;
-      padding-bottom: 32px;
+      margin-bottom: 56px;
+      padding-bottom: 40px;
       border-bottom: 1px solid var(--hairline);
     }
     .pp-hero__photo {
@@ -249,9 +213,6 @@
       box-shadow: var(--shadow-1);
       background: var(--ink-soft);
     }
-    /* Avatar fallback when no photo. Shows the user's initials
-       in a gold-bordered circle. Same visual size as .pp-hero__photo
-       so the layout is consistent whether or not a photo is set. */
     .pp-hero__avatar {
       width: 160px;
       height: 160px;
@@ -268,86 +229,73 @@
       font-weight: 600;
       user-select: none;
     }
-    /* Round 1.5 fix: ensure the [hidden] attribute reliably hides
-       both the photo and the avatar even though .pp-hero__avatar
-       has explicit display:flex. Without these rules the explicit
-       display values override the user-agent default `display:none`
-       that [hidden] applies, causing both circles to render. */
     .pp-hero__photo[hidden],
     .pp-hero__avatar[hidden] {
       display: none !important;
     }
-    .pp-hero__name {
-      font-family: var(--serif);
-      font-size: 2.8rem;
-      font-weight: 600;
-      color: #fff;
-      letter-spacing: -0.01em;
-      line-height: 1.05;
-      margin-bottom: 10px;
-    }
+
     .pp-hero__category {
       font-size: 0.78rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 16px;
-      font-weight: 500;
+      font-weight: 600;
+      margin-bottom: 10px;
     }
-    /* "Founder at MECULS" — primary identifier line. Gold to
-       anchor the eye, large enough to register at a glance. */
+    .pp-hero__name {
+      font-family: var(--serif);
+      font-size: 3.2rem;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.015em;
+      line-height: 1.0;
+      margin-bottom: 14px;
+    }
     .pp-hero__current-position {
-      font-size: 1.15rem;
+      font-size: 1.3rem;
       color: var(--gold);
-      margin: 0 0 8px 0;
-      line-height: 1.4;
       font-weight: 500;
+      line-height: 1.35;
+      margin-bottom: 10px;
     }
-    /* "Delhi, India · 25 years" — single quiet bio line */
     .pp-hero__bio-line {
       font-size: 0.92rem;
       color: var(--text-muted);
-      margin: 0 0 22px 0;
       line-height: 1.5;
+      margin-bottom: 24px;
     }
     .pp-hero__bio-line .pp-hero__sep {
-      color: var(--hairline);
+      color: var(--hairline-strong);
       margin: 0 10px;
     }
-    /* Headline — italic serif positioning statement. Full-width,
-       no border, no indent, no decoration. Just italics. */
     .pp-hero__headline {
       font-family: var(--serif);
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-style: italic;
       color: var(--text-dim);
-      line-height: 1.65;
-      margin: 0 0 22px 0;
-      max-width: none;
+      line-height: 1.7;
+      max-width: 64ch;
+      margin-bottom: 22px;
     }
-    /* Hidden helpers — kept in DOM for back-compat, never rendered. */
     .pp-hero__location[hidden],
-    .pp-hero__meta[hidden] {
-      display: none;
-    }
+    .pp-hero__meta[hidden] { display: none; }
 
-    /* ── Status badges (consulting / mentorship) ── */
+    /* Status badges — only place where soft pills are allowed */
     .pp-badges {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 14px;
     }
     .pp-badge {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 5px 12px;
+      gap: 7px;
+      padding: 6px 13px;
       border-radius: 999px;
       font-size: 0.78rem;
       font-weight: 500;
       letter-spacing: 0.02em;
-      background: rgba(201, 168, 76, 0.12);
+      background: rgba(201, 168, 76, 0.10);
       color: var(--gold);
       border: 1px solid var(--hairline);
     }
@@ -359,159 +307,147 @@
       background: #58c896;
     }
 
-    /* ── Section ── */
-    .pp-section {
-      margin-bottom: 48px;
-    }
+    /* SECTIONS */
+    .pp-section { margin-bottom: 56px; }
+    .pp-section:last-of-type { margin-bottom: 0; }
     .pp-section__heading {
-      font-family: var(--serif);
-      font-size: 0.95rem;
-      font-weight: 700;
+      font-size: 0.82rem;
+      font-weight: 600;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 18px;
-      padding-bottom: 10px;
+      padding-bottom: 12px;
+      margin-bottom: 24px;
       border-bottom: 1px solid var(--hairline);
     }
 
-    /* ── Bio section ── */
+    /* ABOUT */
     .pp-bio {
       font-family: var(--serif);
       font-size: 1.18rem;
       font-weight: 400;
-      line-height: 1.65;
-      color: #e8ecf3;
+      line-height: 1.7;
+      color: var(--text);
       white-space: pre-wrap;
+      max-width: 64ch;
     }
 
-    /* ── Experience timeline ── */
+    /* ═══════════════════════════════════════════════════════════
+       EXPERIENCE
+       ═══════════════════════════════════════════════════════════ */
     .pp-exp {
       position: relative;
-      padding-left: 28px;
+      padding-left: 32px;
       border-left: 2px solid var(--hairline);
     }
     .pp-exp__item {
       position: relative;
-      padding-bottom: 40px;
+      padding-bottom: 48px;
     }
     .pp-exp__item:last-child { padding-bottom: 0; }
     .pp-exp__item::before {
       content: "";
       position: absolute;
-      left: -35px;
-      top: 8px;
+      left: -39px;
+      top: 10px;
       width: 12px;
       height: 12px;
       border-radius: 50%;
       background: var(--gold);
       border: 3px solid var(--ink-deep);
     }
-    /* ── Experience entries (FINAL — CV-feel, no boxes) ── */
-    /* Designation — the role title. Largest line in the entry. */
+
     .pp-exp__role {
       font-family: var(--serif);
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-weight: 600;
-      color: #fff;
-      margin-bottom: 4px;
-      letter-spacing: -0.005em;
+      color: var(--text);
       line-height: 1.2;
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
     }
-    /* Company name — gold, sans, anchors the eye. */
     .pp-exp__company {
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       color: var(--gold);
       font-weight: 500;
-      margin-bottom: 4px;
       line-height: 1.4;
+      margin-bottom: 4px;
     }
-    /* Date · Location — dim small line beneath company. */
     .pp-exp__dateloc {
       font-size: 0.88rem;
       color: var(--text-muted);
-      margin-bottom: 14px;
       line-height: 1.5;
+      margin-bottom: 14px;
     }
     .pp-exp__sep {
-      color: var(--hairline);
-      margin: 0 8px;
+      color: var(--hairline-strong);
+      margin: 0 10px;
     }
-    /* "What they do: ..." — subtle contextual line, only when
-       industry_function is present. */
     .pp-exp__what {
-      font-size: 0.92rem;
-      color: var(--text-dim);
-      margin-bottom: 16px;
-      line-height: 1.55;
-    }
-    .pp-exp__what-label {
-      color: var(--text-muted);
-    }
-    /* Description — flowing prose paragraphs, comfortable reading */
-    .pp-exp__desc {
       font-size: 0.95rem;
+      color: var(--text-dim);
+      line-height: 1.55;
+      margin-bottom: 18px;
+    }
+    .pp-exp__desc {
+      font-size: 0.96rem;
       color: var(--text-dim);
       line-height: 1.75;
       white-space: pre-wrap;
-      margin-bottom: 18px;
+      margin-bottom: 22px;
+      max-width: 64ch;
     }
 
-    /* Projects subsection — NO box, NO diamond, NO border.
-       Just whitespace separation, like a normal CV. */
+    /* Projects — NO box. Whitespace separation. */
     .pp-exp__projects {
-      margin-top: 20px;
-      margin-bottom: 18px;
+      margin-top: 22px;
+      margin-bottom: 22px;
     }
     .pp-exp__projects-label {
       font-size: 0.78rem;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--gold);
       font-weight: 600;
       margin-bottom: 14px;
     }
-    .pp-exp__project {
-      margin-bottom: 16px;
-    }
+    .pp-exp__project { margin-bottom: 22px; }
     .pp-exp__project:last-child { margin-bottom: 0; }
     .pp-exp__project-header {
-      font-size: 0.95rem;
+      font-size: 0.96rem;
       color: var(--text-muted);
-      margin-bottom: 4px;
       line-height: 1.55;
+      margin-bottom: 6px;
     }
     .pp-exp__project-name {
-      color: #fff;
+      color: var(--text);
       font-weight: 600;
     }
-    /* Project body — each field on its own line, with a
-       highlighted gold label. Standard CV pattern. */
+    /* Each project field on its own line, gold bold label */
     .pp-exp__project-line {
-      font-size: 0.92rem;
+      font-size: 0.93rem;
       color: var(--text-dim);
-      line-height: 1.65;
+      line-height: 1.7;
       margin-top: 4px;
+      max-width: 64ch;
     }
     .pp-exp__project-key {
       color: var(--gold);
       font-weight: 600;
-      margin-right: 4px;
+      margin-right: 6px;
     }
 
-    /* Skills row — middle-dot separated, NO label, NO border.
-       Just sits at the bottom of the entry. */
+    /* Skills row — middle-dot, no label */
     .pp-exp__skills-line {
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       color: var(--text-dim);
       line-height: 1.7;
-      margin-top: 16px;
+      margin-top: 18px;
+      max-width: 64ch;
     }
-    .pp-exp__skills-sep {
-      color: var(--hairline);
-    }
+    .pp-exp__skills-sep { color: var(--hairline-strong); }
 
-    /* Hide elements no longer rendered (kept in DOM/JS for back-compat) */
+    /* Hide legacy Experience classes */
     .pp-exp__line,
     .pp-exp__headline,
     .pp-exp__domain,
@@ -525,194 +461,195 @@
     .pp-exp__project-body,
     .pp-exp__skills-label,
     .pp-exp__project-meta {
-      display: none;
+      display: none !important;
     }
 
-    /* ── Education list ── */
+    /* ═══════════════════════════════════════════════════════════
+       EDUCATION
+       ═══════════════════════════════════════════════════════════ */
     .pp-edu__item {
-      padding: 14px 0;
+      padding: 18px 0;
       border-bottom: 1px solid var(--hairline);
     }
-    .pp-edu__item:last-child { border-bottom: 0; }
+    .pp-edu__item:first-child { padding-top: 0; }
+    .pp-edu__item:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
     .pp-edu__degree {
-      font-size: 1.05rem;
+      font-family: var(--serif);
+      font-size: 1.25rem;
       font-weight: 600;
-      color: #fff;
-      margin-bottom: 2px;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 4px;
     }
     .pp-edu__inst {
-      font-size: 0.95rem;
+      font-size: 1rem;
       color: var(--gold);
+      font-weight: 500;
       margin-bottom: 4px;
     }
     .pp-edu__year {
-      font-size: 0.82rem;
+      font-size: 0.86rem;
       color: var(--text-muted);
+      margin-bottom: 8px;
     }
-    /* ── Round 2A: education extras ── */
-    .pp-edu__chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin: 4px 0 6px;
-    }
-    .pp-edu__chip {
-      display: inline-block;
-      font-size: 0.72rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 3px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--hairline);
+    .pp-edu__mode {
+      font-size: 0.88rem;
       color: var(--text-dim);
-      background: rgba(255, 255, 255, 0.02);
+      margin-bottom: 4px;
+    }
+    .pp-edu__mode-label {
+      color: var(--text-muted);
+      margin-right: 6px;
     }
     .pp-edu__grade {
-      font-size: 0.85rem;
+      font-size: 0.92rem;
       color: var(--text-dim);
-      margin-top: 4px;
+      margin-top: 6px;
     }
-    .pp-edu__skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
+    .pp-edu__grade-label {
+      color: var(--gold);
+      font-weight: 600;
+      margin-right: 6px;
+    }
+    .pp-edu__skills-line {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      line-height: 1.6;
       margin-top: 8px;
+      max-width: 64ch;
     }
-    .pp-edu__skill {
-      display: inline-block;
-      font-size: 0.78rem;
-      padding: 2px 8px;
-      border-radius: 4px;
-      color: var(--text-dim);
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--hairline);
+    .pp-edu__skills-label {
+      color: var(--text-muted);
+      margin-right: 6px;
     }
+    .pp-edu__skills-sep { color: var(--hairline-strong); }
     .pp-edu__activities {
       font-size: 0.92rem;
       color: var(--text-dim);
-      line-height: 1.55;
-      margin-top: 8px;
+      line-height: 1.6;
+      margin-top: 10px;
       white-space: pre-wrap;
+      max-width: 64ch;
     }
-    .pp-edu__projects {
-      margin-top: 12px;
-      padding: 12px 14px;
-      background: rgba(255, 255, 255, 0.02);
-      border-left: 2px solid var(--gold);
-      border-radius: 0 4px 4px 0;
+    .pp-edu__activities-label {
+      color: var(--gold);
+      font-weight: 600;
+      margin-right: 6px;
     }
+    .pp-edu__projects { margin-top: 14px; }
     .pp-edu__projects-label {
-      font-size: 0.72rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--gold);
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-    .pp-edu__project {
-      margin-bottom: 8px;
-      padding-bottom: 6px;
-      border-bottom: 1px dashed var(--hairline);
-    }
-    .pp-edu__project:last-child {
-      margin-bottom: 0;
-      padding-bottom: 0;
-      border-bottom: 0;
-    }
-    .pp-edu__project-name {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 2px;
-    }
-    .pp-edu__project-line {
-      font-size: 0.84rem;
-      color: var(--text-dim);
-      line-height: 1.55;
-      margin-bottom: 2px;
-    }
-    .pp-edu__project-key {
-      color: var(--gold);
-      font-weight: 600;
-      margin-right: 4px;
-    }
-
-    /* ── Skills tag layout ── */
-    .pp-skills {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    /* Round 2A: grouped skills (one group per category) */
-    .pp-skill-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .pp-skill-group__label {
-      font-size: 0.72rem;
+      font-size: 0.74rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--gold);
       font-weight: 600;
+      margin-bottom: 10px;
     }
-    .pp-skill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+    .pp-edu__project { margin-bottom: 14px; }
+    .pp-edu__project:last-child { margin-bottom: 0; }
+    .pp-edu__project-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
     }
-    .pp-skill {
-      padding: 6px 14px;
-      border-radius: var(--radius-s);
-      background: var(--ink-soft);
+    .pp-edu__project-line {
+      font-size: 0.9rem;
       color: var(--text-dim);
-      font-size: 0.88rem;
-      border: 1px solid var(--hairline);
+      line-height: 1.65;
+      margin-top: 3px;
     }
-    .pp-skill__level {
-      color: var(--text-muted);
-      font-size: 0.8rem;
+    .pp-edu__project-key {
+      color: var(--gold);
+      font-weight: 600;
+      margin-right: 6px;
+    }
+    .pp-edu__chips,
+    .pp-edu__chip,
+    .pp-edu__skills,
+    .pp-edu__skill {
+      display: none !important;
     }
 
-    /* ── CTA at the bottom ── */
+    /* ═══════════════════════════════════════════════════════════
+       SKILLS — NO chips. Category eyebrow + middle-dot list.
+       ═══════════════════════════════════════════════════════════ */
+    .pp-skills {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+    .pp-skill-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .pp-skill-group__label {
+      font-size: 0.74rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .pp-skill-line {
+      font-size: 0.96rem;
+      color: var(--text-dim);
+      line-height: 1.7;
+      max-width: 64ch;
+    }
+    .pp-skill-sep { color: var(--hairline-strong); }
+    .pp-skill__level {
+      color: var(--text-muted);
+      font-size: 0.86rem;
+    }
+    .pp-skill-row,
+    .pp-skill {
+      display: contents;
+    }
+
+    /* CTA */
     .pp-cta {
-      margin-top: 64px;
-      padding: 36px 28px;
-      background: var(--ink-soft);
-      border-radius: var(--radius-l);
+      margin-top: 80px;
+      padding: 44px 36px;
+      background: var(--ink);
+      border-radius: 12px;
       border: 1px solid var(--hairline);
       text-align: center;
     }
     .pp-cta__title {
       font-family: var(--serif);
-      font-size: 1.5rem;
-      color: #fff;
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: var(--text);
       margin-bottom: 8px;
     }
     .pp-cta__sub {
       font-size: 0.95rem;
       color: var(--text-muted);
-      margin-bottom: 18px;
+      margin-bottom: 22px;
     }
     .pp-cta__btn {
       display: inline-block;
-      padding: 12px 32px;
+      padding: 13px 36px;
       background: var(--gold);
       color: var(--ink-deep);
       text-decoration: none;
-      border-radius: var(--radius-s);
+      border-radius: 6px;
       font-weight: 600;
       letter-spacing: 0.02em;
       transition: transform 0.15s, box-shadow 0.15s;
     }
     .pp-cta__btn:hover {
       transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(201, 168, 76, 0.35);
+      box-shadow: 0 6px 18px rgba(201, 168, 76, 0.35);
     }
 
-    /* ── Footer ── */
+    /* FOOTER */
     .pp-foot {
-      padding: 20px 28px;
+      padding: 22px 32px;
       border-top: 1px solid var(--hairline);
       text-align: center;
       font-size: 0.82rem;
@@ -727,17 +664,28 @@
     .pp-foot a { color: var(--gold); text-decoration: none; }
     .pp-foot a:hover { text-decoration: underline; }
 
-    /* ── Mobile ── */
-    @media (max-width: 640px) {
-      .pp-main { padding: 32px 18px 60px; }
+    /* MOBILE */
+    @media (max-width: 700px) {
+      .pp-main { padding: 36px 20px 64px; }
       .pp-hero {
         grid-template-columns: 1fr;
         text-align: center;
-        gap: 18px;
+        gap: 24px;
+        margin-bottom: 40px;
+        padding-bottom: 32px;
       }
-      .pp-hero__photo { margin: 0 auto; width: 130px; height: 130px; }
-      .pp-hero__name { font-size: 1.9rem; }
+      .pp-hero__photo,
+      .pp-hero__avatar { margin: 0 auto; width: 140px; height: 140px; }
+      .pp-hero__avatar { font-size: 2.6rem; }
+      .pp-hero__name { font-size: 2.2rem; }
+      .pp-hero__current-position { font-size: 1.1rem; }
+      .pp-hero__headline { font-size: 1.05rem; max-width: none; }
       .pp-badges { justify-content: center; }
+      .pp-section { margin-bottom: 40px; }
+      .pp-exp { padding-left: 24px; }
+      .pp-exp__item::before { left: -31px; }
+      .pp-exp__role { font-size: 1.35rem; }
+      .pp-bio { font-size: 1.05rem; }
     }
   </style>
 </head>
@@ -752,19 +700,15 @@
            onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
       <span class="pp-nav__brand-text" style="display:none">MECULS</span>
     </a>
-    <!-- Top-right CTA intentionally removed (Round 1 polish).
-         Replaced by a softer "Create yours free" link in the footer. -->
   </nav>
 
   <main class="pp-main">
 
-    <!-- Loading state (default) -->
     <div id="ppLoading" class="pp-state">
       <div class="pp-state__title">Loading profile&hellip;</div>
       <div class="pp-state__msg">Fetching the latest details</div>
     </div>
 
-    <!-- Error states -->
     <div id="ppNotFound" class="pp-state" hidden>
       <div class="pp-state__title">Profile not found</div>
       <div class="pp-state__msg">This profile link doesn't exist or has been removed.</div>
@@ -773,27 +717,19 @@
     <div id="ppPending" class="pp-state" hidden>
       <div class="pp-state__title">Profile being built</div>
       <div class="pp-state__msg" id="ppPendingMsg">This member is still completing their profile. Check back soon.</div>
-      <!-- Checklist of what's missing — populated by renderPending().
-           Hidden by default; only shown when we have missing-flags
-           data from the SQL function. Helps profile owners see
-           what to complete next. Visitors who don't own this profile
-           also benefit from the transparency. -->
       <div id="ppPendingChecklist" class="pp-checklist" hidden>
         <div class="pp-checklist__heading">To publish this profile, complete:</div>
         <ul class="pp-checklist__list">
-          <li id="pcPhoto"            class="pp-checklist__item"><span class="pp-check"></span><span>Profile photo</span></li>
-          <li id="pcCategory"         class="pp-checklist__item"><span class="pp-check"></span><span>Profile category</span></li>
-          <li id="pcIntro"            class="pp-checklist__item"><span class="pp-check"></span><span>About You (headline or summary)</span></li>
-          <li id="pcExpOrEdu"         class="pp-checklist__item"><span class="pp-check"></span><span>At least one experience or education entry</span></li>
+          <li id="pcPhoto"     class="pp-checklist__item"><span class="pp-check"></span><span>Profile photo</span></li>
+          <li id="pcCategory"  class="pp-checklist__item"><span class="pp-check"></span><span>Profile category</span></li>
+          <li id="pcIntro"     class="pp-checklist__item"><span class="pp-check"></span><span>About You (headline or summary)</span></li>
+          <li id="pcExpOrEdu"  class="pp-checklist__item"><span class="pp-check"></span><span>At least one experience or education entry</span></li>
         </ul>
       </div>
     </div>
 
-    <!-- Profile content (rendered by JS) -->
     <div id="ppContent" hidden>
       <header class="pp-hero">
-        <!-- Photo OR initials-fallback. Only one of #ppPhoto and
-             #ppAvatar is visible at a time, set by JS in renderHero. -->
         <img id="ppPhoto" class="pp-hero__photo" alt="" src="" hidden>
         <div id="ppAvatar" class="pp-hero__avatar" aria-hidden="true"></div>
         <div>
@@ -850,44 +786,31 @@
 
 </div>
 
-<!-- Supabase JS — minimal usage: only call the public RPC -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="config.js?v=15"></script>
 <script>
 (function () {
   "use strict";
 
-  /* ── Read slug from query string OR pretty URL ──
-     Supports both meculs.com/p.html?slug=<slug> and (via 404.html
-     redirect) meculs.com/p/<slug>. */
   function getSlug() {
-    /* Direct query string */
     const params = new URLSearchParams(window.location.search);
     const q = (params.get("slug") || "").trim();
     if (q) return q;
-    /* Pretty URL: /p/<slug> — only if 404.html sets a hash like #/p/foo */
     const m = window.location.pathname.match(/\/p\/([a-z0-9][a-z0-9-]*)\/?$/i);
     if (m && m[1]) return m[1];
-    /* Hash fallback (some redirect tricks use this) */
     const h = window.location.hash.match(/\/p\/([a-z0-9][a-z0-9-]*)/i);
     if (h && h[1]) return h[1];
     return "";
   }
 
-  function show(id) {
-    const el = document.getElementById(id);
-    if (el) el.hidden = false;
-  }
-  function hide(id) {
-    const el = document.getElementById(id);
-    if (el) el.hidden = true;
-  }
+  function show(id) { const el = document.getElementById(id); if (el) el.hidden = false; }
+  function hide(id) { const el = document.getElementById(id); if (el) el.hidden = true; }
   function setText(id, text) {
     const el = document.getElementById(id);
     if (el) el.textContent = text || "";
   }
   function escapeHtml(s) {
-    if (!s) return "";
+    if (!s && s !== 0) return "";
     return String(s)
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
@@ -896,8 +819,6 @@
       .replace(/'/g, "&#39;");
   }
 
-  /* Format experience date range with month precision when available.
-     Examples: "Jul 2024 — Present", "Jan 2020 — Mar 2024", "2018 — 2020". */
   function formatDateRange(item) {
     const monthNames = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun",
                             "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -908,25 +829,20 @@
       return String(year);
     }
     const start = fmt(item.start_year, item.start_month);
-    const end = item.is_current ? "Present" :
-                fmt(item.end_year, item.end_month);
+    const end = item.is_current ? "Present" : fmt(item.end_year, item.end_month);
     if (start && end) return start + " — " + end;
     if (start) return start + " — Present";
     return "";
   }
 
-  /* Build a Supabase Storage public URL for a path like
-     "<uid>/photo.webp". Returns null if path is empty. */
   function buildPhotoUrl(path) {
     if (!path) return null;
-    /* Handle if for some reason path is already a full URL */
     if (/^https?:\/\//i.test(path)) return path;
     return SUPABASE_URL.replace(/\/+$/, "") +
            "/storage/v1/object/public/photos/" +
            path.split("/").map(encodeURIComponent).join("/");
   }
 
-  /* Compute initials from a full name. "Rajneesh Jain" → "RJ". */
   function initialsFromName(name) {
     if (!name) return "•";
     const parts = String(name).trim().split(/\s+/);
@@ -934,24 +850,35 @@
     return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
   }
 
+  function preferCustom(value, customValue) {
+    if (!value) return customValue || "";
+    const v = String(value).toLowerCase().trim();
+    if (v === "other" || v === "other (please specify)" ||
+        v === "please specify" || v.indexOf("other") === 0) {
+      return (customValue && String(customValue).trim()) || value;
+    }
+    return value;
+  }
+
+  function splitList(s) {
+    if (!s) return [];
+    if (Array.isArray(s)) return s.map(function (x) { return String(x).trim(); }).filter(Boolean);
+    return String(s).split(",").map(function (x) { return x.trim(); }).filter(Boolean);
+  }
+
+  /* HERO */
   function renderHero(p) {
     const photoEl  = document.getElementById("ppPhoto");
     const avatarEl = document.getElementById("ppAvatar");
     const photoUrl = buildPhotoUrl(p.photo_path);
 
-    /* Default to avatar (initials) — switch to photo only when
-       it loads successfully. This handles three cases cleanly:
-         - No photo: always shows initials
-         - Photo path set but bucket private/missing: image's
-           onerror fires → we keep showing initials
-         - Photo path set and loads: image swaps in, avatar hides */
     if (avatarEl) {
       avatarEl.textContent = initialsFromName(p.name);
       avatarEl.hidden = false;
     }
     if (photoEl) {
       photoEl.hidden = true;
-      photoEl.alt = ""; /* no alt-text bleed during load */
+      photoEl.alt = "";
       photoEl.removeAttribute("src");
       if (photoUrl) {
         photoEl.onload = function () {
@@ -959,7 +886,6 @@
           if (avatarEl) avatarEl.hidden = true;
         };
         photoEl.onerror = function () {
-          /* Keep showing avatar — silent fall-through */
           photoEl.hidden = true;
           if (avatarEl) avatarEl.hidden = false;
         };
@@ -970,8 +896,6 @@
 
     setText("ppName", p.name);
 
-    /* Category — map user_type to a friendlier label.
-       Covers all user_types from profile_category.html. */
     const catMap = {
       "working_professional": "Working Professional",
       "fresher":              "Fresher",
@@ -991,21 +915,12 @@
     const intro = p.introduction || {};
     setText("ppHeadline", intro.headline || "");
 
-    /* Current position · Company (Round 2A.1).
-       Combines intro.current_position with the company_name from
-       the most-recent experience. This produces a clean primary
-       identifier line like "Founder · MECULS" right below the
-       name. Falls back gracefully:
-         - Both present → "Founder · MECULS"
-         - Only position → "Founder"
-         - Only company  → "MECULS"
-         - Neither       → hidden */
+    /* Position-at-Company */
     const cpEl = document.getElementById("ppCurrentPosition");
     if (cpEl) {
       const position = intro.current_position && String(intro.current_position).trim();
       let mostRecentCompany = "";
       if (Array.isArray(p.experiences) && p.experiences.length) {
-        /* Most-recent = highest experience_number, OR is_current=true */
         const sorted = p.experiences.slice().sort(function (a, b) {
           if (a.is_current && !b.is_current) return -1;
           if (b.is_current && !a.is_current) return 1;
@@ -1029,15 +944,8 @@
       }
     }
 
-    /* Location string from state + country */
+    /* Bio meta line */
     const loc = [intro.res_state, intro.res_country].filter(Boolean).join(", ");
-    setText("ppLocation", loc);
-
-    /* Round 2A.2: BIO LINE — location + experience on one line.
-       Replaces the previously stacked location and meta rows.
-       For civilians:  "Delhi, India  ·  25 years experience"
-       For defense:    "Delhi, India  ·  Indian Army  ·  Lt. Col."
-                       (service identity instead of years) */
     const bioEl = document.getElementById("ppBioLine");
     if (bioEl) {
       const parts = [];
@@ -1058,13 +966,7 @@
       }
     }
 
-    /* Meta row — Round 2A.2: SUPPRESSED. The single bio line above
-       has replaced this. We still set it to hidden defensively in
-       case CSS fallback ever changes. */
-    const metaEl = document.getElementById("ppMeta");
-    if (metaEl) { metaEl.innerHTML = ""; metaEl.hidden = true; }
-
-    /* Badges — consulting / mentorship / career transition */
+    /* Badges */
     const bWrap = document.getElementById("ppBadges");
     bWrap.innerHTML = "";
     if (p.consulting && p.consulting.availability_status &&
@@ -1080,11 +982,6 @@
       b.textContent = "Open to mentoring";
       bWrap.appendChild(b);
     }
-    /* Defense → civilian transition badge.
-       Renders only for defense personnel who indicated they're
-       open to (or already in) a civilian role transition. The
-       career_transition field accepts "Yes" or "Maybe" or "No";
-       we badge for the first two. */
     if (cat === "defense" && intro.career_transition &&
         /^(yes|maybe)$/i.test(String(intro.career_transition))) {
       const b = document.createElement("span");
@@ -1094,6 +991,7 @@
     }
   }
 
+  /* ABOUT */
   function renderBio(p) {
     const intro = p.introduction || {};
     if (intro.summary) {
@@ -1102,39 +1000,17 @@
     }
   }
 
-  /* Helper for Round 2A.1: when a dropdown field equals "Other"
-     (or "Other (Please Specify)") and there's a matching custom
-     textbox value in the parent object, return the custom value.
-     Otherwise return the dropdown value as-is. This fixes the
-     "Other (Please Specify)" rendering bug across industry,
-     department, country, etc. */
-  function preferCustom(value, customValue) {
-    if (!value) return customValue || "";
-    const v = String(value).toLowerCase().trim();
-    if (v === "other" || v === "other (please specify)" ||
-        v === "please specify" || v.indexOf("other") === 0) {
-      return (customValue && String(customValue).trim()) || value;
-    }
-    return value;
-  }
-
+  /* EXPERIENCE */
   function renderExperience(p) {
     if (!Array.isArray(p.experiences) || !p.experiences.length) return;
     const list = document.getElementById("ppExpList");
     list.innerHTML = "";
 
-    /* Sort: current role first, then by experience_number desc */
     const sorted = p.experiences.slice().sort(function (a, b) {
       if (a.is_current && !b.is_current) return -1;
       if (b.is_current && !a.is_current) return 1;
       return (b.experience_number || 0) - (a.experience_number || 0);
     });
-
-    function splitList(s) {
-      if (!s) return [];
-      return String(s).split(",").map(function (x) { return x.trim(); })
-                      .filter(function (x) { return !!x; });
-    }
 
     sorted.forEach(function (e) {
       const item = document.createElement("div");
@@ -1147,17 +1023,13 @@
       const location = locParts.join(", ");
       const dateStr  = formatDateRange(e);
 
-      /* Date · Location — single dim line */
       const dateLocParts = [];
       if (dateStr)  dateLocParts.push(escapeHtml(dateStr));
       if (location) dateLocParts.push(escapeHtml(location));
       const dateLocLine = dateLocParts.join('<span class="pp-exp__sep">·</span>');
 
-      /* "What they do" — only renders if industry_function is set */
       const fnLine = splitList(e.industry_function).join(", ");
 
-      /* Skills — combine domain + tech + soft, render as middle-dot
-         separated row at the BOTTOM of the entry. NO label. */
       const allSkills = []
         .concat(splitList(e.domain_skills))
         .concat(splitList(e.tech_skills))
@@ -1165,42 +1037,32 @@
 
       let html = "";
 
-      /* 1. Designation — the title, big and bold */
-      html += '<div class="pp-exp__role">' + escapeHtml(e.designation || e.role_headline || "") + '</div>';
+      html += '<div class="pp-exp__role">' +
+              escapeHtml(e.designation || e.role_headline || "") +
+              '</div>';
 
-      /* 2. Company — gold, anchors the eye */
       if (e.company_name) {
         html += '<div class="pp-exp__company">' + escapeHtml(e.company_name) + '</div>';
       }
 
-      /* 3. Date · Location — dim, small */
       if (dateLocLine) {
         html += '<div class="pp-exp__dateloc">' + dateLocLine + '</div>';
       }
 
-      /* 4. "What they do" — soft contextual line, only if present */
       if (fnLine) {
-        html += '<div class="pp-exp__what">' +
-                '<span class="pp-exp__what-label">What they do:</span> ' +
-                escapeHtml(fnLine) +
-                '</div>';
+        html += '<div class="pp-exp__what">' + escapeHtml(fnLine) + '</div>';
       }
 
-      /* 5. Description — flowing prose paragraphs */
       if (e.role_description) {
         html += '<div class="pp-exp__desc">' + escapeHtml(e.role_description) + '</div>';
       }
 
-      /* 6. Projects — NO box, NO diamond. Each project:
-         Name (white semibold) · duration · team
-         Then a flowing prose paragraph combining ask + role + outcome
-         using natural sentence connectors. */
       if (Array.isArray(e.projects) && e.projects.length) {
-        const validProjects = e.projects.filter(function (p) { return p && p.name; });
-        if (validProjects.length) {
+        const valid = e.projects.filter(function (proj) { return proj && proj.name; });
+        if (valid.length) {
           html += '<div class="pp-exp__projects">';
           html += '<div class="pp-exp__projects-label">Key projects</div>';
-          validProjects.forEach(function (proj) {
+          valid.forEach(function (proj) {
             const headerBits = [];
             headerBits.push('<span class="pp-exp__project-name">' +
                             escapeHtml(proj.name) + '</span>');
@@ -1220,17 +1082,17 @@
                     '</div>';
             if (proj.ask) {
               html += '<div class="pp-exp__project-line">' +
-                      '<span class="pp-exp__project-key">Ask:</span> ' +
+                      '<span class="pp-exp__project-key">Ask:</span>' +
                       escapeHtml(proj.ask) + '</div>';
             }
             if (proj.role) {
               html += '<div class="pp-exp__project-line">' +
-                      '<span class="pp-exp__project-key">My role:</span> ' +
+                      '<span class="pp-exp__project-key">My role:</span>' +
                       escapeHtml(proj.role) + '</div>';
             }
             if (proj.deliverable) {
               html += '<div class="pp-exp__project-line">' +
-                      '<span class="pp-exp__project-key">Outcome:</span> ' +
+                      '<span class="pp-exp__project-key">Outcome:</span>' +
                       escapeHtml(proj.deliverable) + '</div>';
             }
             html += '</div>';
@@ -1239,11 +1101,10 @@
         }
       }
 
-      /* 7. Skills row — middle-dot separated, NO label, sits at
-         the natural CV position (bottom of experience entry). */
       if (allSkills.length) {
         html += '<div class="pp-exp__skills-line">' +
-                allSkills.map(escapeHtml).join('<span class="pp-exp__skills-sep"> · </span>') +
+                allSkills.map(escapeHtml)
+                  .join('<span class="pp-exp__skills-sep"> · </span>') +
                 '</div>';
       }
 
@@ -1253,14 +1114,12 @@
     show("ppExpSection");
   }
 
+  /* EDUCATION */
   function renderEducation(p) {
     const list = document.getElementById("ppEduList");
     list.innerHTML = "";
     let any = false;
 
-    /* Format education date range (with months when available).
-       Reuses the same monthNames as formatDateRange but for
-       education start/end fields (current uses edu_start_year etc.). */
     const monthNames = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun",
                             "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     function fmtMY(year, month) {
@@ -1270,10 +1129,6 @@
       return String(year);
     }
 
-    /* Helper: render a projects subsection (education_current may
-       have current_projects; past entries have projects). Education
-       projects have a simpler shape than experience projects:
-       { name, ask, role, deliverable }. */
     function projectsHtml(arr, label) {
       if (!Array.isArray(arr) || !arr.length) return "";
       const valid = arr.filter(function (proj) { return proj && proj.name; });
@@ -1284,15 +1139,15 @@
         html += '<div class="pp-edu__project">';
         html += '<div class="pp-edu__project-name">' + escapeHtml(proj.name) + '</div>';
         if (proj.ask) {
-          html += '<div class="pp-edu__project-line"><span class="pp-edu__project-key">Ask:</span> ' +
+          html += '<div class="pp-edu__project-line"><span class="pp-edu__project-key">Ask:</span>' +
                   escapeHtml(proj.ask) + '</div>';
         }
         if (proj.role) {
-          html += '<div class="pp-edu__project-line"><span class="pp-edu__project-key">Role:</span> ' +
+          html += '<div class="pp-edu__project-line"><span class="pp-edu__project-key">Role:</span>' +
                   escapeHtml(proj.role) + '</div>';
         }
         if (proj.deliverable) {
-          html += '<div class="pp-edu__project-line"><span class="pp-edu__project-key">Outcome:</span> ' +
+          html += '<div class="pp-edu__project-line"><span class="pp-edu__project-key">Outcome:</span>' +
                   escapeHtml(proj.deliverable) + '</div>';
         }
         html += '</div>';
@@ -1301,10 +1156,6 @@
       return html;
     }
 
-    /* Current education first if present.
-       Round 2A: actual saved fields are education_level, field_of_study,
-       institution_name, education_mode, edu_start_month/year,
-       edu_end_month/year, currently_pursuing, current_projects. */
     if (p.education_current &&
         (p.education_current.institution_name ||
          p.education_current.education_level ||
@@ -1335,17 +1186,13 @@
       if (c.institution_name) {
         html += '<div class="pp-edu__inst">' + escapeHtml(c.institution_name) + '</div>';
       }
-      const eduChips = [];
-      if (c.education_mode) eduChips.push(c.education_mode);
-      if (eduChips.length) {
-        html += '<div class="pp-edu__chips">';
-        eduChips.forEach(function (ch) {
-          html += '<span class="pp-edu__chip">' + escapeHtml(ch) + '</span>';
-        });
-        html += '</div>';
-      }
       if (dateStr) {
         html += '<div class="pp-edu__year">' + escapeHtml(dateStr) + '</div>';
+      }
+      if (c.education_mode) {
+        html += '<div class="pp-edu__mode">' +
+                '<span class="pp-edu__mode-label">Mode:</span>' +
+                escapeHtml(c.education_mode) + '</div>';
       }
       html += projectsHtml(c.current_projects, "Current Projects");
 
@@ -1354,10 +1201,6 @@
       any = true;
     }
 
-    /* Past education entries.
-       Round 2A: fields are degree, field_of_study, institution,
-       start_month/year, end_month/year, grade, skills, activities,
-       has_academic_project, projects. */
     if (Array.isArray(p.education) && p.education.length) {
       const sorted = p.education.slice().sort(function (a, b) {
         return (b.education_number || 0) - (a.education_number || 0);
@@ -1385,23 +1228,22 @@
           html += '<div class="pp-edu__year">' + escapeHtml(dateStr) + '</div>';
         }
         if (e.grade) {
-          html += '<div class="pp-edu__grade">Grade: ' + escapeHtml(e.grade) + '</div>';
+          html += '<div class="pp-edu__grade">' +
+                  '<span class="pp-edu__grade-label">Grade:</span>' +
+                  escapeHtml(e.grade) + '</div>';
         }
-        if (e.skills) {
-          /* skills is a comma-separated string in past education entries */
-          const eduSkills = String(e.skills).split(",")
-              .map(function (s) { return s.trim(); })
-              .filter(function (s) { return !!s; });
-          if (eduSkills.length) {
-            html += '<div class="pp-edu__skills">';
-            eduSkills.forEach(function (s) {
-              html += '<span class="pp-edu__skill">' + escapeHtml(s) + '</span>';
-            });
-            html += '</div>';
-          }
+        const eduSkills = splitList(e.skills);
+        if (eduSkills.length) {
+          html += '<div class="pp-edu__skills-line">' +
+                  '<span class="pp-edu__skills-label">Skills:</span>' +
+                  eduSkills.map(escapeHtml)
+                    .join('<span class="pp-edu__skills-sep"> · </span>') +
+                  '</div>';
         }
         if (e.activities) {
-          html += '<div class="pp-edu__activities">' + escapeHtml(e.activities) + '</div>';
+          html += '<div class="pp-edu__activities">' +
+                  '<span class="pp-edu__activities-label">Activities:</span>' +
+                  escapeHtml(e.activities) + '</div>';
         }
         html += projectsHtml(e.projects, "Academic Projects");
 
@@ -1414,26 +1256,10 @@
     if (any) show("ppEduSection");
   }
 
+  /* SKILLS */
   function renderSkills(p) {
-    /* Round 2A — Skills with category grouping + proficiency level.
-
-       PRIMARY shape (from skills.js): array of objects
-         { id, name, category, proficiency, customLabel? }
-       FALLBACK 1: array of strings (legacy or other data)
-       FALLBACK 2: intro.skills_top5 array of strings — used when
-         the dedicated Skills page hasn't been filled yet, so the
-         Top 5 from About You still produces a Skills section.
-
-       Grouping behaviour:
-         - If we have category info, group by category. Categories
-           appear as small uppercase labels above each group.
-         - If no category info (e.g. fallback to skills_top5),
-           render as one flat row.
-         - Proficiency, when present, shows as a subtle ' • Expert'
-           suffix on each chip. */
-
-    let groups = []; // [{ category, items: [{ name, proficiency }] }]
-    let flatItems = null; // used for fallback flat rendering
+    let groups = [];
+    let flatItems = null;
 
     if (Array.isArray(p.skills) && p.skills.length) {
       const byCategory = new Map();
@@ -1442,7 +1268,7 @@
         if (!s) return;
         const name = (typeof s === "string") ? s : (s.name || s.skill || s.label || "");
         if (!name) return;
-        const cat = (typeof s === "object" && s.category) ? s.category : "";
+        const cat  = (typeof s === "object" && s.category)    ? s.category    : "";
         const prof = (typeof s === "object" && s.proficiency) ? s.proficiency : "";
         if (cat) anyCategory = true;
         const key = cat || "_uncategorised";
@@ -1450,8 +1276,6 @@
         byCategory.get(key).push({ name: name, proficiency: prof });
       });
       if (anyCategory) {
-        /* Render category-by-category. Order: alphabetical except
-           "Other" (and uncategorised) at the end. */
         const cats = Array.from(byCategory.keys()).sort(function (a, b) {
           if (a === "_uncategorised") return 1;
           if (b === "_uncategorised") return -1;
@@ -1466,7 +1290,6 @@
           });
         });
       } else {
-        /* No categories anywhere — render flat */
         flatItems = [];
         byCategory.forEach(function (arr) {
           arr.forEach(function (it) { flatItems.push(it); });
@@ -1480,53 +1303,42 @@
       } else if (typeof top5 === "string" && top5.trim()) {
         labels = top5.split(",").map(function (s) { return s.trim(); });
       }
-      labels = labels.filter(function (s) { return !!s; });
+      labels = labels.filter(Boolean);
       if (labels.length) {
         flatItems = labels.map(function (l) { return { name: l, proficiency: "" }; });
       }
     }
 
-    /* Round 2A: defense_skills text block — comma-separated skills
-       acquired during military service. We render this as its own
-       group at the END of the skills list so it's clearly distinct
-       from civilian skill categories. */
     const intro = p.introduction || {};
     if (intro.defense_skills && String(intro.defense_skills).trim()) {
-      const defSkills = String(intro.defense_skills).split(",")
-          .map(function (s) { return s.trim(); })
-          .filter(function (s) { return !!s; });
+      const defSkills = splitList(intro.defense_skills);
       if (defSkills.length) {
-        const defGroup = {
+        groups.push({
           category: "Defense Skills",
           items: defSkills.map(function (s) { return { name: s, proficiency: "" }; })
-        };
-        groups.push(defGroup);
+        });
       }
     }
 
-    /* Nothing to show? skip the section. */
     if (!groups.length && (!flatItems || !flatItems.length)) return;
 
     const list = document.getElementById("ppSkillsList");
     list.innerHTML = "";
 
-    function renderChip(item) {
-      const tag = document.createElement("span");
-      tag.className = "pp-skill";
+    function renderItemHtml(item) {
       if (item.proficiency) {
-        tag.innerHTML = escapeHtml(item.name) +
+        return escapeHtml(item.name) +
           ' <span class="pp-skill__level">· ' + escapeHtml(item.proficiency) + '</span>';
-      } else {
-        tag.textContent = item.name;
       }
-      return tag;
+      return escapeHtml(item.name);
     }
 
     if (flatItems && flatItems.length) {
-      const row = document.createElement("div");
-      row.className = "pp-skill-row";
-      flatItems.forEach(function (it) { row.appendChild(renderChip(it)); });
-      list.appendChild(row);
+      const line = document.createElement("div");
+      line.className = "pp-skill-line";
+      line.innerHTML = flatItems.map(renderItemHtml)
+        .join('<span class="pp-skill-sep"> · </span>');
+      list.appendChild(line);
     } else {
       groups.forEach(function (g) {
         const groupEl = document.createElement("div");
@@ -1537,10 +1349,11 @@
           lbl.textContent = g.category;
           groupEl.appendChild(lbl);
         }
-        const row = document.createElement("div");
-        row.className = "pp-skill-row";
-        g.items.forEach(function (it) { row.appendChild(renderChip(it)); });
-        groupEl.appendChild(row);
+        const line = document.createElement("div");
+        line.className = "pp-skill-line";
+        line.innerHTML = g.items.map(renderItemHtml)
+          .join('<span class="pp-skill-sep"> · </span>');
+        groupEl.appendChild(line);
         list.appendChild(groupEl);
       });
     }
@@ -1548,7 +1361,6 @@
     show("ppSkillsSection");
   }
 
-  /* Set Open Graph + page title once we know the name */
   function setPageMeta(p) {
     const title = p.name + " — MECULS";
     document.title = title;
@@ -1598,21 +1410,19 @@
 
     if (data.publishable === false) {
       hide("ppLoading");
-      setText("ppPendingMsg", (data.name || "This member") + " is still completing their profile. Check back soon.");
-      /* If we have a 'missing' object, render the checklist
-         showing exactly what needs to be completed. */
+      setText("ppPendingMsg",
+        (data.name || "This member") + " is still completing their profile. Check back soon.");
       if (data.missing && typeof data.missing === "object") {
         const m = data.missing;
         const map = {
-          pcPhoto:     m.photo,
-          pcCategory:  m.profile_category,
-          pcIntro:     m.introduction,
-          pcExpOrEdu:  m.experience_or_education
+          pcPhoto:    m.photo,
+          pcCategory: m.profile_category,
+          pcIntro:    m.introduction,
+          pcExpOrEdu: m.experience_or_education
         };
         Object.keys(map).forEach(function (id) {
           const el = document.getElementById(id);
           if (!el) return;
-          /* Item is "done" when it's NOT missing */
           el.classList.toggle("done", !map[id]);
         });
         const list = document.getElementById("ppPendingChecklist");
@@ -1622,7 +1432,6 @@
       return;
     }
 
-    /* Profile is publishable — render */
     setPageMeta(data);
     renderHero(data);
     renderBio(data);
@@ -1634,7 +1443,6 @@
     show("ppContent");
   }
 
-  /* Kick off */
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", loadProfile);
   } else {
