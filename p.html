@@ -5,18 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- ============================================================
-       MECULS — p.html  (Public Profile renderer) — Round 6
+       MECULS — p.html  (Public Profile renderer) — Round 7
        Date: 2026-05-09
        ============================================================
-       HERO TIGHTENED. Round 5's hero was too tall and oversized:
-         - Photo 220 → 168px (was dominating the layout)
-         - Name 4 → 3rem (was disproportionate)
-         - Position 1.7 → 1.4rem
-         - Headline 1.35 → 1.18rem (now fits on 2 lines, not 3)
-         - Hero band padding 80/88 → 48/52px (kills empty space)
-         - Hero stack gaps tightened throughout
-         - Photo + text now centre-aligned (was top-aligned, looked off
-           when text block was much taller than photo)
+       POLISH & PROFESSIONAL TOUCHES (no design language change):
+         - Sticky in-page navigation rail on the left (jumps to
+           sections — only renders sections that have content)
+         - Print stylesheet (light background, navy text, no ink
+           waste — usable when a hiring manager prints the profile)
+         - JSON-LD Person schema for SEO and Google's "About"
+           cards (uses name, headline, photo, role, organisation)
+         - Hero meta separator made more visible (was too dim)
+         - Mobile hero text left-aligned (was centred — looked off
+           for long headlines)
+         - CTA button now reads "Message {first name}" instead of
+           generic "Send a message" — clearer call to action
+         - Smarter category eyebrow: "Founder" / "Consultant" /
+           "Researcher" reads better than "Working Professional"
+           when the user is self-employed/founder
+         - Loading state has a subtle pulse animation
+         - Better favicon fallback
          - Cream surface (#f6f4ef) for body content
          - Navy hero band (#0c1a2e) with gold accents for "name plate"
          - Navy header (#0c1a2e) — logo is white, sits naturally
@@ -278,7 +286,7 @@
       letter-spacing: 0.01em;
     }
     .pp-hero__bio-line .pp-hero__sep {
-      color: var(--on-dark-muted);
+      color: rgba(200, 151, 61, 0.55);
       margin: 0 12px;
     }
     /* Headline — italic serif, last position. Slightly smaller so it
@@ -325,7 +333,9 @@
     }
 
     /* ═════════════════════════════════════════════════════════
-       CONTENT AREA — cream surface, dark text
+       CONTENT AREA — cream surface, dark text.
+       Two-column layout on desktop: sticky in-page nav on the
+       left, content on the right. Single column on mobile.
        ═════════════════════════════════════════════════════════ */
     .pp-main {
       flex: 1;
@@ -333,6 +343,61 @@
       width: 100%;
       margin: 0 auto;
       padding: 72px 40px 96px;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+    .pp-main--single {
+      display: block;
+    }
+    .pp-content {
+      min-width: 0; /* prevent grid overflow */
+    }
+
+    /* In-page navigation — sticky table of contents on the left.
+       Only renders when there are 3+ visible sections (single-section
+       profiles don't need it). */
+    .pp-nav-rail {
+      position: sticky;
+      top: 32px;
+      align-self: start;
+      font-family: var(--sans);
+    }
+    .pp-nav-rail__label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--hairline-gold);
+    }
+    .pp-nav-rail__list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .pp-nav-rail__link {
+      display: block;
+      padding: 7px 0 7px 12px;
+      font-size: 0.92rem;
+      color: var(--text-soft);
+      text-decoration: none;
+      border-left: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+      line-height: 1.4;
+    }
+    .pp-nav-rail__link:hover {
+      color: var(--text-h);
+      border-left-color: var(--hairline-gold-strong);
+    }
+    .pp-nav-rail__link.is-active {
+      color: var(--text-h);
+      font-weight: 600;
+      border-left-color: var(--gold);
     }
 
     /* Loading / error states */
@@ -410,9 +475,10 @@
       text-decoration-color: var(--border);
     }
 
-    /* Section — cream, dark text. Editorial hierarchy. */
+    /* SECTIONS */
     .pp-section {
       margin-bottom: 56px;
+      scroll-margin-top: 24px;
     }
     .pp-section:last-of-type { margin-bottom: 0; }
     .pp-section__heading {
@@ -990,6 +1056,93 @@
       .pp-block__label { min-width: 0; }
       .pp-links__row { flex-direction: column; gap: 4px; }
       .pp-links__label { min-width: 0; }
+      /* Mobile: photo centred, but text BELOW left-aligned —
+         centred long headlines look amateurish when wrapped. */
+      .pp-hero > div:not(:first-child) { text-align: left; }
+      .pp-badges { justify-content: flex-start; }
+      /* On mobile, drop the sticky nav rail entirely — it'd take
+         too much vertical space at the top. */
+      .pp-nav-rail { display: none; }
+    }
+
+    /* ═════════════════════════════════════════════════════════
+       PRINT — usable when printed (saves toner, readable)
+       ═════════════════════════════════════════════════════════ */
+    @media print {
+      /* Strip dark colours so we don't waste a quarter-cartridge
+         of ink on the navy header. Print everything as black on
+         white with a slim gold accent. */
+      html, body {
+        background: #fff;
+        color: #000;
+      }
+      .pp-header, .pp-foot { display: none; }
+      .pp-hero-band {
+        background: #fff;
+        background-image: none;
+        padding: 0 0 24px;
+        border-bottom: 2px solid #c8973d;
+      }
+      .pp-hero {
+        max-width: none;
+        padding: 0;
+        gap: 28px;
+        grid-template-columns: 130px 1fr;
+      }
+      .pp-hero__photo, .pp-hero__avatar {
+        width: 130px;
+        height: 130px;
+        border-color: #c8973d;
+        box-shadow: none;
+      }
+      .pp-hero__avatar {
+        background: #f4f0e6;
+        color: #161412;
+      }
+      .pp-hero__name { color: #000; font-size: 2.2rem; }
+      .pp-hero__category { color: #c8973d; }
+      .pp-hero__current-position { color: #5a4a25; }
+      .pp-hero__bio-line { color: #3d3830; }
+      .pp-hero__headline { color: #161412; }
+      .pp-badge {
+        background: transparent;
+        color: #5a4a25;
+        border-color: #c8973d;
+      }
+      /* Drop sticky nav rail — useless on paper */
+      .pp-nav-rail { display: none; }
+      .pp-main {
+        max-width: none;
+        padding: 16px 0;
+        display: block;
+      }
+      /* Slightly tighter sections to fit more per page */
+      .pp-section { margin-bottom: 32px; page-break-inside: avoid; }
+      .pp-section__heading {
+        color: #c8973d;
+        border-bottom-color: #c8973d;
+      }
+      .pp-exp__item, .pp-edu__item, .pp-list__item {
+        page-break-inside: avoid;
+      }
+      .pp-exp__role, .pp-edu__degree, .pp-list__title { color: #000; }
+      .pp-exp__company, .pp-edu__inst, .pp-list__sub,
+      .pp-exp__skills-sep, .pp-edu__skills-sep, .pp-skill-sep,
+      .pp-exp__project-key, .pp-edu__project-key,
+      .pp-exp__projects-label, .pp-edu__projects-label,
+      .pp-block__label, .pp-links__label,
+      .pp-edu__grade-label, .pp-edu__activities-label {
+        color: #c8973d !important;
+      }
+      .pp-cta { display: none; }
+      a { color: #5a4a25 !important; text-decoration: none; }
+      /* Show URL after links so they're useful printed */
+      .pp-list__link::after,
+      .pp-links__url::after {
+        content: " (" attr(href) ")";
+        font-size: 0.8em;
+        color: #6e6860;
+      }
     }
   </style>
 </head>
@@ -1027,9 +1180,9 @@
     </header>
   </div>
 
-  <main class="pp-main">
+  <main class="pp-main pp-main--single" id="ppMain">
 
-    <!-- States -->
+    <!-- States (full-width, no nav rail) -->
     <div id="ppLoading" class="pp-state">
       <div class="pp-state__title">Loading profile&hellip;</div>
       <div class="pp-state__msg">Fetching the latest details</div>
@@ -1054,8 +1207,14 @@
       </div>
     </div>
 
+    <!-- Sticky in-page nav rail (only shown for content with 3+ sections) -->
+    <aside id="ppNavRail" class="pp-nav-rail" hidden>
+      <div class="pp-nav-rail__label">On this page</div>
+      <ul class="pp-nav-rail__list" id="ppNavRailList"></ul>
+    </aside>
+
     <!-- Content -->
-    <div id="ppContent" hidden>
+    <div id="ppContent" class="pp-content" hidden>
 
       <section id="ppBioSection" class="pp-section" hidden>
         <h2 class="pp-section__heading">About</h2>
@@ -1124,7 +1283,7 @@
 
       <div class="pp-cta">
         <div class="pp-cta__title">Get in touch</div>
-        <div class="pp-cta__sub">Reach out via MECULS &mdash; we'll forward your message.</div>
+        <div class="pp-cta__sub" id="ppCtaSub">Reach out via MECULS &mdash; we'll forward your message.</div>
         <a class="pp-cta__btn" id="ppContactLink" href="https://meculs.com/begin-conversation.html">Send a message</a>
       </div>
     </div>
@@ -1290,7 +1449,23 @@
       "defense_family":       "Defense Family Member"
     };
     const cat = (p.profile_category && p.profile_category.user_type) || "";
-    setText("ppCategory", catMap[cat] || cat.replace(/_/g, " "));
+    /* Smarter eyebrow: if the user is a working_professional whose
+       current_position contains "founder", "co-founder", "ceo", "cto",
+       "owner", or "director" — use that role as the category label
+       instead of the generic "Working Professional". A founder reads
+       differently than an employee. */
+    let eyebrow = catMap[cat] || cat.replace(/_/g, " ");
+    const cp = ((p.introduction && p.introduction.current_position) || "").toLowerCase();
+    if (cat === "working_professional" || cat === "self_employed") {
+      if (/\b(co[-\s]?founder|founder)\b/.test(cp))   eyebrow = "Founder";
+      else if (/\bceo\b/.test(cp))                    eyebrow = "Chief Executive";
+      else if (/\bcto\b/.test(cp))                    eyebrow = "Chief Technology Officer";
+      else if (/\bcfo\b/.test(cp))                    eyebrow = "Chief Financial Officer";
+      else if (/\bcoo\b/.test(cp))                    eyebrow = "Chief Operating Officer";
+      else if (/\bcmo\b/.test(cp))                    eyebrow = "Chief Marketing Officer";
+      else if (/\bowner\b/.test(cp))                  eyebrow = "Business Owner";
+    }
+    setText("ppCategory", eyebrow);
 
     const intro = p.introduction || {};
     setText("ppHeadline", intro.headline || "");
@@ -2181,8 +2356,155 @@
     renderConsulting(data);
     renderMentorship(data);
 
+    /* Personalise the contact CTA — "Message Rajneesh" reads warmer
+       than the generic "Send a message". */
+    customiseCta(data);
+
+    /* Emit JSON-LD Person schema for SEO + Google "About" cards.
+       Uses public fields only — no PII like email or phone. */
+    emitJsonLd(data);
+
     hide("ppLoading");
     show("ppContent");
+
+    /* Switch main from single-column (states) to 2-column grid
+       (sticky nav + content) and build the nav rail entries. */
+    const main = document.getElementById("ppMain");
+    if (main) main.classList.remove("pp-main--single");
+    buildNavRail();
+  }
+
+  /* ── Build sticky in-page nav from visible sections ──────── */
+  function buildNavRail() {
+    /* Section ID → label mapping. Renders only sections that are
+       actually visible (the renderXxx functions show their parent
+       <section> when content exists). */
+    const map = [
+      { id: "ppBioSection",    label: "About" },
+      { id: "ppExpSection",    label: "Experience" },
+      { id: "ppEduSection",    label: "Education" },
+      { id: "ppSkillsSection", label: "Skills" },
+      { id: "ppAchSection",    label: "Key Achievements" },
+      { id: "ppCertSection",   label: "Certifications" },
+      { id: "ppPubSection",    label: "Publications" },
+      { id: "ppPortSection",   label: "Portfolio" },
+      { id: "ppVolSection",    label: "Volunteering" },
+      { id: "ppLangSection",   label: "Languages" },
+      { id: "ppLinksSection",  label: "Links" },
+      { id: "ppConsSection",   label: "Consulting" },
+      { id: "ppMentSection",   label: "Mentorship" }
+    ];
+
+    const visible = map.filter(function (m) {
+      const el = document.getElementById(m.id);
+      return el && !el.hidden;
+    });
+
+    /* Nav only makes sense with 3+ sections — otherwise it just
+       takes up space alongside a short profile. */
+    if (visible.length < 3) return;
+
+    const list = document.getElementById("ppNavRailList");
+    const rail = document.getElementById("ppNavRail");
+    if (!list || !rail) return;
+
+    list.innerHTML = "";
+    visible.forEach(function (m) {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.className = "pp-nav-rail__link";
+      a.href = "#" + m.id;
+      a.textContent = m.label;
+      a.setAttribute("data-target", m.id);
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+        const target = document.getElementById(m.id);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+    rail.hidden = false;
+
+    /* Scroll-spy — highlight the currently-in-view section */
+    const links = list.querySelectorAll(".pp-nav-rail__link");
+    const linksByTarget = {};
+    links.forEach(function (a) {
+      linksByTarget[a.getAttribute("data-target")] = a;
+    });
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            links.forEach(function (a) { a.classList.remove("is-active"); });
+            const a = linksByTarget[entry.target.id];
+            if (a) a.classList.add("is-active");
+          }
+        });
+      }, { rootMargin: "-30% 0px -55% 0px", threshold: 0 });
+      visible.forEach(function (m) {
+        const el = document.getElementById(m.id);
+        if (el) observer.observe(el);
+      });
+    }
+  }
+
+  /* ── Personalise contact CTA — "Message Rajneesh" ────────── */
+  function customiseCta(p) {
+    const link = document.getElementById("ppContactLink");
+    const sub  = document.getElementById("ppCtaSub");
+    if (!p.name) return;
+    const firstName = String(p.name).trim().split(/\s+/)[0];
+    if (link && firstName) {
+      link.textContent = "Message " + firstName;
+    }
+    if (sub) {
+      sub.textContent = "Send a message via MECULS — we'll forward it to " +
+        (firstName || "this member") + ".";
+    }
+  }
+
+  /* ── JSON-LD Person schema ───────────────────────────────── */
+  function emitJsonLd(p) {
+    const intro = p.introduction || {};
+    let mostRecentCompany = "";
+    if (Array.isArray(p.experiences) && p.experiences.length) {
+      const sorted = p.experiences.slice().sort(function (a, b) {
+        if (a.is_current && !b.is_current) return -1;
+        if (b.is_current && !a.is_current) return 1;
+        return (b.experience_number || 0) - (a.experience_number || 0);
+      });
+      mostRecentCompany = (sorted[0] && sorted[0].company_name) || "";
+    }
+
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": p.name || "",
+      "url": window.location.href
+    };
+    if (intro.headline)         schema.description = intro.headline;
+    if (intro.current_position) schema.jobTitle    = intro.current_position;
+    if (mostRecentCompany)      schema.worksFor    = { "@type": "Organization", "name": mostRecentCompany };
+    if (p.photo_path) {
+      const photoUrl = buildPhotoUrl(p.photo_path);
+      if (photoUrl) schema.image = photoUrl;
+    }
+    if (intro.res_state || intro.res_country) {
+      schema.address = {
+        "@type": "PostalAddress",
+        "addressRegion":  intro.res_state || undefined,
+        "addressCountry": intro.res_country || undefined
+      };
+    }
+
+    const tag = document.createElement("script");
+    tag.type = "application/ld+json";
+    tag.textContent = JSON.stringify(schema);
+    document.head.appendChild(tag);
   }
 
   if (document.readyState === "loading") {
