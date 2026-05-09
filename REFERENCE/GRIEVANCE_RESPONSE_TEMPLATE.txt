@@ -1,0 +1,100 @@
+GRIEVANCE ACKNOWLEDGEMENT EMAIL TEMPLATE
+══════════════════════════════════════════════════════════════════
+Save this somewhere accessible (Drafts folder in Gmail, Notion, or
+just keep this file in your project folder). When a real grievance
+email arrives, respond within 48 hours using this as a starting
+point.
+
+Customise:
+  - {USER_NAME}     → their name (or "there" if unknown)
+  - {DATE_RECEIVED} → date you got their email
+  - {TICKET_REF}    → simple ref like GRV-2026-001 (incremental)
+  - {SUMMARY}       → one-line restatement of their concern
+  - {NEEDED_INFO}   → if you need anything more from them; else
+                      delete that paragraph entirely
+══════════════════════════════════════════════════════════════════
+
+Subject: We've received your grievance — Reference {TICKET_REF}
+
+Dear {USER_NAME},
+
+Thank you for writing to us on {DATE_RECEIVED}. I'm acknowledging
+that I have received your message regarding {SUMMARY}.
+
+This concern has been logged with the reference number
+{TICKET_REF}. Please use this reference in any further correspondence
+on this matter so I can locate it quickly.
+
+I will personally investigate and respond with a resolution within
+30 days, as committed on our Grievance Officer page. If the matter
+turns out to be more complex and requires more time, I will write
+back with a revised timeline before the 30 days are up — you will
+not be left without an update.
+
+[OPTIONAL — DELETE THIS PARAGRAPH IF NOT NEEDED]
+To help me investigate accurately, could you please share
+{NEEDED_INFO}? Once I have this, I can move faster.
+[END OPTIONAL]
+
+If at any point you feel my response is inadequate, you are entitled
+to escalate the matter to the Data Protection Board of India, as
+explained on our grievance page:
+
+  https://meculs.com/grievance.html
+
+Thank you for taking the time to bring this to our attention. We
+take your privacy seriously and will work to resolve this fairly.
+
+Warm regards,
+
+Rajneesh Jain
+Founder & Grievance Officer, MECULS
+Jain.Rajneesh@meculs.com
++91 99112 20922
+
+══════════════════════════════════════════════════════════════════
+SIMPLE TRACKING SYSTEM
+══════════════════════════════════════════════════════════════════
+
+You don't need a ticketing system yet. A Google Sheet with these
+columns is enough until volume grows:
+
+  Ref            | Date received | Email of complainant
+  Brief summary  | Status        | Acknowledged on
+  Resolved on    | Resolution notes
+
+Status values to use:
+  - Acknowledged    (you've replied with this template)
+  - Investigating   (you're working on it)
+  - Awaiting info   (you've asked the user for something more)
+  - Resolved        (you've sent the final response and they accepted)
+  - Escalated       (user took it to DPBI)
+  - Closed          (no reply from user for 14+ days after final response)
+
+Generate refs sequentially: GRV-2026-001, GRV-2026-002, etc.
+Reset the counter each calendar year.
+
+This sheet is your audit trail. If DPBI ever asks "what did you do
+about complaint X", you can show timestamps and decisions.
+
+══════════════════════════════════════════════════════════════════
+WHAT NOT TO DO
+══════════════════════════════════════════════════════════════════
+
+- Don't respond casually or apologetically without acknowledging
+  the formal grievance. Treat every privacy email as a potential
+  formal complaint, even if it sounds friendly.
+
+- Don't promise more than you can deliver. The 48h / 30 days
+  commitment is the official one. Don't say "I'll get back tomorrow"
+  unless you actually will.
+
+- Don't delete the email or the user's account in response to a
+  grievance. If they ask you to delete data, do it through the
+  proper deletion flow and KEEP a record (date, what was deleted,
+  ref to grievance). DPDP requires you to be able to demonstrate
+  compliance.
+
+- Don't ignore a grievance. The 48-hour acknowledgement is the most
+  important deadline — even if you have nothing to say yet, send
+  the acknowledgement template.
