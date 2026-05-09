@@ -485,11 +485,18 @@
       color: #fff;
       font-weight: 600;
     }
-    /* Project body — flowing prose, no labels. Reads as a sentence. */
-    .pp-exp__project-body {
+    /* Project body — each field on its own line, with a
+       highlighted gold label. Standard CV pattern. */
+    .pp-exp__project-line {
       font-size: 0.92rem;
       color: var(--text-dim);
-      line-height: 1.7;
+      line-height: 1.65;
+      margin-top: 4px;
+    }
+    .pp-exp__project-key {
+      color: var(--gold);
+      font-weight: 600;
+      margin-right: 4px;
     }
 
     /* Skills row — middle-dot separated, NO label, NO border.
@@ -514,11 +521,9 @@
     .pp-exp__chips,
     .pp-exp__skills,
     .pp-exp__skill-row,
-    .pp-exp__tagline {
-      display: none;
-    }
+    .pp-exp__tagline,
+    .pp-exp__project-body,
     .pp-exp__skills-label,
-    .pp-exp__project-key,
     .pp-exp__project-meta {
       display: none;
     }
@@ -1209,34 +1214,24 @@
               headerBits.push(escapeHtml("Team of " + t));
             }
 
-            /* Flowing prose: build natural sentences from ask / role
-               / deliverable using sentence connectors. No labels. */
-            const proseBits = [];
-            if (proj.ask) {
-              const ask = String(proj.ask).trim();
-              proseBits.push("The ask was to " +
-                             ask.charAt(0).toLowerCase() + ask.slice(1) +
-                             (ask.match(/[.!?]$/) ? "" : "."));
-            }
-            if (proj.role) {
-              const role = String(proj.role).trim();
-              proseBits.push("My role: " + role +
-                             (role.match(/[.!?]$/) ? "" : "."));
-            }
-            if (proj.deliverable) {
-              const d = String(proj.deliverable).trim();
-              proseBits.push("Outcome — " + d +
-                             (d.match(/[.!?]$/) ? "" : "."));
-            }
-
             html += '<div class="pp-exp__project">';
             html += '<div class="pp-exp__project-header">' +
                     headerBits.join('<span class="pp-exp__sep">·</span>') +
                     '</div>';
-            if (proseBits.length) {
-              html += '<div class="pp-exp__project-body">' +
-                      proseBits.join(" ") +
-                      '</div>';
+            if (proj.ask) {
+              html += '<div class="pp-exp__project-line">' +
+                      '<span class="pp-exp__project-key">Ask:</span> ' +
+                      escapeHtml(proj.ask) + '</div>';
+            }
+            if (proj.role) {
+              html += '<div class="pp-exp__project-line">' +
+                      '<span class="pp-exp__project-key">My role:</span> ' +
+                      escapeHtml(proj.role) + '</div>';
+            }
+            if (proj.deliverable) {
+              html += '<div class="pp-exp__project-line">' +
+                      '<span class="pp-exp__project-key">Outcome:</span> ' +
+                      escapeHtml(proj.deliverable) + '</div>';
             }
             html += '</div>';
           });
