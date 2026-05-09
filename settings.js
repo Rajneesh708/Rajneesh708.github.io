@@ -1,6 +1,13 @@
 /* ════════════════════════════════════════════════════════════
-   MECULS — settings.js (v=1)
+   MECULS — settings.js (v=2)
    Date: 2026-05-09
+   ════════════════════════════════════════════════════════════
+   v=2 fixes (from v=1):
+     - Sign-in method detection now uses app_metadata.providers
+       (authoritative), not identities[] (which falsely showed
+       "email" identity for Google-only users)
+     - Password change row hidden for Google-only users; instead
+       shows a hint linking to Google Account security settings
    ════════════════════════════════════════════════════════════
    Drives the settings page. Reuses MC.* helpers for consistent
    auth + RLS + error handling with the rest of the portal.
@@ -146,22 +153,52 @@
   }
 
   function populateSecurity() {
-    // Determine sign-in method from auth identities
-    const identities = CURRENT_USER.identities || [];
-    const hasGoogle = identities.some(i => i.provider === "google");
-    const hasEmail  = identities.some(i => i.provider === "email");
+    /* Determine sign-in method authoritatively from the providers
+       Supabase recorded for this user. Two reliable sources:
+         - user.app_metadata.provider    (primary provider)
+         - user.app_metadata.providers   (array of all linked providers)
+       The identities[] array can be misleading because Supabase
+       creates an "email" identity row for users whose Google
+       account email seeded the auth.users.email column — even
+       though they NEVER set a password. We use providers instead. */
+    const meta = CURRENT_USER.app_metadata || {};
+    const providers = Array.isArray(meta.providers)
+      ? meta.providers
+      : (meta.provider ? [meta.provider] : []);
+
+    const hasGoogle = providers.indexOf("google") !== -1;
+    /* "email" provider in Supabase = the user signed up with email
+       and password, OR a magic link, OR an OTP. We treat all of
+       those as having a password they can change. */
+    const hasPassword = providers.indexOf("email") !== -1;
 
     let methodText = "";
-    if (hasGoogle && hasEmail)      methodText = "Google + email/password";
-    else if (hasGoogle)             methodText = "Google";
-    else if (hasEmail)              methodText = "Email and password";
-    else                            methodText = "Email";  // fallback
+    if (hasGoogle && hasPassword)  methodText = "Google + email/password";
+    else if (hasGoogle)            methodText = "Google sign-in";
+    else if (hasPassword)          methodText = "Email and password";
+    else                           methodText = providers[0] || "Unknown";
 
     $("stSigninMethod").textContent = methodText;
 
-    // Show password change row only if user has email/password identity
-    if (hasEmail || !hasGoogle) {
+    /* Show password change row ONLY if the user actually has a
+       password to change. Google-only users see a hint instead. */
+    if (hasPassword) {
       $("stPasswordRow").hidden = false;
+    } else {
+      /* Add a hint row explaining password is managed via Google */
+      const securityCard = $("stPasswordRow").parentElement;
+      const hint = document.createElement("div");
+      hint.className = "st-field";
+      hint.innerHTML =
+        '<div class="st-field__label">Password' +
+          '<div class="st-field__hint">Managed by your Google account.</div>' +
+        '</div>' +
+        '<div class="st-field__value" style="color:var(--text-soft);">' +
+          'Your sign-in is handled by Google. To change your password, ' +
+          'visit <a href="https://myaccount.google.com/security" target="_blank" ' +
+          'rel="noopener" style="color:var(--gold);">your Google Account security settings</a>.' +
+        '</div>';
+      $("stPasswordRow").parentElement.insertBefore(hint, $("stPasswordRow"));
     }
   }
 

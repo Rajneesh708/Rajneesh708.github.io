@@ -8,7 +8,10 @@
   <!-- ============================================================
        MECULS — settings.html
        Date: 2026-05-09
-       Cache buster: v=1
+       Cache buster: v=2 — fixes:
+         - spinner stuck visible (CSS specificity)
+         - password section showing for Google-only users
+         - settings.js bumped to v=2 alongside
        ============================================================
        Standalone settings page (not inside dashboard chrome).
        Sections: Profile · Security · Consents · Visibility · Danger
@@ -549,6 +552,11 @@
       color: var(--text-soft);
       font-size: 1.05rem;
     }
+    /* Defeat the display:flex specificity so the HTML [hidden]
+       attribute reliably hides the spinner. Without this the
+       spinner stays visible alongside loaded content (the class
+       rule above wins over the user-agent [hidden] default). */
+    .st-page-loading[hidden] { display: none !important; }
 
     /* ── Mobile ────────────────────────────────────────────── */
     @media (max-width: 820px) {
@@ -905,7 +913,7 @@
 <script src="mc_storage.js?v=2"></script>
 <script src="mc_supabase.js?v=4"></script>
 <script src="mc_helpers.js?v=14"></script>
-<script src="settings.js?v=1"></script>
+<script src="settings.js?v=2"></script>
 
 </body>
 </html>

@@ -5,10 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- ============================================================
-       MECULS — p.html  (Public Profile renderer) — Round 7
+       MECULS — p.html  (Public Profile renderer) — Round 8
        Date: 2026-05-09
        ============================================================
-       POLISH & PROFESSIONAL TOUCHES (no design language change):
+       VISIBILITY CHECK ADDED. When a user toggles "Make my profile
+       public" off in Settings → Visibility, p.html now respects
+       that. Calls is_profile_public(slug) RPC FIRST:
+         - true  → render normally (existing flow)
+         - false → show "This profile is private" state
+         - null  → show "Profile not found" state
+       If the RPC isn't deployed (older Supabase), silently skips
+       the check — page keeps working. Round 7 features unchanged.
          - Sticky in-page navigation rail on the left (jumps to
            sections — only renders sections that have content)
          - Print stylesheet (light background, navy text, no ink
@@ -1193,6 +1200,11 @@
       <div class="pp-state__msg">This profile link doesn't exist or has been removed.</div>
     </div>
 
+    <div id="ppPrivate" class="pp-state" hidden>
+      <div class="pp-state__title">This profile is private</div>
+      <div class="pp-state__msg">The owner has hidden this profile from public view.</div>
+    </div>
+
     <div id="ppPending" class="pp-state" hidden>
       <div class="pp-state__title">Profile being built</div>
       <div class="pp-state__msg" id="ppPendingMsg">This member is still completing their profile. Check back soon.</div>
@@ -2301,6 +2313,36 @@
     }
 
     const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    /* Visibility pre-check (Round 8): the user can mark their profile
+       private from Settings → Visibility. If the slug exists but
+       is_public is false, show the private state without ever
+       fetching the full data. is_profile_public returns:
+         - true  → render normally
+         - false → owner has set is_public = false, show private state
+         - null  → slug not found, show not-found state
+       If the RPC itself errors (e.g. function not yet deployed),
+       we skip the check and fall through to get_public_profile.
+       This keeps the page working even if the SQL hasn't been run. */
+    try {
+      const { data: vis, error: visErr } = await sb.rpc("is_profile_public", { p_slug: slug });
+      if (!visErr) {
+        if (vis === false) {
+          hide("ppLoading");
+          show("ppPrivate");
+          return;
+        }
+        if (vis === null) {
+          hide("ppLoading");
+          show("ppNotFound");
+          return;
+        }
+      }
+    } catch (e) {
+      /* Function not deployed yet — silently fall through */
+      console.warn("[p.html] is_profile_public unavailable, skipping visibility check");
+    }
+
     const { data, error } = await sb.rpc("get_public_profile", { p_slug: slug });
 
     if (error) {
