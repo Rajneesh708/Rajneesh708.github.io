@@ -241,11 +241,53 @@ window.SaveNow = window.SaveNow || {};
     } catch (err) { /* ignore */ }
   }
 
-  /* ── Find the most recent draft for THIS page across all
-     possible scopes (entry numbers, phases). Returns:
-       { scope, envelope, ts } | null
+  /* ── Find the most recent draft to offer for restore.
+
+     SCOPE-AWARE BEHAVIOUR (v2):
+     ───────────────────────────
+     For repeatable pages (where entryNumber is provided, e.g. Experience,
+     Certifications) and dual-form pages (where activePhase is provided,
+     e.g. Education Phase A/B), the restore prompt MUST only consider
+     the draft matching the CURRENT active scope. Without this guard,
+     opening Experience-2's page would surface Experience-1's draft and
+     — on Restore — copy Experience-1's data into Experience-2's form.
+
+     For single-form pages (no scope), the original behaviour applies:
+     scan every draft saved under this page's prefix and return the
+     most recent. (In practice there's only ever one draft for a
+     single-form page, so the scan returns the same thing as a direct
+     lookup; the loop is kept for resilience.)
+
+     Returns: { scope, envelope, ts, key } | null
   */
   function findMostRecentDraft() {
+    const scope = activeScope();
+
+    /* Scoped pages (repeatable / dual-form): direct lookup only.
+       This guarantees a draft from Experience-1 can never appear when
+       the user is filling Experience-2, and vice versa. */
+    if (scope) {
+      try {
+        const key   = makeKey(scope);
+        const tsKey = key + "__ts";
+        const raw   = localStorage.getItem(key);
+        if (!raw) return null;
+        let envelope;
+        try {
+          envelope = JSON.parse(raw);
+        } catch (e) { return null; }
+        if (!envelope || !envelope.payload) return null;
+        const tsRaw = localStorage.getItem(tsKey);
+        const ts    = tsRaw ? new Date(tsRaw).getTime() : 0;
+        return { scope: scope, envelope: envelope, ts: ts, key: key };
+      } catch (err) {
+        console.warn("[SaveNow] scoped draft lookup failed:", err);
+        return null;
+      }
+    }
+
+    /* Single-form pages (no scope): scan all keys under this page's
+       prefix and return the most recent. */
     let best = null;
     try {
       const prefix = makeKey("");  /* trailing "_" included */
@@ -262,10 +304,10 @@ window.SaveNow = window.SaveNow || {};
           envelope = JSON.parse(localStorage.getItem(key));
         } catch (e) { continue; }
         if (!envelope || !envelope.payload) continue;
-        const scope = key.length > prefix.length
-                    ? key.slice(prefix.length)
-                    : "";
-        best = { scope: scope, envelope: envelope, ts: ts, key: key };
+        const keyScope = key.length > prefix.length
+                       ? key.slice(prefix.length)
+                       : "";
+        best = { scope: keyScope, envelope: envelope, ts: ts, key: key };
       }
     } catch (err) {
       console.warn("[SaveNow] findMostRecentDraft failed:", err);

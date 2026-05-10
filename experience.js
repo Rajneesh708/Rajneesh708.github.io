@@ -7,8 +7,11 @@
 
 /* Phase 1 Step 3 build marker — verify in console with:
    window.EXPERIENCE_VERSION
-   "phase1-step3" means this file (with JSONB array save) is loaded. */
-window.EXPERIENCE_VERSION = "phase1-step3";
+   "phase1-step3" means this file (with JSONB array save) is loaded.
+   "phase1-step3.1" includes:
+     - draft-restore is now scope-aware (no Experience-1 leak into Experience-2)
+     - the three skill fields are optional with a soft-confirm prompt at save */
+window.EXPERIENCE_VERSION = "phase1-step3.1";
 
 /* ── Config ──
    candidateId comes from MC.candidateId (mc_helpers.js). */
@@ -711,9 +714,9 @@ function validateForm() {
     [trim($("state").value),           "State"],
     [trim($("city").value),            "City"],
     [$("locationType").value,          "Location Type"],
-    [trim($("domainSkills").value),    "Domain Specific Skills"],
-    [trim($("techSkills").value),      "Technical Skills"],
-    [trim($("softSkills").value),      "Soft Skills"],
+    /* Domain Specific Skills, Technical Skills, and Soft Skills are
+       NOT hard-required. They are handled by checkSkillsAndConfirm()
+       at save time as a soft, respectful recommendation. */
     [$("startMonth").value,            "Start Month"],
     [$("startYear").value,             "Start Year"],
   ];
@@ -821,6 +824,51 @@ function validateForm() {
 }
 
 /* ============================================================
+   SOFT SKILLS-CONFIRMATION
+   ============================================================
+   The three skill fields (Domain Specific, Technical, Soft) are
+   optional but they meaningfully strengthen a candidate's profile
+   for our matching system. When any are left blank, we surface a
+   respectful, non-blocking confirmation that names exactly which
+   fields are empty, explains the value of filling them, and lets
+   the user proceed if they choose to.
+
+   Returns:
+     true  → user confirmed (either nothing was empty, or they chose
+             to proceed anyway). Caller should continue the save.
+     false → user cancelled. Caller should abort and let the user fill.
+*/
+function checkSkillsAndConfirm() {
+  const empties = [];
+  if (!trim($("domainSkills").value)) empties.push("Domain Specific Skills");
+  if (!trim($("techSkills").value))   empties.push("Technical Skills");
+  if (!trim($("softSkills").value))   empties.push("Soft Skills");
+
+  if (empties.length === 0) return true;  /* All filled — nothing to confirm. */
+
+  /* Build a friendly, grammatically natural list of the missing fields. */
+  let fieldList;
+  if (empties.length === 1) {
+    fieldList = empties[0];
+  } else if (empties.length === 2) {
+    fieldList = empties[0] + " and " + empties[1];
+  } else {
+    fieldList = empties.slice(0, -1).join(", ") + ", and " + empties[empties.length - 1];
+  }
+
+  const message =
+    "You haven't filled in " + fieldList + " for this experience.\n\n" +
+    "These fields are optional, but adding them helps our matching system " +
+    "understand your strengths more clearly and strengthens your profile. " +
+    "It's entirely your choice.\n\n" +
+    "Click OK to continue without filling them, or Cancel to go back and add them.";
+
+  /* Use native confirm — same pattern used elsewhere in this file
+     (e.g. delete confirmation). It returns true on OK, false on Cancel. */
+  return window.confirm(message);
+}
+
+/* ============================================================
    SAVE NOW + DRAFT RESTORE
    All Save Now logic lives in save_now.js (shared module).
    This page calls SaveNow.init({...}) in DOMContentLoaded
@@ -840,6 +888,10 @@ async function handleSaveAnother() {
   }
 
   if (!validateForm()) return;
+
+  /* Soft, respectful prompt if any of the 3 skill fields are blank.
+     If the user cancels, abort so they can fill them in. */
+  if (!checkSkillsAndConfirm()) return;
 
   const btn = $("saveAnotherExperienceBtn");
   setLoading(btn, true);
@@ -952,6 +1004,10 @@ async function handleSaveContinue() {
     });
   }
   if (!validateForm()) return;
+
+  /* Soft, respectful prompt if any of the 3 skill fields are blank.
+     If the user cancels, abort so they can fill them in. */
+  if (!checkSkillsAndConfirm()) return;
 
   setLoading(btn, true);
 

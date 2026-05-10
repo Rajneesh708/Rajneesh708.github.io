@@ -270,24 +270,26 @@
       </div>
     </div>
 
-    <!-- ================= SKILLS ================= -->
+    <!-- ================= SKILLS =================
+         Skills are optional. If left empty, a soft-warning popup at
+         save time recommends filling them but lets the user proceed. -->
     <div class="form-card">
       <div class="field-group">
-        <label class="field-label">Domain Specific Skills (Max. 3) <span class="required">*</span></label>
+        <label class="field-label">Domain Specific Skills (Max. 3)</label>
         <p class="helper-text helper-text--mb-exp">Skills specific to your domain or industry. Separate with commas. Maximum 3.</p>
-        <textarea id="domainSkills" class="field-textarea" required maxlength="500"></textarea>
+        <textarea id="domainSkills" class="field-textarea" maxlength="500"></textarea>
         <div class="char-counter-out" id="domainSkillsCount">0 / 3 skills</div>
       </div>
       <div class="field-group">
-        <label class="field-label">Technical Skills (Max. 3) <span class="required">*</span></label>
+        <label class="field-label">Technical Skills (Max. 3)</label>
         <p class="helper-text helper-text--mb-exp">Tools, technologies, or technical methods you use. Separate with commas. Maximum 3.</p>
-        <textarea id="techSkills" class="field-textarea" required maxlength="500"></textarea>
+        <textarea id="techSkills" class="field-textarea" maxlength="500"></textarea>
         <div class="char-counter-out" id="techSkillsCount">0 / 3 skills</div>
       </div>
       <div class="field-group">
-        <label class="field-label">Soft Skills (Max. 3) <span class="required">*</span></label>
+        <label class="field-label">Soft Skills (Max. 3)</label>
         <p class="helper-text helper-text--mb-exp">Communication, leadership, interpersonal strengths. Separate with commas. Maximum 3.</p>
-        <textarea id="softSkills" class="field-textarea" required maxlength="500"></textarea>
+        <textarea id="softSkills" class="field-textarea" maxlength="500"></textarea>
         <div class="char-counter-out" id="softSkillsCount">0 / 3 skills</div>
       </div>
     </div>
@@ -377,8 +379,8 @@
 <script src="mc_storage.js?v=22"></script>
 <script src="mc_supabase.js?v=22"></script>
 <script src="mc_helpers.js?v=11"></script>
-<script src="save_now.js?v=11"></script>
-<script src="experience.js?v=15"></script>
+<script src="save_now.js?v=12"></script>
+<script src="experience.js?v=16"></script>
 
 </body>
 </html>
