@@ -8,10 +8,13 @@
 /* Phase 1 Step 3 build marker — verify in console with:
    window.EXPERIENCE_VERSION
    "phase1-step3" means this file (with JSONB array save) is loaded.
-   "phase1-step3.1" includes:
+   "phase1-step3.2" includes:
      - draft-restore is now scope-aware (no Experience-1 leak into Experience-2)
-     - the three skill fields are optional with a soft-confirm prompt at save */
-window.EXPERIENCE_VERSION = "phase1-step3.1";
+     - the silent-backup timer is cancelled at the start of every save handler
+       (closes the race that allowed Experience-1 data into Experience-2 slot)
+     - the three skill fields are optional with a custom-styled soft-confirm
+       popup that highlights the missing field names */
+window.EXPERIENCE_VERSION = "phase1-step3.2";
 
 /* ── Config ──
    candidateId comes from MC.candidateId (mc_helpers.js). */
@@ -830,13 +833,17 @@ function validateForm() {
    optional but they meaningfully strengthen a candidate's profile
    for our matching system. When any are left blank, we surface a
    respectful, non-blocking confirmation that names exactly which
-   fields are empty, explains the value of filling them, and lets
-   the user proceed if they choose to.
+   fields are empty (in highlighted text), explains the value of
+   filling them, and lets the user proceed if they choose to.
 
-   Returns:
-     true  → user confirmed (either nothing was empty, or they chose
-             to proceed anyway). Caller should continue the save.
-     false → user cancelled. Caller should abort and let the user fill.
+   Uses the custom #confirmPopupOverlay defined in experience.html
+   and styled in experience.css — NOT the browser's native
+   window.confirm(), which renders attached to the URL bar in an
+   awkward position with no app styling.
+
+   Returns a Promise that resolves to:
+     true  → user clicked "Continue Anyway" (or nothing was empty)
+     false → user clicked "Go Back & Add"
 */
 function checkSkillsAndConfirm() {
   const empties = [];
@@ -844,28 +851,80 @@ function checkSkillsAndConfirm() {
   if (!trim($("techSkills").value))   empties.push("Technical Skills");
   if (!trim($("softSkills").value))   empties.push("Soft Skills");
 
-  if (empties.length === 0) return true;  /* All filled — nothing to confirm. */
+  /* All filled — resolve immediately, no popup needed. */
+  if (empties.length === 0) return Promise.resolve(true);
 
-  /* Build a friendly, grammatically natural list of the missing fields. */
-  let fieldList;
-  if (empties.length === 1) {
-    fieldList = empties[0];
-  } else if (empties.length === 2) {
-    fieldList = empties[0] + " and " + empties[1];
-  } else {
-    fieldList = empties.slice(0, -1).join(", ") + ", and " + empties[empties.length - 1];
-  }
+  return new Promise(function (resolve) {
+    const overlay   = $("confirmPopupOverlay");
+    const messageEl = $("confirmPopupMessage");
+    const okBtn     = $("confirmPopupOk");
+    const cancelBtn = $("confirmPopupCancel");
 
-  const message =
-    "You haven't filled in " + fieldList + " for this experience.\n\n" +
-    "These fields are optional, but adding them helps our matching system " +
-    "understand your strengths more clearly and strengthens your profile. " +
-    "It's entirely your choice.\n\n" +
-    "Click OK to continue without filling them, or Cancel to go back and add them.";
+    /* If any expected element is missing (defensive — should never
+       happen unless HTML was modified), fall back to native confirm
+       so the app doesn't soft-lock on a save click. */
+    if (!overlay || !messageEl || !okBtn || !cancelBtn) {
+      const fallbackList = empties.join(", ");
+      const fallbackMsg =
+        "You haven't filled in " + fallbackList + ". " +
+        "These fields are optional but help our matching system. " +
+        "Continue anyway?";
+      resolve(window.confirm(fallbackMsg));
+      return;
+    }
 
-  /* Use native confirm — same pattern used elsewhere in this file
-     (e.g. delete confirmation). It returns true on OK, false on Cancel. */
-  return window.confirm(message);
+    /* Build the message with HTML — bold-highlight the missing field
+       names so the user immediately sees what's being flagged.
+       Field names are hardcoded constants; user input never reaches
+       this string, so innerHTML is safe here. */
+    function escapeHTML(s) {
+      return String(s).replace(/[&<>"']/g, function (c) {
+        return { "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c];
+      });
+    }
+    const wrapped = empties.map(function (name) {
+      return '<strong class="confirm-popup__highlight">' + escapeHTML(name) + '</strong>';
+    });
+    let fieldList;
+    if (wrapped.length === 1) {
+      fieldList = wrapped[0];
+    } else if (wrapped.length === 2) {
+      fieldList = wrapped[0] + " and " + wrapped[1];
+    } else {
+      fieldList = wrapped.slice(0, -1).join(", ") + ", and " + wrapped[wrapped.length - 1];
+    }
+
+    messageEl.innerHTML =
+      "<p>You haven't filled in " + fieldList + " for this experience.</p>" +
+      "<p style=\"margin-top:10px\">These fields are optional, but adding them helps " +
+      "our matching system understand your strengths more clearly and " +
+      "strengthens your profile. It's entirely your choice.</p>";
+
+    /* Wire up button handlers. Replace any existing handlers (so a
+       repeat invocation never stacks duplicates) by using onclick
+       assignment rather than addEventListener. */
+    function close(result) {
+      overlay.classList.remove("active");
+      okBtn.onclick     = null;
+      cancelBtn.onclick = null;
+      document.removeEventListener("keydown", onKey);
+      resolve(result);
+    }
+    function onKey(e) {
+      if (e.key === "Escape") close(false);
+      else if (e.key === "Enter") close(true);
+    }
+    okBtn.onclick     = function () { close(true);  };
+    cancelBtn.onclick = function () { close(false); };
+    document.addEventListener("keydown", onKey);
+
+    overlay.classList.add("active");
+
+    /* Focus the secondary (Go Back) button by default — it's the
+       safer choice for the user's profile completeness. They can
+       Tab once or press Enter to confirm Continue Anyway. */
+    setTimeout(function () { cancelBtn.focus(); }, 0);
+  });
 }
 
 /* ============================================================
@@ -880,6 +939,17 @@ function checkSkillsAndConfirm() {
    ============================================================ */
 
 async function handleSaveAnother() {
+  /* CRITICAL: cancel any pending silent-backup timer before we do
+     anything else. This handler is about to increment experienceNumber
+     (so the form's CURRENT data belongs to the OLD scope, but
+     activeScope will return the NEW scope after the increment). If
+     the silent-backup timer fires during the 1.2-second reload pause
+     between increment and reload, it would write the old form's data
+     to the new scope's storage key — causing Experience-1's data to
+     reappear as a "phantom draft" when the user lands on Experience-2.
+     Cancelling here closes that race window. */
+  if (window.SaveNow && SaveNow.cancelPendingSave) SaveNow.cancelPendingSave();
+
   /* Disable required on hidden/empty project fields first */
   if ($("hasProjects").value === "no") {
     $("projectSection").querySelectorAll("input, textarea").forEach(f => {
@@ -891,7 +961,7 @@ async function handleSaveAnother() {
 
   /* Soft, respectful prompt if any of the 3 skill fields are blank.
      If the user cancels, abort so they can fill them in. */
-  if (!checkSkillsAndConfirm()) return;
+  if (!(await checkSkillsAndConfirm())) return;
 
   const btn = $("saveAnotherExperienceBtn");
   setLoading(btn, true);
@@ -962,6 +1032,11 @@ async function handleSaveAnother() {
    ============================================================ */
 
 async function handleSaveContinue() {
+  /* CRITICAL: cancel any pending silent-backup timer first. See the
+     same comment block in handleSaveAnother — same race window applies
+     here when the user clicks Save & Continue while a backup is queued. */
+  if (window.SaveNow && SaveNow.cancelPendingSave) SaveNow.cancelPendingSave();
+
   const btn = $("saveContinueBtn");
 
   /* Detect whether the user has typed anything into the form. If everything
@@ -1007,7 +1082,7 @@ async function handleSaveContinue() {
 
   /* Soft, respectful prompt if any of the 3 skill fields are blank.
      If the user cancels, abort so they can fill them in. */
-  if (!checkSkillsAndConfirm()) return;
+  if (!(await checkSkillsAndConfirm())) return;
 
   setLoading(btn, true);
 

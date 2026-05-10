@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Add Experience – MECULS</title>
   <link rel="stylesheet" href="styles.css?v=11">
-  <link rel="stylesheet" href="experience.css?v=11">
+  <link rel="stylesheet" href="experience.css?v=12">
 </head>
 <body>
 
@@ -374,13 +374,28 @@
     <button class="error-popup__close" id="errorPopupClose">OK</button>
   </div>
 </div>
+
+<!-- Floating soft-confirm popup — for non-blocking recommendations
+     (e.g. "skills are optional, but…"). Two-button. Scroll-independent,
+     fixed centre screen. Styled in experience.css. -->
+<div class="confirm-popup-overlay" id="confirmPopupOverlay" role="dialog" aria-modal="true" aria-labelledby="confirmPopupTitle">
+  <div class="confirm-popup">
+    <div class="confirm-popup__icon" aria-hidden="true">&#128161;</div>
+    <h3 class="confirm-popup__title" id="confirmPopupTitle">A quick suggestion</h3>
+    <div class="confirm-popup__message" id="confirmPopupMessage"></div>
+    <div class="confirm-popup__actions">
+      <button type="button" class="confirm-popup__btn confirm-popup__btn--secondary" id="confirmPopupCancel">Go Back &amp; Add</button>
+      <button type="button" class="confirm-popup__btn confirm-popup__btn--primary"   id="confirmPopupOk">Continue Anyway</button>
+    </div>
+  </div>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="config.js?v=11"></script>
 <script src="mc_storage.js?v=22"></script>
 <script src="mc_supabase.js?v=22"></script>
 <script src="mc_helpers.js?v=11"></script>
-<script src="save_now.js?v=12"></script>
-<script src="experience.js?v=16"></script>
+<script src="save_now.js?v=13"></script>
+<script src="experience.js?v=17"></script>
 
 </body>
 </html>

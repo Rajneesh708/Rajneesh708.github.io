@@ -223,8 +223,29 @@ window.SaveNow = window.SaveNow || {};
     scheduleSaveNowReset();
   }
 
+  /* ── Cancel any pending silent-backup timer ────────────────
+     Pages call this at the start of any save handler that's
+     about to change scope (e.g. "Save & Add Another Experience"
+     increments experienceNumber → without cancelling, the
+     pending timer would fire AFTER the increment and write
+     the old form data to the NEW scope's storage key — the
+     "Experience-1 data leaking into Experience-2" bug). */
+  function cancelPendingSave() {
+    if (_silentBackupTimer) {
+      clearTimeout(_silentBackupTimer);
+      _silentBackupTimer = null;
+    }
+  }
+
   /* ── Clear THIS scope's draft (called after Save & Continue) ── */
   function clearDraft(scope) {
+    /* Always cancel any pending timer first. If we don't, the timer
+       could fire moments later and write the form data right back
+       under this same scope key — re-creating the draft we just
+       cleared, which would resurface as a phantom "Restore" prompt
+       on the next page load. */
+    cancelPendingSave();
+
     /* If a scope is provided explicitly, use it; otherwise the
        currently-active scope. */
     let key, tsKey;
@@ -426,9 +447,10 @@ window.SaveNow = window.SaveNow || {};
   }
 
   /* ── Public API ──────────────────────────────────────────── */
-  SaveNow.init        = init;
-  SaveNow.clearDraft  = clearDraft;
-  SaveNow.flashStatus = flashDraftStatus;
+  SaveNow.init              = init;
+  SaveNow.clearDraft        = clearDraft;
+  SaveNow.flashStatus       = flashDraftStatus;
+  SaveNow.cancelPendingSave = cancelPendingSave;
 
   /* silentSave is exposed for pages whose meaningful state changes
      happen outside form input events — for example, Skills, where
