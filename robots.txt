@@ -1,4 +1,34 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.meculs.com/sitemap.xml
+# Block authenticated / private portal pages from indexing
+Disallow: /login.html
+Disallow: /register.html
+Disallow: /dashboard.html
+Disallow: /settings.html
+Disallow: /preferences.html
+Disallow: /cv-portal.html
+Disallow: /skills.html
+Disallow: /education.html
+Disallow: /experience.html
+Disallow: /languages.html
+Disallow: /certifications.html
+Disallow: /publications.html
+Disallow: /references.html
+Disallow: /volunteering.html
+Disallow: /portfolio.html
+Disallow: /key_achievements.html
+Disallow: /goals_interests.html
+Disallow: /professional_introduction.html
+Disallow: /profile_category.html
+Disallow: /upload_photo_cv.html
+Disallow: /consulting_availability.html
+Disallow: /mentorship.html
+Disallow: /ai_tools.html
+Disallow: /submission_complete.html
+Disallow: /goodbye.html
+Disallow: /p.html
+Disallow: /grievance.html
+Disallow: /404.html
+
+Sitemap: https://meculs.com/sitemap.xml
