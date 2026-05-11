@@ -86,49 +86,49 @@
 
   /* ── HERO ─────────────────────────────────────────────────────── */
   .ps-hero {
-    padding: 5rem 5% 4rem;
+    padding: 2.8rem 5% 2.4rem;
     text-align: center;
-    background: radial-gradient(ellipse at top, rgba(212, 175, 55, 0.06) 0%, transparent 60%);
+    background: radial-gradient(ellipse at top, rgba(212, 175, 55, 0.04) 0%, transparent 60%);
     border-bottom: 1px solid var(--g-rule);
   }
   .ps-hero__eyebrow {
     font-family: 'Archivo', sans-serif;
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     font-weight: 700;
     letter-spacing: 0.22em;
     color: var(--g-gold);
     text-transform: uppercase;
-    margin-bottom: 1.2rem;
+    margin-bottom: 0.8rem;
   }
   .ps-hero__title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    font-size: clamp(1.8rem, 3.4vw, 2.6rem);
     font-weight: 500;
-    line-height: 1.15;
+    line-height: 1.2;
     color: var(--g-white);
-    margin: 0 0 1.2rem;
+    margin: 0 0 0.7rem;
     letter-spacing: -0.005em;
   }
   .ps-hero__title em {
     font-style: italic;
-    color: var(--g-gold);
+    color: var(--g-soft);
     font-weight: 400;
   }
   .ps-hero__sub {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.05rem, 1.6vw, 1.3rem);
-    color: var(--g-soft);
-    max-width: 640px;
+    font-size: clamp(0.98rem, 1.3vw, 1.1rem);
+    color: var(--g-muted);
+    max-width: 580px;
     margin: 0 auto;
-    line-height: 1.6;
+    line-height: 1.55;
     font-style: italic;
   }
   .ps-hero__rule {
-    width: 60px;
+    width: 40px;
     height: 1px;
     background: var(--g-gold);
-    margin: 2rem auto 0;
-    opacity: 0.6;
+    margin: 1.3rem auto 0;
+    opacity: 0.5;
   }
 
   /* ── TWO-COLUMN MAIN LAYOUT ──────────────────────────────────── */
@@ -241,11 +241,16 @@
   }
   .ps-section__title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(1.6rem, 2.4vw, 2rem);
+    font-size: clamp(1.5rem, 2.2vw, 1.85rem);
     font-weight: 500;
     color: var(--g-white);
     margin: 0 0 0.5rem;
     letter-spacing: -0.005em;
+  }
+  .ps-section__title em {
+    font-style: italic;
+    color: var(--g-soft);
+    font-weight: 400;
   }
   .ps-section__sub {
     font-family: 'Cormorant Garamond', serif;
@@ -257,17 +262,18 @@
   }
 
   .ps-card {
-    background: rgba(0, 20, 40, 0.4);
+    background: rgba(255, 255, 255, 0.025);
     border: 1px solid var(--g-rule);
-    border-radius: 4px;
-    padding: 2.4rem 2.4rem 2rem;
-    margin-bottom: 1.6rem;
-    transition: border-color 0.25s, background 0.25s, transform 0.2s;
+    border-top: 2px solid var(--g-gold-border);
+    border-radius: 2px;
+    padding: 2rem 2.2rem 1.8rem;
+    margin-bottom: 1.4rem;
+    transition: background 0.25s, border-top-color 0.25s;
     scroll-margin-top: calc(var(--g-nav-h, 72px) + var(--tagline-h, 28px) + 1.5rem);
   }
   .ps-card:hover {
-    border-color: var(--g-gold-border);
-    background: rgba(0, 20, 40, 0.6);
+    background: rgba(255, 255, 255, 0.04);
+    border-top-color: var(--g-gold);
   }
 
   .ps-card__head {
@@ -379,11 +385,11 @@
 
   /* ── CAREER INVESTIGATION (story block) ─────────────────────── */
   .ps-story {
-    background: linear-gradient(180deg, rgba(0, 20, 40, 0.6) 0%, rgba(0, 8, 20, 0.6) 100%);
+    background: rgba(255, 255, 255, 0.04);
     border: 1px solid var(--g-gold-border);
-    border-left: 3px solid var(--g-gold);
-    border-radius: 4px;
-    padding: 2.8rem 2.8rem 2.4rem;
+    border-top: 2px solid var(--g-gold);
+    border-radius: 2px;
+    padding: 2.4rem 2.6rem 2.2rem;
     scroll-margin-top: calc(var(--g-nav-h, 72px) + var(--tagline-h, 28px) + 1.5rem);
   }
   .ps-story__head {
@@ -734,7 +740,7 @@
       <li><a href="insights.html">Insights</a></li>
       <li><a href="about-rajneesh-jain.html">The Founder</a></li>
       <li><a href="cv-portal.html">The CV Portal</a></li>
-      <li><a href="paid-services.html" class="active">Paid Services</a></li>
+      <li><a href="paid-services.html">Paid Services</a></li>
       <li><a href="begin-conversation.html" class="gh-cta">Begin a Conversation</a></li>
 
       <li class="gh-login-wrap">
@@ -811,7 +817,7 @@
     <li><a href="insights.html">Insights</a></li>
     <li><a href="about-rajneesh-jain.html">The Founder</a></li>
     <li><a href="cv-portal.html">The CV Portal</a></li>
-    <li><a href="paid-services.html" class="active">Paid Services</a></li>
+    <li><a href="paid-services.html">Paid Services</a></li>
     <li><a href="login.html">CV Portal &ndash; Login</a></li>
     <li><a href="register.html">CV Portal &ndash; Register</a></li>
   </ul>
