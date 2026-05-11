@@ -579,18 +579,6 @@ async function ensureLoggedInAndShowUser() {
     console.warn("[dashboard] record_user_activity unavailable:", e);
   });
 
-  /* Reveal the Admin link in the topbar if this user is an admin.
-     The link is hidden by default in the HTML — we only show it
-     after the server confirms admin status via is_admin RPC.
-     A non-admin will just never see the link. The admin.html page
-     itself is independently protected (admin RPCs refuse non-admins)
-     so this is a UX shortcut, not a security boundary. */
-  sb.rpc("is_admin").then(({ data, error }) => {
-    if (error || !data) return;
-    const adminLink = document.getElementById("topbarAdminLink");
-    if (adminLink) adminLink.hidden = false;
-  }).catch(() => { /* function may not be deployed yet — silent */ });
-
   /* Wire the Sign Out button */
   if (topbarSignOutBtn) {
     topbarSignOutBtn.addEventListener("click", async () => {
