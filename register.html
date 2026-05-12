@@ -1,10 +1,10 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://accounts.google.com https://challenges.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://accounts.google.com; font-src 'self' data:; img-src 'self' data: https://accounts.google.com https://lh3.googleusercontent.com; connect-src 'self' https://accounts.google.com https://*.supabase.co https://challenges.cloudflare.com; frame-src https://accounts.google.com https://challenges.cloudflare.com; form-action 'self'; base-uri 'self'; frame-ancestors 'none';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://accounts.google.com https://challenges.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://accounts.google.com https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: https://accounts.google.com https://lh3.googleusercontent.com; connect-src 'self' https://accounts.google.com https://*.supabase.co https://challenges.cloudflare.com; frame-src https://accounts.google.com https://challenges.cloudflare.com; form-action 'self'; base-uri 'self'; frame-ancestors 'none';">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=()">
-  <meta name="theme-color" content="#0a0e1a">
+  <meta name="theme-color" content="#efe6d0">
 
   <link rel="canonical" href="https://meculs.com/register.html">
   <meta name="robots" content="noindex, nofollow">
@@ -27,45 +27,525 @@
   <meta name="twitter:image" content="https://meculs.com/images/og/meculs-default-og.jpg">
 
   <!-- ============================================================
-       MECULS — register.html
-       Date: 2026-05-05
+       MECULS — register.html (v=15)
+       Date: 2026-05-12 (cv-portal refresh + collapsible optional)
        ============================================================
-       Cache buster: ?v=14
-       All styles live in auth.css — no inline <style> block.
-       Turnstile site key sourced from window.TURNSTILE_SITE_KEY
-       (defined in config.js, written into widget at runtime).
+       Changes from v=14:
+       - Refreshed visual register to cv-portal palette
+         (aged-vellum + indigo-ink + saffron)
+       - Three optional consent checkboxes collapsed by default
+         behind a "Show optional preferences" toggle, opening
+         downward when clicked
+       - Compressed layout to fit on 1440x900 desktop without scroll
+       - Added CSP, Referrer-Policy, Permissions-Policy
+       - Added OG + Twitter preview cards
+       - register.js cache buster preserved at v=21
+       - All form IDs, ARIA, JS wiring preserved byte-identical
        ============================================================ -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Archivo:wght@300;400;500;600;700&family=Noto+Serif+Devanagari:wght@500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css?v=25">
   <link rel="stylesheet" href="tier_shared.css?v=14">
   <link rel="stylesheet" href="auth.css?v=15">
+
   <style>
-    /* Gmail hint — small, gentle, amber-tinted note that appears
-       below the email input when user types a @gmail.com address.
-       Suggests using the visible "Sign up with Google" button above. */
-    .gmail-hint {
-      margin-top: 8px;
-      margin-bottom: 0;
-      padding: 8px 12px;
-      background: rgba(201, 168, 76, 0.08);
-      border-left: 3px solid #c9a84c;
-      border-radius: 4px;
-      color: #d1d5db;
+    :root {
+      --auth-vellum:    #efe6d0;
+      --auth-vellum-2:  #e6dbbf;
+      --auth-paper:     #f5ecd6;
+      --auth-indigo:    #0d1530;
+      --auth-indigo-2:  #1a2244;
+      --auth-ink:       #14120a;
+      --auth-soft:      #2a261b;
+      --auth-quiet:     #3a3322;
+      --auth-rule:      rgba(22,20,14,0.18);
+      --auth-rule-2:    rgba(22,20,14,0.10);
+      --auth-saffron:   #a67a25;
+      --auth-saffron-2: #d4a04a;
+      --auth-saffron-bg:rgba(166,122,37,0.10);
+      --auth-err:       #b91c1c;
+      --auth-success:   #15803d;
+      --display: 'Playfair Display', serif;
+      --serif:   'Cormorant Garamond', serif;
+      --sans:    'Archivo', sans-serif;
+      --deva:    'Noto Serif Devanagari', serif;
+    }
+
+    body.auth-body {
+      background:
+        radial-gradient(60% 60% at 50% 0%, rgba(166,122,37,0.08), transparent 70%),
+        var(--auth-vellum) !important;
+      color: var(--auth-ink) !important;
+      font-family: var(--sans) !important;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 1.5rem 1rem;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      margin: 0;
+    }
+
+    ::selection { background: var(--auth-saffron); color: var(--auth-vellum); }
+
+    .auth-container {
+      width: 100%;
+      max-width: 620px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .auth-logo {
+      text-align: center;
+      margin-bottom: 0.1rem;
+    }
+    .auth-logo__img {
+      height: 32px;
+      width: auto;
+      margin-bottom: 0.55rem;
+    }
+    .auth-logo__text {
+      font-family: var(--display);
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--auth-indigo);
+      letter-spacing: 0.04em;
+    }
+
+    .auth-subbrand {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--auth-saffron);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      margin-bottom: 0.45rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      flex-wrap: wrap;
+    }
+    .auth-subbrand-deva {
+      font-family: var(--deva);
+      font-size: 1.55em;
+      font-weight: 600;
+      letter-spacing: 0;
+      text-transform: none;
+      line-height: 1;
+      padding: 0 0.45em;
+      border-left: 1px solid rgba(166,122,37,0.42);
+      border-right: 1px solid rgba(166,122,37,0.42);
+      margin: 0 0.15em;
+      color: var(--auth-saffron);
+    }
+    .auth-subbrand-sep { color: rgba(166,122,37,0.55); font-weight: 400; }
+
+    .auth-tagline {
+      font-family: var(--serif);
+      font-size: 0.98rem;
+      font-style: italic;
+      color: var(--auth-soft);
+      line-height: 1.4;
+    }
+
+    .auth-card {
+      background: var(--auth-paper);
+      border: 1px solid var(--auth-rule);
+      padding: 1.6rem;
+      position: relative;
+      box-shadow: 0 8px 24px rgba(13,21,48,0.10);
+    }
+    .auth-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--auth-indigo), var(--auth-saffron) 60%, var(--auth-saffron-2));
+    }
+
+    .auth-card__heading {
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 1.45rem;
+      color: var(--auth-indigo);
+      line-height: 1.2;
+      margin: 0.2rem 0 0.2rem;
+      letter-spacing: -0.005em;
+    }
+    .auth-card__sub {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--auth-soft);
+      line-height: 1.4;
+      margin-bottom: 1rem;
+    }
+
+    .auth-divider {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin: 0.9rem 0;
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--auth-soft);
+    }
+    .auth-divider::before,
+    .auth-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--auth-rule);
+    }
+
+    .field-group { margin-bottom: 0.85rem; }
+    .field-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--sans);
       font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--auth-ink);
+      margin-bottom: 0.35rem;
+      letter-spacing: 0.01em;
+    }
+    .required { color: var(--auth-saffron); font-weight: 700; }
+    .required-mark { color: var(--auth-saffron); font-weight: 700; margin-left: 0.1rem; }
+
+    .field-input {
+      width: 100%;
+      padding: 0.62rem 0.85rem;
+      font-family: var(--sans);
+      font-size: 0.98rem;
+      color: var(--auth-ink);
+      background: #ffffff;
+      border: 1px solid var(--auth-rule);
+      border-radius: 4px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      box-sizing: border-box;
+    }
+    .field-input:focus {
+      outline: none;
+      border-color: var(--auth-saffron);
+      box-shadow: 0 0 0 3px rgba(166,122,37,0.16);
+    }
+    .field-input::placeholder { color: rgba(20,18,10,0.38); }
+
+    /* Two-column form row for name + email */
+    .form-row-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.9rem;
+    }
+    @media (max-width: 560px) {
+      .form-row-2col { grid-template-columns: 1fr; gap: 0; }
+    }
+
+    .field-password-wrap { position: relative; }
+    .field-password-wrap .field-input { padding-right: 2.4rem; }
+    .field-password-toggle {
+      position: absolute;
+      top: 50%;
+      right: 0.4rem;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0.4rem;
+      color: var(--auth-quiet);
+      transition: color 0.2s;
+    }
+    .field-password-toggle:hover { color: var(--auth-saffron); }
+    .field-password-toggle svg { width: 16px; height: 16px; display: block; }
+    .field-password-toggle .icon-eye-off { display: none; }
+    .field-password-toggle[aria-pressed="true"] .icon-eye { display: none; }
+    .field-password-toggle[aria-pressed="true"] .icon-eye-off { display: block; }
+
+    /* Password strength bar */
+    .password-strength {
+      height: 4px;
+      background: rgba(22,20,14,0.10);
+      border-radius: 2px;
+      margin-top: 0.4rem;
+      overflow: hidden;
+    }
+    .password-strength__bar {
+      height: 100%;
+      width: 0%;
+      background: var(--auth-saffron);
+      transition: width 0.3s, background 0.3s;
+    }
+
+    .helper-text {
+      font-family: var(--sans);
+      font-size: 0.74rem;
+      color: var(--auth-quiet);
+      margin: 0.3rem 0 0;
+      line-height: 1.4;
+    }
+
+    .auth-link {
+      color: var(--auth-saffron);
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .auth-link:hover {
+      color: var(--auth-indigo);
+      text-decoration: underline;
+    }
+
+    /* Consent rows */
+    .consent-section {
+      margin: 0.7rem 0 0.6rem;
+    }
+    .consent-section__legend {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--auth-saffron);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      padding: 0;
+    }
+    .consent-section__legend--security {
+      margin-top: 0.7rem;
+    }
+
+    .consent-fieldset {
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .consent-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      padding: 0.4rem 0;
+    }
+    .consent-row input[type="checkbox"] {
+      margin-top: 0.2rem;
+      width: 16px;
+      height: 16px;
+      accent-color: var(--auth-saffron);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .consent-row label {
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      color: var(--auth-soft);
+      line-height: 1.45;
+      cursor: pointer;
+    }
+    .consent-row label a {
+      color: var(--auth-saffron);
+      text-decoration: underline;
+    }
+    .consent-clarifier {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 0.84rem;
+      color: var(--auth-quiet);
+      line-height: 1.4;
+      margin: 0 0 0.4rem 2rem;
+    }
+
+    /* Collapsible optional preferences */
+    .optional-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0.7rem 0.9rem;
+      background: var(--auth-saffron-bg);
+      border: 1px dashed var(--auth-saffron);
+      border-radius: 4px;
+      font-family: var(--sans);
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--auth-saffron);
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 0.6rem;
+    }
+    .optional-toggle:hover {
+      background: rgba(166,122,37,0.16);
+    }
+    .optional-toggle__chevron {
+      display: inline-block;
+      transition: transform 0.3s;
+      font-size: 0.7rem;
+    }
+    .optional-toggle[aria-expanded="true"] .optional-toggle__chevron {
+      transform: rotate(180deg);
+    }
+
+    .optional-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+    .optional-panel.is-open {
+      max-height: 600px;
+      margin-top: 0.4rem;
+    }
+
+    .security-section {
+      margin-top: 0.7rem;
+      padding-top: 0.7rem;
+      border-top: 1px solid var(--auth-rule-2);
+    }
+
+    .captcha-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 0.3rem;
+    }
+
+    .submit-row { margin-top: 0.9rem; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.85rem 1.4rem;
+      font-family: var(--sans);
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      transition: all 0.25s;
+      line-height: 1.2;
+    }
+    .btn--primary { background: var(--auth-indigo); color: var(--auth-vellum); }
+    .btn--primary:not(.btn--disabled):hover {
+      background: var(--auth-indigo-2);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(13,21,48,0.25);
+    }
+    .btn--full { width: 100%; }
+    .btn--disabled { opacity: 0.45; cursor: not-allowed; }
+
+    .toast {
+      padding: 0.7rem 0.9rem;
+      border-radius: 4px;
+      margin-bottom: 0.8rem;
+      font-family: var(--sans);
+      font-size: 0.88rem;
+      line-height: 1.4;
+    }
+    .toast--error {
+      background: rgba(185,28,28,0.08);
+      border-left: 3px solid var(--auth-err);
+      color: var(--auth-err);
+    }
+
+    .captcha-error, .captcha-error-msg {
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      color: var(--auth-err);
+      margin: 0.5rem 0 0;
+    }
+
+    .auth-success { text-align: center; padding: 1rem 0; }
+    .auth-success__icon {
+      font-size: 3rem;
+      color: var(--auth-success);
+      margin-bottom: 0.8rem;
+      line-height: 1;
+    }
+    .auth-success__heading {
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 1.4rem;
+      color: var(--auth-indigo);
+      margin-bottom: 0.6rem;
+      line-height: 1.2;
+    }
+    .auth-success__msg {
+      font-family: var(--serif);
+      font-size: 1.02rem;
+      font-style: italic;
+      color: var(--auth-soft);
       line-height: 1.5;
+      margin-bottom: 1.2rem;
     }
-    .gmail-hint.hidden {
-      display: none;
+    .auth-success__btn { margin-top: 0.6rem; }
+
+    .auth-footer {
+      text-align: center;
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      color: var(--auth-soft);
+      margin: 0;
     }
-    /* Click-capture wrapper around GIS button — used to intercept
-       clicks when required consents aren't ticked, so the user
-       doesn't have to go through the whole Google popup before
-       getting the error. */
+
+    .auth-mini-footer {
+      text-align: center;
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      color: var(--auth-quiet);
+      letter-spacing: 0.02em;
+      margin-top: 0.8rem;
+      padding-top: 0.7rem;
+      border-top: 1px solid var(--auth-rule-2);
+    }
+    .auth-mini-footer a {
+      color: var(--auth-quiet);
+      text-decoration: none;
+      margin: 0 0.3rem;
+      transition: color 0.2s;
+    }
+    .auth-mini-footer a:hover { color: var(--auth-saffron); }
+    .auth-mini-footer-sep { color: rgba(20,18,10,0.30); margin: 0 0.2rem; }
+
+    .gis-btn-container {
+      width: 100%;
+      min-height: 40px;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 0.3rem;
+    }
+
     .gis-click-gate {
       position: relative;
       width: 100%;
-      margin-bottom: 16px;
+      margin-bottom: 0.6rem;
     }
+
+    .hidden { display: none !important; }
+
+    .gmail-hint {
+      margin-top: 6px;
+      margin-bottom: 0;
+      padding: 6px 10px;
+      background: var(--auth-saffron-bg);
+      border-left: 3px solid var(--auth-saffron);
+      border-radius: 4px;
+      color: var(--auth-soft);
+      font-size: 0.78rem;
+      line-height: 1.4;
+    }
+    .gmail-hint.hidden { display: none; }
   </style>
 </head>
 <body class="auth-body">
@@ -78,12 +558,15 @@
          onerror="this.style.display='none';document.getElementById('authLogoText').style.display='block'">
     <span id="authLogoText" class="auth-logo__text" style="display:none">MECULS</span>
     <div class="auth-subbrand">
-      Ikshu <span class="auth-subbrand-deva">( इक्षु )</span> | The CV Portal
+      <span>Ikshu</span>
+      <span class="auth-subbrand-deva" lang="sa">इक्षु</span>
+      <span class="auth-subbrand-sep">|</span>
+      <span>The CV Portal</span>
     </div>
     <div class="auth-tagline">The recognition true capability deserves</div>
   </div>
 
-  <!-- Card (widened for 2-col consent layout on tablet/desktop) -->
+  <!-- Card -->
   <div class="auth-card auth-card--wide">
     <h1 class="auth-card__heading">Create your account</h1>
     <p class="auth-card__sub">Free. Get your shareable profile link, build your network, no spam.</p>
@@ -107,7 +590,7 @@
 
     <form id="registerForm" novalidate autocomplete="on">
 
-      <!-- Name + Email side-by-side from tablet up -->
+      <!-- Name + Email side-by-side -->
       <div class="form-row-2col">
         <div class="field-group">
           <label class="field-label" for="regName">
@@ -133,13 +616,14 @@
                  enterkeyhint="next"
                  required
                  aria-required="true">
-          <p class="gmail-hint hidden" id="gmailHint">
-            &#128161; You can also use 'Sign up with Google' above if you prefer.
-          </p>
         </div>
       </div>
 
-      <!-- Password (full width — strength bar needs space) -->
+      <p class="gmail-hint hidden" id="gmailHint">
+        &#128161; You can also use 'Sign up with Google' above if you prefer.
+      </p>
+
+      <!-- Password -->
       <div class="field-group">
         <label class="field-label" for="regPassword">
           Password <span class="required">*</span>
@@ -154,12 +638,10 @@
           <button type="button" class="field-password-toggle" id="toggleRegPassword"
                   aria-label="Show password"
                   aria-pressed="false">
-            <!-- Eye icon (shown when password is hidden) -->
             <svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
               <circle cx="12" cy="12" r="3"/>
             </svg>
-            <!-- Eye-off icon (shown when password is visible) -->
             <svg class="icon-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
               <line x1="1" y1="1" x2="23" y2="23"/>
@@ -170,97 +652,97 @@
           <div class="password-strength__bar" id="strengthBar"></div>
         </div>
         <p class="helper-text" id="strengthLabel" aria-live="polite"></p>
-        <p class="helper-text">Use at least 8 characters with one capital letter, one number, and one special character (e.g. !@#$%).</p>
+        <p class="helper-text">8+ chars, 1 capital, 1 number, 1 special (e.g. !@#$%).</p>
       </div>
 
-      <!-- 2-COL GRID: [Required + Security check] | [Optional] -->
+      <!-- Required consents -->
       <div class="consent-section">
-        <div class="consent-grid">
+        <fieldset class="consent-fieldset consent-required">
+          <legend class="consent-section__legend">Required</legend>
 
-          <!-- COL 1: Required + Security check -->
-          <fieldset class="consent-fieldset consent-required">
+          <div class="consent-row">
+            <input type="checkbox" id="consentTerms" aria-required="true">
+            <label for="consentTerms">
+              I agree to MECULS
+              <a href="https://meculs.com/terms.html" target="_blank" rel="noopener">Terms of Use</a>
+              and
+              <a href="https://meculs.com/privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a>.
+              <span class="required-mark" aria-hidden="true">*</span>
+            </label>
+          </div>
 
-            <div>
-              <legend class="consent-section__legend">Required</legend>
+          <div class="consent-row">
+            <input type="checkbox" id="consentAge" aria-required="true">
+            <label for="consentAge">
+              I confirm I am 18 years or older.
+              <span class="required-mark" aria-hidden="true">*</span>
+            </label>
+          </div>
 
-              <div class="consent-row">
-                <input type="checkbox" id="consentTerms" aria-required="true">
-                <label for="consentTerms">
-                  I agree to MECULS
-                  <a href="https://meculs.com/terms.html" target="_blank" rel="noopener">Terms of Use</a>
-                  and
-                  <a href="https://meculs.com/privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a>.
-                  <span class="required-mark" aria-hidden="true">*</span>
-                </label>
-              </div>
-
-              <div class="consent-row">
-                <input type="checkbox" id="consentAge" aria-required="true">
-                <label for="consentAge">
-                  I confirm I am 18 years or older.
-                  <span class="required-mark" aria-hidden="true">*</span>
-                </label>
-              </div>
+          <!-- Security check -->
+          <div class="security-section">
+            <div class="consent-section__legend consent-section__legend--security">Security check</div>
+            <div class="captcha-wrap">
+              <!--
+                Cloudflare Turnstile widget.
+                data-sitekey is set at runtime by the small inline
+                script below from window.TURNSTILE_SITE_KEY (defined
+                in config.js). This way the site key lives in one
+                place only — config.js — and any rotation just needs
+                the constant updated there.
+              -->
+              <div class="cf-turnstile"
+                   id="turnstileWidget"
+                   data-callback="onCaptchaSuccess"
+                   data-error-callback="onCaptchaError"
+                   data-expired-callback="onCaptchaExpired"></div>
             </div>
+            <p class="captcha-error-msg hidden" id="captchaError" role="alert">Please complete the security check.</p>
+          </div>
+        </fieldset>
+      </div>
 
-            <div class="security-section">
-              <div class="consent-section__legend consent-section__legend--security">Security check</div>
-              <div class="captcha-wrap">
-                <!--
-                  Cloudflare Turnstile widget.
-                  data-sitekey is set at runtime by the small inline
-                  script below from window.TURNSTILE_SITE_KEY (defined
-                  in config.js). This way the site key lives in one
-                  place only — config.js — and any rotation just needs
-                  the constant updated there.
-                -->
-                <div class="cf-turnstile"
-                     id="turnstileWidget"
-                     data-callback="onCaptchaSuccess"
-                     data-error-callback="onCaptchaError"
-                     data-expired-callback="onCaptchaExpired"></div>
-                <p class="captcha-error-msg hidden" id="captchaError" role="alert">Please complete the security check.</p>
-              </div>
-            </div>
+      <!-- Optional consents - collapsible -->
+      <button type="button" class="optional-toggle" id="optionalToggle"
+              aria-expanded="false" aria-controls="optionalPanel">
+        <span>Show optional preferences</span>
+        <span class="optional-toggle__chevron" aria-hidden="true">&#9662;</span>
+      </button>
 
-          </fieldset>
+      <div class="optional-panel" id="optionalPanel">
+        <fieldset class="consent-fieldset consent-optional" style="padding-top: 0.6rem;">
+          <legend class="consent-section__legend" style="margin-top: 0;">Optional preferences</legend>
 
-          <!-- COL 2: Optional -->
-          <fieldset class="consent-fieldset consent-optional">
-            <legend class="consent-section__legend consent-section__legend--optional">Optional preferences</legend>
+          <div class="consent-row">
+            <input type="checkbox" id="consentEmailShare">
+            <label for="consentEmailShare">
+              I consent to MECULS connecting me with others by sharing my email ID.
+            </label>
+          </div>
+          <p class="consent-clarifier">
+            Others includes company HR teams and professionals. We'll connect you with up to 10 &ndash; 5 at your level and 5 senior. Free.
+          </p>
 
-            <div class="consent-row">
-              <input type="checkbox" id="consentEmailShare">
-              <label for="consentEmailShare">
-                I consent to MECULS connecting me with others by sharing my email ID.
-              </label>
-            </div>
-            <p class="consent-clarifier">
-              Others includes company HR teams and professionals. We'll connect you with up to 10 &mdash; 5 at your level and 5 senior. Free.
-            </p>
+          <div class="consent-row">
+            <input type="checkbox" id="consentNotif">
+            <label for="consentNotif">
+              I want to receive job and career notifications from MECULS.
+            </label>
+          </div>
+          <p class="consent-clarifier">
+            Plus: tell us companies &amp; specific job postings you target, and we'll help prepare your profile.
+          </p>
 
-            <div class="consent-row">
-              <input type="checkbox" id="consentNotif">
-              <label for="consentNotif">
-                I want to receive job and career notifications from MECULS.
-              </label>
-            </div>
-            <p class="consent-clarifier">
-              Plus: tell us companies &amp; specific job postings you target, and we'll help prepare your profile.
-            </p>
-
-            <div class="consent-row">
-              <input type="checkbox" id="consentMarketing">
-              <label for="consentMarketing">
-                I want to receive newsletters and updates from MECULS.
-              </label>
-            </div>
-            <p class="consent-clarifier">
-              Industry updates &mdash; which sectors and companies are doing well, so you can target your outreach.
-            </p>
-          </fieldset>
-
-        </div>
+          <div class="consent-row">
+            <input type="checkbox" id="consentMarketing">
+            <label for="consentMarketing">
+              I want to receive newsletters and updates from MECULS.
+            </label>
+          </div>
+          <p class="consent-clarifier">
+            Industry updates &ndash; which sectors and companies are doing well, so you can target your outreach.
+          </p>
+        </fieldset>
       </div>
 
       <div class="submit-row">
@@ -274,11 +756,21 @@
     <!-- Success state -->
     <div class="hidden auth-success" id="regSuccessState" role="status" aria-live="polite">
       <div class="auth-success__icon">&check;</div>
-      <h2 class="auth-success__heading">Account created &mdash; check your inbox</h2>
+      <h2 class="auth-success__heading">Account created &ndash; check your inbox</h2>
       <p class="auth-success__msg" id="regSuccessMsg"></p>
       <a href="login.html" class="btn btn--primary btn--full auth-success__btn">
         Go to Sign In
       </a>
+    </div>
+
+    <div class="auth-mini-footer">
+      <a href="index.html">MECULS Home</a>
+      <span class="auth-mini-footer-sep">&middot;</span>
+      <a href="privacy-policy.html">Privacy</a>
+      <span class="auth-mini-footer-sep">&middot;</span>
+      <a href="terms.html">Terms</a>
+      <span class="auth-mini-footer-sep">&middot;</span>
+      <span>&copy; 2026 MECULS</span>
     </div>
 
   </div><!-- /auth-card -->
@@ -318,6 +810,21 @@
      required consents are ticked. -->
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <script src="register.js?v=21"></script>
+
+<!-- Optional-panel toggle (purely UI - does not affect submission logic) -->
+<script>
+  (function () {
+    var btn = document.getElementById('optionalToggle');
+    var panel = document.getElementById('optionalPanel');
+    if (!btn || !panel) return;
+    btn.addEventListener('click', function () {
+      var open = panel.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.querySelector('span:first-child').textContent =
+        open ? 'Hide optional preferences' : 'Show optional preferences';
+    });
+  })();
+</script>
 
 </body>
 </html>

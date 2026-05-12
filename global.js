@@ -1,7 +1,12 @@
 /* ═══════════════════════════════════════════════════════════════════
-   MECULS - GLOBAL NAVIGATION JAVASCRIPT  v4
+   MECULS - GLOBAL NAVIGATION JAVASCRIPT  v5
    File: global.js
    Place <script src="global.js"> just before </body> on every page.
+
+   What changed vs v4:
+   - Login icon dropdown now opens on click (not hover). Click on
+     icon toggles dropdown; click outside or Escape closes it.
+     Click on either dropdown link navigates naturally.
 
    What changed vs v3:
    - Tagline-height measurement moved in here so no page has its own
@@ -153,5 +158,41 @@
       if (fb) fb.style.display = 'block';
     });
   });
+
+  /* ── Login icon click-toggle ─────────────────────────────────── */
+  /* The login icon dropdown opens on click (not hover) and closes
+     when clicking outside or pressing Escape. Single click on the
+     icon toggles the dropdown. Single click on either dropdown
+     link follows the link naturally. */
+  var loginWrap = document.querySelector('.gh-login-wrap');
+  var loginIcon = document.querySelector('.gh-login-icon');
+
+  if (loginWrap && loginIcon) {
+    /* Stop the icon link from navigating immediately - we want
+       the click to toggle the dropdown first. The dropdown items
+       themselves are real links that DO navigate on click. */
+    loginIcon.addEventListener('click', function (e) {
+      e.preventDefault();
+      var isOpen = loginWrap.classList.toggle('open');
+      loginIcon.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    /* Click outside closes the dropdown. */
+    document.addEventListener('click', function (e) {
+      if (!loginWrap.contains(e.target)) {
+        loginWrap.classList.remove('open');
+        loginIcon.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    /* Escape key closes the dropdown. */
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && loginWrap.classList.contains('open')) {
+        loginWrap.classList.remove('open');
+        loginIcon.setAttribute('aria-expanded', 'false');
+        loginIcon.focus();
+      }
+    });
+  }
 
 })();
