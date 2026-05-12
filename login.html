@@ -27,17 +27,17 @@
   <meta name="twitter:image" content="https://meculs.com/images/og/meculs-default-og.jpg">
 
   <!-- ============================================================
-       MECULS — login.html (v=25)
-       Date: 2026-05-12 (cv-portal refresh + colour override fix)
+       MECULS — login.html (v=26)
+       Date: 2026-05-12 (logo plate + decorative flourish)
        ============================================================
-       Changes from v=24:
-       - Wrapped all auth markup inside body.auth-body.auth-refresh
-         (a high-specificity body class) so the new CSS wins every
-         specificity battle against the existing styles.css /
-         tier_shared.css / auth.css files. No !important needed.
-       - All text colours now explicit + high specificity.
-       - login.js cache buster preserved at v=28.
-       - All form IDs, ARIA, JS wiring preserved byte-identical.
+       Changes from v=25:
+       - MECULS logo now sits on indigo gradient plate with saffron
+         underline (logo is dark blue+gold; needed dark backdrop to
+         read on aged-vellum ground)
+       - Added decorative gold hairline + diamond-dot under tagline
+       - Card top edge thickened 4px to 5px with subtle saffron glow
+       - login.js cache buster preserved at v=28
+       - All form IDs, ARIA, JS wiring preserved byte-identical
        ============================================================ -->
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -123,19 +123,37 @@
       padding: 0;
       background: transparent;
     }
+    body.auth-refresh .auth-logo__plate {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--auth-indigo) 0%, var(--auth-indigo-2) 100%);
+      padding: 0.7rem 1.6rem;
+      border-radius: 2px;
+      margin: 0 auto 1rem;
+      box-shadow: 0 4px 14px rgba(13,21,48,0.20);
+      position: relative;
+    }
+    body.auth-refresh .auth-logo__plate::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: -1px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--auth-saffron-2), transparent);
+    }
     body.auth-refresh .auth-logo__img {
-      height: 38px;
+      height: 32px;
       width: auto;
-      margin: 0 auto 0.9rem;
+      margin: 0;
       display: block;
       filter: none !important;
+      vertical-align: middle;
     }
     body.auth-refresh .auth-logo__text {
       font-family: var(--display);
-      font-size: 1.8rem;
-      font-weight: 600;
-      color: var(--auth-indigo);
-      letter-spacing: 0.04em;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--auth-vellum);
+      letter-spacing: 0.06em;
+      line-height: 1;
     }
 
     /* SUB-BRAND with Devanagari */
@@ -176,6 +194,28 @@
       line-height: 1.5;
       margin: 0;
     }
+    body.auth-refresh .auth-flourish {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7rem;
+      margin: 0.7rem auto 0;
+      max-width: 220px;
+    }
+    body.auth-refresh .auth-flourish::before,
+    body.auth-refresh .auth-flourish::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--auth-saffron) 50%, transparent);
+    }
+    body.auth-refresh .auth-flourish-dot {
+      width: 5px;
+      height: 5px;
+      background: var(--auth-saffron);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
 
     /* CARD */
     body.auth-refresh .auth-card {
@@ -191,8 +231,16 @@
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--auth-indigo), var(--auth-saffron) 60%, var(--auth-saffron-2));
+      height: 5px;
+      background: linear-gradient(90deg, var(--auth-indigo), var(--auth-saffron) 50%, var(--auth-saffron-2));
+    }
+    body.auth-refresh .auth-card::after {
+      content: '';
+      position: absolute;
+      top: 5px; left: 0; right: 0;
+      height: 8px;
+      background: linear-gradient(180deg, rgba(166,122,37,0.18), transparent);
+      pointer-events: none;
     }
 
     body.auth-refresh .auth-card__heading {
@@ -519,9 +567,11 @@
 
   <!-- Logo + sub-brand block -->
   <div class="auth-logo">
-    <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS" class="auth-logo__img"
-         onerror="this.style.display='none';document.getElementById('authLogoText').style.display='block'">
-    <span id="authLogoText" class="auth-logo__text" style="display:none">MECULS</span>
+    <div class="auth-logo__plate">
+      <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS" class="auth-logo__img"
+           onerror="this.style.display='none';document.getElementById('authLogoText').style.display='block'">
+      <span id="authLogoText" class="auth-logo__text" style="display:none">MECULS</span>
+    </div>
     <div class="auth-subbrand">
       <span>Ikshu</span>
       <span class="auth-subbrand-deva" lang="sa">इक्षु</span>
@@ -529,6 +579,9 @@
       <span>The CV Portal</span>
     </div>
     <div class="auth-tagline">The recognition true capability deserves</div>
+    <div class="auth-flourish" aria-hidden="true">
+      <span class="auth-flourish-dot"></span>
+    </div>
   </div>
 
   <!-- Card -->

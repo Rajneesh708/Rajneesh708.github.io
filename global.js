@@ -1,14 +1,15 @@
 /* ═══════════════════════════════════════════════════════════════════
-   MECULS - GLOBAL NAVIGATION JAVASCRIPT  v5
+   MECULS - GLOBAL NAVIGATION JAVASCRIPT  v6
    File: global.js
    Place <script src="global.js"> just before </body> on every page.
 
-   What changed vs v4:
-   - Login icon dropdown now opens on click (not hover). Click on
-     icon toggles dropdown; click outside or Escape closes it.
-     Click on either dropdown link navigates naturally.
+   What changed vs v5:
+   - Login icon is non-clickable. Hover or keyboard focus reveals
+     the dropdown (CSS does this). Clicking the icon does nothing.
+     Clicking either dropdown item (CV Portal - Login, CV Portal -
+     Register) navigates to that page.
 
-   What changed vs v3:
+   What changed vs v4:
    - Tagline-height measurement moved in here so no page has its own
      tagline JS. Every page gets --tagline-h set automatically.
    - Hamburger breakpoint aligned with global.css at 899px.
@@ -159,40 +160,24 @@
     });
   });
 
-  /* ── Login icon click-toggle ─────────────────────────────────── */
-  /* The login icon dropdown opens on click (not hover) and closes
-     when clicking outside or pressing Escape. Single click on the
-     icon toggles the dropdown. Single click on either dropdown
-     link follows the link naturally. */
-  var loginWrap = document.querySelector('.gh-login-wrap');
+  /* ── Login icon (no click on icon - hover only opens dropdown) ─ */
+  /* The login icon dropdown opens automatically on hover/focus via CSS.
+     The icon itself is not clickable - only the dropdown items
+     (CV Portal - Login, CV Portal - Register) are. Clicking the icon
+     does nothing; mouse hover or keyboard focus reveals the menu. */
   var loginIcon = document.querySelector('.gh-login-icon');
-
-  if (loginWrap && loginIcon) {
-    /* Stop the icon link from navigating immediately - we want
-       the click to toggle the dropdown first. The dropdown items
-       themselves are real links that DO navigate on click. */
+  if (loginIcon) {
+    /* Prevent the icon link from navigating - it's a visual handle only. */
     loginIcon.addEventListener('click', function (e) {
       e.preventDefault();
-      var isOpen = loginWrap.classList.toggle('open');
-      loginIcon.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
-
-    /* Click outside closes the dropdown. */
-    document.addEventListener('click', function (e) {
-      if (!loginWrap.contains(e.target)) {
-        loginWrap.classList.remove('open');
-        loginIcon.setAttribute('aria-expanded', 'false');
-      }
-    });
-
-    /* Escape key closes the dropdown. */
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && loginWrap.classList.contains('open')) {
-        loginWrap.classList.remove('open');
-        loginIcon.setAttribute('aria-expanded', 'false');
-        loginIcon.focus();
-      }
-    });
+    /* Remove href to make it truly non-navigable while keeping it focusable. */
+    if (loginIcon.tagName === 'A') {
+      loginIcon.setAttribute('role', 'button');
+      loginIcon.setAttribute('aria-haspopup', 'true');
+      loginIcon.removeAttribute('href');
+      loginIcon.setAttribute('tabindex', '0');
+    }
   }
 
 })();

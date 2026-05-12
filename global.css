@@ -258,6 +258,8 @@ body {
   cursor: pointer;
 }
 .gh-login-icon:hover,
+.gh-login-wrap:hover .gh-login-icon,
+.gh-login-wrap:focus-within .gh-login-icon,
 .gh-login-wrap.open .gh-login-icon {
   background: var(--g-gold-dim);
   border-color: var(--g-gold);
@@ -298,6 +300,8 @@ body {
   height: 2px;
   background: var(--g-gold);
 }
+.gh-login-wrap:hover .gh-login-dropdown,
+.gh-login-wrap:focus-within .gh-login-dropdown,
 .gh-login-wrap.open .gh-login-dropdown {
   opacity: 1;
   visibility: visible;
