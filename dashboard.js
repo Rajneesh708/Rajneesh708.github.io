@@ -59,6 +59,8 @@ let PROFILE_CACHE = {
   data: {},          /* the profiles.data JSONB blob */
   photo_path: null,  /* direct column */
   cv_path: null,     /* direct column (legacy, kept for safety) */
+  slug: null,        /* direct column — used by Your Public Profile URL banner */
+  is_public: null,   /* direct column — visibility toggle from Settings */
   updated_at: null   /* direct column for "last updated" display */
 };
 
@@ -400,6 +402,7 @@ function setupMessages() {
       refreshProgress();
       refreshUpdated();
       refreshLockState();
+      updatePublicProfileBanner();
     }
 
     if (d.type === "saved") {
@@ -411,6 +414,7 @@ function setupMessages() {
       refreshProgress();
       refreshUpdated();
       refreshLockState();
+      updatePublicProfileBanner();
     }
 
     if (d.type === "submitted") {
@@ -419,6 +423,7 @@ function setupMessages() {
       refreshProgress();
       refreshUpdated();
       refreshLockState();
+      updatePublicProfileBanner();
       /* Load the post-submission page into the iframe */
       loadPage("submission_complete.html", "Profile Submitted");
     }
@@ -626,7 +631,7 @@ async function refreshProfileCache() {
 
     const { data, error } = await sb
       .from("profiles")
-      .select("data, photo_path, cv_path, updated_at")
+      .select("data, photo_path, cv_path, slug, is_public, updated_at")
       .eq("user_id", session.user.id)
       .single();
 
@@ -638,6 +643,8 @@ async function refreshProfileCache() {
         data: {},
         photo_path: null,
         cv_path: null,
+        slug: null,
+        is_public: null,
         updated_at: null
       };
       return;
@@ -647,6 +654,8 @@ async function refreshProfileCache() {
       data:       data?.data       || {},
       photo_path: data?.photo_path || null,
       cv_path:    data?.cv_path    || null,
+      slug:       data?.slug       || null,
+      is_public:  (data && typeof data.is_public === "boolean") ? data.is_public : null,
       updated_at: data?.updated_at || null
     };
   } catch (e) {
@@ -655,8 +664,288 @@ async function refreshProfileCache() {
 }
 
 /* ============================================================
-   INIT
+   PUBLIC PROFILE BANNER — between topbar and iframe.
+
+   Two visible states share the same row:
+     • Locked  — user hasn't completed the minimum-required sections
+                 for their profile category yet. We tell them honestly
+                 what's missing and how many of how many they have.
+     • Active  — minimum requirements met → show the URL, copy button,
+                 and a "Preview" link that opens p.html in a new tab.
+
+   The "minimum requirements" come from the routing logic defined
+   in profile_category.js. Different profile categories have
+   different paths through the form:
+     • student_0xp / fresher  → Goals + Photo & CV + Profile Category
+                                  + Education
+                                  (skips About You + Experience)
+     • student_intern         → Goals + Photo & CV + Profile Category
+                                  + Experience + Education
+                                  (skips About You)
+     • All other categories   → Goals + Photo & CV + Profile Category
+                                  + About You + Experience + Education
+
+   "defense_family" defers to whatever role the user picked in the
+   second dropdown (stored in data.profile_category.defense_family_role).
+
+   This logic must stay in sync with profile_category.js ROUTING.
+   If you add a new profile category, update both files.
    ============================================================ */
+
+/* Map of completion key → friendly section label, used in
+   the locked-state message. Order matters here — we display
+   missing sections in this order, which matches the sidebar. */
+const SECTION_LABELS = {
+  goals_completed:               "Goals & Interests",
+  photo_cv_completed:            "Photo & CV",
+  profile_category_completed:    "Profile Category",
+  introduction_completed:        "About You",
+  experience_completed:          "Your Experience",
+  education_completed:           "Your Education"
+};
+
+/* Required-keys-by-profile-category. Resolved from profile_category.js
+   ROUTING table on 2026-05-12. Keep in sync with that file. */
+const MIN_REQUIRED_BY_TYPE = {
+  student_0xp: [
+    "goals_completed",
+    "photo_cv_completed",
+    "profile_category_completed",
+    "education_completed"
+  ],
+  fresher: [
+    "goals_completed",
+    "photo_cv_completed",
+    "profile_category_completed",
+    "education_completed"
+  ],
+  student_intern: [
+    "goals_completed",
+    "photo_cv_completed",
+    "profile_category_completed",
+    "experience_completed",
+    "education_completed"
+  ],
+  student_xp: [
+    "goals_completed",
+    "photo_cv_completed",
+    "profile_category_completed",
+    "introduction_completed",
+    "experience_completed",
+    "education_completed"
+  ],
+  working_professional: [
+    "goals_completed",
+    "photo_cv_completed",
+    "profile_category_completed",
+    "introduction_completed",
+    "experience_completed",
+    "education_completed"
+  ],
+  researcher: [
+    "goals_completed",
+    "photo_cv_completed",
+    "profile_category_completed",
+    "introduction_completed",
+    "experience_completed",
+    "education_completed"
+  ],
+  defense: [
+    "goals_completed",
+    "photo_cv_completed",
+    "profile_category_completed",
+    "introduction_completed",
+    "experience_completed",
+    "education_completed"
+  ]
+};
+
+/* Returns the effective user_type for the current profile.
+   For defense_family, defers to the second-dropdown role; if neither
+   set, returns null. */
+function getEffectiveUserType() {
+  const pc = PROFILE_CACHE.data?.profile_category;
+  if (!pc) return null;
+  if (pc.user_type === "defense_family") {
+    return pc.defense_family_role || null;
+  }
+  return pc.user_type || null;
+}
+
+/* Returns the array of completion keys required for the current
+   profile to be "ready to share". Returns null if user_type isn't
+   set yet (so the banner shows a generic locked message). */
+function getRequiredKeys() {
+  const eff = getEffectiveUserType();
+  if (!eff) return null;
+  return MIN_REQUIRED_BY_TYPE[eff] || null;
+}
+
+/* Returns { done, total, missing[] } given the required keys array.
+   Uses the same predicates defined in COMPLETION_PREDICATES above. */
+function evaluateRequirements(requiredKeys) {
+  const missing = [];
+  let done = 0;
+  for (const key of requiredKeys) {
+    const pred = COMPLETION_PREDICATES[key];
+    if (pred && pred(PROFILE_CACHE)) {
+      done += 1;
+    } else {
+      missing.push(key);
+    }
+  }
+  return { done: done, total: requiredKeys.length, missing: missing };
+}
+
+/* Formats the list of missing-section labels into a readable string.
+   "About You, Your Experience, and Your Education" — Oxford comma
+   used because labels can be long phrases. */
+function formatMissingList(missingKeys) {
+  const labels = missingKeys.map(k => SECTION_LABELS[k] || k);
+  if (labels.length === 0) return "";
+  if (labels.length === 1) return labels[0];
+  if (labels.length === 2) return labels[0] + " and " + labels[1];
+  const head = labels.slice(0, -1).join(", ");
+  return head + ", and " + labels[labels.length - 1];
+}
+
+/* Main update function. Called on init and after every postMessage
+   that mutates the profile (saved / navigate / submitted). */
+function updatePublicProfileBanner() {
+  const banner    = document.getElementById("pubprofBanner");
+  const iconEl    = document.getElementById("pubprofIcon");
+  const lockedMsg = document.getElementById("pubprofLockedMsg");
+  const urlEl     = document.getElementById("pubprofUrl");
+  const actions   = document.getElementById("pubprofActions");
+
+  if (!banner) return;  /* Banner not in the DOM yet — should never
+                            happen but defensive. */
+
+  const requiredKeys = getRequiredKeys();
+  const slug         = PROFILE_CACHE.slug;
+
+  /* ── State 1: user_type not set yet ── */
+  if (!requiredKeys) {
+    banner.classList.remove("is-active");
+    setLockIcon(iconEl);
+    lockedMsg.innerHTML =
+      "Available once you complete <strong>Goals &amp; Interests</strong>, " +
+      "<strong>Photo &amp; CV</strong>, and <strong>Profile Category</strong> &mdash; " +
+      "then a few more sections based on your category.";
+    lockedMsg.hidden = false;
+    urlEl.hidden     = true;
+    actions.hidden   = true;
+    return;
+  }
+
+  /* ── Evaluate required sections ── */
+  const eval_ = evaluateRequirements(requiredKeys);
+
+  /* ── State 2: minimum sections done AND slug exists ── */
+  if (eval_.missing.length === 0 && slug) {
+    banner.classList.add("is-active");
+    setActiveIcon(iconEl);
+    lockedMsg.hidden = true;
+
+    const url      = "https://meculs.com/p/" + slug;
+    const showText = "meculs.com/p/" + slug;
+    urlEl.textContent      = showText;
+    urlEl.href             = url;
+    urlEl.dataset.url      = url;
+    urlEl.hidden           = false;
+
+    const previewBtn = document.getElementById("pubprofPreviewBtn");
+    if (previewBtn) previewBtn.href = url;
+
+    actions.hidden = false;
+    return;
+  }
+
+  /* ── State 3: still locked — sections missing, OR slug not generated yet ── */
+  banner.classList.remove("is-active");
+  setLockIcon(iconEl);
+
+  if (eval_.missing.length === 0 && !slug) {
+    /* All sections done but slug hasn't been written yet. This
+       shouldn't normally happen because slug is generated on user
+       creation, but be defensive. */
+    lockedMsg.innerHTML =
+      "Your profile is ready, but your unique URL hasn't been generated yet. " +
+      "Try refreshing the page in a moment, or contact support if this persists.";
+  } else {
+    const missingTxt = formatMissingList(eval_.missing);
+    lockedMsg.innerHTML =
+      "Available once you complete <strong>" + escapeHtml(missingTxt) + "</strong>. " +
+      "<span class=\"pubprof__progress\">(" + eval_.done + " of " + eval_.total + " done)</span>";
+  }
+  lockedMsg.hidden = false;
+  urlEl.hidden     = true;
+  actions.hidden   = true;
+}
+
+/* Swap the SVG to a lock icon for the locked state */
+function setLockIcon(iconEl) {
+  if (!iconEl) return;
+  iconEl.innerHTML =
+    '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>' +
+    '<path d="M7 11V7a5 5 0 0 1 10 0v4"></path>';
+}
+
+/* Swap the SVG to a globe/link icon for the active state */
+function setActiveIcon(iconEl) {
+  if (!iconEl) return;
+  iconEl.innerHTML =
+    '<circle cx="12" cy="12" r="10"></circle>' +
+    '<line x1="2" y1="12" x2="22" y2="12"></line>' +
+    '<path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>';
+}
+
+/* Minimal HTML escape — only for displaying user-controlled-ish
+   text inside innerHTML. Section labels are hardcoded so this is
+   purely defensive. */
+function escapeHtml(s) {
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+/* Wire up the Copy button. Called once on init. */
+function setupPublicProfileBannerActions() {
+  const copyBtn = document.getElementById("pubprofCopyBtn");
+  if (!copyBtn) return;
+
+  copyBtn.addEventListener("click", async () => {
+    const urlEl = document.getElementById("pubprofUrl");
+    const url = urlEl ? (urlEl.dataset.url || urlEl.href || "") : "";
+    if (!url) return;
+
+    try {
+      await navigator.clipboard.writeText(url);
+      flashCopyFeedback(copyBtn, "Copied!");
+    } catch (e) {
+      /* Older browsers / iframe contexts may block clipboard API.
+         Fall back to a select-and-copy-ish hint. */
+      flashCopyFeedback(copyBtn, "Press Ctrl+C");
+    }
+  });
+}
+
+/* Small inline feedback on the Copy button — temporarily changes
+   the label, then reverts. Avoids needing toast positioning logic. */
+function flashCopyFeedback(btn, msg) {
+  const original = btn.textContent;
+  btn.textContent = msg;
+  btn.disabled = true;
+  setTimeout(() => {
+    btn.textContent = original;
+    btn.disabled = false;
+  }, 1600);
+}
+
+
 document.addEventListener("DOMContentLoaded", async () => {
   /* Auth guard FIRST. If not logged in, this redirects and
      stops execution before the rest of dashboard renders. */
@@ -666,6 +955,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   setupLogo();
   wireSidebar();
   setupMessages();
+  setupPublicProfileBannerActions();
 
   /* Pull the profile snapshot before painting ticks, so the very
      first render reflects real data, not an empty cache. */
@@ -675,6 +965,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   refreshProgress();
   refreshUpdated();
   refreshLockState();
+  updatePublicProfileBanner();
 
   /* Open first section by default */
   const first = document.querySelector(".sidebar__btn");
