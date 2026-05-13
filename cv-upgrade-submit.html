@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Your CV — MECULS</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="global.css">
+
+  <style>
+    :root {
+      --ps-bg:        #FAF8F4;
+      --ps-card:      #FFFFFF;
+      --ps-text:      #1F2937;
+      --ps-muted:     #6B7280;
+      --ps-soft:      #4B5563;
+      --ps-rule:      #E5DFD3;
+      --ps-rule-soft: #F0EBE0;
+      --ps-gold:      #B8893E;
+      --ps-error:     #B91C1C;
+    }
+
+    body { background: var(--ps-bg); margin: 0; color: var(--ps-text); }
+
+    .cv-page { max-width: 640px; margin: 0 auto; padding: 3.5rem 5%; }
+
+    .cv-card {
+      background: var(--ps-card);
+      border: 1px solid var(--ps-rule);
+      border-radius: 8px;
+      padding: 2.5rem 2.3rem;
+      box-shadow: 0 2px 8px rgba(31, 41, 55, 0.04);
+    }
+
+    .cv-eyebrow {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      color: var(--ps-gold);
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+
+    .cv-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 2.2vw, 1.8rem);
+      font-weight: 500;
+      line-height: 1.3;
+      margin: 0 0 0.6rem;
+      color: var(--ps-text);
+    }
+
+    .cv-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.02rem;
+      color: var(--ps-soft);
+      margin: 0 0 2rem;
+      line-height: 1.6;
+    }
+
+    .cv-field { margin-bottom: 1.6rem; }
+    .cv-field__label {
+      display: block;
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--ps-text);
+      margin-bottom: 0.5rem;
+    }
+    .cv-field__label--required::after {
+      content: " *";
+      color: var(--ps-error);
+    }
+    .cv-field__hint {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.88rem;
+      color: var(--ps-muted);
+      margin-top: 0.4rem;
+      line-height: 1.5;
+    }
+    .cv-field__input,
+    .cv-field__textarea {
+      width: 100%;
+      padding: 0.7rem 0.9rem;
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.95rem;
+      color: var(--ps-text);
+      background: var(--ps-bg);
+      border: 1px solid var(--ps-rule);
+      border-radius: 4px;
+      box-sizing: border-box;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .cv-field__input:focus,
+    .cv-field__textarea:focus {
+      outline: none;
+      border-color: var(--ps-gold);
+      background: var(--ps-card);
+    }
+    .cv-field__textarea {
+      min-height: 90px;
+      resize: vertical;
+      font-family: 'Archivo', sans-serif;
+    }
+
+    .cv-instructions {
+      background: var(--ps-rule-soft);
+      border-radius: 6px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1.6rem;
+    }
+    .cv-instructions__heading {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--ps-gold);
+      text-transform: uppercase;
+      margin: 0 0 0.6rem;
+    }
+    .cv-instructions__text {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.88rem;
+      color: var(--ps-soft);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .cv-cta {
+      display: inline-block;
+      background: var(--ps-text);
+      color: var(--ps-card);
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      padding: 0.85rem 1.8rem;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.15s;
+      margin-top: 0.5rem;
+    }
+    .cv-cta:hover { background: var(--ps-gold); }
+    .cv-cta:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .cv-error {
+      color: var(--ps-error);
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.85rem;
+      margin-top: 0.8rem;
+      display: none;
+    }
+    .cv-error.is-visible { display: block; }
+
+    .cv-footer {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--ps-rule-soft);
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.88rem;
+      color: var(--ps-muted);
+      line-height: 1.55;
+      text-align: center;
+    }
+    .cv-footer a { color: var(--ps-gold); text-decoration: none; }
+    .cv-footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<div class="cv-page">
+  <div class="cv-card">
+
+    <div class="cv-eyebrow">Step 2 of 2</div>
+    <h1 class="cv-title">Submit your CV for upgrade</h1>
+    <p class="cv-sub">
+      Your payment is received. Share a public link to your current CV
+      and we'll get to work. Your upgraded version will be in your inbox
+      within 24 working hours.
+    </p>
+
+    <div class="cv-instructions">
+      <div class="cv-instructions__heading">How to share your CV</div>
+      <p class="cv-instructions__text">
+        Upload your CV to Google Drive, Dropbox, or OneDrive. Set the link
+        to "Anyone with the link can view." Paste the link below.
+      </p>
+    </div>
+
+    <form id="cvForm">
+
+      <div class="cv-field">
+        <label class="cv-field__label cv-field__label--required" for="cvEmail">Your email</label>
+        <input type="email" id="cvEmail" name="email" class="cv-field__input"
+               placeholder="your@email.com" required>
+        <div class="cv-field__hint">We'll send your upgraded CV here.</div>
+      </div>
+
+      <div class="cv-field">
+        <label class="cv-field__label cv-field__label--required" for="cvLink">Public link to your CV</label>
+        <input type="url" id="cvLink" name="cv_link" class="cv-field__input"
+               placeholder="https://drive.google.com/..." required>
+        <div class="cv-field__hint">
+          Google Drive, Dropbox, or OneDrive. Make sure the link is publicly viewable.
+        </div>
+      </div>
+
+      <div class="cv-field">
+        <label class="cv-field__label" for="cvNotes">Anything we should emphasize? (optional)</label>
+        <textarea id="cvNotes" name="notes" class="cv-field__textarea"
+                  placeholder="E.g., targeting senior product roles, emphasize tech leadership, etc."></textarea>
+        <div class="cv-field__hint">
+          A line or two about your goal helps us shape the rewrite.
+        </div>
+      </div>
+
+      <div class="cv-field">
+        <label class="cv-field__label" for="cvPayment">Razorpay payment ID (optional)</label>
+        <input type="text" id="cvPayment" name="payment_id" class="cv-field__input"
+               placeholder="Paste from your payment receipt email">
+        <div class="cv-field__hint">
+          Helps us match your payment to your submission. Find it in your Razorpay email.
+        </div>
+      </div>
+
+      <button type="submit" class="cv-cta" id="cvSubmit">Submit my CV &rarr;</button>
+      <div class="cv-error" id="cvError">Something went wrong. Please email Jain.Rajneesh@meculs.com with your CV link directly.</div>
+    </form>
+
+    <div class="cv-footer">
+      Questions? Email <a href="mailto:Jain.Rajneesh@meculs.com">Jain.Rajneesh@meculs.com</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- Supabase JS library + shared config (URL + anon key) -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js?v=6"></script>
+
+<script>
+/* ─────────────────────────────────────────────────────────────
+   cv-upgrade-submit.html
+   On submit, writes the row to the public.paid_submissions
+   table in Supabase. On success, redirects to cv-upgrade-ready.html.
+   ───────────────────────────────────────────────────────────── */
+
+(function () {
+  "use strict";
+
+  /* Create Supabase client */
+  const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  const form = document.getElementById("cvForm");
+  const submitBtn = document.getElementById("cvSubmit");
+  const errorEl = document.getElementById("cvError");
+
+  /* Pre-fill payment ID if it came in via URL params */
+  const params = new URLSearchParams(window.location.search);
+  const pid = params.get("razorpay_payment_id");
+  if (pid) document.getElementById("cvPayment").value = pid;
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Submitting…";
+    errorEl.classList.remove("is-visible");
+
+    const email = document.getElementById("cvEmail").value.trim();
+    const cvLink = document.getElementById("cvLink").value.trim();
+    const notes = document.getElementById("cvNotes").value.trim();
+    const paymentId = document.getElementById("cvPayment").value.trim();
+
+    try {
+      const { error } = await sb
+        .from("paid_submissions")
+        .insert({
+          form_type: "cv_upgrade",
+          customer_email: email,
+          razorpay_payment_id: paymentId || null,
+          payload: {
+            cv_link: cvLink,
+            notes: notes
+          }
+        });
+
+      if (error) throw error;
+
+      /* Saved cleanly — redirect to confirmation */
+      window.location.href = "cv-upgrade-ready.html";
+    } catch (err) {
+      console.error("Submission failed:", err);
+      errorEl.classList.add("is-visible");
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Submit my CV →";
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

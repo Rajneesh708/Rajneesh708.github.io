@@ -1,1332 +1,632 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Paid Services &mdash; MECULS</title>
-<meta name="description" content="Six paid services from MECULS &mdash; CV Upgrade, Honest CV Workshop, 1-on-1 Coaching packages, and Career Investigation. Honest pricing. No upsells. No subscription traps.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paid Services — MECULS</title>
+  <meta name="description" content="MECULS paid services: CV Upgrade, Coaching Sessions, Career Investigation, Personality Profiling. Honest pricing. No subscription traps.">
+  <link rel="canonical" href="https://meculs.com/paid-services.html">
 
-<!-- Open Graph / Social -->
-<meta property="og:title" content="Paid Services &mdash; MECULS">
-<meta property="og:description" content="Honest pricing. No upsells. Six ways MECULS can help you.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://www.meculs.com/paid-services.html">
-<meta property="og:image" content="https://www.meculs.com/images/og/meculs-og-default.jpg">
+  <link rel="stylesheet" href="global.css">
 
-<!-- Favicon -->
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-<link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+  <style>
+    /* ───────────────────────────────────────────────────────────
+       PAID SERVICES — calmer cream look
+       Will be redesigned visually in a later conversation.
+       Pages built to be functional and decent-looking now.
+       ─────────────────────────────────────────────────────────── */
 
-<!-- Fonts (match canonical site) -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-
-<!-- Canonical site chrome -->
-<link rel="stylesheet" href="global.css">
-
-<!--
-  ════════════════════════════════════════════════════════════════
-  MECULS - paid-services.html  (Round 1)
-  Date: 2026-05-11
-
-  Six paid services on one page:
-    1. CV Upgrade               149
-    2. Honest CV Workshop       499
-    3. Coaching Single Session  1,499
-    4. Coaching 4-Session Block 5,999
-    5. Coaching 3-Month Retainer 11,999
-    6. Career Investigation     699
-
-  Chrome:
-    - Canonical header pasted verbatim from CANONICAL-header.html
-    - Canonical footer pasted verbatim from CANONICAL-footer.html
-    - Uses global.css and global.js
-
-  Page-specific layout:
-    - Hero band
-    - Sticky left-column index (6 items, gold active state)
-    - Right-column main content with 6 product blocks
-    - Payment safety banner with Razorpay/PayU/PayPal trust signal
-    - Why MECULS closing block
-
-  Placeholders to replace before going live:
-    - RAZORPAY_CV_UPGRADE
-    - RAZORPAY_WORKSHOP
-    - RAZORPAY_COACHING_SINGLE
-    - RAZORPAY_COACHING_BLOCK
-    - RAZORPAY_COACHING_RETAINER
-    - RAZORPAY_CAREER_INVESTIGATION
-    - CALENDLY_SCREENING (for Career Investigation 20-min screening)
-  ════════════════════════════════════════════════════════════════
--->
-
-<style>
-  /* ───────────────────────────────────────────────────────────────
-     PAGE-SPECIFIC STYLES
-     Inherits site tokens from global.css.
-     Body background, fonts, --g-gold, --g-soft, etc. all come from global.css.
-  ────────────────────────────────────────────────────────────────── */
-
-  :root {
-    --tagline-h: 28px;
-  }
-
-  body {
-    line-height: 1.7;
-  }
-
-  .page {
-    padding-top: calc(var(--g-nav-h, 72px) + var(--tagline-h, 28px));
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* ── HERO ─────────────────────────────────────────────────────── */
-  .ps-hero {
-    padding: 2.8rem 5% 2.4rem;
-    text-align: center;
-    background: radial-gradient(ellipse at top, rgba(212, 175, 55, 0.04) 0%, transparent 60%);
-    border-bottom: 1px solid var(--g-rule);
-  }
-  .ps-hero__eyebrow {
-    font-family: 'Archivo', sans-serif;
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.22em;
-    color: var(--g-gold);
-    text-transform: uppercase;
-    margin-bottom: 0.8rem;
-  }
-  .ps-hero__title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.8rem, 3.4vw, 2.6rem);
-    font-weight: 500;
-    line-height: 1.2;
-    color: var(--g-white);
-    margin: 0 0 0.7rem;
-    letter-spacing: -0.005em;
-  }
-  .ps-hero__title em {
-    font-style: italic;
-    color: var(--g-soft);
-    font-weight: 400;
-  }
-  .ps-hero__sub {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(0.98rem, 1.3vw, 1.1rem);
-    color: var(--g-muted);
-    max-width: 580px;
-    margin: 0 auto;
-    line-height: 1.55;
-    font-style: italic;
-  }
-  .ps-hero__rule {
-    width: 40px;
-    height: 1px;
-    background: var(--g-gold);
-    margin: 1.3rem auto 0;
-    opacity: 0.5;
-  }
-
-  /* ── TWO-COLUMN MAIN LAYOUT ──────────────────────────────────── */
-  .ps-main {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 4rem 5% 2rem;
-    display: grid;
-    grid-template-columns: 240px 1fr;
-    gap: 4rem;
-    width: 100%;
-    flex: 1;
-  }
-
-  /* ── STICKY LEFT INDEX ───────────────────────────────────────── */
-  .ps-index {
-    position: sticky;
-    top: calc(var(--g-nav-h, 72px) + var(--tagline-h, 28px) + 2rem);
-    align-self: start;
-    border-left: 1px solid var(--g-rule);
-    padding-left: 1.4rem;
-    max-height: calc(100vh - var(--g-nav-h, 72px) - var(--tagline-h, 28px) - 4rem);
-    overflow-y: auto;
-  }
-  .ps-index__group {
-    margin-bottom: 1.8rem;
-  }
-  .ps-index__group:last-child {
-    margin-bottom: 0;
-  }
-  .ps-index__label {
-    font-family: 'Archivo', sans-serif;
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    color: var(--g-gold);
-    text-transform: uppercase;
-    margin-bottom: 0.8rem;
-    padding-bottom: 0.4rem;
-    border-bottom: 1px solid var(--g-gold-border);
-  }
-  .ps-index__list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  .ps-index__list li {
-    margin-bottom: 0.7rem;
-  }
-  .ps-index__list a {
-    display: block;
-    text-decoration: none;
-    padding: 0.3rem 0;
-    transition: color 0.2s, transform 0.2s;
-  }
-  .ps-index__num {
-    font-family: 'Playfair Display', serif;
-    font-size: 0.85rem;
-    color: var(--g-gold);
-    font-weight: 500;
-    margin-right: 0.5rem;
-    opacity: 0.8;
-  }
-  .ps-index__name {
-    font-family: 'Archivo', sans-serif;
-    font-size: 0.82rem;
-    color: var(--g-soft);
-    font-weight: 500;
-    letter-spacing: 0.01em;
-    transition: color 0.2s;
-  }
-  .ps-index__price {
-    display: block;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.82rem;
-    color: var(--g-muted);
-    font-style: italic;
-    margin-top: 0.15rem;
-    margin-left: 1.4rem;
-  }
-  .ps-index__list a:hover .ps-index__name,
-  .ps-index__list a.active .ps-index__name {
-    color: var(--g-gold);
-  }
-  .ps-index__list a:hover .ps-index__num,
-  .ps-index__list a.active .ps-index__num {
-    opacity: 1;
-  }
-
-  /* ── PRODUCT BLOCKS (RIGHT COLUMN) ──────────────────────────── */
-  .ps-content {
-    min-width: 0;
-  }
-
-  .ps-section {
-    margin-bottom: 4rem;
-    scroll-margin-top: calc(var(--g-nav-h, 72px) + var(--tagline-h, 28px) + 1.5rem);
-  }
-  .ps-section:last-of-type {
-    margin-bottom: 2rem;
-  }
-  .ps-section__label {
-    font-family: 'Archivo', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.22em;
-    color: var(--g-gold);
-    text-transform: uppercase;
-    margin-bottom: 0.6rem;
-  }
-  .ps-section__title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.5rem, 2.2vw, 1.85rem);
-    font-weight: 500;
-    color: var(--g-white);
-    margin: 0 0 0.5rem;
-    letter-spacing: -0.005em;
-  }
-  .ps-section__title em {
-    font-style: italic;
-    color: var(--g-soft);
-    font-weight: 400;
-  }
-  .ps-section__sub {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 1.05rem;
-    color: var(--g-muted);
-    margin: 0 0 2rem;
-    max-width: 640px;
-  }
-
-  .ps-card {
-    background: rgba(255, 255, 255, 0.025);
-    border: 1px solid var(--g-rule);
-    border-top: 2px solid var(--g-gold-border);
-    border-radius: 2px;
-    padding: 2rem 2.2rem 1.8rem;
-    margin-bottom: 1.4rem;
-    transition: background 0.25s, border-top-color 0.25s;
-    scroll-margin-top: calc(var(--g-nav-h, 72px) + var(--tagline-h, 28px) + 1.5rem);
-  }
-  .ps-card:hover {
-    background: rgba(255, 255, 255, 0.04);
-    border-top-color: var(--g-gold);
-  }
-
-  .ps-card__head {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 1.5rem;
-    margin-bottom: 0.3rem;
-    flex-wrap: wrap;
-  }
-  .ps-card__name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: var(--g-white);
-    margin: 0;
-    letter-spacing: -0.005em;
-  }
-  .ps-card__price {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: var(--g-gold);
-    white-space: nowrap;
-  }
-  .ps-card__meta {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 0.95rem;
-    color: var(--g-muted);
-    letter-spacing: 0.01em;
-    margin-bottom: 1.4rem;
-  }
-  .ps-card__desc {
-    font-family: 'Archivo', sans-serif;
-    font-size: 0.95rem;
-    color: var(--g-soft);
-    line-height: 1.75;
-    margin: 0 0 1.4rem;
-  }
-  .ps-card__row {
-    margin-bottom: 1.2rem;
-  }
-  .ps-card__row-label {
-    font-family: 'Archivo', sans-serif;
-    font-size: 0.66rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    color: var(--g-gold);
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
-  }
-  .ps-card__row-text {
-    font-family: 'Archivo', sans-serif;
-    font-size: 0.92rem;
-    color: var(--g-soft);
-    line-height: 1.65;
-  }
-  .ps-card__list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  .ps-card__list li {
-    font-family: 'Archivo', sans-serif;
-    font-size: 0.9rem;
-    color: var(--g-soft);
-    padding: 0.35rem 0 0.35rem 1.4rem;
-    position: relative;
-    line-height: 1.6;
-  }
-  .ps-card__list li::before {
-    content: "—";
-    color: var(--g-gold);
-    position: absolute;
-    left: 0;
-    top: 0.35rem;
-    font-weight: 500;
-  }
-  .ps-card__cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    margin-top: 1rem;
-    padding: 0.85rem 1.6rem;
-    background: transparent;
-    border: 1px solid var(--g-gold-border);
-    color: var(--g-gold);
-    font-family: 'Archivo', sans-serif;
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border-radius: 2px;
-    transition: background 0.25s, border-color 0.25s, transform 0.2s;
-  }
-  .ps-card__cta:hover {
-    background: var(--g-gold-dim);
-    border-color: var(--g-gold);
-    transform: translateY(-1px);
-  }
-  .ps-card__cta-arrow {
-    transition: transform 0.2s;
-  }
-  .ps-card__cta:hover .ps-card__cta-arrow {
-    transform: translateX(3px);
-  }
-
-  /* ── CAREER INVESTIGATION (story block) ─────────────────────── */
-  .ps-story {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid var(--g-gold-border);
-    border-top: 2px solid var(--g-gold);
-    border-radius: 2px;
-    padding: 2.4rem 2.6rem 2.2rem;
-    scroll-margin-top: calc(var(--g-nav-h, 72px) + var(--tagline-h, 28px) + 1.5rem);
-  }
-  .ps-story__head {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    margin-bottom: 0.3rem;
-  }
-  .ps-story__name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.7rem;
-    font-weight: 500;
-    color: var(--g-white);
-    margin: 0;
-  }
-  .ps-story__price {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
-    font-weight: 500;
-    color: var(--g-gold);
-  }
-  .ps-story__meta {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 0.98rem;
-    color: var(--g-muted);
-    margin-bottom: 1.8rem;
-  }
-  .ps-story__narrative {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 1.2rem;
-    line-height: 1.75;
-    color: var(--g-soft);
-    margin: 0 0 2rem;
-    padding: 1.4rem 0 1.4rem 1.6rem;
-    border-left: 1px solid var(--g-gold-border);
-  }
-  .ps-story__narrative p {
-    margin: 0 0 0.9rem;
-  }
-  .ps-story__narrative p:last-child {
-    margin-bottom: 0;
-  }
-  .ps-story__section {
-    margin-bottom: 1.6rem;
-  }
-  .ps-story__weeks {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  .ps-story__weeks li {
-    padding: 0.8rem 0;
-    border-bottom: 1px solid var(--g-rule);
-    font-family: 'Archivo', sans-serif;
-    font-size: 0.92rem;
-    color: var(--g-soft);
-    line-height: 1.65;
-    display: flex;
-    gap: 1.2rem;
-    align-items: baseline;
-  }
-  .ps-story__weeks li:last-child {
-    border-bottom: none;
-  }
-  .ps-story__weeks strong {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-weight: 500;
-    font-size: 1.05rem;
-    color: var(--g-gold);
-    min-width: 80px;
-    flex-shrink: 0;
-  }
-
-  /* ── PAYMENT SAFETY BANNER ──────────────────────────────────── */
-  .ps-payment {
-    background: rgba(0, 17, 31, 0.6);
-    border-top: 1px solid var(--g-rule);
-    border-bottom: 1px solid var(--g-rule);
-    padding: 3rem 5%;
-    margin-top: 4rem;
-    text-align: center;
-  }
-  .ps-payment__inner {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  .ps-payment__label {
-    font-family: 'Archivo', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.22em;
-    color: var(--g-gold);
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
-  .ps-payment__title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
-    font-weight: 500;
-    color: var(--g-white);
-    margin: 0 0 0.8rem;
-  }
-  .ps-payment__text {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 1.05rem;
-    color: var(--g-soft);
-    line-height: 1.7;
-    max-width: 600px;
-    margin: 0 auto 1.8rem;
-  }
-  .ps-payment__providers {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-    align-items: center;
-    padding-top: 1.4rem;
-    border-top: 1px solid var(--g-rule);
-  }
-  .ps-payment__provider {
-    font-family: 'Archivo', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    color: var(--g-soft);
-    text-transform: uppercase;
-    padding: 0.5rem 1.2rem;
-    border: 1px solid var(--g-gold-border);
-    border-radius: 2px;
-    background: var(--g-gold-dim);
-  }
-  .ps-payment__provider em {
-    font-style: normal;
-    color: var(--g-gold);
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    margin-left: 0.4rem;
-    opacity: 0.8;
-  }
-
-  /* ── WHY MECULS CLOSING BLOCK ───────────────────────────────── */
-  .ps-why {
-    padding: 4rem 5% 5rem;
-    text-align: center;
-  }
-  .ps-why__inner {
-    max-width: 760px;
-    margin: 0 auto;
-  }
-  .ps-why__rule {
-    width: 60px;
-    height: 1px;
-    background: var(--g-gold);
-    margin: 0 auto 2rem;
-    opacity: 0.6;
-  }
-  .ps-why__title {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    font-weight: 500;
-    color: var(--g-white);
-    margin: 0 0 2rem;
-  }
-  .ps-why__para {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem;
-    color: var(--g-soft);
-    line-height: 1.75;
-    margin: 0 0 1.4rem;
-  }
-  .ps-why__para:last-child {
-    margin-bottom: 0;
-  }
-  .ps-why__para strong {
-    font-family: 'Archivo', sans-serif;
-    font-weight: 600;
-    color: var(--g-gold);
-    font-size: 0.95rem;
-    letter-spacing: 0.04em;
-  }
-
-  /* ── RESPONSIVE ─────────────────────────────────────────────── */
-  @media (max-width: 1099px) {
-    .ps-main {
-      grid-template-columns: 200px 1fr;
-      gap: 2.5rem;
+    :root {
+      --ps-bg:        #FAF8F4;
+      --ps-card:      #FFFFFF;
+      --ps-text:      #1F2937;
+      --ps-muted:     #6B7280;
+      --ps-soft:      #4B5563;
+      --ps-rule:      #E5DFD3;
+      --ps-rule-soft: #F0EBE0;
+      --ps-gold:      #B8893E;
+      --ps-gold-soft: #D9B96E;
+      --ps-shadow:    0 2px 8px rgba(31, 41, 55, 0.04);
+      --ps-shadow-h:  0 6px 20px rgba(31, 41, 55, 0.08);
     }
-  }
 
-  @media (max-width: 899px) {
-    .ps-main {
-      grid-template-columns: 1fr;
-      gap: 0;
-      padding: 3rem 5% 1rem;
+    body { background: var(--ps-bg); margin: 0; color: var(--ps-text); }
+
+    .ps-page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 5% 4rem;
     }
+
+    /* HERO */
+    .ps-hero {
+      text-align: center;
+      padding: 2rem 0 2.5rem;
+      border-bottom: 1px solid var(--ps-rule-soft);
+      margin-bottom: 2.5rem;
+    }
+    .ps-hero__eyebrow {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      color: var(--ps-gold);
+      text-transform: uppercase;
+      margin-bottom: 0.7rem;
+    }
+    .ps-hero__title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.7rem, 3vw, 2.3rem);
+      font-weight: 500;
+      line-height: 1.25;
+      margin: 0 0 0.6rem;
+      color: var(--ps-text);
+    }
+    .ps-hero__sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(0.95rem, 1.3vw, 1.05rem);
+      color: var(--ps-soft);
+      max-width: 580px;
+      margin: 0 auto;
+      line-height: 1.55;
+    }
+
+    /* LAYOUT: sticky index left + cards right */
+    .ps-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 3rem;
+    }
+    @media (max-width: 880px) {
+      .ps-layout { grid-template-columns: 1fr; }
+      .ps-index { position: static; }
+    }
+
     .ps-index {
-      position: static;
-      max-height: none;
-      overflow: visible;
-      margin-bottom: 3rem;
-      border-left: none;
-      border-top: 1px solid var(--g-rule);
-      border-bottom: 1px solid var(--g-rule);
-      padding: 1.6rem 0;
+      position: sticky;
+      top: 100px;
+      align-self: start;
+      font-family: 'Archivo', sans-serif;
     }
-    .ps-index__group {
-      margin-bottom: 1.2rem;
+    .ps-index__heading {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ps-gold);
+      text-transform: uppercase;
+      margin: 0 0 1rem;
     }
-  }
+    .ps-index__list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 2rem;
+    }
+    .ps-index__item {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--ps-rule-soft);
+    }
+    .ps-index__item:last-child { border-bottom: none; }
+    .ps-index__link {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: var(--ps-soft);
+      font-size: 0.85rem;
+      transition: color 0.15s;
+    }
+    .ps-index__link:hover { color: var(--ps-text); }
+    .ps-index__num {
+      color: var(--ps-gold);
+      font-weight: 600;
+      font-size: 0.7rem;
+      flex-shrink: 0;
+    }
+    .ps-index__name { flex: 1; line-height: 1.3; }
+    .ps-index__price {
+      color: var(--ps-muted);
+      font-size: 0.75rem;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      flex-shrink: 0;
+    }
 
-  @media (max-width: 640px) {
-    .ps-hero { padding: 3.5rem 5% 3rem; }
-    .ps-card,
-    .ps-story { padding: 1.6rem 1.4rem 1.4rem; }
-    .ps-card__name,
-    .ps-story__name { font-size: 1.3rem; }
-    .ps-card__price,
-    .ps-story__price { font-size: 1.3rem; }
-    .ps-story__narrative {
-      font-size: 1.05rem;
-      padding: 1rem 0 1rem 1rem;
+    /* CARDS */
+    .ps-cards { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .ps-card {
+      background: var(--ps-card);
+      border: 1px solid var(--ps-rule);
+      border-radius: 6px;
+      padding: 1.8rem 2rem;
+      box-shadow: var(--ps-shadow);
+      scroll-margin-top: 100px;
+      transition: box-shadow 0.2s, border-color 0.2s;
     }
-    .ps-story__weeks li {
-      flex-direction: column;
-      gap: 0.3rem;
-    }
-    .ps-story__weeks strong {
-      min-width: 0;
-    }
-    .ps-payment__providers {
+    .ps-card:hover { box-shadow: var(--ps-shadow-h); border-color: var(--ps-gold-soft); }
+
+    .ps-card__head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
       gap: 1rem;
+      margin-bottom: 0.8rem;
+      flex-wrap: wrap;
     }
-  }
+    .ps-card__name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin: 0;
+      color: var(--ps-text);
+    }
+    .ps-card__num {
+      font-family: 'Archivo', sans-serif;
+      color: var(--ps-gold);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      margin-right: 0.6rem;
+    }
+    .ps-card__price-wrap { text-align: right; flex-shrink: 0; }
+    .ps-card__price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: var(--ps-gold);
+      line-height: 1;
+    }
+    .ps-card__gst {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.7rem;
+      color: var(--ps-muted);
+      margin-top: 0.25rem;
+      letter-spacing: 0.04em;
+    }
+    .ps-card__desc {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      color: var(--ps-soft);
+      line-height: 1.55;
+      margin: 0 0 1.2rem;
+    }
+    .ps-card__meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin: 1.2rem 0;
+      font-family: 'Archivo', sans-serif;
+    }
+    @media (max-width: 600px) {
+      .ps-card__meta { grid-template-columns: 1fr; }
+    }
+    .ps-card__meta-block { }
+    .ps-card__meta-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--ps-gold);
+      text-transform: uppercase;
+      margin: 0 0 0.4rem;
+    }
+    .ps-card__meta-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 0.88rem;
+      color: var(--ps-soft);
+      line-height: 1.5;
+    }
+    .ps-card__meta-list li {
+      padding-left: 1rem;
+      position: relative;
+      margin-bottom: 0.35rem;
+    }
+    .ps-card__meta-list li::before {
+      content: "·";
+      position: absolute;
+      left: 0.3rem;
+      color: var(--ps-gold);
+      font-weight: 700;
+    }
 
-  /* ── PRINT ─────────────────────────────────────────────────── */
-  @media print {
-    .global-header,
-    .gh-tagline-sub,
-    .global-footer,
-    .ps-index,
-    .ps-card__cta { display: none; }
-    body {
-      background: #fff;
-      color: #000;
+    .ps-card__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--ps-text);
+      color: var(--ps-card);
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.15s, transform 0.1s;
+      margin-top: 0.5rem;
     }
-    .page { padding-top: 0; }
-    .ps-main {
-      grid-template-columns: 1fr;
-      padding: 1rem;
+    .ps-card__cta:hover { background: var(--ps-gold); }
+    .ps-card__cta:active { transform: translateY(1px); }
+    .ps-card__cta-note {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.85rem;
+      color: var(--ps-muted);
+      margin-top: 0.5rem;
     }
-    .ps-hero__title,
-    .ps-card__name,
-    .ps-story__name,
-    .ps-why__title { color: #000; }
-    .ps-card,
+
+    /* SPECIAL: Career Investigation story block */
     .ps-story {
-      page-break-inside: avoid;
-      border: 1px solid #000;
-      background: #fff;
+      background: var(--ps-card);
+      border: 1px solid var(--ps-gold-soft);
+      border-left: 3px solid var(--ps-gold);
+      border-radius: 6px;
+      padding: 2rem 2.2rem;
+      margin: 1.2rem 0;
     }
-  }
-</style>
+    .ps-story__quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.08rem;
+      line-height: 1.6;
+      color: var(--ps-text);
+      margin: 0;
+    }
+    .ps-story__quote p { margin: 0 0 1rem; }
+    .ps-story__quote p:last-child { margin-bottom: 0; }
+
+    .ps-weeks {
+      margin-top: 1rem;
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.85rem;
+      color: var(--ps-soft);
+    }
+    .ps-weeks__item { margin-bottom: 0.6rem; line-height: 1.5; }
+    .ps-weeks__label {
+      display: inline-block;
+      font-weight: 700;
+      color: var(--ps-gold);
+      width: 4.5rem;
+      letter-spacing: 0.05em;
+      font-size: 0.75rem;
+    }
+
+    /* Safety footer */
+    .ps-safety {
+      text-align: center;
+      margin-top: 3rem;
+      padding: 1.8rem;
+      background: var(--ps-card);
+      border: 1px solid var(--ps-rule);
+      border-radius: 6px;
+    }
+    .ps-safety__title {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--ps-gold);
+      text-transform: uppercase;
+      margin: 0 0 0.6rem;
+    }
+    .ps-safety__text {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--ps-soft);
+      margin: 0;
+      line-height: 1.55;
+    }
+  </style>
 </head>
 <body>
 
-<div class="page">
+<div class="ps-page">
 
-<!-- ═════════════════════════════════════════════════════════════════════
-     CANONICAL HEADER (verbatim from CANONICAL-header.html v6.1)
-     ONLY change per-page: "Paid Services" link below has class="active"
-═════════════════════════════════════════════════════════════════════ -->
+  <!-- HERO -->
+  <header class="ps-hero">
+    <div class="ps-hero__eyebrow">Paid Services</div>
+    <h1 class="ps-hero__title">Honest pricing. No subscriptions. Pick the help you need.</h1>
+    <p class="ps-hero__sub">
+      Six ways MECULS can help you — from a quick CV rewrite to deep career investigation.
+      All prices below are before 18% GST.
+    </p>
+  </header>
 
-<!-- TAGLINE SUB-BAR -->
-<div class="gh-tagline-sub" id="ghTaglineSub">
-  <span class="gh-tagline-sub-text">
-    <strong>Feel Proud:</strong> Choosing to be courageous enough to feel proud of exactly who you are and what your life is &ndash; is seeing you are growing, expanding, and creating a better world
-  </span>
-</div>
+  <!-- LAYOUT: index + cards -->
+  <div class="ps-layout">
 
-<header class="global-header">
-  <a href="index.html" class="gh-logo" aria-label="MECULS home">
-    <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS" loading="eager" width="140" height="36">
-    <span class="gh-logo-text">MECULS</span>
-  </a>
-
-  <nav aria-label="Primary navigation">
-    <ul class="gh-nav gh-nav-wrap">
-
-      <li><a href="about-meculs.html">About MECULS</a></li>
-
-      <li>
-        <a href="how-meculs-works.html">How MECULS Works
-          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <ul class="gh-dropdown">
-          <li><a href="how-meculs-works.html">How MECULS Works</a></li>
-          <li><a href="the-journey.html">The Journey</a></li>
-          <li><a href="contexts.html">Contexts</a></li>
-          <li><a href="source-of-challenges.html">Source of Challenges</a></li>
-          <li><a href="contemplative-practices.html">Contemplative Practices</a></li>
-        </ul>
-      </li>
-
-      <li>
-        <a href="services.html">Services
-          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <ul class="gh-dropdown">
-          <li><a href="services.html">All Services</a></li>
-          <li><a href="corporate-programs.html">Corporate Programmes</a></li>
-          <li><a href="360-pulse-rate.html">360&deg; PULSE RATE&trade;</a></li>
-          <li><a href="service-personality-profiling.html">Personality Profiling</a></li>
-          <li><a href="service-executive-search.html">Executive Search</a></li>
-          <li><a href="bespoke-coaching.html">Executive Coaching &ndash; Bespoke</a></li>
-          <li><a href="service-hr-analytics.html">HR Analytics</a></li>
-          <li><a href="service-data-science-analytics.html">Data Science &amp; Analytics</a></li>
-          <li><a href="service-market-actionable-intelligence.html">Market Intelligence</a></li>
-          <li><a href="organisational-health-consulting.html">Organisational Health</a></li>
-          <li class="gh-dropdown-divider" aria-hidden="true"></li>
-          <li><a href="individual-services.html">Individual &amp; Wellness</a></li>
-          <li><a href="service-consciousness-clarity.html">Consciousness &amp; Clarity</a></li>
-          <li><a href="service-mind-wellness.html">Mind Wellness</a></li>
-          <li><a href="service-addiction-freedom.html">Addiction Freedom</a></li>
-          <li><a href="service-counselling.html">Counselling</a></li>
-          <li><a href="service-children.html">For Children</a></li>
-          <li><a href="service-zero-state-meditation.html">Meditation as Medicine</a></li>
-        </ul>
-      </li>
-
-      <li>
-        <a href="the-approach.html">The Approach
-          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <ul class="gh-dropdown">
-          <li><a href="the-approach.html">The Approach</a></li>
-          <li><a href="why-meculs.html">Why MECULS</a></li>
-          <li><a href="why-mynd-care.html">Why Mynd CARE</a></li>
-          <li><a href="our-work-proof.html">Our Work Proof</a></li>
-        </ul>
-      </li>
-
-      <li><a href="insights.html">Insights</a></li>
-      <li><a href="about-rajneesh-jain.html">The Founder</a></li>
-      <li><a href="cv-portal.html">The CV Portal</a></li>
-      <li><a href="paid-services.html">Paid Services</a></li>
-      <li><a href="begin-conversation.html" class="gh-cta">Begin a Conversation</a></li>
-
-      <li class="gh-login-wrap">
-        <a href="login.html" class="gh-login-icon" aria-label="Sign in or register for The CV Portal" aria-haspopup="true" aria-expanded="false">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-            <circle cx="12" cy="7" r="4"/>
-          </svg>
-        </a>
-        <ul class="gh-login-dropdown" role="menu" aria-label="The CV Portal account">
-          <li class="gh-login-dropdown-label">The CV Portal</li>
-          <li role="none"><a href="login.html" role="menuitem">CV Portal &ndash; Login</a></li>
-          <li role="none"><a href="register.html" role="menuitem">CV Portal &ndash; Register</a></li>
-        </ul>
-      </li>
-
-    </ul>
-  </nav>
-
-  <button class="gh-toggle" id="ghToggle" aria-label="Open navigation" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
-</header>
-
-<div class="gh-mobile-menu" id="ghMobileMenu" role="dialog" aria-label="Mobile navigation">
-  <ul class="gh-mobile-nav">
-
-    <li><a href="about-meculs.html">About MECULS</a></li>
-
-    <li>
-      <a href="how-meculs-works.html">How MECULS Works</a>
-      <ul class="gh-mobile-sub">
-        <li><a href="how-meculs-works.html">How MECULS Works</a></li>
-        <li><a href="the-journey.html">The Journey</a></li>
-        <li><a href="contexts.html">Contexts</a></li>
-        <li><a href="source-of-challenges.html">Source of Challenges</a></li>
-        <li><a href="contemplative-practices.html">Contemplative Practices</a></li>
-      </ul>
-    </li>
-
-    <li>
-      <a href="services.html">Services</a>
-      <ul class="gh-mobile-sub">
-        <li><a href="services.html">All Services</a></li>
-        <li><a href="corporate-programs.html">Corporate Programmes</a></li>
-        <li><a href="360-pulse-rate.html">360&deg; PULSE RATE&trade;</a></li>
-        <li><a href="service-personality-profiling.html">Personality Profiling</a></li>
-        <li><a href="service-executive-search.html">Executive Search</a></li>
-        <li><a href="bespoke-coaching.html">Executive Coaching &ndash; Bespoke</a></li>
-        <li><a href="service-hr-analytics.html">HR Analytics</a></li>
-        <li><a href="service-data-science-analytics.html">Data Science &amp; Analytics</a></li>
-        <li><a href="service-market-actionable-intelligence.html">Market Intelligence</a></li>
-        <li><a href="organisational-health-consulting.html">Organisational Health</a></li>
-        <li><a href="individual-services.html">Individual &amp; Wellness</a></li>
-        <li><a href="service-consciousness-clarity.html">Consciousness &amp; Clarity</a></li>
-        <li><a href="service-mind-wellness.html">Mind Wellness</a></li>
-        <li><a href="service-addiction-freedom.html">Addiction Freedom</a></li>
-        <li><a href="service-counselling.html">Counselling</a></li>
-        <li><a href="service-children.html">For Children</a></li>
-        <li><a href="service-zero-state-meditation.html">Meditation as Medicine</a></li>
-      </ul>
-    </li>
-
-    <li>
-      <a href="the-approach.html">The Approach</a>
-      <ul class="gh-mobile-sub">
-        <li><a href="the-approach.html">The Approach</a></li>
-        <li><a href="why-meculs.html">Why MECULS</a></li>
-        <li><a href="why-mynd-care.html">Why Mynd CARE</a></li>
-        <li><a href="our-work-proof.html">Our Work Proof</a></li>
-      </ul>
-    </li>
-
-    <li><a href="insights.html">Insights</a></li>
-    <li><a href="about-rajneesh-jain.html">The Founder</a></li>
-    <li><a href="cv-portal.html">The CV Portal</a></li>
-    <li><a href="paid-services.html">Paid Services</a></li>
-    <li><a href="login.html">CV Portal &ndash; Login</a></li>
-    <li><a href="register.html">CV Portal &ndash; Register</a></li>
-  </ul>
-  <a href="begin-conversation.html" class="gh-mobile-cta">Begin a Conversation</a>
-</div>
-
-<!-- ═════════════════════════════════════════════════════════════════════
-     HERO
-═════════════════════════════════════════════════════════════════════ -->
-<section class="ps-hero">
-  <div class="ps-hero__eyebrow">Paid Services</div>
-  <h1 class="ps-hero__title">Six ways MECULS can <em>help you.</em></h1>
-  <p class="ps-hero__sub">Honest pricing. No upsells. No subscription traps. Pick the help you actually need.</p>
-  <div class="ps-hero__rule"></div>
-</section>
-
-<!-- ═════════════════════════════════════════════════════════════════════
-     MAIN — Sticky left index + product blocks
-═════════════════════════════════════════════════════════════════════ -->
-<div class="ps-main">
-
-  <!-- ═══ STICKY LEFT INDEX ═══ -->
-  <aside class="ps-index" aria-label="Services index">
-
-    <div class="ps-index__group">
-      <div class="ps-index__label">Self-Serve</div>
+    <!-- STICKY LEFT INDEX -->
+    <aside class="ps-index" aria-label="Services list">
+      <div class="ps-index__heading">All Services</div>
       <ul class="ps-index__list">
-        <li>
-          <a href="#cv-upgrade" data-target="cv-upgrade">
-            <span class="ps-index__num">01</span><span class="ps-index__name">CV Upgrade</span>
-            <span class="ps-index__price">&#8377;149</span>
+        <li class="ps-index__item">
+          <a class="ps-index__link" href="#cv-upgrade">
+            <span class="ps-index__num">01</span>
+            <span class="ps-index__name">CV Upgrade</span>
+            <span class="ps-index__price">₹149</span>
           </a>
         </li>
-        <li>
-          <a href="#workshop" data-target="workshop">
-            <span class="ps-index__num">02</span><span class="ps-index__name">Honest CV Workshop</span>
-            <span class="ps-index__price">&#8377;499</span>
+        <li class="ps-index__item">
+          <a class="ps-index__link" href="#single-coaching">
+            <span class="ps-index__num">02</span>
+            <span class="ps-index__name">Single Coaching</span>
+            <span class="ps-index__price">₹1,449</span>
           </a>
         </li>
-      </ul>
-    </div>
-
-    <div class="ps-index__group">
-      <div class="ps-index__label">1-on-1 Coaching</div>
-      <ul class="ps-index__list">
-        <li>
-          <a href="#coaching-single" data-target="coaching-single">
-            <span class="ps-index__num">03</span><span class="ps-index__name">Single Session</span>
-            <span class="ps-index__price">&#8377;1,499</span>
+        <li class="ps-index__item">
+          <a class="ps-index__link" href="#coaching-block">
+            <span class="ps-index__num">03</span>
+            <span class="ps-index__name">4-Session Block</span>
+            <span class="ps-index__price">₹5,999</span>
           </a>
         </li>
-        <li>
-          <a href="#coaching-block" data-target="coaching-block">
-            <span class="ps-index__num">04</span><span class="ps-index__name">4-Session Block</span>
-            <span class="ps-index__price">&#8377;5,999</span>
+        <li class="ps-index__item">
+          <a class="ps-index__link" href="#retainer">
+            <span class="ps-index__num">04</span>
+            <span class="ps-index__name">3-Month Retainer</span>
+            <span class="ps-index__price">₹11,999</span>
           </a>
         </li>
-        <li>
-          <a href="#coaching-retainer" data-target="coaching-retainer">
-            <span class="ps-index__num">05</span><span class="ps-index__name">3-Month Retainer</span>
-            <span class="ps-index__price">&#8377;11,999</span>
+        <li class="ps-index__item">
+          <a class="ps-index__link" href="#career-investigation">
+            <span class="ps-index__num">05</span>
+            <span class="ps-index__name">Career Investigation</span>
+            <span class="ps-index__price">₹699</span>
           </a>
         </li>
-      </ul>
-    </div>
-
-    <div class="ps-index__group">
-      <div class="ps-index__label">Deeper Work</div>
-      <ul class="ps-index__list">
-        <li>
-          <a href="#career-investigation" data-target="career-investigation">
-            <span class="ps-index__num">06</span><span class="ps-index__name">Career Investigation</span>
-            <span class="ps-index__price">&#8377;699</span>
+        <li class="ps-index__item">
+          <a class="ps-index__link" href="#personality-profiling">
+            <span class="ps-index__num">06</span>
+            <span class="ps-index__name">Personality Profiling</span>
+            <span class="ps-index__price">₹9,499</span>
           </a>
         </li>
       </ul>
-    </div>
+    </aside>
 
-  </aside>
+    <!-- CARDS COLUMN -->
+    <main class="ps-cards">
 
-  <!-- ═══ MAIN CONTENT (PRODUCT BLOCKS) ═══ -->
-  <div class="ps-content">
-
-    <!-- ─── SECTION 1: SELF-SERVE ─── -->
-    <section class="ps-section" id="self-serve">
-      <div class="ps-section__label">Self-Serve</div>
-      <h2 class="ps-section__title">Fix your CV yourself &mdash; with help.</h2>
-      <p class="ps-section__sub">For people who want to fix their own CV but don't know what's wrong with it.</p>
-
-      <!-- 01: CV Upgrade -->
-      <article class="ps-card" id="cv-upgrade">
-        <div class="ps-card__head">
-          <h3 class="ps-card__name">01 &middot; CV Upgrade</h3>
-          <div class="ps-card__price">&#8377;149</div>
-        </div>
-        <div class="ps-card__meta">One CV &middot; Delivered in 60 seconds</div>
+      <!-- 01. CV UPGRADE -->
+      <article id="cv-upgrade" class="ps-card">
+        <header class="ps-card__head">
+          <h2 class="ps-card__name"><span class="ps-card__num">01</span>CV Upgrade</h2>
+          <div class="ps-card__price-wrap">
+            <div class="ps-card__price">₹149</div>
+            <div class="ps-card__gst">+ 18% GST</div>
+          </div>
+        </header>
         <p class="ps-card__desc">
-          Your AI-written CV probably sounds impressive and says nothing. We rewrite it in clean professional language and insert specific questions exactly where your CV is hiding facts &mdash; so you finish it yourself, but with the right structure and the right words.
+          Your AI-written CV probably sounds impressive and says nothing. We rewrite it in
+          clean, professional language &mdash; and insert bracketed questions wherever the
+          original is vague, so you can finish what's actually missing.
         </p>
-        <div class="ps-card__row">
-          <div class="ps-card__row-label">Who it's for</div>
-          <div class="ps-card__row-text">Anyone who has used ChatGPT, Gemini, or any AI tool to build their CV and isn't sure if it's actually good.</div>
+        <div class="ps-card__meta">
+          <div class="ps-card__meta-block">
+            <p class="ps-card__meta-label">Who it's for</p>
+            <ul class="ps-card__meta-list">
+              <li>Freshers with AI-written CVs that sound generic</li>
+              <li>Working professionals whose CV hasn't been touched in years</li>
+              <li>Anyone who needs a CV that sounds like a person, not a template</li>
+            </ul>
+          </div>
+          <div class="ps-card__meta-block">
+            <p class="ps-card__meta-label">What you get</p>
+            <ul class="ps-card__meta-list">
+              <li>Your CV rewritten in plain professional language</li>
+              <li>Bracketed prompts where information is missing</li>
+              <li>Delivered to your inbox within 24 working hours</li>
+            </ul>
+          </div>
         </div>
-        <div class="ps-card__row">
-          <div class="ps-card__row-label">What you get</div>
-          <ul class="ps-card__list">
-            <li>Your CV rewritten in plain professional language</li>
-            <li>Bracketed questions inserted at every gap (e.g., "Led [TEAM SIZE] across [HOW MANY MARKETS], delivering [WHAT SPECIFIC OUTCOME]")</li>
-            <li>A downloadable Google Drive link to your upgraded CV</li>
-            <li>Link valid for 30 days, then auto-deleted</li>
-          </ul>
-        </div>
-        <a class="ps-card__cta" href="RAZORPAY_CV_UPGRADE" data-product="cv-upgrade">
-          Buy now &middot; &#8377;149
-          <svg class="ps-card__cta-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h8M7 3l4 4-4 4"/></svg>
-        </a>
+        <a class="ps-card__cta" href="https://rzp.io/rzp/pV64OmoD">Pay &amp; submit CV &rarr;</a>
       </article>
 
-      <!-- 02: Honest CV Workshop -->
-      <article class="ps-card" id="workshop">
-        <div class="ps-card__head">
-          <h3 class="ps-card__name">02 &middot; Honest CV Workshop</h3>
-          <div class="ps-card__price">&#8377;499</div>
-        </div>
-        <div class="ps-card__meta">60&ndash;90 minutes &middot; Guided, self-paced</div>
+      <!-- 02. SINGLE COACHING -->
+      <article id="single-coaching" class="ps-card">
+        <header class="ps-card__head">
+          <h2 class="ps-card__name"><span class="ps-card__num">02</span>Single Coaching Session</h2>
+          <div class="ps-card__price-wrap">
+            <div class="ps-card__price">₹1,449</div>
+            <div class="ps-card__gst">+ 18% GST</div>
+          </div>
+        </header>
         <p class="ps-card__desc">
-          A structured online experience that walks you through rebuilding your CV one bullet at a time &mdash; not by giving you answers, but by asking you the questions a tough hiring manager would ask. By the end, you'll have a CV you wrote yourself, in plain language, that can survive a real interview.
+          A 60-minute confidential 1-on-1 video call with Rajneesh. Bring whatever's on
+          your mind. No agenda required.
         </p>
-        <div class="ps-card__row">
-          <div class="ps-card__row-label">Who it's for</div>
-          <div class="ps-card__row-text">People who want to do the work themselves but don't know what good looks like. Freshers, mid-career professionals, and anyone tired of CV templates that don't fit them.</div>
+        <div class="ps-card__meta">
+          <div class="ps-card__meta-block">
+            <p class="ps-card__meta-label">Who it's for</p>
+            <ul class="ps-card__meta-list">
+              <li>Professionals facing a specific decision or block</li>
+              <li>People who want one good conversation before deciding next steps</li>
+              <li>Anyone who'd rather try one session than commit to a programme</li>
+            </ul>
+          </div>
+          <div class="ps-card__meta-block">
+            <p class="ps-card__meta-label">What you get</p>
+            <ul class="ps-card__meta-list">
+              <li>One 60-minute Google Meet session</li>
+              <li>Full confidentiality &mdash; no recordings, no notes shared</li>
+              <li>Email summary if you want one</li>
+            </ul>
+          </div>
         </div>
-        <div class="ps-card__row">
-          <div class="ps-card__row-label">What you get</div>
-          <ul class="ps-card__list">
-            <li>Six guided stages: hire-purpose, actual actions, outcomes, numbers, plain-language rewrite, side-by-side comparison</li>
-            <li>Your progress saved automatically &mdash; resume anytime</li>
-            <li>A downloadable PDF of your reworked CV at the end</li>
-            <li>Unlimited access for 30 days</li>
-          </ul>
-        </div>
-        <a class="ps-card__cta" href="RAZORPAY_WORKSHOP" data-product="workshop">
-          Start workshop &middot; &#8377;499
-          <svg class="ps-card__cta-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h8M7 3l4 4-4 4"/></svg>
-        </a>
-      </article>
-    </section>
-
-    <!-- ─── SECTION 2: 1-ON-1 ─── -->
-    <section class="ps-section" id="one-on-one">
-      <div class="ps-section__label">1-on-1 with Rajneesh</div>
-      <h2 class="ps-section__title">Talk to a real coach. <em>In confidence.</em></h2>
-      <p class="ps-section__sub">ICF certified. Harvard certified. 20+ years across BCG, Strides Pharma, and GMR Group.</p>
-
-      <!-- 03: Coaching Single Session -->
-      <article class="ps-card" id="coaching-single">
-        <div class="ps-card__head">
-          <h3 class="ps-card__name">03 &middot; Single Coaching Session</h3>
-          <div class="ps-card__price">&#8377;1,499</div>
-        </div>
-        <div class="ps-card__meta">60 minutes &middot; 1-on-1 &middot; Confidential</div>
-        <p class="ps-card__desc">
-          One focused hour to think through a specific question with someone who has no agenda except helping you. No frameworks, no homework, no follow-up sales pitch &mdash; just a real conversation about the thing you're stuck on.
-        </p>
-        <div class="ps-card__row">
-          <div class="ps-card__row-label">Who it's for</div>
-          <div class="ps-card__row-text">People at a decision point. A job offer to evaluate. A conversation to prepare for. A career move to think through.</div>
-        </div>
-        <div class="ps-card__row">
-          <div class="ps-card__row-label">What you get</div>
-          <ul class="ps-card__list">
-            <li>60-minute video call</li>
-            <li>Full confidentiality &mdash; no recordings, no notes shared</li>
-            <li>Your time, your agenda, your pace</li>
-          </ul>
-        </div>
-        <a class="ps-card__cta" href="RAZORPAY_COACHING_SINGLE" data-product="coaching-single">
-          Book a session &middot; &#8377;1,499
-          <svg class="ps-card__cta-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h8M7 3l4 4-4 4"/></svg>
-        </a>
+        <a class="ps-card__cta" href="https://rzp.io/rzp/7pDO2Rg">Pay &amp; book session &rarr;</a>
       </article>
 
-      <!-- 04: 4-Session Coaching Block -->
-      <article class="ps-card" id="coaching-block">
-        <div class="ps-card__head">
-          <h3 class="ps-card__name">04 &middot; 4-Session Coaching Block</h3>
-          <div class="ps-card__price">&#8377;5,999</div>
-        </div>
-        <div class="ps-card__meta">4 &times; 60 minutes &middot; Over 4&ndash;8 weeks</div>
+      <!-- 03. 4-SESSION COACHING BLOCK -->
+      <article id="coaching-block" class="ps-card">
+        <header class="ps-card__head">
+          <h2 class="ps-card__name"><span class="ps-card__num">03</span>4-Session Coaching Block</h2>
+          <div class="ps-card__price-wrap">
+            <div class="ps-card__price">₹5,999</div>
+            <div class="ps-card__gst">+ 18% GST</div>
+          </div>
+        </header>
         <p class="ps-card__desc">
-          Some problems don't solve in one hour. This block gives you four sessions across a month or two &mdash; enough time to think through a transition, prepare for something big, or work on something that needs more than one conversation.
+          Four 60-minute coaching sessions over 4&ndash;8 weeks. For when one session
+          isn't enough &mdash; when the work needs continuity.
         </p>
-        <div class="ps-card__row">
-          <div class="ps-card__row-label">Who it's for</div>
-          <div class="ps-card__row-text">People navigating a real change &mdash; career switch, new role, team conflict, leadership challenge. Or anyone who wants a consistent thinking partner over a few weeks.</div>
+        <div class="ps-card__meta">
+          <div class="ps-card__meta-block">
+            <p class="ps-card__meta-label">Who it's for</p>
+            <ul class="ps-card__meta-list">
+              <li>People working through a transition that needs time</li>
+              <li>Anyone whose pattern needs more than one conversation to surface</li>
+              <li>Professionals committing to real movement</li>
+            </ul>
+          </div>
+          <div class="ps-card__meta-block">
+            <p class="ps-card__meta-label">What you get</p>
+            <ul class="ps-card__meta-list">
+              <li>4 &times; 60-minute Google Meet sessions</li>
+              <li>Booked at your pace &mdash; weekly, fortnightly, or as needed</li>
+              <li>Continuity of context across sessions</li>
+            </ul>
+          </div>
         </div>
-        <div class="ps-card__row">
-          <div class="ps-card__row-label">What you get</div>
-          <ul class="ps-card__list">
-            <li>Four 60-minute video calls, scheduled at your pace</li>
-            <li>Same confidentiality &mdash; nothing leaves the room</li>
-            <li>Whatever you want to work on, no fixed curriculum</li>
-          </ul>
-        </div>
-        <a class="ps-card__cta" href="RAZORPAY_COACHING_BLOCK" data-product="coaching-block">
-          Book the block &middot; &#8377;5,999
-          <svg class="ps-card__cta-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h8M7 3l4 4-4 4"/></svg>
-        </a>
+        <a class="ps-card__cta" href="https://rzp.io/rzp/D65HynP8">Pay &amp; book first session &rarr;</a>
       </article>
 
-      <!-- 05: 3-Month Retainer -->
-      <article class="ps-card" id="coaching-retainer">
-        <div class="ps-card__head">
-          <h3 class="ps-card__name">05 &middot; 3-Month Coaching Retainer</h3>
-          <div class="ps-card__price">&#8377;11,999</div>
-        </div>
-        <div class="ps-card__meta">3 months &middot; 1-on-1 &middot; Confidential</div>
+      <!-- 04. 3-MONTH RETAINER -->
+      <article id="retainer" class="ps-card">
+        <header class="ps-card__head">
+          <h2 class="ps-card__name"><span class="ps-card__num">04</span>3-Month Coaching Retainer</h2>
+          <div class="ps-card__price-wrap">
+            <div class="ps-card__price">₹11,999</div>
+            <div class="ps-card__gst">+ 18% GST</div>
+          </div>
+        </header>
         <p class="ps-card__desc">
-          A standing relationship for people whose challenges don't fit neatly into single sessions. Monthly calls plus the ability to message between calls when something urgent comes up.
+          Three monthly 60-minute calls plus email/WhatsApp access between sessions. For
+          sustained work where access matters as much as the sessions themselves.
         </p>
-        <div class="ps-card__row">
-          <div class="ps-card__row-label">Who it's for</div>
-          <div class="ps-card__row-text">Founders, senior leaders, and professionals in long transitions who want a steady thinking partner across the quarter &mdash; not just one-off sessions.</div>
+        <div class="ps-card__meta">
+          <div class="ps-card__meta-block">
+            <p class="ps-card__meta-label">Who it's for</p>
+            <ul class="ps-card__meta-list">
+              <li>Senior professionals navigating long transitions</li>
+              <li>People building a new venture or new role over time</li>
+              <li>Anyone who needs steady accompaniment, not just sessions</li>
+            </ul>
+          </div>
+          <div class="ps-card__meta-block">
+            <p class="ps-card__meta-label">What you get</p>
+            <ul class="ps-card__meta-list">
+              <li>3 &times; 60-minute monthly sessions</li>
+              <li>Email and WhatsApp access between sessions</li>
+              <li>Sustained context across the full three months</li>
+            </ul>
+          </div>
         </div>
-        <div class="ps-card__row">
-          <div class="ps-card__row-label">What you get</div>
-          <ul class="ps-card__list">
-            <li>Monthly 60-minute calls (3 in total)</li>
-            <li>Email/WhatsApp access between calls for short check-ins</li>
-            <li>Full confidentiality across the relationship</li>
-          </ul>
-        </div>
-        <a class="ps-card__cta" href="RAZORPAY_COACHING_RETAINER" data-product="coaching-retainer">
-          Start retainer &middot; &#8377;11,999
-          <svg class="ps-card__cta-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h8M7 3l4 4-4 4"/></svg>
-        </a>
+        <a class="ps-card__cta" href="https://rzp.io/rzp/JNeDXqR">Pay &amp; start retainer &rarr;</a>
       </article>
-    </section>
 
-    <!-- ─── SECTION 3: CAREER INVESTIGATION ─── -->
-    <section class="ps-section" id="deeper-work">
-      <div class="ps-section__label">Find Your Core</div>
-      <h2 class="ps-section__title">For people who can't answer <em>"what do I want."</em></h2>
-      <p class="ps-section__sub">A different kind of process for a different kind of problem.</p>
+      <!-- 05. CAREER INVESTIGATION (special editorial treatment) -->
+      <article id="career-investigation" class="ps-card">
+        <header class="ps-card__head">
+          <h2 class="ps-card__name"><span class="ps-card__num">05</span>Career Investigation</h2>
+          <div class="ps-card__price-wrap">
+            <div class="ps-card__price">₹699</div>
+            <div class="ps-card__gst">+ 18% GST</div>
+          </div>
+        </header>
+        <p class="ps-card__desc">
+          A 4-week structured discovery process built on Rajneesh's own 40-year search
+          for purpose. Find your core, not by asking yourself, but by doing &mdash; with
+          someone who has walked this road.
+        </p>
 
-      <article class="ps-story" id="career-investigation">
-        <div class="ps-story__head">
-          <h3 class="ps-story__name">06 &middot; Career Investigation</h3>
-          <div class="ps-story__price">&#8377;699</div>
-        </div>
-        <div class="ps-story__meta">4 weeks &middot; Guided process &middot; Includes 4 calls</div>
-
-        <div class="ps-story__narrative">
-          <p>I spent 40 years asking myself what I wanted from my career. I had every credential people told me to chase &mdash; top schools, ICF certification, Harvard certification, years at BCG and across industry. None of it answered the question.</p>
-          <p>At 51, I finally found my answer &mdash; not by asking myself, but by doing. By building things. By watching what pulled me in and what drained me. It turned out my core was &ldquo;investigative mind&rdquo; &mdash; I'm someone who creates new things through investigation. No questionnaire would have told me that. No coach would have either. I had to discover it through evidence.</p>
-          <p>This is the process I wish someone had given me at 35.</p>
-        </div>
-
-        <div class="ps-story__section">
-          <div class="ps-card__row-label">What it is</div>
-          <div class="ps-card__row-text">
-            A 4-week structured discovery process for people who can't answer the question &ldquo;what do I actually want from my career&rdquo; &mdash; because most career advice assumes you already know. Most people don't. Instead of filling out personality tests, you do small experiments each week. We then look at what happened. The pattern emerges from the evidence, not from the questionnaire.
+        <!-- Story block -->
+        <div class="ps-story">
+          <div class="ps-story__quote">
+            <p>"I spent 40 years asking myself what I wanted from my career. I had every
+            credential people told me to chase &mdash; top schools, ICF certification,
+            Harvard certification, years at BCG and across industry. None of it answered
+            the question.</p>
+            <p>At 51, I finally found my answer &mdash; not by asking myself, but by doing.
+            By building things. By watching what pulled me in and what drained me. It
+            turned out my core was 'investigative mind' &mdash; I'm someone who creates
+            new things through investigation. No questionnaire would have told me that.
+            No coach would have either. I had to discover it through evidence.</p>
+            <p>This is the process I wish someone had given me at 35."</p>
+          </div>
+          <div class="ps-weeks">
+            <div class="ps-weeks__item"><span class="ps-weeks__label">Week 1</span> 60-min call. The questions nobody asked you. Leave with 5&ndash;7 experiments to run that week.</div>
+            <div class="ps-weeks__item"><span class="ps-weeks__label">Week 2</span> 45-min debrief. What gave energy. What didn't. New experiments.</div>
+            <div class="ps-weeks__item"><span class="ps-weeks__label">Week 3</span> Same. The pattern starts naming itself.</div>
+            <div class="ps-weeks__item"><span class="ps-weeks__label">Week 4</span> 60-min synthesis. Using 3 weeks of evidence, name your core.</div>
           </div>
         </div>
 
-        <div class="ps-story__section">
-          <div class="ps-card__row-label">The 4 weeks</div>
-          <ul class="ps-story__weeks">
-            <li><strong>Week 1</strong> A 60-min call where I don't give you answers. I ask the questions nobody asked you. You leave with 5&ndash;7 small experiments to do during the week.</li>
-            <li><strong>Week 2</strong> 45-min debrief. What gave you energy? What didn't? New experiments based on what we found.</li>
-            <li><strong>Week 3</strong> Same. The pattern starts naming itself.</li>
-            <li><strong>Week 4</strong> 60-min synthesis call. Using three weeks of evidence from your own life, we name what your core actually is.</li>
-          </ul>
-        </div>
+        <a class="ps-card__cta" href="https://cal.eu/meculs-founder-rajneesh-jain/investigation-screening">
+          Book a free 20-min screening &rarr;
+        </a>
+        <span class="ps-card__cta-note">
+          Free screening first. Payment only if Rajneesh accepts you as a fit.
+        </span>
+      </article>
 
-        <div class="ps-story__section">
-          <div class="ps-card__row-label">Who it's for</div>
-          <div class="ps-card__row-text">
-            People who feel stuck, who've tried tests and frameworks and &ldquo;follow your passion&rdquo; advice, and none of it worked. People who need someone who has been stuck &mdash; not someone who's read a book about it.
+      <!-- 06. PERSONALITY PROFILING -->
+      <article id="personality-profiling" class="ps-card">
+        <header class="ps-card__head">
+          <h2 class="ps-card__name"><span class="ps-card__num">06</span>Personality Profiling</h2>
+          <div class="ps-card__price-wrap">
+            <div class="ps-card__price">₹9,499</div>
+            <div class="ps-card__gst">+ 18% GST</div>
+          </div>
+        </header>
+        <p class="ps-card__desc">
+          You send a CV or LinkedIn profile of any person. Rajneesh produces a personality
+          profile of them in one day. No questionnaire &mdash; read entirely from their
+          visible work history and how they describe it.
+        </p>
+        <div class="ps-card__meta">
+          <div class="ps-card__meta-block">
+            <p class="ps-card__meta-label">Who it's for</p>
+            <ul class="ps-card__meta-list">
+              <li>Hiring managers about to make a senior offer</li>
+              <li>Founders considering a co-founder or first hire</li>
+              <li>Anyone weighing a big partnership decision</li>
+            </ul>
+          </div>
+          <div class="ps-card__meta-block">
+            <p class="ps-card__meta-label">What you get</p>
+            <ul class="ps-card__meta-list">
+              <li>A 30-min discovery call (free, before payment)</li>
+              <li>A written personality profile delivered within 1 working day of payment</li>
+              <li>Read directly from CV/LinkedIn evidence &mdash; no assessments needed</li>
+            </ul>
           </div>
         </div>
-
-        <div class="ps-story__section">
-          <div class="ps-card__row-label">What you get</div>
-          <ul class="ps-card__list">
-            <li>4 video calls (60 + 45 + 45 + 60 minutes) over 4 weeks</li>
-            <li>Structured experiments designed for your situation</li>
-            <li>A written summary at the end naming what your core is</li>
-            <li>Full confidentiality &mdash; nothing leaves the conversation</li>
-          </ul>
-        </div>
-
-        <a class="ps-card__cta" href="RAZORPAY_CAREER_INVESTIGATION" data-product="career-investigation">
-          Apply for Career Investigation &middot; &#8377;699
-          <svg class="ps-card__cta-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h8M7 3l4 4-4 4"/></svg>
+        <a class="ps-card__cta" href="https://cal.eu/meculs-founder-rajneesh-jain/personality-profiling">
+          Book a free 30-min discovery call &rarr;
         </a>
-        <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.95rem; color: var(--g-muted); margin-top: 1rem;">
-          Includes a short 20-minute screening call before we begin.
-        </div>
+        <span class="ps-card__cta-note">
+          Free call first. Payment link sent only if both agree to proceed.
+        </span>
       </article>
-    </section>
 
-  </div><!-- /.ps-content -->
-
-</div><!-- /.ps-main -->
-
-<!-- ═════════════════════════════════════════════════════════════════════
-     PAYMENT SAFETY BANNER
-═════════════════════════════════════════════════════════════════════ -->
-<section class="ps-payment">
-  <div class="ps-payment__inner">
-    <div class="ps-payment__label">Safe &amp; Secure Payments</div>
-    <h2 class="ps-payment__title">Pay with confidence.</h2>
-    <p class="ps-payment__text">
-      All payments are processed through India's most trusted payment gateways. Your card details, bank information, and personal data are encrypted end-to-end &mdash; MECULS never sees or stores them.
-    </p>
-    <div class="ps-payment__providers">
-      <div class="ps-payment__provider">Razorpay <em>Primary</em></div>
-      <div class="ps-payment__provider">PayU Biz <em>On request</em></div>
-      <div class="ps-payment__provider">PayPal <em>International</em></div>
-    </div>
-  </div>
-</section>
-
-<!-- ═════════════════════════════════════════════════════════════════════
-     WHY MECULS
-═════════════════════════════════════════════════════════════════════ -->
-<section class="ps-why">
-  <div class="ps-why__inner">
-    <div class="ps-why__rule"></div>
-    <h2 class="ps-why__title">Why MECULS</h2>
-    <p class="ps-why__para">
-      MECULS is built by <strong>Rajneesh Jain</strong> &mdash; ICF certified coach, Harvard certified, with senior roles across BCG, Strides Pharma, and GMR Group.
-    </p>
-    <p class="ps-why__para">
-      Everything you tell us stays between us. No recordings. No shared notes. Your data is governed by India's DPDP Act &mdash; see our <a href="privacy-policy.html" style="color: var(--g-gold); text-decoration: none;">Privacy Policy</a> for the full commitment.
-    </p>
-    <p class="ps-why__para">
-      We don't sell subscriptions you forget about. We don't upsell. We don't lock you into anything. Pay once, get what you paid for, leave when you're done.
-    </p>
-  </div>
-</section>
-
-<!-- ═════════════════════════════════════════════════════════════════════
-     CANONICAL FOOTER (verbatim from CANONICAL-footer.html v3)
-═════════════════════════════════════════════════════════════════════ -->
-
-<footer class="global-footer">
-
-  <div class="gf-top">
-
-    <div class="gf-brand">
-      <div class="gf-logo">
-        <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS" width="140" height="32">
-        <span class="gf-logo-text" style="display:none">MECULS</span>
-      </div>
-      <p class="gf-tagline">Mind Enablement Centre for Unlocking Limitless Leadership &amp; Self-Potential</p>
-      <div class="gf-contact">
-        <a href="mailto:Jain.Rajneesh@meculs.com">Jain.Rajneesh@meculs.com</a>
-        <a href="https://www.meculs.com">www.meculs.com</a>
-        <span>Delhi, India</span>
-      </div>
-      <div class="gf-social">
-        <a href="https://www.linkedin.com/in/rajneesh-jain-meculs" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-        </a>
-        <a href="https://www.youtube.com/@meculs" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.33zM9.75 15.02V8.48l5.75 3.27z"/></svg>
-        </a>
-        <a href="https://www.instagram.com/meculs_official" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg>
-        </a>
-        <a href="https://x.com/meculs_official" aria-label="X / Twitter" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        </a>
-        <a href="https://www.facebook.com/meculs" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
-        </a>
-      </div>
-    </div>
-
-    <div>
-      <span class="gf-col-title">Services</span>
-      <ul class="gf-links">
-        <li><a href="360-pulse-rate.html">360&deg; PULSE RATE&trade;</a></li>
-        <li><a href="service-personality-profiling.html">Personality Profiling</a></li>
-        <li><a href="bespoke-coaching.html">Executive Coaching &ndash; Bespoke</a></li>
-        <li><a href="corporate-programs.html">Corporate Programmes</a></li>
-        <li><a href="service-executive-search.html">Executive Search</a></li>
-        <li><a href="service-hr-analytics.html">HR Analytics</a></li>
-        <li><a href="service-data-science-analytics.html">Data Science &amp; Analytics</a></li>
-        <li><a href="service-market-actionable-intelligence.html">Market Intelligence</a></li>
-        <li><a href="organisational-health-consulting.html">Organisational Health</a></li>
-        <li><a href="service-consciousness-clarity.html">Consciousness &amp; Clarity</a></li>
-        <li><a href="service-mind-wellness.html">Mind Wellness</a></li>
-        <li><a href="service-addiction-freedom.html">Addiction Freedom</a></li>
-        <li><a href="service-counselling.html">Counselling</a></li>
-        <li><a href="service-children.html">For Children</a></li>
-        <li><a href="service-zero-state-meditation.html">Meditation as Medicine</a></li>
-      </ul>
-    </div>
-
-    <div>
-      <span class="gf-col-title">Company</span>
-      <ul class="gf-links">
-        <li><a href="about-meculs.html">About MECULS</a></li>
-        <li><a href="about-rajneesh-jain.html">The Founder</a></li>
-        <li><a href="how-meculs-works.html">How MECULS Works</a></li>
-        <li><a href="the-approach.html">The Approach</a></li>
-        <li><a href="the-journey.html">The Journey</a></li>
-        <li><a href="why-meculs.html">Why MECULS</a></li>
-        <li><a href="why-mynd-care.html">Why Mynd CARE</a></li>
-        <li><a href="our-work-proof.html">Our Work Proof</a></li>
-        <li><a href="contexts.html">Contexts</a></li>
-        <li><a href="source-of-challenges.html">Source of Challenges</a></li>
-        <li><a href="contemplative-practices.html">Contemplative Practices</a></li>
-        <li><a href="insights.html">Insights</a></li>
-      </ul>
-    </div>
-
-    <div>
-      <span class="gf-col-title">Connect</span>
-      <ul class="gf-links">
-        <li><a href="cv-portal.html">The CV Portal</a></li>
-        <li><a href="paid-services.html">Paid Services</a></li>
-        <li><a href="begin-conversation.html">Begin a Conversation</a></li>
-        <li><a href="book-session.html">Book a Session</a></li>
-      </ul>
-      <span class="gf-col-title" style="margin-top:2rem;">Legal</span>
-      <ul class="gf-links">
-        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-        <li><a href="terms.html">Terms of Service</a></li>
-        <li><a href="refund-policy.html">Refund Policy</a></li>
-        <li><a href="disclaimer.html">Disclaimer</a></li>
-      </ul>
-    </div>
-
+    </main>
   </div>
 
-  <div class="gf-bottom">
-    <p class="gf-ip">This website, its content, frameworks, methodologies, and design are conceptualised, created, and authored by Rajneesh Jain, Founder, MECULS. All methodologies are the original and exclusive intellectual property of Rajneesh Jain. Unauthorised reproduction or commercial use is prohibited.</p>
-    <div class="gf-bottom-bar">
-      <p class="gf-copy">&copy; 2026 MECULS. All rights reserved. Delhi, India.</p>
-      <p class="gf-payment">Payment: PayUBiz &middot; Razorpay &middot; PayPal &middot; UPI &middot; Credit Card</p>
-      <nav class="gf-legal" aria-label="Legal links">
-        <a href="privacy-policy.html">Privacy</a>
-        <a href="terms.html">Terms</a>
-        <a href="refund-policy.html">Refund</a>
-        <a href="disclaimer.html">Disclaimer</a>
-      </nav>
-    </div>
-  </div>
+  <!-- SAFETY BANNER -->
+  <section class="ps-safety">
+    <div class="ps-safety__title">Pay safely via Razorpay</div>
+    <p class="ps-safety__text">
+      All payments encrypted end-to-end. UPI, cards, netbanking and wallets accepted.
+      MECULS never sees or stores your card details.
+    </p>
+  </section>
 
-</footer>
-
-</div><!-- /.page -->
-
-<!-- Canonical site behaviour -->
-<script src="global.js"></script>
-
-<!-- Page-specific: scroll-spy for the left index -->
-<script>
-  (function () {
-    'use strict';
-
-    var indexLinks = document.querySelectorAll('.ps-index__list a[data-target]');
-    var targets = [];
-    indexLinks.forEach(function (link) {
-      var id = link.getAttribute('data-target');
-      var el = document.getElementById(id);
-      if (el) targets.push({ link: link, el: el });
-    });
-
-    if (!targets.length) return;
-
-    function updateActive() {
-      var scrollPos = window.scrollY + (window.innerHeight * 0.3);
-      var current = null;
-      targets.forEach(function (t) {
-        var rect = t.el.getBoundingClientRect();
-        var top = rect.top + window.scrollY;
-        if (scrollPos >= top) current = t;
-      });
-      indexLinks.forEach(function (link) { link.classList.remove('active'); });
-      if (current) current.link.classList.add('active');
-    }
-
-    /* Smooth scroll on click */
-    indexLinks.forEach(function (link) {
-      link.addEventListener('click', function (e) {
-        var id = link.getAttribute('data-target');
-        var el = document.getElementById(id);
-        if (!el) return;
-        e.preventDefault();
-        var navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--g-nav-h')) || 72;
-        var taglineH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--tagline-h')) || 28;
-        var offset = navH + taglineH + 16;
-        window.scrollTo({
-          top: el.getBoundingClientRect().top + window.scrollY - offset,
-          behavior: 'smooth'
-        });
-        history.replaceState(null, '', '#' + id);
-      });
-    });
-
-    window.addEventListener('scroll', updateActive, { passive: true });
-    updateActive();
-  })();
-</script>
+</div>
 
 </body>
 </html>

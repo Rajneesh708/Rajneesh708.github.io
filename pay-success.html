@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Received — MECULS</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="global.css">
+
+  <style>
+    :root {
+      --ps-bg:        #FAF8F4;
+      --ps-card:      #FFFFFF;
+      --ps-text:      #1F2937;
+      --ps-muted:     #6B7280;
+      --ps-soft:      #4B5563;
+      --ps-rule:      #E5DFD3;
+      --ps-rule-soft: #F0EBE0;
+      --ps-gold:      #B8893E;
+      --ps-gold-soft: #D9B96E;
+      --ps-success:   #15803D;
+    }
+
+    body { background: var(--ps-bg); margin: 0; color: var(--ps-text); }
+
+    .pay-page {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 4rem 5%;
+    }
+
+    .pay-card {
+      background: var(--ps-card);
+      border: 1px solid var(--ps-rule);
+      border-radius: 8px;
+      padding: 3rem 2.5rem;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(31, 41, 55, 0.04);
+    }
+
+    .pay-icon {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 1.5rem;
+      border-radius: 50%;
+      background: rgba(21, 128, 61, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ps-success);
+    }
+
+    .pay-eyebrow {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      color: var(--ps-success);
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+
+    .pay-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 2.5vw, 1.9rem);
+      font-weight: 500;
+      line-height: 1.3;
+      margin: 0 0 0.6rem;
+      color: var(--ps-text);
+    }
+
+    .pay-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--ps-soft);
+      margin: 0 0 2rem;
+      line-height: 1.55;
+    }
+
+    .pay-product {
+      background: var(--ps-rule-soft);
+      border-radius: 6px;
+      padding: 1rem 1.3rem;
+      margin: 1.5rem 0;
+      text-align: left;
+    }
+    .pay-product__label {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--ps-gold);
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+    .pay-product__name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--ps-text);
+      margin: 0;
+    }
+    .pay-product__order {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.78rem;
+      color: var(--ps-muted);
+      margin-top: 0.5rem;
+    }
+
+    .pay-next {
+      margin: 2rem 0 1rem;
+      text-align: left;
+    }
+    .pay-next__heading {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ps-gold);
+      text-transform: uppercase;
+      margin: 0 0 0.7rem;
+    }
+    .pay-next__text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      color: var(--ps-soft);
+      line-height: 1.6;
+      margin: 0 0 1.2rem;
+    }
+
+    .pay-cta {
+      display: inline-block;
+      background: var(--ps-text);
+      color: var(--ps-card);
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      padding: 0.85rem 1.8rem;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .pay-cta:hover { background: var(--ps-gold); }
+
+    .pay-footer {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--ps-rule-soft);
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--ps-muted);
+      line-height: 1.55;
+    }
+    .pay-footer a { color: var(--ps-gold); text-decoration: none; }
+    .pay-footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<div class="pay-page">
+  <div class="pay-card">
+
+    <div class="pay-icon" aria-hidden="true">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+    </div>
+
+    <div class="pay-eyebrow">Payment Received</div>
+    <h1 class="pay-title">Thank you. Your payment has been received.</h1>
+    <p class="pay-sub">A receipt has been emailed to you by Razorpay.</p>
+
+    <div class="pay-product">
+      <div class="pay-product__label">You paid for</div>
+      <p class="pay-product__name" id="productName">Your order</p>
+      <div class="pay-product__order" id="orderRef"></div>
+    </div>
+
+    <div class="pay-next">
+      <div class="pay-next__heading">What happens next</div>
+      <p class="pay-next__text" id="nextStepText">
+        We'll be in touch shortly with the next step. If you don't hear from us within
+        24 hours, please email Jain.Rajneesh@meculs.com.
+      </p>
+      <a class="pay-cta" id="nextStepCta" href="#" style="display:none;">Continue</a>
+    </div>
+
+    <div class="pay-footer">
+      Questions? Email <a href="mailto:Jain.Rajneesh@meculs.com">Jain.Rajneesh@meculs.com</a>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* ─────────────────────────────────────────────────────────────
+   pay-success.html
+   Reads URL parameters to know which product was paid for,
+   and shows the right next-step instruction + button.
+
+   Expected URL parameters from Razorpay redirect:
+     ?product=cv-upgrade
+     &razorpay_payment_id=...
+     &razorpay_order_id=...
+
+   Product codes (must match what paid-services.html sends):
+     cv-upgrade, single-coaching, coaching-block, retainer,
+     personality-profiling, wellness-anxiety, wellness-pattern,
+     wellness-grief, wellness-addiction, wellness-parent,
+     wellness-child, wellness-meditation
+   ───────────────────────────────────────────────────────────── */
+
+(function () {
+  "use strict";
+
+  const PRODUCTS = {
+    "cv-upgrade": {
+      name: "CV Upgrade — ₹149",
+      next: "Submit your CV link so we can begin your rewrite. " +
+            "You'll receive your upgraded CV by email within 24 working hours.",
+      cta: "Submit my CV",
+      ctaUrl: "cv-upgrade-submit.html"
+    },
+    "single-coaching": {
+      name: "Single Coaching Session — ₹1,449",
+      next: "Book your 60-minute session at a time that suits you. " +
+            "You'll get a calendar invite with the Google Meet link automatically.",
+      cta: "Book my session",
+      ctaUrl: "https://cal.eu/meculs-founder-rajneesh-jain/single-coaching"
+    },
+    "coaching-block": {
+      name: "4-Session Coaching Block — ₹5,999",
+      next: "Book your first session below. You can book the remaining three at your own pace.",
+      cta: "Book first session",
+      ctaUrl: "https://cal.eu/meculs-founder-rajneesh-jain/coaching-block"
+    },
+    "retainer": {
+      name: "3-Month Coaching Retainer — ₹11,999",
+      next: "Book your first monthly session below. The remaining two will be booked one a month.",
+      cta: "Book first session",
+      ctaUrl: "https://cal.eu/meculs-founder-rajneesh-jain/retainer-session"
+    },
+    "personality-profiling": {
+      name: "Personality Profiling — ₹9,499",
+      next: "Submit the CV or LinkedIn URL of the person you want profiled. " +
+            "Your written profile will be emailed within 1 working day.",
+      cta: "Submit profile details",
+      ctaUrl: "personality-profiling-submit.html"
+    },
+    "wellness-anxiety": {
+      name: "Anxiety, Burnout & Emotional Weight Session — ₹999",
+      next: "Book your session at a time that suits you.",
+      cta: "Book my session",
+      ctaUrl: "https://cal.eu/meculs-founder-rajneesh-jain/wellness-anxiety"
+    },
+    "wellness-pattern": {
+      name: "The Pattern That Keeps Coming Back Session — ₹999",
+      next: "Book your session at a time that suits you.",
+      cta: "Book my session",
+      ctaUrl: "https://cal.eu/meculs-founder-rajneesh-jain/wellness-pattern"
+    },
+    "wellness-grief": {
+      name: "Grief, Crisis & Relationship Loss Session — ₹999",
+      next: "Book your session at a time that suits you.",
+      cta: "Book my session",
+      ctaUrl: "https://cal.eu/meculs-founder-rajneesh-jain/wellness-grief"
+    },
+    "wellness-addiction": {
+      name: "Breaking Free of an Addiction Session — ₹999",
+      next: "Book your session at a time that suits you.",
+      cta: "Book my session",
+      ctaUrl: "https://cal.eu/meculs-founder-rajneesh-jain/wellness-addiction"
+    },
+    "wellness-parent": {
+      name: "Parent Conversation — ₹999",
+      next: "Book your parent conversation. The child session is booked separately afterwards.",
+      cta: "Book parent conversation",
+      ctaUrl: "https://cal.eu/meculs-founder-rajneesh-jain/wellness-parent"
+    },
+    "wellness-child": {
+      name: "Child Session — ₹999",
+      next: "Book your child's session at a time that suits both of you.",
+      cta: "Book child session",
+      ctaUrl: "https://cal.eu/meculs-founder-rajneesh-jain/wellness-child"
+    },
+    "wellness-meditation": {
+      name: "Long-Held Pain Meditation Session — ₹149",
+      next: "Book your 30-minute session at a time that suits you.",
+      cta: "Book my session",
+      ctaUrl: "https://cal.eu/meculs-founder-rajneesh-jain/wellness-meditation"
+    }
+  };
+
+  function getParam(name) {
+    const params = new URLSearchParams(window.location.search);
+    return params.get(name) || "";
+  }
+
+  const productCode = getParam("product");
+  const paymentId   = getParam("razorpay_payment_id");
+  const orderId     = getParam("razorpay_order_id");
+
+  const product = PRODUCTS[productCode];
+  const productNameEl = document.getElementById("productName");
+  const orderRefEl    = document.getElementById("orderRef");
+  const nextTextEl    = document.getElementById("nextStepText");
+  const ctaEl         = document.getElementById("nextStepCta");
+
+  if (product) {
+    productNameEl.textContent = product.name;
+    nextTextEl.textContent    = product.next;
+    ctaEl.textContent         = product.cta;
+    ctaEl.href                = product.ctaUrl;
+    ctaEl.style.display       = "inline-block";
+  } else {
+    productNameEl.textContent = "Your MECULS order";
+  }
+
+  if (paymentId || orderId) {
+    let ref = "";
+    if (paymentId) ref += "Payment ID: " + paymentId;
+    if (paymentId && orderId) ref += " · ";
+    if (orderId) ref += "Order: " + orderId;
+    orderRefEl.textContent = ref;
+  }
+})();
+</script>
+
+</body>
+</html>

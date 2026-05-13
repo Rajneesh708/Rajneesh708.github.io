@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wellness Services — MECULS</title>
+  <meta name="description" content="MECULS wellness services: counselling, meditation, addiction recovery, child counselling. Honest pricing per session. No subscriptions.">
+  <link rel="canonical" href="https://meculs.com/wellness-services.html">
+
+  <link rel="stylesheet" href="global.css">
+
+  <style>
+    /* ───────────────────────────────────────────────────────────
+       WELLNESS SERVICES — same calmer cream system as paid-services
+       Same tokens. Slightly more contemplative spacing.
+       ─────────────────────────────────────────────────────────── */
+
+    :root {
+      --ps-bg:        #FAF8F4;
+      --ps-card:      #FFFFFF;
+      --ps-text:      #1F2937;
+      --ps-muted:     #6B7280;
+      --ps-soft:      #4B5563;
+      --ps-rule:      #E5DFD3;
+      --ps-rule-soft: #F0EBE0;
+      --ps-gold:      #B8893E;
+      --ps-gold-soft: #D9B96E;
+      --ps-shadow:    0 2px 8px rgba(31, 41, 55, 0.04);
+      --ps-shadow-h:  0 6px 20px rgba(31, 41, 55, 0.08);
+    }
+
+    body { background: var(--ps-bg); margin: 0; color: var(--ps-text); }
+
+    .ps-page { max-width: 1200px; margin: 0 auto; padding: 3rem 5% 4rem; }
+
+    .ps-hero {
+      text-align: center;
+      padding: 2rem 0 2.5rem;
+      border-bottom: 1px solid var(--ps-rule-soft);
+      margin-bottom: 2.5rem;
+    }
+    .ps-hero__eyebrow {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      color: var(--ps-gold);
+      text-transform: uppercase;
+      margin-bottom: 0.7rem;
+    }
+    .ps-hero__title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.7rem, 3vw, 2.3rem);
+      font-weight: 500;
+      line-height: 1.25;
+      margin: 0 0 0.6rem;
+      color: var(--ps-text);
+    }
+    .ps-hero__sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(0.95rem, 1.3vw, 1.05rem);
+      color: var(--ps-soft);
+      max-width: 620px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .ps-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 3rem;
+    }
+    @media (max-width: 880px) {
+      .ps-layout { grid-template-columns: 1fr; }
+      .ps-index { position: static; }
+    }
+
+    .ps-index {
+      position: sticky;
+      top: 100px;
+      align-self: start;
+      font-family: 'Archivo', sans-serif;
+    }
+    .ps-index__heading {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--ps-gold);
+      text-transform: uppercase;
+      margin: 0 0 1rem;
+    }
+    .ps-index__list { list-style: none; padding: 0; margin: 0 0 2rem; }
+    .ps-index__item {
+      padding: 0.55rem 0;
+      border-bottom: 1px solid var(--ps-rule-soft);
+    }
+    .ps-index__item:last-child { border-bottom: none; }
+    .ps-index__link {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: var(--ps-soft);
+      font-size: 0.82rem;
+      transition: color 0.15s;
+    }
+    .ps-index__link:hover { color: var(--ps-text); }
+    .ps-index__num {
+      color: var(--ps-gold);
+      font-weight: 600;
+      font-size: 0.7rem;
+      flex-shrink: 0;
+    }
+    .ps-index__name { flex: 1; line-height: 1.3; }
+    .ps-index__price {
+      color: var(--ps-muted);
+      font-size: 0.72rem;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      flex-shrink: 0;
+    }
+
+    .ps-cards { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .ps-card {
+      background: var(--ps-card);
+      border: 1px solid var(--ps-rule);
+      border-radius: 6px;
+      padding: 1.8rem 2rem;
+      box-shadow: var(--ps-shadow);
+      scroll-margin-top: 100px;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .ps-card:hover { box-shadow: var(--ps-shadow-h); border-color: var(--ps-gold-soft); }
+
+    .ps-card__head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 0.8rem;
+      flex-wrap: wrap;
+    }
+    .ps-card__name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin: 0;
+      color: var(--ps-text);
+      line-height: 1.25;
+    }
+    .ps-card__num {
+      font-family: 'Archivo', sans-serif;
+      color: var(--ps-gold);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      margin-right: 0.6rem;
+    }
+    .ps-card__price-wrap { text-align: right; flex-shrink: 0; }
+    .ps-card__price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--ps-gold);
+      line-height: 1;
+    }
+    .ps-card__price-unit {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.68rem;
+      color: var(--ps-muted);
+      letter-spacing: 0.05em;
+    }
+    .ps-card__gst {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.7rem;
+      color: var(--ps-muted);
+      margin-top: 0.25rem;
+      letter-spacing: 0.04em;
+    }
+    .ps-card__desc {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      color: var(--ps-soft);
+      line-height: 1.6;
+      margin: 0 0 1rem;
+    }
+    .ps-card__for {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.82rem;
+      color: var(--ps-muted);
+      margin: 0 0 1rem;
+      line-height: 1.55;
+    }
+    .ps-card__for strong {
+      color: var(--ps-gold);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .ps-card__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--ps-text);
+      color: var(--ps-card);
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      padding: 0.7rem 1.4rem;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.15s, transform 0.1s;
+      margin-top: 0.4rem;
+      margin-right: 0.5rem;
+    }
+    .ps-card__cta:hover { background: var(--ps-gold); }
+    .ps-card__cta:active { transform: translateY(1px); }
+    .ps-card__cta--secondary {
+      background: transparent;
+      color: var(--ps-soft);
+      border: 1px solid var(--ps-rule);
+    }
+    .ps-card__cta--secondary:hover {
+      background: var(--ps-rule-soft);
+      color: var(--ps-text);
+      border-color: var(--ps-gold-soft);
+    }
+    .ps-card__after-pay-note {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.85rem;
+      color: var(--ps-muted);
+      margin-top: 0.7rem;
+      line-height: 1.5;
+    }
+
+    .ps-context {
+      text-align: center;
+      margin: 2.5rem auto 0;
+      max-width: 720px;
+      padding: 1.5rem;
+      border-top: 1px solid var(--ps-rule-soft);
+    }
+    .ps-context__text {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--ps-muted);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .ps-safety {
+      text-align: center;
+      margin-top: 2.5rem;
+      padding: 1.8rem;
+      background: var(--ps-card);
+      border: 1px solid var(--ps-rule);
+      border-radius: 6px;
+    }
+    .ps-safety__title {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--ps-gold);
+      text-transform: uppercase;
+      margin: 0 0 0.6rem;
+    }
+    .ps-safety__text {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--ps-soft);
+      margin: 0;
+      line-height: 1.55;
+    }
+  </style>
+</head>
+<body>
+
+<div class="ps-page">
+
+  <header class="ps-hero">
+    <div class="ps-hero__eyebrow">Wellness Services</div>
+    <h1 class="ps-hero__title">One-to-one sessions for what you are actually carrying.</h1>
+    <p class="ps-hero__sub">
+      Seven services, all per-session. Pay only for the session you book. No subscription, no programme
+      to commit to. All prices below are before 18% GST.
+    </p>
+  </header>
+
+  <div class="ps-layout">
+
+    <aside class="ps-index" aria-label="Services list">
+      <div class="ps-index__heading">All Services</div>
+      <ul class="ps-index__list">
+        <li class="ps-index__item">
+          <a class="ps-index__link" href="#anxiety">
+            <span class="ps-index__num">01</span>
+            <span class="ps-index__name">Anxiety, Burnout &amp; Emotional Weight</span>
+            <span class="ps-index__price">₹999</span>
+          </a>
+        </li>
+        <li class="ps-index__item">
+          <a class="ps-index__link" href="#pattern">
+            <span class="ps-index__num">02</span>
+            <span class="ps-index__name">The Pattern That Keeps Coming Back</span>
+            <span class="ps-index__price">₹999</span>
+          </a>
+        </li>
+        <li class="ps-index__item">
+          <a class="ps-index__link" href="#grief">
+            <span class="ps-index__num">03</span>
+            <span class="ps-index__name">Grief, Crisis &amp; Relationship Loss</span>
+            <span class="ps-index__price">₹999</span>
+          </a>
+        </li>
+        <li class="ps-index__item">
+          <a class="ps-index__link" href="#addiction">
+            <span class="ps-index__num">04</span>
+            <span class="ps-index__name">Breaking Free of an Addiction</span>
+            <span class="ps-index__price">₹999</span>
+          </a>
+        </li>
+        <li class="ps-index__item">
+          <a class="ps-index__link" href="#parent">
+            <span class="ps-index__num">05</span>
+            <span class="ps-index__name">Concerned About My Child — Parent</span>
+            <span class="ps-index__price">₹999</span>
+          </a>
+        </li>
+        <li class="ps-index__item">
+          <a class="ps-index__link" href="#child">
+            <span class="ps-index__num">06</span>
+            <span class="ps-index__name">Working With My Child — Child</span>
+            <span class="ps-index__price">₹999</span>
+          </a>
+        </li>
+        <li class="ps-index__item">
+          <a class="ps-index__link" href="#meditation">
+            <span class="ps-index__num">07</span>
+            <span class="ps-index__name">Long-Held Pain That Won't Shift</span>
+            <span class="ps-index__price">₹149</span>
+          </a>
+        </li>
+      </ul>
+    </aside>
+
+    <main class="ps-cards">
+
+      <!-- 01. ANXIETY / BURNOUT (Mind Wellness) -->
+      <article id="anxiety" class="ps-card">
+        <header class="ps-card__head">
+          <h2 class="ps-card__name"><span class="ps-card__num">01</span>Anxiety, Burnout &amp; Emotional Weight</h2>
+          <div class="ps-card__price-wrap">
+            <div class="ps-card__price">₹999 <span class="ps-card__price-unit">/ session</span></div>
+            <div class="ps-card__gst">+ 18% GST</div>
+          </div>
+        </header>
+        <p class="ps-card__desc">
+          Conversation that goes below the surface, paired with guided meditation that lets
+          what was found settle. 60 minutes, one-to-one with Rajneesh.
+        </p>
+        <p class="ps-card__for">
+          <strong>Who this is for</strong>
+          Adults carrying tiredness, going-through-the-motions, or distance from their own
+          life that's hard to explain. Young people under pressure who can't quite name it.
+        </p>
+        <a class="ps-card__cta" href="https://rzp.io/rzp/gUWryYlR">Pay &amp; book session &rarr;</a>
+        <a class="ps-card__cta ps-card__cta--secondary" href="service-mind-wellness.html">Read more</a>
+      </article>
+
+      <!-- 02. THE PATTERN (Consciousness & Clarity) -->
+      <article id="pattern" class="ps-card">
+        <header class="ps-card__head">
+          <h2 class="ps-card__name"><span class="ps-card__num">02</span>The Pattern That Keeps Coming Back</h2>
+          <div class="ps-card__price-wrap">
+            <div class="ps-card__price">₹999 <span class="ps-card__price-unit">/ session</span></div>
+            <div class="ps-card__gst">+ 18% GST</div>
+          </div>
+        </header>
+        <p class="ps-card__desc">
+          A Jungian-rooted conversation that goes one level deeper than &ldquo;why is this
+          happening.&rdquo; Surfaces the belief &mdash; formed before you knew it was forming
+          &mdash; that's quietly running every repeating pattern in your life.
+        </p>
+        <p class="ps-card__for">
+          <strong>Who this is for</strong>
+          People at a crossroads who keep hitting the same wall in some area of life
+          despite trying harder. No tests, no questionnaires &mdash; just conversation that
+          goes deeper than usual.
+        </p>
+        <a class="ps-card__cta" href="https://rzp.io/rzp/BcVvsMB">Pay &amp; book session &rarr;</a>
+        <a class="ps-card__cta ps-card__cta--secondary" href="service-consciousness-clarity.html">Read more</a>
+      </article>
+
+      <!-- 03. GRIEF / CRISIS -->
+      <article id="grief" class="ps-card">
+        <header class="ps-card__head">
+          <h2 class="ps-card__name"><span class="ps-card__num">03</span>Grief, Crisis &amp; Relationship Loss</h2>
+          <div class="ps-card__price-wrap">
+            <div class="ps-card__price">₹999 <span class="ps-card__price-unit">/ session</span></div>
+            <div class="ps-card__gst">+ 18% GST</div>
+          </div>
+        </header>
+        <p class="ps-card__desc">
+          One-to-one accompaniment for when something has come apart &mdash; grief, crisis,
+          or a relationship breakdown. No fixed agenda. Rajneesh sits with what is true
+          for as long as it takes to become workable.
+        </p>
+        <p class="ps-card__for">
+          <strong>Who this is for</strong>
+          People in pieces &mdash; after a death, a diagnosis, a separation, or any
+          rupture that has not yet found its shape.
+        </p>
+        <a class="ps-card__cta" href="https://rzp.io/rzp/7HU44VR6">Pay &amp; book session &rarr;</a>
+        <a class="ps-card__cta ps-card__cta--secondary" href="service-counselling.html">Read more</a>
+      </article>
+
+      <!-- 04. ADDICTION -->
+      <article id="addiction" class="ps-card">
+        <header class="ps-card__head">
+          <h2 class="ps-card__name"><span class="ps-card__num">04</span>Breaking Free of an Addiction</h2>
+          <div class="ps-card__price-wrap">
+            <div class="ps-card__price">₹999 <span class="ps-card__price-unit">/ session</span></div>
+            <div class="ps-card__gst">+ 18% GST</div>
+          </div>
+        </header>
+        <p class="ps-card__desc">
+          Three things working together: conversation that finds the unfulfilled want
+          underneath the addiction, meditation that lets you stay with the hurt without
+          fleeing, and creative expression that gives the want a real place to land.
+        </p>
+        <p class="ps-card__for">
+          <strong>Who this is for</strong>
+          People stuck in addiction &mdash; substance, behaviour, or relationship.
+          Works with what the addiction was trying to fix, not just the addiction itself.
+        </p>
+        <a class="ps-card__cta" href="https://rzp.io/rzp/Lw7IFea">Pay &amp; book session &rarr;</a>
+        <a class="ps-card__cta ps-card__cta--secondary" href="service-addiction-freedom.html">Read more</a>
+      </article>
+
+      <!-- 05. PARENT -->
+      <article id="parent" class="ps-card">
+        <header class="ps-card__head">
+          <h2 class="ps-card__name"><span class="ps-card__num">05</span>Concerned About My Child &mdash; Parent Conversation</h2>
+          <div class="ps-card__price-wrap">
+            <div class="ps-card__price">₹999 <span class="ps-card__price-unit">/ session</span></div>
+            <div class="ps-card__gst">+ 18% GST</div>
+          </div>
+        </header>
+        <p class="ps-card__desc">
+          The first conversation &mdash; with the parent, not the child. What's been
+          happening, how long, what's been tried. Rajneesh listens and tells you honestly
+          whether and how MECULS can help.
+        </p>
+        <p class="ps-card__for">
+          <strong>Who this is for</strong>
+          Parents whose child is restless, withdrawn, struggling at school, screen-addicted,
+          or anxious &mdash; and who want a clear next step before anything else.
+        </p>
+        <a class="ps-card__cta" href="https://rzp.io/rzp/IIceJyR">Pay &amp; book session &rarr;</a>
+        <a class="ps-card__cta ps-card__cta--secondary" href="service-children.html">Read more</a>
+      </article>
+
+      <!-- 06. CHILD -->
+      <article id="child" class="ps-card">
+        <header class="ps-card__head">
+          <h2 class="ps-card__name"><span class="ps-card__num">06</span>Working With My Child &mdash; Child Session</h2>
+          <div class="ps-card__price-wrap">
+            <div class="ps-card__price">₹999 <span class="ps-card__price-unit">/ session</span></div>
+            <div class="ps-card__gst">+ 18% GST</div>
+          </div>
+        </header>
+        <p class="ps-card__desc">
+          One-to-one sessions with the child. No agenda. No assessments. The child speaks
+          if and when they feel safe &mdash; often, the parent notices, more honestly than
+          they have in months.
+        </p>
+        <p class="ps-card__for">
+          <strong>Who this is for</strong>
+          Children from primary school through secondary school. Booked only after the
+          parent conversation. Sessions held online worldwide or in-person in Delhi.
+        </p>
+        <a class="ps-card__cta" href="https://rzp.io/rzp/kMuBTlz">Pay &amp; book session &rarr;</a>
+        <a class="ps-card__cta ps-card__cta--secondary" href="service-children.html">Read more</a>
+      </article>
+
+      <!-- 07. MEDITATION (30-MIN) -->
+      <article id="meditation" class="ps-card">
+        <header class="ps-card__head">
+          <h2 class="ps-card__name"><span class="ps-card__num">07</span>Long-Held Pain That Won't Shift</h2>
+          <div class="ps-card__price-wrap">
+            <div class="ps-card__price">₹149 <span class="ps-card__price-unit">/ session</span></div>
+            <div class="ps-card__gst">+ 18% GST</div>
+          </div>
+        </header>
+        <p class="ps-card__desc">
+          A 30-minute one-to-one guided meditation session (15 min listening and
+          explanation, 15 min meditation). Designed to reach the deeper layer where old
+          pain has been stored, for depression, chronic anxiety, anger, and physical
+          symptoms that have not responded to other approaches.
+        </p>
+        <p class="ps-card__for">
+          <strong>Who this is for</strong>
+          People carrying something for years that no other approach has shifted.
+          Daily practice with periodic sessions to adjust as it unfolds.
+        </p>
+        <a class="ps-card__cta" href="https://rzp.io/rzp/oKRYCIJ">Pay &amp; book session &rarr;</a>
+        <a class="ps-card__cta ps-card__cta--secondary" href="service-zero-state-meditation.html">Read more</a>
+      </article>
+
+    </main>
+  </div>
+
+  <section class="ps-context">
+    <p class="ps-context__text">
+      No fixed number of sessions. No programme to complete. You book one session at a time
+      &mdash; for as long as the work needs you.
+    </p>
+  </section>
+
+  <section class="ps-safety">
+    <div class="ps-safety__title">Pay safely via Razorpay</div>
+    <p class="ps-safety__text">
+      All payments encrypted end-to-end. UPI, cards, netbanking and wallets accepted.
+      MECULS never sees or stores your card details.
+    </p>
+  </section>
+
+</div>
+
+</body>
+</html>

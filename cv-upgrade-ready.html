@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV Upgrade Submitted — MECULS</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="global.css">
+
+  <style>
+    :root {
+      --ps-bg:        #FAF8F4;
+      --ps-card:      #FFFFFF;
+      --ps-text:      #1F2937;
+      --ps-muted:     #6B7280;
+      --ps-soft:      #4B5563;
+      --ps-rule:      #E5DFD3;
+      --ps-rule-soft: #F0EBE0;
+      --ps-gold:      #B8893E;
+      --ps-success:   #15803D;
+    }
+
+    body { background: var(--ps-bg); margin: 0; color: var(--ps-text); }
+
+    .ready-page { max-width: 640px; margin: 0 auto; padding: 4rem 5%; }
+
+    .ready-card {
+      background: var(--ps-card);
+      border: 1px solid var(--ps-rule);
+      border-radius: 8px;
+      padding: 3rem 2.5rem;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(31, 41, 55, 0.04);
+    }
+
+    .ready-icon {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 1.5rem;
+      border-radius: 50%;
+      background: rgba(21, 128, 61, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ps-success);
+    }
+
+    .ready-eyebrow {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      color: var(--ps-success);
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+
+    .ready-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 2.5vw, 1.9rem);
+      font-weight: 500;
+      line-height: 1.3;
+      margin: 0 0 0.6rem;
+      color: var(--ps-text);
+    }
+
+    .ready-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--ps-soft);
+      margin: 0 0 2rem;
+      line-height: 1.65;
+    }
+
+    .ready-timeline {
+      text-align: left;
+      margin: 2rem 0;
+      background: var(--ps-rule-soft);
+      border-radius: 6px;
+      padding: 1.4rem 1.5rem;
+    }
+    .ready-timeline__heading {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--ps-gold);
+      text-transform: uppercase;
+      margin: 0 0 0.9rem;
+    }
+    .ready-timeline__step {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.9rem;
+      color: var(--ps-soft);
+      line-height: 1.55;
+      margin-bottom: 0.7rem;
+      padding-left: 1.6rem;
+      position: relative;
+    }
+    .ready-timeline__step:last-child { margin-bottom: 0; }
+    .ready-timeline__step::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--ps-success);
+      font-weight: 700;
+    }
+    .ready-timeline__step--pending::before {
+      content: "○";
+      color: var(--ps-gold);
+      font-weight: 700;
+    }
+
+    .ready-cta {
+      display: inline-block;
+      background: var(--ps-text);
+      color: var(--ps-card);
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      padding: 0.85rem 1.8rem;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .ready-cta:hover { background: var(--ps-gold); }
+
+    .ready-footer {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--ps-rule-soft);
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--ps-muted);
+      line-height: 1.55;
+    }
+    .ready-footer a { color: var(--ps-gold); text-decoration: none; }
+    .ready-footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<div class="ready-page">
+  <div class="ready-card">
+
+    <div class="ready-icon" aria-hidden="true">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+    </div>
+
+    <div class="ready-eyebrow">Submission Received</div>
+    <h1 class="ready-title">Your CV is being upgraded.</h1>
+    <p class="ready-sub">
+      We've got your CV link and notes. Rajneesh will personally review and rewrite
+      your CV. You'll receive your upgraded version by email within 24 working hours.
+    </p>
+
+    <div class="ready-timeline">
+      <div class="ready-timeline__heading">What happens now</div>
+      <div class="ready-timeline__step">Payment received</div>
+      <div class="ready-timeline__step">CV link submitted</div>
+      <div class="ready-timeline__step ready-timeline__step--pending">
+        Rajneesh rewrites your CV (within 24 working hours)
+      </div>
+      <div class="ready-timeline__step ready-timeline__step--pending">
+        Upgraded CV emailed to you with any bracketed questions you need to answer
+      </div>
+    </div>
+
+    <a class="ready-cta" href="paid-services.html">Back to services</a>
+
+    <div class="ready-footer">
+      Didn't get a confirmation email from Razorpay? Email
+      <a href="mailto:Jain.Rajneesh@meculs.com">Jain.Rajneesh@meculs.com</a>
+      with your payment details and we'll sort it out.
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
