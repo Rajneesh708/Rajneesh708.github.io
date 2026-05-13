@@ -667,6 +667,76 @@
       white-space: nowrap;
     }
     .pubprof__toast.is-visible { opacity: 1; }
+    /* Force the HTML hidden attribute to win over display:flex / display:inline-flex
+       on banner action and URL elements. Without this, [hidden]="true" was visually
+       overridden by the explicit display rules above, causing Copy and Preview
+       buttons to remain clickable while the banner was in locked state. */
+    .pubprof [hidden] { display: none !important; }
+
+    /* Ready-but-private message — shown when minimum sections done but profile is private */
+    .pubprof__ready-msg {
+      font-size: 0.82rem;
+      color: var(--text-body);
+      line-height: 1.45;
+      flex: 1;
+      min-width: 0;
+      font-style: italic;
+    }
+
+    /* Public/Private toggle switch */
+    .pubprof__toggle-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .pubprof__toggle-label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-soft);
+      letter-spacing: 0.02em;
+    }
+    .pubprof__toggle {
+      position: relative;
+      width: 40px;
+      height: 22px;
+      border-radius: 11px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      padding: 0;
+      transition: background var(--t1) var(--ease),
+                  border-color var(--t1) var(--ease);
+      flex-shrink: 0;
+    }
+    .pubprof__toggle[aria-checked="true"] {
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+    .pubprof__toggle-knob {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--surface-2);
+      transition: transform var(--t1) var(--ease),
+                  background var(--t1) var(--ease);
+    }
+    .pubprof__toggle[aria-checked="true"] .pubprof__toggle-knob {
+      transform: translateX(18px);
+    }
+    .pubprof__toggle:disabled,
+    .pubprof__toggle[aria-disabled="true"] {
+      opacity: 0.5;
+      cursor: wait;
+      pointer-events: none;
+    }
+    .pubprof__toggle:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
     /* Responsive: stack the locked message on mobile */
     @media (max-width: 720px) {
       .pubprof {
@@ -955,6 +1025,18 @@
       <!-- Active-state content — JS unhides + populates -->
       <a class="pubprof__url" id="pubprofUrl" href="#" target="_blank" rel="noopener"
          hidden></a>
+      <!-- Ready-but-private message — shown when minimum sections done but is_public=false -->
+      <div class="pubprof__ready-msg" id="pubprofReadyMsg" hidden>
+        Your profile is ready. Switch it on to share.
+      </div>
+      <!-- Public/Private toggle — shown only when minimum sections complete -->
+      <div class="pubprof__toggle-wrap" id="pubprofToggleWrap" hidden>
+        <span class="pubprof__toggle-label" id="pubprofToggleLabel">Private</span>
+        <button type="button" class="pubprof__toggle" id="pubprofToggle"
+                role="switch" aria-checked="false" aria-label="Make profile public">
+          <span class="pubprof__toggle-knob"></span>
+        </button>
+      </div>
       <div class="pubprof__actions" id="pubprofActions" hidden>
         <button type="button" class="pubprof__btn" id="pubprofCopyBtn">Copy link</button>
         <a class="pubprof__btn pubprof__btn--primary" id="pubprofPreviewBtn"
@@ -975,6 +1057,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="config.js?v=6"></script>
 <script src="mc_storage.js?v=22"></script>
-<script src="dashboard.js?v=24"></script>
+<script src="dashboard.js?v=26"></script>
 </body>
 </html>

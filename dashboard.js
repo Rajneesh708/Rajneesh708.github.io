@@ -815,60 +815,81 @@ function updatePublicProfileBanner() {
   const banner    = document.getElementById("pubprofBanner");
   const iconEl    = document.getElementById("pubprofIcon");
   const lockedMsg = document.getElementById("pubprofLockedMsg");
+  const readyMsg  = document.getElementById("pubprofReadyMsg");
   const urlEl     = document.getElementById("pubprofUrl");
   const actions   = document.getElementById("pubprofActions");
+  const toggleWrap = document.getElementById("pubprofToggleWrap");
+  const toggleBtn  = document.getElementById("pubprofToggle");
+  const toggleLbl  = document.getElementById("pubprofToggleLabel");
 
-  if (!banner) return;  /* Banner not in the DOM yet — should never
-                            happen but defensive. */
+  if (!banner) return;
 
   const requiredKeys = getRequiredKeys();
   const slug         = PROFILE_CACHE.slug;
+  const isPublic     = PROFILE_CACHE.is_public === true;
+
+  /* Helper to hide every state element. Each branch then unhides
+     only what it needs to show. */
+  function hideAll() {
+    lockedMsg.hidden  = true;
+    readyMsg.hidden   = true;
+    urlEl.hidden      = true;
+    actions.hidden    = true;
+    toggleWrap.hidden = true;
+  }
 
   /* ── State 1: user_type not set yet ── */
   if (!requiredKeys) {
     banner.classList.remove("is-active");
     setLockIcon(iconEl);
+    hideAll();
     lockedMsg.innerHTML =
       "Available once you complete <strong>Goals &amp; Interests</strong>, " +
       "<strong>Photo &amp; CV</strong>, and <strong>Profile Category</strong> &mdash; " +
       "then a few more sections based on your category.";
     lockedMsg.hidden = false;
-    urlEl.hidden     = true;
-    actions.hidden   = true;
     return;
   }
 
-  /* ── Evaluate required sections ── */
   const eval_ = evaluateRequirements(requiredKeys);
 
-  /* ── State 2: minimum sections done AND slug exists ── */
+  /* ── State 2/3: minimum sections done ── */
   if (eval_.missing.length === 0 && slug) {
-    banner.classList.add("is-active");
     setActiveIcon(iconEl);
-    lockedMsg.hidden = true;
+    hideAll();
 
-    const url      = "https://meculs.com/p/" + slug;
-    const showText = "meculs.com/p/" + slug;
-    urlEl.textContent      = showText;
-    urlEl.href             = url;
-    urlEl.dataset.url      = url;
-    urlEl.hidden           = false;
+    /* Toggle is always shown when sections complete + slug exists */
+    toggleBtn.setAttribute("aria-checked", isPublic ? "true" : "false");
+    toggleLbl.textContent = isPublic ? "Public" : "Private";
+    toggleWrap.hidden = false;
 
-    const previewBtn = document.getElementById("pubprofPreviewBtn");
-    if (previewBtn) previewBtn.href = url;
+    if (isPublic) {
+      /* State 3: PUBLIC — show URL + actions */
+      banner.classList.add("is-active");
+      const url      = "https://meculs.com/p/" + slug;
+      const showText = "meculs.com/p/" + slug;
+      urlEl.textContent = showText;
+      urlEl.href        = url;
+      urlEl.dataset.url = url;
+      urlEl.hidden      = false;
 
-    actions.hidden = false;
+      const previewBtn = document.getElementById("pubprofPreviewBtn");
+      if (previewBtn) previewBtn.href = url;
+      actions.hidden = false;
+    } else {
+      /* State 2: PRIVATE but ready — show ready message + toggle only */
+      banner.classList.remove("is-active");
+      readyMsg.hidden = false;
+    }
     return;
   }
 
-  /* ── State 3: still locked — sections missing, OR slug not generated yet ── */
+  /* ── State 4: still locked — sections missing OR slug missing ── */
   banner.classList.remove("is-active");
   setLockIcon(iconEl);
+  hideAll();
 
   if (eval_.missing.length === 0 && !slug) {
-    /* All sections done but slug hasn't been written yet. This
-       shouldn't normally happen because slug is generated on user
-       creation, but be defensive. */
     lockedMsg.innerHTML =
       "Your profile is ready, but your unique URL hasn't been generated yet. " +
       "Try refreshing the page in a moment, or contact support if this persists.";
@@ -879,8 +900,6 @@ function updatePublicProfileBanner() {
       "<span class=\"pubprof__progress\">(" + eval_.done + " of " + eval_.total + " done)</span>";
   }
   lockedMsg.hidden = false;
-  urlEl.hidden     = true;
-  actions.hidden   = true;
 }
 
 /* Swap the SVG to a lock icon for the locked state */
@@ -912,25 +931,65 @@ function escapeHtml(s) {
     .replace(/'/g, "&#39;");
 }
 
-/* Wire up the Copy button. Called once on init. */
+/* Wire up the Copy button + Public/Private toggle. Called once on init. */
 function setupPublicProfileBannerActions() {
   const copyBtn = document.getElementById("pubprofCopyBtn");
-  if (!copyBtn) return;
+  if (copyBtn) {
+    copyBtn.addEventListener("click", async () => {
+      const urlEl = document.getElementById("pubprofUrl");
+      const url = urlEl ? (urlEl.dataset.url || urlEl.href || "") : "";
+      if (!url) return;
 
-  copyBtn.addEventListener("click", async () => {
-    const urlEl = document.getElementById("pubprofUrl");
-    const url = urlEl ? (urlEl.dataset.url || urlEl.href || "") : "";
-    if (!url) return;
+      try {
+        await navigator.clipboard.writeText(url);
+        flashCopyFeedback(copyBtn, "Copied!");
+      } catch (e) {
+        /* Older browsers / iframe contexts may block clipboard API.
+           Fall back to a select-and-copy-ish hint. */
+        flashCopyFeedback(copyBtn, "Press Ctrl+C");
+      }
+    });
+  }
 
-    try {
-      await navigator.clipboard.writeText(url);
-      flashCopyFeedback(copyBtn, "Copied!");
-    } catch (e) {
-      /* Older browsers / iframe contexts may block clipboard API.
-         Fall back to a select-and-copy-ish hint. */
-      flashCopyFeedback(copyBtn, "Press Ctrl+C");
-    }
-  });
+  /* Public/Private toggle — writes is_public on the profiles row.
+     Optimistic UI: flip the visible state first, then save. If the
+     save fails, revert and tell the user. */
+  const toggleBtn = document.getElementById("pubprofToggle");
+  if (toggleBtn) {
+    toggleBtn.addEventListener("click", async () => {
+      if (toggleBtn.getAttribute("aria-disabled") === "true") return;
+
+      const wasPublic = PROFILE_CACHE.is_public === true;
+      const newValue  = !wasPublic;
+
+      /* Optimistically update UI immediately so the click feels instant */
+      toggleBtn.setAttribute("aria-disabled", "true");
+      PROFILE_CACHE.is_public = newValue;
+      updatePublicProfileBanner();
+
+      try {
+        const { data: sessionData } = await sb.auth.getSession();
+        const session = sessionData && sessionData.session;
+        if (!session) throw new Error("Not signed in");
+
+        const { error } = await sb
+          .from("profiles")
+          .update({ is_public: newValue })
+          .eq("user_id", session.user.id);
+
+        if (error) throw error;
+        /* Saved cleanly — leave UI as-is */
+      } catch (e) {
+        /* Revert on failure */
+        console.error("[pubprof] toggle save failed", e);
+        PROFILE_CACHE.is_public = wasPublic;
+        updatePublicProfileBanner();
+        alert("Could not update profile visibility. Please try again.");
+      } finally {
+        toggleBtn.removeAttribute("aria-disabled");
+      }
+    });
+  }
 }
 
 /* Small inline feedback on the Copy button — temporarily changes
