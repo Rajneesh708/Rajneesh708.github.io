@@ -635,22 +635,27 @@
 <div class="page">
 
 <!-- GLOBAL HEADER -->
+<!-- TAGLINE SUB-BAR - permanent, left-aligned with logo -->
+<div class="gh-tagline-sub" id="ghTaglineSub">
+  <span class="gh-tagline-sub-text">
+    <strong>Feel Proud:</strong> Choosing to be courageous enough to feel proud of exactly who you are and what your life is &ndash; is seeing you are growing, expanding, and creating a better world
+  </span>
+</div>
+
 <header class="global-header">
   <a href="index.html" class="gh-logo" aria-label="MECULS home">
-    <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS">
+    <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS" loading="eager" width="140" height="36">
     <span class="gh-logo-text">MECULS</span>
   </a>
 
   <nav aria-label="Primary navigation">
     <ul class="gh-nav gh-nav-wrap">
+
       <li><a href="about-meculs.html">About MECULS</a></li>
 
       <li>
-        <a href="how-meculs-works.html">
-          How MECULS Works
-          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+        <a href="how-meculs-works.html">How MECULS Works
+          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
         <ul class="gh-dropdown">
           <li><a href="how-meculs-works.html">How MECULS Works</a></li>
@@ -662,23 +667,21 @@
       </li>
 
       <li>
-        <a href="services.html">
-          Services
-          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+        <a href="services.html">Services
+          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
         <ul class="gh-dropdown">
           <li><a href="services.html">All Services</a></li>
+          <li><a href="corporate-programs.html">Corporate Programmes</a></li>
           <li><a href="360-pulse-rate.html">360&deg; PULSE RATE&trade;</a></li>
           <li><a href="service-personality-profiling.html">Personality Profiling</a></li>
           <li><a href="service-executive-search.html">Executive Search</a></li>
           <li><a href="bespoke-coaching.html">Executive Coaching &ndash; Bespoke</a></li>
-          <li><a href="corporate-programs.html">Corporate Programmes</a></li>
           <li><a href="service-hr-analytics.html">HR Analytics</a></li>
           <li><a href="service-data-science-analytics.html">Data Science &amp; Analytics</a></li>
           <li><a href="service-market-actionable-intelligence.html">Market Intelligence</a></li>
-          <div class="gh-dropdown-divider"></div>
+          <li><a href="organisational-health-consulting.html">Organisational Health</a></li>
+          <li class="gh-dropdown-divider" aria-hidden="true"></li>
           <li><a href="individual-services.html">Individual &amp; Wellness</a></li>
           <li><a href="service-consciousness-clarity.html">Consciousness &amp; Clarity</a></li>
           <li><a href="service-mind-wellness.html">Mind Wellness</a></li>
@@ -690,11 +693,8 @@
       </li>
 
       <li>
-        <a href="the-approach.html">
-          The Approach
-          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+        <a href="the-approach.html">The Approach
+          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
         <ul class="gh-dropdown">
           <li><a href="the-approach.html">The Approach</a></li>
@@ -706,7 +706,33 @@
 
       <li><a href="insights.html">Insights</a></li>
       <li><a href="about-rajneesh-jain.html">The Founder</a></li>
-      <li><a href="begin-conversation.html" class="gh-cta">Begin a Conversation</a></li>
+
+      <li>
+        <a href="paid-services.html">Paid Services
+          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <ul class="gh-dropdown">
+          <li><a href="paid-services.html">Paid Services</a></li>
+          <li><a href="wellness-services.html">Wellness Services</a></li>
+        </ul>
+      </li>
+
+      <li><a href="cv-portal.html">The CV Portal</a></li>
+      <li><a href="begin-conversation.html" class="gh-cta active">Begin a Conversation</a></li>
+
+      <li class="gh-login-wrap">
+        <a href="login.html" class="gh-login-icon" aria-label="Sign in or register for The CV Portal" aria-haspopup="true" aria-expanded="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </a>
+        <ul class="gh-login-dropdown" role="menu" aria-label="The CV Portal account">
+          <li class="gh-login-dropdown-label">The CV Portal</li>
+          <li role="none"><a href="login.html" role="menuitem">CV Portal &ndash; Login</a></li>
+          <li role="none"><a href="register.html" role="menuitem">CV Portal &ndash; Register</a></li>
+        </ul>
+      </li>
 
     </ul>
   </nav>
@@ -715,8 +741,12 @@
     <span></span><span></span><span></span>
   </button>
 </header>
+
 <div class="gh-mobile-menu" id="ghMobileMenu" role="dialog" aria-label="Mobile navigation">
   <ul class="gh-mobile-nav">
+
+    <li><a href="about-meculs.html">About MECULS</a></li>
+
     <li>
       <a href="how-meculs-works.html">How MECULS Works</a>
       <ul class="gh-mobile-sub">
@@ -727,18 +757,20 @@
         <li><a href="contemplative-practices.html">Contemplative Practices</a></li>
       </ul>
     </li>
+
     <li>
       <a href="services.html">Services</a>
       <ul class="gh-mobile-sub">
         <li><a href="services.html">All Services</a></li>
+        <li><a href="corporate-programs.html">Corporate Programmes</a></li>
         <li><a href="360-pulse-rate.html">360&deg; PULSE RATE&trade;</a></li>
         <li><a href="service-personality-profiling.html">Personality Profiling</a></li>
         <li><a href="service-executive-search.html">Executive Search</a></li>
         <li><a href="bespoke-coaching.html">Executive Coaching &ndash; Bespoke</a></li>
-        <li><a href="corporate-programs.html">Corporate Programmes</a></li>
         <li><a href="service-hr-analytics.html">HR Analytics</a></li>
         <li><a href="service-data-science-analytics.html">Data Science &amp; Analytics</a></li>
         <li><a href="service-market-actionable-intelligence.html">Market Intelligence</a></li>
+        <li><a href="organisational-health-consulting.html">Organisational Health</a></li>
         <li><a href="individual-services.html">Individual &amp; Wellness</a></li>
         <li><a href="service-consciousness-clarity.html">Consciousness &amp; Clarity</a></li>
         <li><a href="service-mind-wellness.html">Mind Wellness</a></li>
@@ -748,6 +780,7 @@
         <li><a href="service-zero-state-meditation.html">Meditation as Medicine</a></li>
       </ul>
     </li>
+
     <li>
       <a href="the-approach.html">The Approach</a>
       <ul class="gh-mobile-sub">
@@ -757,8 +790,21 @@
         <li><a href="our-work-proof.html">Our Work Proof</a></li>
       </ul>
     </li>
+
     <li><a href="insights.html">Insights</a></li>
     <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+
+    <li>
+      <a href="paid-services.html">Paid Services</a>
+      <ul class="gh-mobile-sub">
+        <li><a href="paid-services.html">Paid Services</a></li>
+        <li><a href="wellness-services.html">Wellness Services</a></li>
+      </ul>
+    </li>
+
+    <li><a href="cv-portal.html">The CV Portal</a></li>
+    <li><a href="login.html">CV Portal &ndash; Login</a></li>
+    <li><a href="register.html">CV Portal &ndash; Register</a></li>
   </ul>
   <a href="begin-conversation.html" class="gh-mobile-cta">Begin a Conversation</a>
 </div>
@@ -1223,6 +1269,7 @@
       </ul>
       <span class="gf-col-title" style="margin-top: 2rem;">Legal</span>
       <ul class="gf-links">
+        <li><a href="grievance.html">Grievance</a></li>
         <li><a href="privacy-policy.html">Privacy Policy</a></li>
         <li><a href="terms.html">Terms of Service</a></li>
         <li><a href="refund-policy.html">Refund Policy</a></li>
@@ -1239,6 +1286,7 @@
       <p class="gf-copy">&copy; 2026 MECULS. All rights reserved. Delhi, India.</p>
       <p class="gf-payment">Payment: PayUBiz &middot; Razorpay &middot; PayPal &middot; UPI &middot; Credit Card</p>
       <nav class="gf-legal" aria-label="Legal links">
+        <a href="grievance.html">Grievance</a>
         <a href="privacy-policy.html">Privacy</a>
         <a href="terms.html">Terms</a>
         <a href="refund-policy.html">Refund</a>
