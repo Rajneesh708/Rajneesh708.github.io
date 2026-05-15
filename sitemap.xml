@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <!-- MECULS.COM SITEMAP - CANONICAL NON-WWW
-       Last updated: 2026-05-11
+       Last updated: 2026-05-15
        All URLs use https://meculs.com/ (no www) to match internal linking.
   -->
 
@@ -27,6 +27,7 @@
   <url><loc>https://meculs.com/paid-services.html</loc><lastmod>2026-05-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://meculs.com/wellness-services.html</loc><lastmod>2026-05-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://meculs.com/individual-services.html</loc><lastmod>2026-05-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://meculs.com/cv-portal.html</loc><lastmod>2026-05-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <url><loc>https://meculs.com/bespoke-coaching.html</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://meculs.com/corporate-programs.html</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -61,5 +62,6 @@
   <url><loc>https://meculs.com/terms.html</loc><lastmod>2026-04-19</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
   <url><loc>https://meculs.com/refund-policy.html</loc><lastmod>2026-04-19</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
   <url><loc>https://meculs.com/disclaimer.html</loc><lastmod>2026-04-19</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://meculs.com/grievance.html</loc><lastmod>2026-05-15</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
 
 </urlset>

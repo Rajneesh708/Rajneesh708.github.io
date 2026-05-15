@@ -207,9 +207,7 @@
     <div class="pay-next">
       <div class="pay-next__heading">What happens next</div>
       <p class="pay-next__text" id="nextStepText">
-        A receipt for your payment has been sent to your email by Razorpay.
-        For your next step, please email Jain.Rajneesh@meculs.com with your payment ID
-        (shown above) and we'll send the right link within 24 hours.
+        Loading your next step&hellip;
       </p>
       <a class="pay-cta" id="nextStepCta" href="#" style="display:none;">Continue</a>
     </div>
@@ -336,15 +334,19 @@
   const ctaEl         = document.getElementById("nextStepCta");
 
   if (product) {
+    // Scenario 1: known product → show per-product message
     productNameEl.textContent = product.name;
     nextTextEl.textContent    = product.next;
     ctaEl.textContent         = product.cta;
     ctaEl.href                = product.ctaUrl;
     ctaEl.style.display       = "inline-block";
-  } else {
+  } else if (paymentId || orderId) {
+    // Scenario 2: payment evidence present but product unknown.
+    // Customer DID pay — show honest message and a pre-filled email to Rajneesh.
     productNameEl.textContent = "Your MECULS order";
-    // Fallback: give the customer a way out — a pre-filled email to Rajneesh
-    // referencing their payment ID, so the issue can be resolved fast.
+    nextTextEl.textContent =
+      "Your payment was received but we couldn't identify the product. " +
+      "Please email Rajneesh with your payment ID (shown above) and the right link will follow within 24 hours.";
     const subject = "Help with my MECULS payment";
     const body = "Hi Rajneesh,\n\nI've just paid via Razorpay but the next step didn't load.\n"
                + (paymentId ? ("Payment ID: " + paymentId + "\n") : "")
@@ -355,6 +357,12 @@
                         + "?subject=" + encodeURIComponent(subject)
                         + "&body="    + encodeURIComponent(body);
     ctaEl.style.display = "inline-block";
+  } else {
+    // Scenario 3: no product, no payment → page was reached directly (no real
+    // Razorpay redirect). Send the visitor to the homepage. No misleading
+    // "thank you" text is shown to anyone who did not actually pay.
+    window.location.replace("index.html");
+    return;
   }
 
   if (paymentId || orderId) {
