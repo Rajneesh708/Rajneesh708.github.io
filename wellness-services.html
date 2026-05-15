@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://rzp.io https://cal.eu;">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://checkout.razorpay.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com; connect-src 'self' https://*.vercel.app https://api.razorpay.com; frame-src https://api.razorpay.com https://checkout.razorpay.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://rzp.io https://cal.eu;">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
 
@@ -435,6 +435,15 @@
       transition: background 0.18s, transform 0.1s, box-shadow 0.18s;
       margin-top: 1.5rem;
       margin-right: 0.6rem;
+      /* resets so a <button> with this class matches the <a> version */
+      border: none;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .ps-card__cta:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
     }
     .ps-card__cta:hover {
       background: var(--ps-amber-deep);
@@ -884,7 +893,9 @@
           Adults carrying tiredness, going-through-the-motions, or distance from their own
           life that's hard to explain. Young people under pressure who can't quite name it.
         </p>
-        <a class="ps-card__cta" href="https://rzp.io/rzp/gUWryYlR">Pay &amp; book session &rarr;</a>
+        <button type="button" class="ps-card__cta js-pay"
+                data-product="wellness-anxiety"
+                data-next="pay-success.html">Pay &amp; book session &rarr;</button>
         <a class="ps-card__cta ps-card__cta--secondary" href="service-mind-wellness.html">Read more</a>
       </article>
 
@@ -908,7 +919,9 @@
           despite trying harder. No tests, no questionnaires &mdash; just conversation that
           goes deeper than usual.
         </p>
-        <a class="ps-card__cta" href="https://rzp.io/rzp/BcVvsMB">Pay &amp; book session &rarr;</a>
+        <button type="button" class="ps-card__cta js-pay"
+                data-product="wellness-pattern"
+                data-next="pay-success.html">Pay &amp; book session &rarr;</button>
         <a class="ps-card__cta ps-card__cta--secondary" href="service-consciousness-clarity.html">Read more</a>
       </article>
 
@@ -931,7 +944,9 @@
           People in pieces &mdash; after a death, a diagnosis, a separation, or any
           rupture that has not yet found its shape.
         </p>
-        <a class="ps-card__cta" href="https://rzp.io/rzp/7HU44VR6">Pay &amp; book session &rarr;</a>
+        <button type="button" class="ps-card__cta js-pay"
+                data-product="wellness-grief"
+                data-next="pay-success.html">Pay &amp; book session &rarr;</button>
         <a class="ps-card__cta ps-card__cta--secondary" href="service-counselling.html">Read more</a>
       </article>
 
@@ -954,7 +969,9 @@
           People stuck in addiction &mdash; substance, behaviour, or relationship.
           Works with what the addiction was trying to fix, not just the addiction itself.
         </p>
-        <a class="ps-card__cta" href="https://rzp.io/rzp/Lw7IFea">Pay &amp; book session &rarr;</a>
+        <button type="button" class="ps-card__cta js-pay"
+                data-product="wellness-addiction"
+                data-next="pay-success.html">Pay &amp; book session &rarr;</button>
         <a class="ps-card__cta ps-card__cta--secondary" href="service-addiction-freedom.html">Read more</a>
       </article>
 
@@ -977,7 +994,9 @@
           Parents whose child is restless, withdrawn, struggling at school, screen-addicted,
           or anxious &mdash; and who want a clear next step before anything else.
         </p>
-        <a class="ps-card__cta" href="https://rzp.io/rzp/IIceJyR">Pay &amp; book session &rarr;</a>
+        <button type="button" class="ps-card__cta js-pay"
+                data-product="wellness-parent"
+                data-next="pay-success.html">Pay &amp; book session &rarr;</button>
         <a class="ps-card__cta ps-card__cta--secondary" href="service-children.html">Read more</a>
       </article>
 
@@ -1000,7 +1019,9 @@
           Children from primary school through secondary school. Booked only after the
           parent conversation. Sessions held online worldwide or in-person in Delhi.
         </p>
-        <a class="ps-card__cta" href="https://rzp.io/rzp/kMuBTlz">Pay &amp; book session &rarr;</a>
+        <button type="button" class="ps-card__cta js-pay"
+                data-product="wellness-child"
+                data-next="pay-success.html">Pay &amp; book session &rarr;</button>
         <a class="ps-card__cta ps-card__cta--secondary" href="service-children.html">Read more</a>
       </article>
 
@@ -1024,7 +1045,9 @@
           People carrying something for years that no other approach has shifted.
           Daily practice with periodic sessions to adjust as it unfolds.
         </p>
-        <a class="ps-card__cta" href="https://rzp.io/rzp/oKRYCIJ">Pay &amp; book session &rarr;</a>
+        <button type="button" class="ps-card__cta js-pay"
+                data-product="wellness-meditation"
+                data-next="pay-success.html">Pay &amp; book session &rarr;</button>
         <a class="ps-card__cta ps-card__cta--secondary" href="service-zero-state-meditation.html">Read more</a>
       </article>
 
@@ -1160,6 +1183,14 @@
 </footer>
 
 </div><!-- /.page -->
+
+<!-- Razorpay Checkout + MECULS config + the checkout wiring.
+     meculs-checkout.js turns every .js-pay button into a secure
+     Razorpay Checkout that verifies payment before sending the
+     customer to pay-success.html. -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="config.js?v=7"></script>
+<script src="meculs-checkout.js?v=2"></script>
 
 <script src="global.js?v=6"></script>
 

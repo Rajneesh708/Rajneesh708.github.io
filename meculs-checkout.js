@@ -123,20 +123,28 @@
             throw new Error(verifyData.error || "verification failed");
           }
 
-          /* ---- Step 6: go to the submit page WITH the access token ----
-             sessionStorage carries the token without putting it in
-             the URL (cleaner, and not left in browser history). */
+          /* ---- Step 6: go to the next page ----
+             sessionStorage carries the access token (used by the
+             gated submit pages). URL params carry the product +
+             payment id (used by pay-success.html, which reads them
+             via URLSearchParams). Both mechanisms in parallel —
+             belt and braces. */
           try {
             sessionStorage.setItem("meculs_access_token", verifyData.access_token);
             sessionStorage.setItem("meculs_payment_id", verifyData.payment_id);
             sessionStorage.setItem("meculs_product", verifyData.product);
           } catch (e) {
-            /* sessionStorage blocked? fall back to the URL. */
-            window.location.href = nextPage +
-              "?access_token=" + encodeURIComponent(verifyData.access_token);
-            return;
+            /* sessionStorage blocked — URL params will still work
+               for pay-success; gated pages have a URL fallback too. */
           }
-          window.location.href = nextPage;
+          /* Build the destination URL. If nextPage already has a
+             query string, append with &; otherwise start with ?. */
+          var sep = nextPage.indexOf("?") === -1 ? "?" : "&";
+          var dest = nextPage + sep +
+            "product=" + encodeURIComponent(verifyData.product) +
+            "&razorpay_payment_id=" + encodeURIComponent(verifyData.payment_id) +
+            "&razorpay_order_id=" + encodeURIComponent(response.razorpay_order_id);
+          window.location.href = dest;
         } catch (err) {
           console.error("meculs-checkout: verify error", err);
           /* Payment likely DID go through but verification failed —
