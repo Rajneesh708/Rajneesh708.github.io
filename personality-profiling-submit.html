@@ -275,9 +275,11 @@
             Their CV or LinkedIn URL
           </label>
           <input type="url" id="ppSubjectUrl" name="subject_url" class="pp-field__input"
+                 inputmode="url" autocomplete="url"
                  placeholder="https://www.linkedin.com/in/..." required>
           <div class="pp-field__hint">
             LinkedIn profile or a publicly viewable CV link (Google Drive / Dropbox).
+            You don't need to type <code>https://</code> &mdash; we add it automatically.
           </div>
         </div>
 
@@ -304,12 +306,11 @@
         </div>
 
         <div class="pp-field">
-          <label class="pp-field__label" for="ppPayment">Payment reference (optional)</label>
+          <label class="pp-field__label" for="ppPayment">Razorpay payment ID (optional)</label>
           <input type="text" id="ppPayment" name="payment_id" class="pp-field__input"
-                 placeholder="Razorpay payment ID or bank transfer reference">
+                 placeholder="Paste from your payment receipt email">
           <div class="pp-field__hint">
-            If you've already paid &mdash; by Razorpay or bank transfer &mdash; paste the
-            reference here so we can match your payment to this submission.
+            Helps us match your payment to your submission.
           </div>
         </div>
 
@@ -345,7 +346,7 @@
 
 <!-- Supabase JS library + shared config (URL + anon key) -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="config.js?v=7"></script>
+<script src="config.js?v=6"></script>
 
 <script>
 /* ─────────────────────────────────────────────────────────────
@@ -371,6 +372,21 @@
   const pid = params.get("razorpay_payment_id");
   if (pid) document.getElementById("ppPayment").value = pid;
 
+  /* Auto-prepend https:// on the Subject URL field.
+     Runs on blur (when user clicks away) so they see what we did.
+     Also runs once just before submit. */
+  const subjectUrlEl = document.getElementById("ppSubjectUrl");
+  function normalizeUrl(val) {
+    var v = (val || "").trim();
+    if (!v) return v;
+    if (/^[a-z][a-z0-9+.-]*:\/\//i.test(v)) return v;
+    if (/^[a-z0-9]/i.test(v)) return "https://" + v;
+    return v;
+  }
+  subjectUrlEl.addEventListener("blur", function () {
+    subjectUrlEl.value = normalizeUrl(subjectUrlEl.value);
+  });
+
   function showSuccess() {
     formState.style.display = "none";
     successState.classList.add("is-visible");
@@ -382,6 +398,9 @@
     submitBtn.disabled = true;
     submitBtn.textContent = "Submitting…";
     errorEl.classList.remove("is-visible");
+
+    /* Normalize URL one more time in case user never blurred */
+    subjectUrlEl.value = normalizeUrl(subjectUrlEl.value);
 
     const email = document.getElementById("ppEmail").value.trim();
     const subjectName = document.getElementById("ppSubjectName").value.trim();

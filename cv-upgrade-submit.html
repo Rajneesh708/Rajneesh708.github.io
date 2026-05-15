@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://checkout.razorpay.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://*.supabase.co https://*.vercel.app https://api.razorpay.com; frame-src https://api.razorpay.com https://checkout.razorpay.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://*.supabase.co; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
 
@@ -194,71 +194,12 @@
     }
     .cv-footer a { color: var(--ps-gold); text-decoration: none; }
     .cv-footer a:hover { text-decoration: underline; }
-
-    /* ── Locked panel — shown when there is no verified payment ── */
-    .cv-locked { text-align: center; }
-    .cv-locked__icon {
-      width: 72px;
-      height: 72px;
-      margin: 0 auto 1.5rem;
-      border-radius: 50%;
-      background: rgba(176, 125, 46, 0.10);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--ps-gold);
-    }
-    .cv-locked__title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.4rem, 2.2vw, 1.7rem);
-      font-weight: 500;
-      line-height: 1.3;
-      margin: 0 0 0.7rem;
-      color: var(--ps-text);
-    }
-    .cv-locked__text {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 1.05rem;
-      color: var(--ps-soft);
-      line-height: 1.65;
-      margin: 0 auto 1.8rem;
-      max-width: 46ch;
-    }
-    .cv-locked__cta {
-      display: inline-block;
-      background: var(--ps-text);
-      color: var(--ps-card);
-      font-family: 'Archivo', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 500;
-      letter-spacing: 0.02em;
-      padding: 0.85rem 1.8rem;
-      border-radius: 4px;
-      text-decoration: none;
-      transition: background 0.15s;
-    }
-    .cv-locked__cta:hover { background: var(--ps-gold); }
-    .cv-locked__note {
-      margin-top: 1.6rem;
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 0.9rem;
-      color: var(--ps-muted);
-      line-height: 1.55;
-    }
-    .cv-locked__note a { color: var(--ps-gold); text-decoration: none; }
-    .cv-locked__note a:hover { text-decoration: underline; }
   </style>
 </head>
-<body data-gate-product="cv-upgrade">
+<body>
 
 <div class="cv-page">
   <div class="cv-card">
-
-    <!-- GATED CONTENT — revealed by meculs-gate.js only after a
-         verified payment. Starts hidden. -->
-    <div id="meculs-gated" hidden>
 
     <div class="cv-eyebrow">Step 2 of 2</div>
     <h1 class="cv-title">Submit your CV for upgrade</h1>
@@ -288,9 +229,11 @@
       <div class="cv-field">
         <label class="cv-field__label cv-field__label--required" for="cvLink">Public link to your CV</label>
         <input type="url" id="cvLink" name="cv_link" class="cv-field__input"
+               inputmode="url" autocomplete="url"
                placeholder="https://drive.google.com/..." required>
         <div class="cv-field__hint">
           Google Drive, Dropbox, or OneDrive. Make sure the link is publicly viewable.
+          You don't need to type <code>https://</code> &mdash; we add it automatically.
         </div>
       </div>
 
@@ -303,6 +246,15 @@
         </div>
       </div>
 
+      <div class="cv-field">
+        <label class="cv-field__label" for="cvPayment">Razorpay payment ID (optional)</label>
+        <input type="text" id="cvPayment" name="payment_id" class="cv-field__input"
+               placeholder="Paste from your payment receipt email">
+        <div class="cv-field__hint">
+          Helps us match your payment to your submission. Find it in your Razorpay email.
+        </div>
+      </div>
+
       <button type="submit" class="cv-cta" id="cvSubmit">Submit my CV &rarr;</button>
       <div class="cv-error" id="cvError">Something went wrong. Please email Jain.Rajneesh@meculs.com with your CV link directly.</div>
     </form>
@@ -311,47 +263,18 @@
       Questions? Email <a href="mailto:Jain.Rajneesh@meculs.com">Jain.Rajneesh@meculs.com</a>
     </div>
 
-    </div><!-- /#meculs-gated -->
-
-    <!-- LOCKED PANEL — shown when there is no verified payment. -->
-    <div id="meculs-locked" class="cv-locked" hidden>
-      <div class="cv-locked__icon" aria-hidden="true">
-        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-        </svg>
-      </div>
-      <h1 class="cv-locked__title">This page is for completing a paid order</h1>
-      <p class="cv-locked__text">
-        The CV upgrade form opens here once your payment is complete.
-        If you'd like to start, the payment step is on the Paid Services page.
-      </p>
-      <a class="cv-locked__cta" href="paid-services.html">Go to Paid Services &rarr;</a>
-      <div class="cv-locked__note">
-        Already paid and seeing this by mistake? Email
-        <a href="mailto:Jain.Rajneesh@meculs.com">Jain.Rajneesh@meculs.com</a>
-        with your payment ID and we'll sort it out right away.
-      </div>
-    </div><!-- /#meculs-locked -->
-
   </div>
 </div>
 
-<!-- Supabase JS library + shared config (URL + anon key + API base) -->
+<!-- Supabase JS library + shared config (URL + anon key) -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="config.js?v=7"></script>
-<!-- The gate: checks the access token, reveals the form only if paid -->
-<script src="meculs-gate.js?v=1"></script>
+<script src="config.js?v=6"></script>
 
 <script>
 /* ─────────────────────────────────────────────────────────────
    cv-upgrade-submit.html
-   The form is revealed by meculs-gate.js ONLY after a verified
-   payment. On submit, writes the row to public.paid_submissions
-   in Supabase — with the SERVER-VERIFIED payment id, taken from
-   window.MECULS_PAYMENT_ID (set by the gate). On success,
-   redirects to cv-upgrade-ready.html.
+   On submit, writes the row to the public.paid_submissions
+   table in Supabase. On success, redirects to cv-upgrade-ready.html.
    ───────────────────────────────────────────────────────────── */
 
 (function () {
@@ -364,20 +287,41 @@
   const submitBtn = document.getElementById("cvSubmit");
   const errorEl = document.getElementById("cvError");
 
+  /* Pre-fill payment ID if it came in via URL params */
+  const params = new URLSearchParams(window.location.search);
+  const pid = params.get("razorpay_payment_id");
+  if (pid) document.getElementById("cvPayment").value = pid;
+
+  /* Auto-prepend https:// on the CV link field.
+     Runs on blur (when user clicks away) so they see what we did.
+     Also runs once just before submit, in case user submitted without blurring. */
+  const cvLinkEl = document.getElementById("cvLink");
+  function normalizeUrl(val) {
+    var v = (val || "").trim();
+    if (!v) return v;
+    // If they already typed a scheme, leave it
+    if (/^[a-z][a-z0-9+.-]*:\/\//i.test(v)) return v;
+    // If they typed something that looks like a domain, prepend https://
+    if (/^[a-z0-9]/i.test(v)) return "https://" + v;
+    return v;
+  }
+  cvLinkEl.addEventListener("blur", function () {
+    cvLinkEl.value = normalizeUrl(cvLinkEl.value);
+  });
+
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
     submitBtn.disabled = true;
     submitBtn.textContent = "Submitting…";
     errorEl.classList.remove("is-visible");
 
+    /* Normalize the URL one more time in case user never blurred */
+    cvLinkEl.value = normalizeUrl(cvLinkEl.value);
+
     const email = document.getElementById("cvEmail").value.trim();
     const cvLink = document.getElementById("cvLink").value.trim();
     const notes = document.getElementById("cvNotes").value.trim();
-
-    /* The payment id is the SERVER-VERIFIED one from the access
-       token — set by meculs-gate.js. The customer never types it,
-       so it cannot be faked. */
-    const paymentId = window.MECULS_PAYMENT_ID || null;
+    const paymentId = document.getElementById("cvPayment").value.trim();
 
     try {
       const { error } = await sb
@@ -385,11 +329,10 @@
         .insert({
           form_type: "cv_upgrade",
           customer_email: email,
-          razorpay_payment_id: paymentId,
+          razorpay_payment_id: paymentId || null,
           payload: {
             cv_link: cvLink,
-            notes: notes,
-            order_id: window.MECULS_ORDER_ID || null
+            notes: notes
           }
         });
 
