@@ -63,3 +63,19 @@ const TURNSTILE_SITE_KEY = "0x4AAAAAADGth_-6hJl4Fyzu";
    "MECULS - Ikshu CV Portal Web Client".
    ─────────────────────────────────────────────────────────── */
 const GOOGLE_CLIENT_ID = "758323051819-e46f7vk0c1nlra2hc2140s0e8vtaoh9e.apps.googleusercontent.com";
+
+/* ── Payment system API base (added 2026-05-15) ──
+   The address of the MECULS payment functions, deployed on
+   Vercel. Used by meculs-checkout.js (on paid-services.html)
+   and meculs-gate.js (on cv-upgrade-submit.html) to create
+   Razorpay orders, verify payments, and check access tokens.
+
+   This value is PUBLIC by design — it is just a web address.
+   The Razorpay SECRET key and the access-token secret live in
+   Vercel's Environment Variables, server-side, never here.
+
+   ⚠️ AFTER DEPLOYING TO VERCEL: replace the placeholder below
+   with your real Vercel URL — no trailing slash. It will look
+   like "https://meculs-payment.vercel.app" or similar.
+   ─────────────────────────────────────────────────────────── */
+const MECULS_API_BASE = "https://meculs-payment.vercel.app";

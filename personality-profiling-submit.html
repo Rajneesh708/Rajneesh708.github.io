@@ -304,11 +304,12 @@
         </div>
 
         <div class="pp-field">
-          <label class="pp-field__label" for="ppPayment">Razorpay payment ID (optional)</label>
+          <label class="pp-field__label" for="ppPayment">Payment reference (optional)</label>
           <input type="text" id="ppPayment" name="payment_id" class="pp-field__input"
-                 placeholder="Paste from your payment receipt email">
+                 placeholder="Razorpay payment ID or bank transfer reference">
           <div class="pp-field__hint">
-            Helps us match your payment to your submission.
+            If you've already paid &mdash; by Razorpay or bank transfer &mdash; paste the
+            reference here so we can match your payment to this submission.
           </div>
         </div>
 
@@ -344,7 +345,7 @@
 
 <!-- Supabase JS library + shared config (URL + anon key) -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="config.js?v=6"></script>
+<script src="config.js?v=7"></script>
 
 <script>
 /* ─────────────────────────────────────────────────────────────
