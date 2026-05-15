@@ -7,7 +7,6 @@ Disallow: /register.html
 Disallow: /dashboard.html
 Disallow: /settings.html
 Disallow: /preferences.html
-Disallow: /cv-portal.html
 Disallow: /skills.html
 Disallow: /education.html
 Disallow: /experience.html
@@ -28,7 +27,6 @@ Disallow: /ai_tools.html
 Disallow: /submission_complete.html
 Disallow: /goodbye.html
 Disallow: /p.html
-Disallow: /grievance.html
 Disallow: /404.html
 
 Sitemap: https://meculs.com/sitemap.xml
