@@ -207,8 +207,9 @@
     <div class="pay-next">
       <div class="pay-next__heading">What happens next</div>
       <p class="pay-next__text" id="nextStepText">
-        We'll be in touch shortly with the next step. If you don't hear from us within
-        24 hours, please email Jain.Rajneesh@meculs.com.
+        A receipt for your payment has been sent to your email by Razorpay.
+        For your next step, please email Jain.Rajneesh@meculs.com with your payment ID
+        (shown above) and we'll send the right link within 24 hours.
       </p>
       <a class="pay-cta" id="nextStepCta" href="#" style="display:none;">Continue</a>
     </div>
@@ -342,6 +343,18 @@
     ctaEl.style.display       = "inline-block";
   } else {
     productNameEl.textContent = "Your MECULS order";
+    // Fallback: give the customer a way out — a pre-filled email to Rajneesh
+    // referencing their payment ID, so the issue can be resolved fast.
+    const subject = "Help with my MECULS payment";
+    const body = "Hi Rajneesh,\n\nI've just paid via Razorpay but the next step didn't load.\n"
+               + (paymentId ? ("Payment ID: " + paymentId + "\n") : "")
+               + (orderId   ? ("Order ID: "   + orderId   + "\n") : "")
+               + "\nPlease send me the right next link.\n\nThanks.";
+    ctaEl.textContent   = "Email Rajneesh";
+    ctaEl.href          = "mailto:Jain.Rajneesh@meculs.com"
+                        + "?subject=" + encodeURIComponent(subject)
+                        + "&body="    + encodeURIComponent(body);
+    ctaEl.style.display = "inline-block";
   }
 
   if (paymentId || orderId) {
