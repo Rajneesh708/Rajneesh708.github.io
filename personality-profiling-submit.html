@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://*.supabase.co; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://*.supabase.co https://meculs-payment.vercel.app; frame-src https://challenges.cloudflare.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
 
@@ -314,6 +314,21 @@
           </div>
         </div>
 
+        <!-- ─────────────────────────────────────────────────────────
+             SPAM PROTECTION (invisible to humans)
+             ───────────────────────────────────────────────────────── -->
+        <div style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
+          <label for="hp_website">Website (leave blank)</label>
+          <input type="text" id="hp_website" name="hp_website" tabindex="-1" autocomplete="off">
+        </div>
+        <input type="hidden" id="hp_ts" name="hp_ts" value="">
+
+        <!-- Cloudflare Turnstile widget -->
+        <div class="cf-turnstile"
+             data-sitekey="0x4AAAAAADQhXVRIIusl9YwX"
+             data-theme="light"
+             style="margin: 1rem 0;"></div>
+
         <button type="submit" class="pp-cta" id="ppSubmit">Submit profile details &rarr;</button>
         <div class="pp-error" id="ppError">
           Something went wrong. Please email Jain.Rajneesh@meculs.com with the details directly.
@@ -344,14 +359,23 @@
   </div>
 </div>
 
+<!-- Cloudflare Turnstile widget script -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
 <!-- Supabase JS library + shared config (URL + anon key) -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="config.js?v=6"></script>
+<script src="config.js?v=7"></script>
 
 <script>
 /* ─────────────────────────────────────────────────────────────
    personality-profiling-submit.html
-   On submit, writes the row to public.paid_submissions table
+
+   THREE LAYERS OF SPAM PROTECTION:
+     1. Honeypot field (hp_website)
+     2. Timestamp check (hp_ts)
+     3. Cloudflare Turnstile (server-verified)
+
+   On valid submit, writes the row to public.paid_submissions table
    in Supabase. On success, shows the in-page success state.
    ───────────────────────────────────────────────────────────── */
 
@@ -366,15 +390,17 @@
   const errorEl = document.getElementById("ppError");
   const formState = document.getElementById("ppFormState");
   const successState = document.getElementById("ppSuccessState");
+  const hpTs = document.getElementById("hp_ts");
+
+  /* Record the page-load timestamp for the timestamp check. */
+  if (hpTs) hpTs.value = String(Date.now());
 
   /* Pre-fill payment ID if it came in via URL */
   const params = new URLSearchParams(window.location.search);
   const pid = params.get("razorpay_payment_id");
   if (pid) document.getElementById("ppPayment").value = pid;
 
-  /* Auto-prepend https:// on the Subject URL field.
-     Runs on blur (when user clicks away) so they see what we did.
-     Also runs once just before submit. */
+  /* Auto-prepend https:// on the Subject URL field. */
   const subjectUrlEl = document.getElementById("ppSubjectUrl");
   function normalizeUrl(val) {
     var v = (val || "").trim();
@@ -402,6 +428,63 @@
     /* Normalize URL one more time in case user never blurred */
     subjectUrlEl.value = normalizeUrl(subjectUrlEl.value);
 
+    /* ──── LAYER 1: HONEYPOT ──── */
+    const hpValue = (document.getElementById("hp_website").value || "").trim();
+    if (hpValue) {
+      console.warn("Honeypot triggered — silently rejecting");
+      showSuccess();
+      return;
+    }
+
+    /* ──── LAYER 2: TIMESTAMP ──── */
+    const loadedAt = parseInt(hpTs.value, 10) || 0;
+    const elapsed = Date.now() - loadedAt;
+    if (elapsed < 3000) {
+      console.warn("Timestamp check failed (" + elapsed + "ms) — rejecting");
+      showSuccess();
+      return;
+    }
+
+    /* ──── LAYER 3: TURNSTILE ──── */
+    let turnstileToken = "";
+    try {
+      if (typeof turnstile !== "undefined" && turnstile.getResponse) {
+        turnstileToken = turnstile.getResponse();
+      }
+    } catch (e) {
+      turnstileToken = "";
+    }
+
+    if (!turnstileToken) {
+      errorEl.textContent = "Please complete the security check above before submitting.";
+      errorEl.classList.add("is-visible");
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Submit profile details →";
+      return;
+    }
+
+    try {
+      const verifyRes = await fetch(MECULS_API_BASE + "/api/verify-turnstile", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ turnstile_token: turnstileToken })
+      });
+      const verifyData = await verifyRes.json();
+      if (!verifyRes.ok || !verifyData.ok) {
+        throw new Error(verifyData.reason || "verify_failed");
+      }
+    } catch (verifyErr) {
+      console.error("Turnstile verification failed:", verifyErr);
+      errorEl.textContent = "Security check failed. Please refresh and try again, " +
+                            "or email Jain.Rajneesh@meculs.com with the details directly.";
+      errorEl.classList.add("is-visible");
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Submit profile details →";
+      try { if (typeof turnstile !== "undefined") turnstile.reset(); } catch (e) {}
+      return;
+    }
+
+    /* ──── ALL CHECKS PASSED — WRITE TO SUPABASE ──── */
     const email = document.getElementById("ppEmail").value.trim();
     const subjectName = document.getElementById("ppSubjectName").value.trim();
     const subjectUrl = document.getElementById("ppSubjectUrl").value.trim();
@@ -428,6 +511,7 @@
       showSuccess();
     } catch (err) {
       console.error("Submission failed:", err);
+      errorEl.textContent = "Something went wrong. Please email Jain.Rajneesh@meculs.com with the details directly.";
       errorEl.classList.add("is-visible");
       submitBtn.disabled = false;
       submitBtn.textContent = "Submit profile details →";
