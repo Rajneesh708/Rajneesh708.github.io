@@ -124,11 +124,20 @@
           }
 
           /* ---- Step 6: go to the next page ----
-             sessionStorage carries the access token (used by the
-             gated submit pages). URL params carry the product +
-             payment id (used by pay-success.html, which reads them
-             via URLSearchParams). Both mechanisms in parallel —
-             belt and braces. */
+             Two flows:
+
+             (a) Cal.com booking products (coaching + wellness):
+                 the server returned a booking_token. Redirect to
+                 book.html with that token. book.html then talks to
+                 /api/redeem-booking-token to get the real Cal.com
+                 URL and redirects the customer to it. The Cal.com
+                 URL never appears in any HTML/JS the browser sees.
+
+             (b) Form-based products (cv-upgrade, personality-
+                 profiling): no booking_token. Redirect to the page
+                 named by data-next, carrying product + payment_id
+                 in URL params. sessionStorage also carries the
+                 access_token for the gated submit pages. */
           try {
             sessionStorage.setItem("meculs_access_token", verifyData.access_token);
             sessionStorage.setItem("meculs_payment_id", verifyData.payment_id);
@@ -137,13 +146,21 @@
             /* sessionStorage blocked — URL params will still work
                for pay-success; gated pages have a URL fallback too. */
           }
-          /* Build the destination URL. If nextPage already has a
-             query string, append with &; otherwise start with ?. */
-          var sep = nextPage.indexOf("?") === -1 ? "?" : "&";
-          var dest = nextPage + sep +
-            "product=" + encodeURIComponent(verifyData.product) +
-            "&razorpay_payment_id=" + encodeURIComponent(verifyData.payment_id) +
-            "&razorpay_order_id=" + encodeURIComponent(response.razorpay_order_id);
+
+          var dest;
+          if (verifyData.booking_token) {
+            /* Cal.com flow. Token in URL, payment id as a hint for
+               the error case in book.html. */
+            dest = "book.html?token=" + encodeURIComponent(verifyData.booking_token) +
+                   "&razorpay_payment_id=" + encodeURIComponent(verifyData.payment_id);
+          } else {
+            /* Form flow. Use the page named by data-next. */
+            var sep = nextPage.indexOf("?") === -1 ? "?" : "&";
+            dest = nextPage + sep +
+              "product=" + encodeURIComponent(verifyData.product) +
+              "&razorpay_payment_id=" + encodeURIComponent(verifyData.payment_id) +
+              "&razorpay_order_id=" + encodeURIComponent(response.razorpay_order_id);
+          }
           window.location.href = dest;
         } catch (err) {
           console.error("meculs-checkout: verify error", err);

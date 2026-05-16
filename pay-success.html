@@ -230,16 +230,23 @@
      &razorpay_payment_id=...
      &razorpay_order_id=...
 
-   Product codes (must match what paid-services.html sends):
-     cv-upgrade, single-coaching, coaching-block, retainer,
-     personality-profiling, wellness-anxiety, wellness-pattern,
-     wellness-grief, wellness-addiction, wellness-parent,
-     wellness-child, wellness-meditation
+   This page now handles ONLY form-flow products (cv-upgrade and
+   personality-profiling). Cal.com booking products (coaching +
+   wellness) are routed through book.html instead, where a server-
+   side token gate releases the Cal.com URL only to verified payers.
+
+   See KNOWN-ISSUES.md (HIGH-1) for the security reasoning.
    ───────────────────────────────────────────────────────────── */
 
 (function () {
   "use strict";
 
+  /* Only the two FORM-flow products live here. The 10 Cal.com
+     URLs that used to be in this file have been moved server-side
+     into /api/redeem-booking-token, where they are only released
+     after a signed booking-token from /api/verify-payment is
+     redeemed. The browser never sees a Cal.com URL until the
+     moment the redirect happens. */
   const PRODUCTS = {
     "cv-upgrade": {
       name: "CV Upgrade — ₹149",
@@ -248,73 +255,12 @@
       cta: "Submit my CV",
       ctaUrl: "cv-upgrade-submit.html"
     },
-    "single-coaching": {
-      name: "Single Coaching Session — ₹1,449",
-      next: "Book your 60-minute session at a time that suits you. " +
-            "You'll get a calendar invite with the Google Meet link automatically.",
-      cta: "Book my session",
-      ctaUrl: "https://cal.eu/meculs-founder-rajneesh-jain/single-coaching"
-    },
-    "coaching-block": {
-      name: "4-Session Coaching Block — ₹5,999",
-      next: "Book your first session below. You can book the remaining three at your own pace.",
-      cta: "Book first session",
-      ctaUrl: "https://cal.eu/meculs-founder-rajneesh-jain/coaching-block"
-    },
-    "retainer": {
-      name: "3-Month Coaching Retainer — ₹11,999",
-      next: "Book your first monthly session below. The remaining two will be booked one a month.",
-      cta: "Book first session",
-      ctaUrl: "https://cal.eu/meculs-founder-rajneesh-jain/retainer-session"
-    },
     "personality-profiling": {
       name: "Personality Profiling — ₹9,499",
       next: "Submit the CV or LinkedIn URL of the person you want profiled. " +
             "Your written profile will be emailed within 1 working day.",
       cta: "Submit profile details",
       ctaUrl: "personality-profiling-submit.html"
-    },
-    "wellness-anxiety": {
-      name: "Anxiety, Burnout & Emotional Weight Session — ₹999",
-      next: "Book your session at a time that suits you.",
-      cta: "Book my session",
-      ctaUrl: "https://cal.eu/meculs-founder-rajneesh-jain/wellness-anxiety"
-    },
-    "wellness-pattern": {
-      name: "The Pattern That Keeps Coming Back Session — ₹999",
-      next: "Book your session at a time that suits you.",
-      cta: "Book my session",
-      ctaUrl: "https://cal.eu/meculs-founder-rajneesh-jain/wellness-pattern"
-    },
-    "wellness-grief": {
-      name: "Grief, Crisis & Relationship Loss Session — ₹999",
-      next: "Book your session at a time that suits you.",
-      cta: "Book my session",
-      ctaUrl: "https://cal.eu/meculs-founder-rajneesh-jain/wellness-grief"
-    },
-    "wellness-addiction": {
-      name: "Breaking Free of an Addiction Session — ₹999",
-      next: "Book your session at a time that suits you.",
-      cta: "Book my session",
-      ctaUrl: "https://cal.eu/meculs-founder-rajneesh-jain/wellness-addiction"
-    },
-    "wellness-parent": {
-      name: "Parent Conversation — ₹999",
-      next: "Book your parent conversation. The child session is booked separately afterwards.",
-      cta: "Book parent conversation",
-      ctaUrl: "https://cal.eu/meculs-founder-rajneesh-jain/wellness-parent"
-    },
-    "wellness-child": {
-      name: "Child Session — ₹999",
-      next: "Book your child's session at a time that suits both of you.",
-      cta: "Book child session",
-      ctaUrl: "https://cal.eu/meculs-founder-rajneesh-jain/wellness-child"
-    },
-    "wellness-meditation": {
-      name: "Long-Held Pain Meditation Session — ₹149",
-      next: "Book your 30-minute session at a time that suits you.",
-      cta: "Book my session",
-      ctaUrl: "https://cal.eu/meculs-founder-rajneesh-jain/wellness-meditation"
     }
   };
 

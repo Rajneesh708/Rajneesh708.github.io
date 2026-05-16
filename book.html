@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://*.vercel.app; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- This page must NOT be indexed. It is a transient gate. -->
+  <link rel="canonical" href="https://meculs.com/book.html">
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="icon" type="image/png" href="/images/favicon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/svg+xml" href="/images/favicon/favicon.svg">
+  <link rel="shortcut icon" href="/images/favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/images/favicon/site.webmanifest">
+  <meta name="apple-mobile-web-app-title" content="MECULS">
+
+  <title>Opening your booking — MECULS</title>
+
+  <!-- ============================================================
+       MECULS — book.html
+       ------------------------------------------------------------
+       The booking gate.
+
+       After a successful Cal.com-product payment, meculs-checkout.js
+       redirects the customer here with a one-time booking_token in
+       the URL.  This page hands that token to /api/redeem-booking-
+       token, which (server-side) looks up the right Cal.com URL and
+       returns it.  The page then redirects the customer to Cal.com.
+
+       The Cal.com URLs do NOT appear in this file, in any other HTML
+       file, or in any JavaScript the browser receives.  They live
+       only inside the server-side function.
+
+       If the token is missing, expired, or forged: the page shows a
+       polite error and a pre-filled email link to Rajneesh.
+       ============================================================ -->
+
+  <style>
+    :root {
+      --bg:          #fdfcf7;
+      --ink:         #22291f;
+      --ink-soft:    #3d4536;
+      --brass:       #6b552c;
+      --brass-deep:  #8a6f3c;
+      --sage:        #dfe4d8;
+      --error:       #9c3b2e;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.55;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.2rem;
+    }
+    .book-card {
+      max-width: 560px;
+      width: 100%;
+      background: var(--sage);
+      border-top: 3px solid var(--brass-deep);
+      border-radius: 4px;
+      padding: 2.5rem 2.2rem;
+      box-shadow: 0 4px 18px rgba(34,41,31,0.08);
+      text-align: center;
+    }
+    .book-eyebrow {
+      font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--brass);
+      margin-bottom: 0.9rem;
+    }
+    .book-headline {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+      font-weight: 500;
+      color: var(--ink);
+      margin: 0 0 0.7rem;
+      line-height: 1.25;
+    }
+    .book-message {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.02rem;
+      color: var(--ink);
+      max-width: 48ch;
+      margin: 0 auto 1.6rem;
+      line-height: 1.6;
+    }
+    .book-spinner {
+      width: 32px;
+      height: 32px;
+      border: 3px solid rgba(107,85,44,0.18);
+      border-top-color: var(--brass-deep);
+      border-radius: 50%;
+      margin: 1rem auto 0;
+      animation: spin 0.9s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .book-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #2f3b2c;
+      color: #fdfcf7;
+      font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      padding: 0.85rem 1.7rem;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: background 0.18s;
+    }
+    .book-cta:hover { background: var(--brass); }
+    .is-error .book-eyebrow { color: var(--error); }
+    .is-error .book-headline { color: var(--error); }
+  </style>
+</head>
+<body>
+
+  <main class="book-card" id="bookCard" aria-live="polite">
+    <div class="book-eyebrow" id="bookEyebrow">Payment received</div>
+    <h1 class="book-headline" id="bookHeadline">Opening your booking&hellip;</h1>
+    <p class="book-message" id="bookMessage">
+      We are taking you to Rajneesh's calendar. This will only take a moment.
+    </p>
+    <div class="book-spinner" id="bookSpinner"></div>
+    <a class="book-cta" id="bookCta" href="#" style="display:none;">Continue</a>
+  </main>
+
+  <!-- config.js gives us MECULS_API_BASE — must load BEFORE the
+       inline script runs. -->
+  <script src="config.js?v=7"></script>
+
+  <script>
+  /* ─────────────────────────────────────────────────────────────
+     book.html — read the booking_token from the URL, send it to
+     the Vercel server, redirect to the Cal.com URL the server
+     returns. If anything goes wrong, show a useful error with a
+     pre-filled email link.
+     ───────────────────────────────────────────────────────────── */
+  (function () {
+    "use strict";
+
+    /* MECULS_API_BASE is set in config.js (loaded just below).
+       It points to your Vercel deployment, e.g.
+       https://meculs-payment.vercel.app — no trailing slash. */
+    var eyebrow  = document.getElementById("bookEyebrow");
+    var headline = document.getElementById("bookHeadline");
+    var message  = document.getElementById("bookMessage");
+    var spinner  = document.getElementById("bookSpinner");
+    var cta      = document.getElementById("bookCta");
+    var card     = document.getElementById("bookCard");
+
+    function showError(headlineText, messageText, paymentIdHint) {
+      card.classList.add("is-error");
+      eyebrow.textContent = "Something went wrong";
+      headline.textContent = headlineText;
+      message.textContent = messageText;
+      spinner.style.display = "none";
+
+      /* A pre-filled email so the customer can reach Rajneesh
+         fast, with the payment id and product attached if we
+         have them. */
+      var subject = "Help with my MECULS payment";
+      var body = "Hi Rajneesh,\n\nI just paid for a MECULS session, but " +
+                 "the booking page would not open.\n";
+      if (paymentIdHint) body += "Payment ID: " + paymentIdHint + "\n";
+      body += "\nPlease send me a fresh link to book.\n\nThanks.";
+
+      cta.textContent = "Email Rajneesh";
+      cta.href = "mailto:Jain.Rajneesh@meculs.com"
+               + "?subject=" + encodeURIComponent(subject)
+               + "&body="    + encodeURIComponent(body);
+      cta.style.display = "inline-flex";
+    }
+
+    /* Read the token from URL params. */
+    var params = new URLSearchParams(window.location.search);
+    var token  = params.get("token");
+    var paymentIdHint = params.get("razorpay_payment_id") || "";
+
+    if (!token) {
+      /* Someone hit /book.html directly. Send them home — there is
+         nothing for them to see here. */
+      window.location.replace("index.html");
+      return;
+    }
+
+    if (typeof MECULS_API_BASE === "undefined" || !MECULS_API_BASE) {
+      showError(
+        "Booking system is not configured",
+        "The booking link could not be opened due to a configuration issue. " +
+        "Please email Rajneesh and we will send a fresh link.",
+        paymentIdHint
+      );
+      return;
+    }
+
+    /* Send the token to the Vercel server. The server checks the
+       signature, the expiry, and looks up the Cal.com URL from
+       its server-side map. */
+    fetch(MECULS_API_BASE + "/api/redeem-booking-token", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ booking_token: token })
+    })
+    .then(function (res) { return res.json(); })
+    .then(function (data) {
+      if (data && data.ok && data.cal_url) {
+        /* Success. Redirect the customer to Cal.com. We use
+           replace() so the back button does not return them
+           to this page (which would just redirect them again). */
+        message.textContent = "Taking you to the calendar now.";
+        window.location.replace(data.cal_url);
+        return;
+      }
+
+      /* Server returned a structured error. Translate it into
+         honest customer-facing copy. */
+      var reason = (data && data.reason) || "unknown";
+      var customerMessage;
+      if (reason === "expired") {
+        customerMessage =
+          "Your booking link has expired. This usually happens if " +
+          "more than 30 minutes have passed since you paid. Your " +
+          "payment is fine — please email Rajneesh with your " +
+          "payment ID and we will send you a fresh booking link.";
+      } else if (reason === "bad_signature" || reason === "bad_format" || reason === "bad_payload") {
+        customerMessage =
+          "We could not verify your booking link. Please email " +
+          "Rajneesh with your payment ID and we will send you a " +
+          "fresh, working link.";
+      } else if (reason === "no_token") {
+        customerMessage =
+          "No booking link was provided. Please email Rajneesh " +
+          "with your payment ID and we will send you the right link.";
+      } else {
+        customerMessage =
+          "Something went wrong opening your booking. Please email " +
+          "Rajneesh with your payment ID and we will sort it out.";
+      }
+      showError("Booking link could not be opened", customerMessage, paymentIdHint);
+    })
+    .catch(function (err) {
+      console.error("book.html: redeem call failed", err);
+      showError(
+        "Could not reach our server",
+        "Your payment is fine, but we could not open the booking page. " +
+        "Please email Rajneesh with your payment ID and we will send " +
+        "you a fresh link.",
+        paymentIdHint
+      );
+    });
+  })();
+  </script>
+
+</body>
+</html>
