@@ -1381,13 +1381,12 @@
 
       /* ──── LAYER 1: HONEYPOT ────
          If the hidden field has any value, it was filled by a bot.
-         Silently pretend success — do NOT tell the bot it was caught. */
+         Silently rejected — neutral redirect, don't show success so
+         the bot can't tell whether it succeeded. */
       var hpValue = get('hp_website');
       if (hpValue) {
         console.warn('Honeypot triggered — silently rejecting bot');
-        /* Show "success" so the bot moves on, but write nothing. */
-        form.style.display = 'none';
-        success.classList.add('show');
+        window.location.href = '/';
         return;
       }
 
@@ -1398,8 +1397,7 @@
       var elapsed = Date.now() - loadedAt;
       if (elapsed < 3000) {
         console.warn('Timestamp check failed (' + elapsed + 'ms) — rejecting');
-        form.style.display = 'none';
-        success.classList.add('show');
+        window.location.href = '/';
         return;
       }
 

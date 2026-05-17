@@ -229,9 +229,41 @@
     .pp-footer a:hover { text-decoration: underline; }
   </style>
 </head>
-<body>
+<body data-gate-product="personality-profiling">
 
-<div class="pp-page">
+<!-- ─────────────────────────────────────────────────────────
+     LOCKED PANEL — shown when user arrives without a valid
+     access token (no payment, or expired/forged token).
+     ───────────────────────────────────────────────────────── -->
+<div class="pp-page" id="meculs-locked" hidden>
+  <div class="pp-card">
+    <div class="pp-eyebrow">Payment required</div>
+    <h1 class="pp-title">Please complete payment first</h1>
+    <p class="pp-sub">
+      This page is for customers who have completed the
+      <strong>Personality Profiling (&#8377;9,499)</strong> payment.
+      We could not find a valid payment receipt for your session.
+    </p>
+    <p class="pp-sub" style="margin-top:1.2rem;">
+      If you have already paid, your access link may have expired
+      (valid for 2 hours after payment). Please email
+      <a href="mailto:Jain.Rajneesh@meculs.com" style="color:#b07d2e;text-decoration:none;">Jain.Rajneesh@meculs.com</a>
+      with your payment ID and we will help you complete your submission.
+    </p>
+    <div style="margin-top:2rem;text-align:center;">
+      <a href="paid-services.html#personality-profiling" class="pp-cta"
+         style="display:inline-block;text-decoration:none;">
+        Go to Personality Profiling &rarr;
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ─────────────────────────────────────────────────────────
+     GATED CONTENT — the real form, only shown after the
+     access token from /api/check-access is verified.
+     ───────────────────────────────────────────────────────── -->
+<div class="pp-page" id="meculs-gated" hidden>
   <div class="pp-card">
 
     <!-- FORM STATE -->
@@ -305,14 +337,10 @@
           </div>
         </div>
 
-        <div class="pp-field">
-          <label class="pp-field__label" for="ppPayment">Razorpay payment ID (optional)</label>
-          <input type="text" id="ppPayment" name="payment_id" class="pp-field__input"
-                 placeholder="Paste from your payment receipt email">
-          <div class="pp-field__hint">
-            Helps us match your payment to your submission.
-          </div>
-        </div>
+        <!-- Payment ID is now sourced from the verified access token
+             (window.MECULS_PAYMENT_ID set by meculs-gate.js). The user
+             cannot edit it — that prevents anyone from submitting with
+             a fake/blank payment id. -->
 
         <!-- ─────────────────────────────────────────────────────────
              SPAM PROTECTION (invisible to humans)
@@ -366,6 +394,15 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="config.js?v=7"></script>
 
+<!-- ─────────────────────────────────────────────────────────────
+     PAYMENT-ACCESS GATE — runs FIRST.
+     Checks the access token issued by /api/verify-payment after a
+     real Razorpay payment. If valid, reveals the form (#meculs-gated)
+     and exposes window.MECULS_PAYMENT_ID for the form to use.
+     If missing/forged/expired, shows the locked panel (#meculs-locked).
+     ───────────────────────────────────────────────────────────── -->
+<script src="meculs-gate.js?v=1"></script>
+
 <script>
 /* ─────────────────────────────────────────────────────────────
    personality-profiling-submit.html
@@ -395,10 +432,9 @@
   /* Record the page-load timestamp for the timestamp check. */
   if (hpTs) hpTs.value = String(Date.now());
 
-  /* Pre-fill payment ID if it came in via URL */
-  const params = new URLSearchParams(window.location.search);
-  const pid = params.get("razorpay_payment_id");
-  if (pid) document.getElementById("ppPayment").value = pid;
+  /* Payment ID is no longer pre-filled from URL — it comes from
+     the verified access token via meculs-gate.js, exposed as
+     window.MECULS_PAYMENT_ID. */
 
   /* Auto-prepend https:// on the Subject URL field. */
   const subjectUrlEl = document.getElementById("ppSubjectUrl");
@@ -432,7 +468,9 @@
     const hpValue = (document.getElementById("hp_website").value || "").trim();
     if (hpValue) {
       console.warn("Honeypot triggered — silently rejecting");
-      showSuccess();
+      /* Neutral redirect so bots can't confirm success.
+         Do NOT showSuccess() — that advertises the service was bought. */
+      window.location.href = "/";
       return;
     }
 
@@ -441,7 +479,7 @@
     const elapsed = Date.now() - loadedAt;
     if (elapsed < 3000) {
       console.warn("Timestamp check failed (" + elapsed + "ms) — rejecting");
-      showSuccess();
+      window.location.href = "/";
       return;
     }
 
@@ -490,7 +528,18 @@
     const subjectUrl = document.getElementById("ppSubjectUrl").value.trim();
     const questions = document.getElementById("ppQuestions").value.trim();
     const phone = document.getElementById("ppPhone").value.trim();
-    const paymentId = document.getElementById("ppPayment").value.trim();
+
+    /* Payment ID comes ONLY from the verified gate. meculs-gate.js
+       set window.MECULS_PAYMENT_ID after server-verifying the access
+       token via /api/check-access. We do NOT trust the visible field. */
+    const paymentId = (window.MECULS_PAYMENT_ID || "").trim();
+    if (!paymentId) {
+      errorEl.textContent = "Your session has expired. Please refresh and try again.";
+      errorEl.classList.add("is-visible");
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Submit profile details →";
+      return;
+    }
 
     try {
       const { error } = await sb
@@ -498,7 +547,7 @@
         .insert({
           form_type: "personality_profiling",
           customer_email: email,
-          razorpay_payment_id: paymentId || null,
+          razorpay_payment_id: paymentId,
           payload: {
             subject_name: subjectName,
             subject_url: subjectUrl,
