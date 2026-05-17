@@ -776,10 +776,10 @@ button.btn--disabled:hover {
             the button when required consents are not ticked.
    ================================================================= */
 
-/* Floating error toast — pinned to top of viewport */
+/* Floating error toast — pinned just below the fixed navbar */
 .auth-card .toast.toast--floating {
   position: fixed;
-  top: 16px;
+  top: calc(var(--g-nav-h, 72px) + 12px);
   left: 50%;
   transform: translateX(-50%);
   width: calc(100% - 32px);
@@ -816,7 +816,7 @@ button.btn--disabled:hover {
 }
 
 @keyframes toastSlideDown {
-  from { transform: translate(-50%, -16px); opacity: 0; }
+  from { transform: translate(-50%, -12px); opacity: 0; }
   to   { transform: translate(-50%, 0);     opacity: 1; }
 }
 
