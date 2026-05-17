@@ -39,7 +39,7 @@
 window.DASHBOARD_VERSION = "phase1-step3-tick-keys-fix";
 
 /* ── SINGLE FLAG — set true when portal is finalised ── */
-const SEQUENTIAL_LOCK = false;
+const SEQUENTIAL_LOCK = true;
 
 /* ── Element refs ── */
 const frame              = document.getElementById("contentFrame");
