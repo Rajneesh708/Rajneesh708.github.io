@@ -1,13 +1,32 @@
 /* ============================================================
-   MECULS — register.js (v=21)
-   Date: 2026-05-08 (silent UPDATE failure fix)
+   MECULS — register.js (v=22)
+   Date: 2026-05-17 (UPDATE → UPSERT fix in _writeConsentsForNewUser)
    ============================================================
-   Carried forward from v=20:
+   Carried forward from v=21:
    - Soft Gmail hint feature kept removed
    - emailRedirectTo with ?confirmed=1
    - Google Identity Services (GIS) sign-up flow
    - Required-consent gate before Google button enabled
    - _writeConsentsForNewUser handles fresh signup AND orphan rows
+
+   New in v=22 — change UPDATE to UPSERT in _writeConsentsForNewUser:
+   ----------------------------------------------------------
+   PROBLEM IT FIXES:
+     If the handle_new_user trigger did not fire (e.g. the Google
+     account already existed in auth.users from a prior failed
+     attempt), no profile row exists yet. The v=21 UPDATE found
+     0 rows and silently did nothing — the verify step then threw
+     "Consents did not persist." Deleting the orphan auth.users
+     entry was the manual workaround, but the permanent fix is to
+     use UPSERT so the profile row is created if missing.
+
+   THE FIX:
+     - Replace .update(consentPayload).eq("user_id", user.id)
+       with .upsert({ user_id: user.id, ...consentPayload },
+       { onConflict: "user_id" })
+     - If the row exists → updates consent columns (same as before)
+     - If the row is missing → inserts it with user_id + consents
+     - Eliminates the orphan-row failure mode permanently
 
    New in v=21 — fix silent UPDATE failure that left ALL Google
    sign-ups with terms_consent=false:
@@ -383,16 +402,16 @@ async function _writeConsentsForNewUser(user) {
   if (consentPayload.marketing_consent)   consentPayload.marketing_consent_at    = nowIso;
 
   try {
-    const { error: updateErr } = await sb
+    /* v=22: UPSERT instead of UPDATE.
+       If the profile row exists → updates consent columns.
+       If it doesn't exist yet (trigger didn't fire) → creates it.
+       onConflict: "user_id" tells Supabase which column is the key. */
+    const { error: upsertErr } = await sb
       .from("profiles")
-      .update(consentPayload)
-      .eq("user_id", user.id);
-    if (updateErr) {
-      console.error("[register.js] CRITICAL: consent UPDATE failed:", updateErr.message, updateErr);
-      /* Don't silently continue — this is the bug we're fixing.
-         If the UPDATE fails, the user will be stuck (login.js will
-         block them on next login). Surface the error. */
-      throw new Error("Consent write failed: " + (updateErr.message || "unknown"));
+      .upsert({ user_id: user.id, ...consentPayload }, { onConflict: "user_id" });
+    if (upsertErr) {
+      console.error("[register.js] CRITICAL: consent UPSERT failed:", upsertErr.message, upsertErr);
+      throw new Error("Consent write failed: " + (upsertErr.message || "unknown"));
     }
 
     /* Verify the write actually persisted. Defence-in-depth — if
