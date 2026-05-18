@@ -776,19 +776,18 @@ button.btn--disabled:hover {
             the button when required consents are not ticked.
    ================================================================= */
 
-/* Floating error toast — pinned just below the fixed navbar */
+/* Floating error toast — full-width banner pinned to very top of viewport */
 .auth-card .toast.toast--floating {
   position: fixed;
-  top: calc(var(--g-nav-h, 72px) + 12px);
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% - 32px);
-  max-width: 520px;
+  top: 0;
+  left: 0;
+  width: 100%;
   margin: 0;
   padding: 14px 44px 14px 16px;
-  border-radius: 8px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.40),
-              0 0 0 1px rgba(255,255,255,0.05);
+  border-radius: 0;
+  background: #b91c1c;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.30);
   z-index: 10000;
   font-weight: 500;
   display: block !important;
@@ -806,9 +805,9 @@ button.btn--disabled:hover {
   cursor: pointer;
   font-size: 1.4rem;
   line-height: 1;
-  color: #b91c1c;
+  color: #fff;
   padding: 4px 8px;
-  opacity: 0.7;
+  opacity: 0.8;
   transition: opacity 150ms ease;
 }
 .auth-card .toast.toast--floating .toast__close:hover {
@@ -816,8 +815,8 @@ button.btn--disabled:hover {
 }
 
 @keyframes toastSlideDown {
-  from { transform: translate(-50%, -12px); opacity: 0; }
-  to   { transform: translate(-50%, 0);     opacity: 1; }
+  from { transform: translateY(-100%); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
 }
 
 /* ── Google-button hint banner ──
