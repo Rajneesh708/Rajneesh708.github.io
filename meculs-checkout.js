@@ -1,5 +1,11 @@
 /* ============================================================
-   MECULS — meculs-checkout.js
+   MECULS — meculs-checkout.js  (v=4)
+   ------------------------------------------------------------
+   2026-05-20  theme.color: "#1c2128" → "#2f3b2c" (pine-green,
+               matches brand; was causing the black popup).
+               Added method block: upi:true to ensure UPI shows
+               once Razorpay finishes propagating the activation.
+               Added image: MECULS logo for popup sidebar.
    ------------------------------------------------------------
    The front-end half of the secure payment flow. Drop this on
    any page that has "Pay" buttons.
@@ -184,7 +190,25 @@
         }
       },
 
-      theme: { color: "#1c2128" }
+      /* image: URL to your logo — shown in the Razorpay popup sidebar.
+         Replace with the real hosted path if you have one. */
+      image: "https://meculs.com/images/logo/MECULS-gold-white-bold.png",
+
+      /* method: explicitly enable all payment methods.
+         UPI was activated on Razorpay dashboard 2026-05-18 — it appears
+         here once Razorpay finishes propagating it (usually 24-72 hrs).
+         Remove any method set to false, or add "false" to disable one. */
+      method: {
+        card:        true,
+        netbanking:  true,
+        wallet:      true,
+        upi:         true,
+        emi:         false   /* disable EMI — not needed for these price points */
+      },
+
+      /* theme.color sets the CTA button colour inside the popup.
+         Was "#1c2128" (black) — corrected to MECULS amber-pine. */
+      theme: { color: "#2f3b2c" }
     };
 
     try {
