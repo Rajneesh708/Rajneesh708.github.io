@@ -1,22 +1,22 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="canonical" href="https://meculs.com/dashboard.html">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MECULS · Ikshu — Where True Capability Gets Recognised</title>
+  <title>MECULS � Ikshu � Where True Capability Gets Recognised</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    /* ════════════════════════════════════════════════
+    /* ------------------------------------------------
        DESIGN TOKENS
-       Deep Forest Green · Burnished Gold · Warm White
-    ════════════════════════════════════════════════ */
+       Deep Forest Green � Burnished Gold � Warm White
+    ------------------------------------------------ */
     :root {
-      /* Sidebar — deep Prussian blue */
+      /* Sidebar � deep Prussian blue */
       --blue-950:  #070d18;
       --blue-900:  #0c1a2e;
       --blue-800:  #102238;
@@ -25,19 +25,19 @@
       --blue-border: rgba(255,255,255,0.08);
       --blue-border-gold: rgba(180,140,50,0.25);
 
-      /* Gold — single accent */
+      /* Gold � single accent */
       --gold:        #c8973d;
       --gold-light:  #ddb060;
       --gold-pale:   #eecb88;
       --gold-faint:  #f5e0b0;
 
-      /* Text on dark — ALL at comfortable reading contrast */
+      /* Text on dark � ALL at comfortable reading contrast */
       --on-dark-high:    rgba(255,255,255,0.95);   /* headings, active items */
-      --on-dark-mid:     rgba(255,255,255,0.78);   /* nav items — fully readable */
-      --on-dark-low:     rgba(255,255,255,0.62);   /* labels, secondary — readable */
-      --on-dark-muted:   rgba(255,255,255,0.45);   /* timestamps, hints — still legible */
+      --on-dark-mid:     rgba(255,255,255,0.78);   /* nav items � fully readable */
+      --on-dark-low:     rgba(255,255,255,0.62);   /* labels, secondary � readable */
+      --on-dark-muted:   rgba(255,255,255,0.45);   /* timestamps, hints � still legible */
 
-      /* Content area — warm off-white, not cold grey */
+      /* Content area � warm off-white, not cold grey */
       --surface:     #f6f4ef;
       --surface-2:   #ffffff;
       --border:      #dedad3;
@@ -68,9 +68,9 @@
       --t2: 0.24s;
     }
 
-    /* ════════════════════════════════════════════════
+    /* ------------------------------------------------
        RESET
-    ════════════════════════════════════════════════ */
+    ------------------------------------------------ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     html, body {
@@ -82,16 +82,16 @@
       -moz-osx-font-smoothing: grayscale;
     }
 
-    /* ════════════════════════════════════════════════
+    /* ------------------------------------------------
        LAYOUT
-    ════════════════════════════════════════════════ */
+    ------------------------------------------------ */
     .shell { display: flex; min-height: 100vh; }
 
-    /* ════════════════════════════════════════════════
-       SIDEBAR — deep Prussian blue
+    /* ------------------------------------------------
+       SIDEBAR � deep Prussian blue
        Character: a private library in a manor house.
        The green of old money, of permanence, of trust.
-    ════════════════════════════════════════════════ */
+    ------------------------------------------------ */
     .sidebar {
       width: var(--sidebar-w);
       position: fixed;
@@ -142,14 +142,14 @@
       border-radius: 1px;
     }
 
-    /* ── Brand ── */
+    /* -- Brand -- */
     .sidebar__brand {
       padding: 14px 28px 14px;
       border-bottom: 1px solid var(--blue-border);
       flex-shrink: 0;
     }
 
-    /* Logo image: gold-white variant — correct for green bg */
+    /* Logo image: gold-white variant � correct for green bg */
     .brand__img {
       display: block;
       height: 32px;
@@ -180,7 +180,7 @@
       background-clip: text;
     }
 
-    /* Sub-brand: Ikshu (इक्षु): The CV Portal */
+    /* Sub-brand: Ikshu (?????): The CV Portal */
     .brand__subbrand {
       font-family: var(--serif);
       font-size: 1.05rem;
@@ -199,7 +199,7 @@
       letter-spacing: 0.05em;
     }
 
-    /* Tagline — readable, gold-tinted, full presence */
+    /* Tagline � readable, gold-tinted, full presence */
     .brand__tagline {
       font-family: var(--sans);
       font-size: 0.7rem;
@@ -211,7 +211,7 @@
       opacity: 1;
     }
 
-    /* ── Nav inspiration label ── */
+    /* -- Nav inspiration label -- */
     .sidebar__inspire {
       padding: 18px 24px 0;
       flex-shrink: 0;
@@ -230,7 +230,7 @@
       border-bottom: 1px solid var(--blue-border);
     }
 
-    /* ── Sections label ── */
+    /* -- Sections label -- */
     .sidebar__nav-label {
       padding: 14px 24px 8px;
       font-size: 0.6rem;
@@ -243,13 +243,13 @@
     }
 
 
-    /* ── Sidebar section divider ── */
+    /* -- Sidebar section divider -- */
     .sidebar__divider {
       margin: 12px 14px 6px;
       border-top: 1px solid rgba(255,255,255,0.08);
     }
 
-    /* ── Sidebar group label (Bonus Profile) ── */
+    /* -- Sidebar group label (Bonus Profile) -- */
     .sidebar__group-label {
       padding: 6px 14px 8px;
       font-size: 0.6rem;
@@ -259,7 +259,7 @@
       color: rgba(255,255,255,0.38);
     }
 
-    /* ── Navigation ── */
+    /* -- Navigation -- */
     .sidebar__nav {
       flex: 1;
       padding: 0 10px 10px;
@@ -280,7 +280,7 @@
       font-family: var(--sans);
       font-size: 0.875rem;
       font-weight: 400;
-      /* Raised to 0.78 — comfortably readable */
+      /* Raised to 0.78 � comfortably readable */
       color: var(--on-dark-mid);
       display: flex;
       align-items: center;
@@ -306,7 +306,7 @@
       font-weight: 500;
     }
 
-    /* Locked section — visually dimmed, cursor blocked */
+    /* Locked section � visually dimmed, cursor blocked */
     .sidebar__btn.locked {
       opacity: 0.38;
       cursor: not-allowed;
@@ -326,14 +326,14 @@
     }
     .sidebar__tick.visible { opacity: 1; }
 
-    /* ── Sidebar progress — pinned, never scrolls ── */
+    /* -- Sidebar progress � pinned, never scrolls -- */
     .sidebar__progress {
       padding: 12px 24px 14px;
       border-bottom: 1px solid var(--blue-border);
       flex-shrink: 0;
     }
 
-    /* ── Sidebar footer ── */
+    /* -- Sidebar footer -- */
     .sidebar__footer {
       padding: 14px 24px 22px;
       border-top: 1px solid var(--blue-border);
@@ -347,7 +347,7 @@
       margin-bottom: 8px;
     }
 
-    /* "Profile Completion" — raised to fully legible */
+    /* "Profile Completion" � raised to fully legible */
     .progress__label {
       font-size: 0.68rem;
       font-weight: 500;
@@ -380,16 +380,16 @@
       transition: width 0.7s cubic-bezier(0.22,1,0.36,1);
     }
 
-    /* "Last updated" — raised to legible */
+    /* "Last updated" � raised to legible */
     .sidebar__updated {
       font-size: 0.65rem;
       color: var(--on-dark-muted);
       letter-spacing: 0.03em;
     }
 
-    /* ════════════════════════════════════════════════
+    /* ------------------------------------------------
        MAIN CONTENT
-    ════════════════════════════════════════════════ */
+    ------------------------------------------------ */
     .main {
       margin-left: var(--sidebar-w);
       flex: 1;
@@ -398,7 +398,7 @@
       min-height: 100vh;
     }
 
-    /* ── Top bar ── */
+    /* -- Top bar -- */
     .topbar {
       height: var(--topbar-h);
       background: var(--surface-2);
@@ -429,7 +429,7 @@
       flex-shrink: 0;
     }
 
-    /* "My Profile" — raised to --text-soft, clearly readable */
+    /* "My Profile" � raised to --text-soft, clearly readable */
     .topbar__context {
       font-size: 0.775rem;
       font-weight: 400;
@@ -441,7 +441,7 @@
       color: var(--border);
     }
 
-    /* Current section — full contrast */
+    /* Current section � full contrast */
     .topbar__section {
       font-size: 0.9rem;
       font-weight: 600;
@@ -454,7 +454,7 @@
       gap: 20px;
     }
 
-    /* "Last updated" in top bar — raised to --text-soft */
+    /* "Last updated" in top bar � raised to --text-soft */
     .topbar__updated {
       font-size: 0.72rem;
       color: var(--text-soft);
@@ -489,7 +489,7 @@
       50%       { opacity: 0.2; }
     }
 
-    /* ── User info + sign-out (top-right of topbar) ──
+    /* -- User info + sign-out (top-right of topbar) --
        Hidden by default; shown by JS once we confirm a logged-in
        Supabase session and have fetched the user's name. */
     .topbar__user {
@@ -528,11 +528,11 @@
       border-color: var(--text-soft);
     }
 
-    /* ── Public profile banner — between topbar and iframe ──
+    /* -- Public profile banner � between topbar and iframe --
        Two states share the same row:
-         • Locked  — neutral cream, gold-faint left rule, calm "next step" copy
-         • Active  — slightly brighter surface, gold left rule, URL + actions
-       Stays visible on every dashboard section. Not dismissible —
+         � Locked  � neutral cream, gold-faint left rule, calm "next step" copy
+         � Active  � slightly brighter surface, gold left rule, URL + actions
+       Stays visible on every dashboard section. Not dismissible �
        discoverability of the public profile is core to the product. */
     .pubprof {
       flex-shrink: 0;
@@ -652,7 +652,7 @@
       cursor: not-allowed;
       pointer-events: none;
     }
-    /* Toast — "Copied!" feedback after copy button click */
+    /* Toast � "Copied!" feedback after copy button click */
     .pubprof__toast {
       position: absolute;
       transform: translateY(-100%);
@@ -673,7 +673,7 @@
        buttons to remain clickable while the banner was in locked state. */
     .pubprof [hidden] { display: none !important; }
 
-    /* Ready-but-private message — shown when minimum sections done but profile is private */
+    /* Ready-but-private message � shown when minimum sections done but profile is private */
     .pubprof__ready-msg {
       font-size: 0.82rem;
       color: var(--text-body);
@@ -749,7 +749,7 @@
       .pubprof__url { max-width: 100%; font-size: 0.8rem; }
     }
 
-    /* ── iframe ── */
+    /* -- iframe -- */
     .main__frame {
       flex: 1;
       border: none;
@@ -763,8 +763,8 @@
   </style>
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://meculs.com/dashboard.html">
-<meta property="og:title" content="MECULS · Ikshu — Where True Capability Gets Recognised">
-<meta property="og:description" content="MECULS — executive coaching, leadership development, wellness, and CV portal. By Rajneesh Jain, Delhi, India.">
+<meta property="og:title" content="MECULS � Ikshu � Where True Capability Gets Recognised">
+<meta property="og:description" content="MECULS � executive coaching, leadership development, wellness, and CV portal. By Rajneesh Jain, Delhi, India.">
 <meta property="og:site_name" content="MECULS">
 <meta property="og:locale" content="en_IN">
 <meta property="og:image" content="https://meculs.com/images/og/og-default.png?v=2">
@@ -774,14 +774,14 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://meculs.com/images/og/og-default.png?v=2">
 <meta name="twitter:image:alt" content="MECULS - Honest help for executive coaching, wellness, and CV portal">
-<meta name="twitter:title" content="MECULS · Ikshu — Where True Capability Gets Recognised">
-<meta name="twitter:description" content="MECULS — executive coaching, leadership development, wellness, and CV portal. By Rajneesh Jain, Delhi, India.">
+<meta name="twitter:title" content="MECULS � Ikshu � Where True Capability Gets Recognised">
+<meta name="twitter:description" content="MECULS � executive coaching, leadership development, wellness, and CV portal. By Rajneesh Jain, Delhi, India.">
 </head>
 <body>
 
 <div class="shell">
 
-  <!-- ═══════════ SIDEBAR ═══════════ -->
+  <!-- ----------- SIDEBAR ----------- -->
   <aside class="sidebar">
 
     <!-- Brand -->
@@ -792,7 +792,7 @@
         Relative path: images/logo/MECULS-gold-white-bold.png
         (matches the path used by meculs.com main site, so the
          same logo file serves both the marketing pages and the
-         CV portal — single source of truth)
+         CV portal � single source of truth)
       -->
       <img
         class="brand__img"
@@ -800,18 +800,18 @@
         alt="MECULS"
         id="brandImg"
       >
-      <!-- Text fallback — JS reveals if image file not found -->
+      <!-- Text fallback � JS reveals if image file not found -->
       <div class="brand__text" id="brandText">MECULS</div>
 
-      <!-- Sub-brand: Ikshu ( इक्षु ) | The CV Portal -->
+      <!-- Sub-brand: Ikshu (???????) | The CV Portal -->
       <div class="brand__subbrand">
-        Ikshu <span class="brand__subbrand-deva">( इक्षु )</span> | The CV Portal
+        Ikshu <span class="brand__subbrand-deva">(???????)</span> | The CV Portal
       </div>
 
       <div class="brand__tagline">The recognition true capability deserves</div>
     </div>
 
-    <!-- Profile completion — always visible, never scrolls away -->
+    <!-- Profile completion � always visible, never scrolls away -->
     <div class="sidebar__progress">
       <div class="progress__row">
         <span class="progress__label">Profile Completion</span>
@@ -836,7 +836,7 @@
         data-key="Your Goals &amp; Interests"
         data-completion-key="goals_completed">
         <span class="sidebar__btn-label">Your Goals &amp; Interests</span>
-        <span class="sidebar__tick" id="tick-1">✓</span>
+        <span class="sidebar__tick" id="tick-1">?</span>
       </button>
 
       <button class="sidebar__btn"
@@ -844,7 +844,7 @@
         data-key="Upload Photo &amp; CV"
         data-completion-key="photo_cv_completed">
         <span class="sidebar__btn-label">Upload Photo &amp; CV</span>
-        <span class="sidebar__tick" id="tick-2">✓</span>
+        <span class="sidebar__tick" id="tick-2">?</span>
       </button>
 
       <button class="sidebar__btn"
@@ -852,7 +852,7 @@
         data-key="Your Profile Category"
         data-completion-key="profile_category_completed">
         <span class="sidebar__btn-label">Your Profile Category</span>
-        <span class="sidebar__tick" id="tick-3">✓</span>
+        <span class="sidebar__tick" id="tick-3">?</span>
       </button>
 
       <button class="sidebar__btn"
@@ -860,7 +860,7 @@
         data-key="About You"
         data-completion-key="introduction_completed">
         <span class="sidebar__btn-label">About You</span>
-        <span class="sidebar__tick" id="tick-4">✓</span>
+        <span class="sidebar__tick" id="tick-4">?</span>
       </button>
 
       <button class="sidebar__btn"
@@ -868,7 +868,7 @@
         data-key="Your Experience"
         data-completion-key="experience_completed">
         <span class="sidebar__btn-label">Your Experience</span>
-        <span class="sidebar__tick" id="tick-5">✓</span>
+        <span class="sidebar__tick" id="tick-5">?</span>
       </button>
 
       <button class="sidebar__btn"
@@ -876,7 +876,7 @@
         data-key="Your Education"
         data-completion-key="education_completed">
         <span class="sidebar__btn-label">Your Education</span>
-        <span class="sidebar__tick" id="tick-6">✓</span>
+        <span class="sidebar__tick" id="tick-6">?</span>
       </button>
 
       <button class="sidebar__btn"
@@ -884,7 +884,7 @@
         data-key="Your Skills"
         data-completion-key="skills_completed">
         <span class="sidebar__btn-label">Your Skills</span>
-        <span class="sidebar__tick" id="tick-7">✓</span>
+        <span class="sidebar__tick" id="tick-7">?</span>
       </button>
 
       <button class="sidebar__btn"
@@ -892,7 +892,7 @@
         data-key="Your Certifications"
         data-completion-key="certifications_completed">
         <span class="sidebar__btn-label">Your Certifications</span>
-        <span class="sidebar__tick" id="tick-8">✓</span>
+        <span class="sidebar__tick" id="tick-8">?</span>
       </button>
 
       <button class="sidebar__btn"
@@ -900,7 +900,7 @@
         data-key="Your References"
         data-completion-key="references_completed">
         <span class="sidebar__btn-label">Your References</span>
-        <span class="sidebar__tick" id="tick-9">✓</span>
+        <span class="sidebar__tick" id="tick-9">?</span>
       </button>
 
       <button class="sidebar__btn"
@@ -908,7 +908,7 @@
         data-key="Your Preferences"
         data-completion-key="preferences_completed">
         <span class="sidebar__btn-label">Your Preferences</span>
-        <span class="sidebar__tick" id="tick-10">✓</span>
+        <span class="sidebar__tick" id="tick-10">?</span>
       </button>
 
       <button class="sidebar__btn"
@@ -916,11 +916,11 @@
         data-key="Your Languages"
         data-completion-key="languages_completed">
         <span class="sidebar__btn-label">Your Languages</span>
-        <span class="sidebar__tick" id="tick-11">✓</span>
+        <span class="sidebar__tick" id="tick-11">?</span>
       </button>
 
 
-      <!-- ── Bonus Profile sections divider ── -->
+      <!-- -- Bonus Profile sections divider -- -->
       <div class="sidebar__divider"></div>
       <div class="sidebar__group-label">Bonus Profile</div>
 
@@ -929,7 +929,7 @@
         data-key="AI Tools &amp; Digital Literacy"
         data-completion-key="ai_tools_completed">
         <span class="sidebar__btn-label">AI Tools &amp; Digital Literacy</span>
-        <span class="sidebar__tick">✓</span>
+        <span class="sidebar__tick">?</span>
       </button>
 
       <button class="sidebar__btn"
@@ -937,7 +937,7 @@
         data-key="Consulting Availability"
         data-completion-key="consulting_completed">
         <span class="sidebar__btn-label">Consulting Availability</span>
-        <span class="sidebar__tick">✓</span>
+        <span class="sidebar__tick">?</span>
       </button>
 
       <button class="sidebar__btn"
@@ -945,7 +945,7 @@
         data-key="Key Achievements"
         data-completion-key="key_achievements_completed">
         <span class="sidebar__btn-label">Key Achievements</span>
-        <span class="sidebar__tick">✓</span>
+        <span class="sidebar__tick">?</span>
       </button>
 
       <button class="sidebar__btn"
@@ -953,7 +953,7 @@
         data-key="Mentorship &amp; Coaching"
         data-completion-key="mentorship_completed">
         <span class="sidebar__btn-label">Mentorship &amp; Coaching</span>
-        <span class="sidebar__tick">✓</span>
+        <span class="sidebar__tick">?</span>
       </button>
 
       <button class="sidebar__btn"
@@ -961,7 +961,7 @@
         data-key="Work Portfolio"
         data-completion-key="portfolio_completed">
         <span class="sidebar__btn-label">Work Portfolio</span>
-        <span class="sidebar__tick">✓</span>
+        <span class="sidebar__tick">?</span>
       </button>
 
       <button class="sidebar__btn"
@@ -969,7 +969,7 @@
         data-key="Publications &amp; Media"
         data-completion-key="publications_completed">
         <span class="sidebar__btn-label">Publications &amp; Media</span>
-        <span class="sidebar__tick">✓</span>
+        <span class="sidebar__tick">?</span>
       </button>
 
       <button class="sidebar__btn"
@@ -977,7 +977,7 @@
         data-key="Volunteering"
         data-completion-key="volunteering_completed">
         <span class="sidebar__btn-label">Volunteering</span>
-        <span class="sidebar__tick">✓</span>
+        <span class="sidebar__tick">?</span>
       </button>
 
     </nav>
@@ -989,14 +989,14 @@
 
   </aside>
 
-  <!-- ═══════════ MAIN ═══════════ -->
+  <!-- ----------- MAIN ----------- -->
   <div class="main">
 
     <div class="topbar">
       <div class="topbar__left">
         <div class="topbar__accent"></div>
         <span class="topbar__context">My Profile</span>
-        <span class="topbar__sep">›</span>
+        <span class="topbar__sep">�</span>
         <span class="topbar__section" id="currentSectionTitle">Getting Started</span>
       </div>
       <div class="topbar__right">
@@ -1014,15 +1014,15 @@
       </div>
     </div>
 
-    <!-- ═══════════ PUBLIC PROFILE BANNER ═══════════
+    <!-- ----------- PUBLIC PROFILE BANNER -----------
          Sits between topbar and iframe. Always visible.
          Has two states managed by dashboard.js:
-           • Locked  (default until minimum required sections done)
-           • Active  (URL + Copy + Preview)
+           � Locked  (default until minimum required sections done)
+           � Active  (URL + Copy + Preview)
          Banner is populated by updatePublicProfileBanner() on init
          and after every postMessage from a build page. -->
     <div class="pubprof" id="pubprofBanner" role="region" aria-label="Your public profile">
-      <!-- Locked state — shown by default. JS will hide and show "active" content
+      <!-- Locked state � shown by default. JS will hide and show "active" content
            when minimum sections are complete. -->
       <div class="pubprof__icon" aria-hidden="true">
         <!-- Lock icon (simple SVG, no external deps) -->
@@ -1033,18 +1033,18 @@
         </svg>
       </div>
       <span class="pubprof__label">Your Public Profile URL</span>
-      <!-- Locked-state message — JS swaps the text -->
+      <!-- Locked-state message � JS swaps the text -->
       <div class="pubprof__locked-msg" id="pubprofLockedMsg">
-        Loading…
+        Loading�
       </div>
-      <!-- Active-state content — JS unhides + populates -->
+      <!-- Active-state content � JS unhides + populates -->
       <a class="pubprof__url" id="pubprofUrl" href="#" target="_blank" rel="noopener"
          hidden></a>
-      <!-- Ready-but-private message — shown when minimum sections done but is_public=false -->
+      <!-- Ready-but-private message � shown when minimum sections done but is_public=false -->
       <div class="pubprof__ready-msg" id="pubprofReadyMsg" hidden>
         Your profile is ready. Switch it on to share.
       </div>
-      <!-- Public/Private toggle — shown only when minimum sections complete -->
+      <!-- Public/Private toggle � shown only when minimum sections complete -->
       <div class="pubprof__toggle-wrap" id="pubprofToggleWrap" hidden>
         <span class="pubprof__toggle-label" id="pubprofToggleLabel">Private</span>
         <button type="button" class="pubprof__toggle" id="pubprofToggle"
@@ -1067,7 +1067,7 @@
 
 
 <!-- Load Supabase JS library and config (needed for auth guard, user info, and sign-out)
-     Cache-busting via ?v=N — bump this version when you change config.js or dashboard.js
+     Cache-busting via ?v=N � bump this version when you change config.js or dashboard.js
      so browsers don't serve the old cached file. -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="config.js?v=6"></script>

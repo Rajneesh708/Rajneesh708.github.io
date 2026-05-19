@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="canonical" href="https://meculs.com/blog-why-industry-is-trapped.html">
@@ -17,14 +17,14 @@
 
   <!-- Blog article styles -->
   <style>
-/* ═══ BLOG ARTICLE STYLES ═══ */
-/* ═══════════════════════════════════════════════════════════════════
+/* --- BLOG ARTICLE STYLES --- */
+/* -------------------------------------------------------------------
    MECULS &ndash; BLOG ARTICLE CSS
    File: blog-article.css
 
-   ▸ This ONE file styles EVERY blog article on the MECULS website.
-   ▸ Every blog HTML file links to this file. No other CSS needed.
-   ▸ When you add a new article in future, do NOT create a new CSS file.
+   ? This ONE file styles EVERY blog article on the MECULS website.
+   ? Every blog HTML file links to this file. No other CSS needed.
+   ? When you add a new article in future, do NOT create a new CSS file.
      Just copy any existing blog HTML, replace the content, save.
      This file already handles it.
 
@@ -40,11 +40,11 @@
    9. Subscribe Modal
    10. Toast Notification
    11. Responsive (tablet & mobile)
-═══════════════════════════════════════════════════════════════════ */
+------------------------------------------------------------------- */
 
-/* ─────────────────────────────────────────────
+/* ---------------------------------------------
    1. RESET & BASE
-───────────────────────────────────────────── */
+--------------------------------------------- */
 *, *::before, *::after {
   margin: 0;
   padding: 0;
@@ -78,9 +78,9 @@ a   { text-decoration: none; color: inherit; }
   padding-top: 72px; /* matches --g-nav-h in global.css */
 }
 
-/* ─────────────────────────────────────────────
+/* ---------------------------------------------
    2. ARTICLE HERO
-───────────────────────────────────────────── */
+--------------------------------------------- */
 .article-hero {
   background: #f8f9fa;
   padding: 3rem 5% 2rem;
@@ -157,9 +157,9 @@ a   { text-decoration: none; color: inherit; }
   letter-spacing: -0.025em;
 }
 
-/* ─────────────────────────────────────────────
+/* ---------------------------------------------
    3. FEATURED IMAGE & KEY TAKEAWAYS
-───────────────────────────────────────────── */
+--------------------------------------------- */
 .featured-section {
   background: #f8f9fa;
   padding: 0 5% 3rem;
@@ -226,7 +226,7 @@ a   { text-decoration: none; color: inherit; }
   position: relative;
 }
 .takeaways-list li::before {
-  content: '▸';
+  content: '?';
   position: absolute;
   left: 0;
   color: #d4af37;
@@ -234,9 +234,9 @@ a   { text-decoration: none; color: inherit; }
 }
 .takeaways-list strong { color: #000814; font-weight: 700; }
 
-/* ─────────────────────────────────────────────
+/* ---------------------------------------------
    4. STICKY SIDEBAR
-───────────────────────────────────────────── */
+--------------------------------------------- */
 .sticky-sidebar {
   position: fixed;
   right: 1.8%;
@@ -348,9 +348,9 @@ a   { text-decoration: none; color: inherit; }
   transform: translateY(-1px);
 }
 
-/* ─────────────────────────────────────────────
+/* ---------------------------------------------
    5. ARTICLE BODY
-───────────────────────────────────────────── */
+--------------------------------------------- */
 .article-content {
   background: #ffffff;
   padding: 4rem 5%;
@@ -446,9 +446,9 @@ a   { text-decoration: none; color: inherit; }
 
 .article-list strong { color: #000814; font-weight: 600; }
 
-/* ─────────────────────────────────────────────
+/* ---------------------------------------------
    6. CLOSING STATEMENT
-───────────────────────────────────────────── */
+--------------------------------------------- */
 .closing-statement {
   margin-top: 3rem;
   padding: 1.8rem 2rem;
@@ -461,9 +461,9 @@ a   { text-decoration: none; color: inherit; }
   line-height: 1.7;
 }
 
-/* ─────────────────────────────────────────────
+/* ---------------------------------------------
    7. RELATED ARTICLES
-───────────────────────────────────────────── */
+--------------------------------------------- */
 .related-articles {
   background: #f8f9fa;
   padding: 5rem 5%;
@@ -570,9 +570,9 @@ a   { text-decoration: none; color: inherit; }
 }
 .related-card:hover .related-link { gap: 0.8rem; }
 
-/* ─────────────────────────────────────────────
+/* ---------------------------------------------
    8. EMAIL SHARE MODAL
-───────────────────────────────────────────── */
+--------------------------------------------- */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -700,15 +700,15 @@ a   { text-decoration: none; color: inherit; }
   transform: translateY(-1px);
 }
 
-/* ─────────────────────────────────────────────
+/* ---------------------------------------------
    9. SUBSCRIBE MODAL
    (same .modal-overlay structure, different content)
-───────────────────────────────────────────── */
+--------------------------------------------- */
 /* Already covered by modal styles above */
 
-/* ─────────────────────────────────────────────
+/* ---------------------------------------------
    10. TOAST NOTIFICATION
-───────────────────────────────────────────── */
+--------------------------------------------- */
 .toast {
   position: fixed;
   bottom: 2rem; right: 2rem;
@@ -731,9 +731,9 @@ a   { text-decoration: none; color: inherit; }
   to   { transform: translateX(0);     opacity: 1; }
 }
 
-/* ─────────────────────────────────────────────
+/* ---------------------------------------------
    11. RESPONSIVE
-───────────────────────────────────────────── */
+--------------------------------------------- */
 
 /* Tablet: hide sidebar, reflow key takeaways */
 @media (max-width: 1200px) {
@@ -804,11 +804,11 @@ a   { text-decoration: none; color: inherit; }
 </head>
 <body class="blog-page-body">
   <a href="#main-content" class="skip-link">Skip to main content</a>
-  <!-- ═══════════════════════════════════════════════
+  <!-- -----------------------------------------------
        GLOBAL HEADER &ndash; same on every MECULS page
        To change logo: update src="images/logo/MECULS-gold-white-bold.png"
        To change nav links: edit the <li> items below
-  ═══════════════════════════════════════════════ -->
+  ----------------------------------------------- -->
   <!-- TAGLINE SUB-BAR - permanent, left-aligned with logo -->
 <div class="gh-tagline-sub" id="ghTaglineSub">
   <span class="gh-tagline-sub-text">
@@ -987,7 +987,7 @@ a   { text-decoration: none; color: inherit; }
 
  <section class="article-hero" id="main-content"><div class="hero-container">
     <nav class="breadcrumb"><a href="index.html">Home</a><span>/</span><a href="insights.html">Insights</a><span>/</span><span>Organisational Impact</span></nav>
-    <div class="author-info-top"><div class="author-photo-medium"><img src="images/Rajneesh Photo.jpg" alt="Rajneesh Jain" onerror="this.style.display='none'"></div><div class="author-details-top"><div class="author-name-top">Rajneesh Jain</div><div class="author-meta-top"><span class="author-title-small">Founder, MECULS</span><span class="meta-separator">·</span><span class="article-date">January 18, 2026</span><span class="meta-separator">·</span><span class="read-time">11 min read</span><span class="meta-separator">·</span><span class="category-inline">Organisational Impact</span></div></div></div>
+    <div class="author-info-top"><div class="author-photo-medium"><img src="images/Rajneesh Photo.jpg" alt="Rajneesh Jain" onerror="this.style.display='none'"></div><div class="author-details-top"><div class="author-name-top">Rajneesh Jain</div><div class="author-meta-top"><span class="author-title-small">Founder, MECULS</span><span class="meta-separator">�</span><span class="article-date">January 18, 2026</span><span class="meta-separator">�</span><span class="read-time">11 min read</span><span class="meta-separator">�</span><span class="category-inline">Organisational Impact</span></div></div></div>
     <h1 class="article-main-title">Why the Industry Is Trapped in Profitability &amp; Ego Satisfaction</h1>
   </div></section>
 
@@ -1072,16 +1072,16 @@ a   { text-decoration: none; color: inherit; }
   </div></article>
 
   <section class="related-articles"><div class="related-container"><h2 class="related-title">Related Insights</h2><div class="related-grid">
-    <a href="blog-being-busy-the-real-story.html" class="related-card"><div class="related-card-img-wrap"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600&q=80" alt="Busy"></div><div class="related-content"><span class="related-tag">Leadership Development</span><h3 class="related-card-title">Being Busy: The Real Story</h3><p class="related-excerpt">Busyness rewards visibility over substance and prioritises urgent over important.</p><span class="related-link">Read Article →</span></div></a>
-    <a href="blog-ego-accept-not-eliminate.html" class="related-card"><div class="related-card-img-wrap"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80" alt="Ego"></div><div class="related-content"><span class="related-tag">Behavioral Insight</span><h3 class="related-card-title">Ego in Self &amp; Others</h3><p class="related-excerpt">Ego is structural &ndash; the work is to see it operating, not eliminate it.</p><span class="related-link">Read Article →</span></div></a>
-    <a href="blog-a-peaceful-life-is-a-reality.html" class="related-card"><div class="related-card-img-wrap"><img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=80" alt="Peace"></div><div class="related-content"><span class="related-tag">Life &amp; Purpose</span><h3 class="related-card-title">A Peaceful Life Is a Reality</h3><p class="related-excerpt">Peace is structural coherence under pressure, not absence of conflict.</p><span class="related-link">Read Article →</span></div></a>
+    <a href="blog-being-busy-the-real-story.html" class="related-card"><div class="related-card-img-wrap"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600&q=80" alt="Busy"></div><div class="related-content"><span class="related-tag">Leadership Development</span><h3 class="related-card-title">Being Busy: The Real Story</h3><p class="related-excerpt">Busyness rewards visibility over substance and prioritises urgent over important.</p><span class="related-link">Read Article ?</span></div></a>
+    <a href="blog-ego-accept-not-eliminate.html" class="related-card"><div class="related-card-img-wrap"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80" alt="Ego"></div><div class="related-content"><span class="related-tag">Behavioral Insight</span><h3 class="related-card-title">Ego in Self &amp; Others</h3><p class="related-excerpt">Ego is structural &ndash; the work is to see it operating, not eliminate it.</p><span class="related-link">Read Article ?</span></div></a>
+    <a href="blog-a-peaceful-life-is-a-reality.html" class="related-card"><div class="related-card-img-wrap"><img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=80" alt="Peace"></div><div class="related-content"><span class="related-tag">Life &amp; Purpose</span><h3 class="related-card-title">A Peaceful Life Is a Reality</h3><p class="related-excerpt">Peace is structural coherence under pressure, not absence of conflict.</p><span class="related-link">Read Article ?</span></div></a>
   </div></div></section>
 
-  <!-- ═══════════════════════════════════════════════
+  <!-- -----------------------------------------------
        GLOBAL FOOTER &ndash; same on every MECULS page
        To change links: edit the <li> items below
        To change logo: update src="images/logo/..."
-  ═══════════════════════════════════════════════ -->
+  ----------------------------------------------- -->
   <footer class="global-footer">
   <div class="gf-top">
 
@@ -1177,7 +1177,7 @@ a   { text-decoration: none; color: inherit; }
 
     <div class="gf-bottom-bar">
       <p class="gf-copy">&copy; 2026 MECULS. All rights reserved. Delhi, India.</p>
-      <p class="gf-payment">Payment: PayUBiz &middot; Razorpay &middot; PayPal &middot; UPI &middot; Credit Card</p>
+      <p class="gf-payment">Payment: Razorpay &middot; UPI &middot; Cards &middot; Netbanking &middot; Wallets</p>
       <nav class="gf-legal" aria-label="Legal links">
         <a href="grievance.html">Grievance</a>
         <a href="privacy-policy.html">Privacy</a>
@@ -1198,13 +1198,13 @@ a   { text-decoration: none; color: inherit; }
   <div class="toast" id="successToast"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="#d4af37" stroke-width="1.4"/><path d="M5.5 9l2.5 2.5L13 6" stroke="#d4af37" stroke-width="1.4" stroke-linecap="round"/></svg><span id="toastMessage">Done!</span></div>
   <script src="global.js"></script>
   <script>
-/* ═══════════════════════════════════════════════════════════════════
+/* -------------------------------------------------------------------
    MECULS &ndash; BLOG ARTICLE JAVASCRIPT
    File: blog-article.js
 
-   ▸ This ONE file powers EVERY blog article on the MECULS website.
-   ▸ Every blog HTML file links to this file. No other JS needed.
-   ▸ When you add a new article in future, do NOT create a new JS file.
+   ? This ONE file powers EVERY blog article on the MECULS website.
+   ? Every blog HTML file links to this file. No other JS needed.
+   ? When you add a new article in future, do NOT create a new JS file.
      Just copy any existing blog HTML, replace the content, save.
      This file already handles everything.
 
@@ -1216,15 +1216,15 @@ a   { text-decoration: none; color: inherit; }
    5. Social share buttons (Facebook, X/Twitter, LinkedIn)
    6. Keyboard accessibility (Escape closes modals)
    7. Toast notification (confirmation messages)
-═══════════════════════════════════════════════════════════════════ */
+------------------------------------------------------------------- */
 
 (function () {
   'use strict';
 
-  /* ── Wait for DOM ─────────────────────────────────────────────── */
+  /* -- Wait for DOM ----------------------------------------------- */
   document.addEventListener('DOMContentLoaded', function () {
 
-    /* ── Element references ───────────────────────────────────── */
+    /* -- Element references ------------------------------------- */
     var emailModal         = document.getElementById('emailModal');
     var subscribeModal     = document.getElementById('subscribeModal');
     var emailShareBtn      = document.getElementById('emailShareBtn');
@@ -1238,7 +1238,7 @@ a   { text-decoration: none; color: inherit; }
     var successToast       = document.getElementById('successToast');
     var toastMessage       = document.getElementById('toastMessage');
 
-    /* ── Toast ────────────────────────────────────────────────── */
+    /* -- Toast -------------------------------------------------- */
     function showToast(message) {
       if (!successToast || !toastMessage) return;
       toastMessage.textContent = message;
@@ -1248,7 +1248,7 @@ a   { text-decoration: none; color: inherit; }
       }, 3000);
     }
 
-    /* ── Modal open/close ─────────────────────────────────────── */
+    /* -- Modal open/close --------------------------------------- */
     function openModal(modal) {
       if (!modal) return;
       modal.classList.add('active');
@@ -1261,7 +1261,7 @@ a   { text-decoration: none; color: inherit; }
       document.body.style.overflow = '';
     }
 
-    /* ── Email Share Modal ────────────────────────────────────── */
+    /* -- Email Share Modal -------------------------------------- */
     if (emailShareBtn) {
       emailShareBtn.addEventListener('click', function () {
         openModal(emailModal);
@@ -1295,7 +1295,7 @@ a   { text-decoration: none; color: inherit; }
         };
 
         /*
-        ── HOW TO CONNECT EMAIL SENDING IN FUTURE ──────────────────
+        -- HOW TO CONNECT EMAIL SENDING IN FUTURE ------------------
         When you have a backend server (e.g. through Brevo or similar),
         replace the console.log below with a fetch() call like this:
 
@@ -1314,7 +1314,7 @@ a   { text-decoration: none; color: inherit; }
         Until then, the form shows a confirmation but does not
         actually send an email. The feature is ready &ndash; just needs
         the server endpoint connected.
-        ──────────────────────────────────────────────────────────── */
+        ------------------------------------------------------------ */
 
         console.log('Email share (not yet connected to server):', formData);
         showToast('Article shared successfully!');
@@ -1323,7 +1323,7 @@ a   { text-decoration: none; color: inherit; }
       });
     }
 
-    /* ── Subscribe Modal ──────────────────────────────────────── */
+    /* -- Subscribe Modal ---------------------------------------- */
     if (subscribeBtn) {
       subscribeBtn.addEventListener('click', function () {
         openModal(subscribeModal);
@@ -1353,7 +1353,7 @@ a   { text-decoration: none; color: inherit; }
         };
 
         /*
-        ── HOW TO CONNECT BREVO (your email platform) IN FUTURE ────
+        -- HOW TO CONNECT BREVO (your email platform) IN FUTURE ----
         You have a Brevo account. When ready, replace the console.log
         below with a Brevo API call or use Brevo's embedded form.
         Brevo documentation: https://developers.brevo.com
@@ -1372,7 +1372,7 @@ a   { text-decoration: none; color: inherit; }
             updateEnabled: true
           })
         });
-        ──────────────────────────────────────────────────────────── */
+        ------------------------------------------------------------ */
 
         console.log('Subscribe (not yet connected to Brevo):', formData);
         showToast('Successfully subscribed to MECULS insights!');
@@ -1381,7 +1381,7 @@ a   { text-decoration: none; color: inherit; }
       });
     }
 
-    /* ── Copy Link ────────────────────────────────────────────── */
+    /* -- Copy Link ---------------------------------------------- */
     if (copyLinkBtn) {
       copyLinkBtn.addEventListener('click', function () {
         var url = window.location.href;
@@ -1413,7 +1413,7 @@ a   { text-decoration: none; color: inherit; }
       document.body.removeChild(textarea);
     }
 
-    /* ── Save Article ─────────────────────────────────────────── */
+    /* -- Save Article ------------------------------------------- */
     var isSaved = false;
 
     if (saveBtn) {
@@ -1460,7 +1460,7 @@ a   { text-decoration: none; color: inherit; }
       if (label)   label.textContent = saved ? 'Saved' : 'Save';
     }
 
-    /* ── Social Share Buttons ─────────────────────────────────── */
+    /* -- Social Share Buttons ----------------------------------- */
     var articleTitle = document.querySelector('.article-main-title');
     var pageTitle    = articleTitle ? encodeURIComponent(articleTitle.textContent.trim()) : '';
     var pageUrl      = encodeURIComponent(window.location.href);
@@ -1493,7 +1493,7 @@ a   { text-decoration: none; color: inherit; }
       });
     });
 
-    /* ── Keyboard: Escape closes any open modal ───────────────── */
+    /* -- Keyboard: Escape closes any open modal ----------------- */
     document.addEventListener('keydown', function (e) {
       if (e.key =      if (e.key === 'Escape') {
         if (emailModal     && emailModal.classList.contains('active'))     closeModal(emailModal);

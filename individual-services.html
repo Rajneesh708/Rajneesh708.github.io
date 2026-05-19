@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
@@ -79,13 +79,13 @@
   <link rel="stylesheet" href="global.css">
 
   <style>
-  /* ══════════════════════════════════════════════════════════════════
+  /* ------------------------------------------------------------------
      PAGE STYLES  -  individual-services.html  (rebuild 2)
      Warm cream paper primary, ink-strong type, six full-width
      photograph bands - one per service. The page reads as the
      warm sibling to the corporate side, with photography carrying
      the emotional argument. No experimental ghost-marginalia.
-     ══════════════════════════════════════════════════════════════════ */
+     ------------------------------------------------------------------ */
 
   :root {
     --gold:        #d4af37;
@@ -136,7 +136,7 @@
   .rev { opacity: 0; transform: translateY(14px); transition: opacity 0.75s var(--ease), transform 0.75s var(--ease); }
   .rev.vis { opacity: 1; transform: none; }
 
-  /* ── Atoms ─────────────────────────────────────────────────────── */
+  /* -- Atoms ------------------------------------------------------- */
   .eyebrow {
     font-family: var(--ui);
     font-size: 0.74rem;
@@ -246,13 +246,13 @@
   }
   .inline-link:hover::after { transform: translateX(2px); }
 
-  /* ══════════════════════════════════════════════════════════════════
+  /* ------------------------------------------------------------------
      SECTION A  -  HERO
      Editorial dateline rail at the top, large display H1, italic
      pull line, two CTAs. No photograph in the hero - the hero is
      the page's "voice arrival". The first photograph appears in
      Section C alongside Folio I.
-     ══════════════════════════════════════════════════════════════════ */
+     ------------------------------------------------------------------ */
   .hero {
     padding: 5rem 0 5.5rem;
     background:
@@ -485,10 +485,10 @@
     border-bottom-color: var(--gold-deep);
   }
 
-  /* ══════════════════════════════════════════════════════════════════
+  /* ------------------------------------------------------------------
      SECTION B  -  THE OPENING NOTE
      One italic paragraph between two gold dots. Centred on cream-deep.
-     ══════════════════════════════════════════════════════════════════ */
+     ------------------------------------------------------------------ */
   .opening {
     padding: 5rem 0;
     background: var(--cream-deep);
@@ -516,7 +516,7 @@
     font-weight: 400;
   }
 
-  /* ══════════════════════════════════════════════════════════════════
+  /* ------------------------------------------------------------------
      SERVICE FOLIOS  (Sections C - H)
      Each folio: a full-width photograph band (40vh) at the top,
      followed by the folio's content on cream. The photograph band
@@ -524,7 +524,7 @@
      on the photograph (with a dark scrim and gold-deep hairline).
      This is the contemplative-practices' photo-plate pattern,
      reused as a sibling pattern on a different ground.
-     ══════════════════════════════════════════════════════════════════ */
+     ------------------------------------------------------------------ */
   .folio {
     border-bottom: 1px solid var(--gold-rule-faint);
   }
@@ -684,11 +684,11 @@
     margin-top: 2.2rem;
   }
 
-  /* ══════════════════════════════════════════════════════════════════
+  /* ------------------------------------------------------------------
      SECTION I  -  THE QUIET COST
      Single italic centred paragraph above and below a hairline rule.
      A different register from the bordered cost-of-waiting block.
-     ══════════════════════════════════════════════════════════════════ */
+     ------------------------------------------------------------------ */
   .quiet-cost {
     padding: 5rem 0;
     background: var(--cream-deep);
@@ -716,9 +716,9 @@
     font-weight: 400;
   }
 
-  /* ══════════════════════════════════════════════════════════════════
+  /* ------------------------------------------------------------------
      SECTION J  -  RITARTHA COMPANION
-     ══════════════════════════════════════════════════════════════════ */
+     ------------------------------------------------------------------ */
   .companion {
     padding: 5.5rem 0;
     background: var(--cream-light);
@@ -760,9 +760,9 @@
     font-weight: 600;
   }
 
-  /* ══════════════════════════════════════════════════════════════════
+  /* ------------------------------------------------------------------
      SECTION K  -  CLOSING DARK BAND
-     ══════════════════════════════════════════════════════════════════ */
+     ------------------------------------------------------------------ */
   .closing {
     padding: 6rem 0 5.5rem;
     background: var(--ink-dark);
@@ -838,9 +838,9 @@
     transform: translateY(-1px);
   }
 
-  /* ══════════════════════════════════════════════════════════════════
+  /* ------------------------------------------------------------------
      RESPONSIVE
-     ══════════════════════════════════════════════════════════════════ */
+     ------------------------------------------------------------------ */
   @media (max-width: 1060px) {
     .hero { padding: 4rem 0 4.5rem; }
     .hero-inner {
@@ -902,10 +902,10 @@
 <body>
 <div class="page">
 
-<!-- ═══════════════════════════════════════════════════════════════
+<!-- ---------------------------------------------------------------
      CANONICAL HEADER  -  v6.1, May 2026
      Active page: Services (individual-services.html)
-     ═══════════════════════════════════════════════════════════════ -->
+     --------------------------------------------------------------- -->
 
 <div class="gh-tagline-sub" id="ghTaglineSub">
   <span class="gh-tagline-sub-text">
@@ -1082,7 +1082,7 @@
 <!-- END CANONICAL HEADER -->
 
 
-<!-- ═══ SECTION A  -  HERO ═════════════════════════════════════════ -->
+<!-- --- SECTION A  -  HERO ----------------------------------------- -->
 <section class="hero" aria-label="Hero">
   <div class="hero-inner">
 
@@ -1131,7 +1131,7 @@
 </section>
 
 
-<!-- ═══ SECTION B  -  THE OPENING NOTE ═════════════════════════════ -->
+<!-- --- SECTION B  -  THE OPENING NOTE ----------------------------- -->
 <section class="opening" aria-label="Opening note">
   <div class="opening-inner">
     <div class="gold-dot"></div>
@@ -1141,7 +1141,7 @@
 </section>
 
 
-<!-- ═══ SECTION C  -  FOLIO I  -  MIND WELLNESS ═══════════════════ -->
+<!-- --- SECTION C  -  FOLIO I  -  MIND WELLNESS ------------------- -->
 <section class="folio" id="mind-wellness" aria-labelledby="folio-i-h">
   <div class="folio-photo" aria-hidden="true">
     <div class="folio-photo-img" style="background-image:url('images/individual-services/mind-wellness.jpg');"></div>
@@ -1178,7 +1178,7 @@
 </section>
 
 
-<!-- ═══ SECTION D  -  FOLIO II  -  CONSCIOUSNESS &amp; CLARITY ═════ -->
+<!-- --- SECTION D  -  FOLIO II  -  CONSCIOUSNESS &amp; CLARITY ----- -->
 <section class="folio" id="consciousness" aria-labelledby="folio-ii-h">
   <div class="folio-photo" aria-hidden="true">
     <div class="folio-photo-img" style="background-image:url('images/individual-services/consciousness-clarity.jpg');"></div>
@@ -1214,7 +1214,7 @@
 </section>
 
 
-<!-- ═══ SECTION E  -  FOLIO III  -  COUNSELLING ═══════════════════ -->
+<!-- --- SECTION E  -  FOLIO III  -  COUNSELLING ------------------- -->
 <section class="folio" id="counselling" aria-labelledby="folio-iii-h">
   <div class="folio-photo" aria-hidden="true">
     <div class="folio-photo-img" style="background-image:url('images/individual-services/counselling.jpg');"></div>
@@ -1250,7 +1250,7 @@
 </section>
 
 
-<!-- ═══ SECTION F  -  FOLIO IV  -  ADDICTION FREEDOM ══════════════ -->
+<!-- --- SECTION F  -  FOLIO IV  -  ADDICTION FREEDOM -------------- -->
 <section class="folio" id="addiction-freedom" aria-labelledby="folio-iv-h">
   <div class="folio-photo" aria-hidden="true">
     <div class="folio-photo-img" style="background-image:url('images/individual-services/addiction-freedom.jpg');"></div>
@@ -1286,7 +1286,7 @@
 </section>
 
 
-<!-- ═══ SECTION G  -  FOLIO V  -  FOR CHILDREN ════════════════════ -->
+<!-- --- SECTION G  -  FOLIO V  -  FOR CHILDREN -------------------- -->
 <section class="folio" id="for-children" aria-labelledby="folio-v-h">
   <div class="folio-photo" aria-hidden="true">
     <div class="folio-photo-img" style="background-image:url('images/individual-services/for-children.jpg');"></div>
@@ -1323,7 +1323,7 @@
 </section>
 
 
-<!-- ═══ SECTION H  -  FOLIO VI  -  MEDITATION AS MEDICINE ═════════ -->
+<!-- --- SECTION H  -  FOLIO VI  -  MEDITATION AS MEDICINE --------- -->
 <section class="folio" id="meditation" aria-labelledby="folio-vi-h">
   <div class="folio-photo" aria-hidden="true">
     <div class="folio-photo-img" style="background-image:url('images/individual-services/meditation-as-medicine.jpg');"></div>
@@ -1359,7 +1359,7 @@
 </section>
 
 
-<!-- ═══ SECTION I  -  THE QUIET COST ═══════════════════════════════ -->
+<!-- --- SECTION I  -  THE QUIET COST ------------------------------- -->
 <section class="quiet-cost" aria-label="The cost of waiting">
   <div class="quiet-cost-inner">
     <div class="quiet-cost-rule"></div>
@@ -1369,7 +1369,7 @@
 </section>
 
 
-<!-- ═══ SECTION J  -  RITARTHA COMPANION ══════════════════════════ -->
+<!-- --- SECTION J  -  RITARTHA COMPANION -------------------------- -->
 <section class="companion" aria-labelledby="companion-h">
   <div class="companion-inner">
     <span class="eyebrow no-rule">A Companion Practice</span>
@@ -1380,7 +1380,7 @@
 </section>
 
 
-<!-- ═══ SECTION K  -  CLOSING DARK BAND ════════════════════════════ -->
+<!-- --- SECTION K  -  CLOSING DARK BAND ---------------------------- -->
 <section class="closing" aria-labelledby="closing-h">
   <div class="closing-inner">
     <span class="eyebrow no-rule">The Next Step</span>
@@ -1395,9 +1395,9 @@
 </section>
 
 
-<!-- ═══════════════════════════════════════════════════════════════
+<!-- ---------------------------------------------------------------
      CANONICAL FOOTER  -  v3, May 2026
-     ═══════════════════════════════════════════════════════════════ -->
+     --------------------------------------------------------------- -->
 <footer class="global-footer">
 
   <div class="gf-top">
@@ -1494,7 +1494,7 @@
     <p class="gf-ip">This website, its content, frameworks, methodologies, and design are conceptualised, created, and authored by Rajneesh Jain, Founder, MECULS. All methodologies are the original and exclusive intellectual property of Rajneesh Jain. Unauthorised reproduction or commercial use is prohibited.</p>
     <div class="gf-bottom-bar">
       <p class="gf-copy">&copy; 2026 MECULS. All rights reserved. Delhi, India.</p>
-      <p class="gf-payment">Payment: PayUBiz &middot; Razorpay &middot; PayPal &middot; UPI &middot; Credit Card</p>
+      <p class="gf-payment">Payment: Razorpay &middot; UPI &middot; Cards &middot; Netbanking &middot; Wallets</p>
       <nav class="gf-legal" aria-label="Legal links">
         <a href="grievance.html">Grievance</a>
         <a href="privacy-policy.html">Privacy</a>
