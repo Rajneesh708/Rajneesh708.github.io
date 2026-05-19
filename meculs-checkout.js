@@ -1,5 +1,5 @@
 /* ============================================================
-   MECULS — meculs-checkout.js  (v=4)
+   MECULS — meculs-checkout.js  (v=5)
    ------------------------------------------------------------
    2026-05-20  theme.color: "#1c2128" → "#2f3b2c" (pine-green,
                matches brand; was causing the black popup).
@@ -207,8 +207,8 @@
       },
 
       /* theme.color sets the CTA button colour inside the popup.
-         Was "#1c2128" (black) — corrected to MECULS amber-pine. */
-      theme: { color: "#2f3b2c" }
+         Was "#1c2128" (black) → "#2f3b2c" (pine) → "#2563EB" (blue). */
+      theme: { color: "#2563EB" }
     };
 
     try {
