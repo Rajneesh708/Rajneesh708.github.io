@@ -1,4 +1,4 @@
-ï»¿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="canonical" href="https://meculs.com/p.html">
@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- ============================================================
-       MECULS ï¿½ p.html  (Public Profile renderer) ï¿½ Round 8
+       MECULS — p.html  (Public Profile renderer) — Round 8
        Date: 2026-05-09
        ============================================================
        VISIBILITY CHECK ADDED. When a user toggles "Make my profile
@@ -17,18 +17,18 @@
          - false ? show "This profile is private" state
          - null  ? show "Profile not found" state
        If the RPC isn't deployed (older Supabase), silently skips
-       the check ï¿½ page keeps working. Round 7 features unchanged.
+       the check — page keeps working. Round 7 features unchanged.
          - Sticky in-page navigation rail on the left (jumps to
-           sections ï¿½ only renders sections that have content)
+           sections — only renders sections that have content)
          - Print stylesheet (light background, navy text, no ink
-           waste ï¿½ usable when a hiring manager prints the profile)
+           waste — usable when a hiring manager prints the profile)
          - JSON-LD Person schema for SEO and Google's "About"
            cards (uses name, headline, photo, role, organisation)
          - Hero meta separator made more visible (was too dim)
-         - Mobile hero text left-aligned (was centred ï¿½ looked off
+         - Mobile hero text left-aligned (was centred — looked off
            for long headlines)
          - CTA button now reads "Message {first name}" instead of
-           generic "Send a message" ï¿½ clearer call to action
+           generic "Send a message" — clearer call to action
          - Smarter category eyebrow: "Founder" / "Consultant" /
            "Researcher" reads better than "Working Professional"
            when the user is self-employed/founder
@@ -36,14 +36,14 @@
          - Better favicon fallback
          - Cream surface (#f6f4ef) for body content
          - Navy hero band (#0c1a2e) with gold accents for "name plate"
-         - Navy header (#0c1a2e) ï¿½ logo is white, sits naturally
+         - Navy header (#0c1a2e) — logo is white, sits naturally
          - EB Garamond + Jost (same fonts as dashboard)
          - Gold #c8973d accents (matching dashboard --gold)
          - Dark text #161412 / #3d3830 / #6e6860 hierarchy
 
        Architecture: hero is a full-bleed navy band right under the
        header. Below the hero, content sits on cream like a printed
-       CV. The two zones are visually distinct ï¿½ hero is "the person",
+       CV. The two zones are visually distinct — hero is "the person",
        content is "their work".
 
        LIGHT THEME (kept from Round 4). Matches dashboard.html visual language:
@@ -61,18 +61,18 @@
          Volunteering
          Consulting (full details if availability_status active)
          Mentorship (full details if roles non-empty)
-         CTA ï¿½ Get in touch
+         CTA — Get in touch
          Footer
 
        HARD RULES (no exceptions):
          - No chips, no boxes around content
          - Project Ask / My role / Outcome each on own line, gold label
-         - "25 years of experience" ï¿½ never "25 years" alone
+         - "25 years of experience" — never "25 years" alone
          - Headline LAST in hero, italic serif, no bar
          - Skills as middle-dot lists, no labels on rows
        ============================================================ -->
 
-  <title>Profile ï¿½ MECULS</title>
+  <title>Profile — MECULS</title>
 
   <meta property="og:type" content="profile">
 <meta property="og:image" content="https://meculs.com/images/og/og-default.png?v=2">
@@ -83,7 +83,7 @@
 <meta name="twitter:image" content="https://meculs.com/images/og/og-default.png?v=2">
 <meta name="twitter:image:alt" content="MECULS - Honest help for executive coaching, wellness, and CV portal">
   <meta property="og:site_name" content="MECULS">
-  <meta property="og:title" id="ogTitle" content="Profile ï¿½ MECULS">
+  <meta property="og:title" id="ogTitle" content="Profile — MECULS">
   <meta property="og:description" id="ogDesc" content="A professional profile on MECULS.">
   <meta property="og:image" id="ogImage" content="https://meculs.com/images/og/og-default.png?v=2">
   <meta name="twitter:card" content="summary_large_image">
@@ -96,7 +96,7 @@
 
   <style>
     /* ---------------------------------------------------------
-       BRAND TOKENS ï¿½ synced with dashboard.html
+       BRAND TOKENS — synced with dashboard.html
     --------------------------------------------------------- */
     :root {
       /* Navy palette (header, hero band) */
@@ -137,7 +137,7 @@
 
       --shadow-photo: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255,255,255,0.05);
 
-      /* Content width ï¿½ generous, fills wider monitors confidently.
+      /* Content width — generous, fills wider monitors confidently.
          Was 880px which created a sad narrow island on wide screens. */
       --content-max: 1080px;
     }
@@ -161,7 +161,7 @@
     }
 
     /* ---------------------------------------------------------
-       HEADER ï¿½ matches dashboard topbar but full-width-bleed
+       HEADER — matches dashboard topbar but full-width-bleed
     --------------------------------------------------------- */
     .pp-header {
       background: var(--blue-900);
@@ -208,7 +208,7 @@
     }
 
     /* ---------------------------------------------------------
-       HERO BAND ï¿½ full-bleed navy, contains the "name plate"
+       HERO BAND — full-bleed navy, contains the "name plate"
        Photo + name + position + location + headline live here.
        Visually distinct from the cream content below.
        --------------------------------------------------------- */
@@ -262,7 +262,7 @@
       display: none !important;
     }
 
-    /* Eyebrow ï¿½ gold caps category */
+    /* Eyebrow — gold caps category */
     .pp-hero__category {
       font-family: var(--sans);
       font-size: 0.72rem;
@@ -272,7 +272,7 @@
       color: var(--gold-light);
       margin-bottom: 10px;
     }
-    /* Name ï¿½ DOMINATES, white serif, tightened scale */
+    /* Name — DOMINATES, white serif, tightened scale */
     .pp-hero__name {
       font-family: var(--serif);
       font-size: 3rem;
@@ -282,7 +282,7 @@
       line-height: 1.05;
       margin-bottom: 10px;
     }
-    /* Position at Company ï¿½ gold light, second-strongest */
+    /* Position at Company — gold light, second-strongest */
     .pp-hero__current-position {
       font-family: var(--serif);
       font-size: 1.4rem;
@@ -292,7 +292,7 @@
       line-height: 1.35;
       margin-bottom: 10px;
     }
-    /* Bio meta ï¿½ Location ï¿½ Years of experience */
+    /* Bio meta — Location · Years of experience */
     .pp-hero__bio-line {
       font-family: var(--sans);
       font-size: 0.94rem;
@@ -305,7 +305,7 @@
       color: rgba(200, 151, 61, 0.55);
       margin: 0 12px;
     }
-    /* Headline ï¿½ italic serif, last position. Slightly smaller so it
+    /* Headline — italic serif, last position. Slightly smaller so it
        fits on 2 lines instead of 3 in the available width. */
     .pp-hero__headline {
       font-family: var(--serif);
@@ -320,7 +320,7 @@
     .pp-hero__location[hidden],
     .pp-hero__meta[hidden] { display: none; }
 
-    /* Status badges ï¿½ gold tint pills, only place pills are allowed */
+    /* Status badges — gold tint pills, only place pills are allowed */
     .pp-badges {
       display: flex;
       flex-wrap: wrap;
@@ -349,7 +349,7 @@
     }
 
     /* ---------------------------------------------------------
-       CONTENT AREA ï¿½ cream surface, dark text.
+       CONTENT AREA — cream surface, dark text.
        Two-column layout on desktop: sticky in-page nav on the
        left, content on the right. Single column on mobile.
        --------------------------------------------------------- */
@@ -371,7 +371,7 @@
       min-width: 0; /* prevent grid overflow */
     }
 
-    /* In-page navigation ï¿½ sticky table of contents on the left.
+    /* In-page navigation — sticky table of contents on the left.
        Only renders when there are 3+ visible sections (single-section
        profiles don't need it). */
     .pp-nav-rail {
@@ -509,7 +509,7 @@
       border-bottom: 1px solid var(--hairline-gold);
     }
 
-    /* About ï¿½ flowing serif, comfortable read */
+    /* About — flowing serif, comfortable read */
     .pp-bio {
       font-family: var(--serif);
       font-size: 1.32rem;
@@ -521,7 +521,7 @@
     }
 
     /* ---------------------------------------------------------
-       EXPERIENCE ï¿½ gold-dot timeline, no chips, no boxes
+       EXPERIENCE — gold-dot timeline, no chips, no boxes
        --------------------------------------------------------- */
     .pp-exp {
       position: relative;
@@ -588,7 +588,7 @@
       margin-bottom: 22px;
       max-width: 78ch;
     }
-    /* Projects ï¿½ NO box. Whitespace only. */
+    /* Projects — NO box. Whitespace only. */
     .pp-exp__projects {
       margin-top: 24px;
       margin-bottom: 22px;
@@ -629,7 +629,7 @@
       font-weight: 600;
       margin-right: 6px;
     }
-    /* Skills row ï¿½ middle-dot, no label */
+    /* Skills row — middle-dot, no label */
     .pp-exp__skills-line {
       font-family: var(--sans);
       font-size: 0.92rem;
@@ -652,7 +652,7 @@
     }
 
     /* ---------------------------------------------------------
-       EDUCATION ï¿½ same rhythm as Experience
+       EDUCATION — same rhythm as Experience
        --------------------------------------------------------- */
     .pp-edu__item {
       padding: 22px 0;
@@ -772,7 +772,7 @@
     }
 
     /* ---------------------------------------------------------
-       SKILLS ï¿½ grouped, NO chips
+       SKILLS — grouped, NO chips
        --------------------------------------------------------- */
     .pp-skills {
       display: flex;
@@ -810,7 +810,7 @@
     .pp-skill-row, .pp-skill { display: contents; }
 
     /* ---------------------------------------------------------
-       SIMPLE LIST SECTIONS ï¿½ Achievements, Certs, Pubs, Volunteering
+       SIMPLE LIST SECTIONS — Achievements, Certs, Pubs, Volunteering
        Each entry: title (serif), org/year (gold + muted), description.
        --------------------------------------------------------- */
     .pp-list__item {
@@ -873,7 +873,7 @@
     }
 
     /* ---------------------------------------------------------
-       LANGUAGES ï¿½ single-line group, name ï¿½ proficiency
+       LANGUAGES — single-line group, name · proficiency
        --------------------------------------------------------- */
     .pp-langs {
       display: flex;
@@ -897,7 +897,7 @@
     }
 
     /* ---------------------------------------------------------
-       PROFESSIONAL LINKS ï¿½ small label + link rows
+       PROFESSIONAL LINKS — small label + link rows
        --------------------------------------------------------- */
     .pp-links {
       display: flex;
@@ -932,7 +932,7 @@
     }
 
     /* ---------------------------------------------------------
-       CONSULTING / MENTORSHIP ï¿½ descriptive blocks
+       CONSULTING / MENTORSHIP — descriptive blocks
        --------------------------------------------------------- */
     .pp-block {
       font-family: var(--sans);
@@ -978,7 +978,7 @@
     }
 
     /* ---------------------------------------------------------
-       CTA ï¿½ Get in touch (cream surface block)
+       CTA — Get in touch (cream surface block)
        --------------------------------------------------------- */
     .pp-cta {
       margin-top: 80px;
@@ -1020,7 +1020,7 @@
     }
 
     /* ---------------------------------------------------------
-       FOOTER ï¿½ navy, matching header
+       FOOTER — navy, matching header
        --------------------------------------------------------- */
     .pp-foot {
       padding: 28px 32px;
@@ -1072,17 +1072,17 @@
       .pp-block__label { min-width: 0; }
       .pp-links__row { flex-direction: column; gap: 4px; }
       .pp-links__label { min-width: 0; }
-      /* Mobile: photo centred, but text BELOW left-aligned ï¿½
+      /* Mobile: photo centred, but text BELOW left-aligned —
          centred long headlines look amateurish when wrapped. */
       .pp-hero > div:not(:first-child) { text-align: left; }
       .pp-badges { justify-content: flex-start; }
-      /* On mobile, drop the sticky nav rail entirely ï¿½ it'd take
+      /* On mobile, drop the sticky nav rail entirely — it'd take
          too much vertical space at the top. */
       .pp-nav-rail { display: none; }
     }
 
     /* ---------------------------------------------------------
-       PRINT ï¿½ usable when printed (saves toner, readable)
+       PRINT — usable when printed (saves toner, readable)
        --------------------------------------------------------- */
     @media print {
       /* Strip dark colours so we don't waste a quarter-cartridge
@@ -1125,7 +1125,7 @@
         color: #5a4a25;
         border-color: #c8973d;
       }
-      /* Drop sticky nav rail ï¿½ useless on paper */
+      /* Drop sticky nav rail — useless on paper */
       .pp-nav-rail { display: none; }
       .pp-main {
         max-width: none;
@@ -1179,7 +1179,7 @@
     </div>
   </header>
 
-  <!-- HERO BAND (navy, full bleed) ï¿½ only renders when profile loads -->
+  <!-- HERO BAND (navy, full bleed) — only renders when profile loads -->
   <div id="ppHeroBand" class="pp-hero-band" hidden>
     <header class="pp-hero">
   <link rel="canonical" href="https://meculs.com/p.html">
@@ -1313,136 +1313,16 @@
 
   </main>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-     MECULS - CANONICAL FOOTER BLOCK  (v6, May 2026)
-
-     HOW TO USE:
-     - This file is a REFERENCE TEMPLATE only. Do not upload it to GitHub.
-     - Every page on meculs.com pastes this entire block verbatim into
-       its own HTML, immediately before </div><!-- /.page -->.
-     - Nothing changes per page. This block is identical everywhere.
-
-     WHAT CHANGED FROM v5:
-     - Corrected all five social media links:
-       LinkedIn  â†’ https://www.linkedin.com/in/rajneesh-jain-bb792b69/
-       YouTube   â†’ https://www.youtube.com/@i-flow3972
-       Instagram â†’ https://www.instagram.com/meculs_official/
-       X         â†’ https://x.com/Rajneesh_Jain_
-       Facebook  â†’ https://www.facebook.com/unlockingselfpotential/
-
-     Styled entirely by global.css. Behaviour entirely in global.js.
-     To update the site footer, edit this block once and reapply to
-     every page. No per-page footer customisation.
-     â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
-
-<footer class="global-footer">
-
-  <div class="gf-top">
-
-    <div class="gf-brand">
-      <div class="gf-logo">
-        <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS" width="140" height="32">
-        <span class="gf-logo-text" style="display:none">MECULS</span>
-      </div>
-      <p class="gf-tagline">Mind Enablement Centre for Unlocking Limitless Leadership &amp; Self-Potential</p>
-      <div class="gf-contact">
-        <a href="mailto:Jain.Rajneesh@meculs.com">Jain.Rajneesh@meculs.com</a>
-        <a href="https://meculs.com">www.meculs.com</a>
-        <span>Delhi, India</span>
-      </div>
-      <div class="gf-social">
-        <a href="https://www.linkedin.com/in/rajneesh-jain-bb792b69/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-        </a>
-        <a href="https://www.youtube.com/@i-flow3972" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.33zM9.75 15.02V8.48l5.75 3.27z"/></svg>
-        </a>
-        <a href="https://www.instagram.com/meculs_official/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg>
-        </a>
-        <a href="https://x.com/Rajneesh_Jain_" aria-label="X / Twitter" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        </a>
-        <a href="https://www.facebook.com/unlockingselfpotential/" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
-        </a>
-      </div>
+  <footer class="pp-foot">
+    <div class="pp-foot__row">
+      Profile hosted on <a href="https://meculs.com">MECULS</a>
+      &middot;
+      <a href="https://meculs.com/privacy-policy.html">Privacy</a>
     </div>
-
-    <div>
-      <span class="gf-col-title">Services</span>
-      <ul class="gf-links">
-        <li><a href="360-pulse-rate.html">360&deg; PULSE RATE&trade;</a></li>
-        <li><a href="service-personality-profiling.html">Personality Profiling</a></li>
-        <li><a href="bespoke-coaching.html">Executive Coaching &ndash; Bespoke</a></li>
-        <li><a href="corporate-programs.html">Corporate Programmes</a></li>
-        <li><a href="service-executive-search.html">Executive Search</a></li>
-        <li><a href="service-hr-analytics.html">HR Analytics</a></li>
-        <li><a href="service-data-science-analytics.html">Data Science &amp; Analytics</a></li>
-        <li><a href="service-market-actionable-intelligence.html">Market Intelligence</a></li>
-        <li><a href="organisational-health-consulting.html">Organisational Health</a></li>
-        <li><a href="service-consciousness-clarity.html">Consciousness &amp; Clarity</a></li>
-        <li><a href="service-mind-wellness.html">Mind Wellness</a></li>
-        <li><a href="service-addiction-freedom.html">Addiction Freedom</a></li>
-        <li><a href="service-counselling.html">Counselling</a></li>
-        <li><a href="service-children.html">For Children</a></li>
-        <li><a href="service-zero-state-meditation.html">Meditation as Medicine</a></li>
-      </ul>
+    <div class="pp-foot__row pp-foot__row--cta">
+      Want a profile like this? <a href="https://meculs.com/register.html">Create yours free on MECULS</a>
     </div>
-
-    <div>
-      <span class="gf-col-title">Company</span>
-      <ul class="gf-links">
-        <li><a href="about-meculs.html">About MECULS</a></li>
-        <li><a href="about-rajneesh-jain.html">The Founder</a></li>
-        <li><a href="how-meculs-works.html">How MECULS Works</a></li>
-        <li><a href="the-approach.html">The Approach</a></li>
-        <li><a href="the-journey.html">The Journey</a></li>
-        <li><a href="why-meculs.html">Why MECULS</a></li>
-        <li><a href="why-mynd-care.html">Why Mynd CARE</a></li>
-        <li><a href="our-work-proof.html">Our Work Proof</a></li>
-        <li><a href="contexts.html">Contexts</a></li>
-        <li><a href="source-of-challenges.html">Source of Challenges</a></li>
-        <li><a href="contemplative-practices.html">Contemplative Practices</a></li>
-        <li><a href="insights.html">Insights</a></li>
-      </ul>
-    </div>
-
-    <div>
-      <span class="gf-col-title">Connect</span>
-      <ul class="gf-links">
-        <li><a href="cv-portal.html">The CV Portal</a></li>
-        <li><a href="begin-conversation.html">Begin a Conversation</a></li>
-        <li><a href="book-session.html">Corporate Enquiry</a></li>
-      </ul>
-      <span class="gf-col-title" style="margin-top:2rem;">Legal</span>
-      <ul class="gf-links">
-        <li><a href="grievance.html">Grievance</a></li>
-        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-        <li><a href="terms.html">Terms of Service</a></li>
-        <li><a href="refund-policy.html">Refund Policy</a></li>
-        <li><a href="disclaimer.html">Disclaimer</a></li>
-      </ul>
-    </div>
-
-  </div>
-
-  <div class="gf-bottom">
-    <p class="gf-ip">This website, its content, frameworks, methodologies, and design are conceptualised, created, and authored by Rajneesh Jain, Founder, MECULS. All methodologies are the original and exclusive intellectual property of Rajneesh Jain. Unauthorised reproduction or commercial use is prohibited.</p>
-    <div class="gf-bottom-bar">
-      <p class="gf-copy">&copy; 2026 MECULS. All rights reserved. Delhi, India.</p>
-      <p class="gf-payment">Payment: Razorpay &middot; UPI &middot; Cards &middot; Netbanking &middot; Wallets</p>
-      <nav class="gf-legal" aria-label="Legal links">
-        <a href="grievance.html">Grievance</a>
-        <a href="privacy-policy.html">Privacy</a>
-        <a href="terms.html">Terms</a>
-        <a href="refund-policy.html">Refund</a>
-        <a href="disclaimer.html">Disclaimer</a>
-      </nav>
-    </div>
-  </div>
-
-</footer>
+  </footer>
 
 </div>
 
@@ -1505,8 +1385,8 @@
     }
     const start = fmt(item.start_year, item.start_month);
     const end = item.is_current ? "Present" : fmt(item.end_year, item.end_month);
-    if (start && end) return start + " ï¿½ " + end;
-    if (start) return start + " ï¿½ Present";
+    if (start && end) return start + " — " + end;
+    if (start) return start + " — Present";
     return "";
   }
 
@@ -1519,7 +1399,7 @@
   }
 
   function initialsFromName(name) {
-    if (!name) return "ï¿½";
+    if (!name) return "•";
     const parts = String(name).trim().split(/\s+/);
     if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
     return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
@@ -1571,7 +1451,7 @@
           photoEl.hidden = true;
           if (avatarEl) avatarEl.hidden = false;
         };
-        photoEl.alt = (p.name || "Profile") + " ï¿½ profile photo";
+        photoEl.alt = (p.name || "Profile") + " — profile photo";
         photoEl.src = photoUrl;
       }
     }
@@ -1594,7 +1474,7 @@
     const cat = (p.profile_category && p.profile_category.user_type) || "";
     /* Smarter eyebrow: if the user is a working_professional whose
        current_position contains "founder", "co-founder", "ceo", "cto",
-       "owner", or "director" ï¿½ use that role as the category label
+       "owner", or "director" — use that role as the category label
        instead of the generic "Working Professional". A founder reads
        differently than an employee. */
     let eyebrow = catMap[cat] || cat.replace(/_/g, " ");
@@ -1642,7 +1522,7 @@
       }
     }
 
-    /* Bio meta ï¿½ Location ï¿½ "X years of experience" (never just "X years") */
+    /* Bio meta — Location · "X years of experience" (never just "X years") */
     const loc = [intro.res_state, intro.res_country].filter(Boolean).join(", ");
     const bioEl = document.getElementById("ppBioLine");
     if (bioEl) {
@@ -1657,7 +1537,7 @@
       }
       if (parts.length) {
         bioEl.innerHTML = parts.map(escapeHtml)
-          .join('<span class="pp-hero__sep">ï¿½</span>');
+          .join('<span class="pp-hero__sep">·</span>');
         bioEl.hidden = false;
       } else {
         bioEl.hidden = true;
@@ -1727,7 +1607,7 @@
       const dateLocParts = [];
       if (dateStr)  dateLocParts.push(escapeHtml(dateStr));
       if (location) dateLocParts.push(escapeHtml(location));
-      const dateLocLine = dateLocParts.join('<span class="pp-exp__sep">ï¿½</span>');
+      const dateLocLine = dateLocParts.join('<span class="pp-exp__sep">·</span>');
 
       const fnLine = splitList(e.industry_function).join(", ");
 
@@ -1772,7 +1652,7 @@
             }
             html += '<div class="pp-exp__project">';
             html += '<div class="pp-exp__project-header">' +
-                    headerBits.join('<span class="pp-exp__sep">ï¿½</span>') + '</div>';
+                    headerBits.join('<span class="pp-exp__sep">·</span>') + '</div>';
             if (proj.ask) {
               html += '<div class="pp-exp__project-line">' +
                       '<span class="pp-exp__project-key">Ask:</span>' +
@@ -1797,7 +1677,7 @@
       if (allSkills.length) {
         html += '<div class="pp-exp__skills-line">' +
                 allSkills.map(escapeHtml)
-                  .join('<span class="pp-exp__skills-sep"> ï¿½ </span>') +
+                  .join('<span class="pp-exp__skills-sep"> · </span>') +
                 '</div>';
       }
 
@@ -1861,14 +1741,14 @@
       const end   = fmtMY(c.edu_end_year,   c.edu_end_month);
       let dateStr = "";
       if (c.currently_pursuing === "yes" || c.currently_pursuing === true) {
-        dateStr = start ? (start + " ï¿½ Present") : "In progress";
-        if (end) dateStr = start + " ï¿½ Expected " + end;
-      } else if (start && end) dateStr = start + " ï¿½ " + end;
-      else if (start) dateStr = start + " ï¿½ Present";
+        dateStr = start ? (start + " — Present") : "In progress";
+        if (end) dateStr = start + " — Expected " + end;
+      } else if (start && end) dateStr = start + " — " + end;
+      else if (start) dateStr = start + " — Present";
       else if (end) dateStr = "Expected " + end;
 
       const degreeLine = (c.education_level || "") +
-        (c.field_of_study ? " ï¿½ " + c.field_of_study : "");
+        (c.field_of_study ? " — " + c.field_of_study : "");
 
       let html = "";
       html += '<div class="pp-edu__degree">' + escapeHtml(degreeLine) + '</div>';
@@ -1901,12 +1781,12 @@
         const start = fmtMY(e.start_year, e.start_month);
         const end   = fmtMY(e.end_year,   e.end_month);
         let dateStr = "";
-        if (start && end) dateStr = start + " ï¿½ " + end;
+        if (start && end) dateStr = start + " — " + end;
         else if (start)   dateStr = start;
         else if (end)     dateStr = end;
 
         const degreeLine = (e.degree || "") +
-          (e.field_of_study ? " ï¿½ " + e.field_of_study : "");
+          (e.field_of_study ? " — " + e.field_of_study : "");
 
         let html = "";
         html += '<div class="pp-edu__degree">' + escapeHtml(degreeLine) + '</div>';
@@ -1926,7 +1806,7 @@
           html += '<div class="pp-edu__skills-line">' +
                   '<span class="pp-edu__skills-label">Skills:</span>' +
                   eduSkills.map(escapeHtml)
-                    .join('<span class="pp-edu__skills-sep"> ï¿½ </span>') +
+                    .join('<span class="pp-edu__skills-sep"> · </span>') +
                   '</div>';
         }
         if (e.activities) {
@@ -2016,7 +1896,7 @@
     function renderItemHtml(item) {
       if (item.proficiency) {
         return escapeHtml(item.name) +
-          ' <span class="pp-skill__level">ï¿½ ' + escapeHtml(item.proficiency) + '</span>';
+          ' <span class="pp-skill__level">· ' + escapeHtml(item.proficiency) + '</span>';
       }
       return escapeHtml(item.name);
     }
@@ -2025,7 +1905,7 @@
       const line = document.createElement("div");
       line.className = "pp-skill-line";
       line.innerHTML = flatItems.map(renderItemHtml)
-        .join('<span class="pp-skill-sep"> ï¿½ </span>');
+        .join('<span class="pp-skill-sep"> · </span>');
       list.appendChild(line);
     } else {
       groups.forEach(function (g) {
@@ -2040,7 +1920,7 @@
         const line = document.createElement("div");
         line.className = "pp-skill-line";
         line.innerHTML = g.items.map(renderItemHtml)
-          .join('<span class="pp-skill-sep"> ï¿½ </span>');
+          .join('<span class="pp-skill-sep"> · </span>');
         groupEl.appendChild(line);
         list.appendChild(groupEl);
       });
@@ -2100,8 +1980,8 @@
       const start = fmt(c.start_year, c.start_month);
       const end   = c.is_current ? "" : fmt(c.end_year, c.end_month);
       let dateStr = "";
-      if (start && end) dateStr = start + " ï¿½ " + end;
-      else if (start && c.is_current) dateStr = start + " ï¿½ No expiry";
+      if (start && end) dateStr = start + " — " + end;
+      else if (start && c.is_current) dateStr = start + " — No expiry";
       else if (start) dateStr = "Issued " + start;
       else if (end) dateStr = "Valid until " + end;
 
@@ -2143,7 +2023,7 @@
       if (pub.pub_type) subBits.push(escapeHtml(titleize(pub.pub_type)));
       if (subBits.length) {
         html += '<div class="pp-list__meta">' +
-                subBits.join('<span class="pp-list__sep">ï¿½</span>') + '</div>';
+                subBits.join('<span class="pp-list__sep">·</span>') + '</div>';
       }
       if (pub.description) {
         html += '<div class="pp-list__desc">' + escapeHtml(pub.description) + '</div>';
@@ -2205,8 +2085,8 @@
       item.className = "pp-list__item";
 
       let dateStr = "";
-      if (v.from_year && v.is_ongoing) dateStr = v.from_year + " ï¿½ Present";
-      else if (v.from_year && v.to_year) dateStr = v.from_year + " ï¿½ " + v.to_year;
+      if (v.from_year && v.is_ongoing) dateStr = v.from_year + " — Present";
+      else if (v.from_year && v.to_year) dateStr = v.from_year + " — " + v.to_year;
       else if (v.from_year) dateStr = String(v.from_year);
       else if (v.to_year) dateStr = String(v.to_year);
 
@@ -2219,7 +2099,7 @@
       if (dateStr) metaBits.push(escapeHtml(dateStr));
       if (metaBits.length) {
         html += '<div class="pp-list__meta">' +
-                metaBits.join('<span class="pp-list__sep">ï¿½</span>') + '</div>';
+                metaBits.join('<span class="pp-list__sep">·</span>') + '</div>';
       }
       if (v.description) {
         html += '<div class="pp-list__desc">' + escapeHtml(v.description) + '</div>';
@@ -2243,14 +2123,14 @@
       const span = document.createElement("span");
       let html = '<span class="pp-lang__name">' + escapeHtml(l.name) + '</span>';
       if (l.proficiency) {
-        html += '<span class="pp-lang__level">ï¿½ ' + escapeHtml(l.proficiency) + '</span>';
+        html += '<span class="pp-lang__level">· ' + escapeHtml(l.proficiency) + '</span>';
       }
       span.innerHTML = html;
       list.appendChild(span);
       if (i < valid.length - 1) {
         const sep = document.createElement("span");
         sep.className = "pp-lang__sep";
-        sep.textContent = "ï¿½";
+        sep.textContent = "·";
         list.appendChild(sep);
       }
     });
@@ -2313,7 +2193,7 @@
       const items = splitList(arr);
       if (!items.length) return "";
       return items.map(escapeHtml)
-        .join('<span class="pp-block__inline-sep"> ï¿½ </span>');
+        .join('<span class="pp-block__inline-sep"> · </span>');
     }
 
     const domainsHtml = listToInlineHtml(c.consulting_domains);
@@ -2324,14 +2204,14 @@
 
     if (c.engagement_type) {
       const eng = Array.isArray(c.engagement_type)
-        ? c.engagement_type.map(titleize).join(" ï¿½ ")
+        ? c.engagement_type.map(titleize).join(" · ")
         : titleize(c.engagement_type);
       html += renderRow("Engagement", escapeHtml(eng));
     }
 
     if (c.company_size_preference) {
       const csz = Array.isArray(c.company_size_preference)
-        ? c.company_size_preference.map(titleize).join(" ï¿½ ")
+        ? c.company_size_preference.map(titleize).join(" · ")
         : titleize(c.company_size_preference);
       html += renderRow("Company size", escapeHtml(csz));
     }
@@ -2340,14 +2220,14 @@
       html += renderRow("Past work", escapeHtml(c.past_work_highlight));
     }
 
-    /* Rate ï¿½ only render if user did NOT mark "discuss privately" AND
+    /* Rate — only render if user did NOT mark "discuss privately" AND
        provided at least one bound */
     if (!c.rate_discuss_privately && (c.rate_min || c.rate_max)) {
       const cur = c.rate_currency || "INR";
       const unit = c.rate_unit ? " / " + titleize(c.rate_unit) : "";
       let rateStr = "";
       if (c.rate_min && c.rate_max) {
-        rateStr = cur + " " + c.rate_min + " ï¿½ " + c.rate_max + unit;
+        rateStr = cur + " " + c.rate_min + " — " + c.rate_max + unit;
       } else if (c.rate_min) {
         rateStr = "From " + cur + " " + c.rate_min + unit;
       } else if (c.rate_max) {
@@ -2412,7 +2292,7 @@
 
   /* -- Open Graph -------------------------------------------- */
   function setPageMeta(p) {
-    const title = (p.name || "Profile") + " ï¿½ MECULS";
+    const title = (p.name || "Profile") + " — MECULS";
     document.title = title;
     const ogT = document.getElementById("ogTitle");
     const ogD = document.getElementById("ogDesc");
@@ -2470,7 +2350,7 @@
         }
       }
     } catch (e) {
-      /* Function not deployed yet ï¿½ silently fall through */
+      /* Function not deployed yet — silently fall through */
       console.warn("[p.html] is_profile_public unavailable, skipping visibility check");
     }
 
@@ -2529,12 +2409,12 @@
     renderConsulting(data);
     renderMentorship(data);
 
-    /* Personalise the contact CTA ï¿½ "Message Rajneesh" reads warmer
+    /* Personalise the contact CTA — "Message Rajneesh" reads warmer
        than the generic "Send a message". */
     customiseCta(data);
 
     /* Emit JSON-LD Person schema for SEO + Google "About" cards.
-       Uses public fields only ï¿½ no PII like email or phone. */
+       Uses public fields only — no PII like email or phone. */
     emitJsonLd(data);
 
     hide("ppLoading");
@@ -2573,7 +2453,7 @@
       return el && !el.hidden;
     });
 
-    /* Nav only makes sense with 3+ sections ï¿½ otherwise it just
+    /* Nav only makes sense with 3+ sections — otherwise it just
        takes up space alongside a short profile. */
     if (visible.length < 3) return;
 
@@ -2601,7 +2481,7 @@
     });
     rail.hidden = false;
 
-    /* Scroll-spy ï¿½ highlight the currently-in-view section */
+    /* Scroll-spy — highlight the currently-in-view section */
     const links = list.querySelectorAll(".pp-nav-rail__link");
     const linksByTarget = {};
     links.forEach(function (a) {
@@ -2625,7 +2505,7 @@
     }
   }
 
-  /* -- Personalise contact CTA ï¿½ "Message Rajneesh" ---------- */
+  /* -- Personalise contact CTA — "Message Rajneesh" ---------- */
   function customiseCta(p) {
     const link = document.getElementById("ppContactLink");
     const sub  = document.getElementById("ppCtaSub");
@@ -2635,7 +2515,7 @@
       link.textContent = "Message " + firstName;
     }
     if (sub) {
-      sub.textContent = "Send a message via MECULS ï¿½ we'll forward it to " +
+      sub.textContent = "Send a message via MECULS — we'll forward it to " +
         (firstName || "this member") + ".";
     }
   }
