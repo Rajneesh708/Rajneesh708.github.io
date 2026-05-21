@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://*.supabase.co https://meculs-payment.vercel.app; frame-src https://challenges.cloudflare.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
@@ -7,7 +7,7 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Corporate Enquiry � Engage MECULS | MECULS</title>
+  <title>Corporate Enquiry — Engage MECULS | MECULS</title>
   <meta name="description" content="Enquire about MECULS corporate engagements: leadership coaching, executive search, organisational health and HR analytics. Priced on application.">
 
   <meta name="robots" content="index, follow, max-image-preview:large">
@@ -130,7 +130,7 @@
 
     .ce-wrap { max-width: 1180px; margin: 0 auto; padding: 0 5%; }
 
-    /* -- HERO - full-bleed image band, copy sits ON the image ---- */
+    /* ── HERO - full-bleed image band, copy sits ON the image ──── */
     .ce-hero {
       position: relative;
       margin-top: 9rem;
@@ -213,7 +213,7 @@
       max-width: 34rem;
     }
 
-    /* -- SECTION SCAFFOLD --------------------------------------- */
+    /* ── SECTION SCAFFOLD ─────────────────────────────────────── */
     .ce-section { padding: 4rem 0; }
     .ce-section--tight { padding: 3rem 0 4rem; }
     .ce-section__label {
@@ -254,7 +254,7 @@
       margin: 0;
     }
 
-    /* -- HOW IT WORKS - three steps ----------------------------- */
+    /* ── HOW IT WORKS - three steps ───────────────────────────── */
     .ce-steps {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -291,7 +291,7 @@
       margin: 0;
     }
 
-    /* -- CORPORATE SERVICES ------------------------------------- */
+    /* ── CORPORATE SERVICES ───────────────────────────────────── */
     .ce-services {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -351,7 +351,7 @@
       margin: 0;
     }
 
-    /* -- ENQUIRY FORM - form + image rail as one composition ---- */
+    /* ── ENQUIRY FORM - form + image rail as one composition ──── */
     /* the compose block breaks out of the wrap's side padding so it
        uses the full content width - no wasted sage gutters - while
        the section heading text above it keeps its normal indent */
@@ -553,7 +553,7 @@
     .ce-form-error.is-visible { display: block; }
     .ce-form-error a { color: var(--ce-error); text-decoration: underline; }
 
-    /* -- DELIVERY ----------------------------------------------- */
+    /* ── DELIVERY ─────────────────────────────────────────────── */
     .ce-delivery {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -590,7 +590,7 @@
       margin: 0;
     }
 
-    /* -- CLOSING ------------------------------------------------ */
+    /* ── CLOSING ──────────────────────────────────────────────── */
     .ce-close {
       background: var(--ce-pine);
       border-radius: 4px;
@@ -660,7 +660,7 @@
       color: var(--ce-pine);
     }
 
-    /* -- responsive --------------------------------------------- */
+    /* ── responsive ───────────────────────────────────────────── */
     @media (max-width: 880px) {
       .ce-hero {
         margin-top: 7rem;
@@ -1019,9 +1019,9 @@
     </p>
 
     <!--
-      ---------------------------------------------------------------
+      ═══════════════════════════════════════════════════════════════
       FORM SUBMISSION HANDLING
-      ---------------------------------------------------------------
+      ═══════════════════════════════════════════════════════════════
       Submissions are written to the shared `paid_submissions` table
       in Supabase, using the same client setup (config.js) and the
       same insertion pattern as cv-upgrade-submit.html and
@@ -1033,9 +1033,9 @@
         payload             = the rest of the corporate fields, as JSON
 
       The RLS policy on paid_submissions ("anyone can submit a paid
-      form" / WITH CHECK true) accepts this form_type � no policy
+      form" / WITH CHECK true) accepts this form_type — no policy
       change needed.
-      ---------------------------------------------------------------
+      ═══════════════════════════════════════════════════════════════
     -->
     <div class="ce-enquiry-compose">
       <form class="ce-form-card" id="bookingForm" action="" method="POST" novalidate>
@@ -1112,23 +1112,23 @@
 
       </div>
 
-      <!-- ---------------------------------------------------------
+      <!-- ─────────────────────────────────────────────────────────
            SPAM PROTECTION (invisible to humans)
            1. Honeypot: a hidden field bots auto-fill but humans never see.
-           2. Timestamp: when the page loaded � submissions in <3s are bots.
+           2. Timestamp: when the page loaded — submissions in <3s are bots.
            Both are checked in the submit handler below.
-           --------------------------------------------------------- -->
+           ───────────────────────────────────────────────────────── -->
       <div style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
         <label for="hp_website">Website (leave blank)</label>
         <input type="text" id="hp_website" name="hp_website" tabindex="-1" autocomplete="off">
       </div>
       <input type="hidden" id="hp_ts" name="hp_ts" value="">
 
-      <!-- ---------------------------------------------------------
+      <!-- ─────────────────────────────────────────────────────────
            Cloudflare Turnstile widget (server verifies the token
            via /api/verify-turnstile before the form writes to
            Supabase).
-           --------------------------------------------------------- -->
+           ───────────────────────────────────────────────────────── -->
       <div class="cf-turnstile"
            data-sitekey="0x4AAAAAADQhXVRIIusl9YwX"
            data-theme="light"
@@ -1237,7 +1237,7 @@
         <a href="https://www.instagram.com/meculs_official" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg>
         </a>
-        <a href="https://x.com/MECULS_OFFICIAL" aria-label="X / Twitter" target="_blank" rel="noopener noreferrer">
+        <a href="https://x.com/Rajneesh_Jain_" aria-label="X / Twitter" target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
         </a>
         <a href="https://www.facebook.com/unlockingselfpotential" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
@@ -1334,7 +1334,7 @@
 <script src="config.js?v=7"></script>
 
 <script>
-/* -------------------------------------------------------------
+/* ─────────────────────────────────────────────────────────────
    corporate-enquiry.html - Corporate Enquiry submission.
 
    THREE LAYERS OF SPAM PROTECTION:
@@ -1351,7 +1351,7 @@
 
    On success: hides the form, reveals the success panel.
    On failure: shows the inline error, re-enables the button.
-   ------------------------------------------------------------- */
+   ───────────────────────────────────────────────────────────── */
 (function () {
   "use strict";
 
@@ -1373,36 +1373,36 @@
       e.preventDefault();
 
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending�';
+      submitBtn.textContent = 'Sending…';
       if (errorEl) errorEl.classList.remove('is-visible');
 
       /* Collect all fields by name */
       var fd = new FormData(form);
       var get = function (k) { return (fd.get(k) || '').toString().trim(); };
 
-      /* ---- LAYER 1: HONEYPOT ----
+      /* ──── LAYER 1: HONEYPOT ────
          If the hidden field has any value, it was filled by a bot.
-         Silently rejected � neutral redirect, don't show success so
+         Silently rejected — neutral redirect, don't show success so
          the bot can't tell whether it succeeded. */
       var hpValue = get('hp_website');
       if (hpValue) {
-        console.warn('Honeypot triggered � silently rejecting bot');
+        console.warn('Honeypot triggered — silently rejecting bot');
         window.location.href = '/';
         return;
       }
 
-      /* ---- LAYER 2: TIMESTAMP ----
+      /* ──── LAYER 2: TIMESTAMP ────
          If form submitted in less than 3 seconds since page load,
          it is a bot (no human reads + fills a 9-field form that fast). */
       var loadedAt = parseInt(get('hp_ts'), 10) || 0;
       var elapsed = Date.now() - loadedAt;
       if (elapsed < 3000) {
-        console.warn('Timestamp check failed (' + elapsed + 'ms) � rejecting');
+        console.warn('Timestamp check failed (' + elapsed + 'ms) — rejecting');
         window.location.href = '/';
         return;
       }
 
-      /* ---- LAYER 3: CLOUDFLARE TURNSTILE ----
+      /* ──── LAYER 3: CLOUDFLARE TURNSTILE ────
          Read the token the widget produced and verify it with our server. */
       var turnstileToken = '';
       try {
@@ -1419,7 +1419,7 @@
           errorEl.classList.add('is-visible');
         }
         submitBtn.disabled = false;
-        submitBtn.textContent = 'Send Enquiry ?';
+        submitBtn.textContent = 'Send Enquiry →';
         return;
       }
 
@@ -1442,13 +1442,13 @@
           errorEl.classList.add('is-visible');
         }
         submitBtn.disabled = false;
-        submitBtn.textContent = 'Send Enquiry ?';
+        submitBtn.textContent = 'Send Enquiry →';
         /* Reset the widget so the user can try again. */
         try { if (typeof turnstile !== 'undefined') turnstile.reset(); } catch (e) {}
         return;
       }
 
-      /* ---- ALL CHECKS PASSED � WRITE TO SUPABASE ---- */
+      /* ──── ALL CHECKS PASSED — WRITE TO SUPABASE ──── */
       var email = get('email');
 
       try {
@@ -1485,7 +1485,7 @@
           errorEl.classList.add('is-visible');
         }
         submitBtn.disabled = false;
-        submitBtn.textContent = 'Send Enquiry ?';
+        submitBtn.textContent = 'Send Enquiry →';
       }
     });
   }
