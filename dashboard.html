@@ -4,19 +4,19 @@
   <link rel="canonical" href="https://meculs.com/dashboard.html">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MECULS ∑ Ikshu ó Where True Capability Gets Recognised</title>
+  <title>MECULS ÔøΩ Ikshu ÔøΩ Where True Capability Gets Recognised</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&family=Noto+Sans+Devanagari:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
     /* ------------------------------------------------
        DESIGN TOKENS
-       Deep Forest Green ∑ Burnished Gold ∑ Warm White
+       Deep Forest Green ÔøΩ Burnished Gold ÔøΩ Warm White
     ------------------------------------------------ */
     :root {
-      /* Sidebar ó deep Prussian blue */
+      /* Sidebar ÔøΩ deep Prussian blue */
       --blue-950:  #070d18;
       --blue-900:  #0c1a2e;
       --blue-800:  #102238;
@@ -25,19 +25,19 @@
       --blue-border: rgba(255,255,255,0.08);
       --blue-border-gold: rgba(180,140,50,0.25);
 
-      /* Gold ó single accent */
+      /* Gold ÔøΩ single accent */
       --gold:        #c8973d;
       --gold-light:  #ddb060;
       --gold-pale:   #eecb88;
       --gold-faint:  #f5e0b0;
 
-      /* Text on dark ó ALL at comfortable reading contrast */
+      /* Text on dark ÔøΩ ALL at comfortable reading contrast */
       --on-dark-high:    rgba(255,255,255,0.95);   /* headings, active items */
-      --on-dark-mid:     rgba(255,255,255,0.78);   /* nav items ó fully readable */
-      --on-dark-low:     rgba(255,255,255,0.62);   /* labels, secondary ó readable */
-      --on-dark-muted:   rgba(255,255,255,0.45);   /* timestamps, hints ó still legible */
+      --on-dark-mid:     rgba(255,255,255,0.78);   /* nav items ÔøΩ fully readable */
+      --on-dark-low:     rgba(255,255,255,0.62);   /* labels, secondary ÔøΩ readable */
+      --on-dark-muted:   rgba(255,255,255,0.45);   /* timestamps, hints ÔøΩ still legible */
 
-      /* Content area ó warm off-white, not cold grey */
+      /* Content area ÔøΩ warm off-white, not cold grey */
       --surface:     #f6f4ef;
       --surface-2:   #ffffff;
       --border:      #dedad3;
@@ -88,7 +88,7 @@
     .shell { display: flex; min-height: 100vh; }
 
     /* ------------------------------------------------
-       SIDEBAR ó deep Prussian blue
+       SIDEBAR ÔøΩ deep Prussian blue
        Character: a private library in a manor house.
        The green of old money, of permanence, of trust.
     ------------------------------------------------ */
@@ -149,7 +149,7 @@
       flex-shrink: 0;
     }
 
-    /* Logo image: gold-white variant ó correct for green bg */
+    /* Logo image: gold-white variant ÔøΩ correct for green bg */
     .brand__img {
       display: block;
       height: 32px;
@@ -180,7 +180,7 @@
       background-clip: text;
     }
 
-    /* Sub-brand: Ikshu (?????): The CV Portal */
+    /* Sub-brand: Ikshu (‡§á‡§ï‡•ç‡§∑‡•Å): The CV Portal */
     .brand__subbrand {
       font-family: var(--serif);
       font-size: 1.05rem;
@@ -199,7 +199,7 @@
       letter-spacing: 0.05em;
     }
 
-    /* Tagline ó readable, gold-tinted, full presence */
+    /* Tagline ÔøΩ readable, gold-tinted, full presence */
     .brand__tagline {
       font-family: var(--sans);
       font-size: 0.7rem;
@@ -280,7 +280,7 @@
       font-family: var(--sans);
       font-size: 0.875rem;
       font-weight: 400;
-      /* Raised to 0.78 ó comfortably readable */
+      /* Raised to 0.78 ÔøΩ comfortably readable */
       color: var(--on-dark-mid);
       display: flex;
       align-items: center;
@@ -306,7 +306,7 @@
       font-weight: 500;
     }
 
-    /* Locked section ó visually dimmed, cursor blocked */
+    /* Locked section ÔøΩ visually dimmed, cursor blocked */
     .sidebar__btn.locked {
       opacity: 0.38;
       cursor: not-allowed;
@@ -326,7 +326,7 @@
     }
     .sidebar__tick.visible { opacity: 1; }
 
-    /* -- Sidebar progress ó pinned, never scrolls -- */
+    /* -- Sidebar progress ÔøΩ pinned, never scrolls -- */
     .sidebar__progress {
       padding: 12px 24px 14px;
       border-bottom: 1px solid var(--blue-border);
@@ -347,7 +347,7 @@
       margin-bottom: 8px;
     }
 
-    /* "Profile Completion" ó raised to fully legible */
+    /* "Profile Completion" ÔøΩ raised to fully legible */
     .progress__label {
       font-size: 0.68rem;
       font-weight: 500;
@@ -380,7 +380,7 @@
       transition: width 0.7s cubic-bezier(0.22,1,0.36,1);
     }
 
-    /* "Last updated" ó raised to legible */
+    /* "Last updated" ÔøΩ raised to legible */
     .sidebar__updated {
       font-size: 0.65rem;
       color: var(--on-dark-muted);
@@ -429,7 +429,7 @@
       flex-shrink: 0;
     }
 
-    /* "My Profile" ó raised to --text-soft, clearly readable */
+    /* "My Profile" ÔøΩ raised to --text-soft, clearly readable */
     .topbar__context {
       font-size: 0.775rem;
       font-weight: 400;
@@ -441,7 +441,7 @@
       color: var(--border);
     }
 
-    /* Current section ó full contrast */
+    /* Current section ÔøΩ full contrast */
     .topbar__section {
       font-size: 0.9rem;
       font-weight: 600;
@@ -454,7 +454,7 @@
       gap: 20px;
     }
 
-    /* "Last updated" in top bar ó raised to --text-soft */
+    /* "Last updated" in top bar ÔøΩ raised to --text-soft */
     .topbar__updated {
       font-size: 0.72rem;
       color: var(--text-soft);
@@ -528,11 +528,11 @@
       border-color: var(--text-soft);
     }
 
-    /* -- Public profile banner ó between topbar and iframe --
+    /* -- Public profile banner ÔøΩ between topbar and iframe --
        Two states share the same row:
-         ï Locked  ó neutral cream, gold-faint left rule, calm "next step" copy
-         ï Active  ó slightly brighter surface, gold left rule, URL + actions
-       Stays visible on every dashboard section. Not dismissible ó
+         ÔøΩ Locked  ÔøΩ neutral cream, gold-faint left rule, calm "next step" copy
+         ÔøΩ Active  ÔøΩ slightly brighter surface, gold left rule, URL + actions
+       Stays visible on every dashboard section. Not dismissible ÔøΩ
        discoverability of the public profile is core to the product. */
     .pubprof {
       flex-shrink: 0;
@@ -652,7 +652,7 @@
       cursor: not-allowed;
       pointer-events: none;
     }
-    /* Toast ó "Copied!" feedback after copy button click */
+    /* Toast ÔøΩ "Copied!" feedback after copy button click */
     .pubprof__toast {
       position: absolute;
       transform: translateY(-100%);
@@ -673,7 +673,7 @@
        buttons to remain clickable while the banner was in locked state. */
     .pubprof [hidden] { display: none !important; }
 
-    /* Ready-but-private message ó shown when minimum sections done but profile is private */
+    /* Ready-but-private message ÔøΩ shown when minimum sections done but profile is private */
     .pubprof__ready-msg {
       font-size: 0.82rem;
       color: var(--text-body);
@@ -763,8 +763,8 @@
   </style>
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://meculs.com/dashboard.html">
-<meta property="og:title" content="MECULS ∑ Ikshu ó Where True Capability Gets Recognised">
-<meta property="og:description" content="MECULS ó executive coaching, leadership development, wellness, and CV portal. By Rajneesh Jain, Delhi, India.">
+<meta property="og:title" content="MECULS ÔøΩ Ikshu ÔøΩ Where True Capability Gets Recognised">
+<meta property="og:description" content="MECULS ÔøΩ executive coaching, leadership development, wellness, and CV portal. By Rajneesh Jain, Delhi, India.">
 <meta property="og:site_name" content="MECULS">
 <meta property="og:locale" content="en_IN">
 <meta property="og:image" content="https://meculs.com/images/og/og-default.png?v=2">
@@ -774,8 +774,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://meculs.com/images/og/og-default.png?v=2">
 <meta name="twitter:image:alt" content="MECULS - Honest help for executive coaching, wellness, and CV portal">
-<meta name="twitter:title" content="MECULS ∑ Ikshu ó Where True Capability Gets Recognised">
-<meta name="twitter:description" content="MECULS ó executive coaching, leadership development, wellness, and CV portal. By Rajneesh Jain, Delhi, India.">
+<meta name="twitter:title" content="MECULS ÔøΩ Ikshu ÔøΩ Where True Capability Gets Recognised">
+<meta name="twitter:description" content="MECULS ÔøΩ executive coaching, leadership development, wellness, and CV portal. By Rajneesh Jain, Delhi, India.">
 </head>
 <body>
 
@@ -792,7 +792,7 @@
         Relative path: images/logo/MECULS-gold-white-bold.png
         (matches the path used by meculs.com main site, so the
          same logo file serves both the marketing pages and the
-         CV portal ó single source of truth)
+         CV portal ÔøΩ single source of truth)
       -->
       <img
         class="brand__img"
@@ -800,18 +800,18 @@
         alt="MECULS"
         id="brandImg"
       >
-      <!-- Text fallback ó JS reveals if image file not found -->
+      <!-- Text fallback ÔøΩ JS reveals if image file not found -->
       <div class="brand__text" id="brandText">MECULS</div>
 
-      <!-- Sub-brand: Ikshu (???????) | The CV Portal -->
+      <!-- Sub-brand: Ikshu (‡§á‡§ï‡•ç‡§∑‡•Å) | The CV Portal -->
       <div class="brand__subbrand">
-        Ikshu <span class="brand__subbrand-deva">(???????)</span> | The CV Portal
+        Ikshu <span class="brand__subbrand-deva">(‡§á‡§ï‡•ç‡§∑‡•Å)</span> | The CV Portal
       </div>
 
       <div class="brand__tagline">The recognition true capability deserves</div>
     </div>
 
-    <!-- Profile completion ó always visible, never scrolls away -->
+    <!-- Profile completion ÔøΩ always visible, never scrolls away -->
     <div class="sidebar__progress">
       <div class="progress__row">
         <span class="progress__label">Profile Completion</span>
@@ -996,7 +996,7 @@
       <div class="topbar__left">
         <div class="topbar__accent"></div>
         <span class="topbar__context">My Profile</span>
-        <span class="topbar__sep">õ</span>
+        <span class="topbar__sep">ÔøΩ</span>
         <span class="topbar__section" id="currentSectionTitle">Getting Started</span>
       </div>
       <div class="topbar__right">
@@ -1017,12 +1017,12 @@
     <!-- ----------- PUBLIC PROFILE BANNER -----------
          Sits between topbar and iframe. Always visible.
          Has two states managed by dashboard.js:
-           ï Locked  (default until minimum required sections done)
-           ï Active  (URL + Copy + Preview)
+           ÔøΩ Locked  (default until minimum required sections done)
+           ÔøΩ Active  (URL + Copy + Preview)
          Banner is populated by updatePublicProfileBanner() on init
          and after every postMessage from a build page. -->
     <div class="pubprof" id="pubprofBanner" role="region" aria-label="Your public profile">
-      <!-- Locked state ó shown by default. JS will hide and show "active" content
+      <!-- Locked state ÔøΩ shown by default. JS will hide and show "active" content
            when minimum sections are complete. -->
       <div class="pubprof__icon" aria-hidden="true">
         <!-- Lock icon (simple SVG, no external deps) -->
@@ -1033,18 +1033,18 @@
         </svg>
       </div>
       <span class="pubprof__label">Your Public Profile URL</span>
-      <!-- Locked-state message ó JS swaps the text -->
+      <!-- Locked-state message ÔøΩ JS swaps the text -->
       <div class="pubprof__locked-msg" id="pubprofLockedMsg">
-        LoadingÖ
+        LoadingÔøΩ
       </div>
-      <!-- Active-state content ó JS unhides + populates -->
+      <!-- Active-state content ÔøΩ JS unhides + populates -->
       <a class="pubprof__url" id="pubprofUrl" href="#" target="_blank" rel="noopener"
          hidden></a>
-      <!-- Ready-but-private message ó shown when minimum sections done but is_public=false -->
+      <!-- Ready-but-private message ÔøΩ shown when minimum sections done but is_public=false -->
       <div class="pubprof__ready-msg" id="pubprofReadyMsg" hidden>
         Your profile is ready. Switch it on to share.
       </div>
-      <!-- Public/Private toggle ó shown only when minimum sections complete -->
+      <!-- Public/Private toggle ÔøΩ shown only when minimum sections complete -->
       <div class="pubprof__toggle-wrap" id="pubprofToggleWrap" hidden>
         <span class="pubprof__toggle-label" id="pubprofToggleLabel">Private</span>
         <button type="button" class="pubprof__toggle" id="pubprofToggle"
@@ -1067,7 +1067,7 @@
 
 
 <!-- Load Supabase JS library and config (needed for auth guard, user info, and sign-out)
-     Cache-busting via ?v=N ó bump this version when you change config.js or dashboard.js
+     Cache-busting via ?v=N ÔøΩ bump this version when you change config.js or dashboard.js
      so browsers don't serve the old cached file. -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="config.js?v=6"></script>
