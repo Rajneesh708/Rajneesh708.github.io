@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com; connect-src 'self' https://*.supabase.co https://meculs-payment.vercel.app; frame-src https://challenges.cloudflare.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website Development Enquiry | MECULS</title>
+
+  <!-- Enquiry pages should not appear in search results -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+
+  <meta name="description" content="Submit a website development enquiry to MECULS. A direct, personal reply follows within two working days.">
+  <meta name="author" content="Rajneesh Jain, Founder, MECULS">
+  <meta name="theme-color" content="#0d1520">
+
+  <link rel="canonical" href="https://meculs.com/website-enquiry.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="MECULS">
+  <meta property="og:title" content="Website Development Enquiry | MECULS">
+  <meta property="og:description" content="Submit a website development enquiry. A direct, personal reply within two working days.">
+  <meta property="og:url" content="https://meculs.com/website-enquiry.html">
+  <meta property="og:image" content="https://meculs.com/images/og/og-default.png?v=2">
+
+  <link rel="icon" type="image/png" href="/images/favicon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/svg+xml" href="/images/favicon/favicon.svg">
+  <link rel="shortcut icon" href="/images/favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/images/favicon/site.webmanifest">
+  <meta name="apple-mobile-web-app-title" content="MECULS">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Archivo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="global.css?v=6.2">
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Website Development Enquiry",
+    "description": "Submit an enquiry for website development services from MECULS. All sectors. All industries.",
+    "url": "https://meculs.com/website-enquiry.html",
+    "provider": {
+      "@type": "Organization",
+      "name": "MECULS",
+      "url": "https://meculs.com",
+      "founder": { "@type": "Person", "name": "Rajneesh Jain" }
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://meculs.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Website Development", "item": "https://meculs.com/service-website-development.html" },
+        { "@type": "ListItem", "position": 3, "name": "Website Enquiry", "item": "https://meculs.com/website-enquiry.html" }
+      ]
+    }
+  }
+  </script>
+
+  <!-- ============================================================
+       website-enquiry.html  |  MECULS
+       Date: 2026-05-28
+       ============================================================
+       Palette: deep navy + warm gold (we-* prefix throughout)
+       Submits to: public.paid_submissions (form_type: web_enquiry)
+       Requires: website_enquiry_rls.sql run in Supabase dashboard
+       Images: Unsplash CDN. Local paths: images/website-enquiry/
+       REQUIRES: config.js (SUPABASE_URL + SUPABASE_ANON_KEY)
+       ============================================================ -->
+
+  <style>
+  /* ══════════════════════════════════════════════════════════════
+     website-enquiry.html  |  Deep Navy Register
+  ══════════════════════════════════════════════════════════════ */
+  :root {
+    --we-bg:        #0d1520;   /* page ground — deep navy */
+    --we-bg-2:      #111b2a;   /* card/section lift */
+    --we-bg-3:      #162030;   /* deeper card */
+    --we-ink:       rgba(238,232,218,0.95);
+    --we-ink-2:     rgba(238,232,218,0.72);
+    --we-ink-3:     rgba(238,232,218,0.44);
+    --we-ink-4:     rgba(238,232,218,0.26);
+    --we-gold:      #c9a84c;
+    --we-gold-2:    #dfc06a;
+    --we-gold-deep: #8a6d1a;
+    --we-gold-rule: rgba(201,168,76,0.20);
+    --we-gold-soft: rgba(201,168,76,0.08);
+    --we-rule:      rgba(238,232,218,0.08);
+    --we-field-bg:  rgba(255,255,255,0.04);
+    --we-field-border: rgba(201,168,76,0.22);
+    --we-field-focus:  rgba(201,168,76,0.55);
+    --we-error:     #e07070;
+    --we-success:   #7ecfa0;
+    --we-display:   'Playfair Display', serif;
+    --we-serif:     'Cormorant Garamond', serif;
+    --we-sans:      'Archivo', sans-serif;
+    --we-ease:      cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body.we-body {
+    background: var(--we-bg);
+    color: var(--we-ink);
+    font-family: var(--we-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body.we-body * { box-sizing: border-box; }
+  body.we-body ::selection { background: var(--we-gold); color: var(--we-bg); }
+
+  .we-page { padding-top: calc(var(--g-nav-h, 72px) + 28px); }
+
+  /* ── Reveal ──────────────────────────────────────────────── */
+  .rev {
+    opacity: 0; transform: translateY(18px);
+    transition: opacity 0.9s var(--we-ease), transform 0.9s var(--we-ease);
+  }
+  .rev.vis { opacity: 1; transform: none; }
+  .rev.d2 { transition-delay: 0.12s; }
+  .rev.d3 { transition-delay: 0.24s; }
+  @media (prefers-reduced-motion: reduce) {
+    .rev { opacity: 1; transform: none; transition: none; }
+  }
+
+  /* ── Layout ─────────────────────────────────────────────── */
+  .we-wrap { max-width: 1180px; margin: 0 auto; padding: 0 5%; }
+
+  /* ── Eyebrow ─────────────────────────────────────────────── */
+  .we-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    font-family: var(--we-sans);
+    font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--we-gold);
+  }
+  .we-eyebrow::before {
+    content: '';
+    width: 26px; height: 1px;
+    background: var(--we-gold); flex-shrink: 0;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     HERO — full-bleed image, copy sits on it
+  ═══════════════════════════════════════════════════════════ */
+  .we-hero {
+    position: relative;
+    min-height: clamp(480px, 60vh, 620px);
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background: var(--we-bg);
+  }
+  .we-hero__img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+    z-index: 0;
+  }
+  /* Scrim: strong left + bottom fade */
+  .we-hero::after {
+    content: '';
+    position: absolute; inset: 0; z-index: 1;
+    background:
+      linear-gradient(105deg,
+        rgba(13,21,32,0.97) 0%,
+        rgba(13,21,32,0.84) 40%,
+        rgba(13,21,32,0.44) 70%,
+        rgba(13,21,32,0.18) 100%),
+      linear-gradient(0deg,
+        rgba(13,21,32,0.80) 0%,
+        rgba(13,21,32,0) 50%);
+  }
+  .we-hero__inner {
+    position: relative; z-index: 2;
+    width: 100%; max-width: 1180px;
+    margin: 0 auto;
+    padding: 3rem 5% 3.5rem;
+  }
+  .we-hero__copy { max-width: 42rem; }
+  .we-hero__title {
+    font-family: var(--we-display);
+    font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+    font-weight: 500;
+    line-height: 1.14;
+    letter-spacing: -0.012em;
+    color: var(--we-ink);
+    margin: 1rem 0 1.3rem;
+  }
+  .we-hero__title em { font-style: italic; color: var(--we-gold); }
+  .we-hero__sub {
+    font-family: var(--we-serif);
+    font-size: clamp(1.1rem, 1.55vw, 1.35rem);
+    font-style: italic;
+    line-height: 1.68;
+    color: var(--we-ink-2);
+    max-width: 36rem;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     WHAT TO EXPECT — 3 short reassurance points
+  ═══════════════════════════════════════════════════════════ */
+  .we-expect {
+    background: var(--we-bg-2);
+    border-bottom: 1px solid var(--we-rule);
+  }
+  .we-expect__inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 5%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .we-expect-item {
+    padding: 1.6rem 0;
+    border-right: 1px solid var(--we-rule);
+    padding-right: 2rem;
+    padding-left: 1rem;
+  }
+  .we-expect-item:first-child { padding-left: 0; }
+  .we-expect-item:last-child { border-right: none; }
+  .we-expect-item__label {
+    font-family: var(--we-sans);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--we-gold);
+    margin-bottom: 0.35rem;
+  }
+  .we-expect-item__text {
+    font-family: var(--we-serif);
+    font-size: 1rem;
+    font-style: italic;
+    line-height: 1.55;
+    color: var(--we-ink-2);
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     FORM COMPOSE — image rail + form card, two-column
+  ═══════════════════════════════════════════════════════════ */
+  .we-compose {
+    padding: 5rem 0 6rem;
+    background: var(--we-bg);
+  }
+  .we-compose__grid {
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    gap: 3.5rem;
+    align-items: start;
+  }
+
+  /* ── Image rail (left column) ───────────────────────────── */
+  .we-img-rail {
+    position: sticky;
+    top: calc(var(--g-nav-h, 72px) + 28px + 2rem);
+  }
+  .we-img-rail__img {
+    width: 100%;
+    height: clamp(460px, 65vh, 660px);
+    object-fit: cover;
+    object-position: center 25%;
+    display: block;
+  }
+  .we-img-rail__caption {
+    padding: 1.4rem 1.6rem;
+    background: var(--we-bg-2);
+    border-top: 2px solid var(--we-gold);
+  }
+  .we-img-rail__caption-label {
+    font-family: var(--we-sans);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--we-gold);
+    margin-bottom: 0.5rem;
+  }
+  .we-img-rail__caption-text {
+    font-family: var(--we-serif);
+    font-size: 1.05rem;
+    font-style: italic;
+    line-height: 1.62;
+    color: var(--we-ink-2);
+  }
+
+  /* ── Form card (right column) ───────────────────────────── */
+  .we-form-card {
+    background: var(--we-bg-2);
+    border: 1px solid var(--we-rule);
+    padding: 2.8rem 2.5rem 3rem;
+  }
+  .we-form-card__rule {
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, var(--we-gold) 0%, rgba(201,168,76,0) 60%);
+    margin-bottom: 2.2rem;
+  }
+  .we-form-card__title {
+    font-family: var(--we-display);
+    font-size: clamp(1.5rem, 2.4vw, 2rem);
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--we-ink);
+    margin-bottom: 0.6rem;
+  }
+  .we-form-card__title em { font-style: italic; color: var(--we-gold); }
+  .we-form-card__sub {
+    font-family: var(--we-serif);
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--we-ink-3);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  /* ── Form fields ─────────────────────────────────────────── */
+  .we-form { display: flex; flex-direction: column; gap: 1.2rem; }
+
+  .we-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+
+  .we-field { display: flex; flex-direction: column; gap: 0.4rem; }
+
+  .we-label {
+    font-family: var(--we-sans);
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--we-gold);
+  }
+  .we-label span { color: var(--we-ink-3); font-weight: 400; text-transform: none; letter-spacing: 0; margin-left: 0.3rem; font-size: 0.78rem; }
+
+  .we-input,
+  .we-select,
+  .we-textarea {
+    background: var(--we-field-bg);
+    border: 1px solid var(--we-field-border);
+    border-radius: 2px;
+    padding: 0.75rem 1rem;
+    font-family: var(--we-sans);
+    font-size: 0.9rem;
+    color: var(--we-ink);
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    width: 100%;
+  }
+  .we-input::placeholder,
+  .we-textarea::placeholder { color: var(--we-ink-4); }
+  .we-input:focus,
+  .we-select:focus,
+  .we-textarea:focus {
+    border-color: var(--we-gold);
+    background: rgba(201,168,76,0.05);
+  }
+  .we-input.we-invalid,
+  .we-select.we-invalid,
+  .we-textarea.we-invalid {
+    border-color: var(--we-error);
+  }
+
+  .we-select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9a84c' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+    cursor: pointer;
+  }
+  .we-select option { background: #1a2535; color: #eee8da; }
+
+  .we-textarea { resize: vertical; min-height: 130px; line-height: 1.6; }
+
+  .we-char-count {
+    font-family: var(--we-sans);
+    font-size: 0.72rem;
+    color: var(--we-ink-4);
+    text-align: right;
+    margin-top: 0.25rem;
+  }
+  .we-char-count.near { color: var(--we-gold); }
+  .we-char-count.over { color: var(--we-error); }
+
+  /* URL prefix hint */
+  .we-url-wrap { position: relative; }
+  .we-url-hint {
+    font-family: var(--we-sans);
+    font-size: 0.72rem;
+    color: var(--we-ink-3);
+    margin-top: 0.3rem;
+    line-height: 1.45;
+  }
+
+  /* Turnstile widget area */
+  .we-turnstile-wrap {
+    display: flex;
+    align-items: center;
+    min-height: 65px;
+  }
+
+  /* Submit button */
+  .we-submit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    width: 100%;
+    background: var(--we-gold);
+    color: var(--we-bg);
+    font-family: var(--we-sans);
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.2s, opacity 0.2s, transform 0.12s;
+    margin-top: 0.5rem;
+  }
+  .we-submit-btn:hover:not(:disabled) { background: var(--we-gold-2); transform: translateY(-1px); }
+  .we-submit-btn:disabled { opacity: 0.45; cursor: default; transform: none; }
+
+  /* Status message */
+  .we-status {
+    font-family: var(--we-sans);
+    font-size: 0.88rem;
+    line-height: 1.55;
+    min-height: 1.2em;
+    margin-top: 0.6rem;
+    padding: 0.8rem 1rem;
+    border-radius: 2px;
+    display: none;
+  }
+  .we-status--ok    { background: rgba(126,207,160,0.10); color: var(--we-success); border: 1px solid rgba(126,207,160,0.22); display: block; }
+  .we-status--error { background: rgba(224,112,112,0.10); color: var(--we-error);   border: 1px solid rgba(224,112,112,0.22); display: block; }
+
+  /* Divider between field groups */
+  .we-divider {
+    height: 1px;
+    background: var(--we-rule);
+    margin: 0.4rem 0;
+  }
+
+  /* ── Field error messages ────────────────────────────────── */
+  .we-field-error {
+    font-family: var(--we-sans);
+    font-size: 0.72rem;
+    color: var(--we-error);
+    margin-top: 0.25rem;
+    display: none;
+  }
+  .we-field-error.visible { display: block; }
+
+  /* ═══════════════════════════════════════════════════════════
+     RESPONSIVE
+  ═══════════════════════════════════════════════════════════ */
+  @media (max-width: 1024px) {
+    .we-compose__grid { grid-template-columns: 1fr; }
+    .we-img-rail { position: static; }
+    .we-img-rail__img { height: clamp(280px, 40vw, 400px); }
+  }
+  @media (max-width: 720px) {
+    .we-expect__inner { grid-template-columns: 1fr; }
+    .we-expect-item { border-right: none; border-bottom: 1px solid var(--we-rule); padding: 1.2rem 0; }
+    .we-expect-item:last-child { border-bottom: none; }
+    .we-row { grid-template-columns: 1fr; }
+    .we-form-card { padding: 2rem 1.4rem 2.2rem; }
+  }
+  @media (max-width: 480px) {
+    .we-hero__title { font-size: clamp(1.9rem, 8vw, 2.6rem); }
+  }
+  </style>
+
+</head>
+
+<body class="we-body">
+<div class="we-page">
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     CANONICAL HEADER v6.1
+═══════════════════════════════════════════════════════════════════ -->
+
+<div class="gh-tagline-sub" id="ghTaglineSub">
+  <span class="gh-tagline-sub-text">
+    <strong>Feel Proud:</strong> Choosing to be courageous enough to feel proud of exactly who you are and what your life is &ndash; is seeing you are growing, expanding, and creating a better world
+  </span>
+</div>
+
+<header class="global-header">
+  <a href="index.html" class="gh-logo" aria-label="MECULS home">
+    <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS" loading="eager" width="140" height="32">
+    <span class="gh-logo-text">MECULS</span>
+  </a>
+
+  <nav aria-label="Primary navigation">
+    <ul class="gh-nav gh-nav-wrap">
+      <li><a href="about-meculs.html">About MECULS</a></li>
+      <li>
+        <a href="how-meculs-works.html">How MECULS Works
+          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <ul class="gh-dropdown">
+          <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+          <li><a href="the-journey.html">The Journey</a></li>
+          <li><a href="contexts.html">Contexts</a></li>
+          <li><a href="source-of-challenges.html">Source of Challenges</a></li>
+          <li><a href="contemplative-practices.html">Contemplative Practices</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="services.html">Services
+          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <ul class="gh-dropdown">
+          <li><a href="services.html">All Services</a></li>
+          <li><a href="corporate-programs.html">Corporate Programmes</a></li>
+          <li><a href="360-pulse-rate.html">360&deg; PULSE RATE&trade;</a></li>
+          <li><a href="service-personality-profiling.html">Personality Profiling</a></li>
+          <li><a href="service-executive-search.html">Executive Search</a></li>
+          <li><a href="bespoke-coaching.html">Executive Coaching &ndash; Bespoke</a></li>
+          <li><a href="service-hr-analytics.html">HR Analytics</a></li>
+          <li><a href="service-data-science-analytics.html">Data Science &amp; Analytics</a></li>
+          <li><a href="service-market-actionable-intelligence.html">Market Intelligence</a></li>
+          <li><a href="organisational-health-consulting.html">Organisational Health</a></li>
+          <li><a href="service-website-development.html">Website Development</a></li>
+          <li class="gh-dropdown-divider" aria-hidden="true"></li>
+          <li><a href="individual-services.html">Individual &amp; Wellness</a></li>
+          <li><a href="service-consciousness-clarity.html">Consciousness &amp; Clarity</a></li>
+          <li><a href="service-mind-wellness.html">Mind Wellness</a></li>
+          <li><a href="service-addiction-freedom.html">Addiction Freedom</a></li>
+          <li><a href="service-counselling.html">Counselling</a></li>
+          <li><a href="service-children.html">For Children</a></li>
+          <li><a href="service-zero-state-meditation.html">Meditation as Medicine</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="the-approach.html">The Approach
+          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <ul class="gh-dropdown">
+          <li><a href="the-approach.html">The Approach</a></li>
+          <li><a href="why-meculs.html">Why MECULS</a></li>
+          <li><a href="why-mynd-care.html">Why Mynd CARE</a></li>
+          <li><a href="our-work-proof.html">Our Work Proof</a></li>
+        </ul>
+      </li>
+      <li><a href="insights.html">Insights</a></li>
+      <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+      <li>
+        <a href="paid-services.html">Paid Services
+          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <ul class="gh-dropdown">
+          <li><a href="paid-services.html">Paid Services</a></li>
+          <li><a href="wellness-services.html">Wellness Services</a></li>
+        </ul>
+      </li>
+      <li><a href="cv-portal.html">The CV Portal</a></li>
+      <li><a href="begin-conversation.html" class="gh-cta">Begin a Conversation</a></li>
+      <li class="gh-login-wrap">
+        <a href="login.html" class="gh-login-icon" aria-label="Sign in or register for The CV Portal" aria-haspopup="true" aria-expanded="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </a>
+        <ul class="gh-login-dropdown" role="menu" aria-label="The CV Portal account">
+          <li class="gh-login-dropdown-label">The CV Portal</li>
+          <li role="none"><a href="login.html" role="menuitem">CV Portal &ndash; Login</a></li>
+          <li role="none"><a href="register.html" role="menuitem">CV Portal &ndash; Register</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <button class="gh-toggle" id="ghToggle" aria-label="Open navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="gh-mobile-menu" id="ghMobileMenu" role="dialog" aria-label="Mobile navigation">
+  <ul class="gh-mobile-nav">
+    <li><a href="about-meculs.html">About MECULS</a></li>
+    <li>
+      <a href="how-meculs-works.html">How MECULS Works</a>
+      <ul class="gh-mobile-sub">
+        <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+        <li><a href="the-journey.html">The Journey</a></li>
+        <li><a href="contexts.html">Contexts</a></li>
+        <li><a href="source-of-challenges.html">Source of Challenges</a></li>
+        <li><a href="contemplative-practices.html">Contemplative Practices</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="services.html">Services</a>
+      <ul class="gh-mobile-sub">
+        <li><a href="services.html">All Services</a></li>
+        <li><a href="service-website-development.html">Website Development</a></li>
+        <li><a href="corporate-programs.html">Corporate Programmes</a></li>
+        <li><a href="service-hr-analytics.html">HR Analytics</a></li>
+        <li><a href="individual-services.html">Individual &amp; Wellness</a></li>
+      </ul>
+    </li>
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+    <li><a href="cv-portal.html">The CV Portal</a></li>
+    <li><a href="login.html">CV Portal &ndash; Login</a></li>
+    <li><a href="register.html">CV Portal &ndash; Register</a></li>
+  </ul>
+  <a href="begin-conversation.html" class="gh-mobile-cta">Begin a Conversation</a>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════════════════════════ -->
+
+<section class="we-hero" aria-label="Website Development Enquiry">
+
+  <!-- Photo: Precision craftsman's workspace — hands, detail, deliberate work
+       Local path: images/website-enquiry/we-hero.jpg
+       Download at: https://unsplash.com/photos/person-writing-on-paper-XPqPMR3v_nM -->
+  <img class="we-hero__img"
+       src="https://images.unsplash.com/photo-1484788984921-03950022c38b?w=1600&q=82&auto=format&fit=crop"
+       alt="Precise, deliberate work — the standard this engagement is held to"
+       loading="eager"
+       width="1600" height="620">
+
+  <div class="we-hero__inner">
+    <div class="we-hero__copy">
+      <div class="we-eyebrow rev" style="margin-bottom:1.2rem;">MECULS &middot; Website Development</div>
+      <h1 class="we-hero__title rev d2">
+        The enquiry that begins<br>
+        <em>a considered engagement.</em>
+      </h1>
+      <p class="we-hero__sub rev d3">
+        Submit your project brief below. A direct, personal reply follows &mdash; with honest questions, an honest read on fit, and no automated follow-up sequence.
+      </p>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     WHAT TO EXPECT STRIP
+═══════════════════════════════════════════════════════════════════ -->
+
+<div class="we-expect">
+  <div class="we-expect__inner">
+    <div class="we-expect-item rev">
+      <div class="we-expect-item__label">Response</div>
+      <p class="we-expect-item__text">A personal reply within two working days. No assistant, no template response.</p>
+    </div>
+    <div class="we-expect-item rev d2">
+      <div class="we-expect-item__label">No Obligation</div>
+      <p class="we-expect-item__text">The enquiry and first conversation carry no commitment on either side.</p>
+    </div>
+    <div class="we-expect-item rev d3">
+      <div class="we-expect-item__label">Confidentiality</div>
+      <p class="we-expect-item__text">All details shared are treated as private and used solely to assess fit.</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     FORM COMPOSE
+═══════════════════════════════════════════════════════════════════ -->
+
+<section class="we-compose" id="enquiry">
+  <div class="we-wrap">
+    <div class="we-compose__grid">
+
+      <!-- Image Rail -->
+      <div class="we-img-rail rev">
+        <!-- Photo: Architectural blueprints / precision planning from above
+             Local path: images/website-enquiry/we-form.jpg
+             Download at: https://unsplash.com/photos/person-holding-blue-ballpoint-pen-writing-in-notebook-505eectW54k -->
+        <img class="we-img-rail__img"
+             src="https://images.unsplash.com/photo-1483058712412-4245e9b90334?w=700&h=1100&q=82&auto=format&fit=crop"
+             alt="Detailed planning — every project begins with a thorough brief"
+             loading="lazy"
+             width="700" height="900">
+        <div class="we-img-rail__caption">
+          <div class="we-img-rail__caption-label">The Standard</div>
+          <p class="we-img-rail__caption-text">&ldquo;Every line of code is deliberate. Every decision is explained. The work is yours, completely, at handover.&rdquo;</p>
+        </div>
+      </div>
+
+      <!-- Form Card -->
+      <div class="we-form-card rev d2">
+        <div class="we-form-card__rule"></div>
+        <h2 class="we-form-card__title">Website Enquiry <em>Form</em></h2>
+        <p class="we-form-card__sub">Complete as much as you can. Partial information is fine &mdash; the first conversation fills the gaps.</p>
+
+        <form class="we-form" id="weEnquiryForm" novalidate autocomplete="off">
+
+          <!-- Honeypot — bots fill this, humans don't -->
+          <input type="text" name="website_url_field" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <!-- Row 1: Name + Email -->
+          <div class="we-row">
+            <div class="we-field">
+              <label class="we-label" for="weName">Full Name <span>*required</span></label>
+              <input type="text" id="weName" name="name" class="we-input"
+                     placeholder="Your full name"
+                     autocomplete="name" required>
+              <span class="we-field-error" id="weNameErr">Please enter your name.</span>
+            </div>
+            <div class="we-field">
+              <label class="we-label" for="weEmail">Email Address <span>*required</span></label>
+              <input type="email" id="weEmail" name="email" class="we-input"
+                     placeholder="your@email.com"
+                     autocomplete="email" required>
+              <span class="we-field-error" id="weEmailErr">Please enter a valid email address.</span>
+            </div>
+          </div>
+
+          <!-- Row 2: Phone + Location -->
+          <div class="we-row">
+            <div class="we-field">
+              <label class="we-label" for="wePhone">Phone <span>optional</span></label>
+              <input type="tel" id="wePhone" name="phone" class="we-input"
+                     placeholder="+91 98765 43210"
+                     autocomplete="tel">
+            </div>
+            <div class="we-field">
+              <label class="we-label" for="weLocation">City &amp; Country <span>optional</span></label>
+              <input type="text" id="weLocation" name="location" class="we-input"
+                     placeholder="Delhi, India">
+            </div>
+          </div>
+
+          <!-- Organisation -->
+          <div class="we-field">
+            <label class="we-label" for="weOrg">Organisation or Practice Name <span>optional</span></label>
+            <input type="text" id="weOrg" name="organisation" class="we-input"
+                   placeholder="If applicable">
+          </div>
+
+          <div class="we-divider"></div>
+
+          <!-- Current website -->
+          <div class="we-field">
+            <label class="we-label" for="weCurrentSite">Current Website <span>optional</span></label>
+            <div class="we-url-wrap">
+              <input type="text" id="weCurrentSite" name="current_site" class="we-input"
+                     placeholder="yoursite.com or leave blank if none"
+                     autocomplete="url"
+                     inputmode="url">
+              <p class="we-url-hint">
+                Type the domain only &mdash; for example <strong>yoursite.com</strong>. The <strong>https://</strong> prefix is added automatically. If the site uses plain <strong>http://</strong> rather than a secure connection, that is also noted and handled correctly.
+              </p>
+            </div>
+          </div>
+
+          <!-- Site size -->
+          <div class="we-field">
+            <label class="we-label" for="weSiteSize">Approximate Scale <span>optional</span></label>
+            <select id="weSiteSize" name="site_size" class="we-select">
+              <option value="" disabled selected>Select the approximate scope</option>
+              <option value="single-page">Single-page or landing page</option>
+              <option value="small">Small site — up to 8 pages</option>
+              <option value="medium">Medium site — 9 to 20 pages</option>
+              <option value="large">Large site — 20+ pages</option>
+              <option value="ecommerce">E-commerce — product catalogue with payments</option>
+              <option value="portal">Portal or member-access area</option>
+              <option value="unsure">Not sure yet — open to guidance</option>
+            </select>
+          </div>
+
+          <!-- Project brief -->
+          <div class="we-field">
+            <label class="we-label" for="weBrief">Project Brief <span>*required</span></label>
+            <textarea id="weBrief" name="brief" class="we-textarea"
+                      placeholder="Describe your project, what the site needs to achieve, who the audience is, and anything specific you know you want or want to avoid. Include your industry and any technical requirements you are aware of."
+                      maxlength="2500"
+                      rows="7"
+                      required></textarea>
+            <div class="we-char-count" id="weBriefCount">0 / 2500</div>
+            <span class="we-field-error" id="weBriefErr">Please describe your project briefly.</span>
+          </div>
+
+          <!-- Timeline -->
+          <div class="we-field">
+            <label class="we-label" for="weTimeline">Preferred Timeline <span>optional</span></label>
+            <select id="weTimeline" name="timeline" class="we-select">
+              <option value="" disabled selected>Select an approximate timeline</option>
+              <option value="asap">As soon as possible</option>
+              <option value="1-month">Within the next month</option>
+              <option value="1-3-months">Within 1 to 3 months</option>
+              <option value="3-6-months">Within 3 to 6 months</option>
+              <option value="flexible">Flexible — no fixed deadline</option>
+            </select>
+          </div>
+
+          <!-- Referral -->
+          <div class="we-field">
+            <label class="we-label" for="weReferral">How Did You Find MECULS? <span>optional</span></label>
+            <input type="text" id="weReferral" name="referral" class="we-input"
+                   placeholder="Referral, Google, LinkedIn, existing client, etc.">
+          </div>
+
+          <div class="we-divider"></div>
+
+          <!-- Cloudflare Turnstile -->
+          <div class="we-field">
+            <div class="we-turnstile-wrap">
+              <div class="cf-turnstile"
+                   data-sitekey="0x4AAAAAADQhXVRIIusl9YwX"
+                   data-theme="dark"
+                   data-size="normal"
+                   aria-label="Security verification">
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" class="we-submit-btn" id="weSubmitBtn">
+            Submit Enquiry
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <!-- Status message -->
+          <div class="we-status" id="weStatus" role="status" aria-live="polite"></div>
+
+        </form>
+      </div>
+      <!-- /we-form-card -->
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     CANONICAL FOOTER v3
+═══════════════════════════════════════════════════════════════════ -->
+
+<footer class="global-footer">
+  <div class="gf-top">
+    <div class="gf-brand">
+      <div class="gf-logo">
+        <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS" width="140" height="32">
+        <span class="gf-logo-text" style="display:none">MECULS</span>
+      </div>
+      <p class="gf-tagline">Mind Enablement Centre for Unlocking Limitless Leadership &amp; Self-Potential</p>
+      <div class="gf-contact">
+        <a href="mailto:Jain.Rajneesh@meculs.com">Jain.Rajneesh@meculs.com</a>
+        <a href="https://meculs.com">www.meculs.com</a>
+        <span>Delhi, India</span>
+      </div>
+      <div class="gf-social">
+        <a href="https://www.linkedin.com/in/rajneesh-jain-bb792b69" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@MECULSofficial" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.33zM9.75 15.02V8.48l5.75 3.27z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/meculs_official" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://x.com/Rajneesh_Jain_" aria-label="X / Twitter" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/unlockingselfpotential" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <span class="gf-col-title">Services</span>
+      <ul class="gf-links">
+        <li><a href="360-pulse-rate.html">360&deg; PULSE RATE&trade;</a></li>
+        <li><a href="service-personality-profiling.html">Personality Profiling</a></li>
+        <li><a href="bespoke-coaching.html">Executive Coaching &ndash; Bespoke</a></li>
+        <li><a href="corporate-programs.html">Corporate Programmes</a></li>
+        <li><a href="service-executive-search.html">Executive Search</a></li>
+        <li><a href="service-hr-analytics.html">HR Analytics</a></li>
+        <li><a href="service-data-science-analytics.html">Data Science &amp; Analytics</a></li>
+        <li><a href="service-market-actionable-intelligence.html">Market Intelligence</a></li>
+        <li><a href="organisational-health-consulting.html">Organisational Health</a></li>
+        <li><a href="service-website-development.html">Website Development</a></li>
+        <li><a href="service-consciousness-clarity.html">Consciousness &amp; Clarity</a></li>
+        <li><a href="service-mind-wellness.html">Mind Wellness</a></li>
+        <li><a href="service-addiction-freedom.html">Addiction Freedom</a></li>
+        <li><a href="service-counselling.html">Counselling</a></li>
+        <li><a href="service-children.html">For Children</a></li>
+        <li><a href="service-zero-state-meditation.html">Meditation as Medicine</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <span class="gf-col-title">Company</span>
+      <ul class="gf-links">
+        <li><a href="about-meculs.html">About MECULS</a></li>
+        <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+        <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+        <li><a href="the-approach.html">The Approach</a></li>
+        <li><a href="the-journey.html">The Journey</a></li>
+        <li><a href="why-meculs.html">Why MECULS</a></li>
+        <li><a href="why-mynd-care.html">Why Mynd CARE</a></li>
+        <li><a href="our-work-proof.html">Our Work Proof</a></li>
+        <li><a href="contexts.html">Contexts</a></li>
+        <li><a href="source-of-challenges.html">Source of Challenges</a></li>
+        <li><a href="contemplative-practices.html">Contemplative Practices</a></li>
+        <li><a href="insights.html">Insights</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <span class="gf-col-title">Connect</span>
+      <ul class="gf-links">
+        <li><a href="cv-portal.html">The CV Portal</a></li>
+        <li><a href="begin-conversation.html">Begin a Conversation</a></li>
+        <li><a href="corporate-enquiry.html">Corporate Enquiry</a></li>
+        <li><a href="website-enquiry.html">Website Enquiry</a></li>
+      </ul>
+      <span class="gf-col-title" style="margin-top:2rem;">Legal</span>
+      <ul class="gf-links">
+        <li><a href="grievance.html">Grievance</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms of Service</a></li>
+        <li><a href="refund-policy.html">Refund Policy</a></li>
+        <li><a href="disclaimer.html">Disclaimer</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="gf-bottom">
+    <p class="gf-ip">This website, its content, frameworks, methodologies, and design are conceptualised, created, and authored by Rajneesh Jain, Founder, MECULS. All methodologies are the original and exclusive intellectual property of Rajneesh Jain. Unauthorised reproduction or commercial use is prohibited.</p>
+    <div class="gf-bottom-bar">
+      <p class="gf-copy">&copy; 2026 MECULS. All rights reserved. Delhi, India.</p>
+      <p class="gf-payment">Payment: Razorpay &middot; UPI &middot; Cards &middot; Netbanking &middot; Wallets</p>
+      <nav class="gf-legal" aria-label="Legal links">
+        <a href="grievance.html">Grievance</a>
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="refund-policy.html">Refund</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /.we-page -->
+
+<!-- Cloudflare Turnstile -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+<script src="global.js"></script>
+
+<script>
+/* ════════════════════════════════════════════════════════════
+   website-enquiry.html — Form handler
+   Submits to: public.paid_submissions (form_type: web_enquiry)
+   Requires: config.js with SUPABASE_URL + SUPABASE_ANON_KEY
+   RLS: run website_enquiry_rls.sql in Supabase dashboard first
+════════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+
+  var loadedAt = Date.now();
+  var form     = document.getElementById('weEnquiryForm');
+  var btnEl    = document.getElementById('weSubmitBtn');
+  var statusEl = document.getElementById('weStatus');
+
+  if (!form) return;
+
+  /* ── Character counter ────────────────────────────────── */
+  var briefEl    = document.getElementById('weBrief');
+  var countEl    = document.getElementById('weBriefCount');
+  var BRIEF_MAX  = 2500;
+
+  if (briefEl && countEl) {
+    briefEl.addEventListener('input', function () {
+      var len = briefEl.value.length;
+      countEl.textContent = len + ' / ' + BRIEF_MAX;
+      countEl.className = 'we-char-count' +
+        (len >= BRIEF_MAX ? ' over' : len >= BRIEF_MAX * 0.85 ? ' near' : '');
+    });
+  }
+
+  /* ── URL normaliser ───────────────────────────────────── */
+  function normaliseUrl(raw) {
+    raw = (raw || '').trim();
+    if (!raw) return '';
+    /* Already has a scheme */
+    if (/^https?:\/\//i.test(raw)) return raw;
+    /* Assume https:// — if server responds with a redirect, that
+       is expected and handled transparently by the browser */
+    return 'https://' + raw;
+  }
+
+  /* ── Validation helpers ───────────────────────────────── */
+  function showErr(id, msg) {
+    var el = document.getElementById(id);
+    if (el) { el.textContent = msg; el.classList.add('visible'); }
+  }
+  function clearErr(id) {
+    var el = document.getElementById(id);
+    if (el) el.classList.remove('visible');
+  }
+  function setInputState(id, invalid) {
+    var el = document.getElementById(id);
+    if (el) {
+      if (invalid) el.classList.add('we-invalid');
+      else         el.classList.remove('we-invalid');
+    }
+  }
+
+  /* ── Status message ───────────────────────────────────── */
+  function setStatus(msg, type) {
+    statusEl.textContent = msg;
+    statusEl.className = 'we-status we-status--' + type;
+  }
+  function clearStatus() {
+    statusEl.textContent = '';
+    statusEl.className = 'we-status';
+  }
+
+  /* ── Submit handler ───────────────────────────────────── */
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    clearStatus();
+
+    /* Honeypot check */
+    var hp = form.elements['website_url_field'];
+    if (hp && hp.value) return;
+
+    /* Timestamp check — must be at least 3 seconds since page load */
+    if (Date.now() - loadedAt < 3000) return;
+
+    /* Turnstile token */
+    var turnstileToken = '';
+    try {
+      if (typeof turnstile !== 'undefined' && turnstile.getResponse) {
+        turnstileToken = turnstile.getResponse() || '';
+      }
+    } catch (_) { turnstileToken = ''; }
+    if (!turnstileToken) {
+      setStatus('Please complete the security verification above.', 'error');
+      return;
+    }
+
+    /* Field validation */
+    var valid = true;
+
+    var name  = (form.elements['name']  || {}).value || '';
+    var email = (form.elements['email'] || {}).value || '';
+    var brief = (form.elements['brief'] || {}).value || '';
+
+    clearErr('weNameErr');  setInputState('weName',  false);
+    clearErr('weEmailErr'); setInputState('weEmail', false);
+    clearErr('weBriefErr'); setInputState('weBrief', false);
+
+    if (!name.trim()) {
+      showErr('weNameErr', 'Please enter your name.');
+      setInputState('weName', true);
+      valid = false;
+    }
+    var emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!emailRx.test(email.trim())) {
+      showErr('weEmailErr', 'Please enter a valid email address.');
+      setInputState('weEmail', true);
+      valid = false;
+    }
+    if (brief.trim().length < 20) {
+      showErr('weBriefErr', 'Please add a brief description of your project (at least 20 characters).');
+      setInputState('weBrief', true);
+      valid = false;
+    }
+    if (!valid) return;
+
+    /* Normalise the current site URL */
+    var rawSite    = ((form.elements['current_site'] || {}).value || '').trim();
+    var normSite   = normaliseUrl(rawSite);
+
+    /* Build the submission payload */
+    var payload = {
+      form_type:           'web_enquiry',
+      razorpay_payment_id: null,
+      name:                name.trim(),
+      email:               email.trim().toLowerCase(),
+      phone:               ((form.elements['phone']        || {}).value || '').trim() || null,
+      location:            ((form.elements['location']     || {}).value || '').trim() || null,
+      organisation:        ((form.elements['organisation'] || {}).value || '').trim() || null,
+      current_site:        normSite || null,
+      site_size:           ((form.elements['site_size']    || {}).value || '').trim() || null,
+      brief:               brief.trim(),
+      timeline:            ((form.elements['timeline']     || {}).value || '').trim() || null,
+      referral:            ((form.elements['referral']     || {}).value || '').trim() || null,
+      cf_turnstile_token:  turnstileToken
+    };
+
+    btnEl.disabled = true;
+    btnEl.textContent = 'Submitting…';
+
+    /* Insert into Supabase */
+    function doInsert(client) {
+      client
+        .from('paid_submissions')
+        .insert([payload])
+        .then(function (res) {
+          if (res.error) {
+            console.error('Supabase error:', res.error);
+            setStatus(
+              'Something went wrong. Please try again or email Jain.Rajneesh@meculs.com directly.',
+              'error'
+            );
+            btnEl.disabled = false;
+            btnEl.textContent = 'Submit Enquiry';
+            try { if (typeof turnstile !== 'undefined') turnstile.reset(); } catch (_) {}
+          } else {
+            setStatus(
+              'Your enquiry has been received. A personal reply follows within two working days.',
+              'ok'
+            );
+            form.reset();
+            if (countEl) countEl.textContent = '0 / ' + BRIEF_MAX;
+            btnEl.disabled = true;
+            btnEl.textContent = 'Enquiry Submitted';
+          }
+        });
+    }
+
+    if (window._supabaseClient) {
+      doInsert(window._supabaseClient);
+    } else {
+      var s1 = document.createElement('script');
+      s1.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js';
+      s1.onload = function () {
+        var s2 = document.createElement('script');
+        s2.src = 'config.js';
+        s2.onload = function () {
+          var client = window.supabase.createClient(
+            window.SUPABASE_URL,
+            window.SUPABASE_ANON_KEY
+          );
+          window._supabaseClient = client;
+          doInsert(client);
+        };
+        s2.onerror = function () {
+          setStatus('Configuration error. Please contact Jain.Rajneesh@meculs.com.', 'error');
+          btnEl.disabled = false;
+          btnEl.textContent = 'Submit Enquiry';
+        };
+        document.head.appendChild(s2);
+      };
+      s1.onerror = function () {
+        setStatus('Network error. Please try again or email directly.', 'error');
+        btnEl.disabled = false;
+        btnEl.textContent = 'Submit Enquiry';
+      };
+      document.head.appendChild(s1);
+    }
+  });
+
+  /* ── Scroll reveal ────────────────────────────────────── */
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.06 });
+  document.querySelectorAll('.rev').forEach(function (el) { io.observe(el); });
+
+})();
+</script>
+
+</body>
+</html>

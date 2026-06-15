@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website Development &middot; MECULS | Rajneesh Jain</title>
+  <meta name="description" content="Honest website development for any sector. Clean code, zero vulnerabilities, complete data protection. No shortcuts, no hidden compromises. MECULS.">
+
+  <link rel="canonical" href="https://www.meculs.com/service-website-development.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Website Development &middot; MECULS">
+  <meta property="og:description" content="Honest website development for any sector. Clean code, zero vulnerabilities, complete data protection. No shortcuts, no hidden compromises.">
+  <meta property="og:image" content="https://www.meculs.com/images/og/meculs-og-default.jpg">
+  <meta property="og:url" content="https://www.meculs.com/service-website-development.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="MECULS">
+  <meta property="og:locale" content="en_IN">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@meculs_official">
+  <meta name="twitter:title" content="Website Development &middot; MECULS">
+  <meta name="twitter:description" content="Honest website development for any sector. Clean code, zero vulnerabilities, complete data protection.">
+  <meta name="twitter:image" content="https://www.meculs.com/images/og/meculs-og-default.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/images/favicon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/svg+xml" href="/images/favicon/favicon.svg">
+  <link rel="shortcut icon" href="/images/favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-title" content="MECULS">
+  <link rel="manifest" href="/images/favicon/site.webmanifest">
+  <meta name="theme-color" content="#000814">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,400;1,400;1,600&family=Archivo:wght@400;500;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="global.css">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Website Development",
+    "provider": {
+      "@type": "Person",
+      "name": "Rajneesh Jain",
+      "url": "https://www.meculs.com/about-rajneesh-jain.html"
+    },
+    "serviceType": "Website Development",
+    "description": "Honest, secure website development for any sector. Clean code, zero vulnerabilities, complete data protection. No shortcuts, no hidden compromises.",
+    "url": "https://www.meculs.com/service-website-development.html",
+    "areaServed": {"@type": "Country", "name": "India"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.meculs.com/"},
+      {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://www.meculs.com/services.html"},
+      {"@type": "ListItem", "position": 3, "name": "Website Development", "item": "https://www.meculs.com/service-website-development.html"}
+    ]
+  }
+  </script>
+
+  <style>
+  /* ── PAGE TOKENS ─────────────────────────────────── */
+  :root {
+    --tagline-h:   28px;
+    --gold:        #d4af37;
+    --gold-light:  #e4bf47;
+    --gold-deep:   #8a6d1a;
+    --gold-border: rgba(212,175,55,0.22);
+    --gold-glow:   rgba(212,175,55,0.06);
+    --ink:         #000814;
+    --ink-2:       #00111f;
+    --ink-3:       #001428;
+    --muted:       rgba(255,255,255,0.82);
+    --soft:        rgba(255,255,255,0.88);
+    --rule:        rgba(255,255,255,0.08);
+    --display:    'Playfair Display', Georgia, serif;
+    --serif:      'Cormorant Garamond', Georgia, serif;
+
+    /* Warm linen palette -- unique to this page */
+    --swd-ground:   #f2ece2;
+    --swd-ground-2: #ebe5d8;
+    --swd-ground-3: #e4ddcf;
+    --swd-ink:      #1a1612;
+    --swd-ink-2:    #2e2922;
+    --swd-ink-3:    #4a403a;
+    --swd-dark:     #0d1520;
+    --swd-dark-2:   #080e18;
+  }
+
+  /* ── PAGE SHELL ──────────────────────────────────── */
+  .page {
+    padding-top: calc(var(--g-nav-h, 72px) + var(--tagline-h, 28px));
+    background: var(--swd-ground);
+    color: var(--swd-ink);
+    font-family: 'Archivo', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── SCROLL REVEAL ───────────────────────────────── */
+  .rev {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .rev.vis {
+    opacity: 1;
+    transform: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .rev { opacity: 1 !important; transform: none !important; }
+  }
+
+  /* ── SHARED ──────────────────────────────────────── */
+  .swd-eyebrow {
+    font-family: 'Archivo', sans-serif;
+    font-size: 0.70rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    display: block;
+    margin-bottom: 1.4rem;
+  }
+  .swd-eyebrow--light { color: var(--gold); }
+
+  .swd-rule {
+    width: 2.8rem;
+    height: 1px;
+    background: var(--gold-deep);
+    border: none;
+    margin: 1.6rem 0;
+  }
+  .swd-rule--light { background: var(--gold); }
+
+  /* ── BUTTONS ─────────────────────────────────────── */
+  .btn-swd-primary {
+    display: inline-block;
+    padding: 0.9rem 2.2rem;
+    background: var(--swd-ink);
+    color: #fff;
+    font-family: 'Archivo', sans-serif;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 2px solid var(--swd-ink);
+    transition: background 0.22s, border-color 0.22s;
+  }
+  .btn-swd-primary:hover,
+  .btn-swd-primary:focus-visible {
+    background: var(--gold-deep);
+    border-color: var(--gold-deep);
+    outline: none;
+  }
+  .btn-swd-ghost {
+    display: inline-block;
+    padding: 0.9rem 2.2rem;
+    background: transparent;
+    color: var(--swd-ink);
+    font-family: 'Archivo', sans-serif;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 2px solid rgba(26,22,18,0.35);
+    transition: background 0.22s, border-color 0.22s, color 0.22s;
+  }
+  .btn-swd-ghost:hover,
+  .btn-swd-ghost:focus-visible {
+    background: var(--swd-ink);
+    border-color: var(--swd-ink);
+    color: #fff;
+    outline: none;
+  }
+  .btn-gold-cta {
+    display: inline-block;
+    padding: 0.9rem 2.2rem;
+    background: var(--gold);
+    color: var(--ink);
+    font-family: 'Archivo', sans-serif;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 2px solid var(--gold);
+    transition: background 0.22s, border-color 0.22s, color 0.22s;
+  }
+  .btn-gold-cta:hover,
+  .btn-gold-cta:focus-visible {
+    background: var(--gold-deep);
+    border-color: var(--gold-deep);
+    color: #fff;
+    outline: none;
+  }
+  .btn-outline-white {
+    display: inline-block;
+    padding: 0.9rem 2.2rem;
+    background: transparent;
+    color: rgba(255,255,255,0.88);
+    font-family: 'Archivo', sans-serif;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 2px solid rgba(212,175,55,0.45);
+    transition: background 0.22s, border-color 0.22s, color 0.22s;
+  }
+  .btn-outline-white:hover,
+  .btn-outline-white:focus-visible {
+    background: rgba(212,175,55,0.10);
+    border-color: var(--gold);
+    color: var(--gold-light);
+    outline: none;
+  }
+
+  /* ── HERO ────────────────────────────────────────── */
+  .swd-hero {
+    background: var(--swd-ground);
+    padding: 6.5rem 5% 5.5rem;
+    border-bottom: 1px solid rgba(26,22,18,0.10);
+  }
+  .swd-hero__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 0.68fr;
+    gap: 5.5rem;
+    align-items: center;
+  }
+  .swd-hero__dateline {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 0.62rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    color: var(--swd-ink-3);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+  }
+  .swd-hero__dateline::before {
+    content: '';
+    display: inline-block;
+    width: 2.2rem;
+    height: 1px;
+    background: var(--gold-deep);
+    flex-shrink: 0;
+  }
+  .swd-hero h1 {
+    font-family: var(--display);
+    font-size: clamp(2.4rem, 4.8vw, 4.2rem);
+    font-weight: 700;
+    line-height: 1.10;
+    color: var(--swd-ink);
+    margin: 0 0 1.8rem;
+    letter-spacing: -0.015em;
+  }
+  .swd-hero h1 em {
+    font-style: italic;
+    color: var(--gold-deep);
+  }
+  .swd-hero__pull {
+    font-family: var(--serif);
+    font-size: clamp(1.22rem, 1.68vw, 1.48rem);
+    font-style: italic;
+    line-height: 1.80;
+    color: var(--swd-ink-2);
+    margin: 0 0 2.8rem;
+    padding-left: 1.4rem;
+    border-left: 2px solid var(--gold-deep);
+  }
+  .swd-hero__cta {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  /* ── HERO DIAGRAM ────────────────────────────────── */
+  .swd-hero__diagram { position: relative; }
+
+  .swd-diagram {
+    border: 1px solid rgba(26,22,18,0.14);
+    background: var(--swd-ground-2);
+    padding: 2.2rem 1.8rem 1.8rem;
+    position: relative;
+  }
+  .swd-diagram__label {
+    position: absolute;
+    top: -0.62rem;
+    left: 1.2rem;
+    background: var(--swd-ground-2);
+    padding: 0 0.5rem;
+    font-family: 'Archivo', sans-serif;
+    font-size: 0.60rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+  }
+  .swd-diagram__layer {
+    border: 1px solid rgba(26,22,18,0.10);
+    background: var(--swd-ground);
+    padding: 0.90rem 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .swd-diagram__layer + .swd-diagram__layer { border-top: none; }
+  .swd-diagram__layer--security {
+    border-top: 1px solid rgba(138,109,26,0.30) !important;
+    border-color: rgba(138,109,26,0.30);
+    background: rgba(138,109,26,0.04);
+    border-left: 3px solid var(--gold-deep);
+    margin-top: 0.8rem;
+  }
+  .swd-diagram__layer-name {
+    font-family: 'Archivo', sans-serif;
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--swd-ink);
+  }
+  .swd-diagram__layer-name--security { color: var(--gold-deep); }
+  .swd-diagram__layer-tags {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.52rem;
+    color: var(--swd-ink-3);
+    letter-spacing: 0.04em;
+    text-align: right;
+    line-height: 1.5;
+  }
+  .swd-diagram__arrow {
+    text-align: center;
+    padding: 0.18rem 0;
+    font-size: 0.60rem;
+    color: rgba(138,109,26,0.45);
+    font-family: 'Archivo', sans-serif;
+    background: var(--swd-ground-2);
+  }
+  .swd-diagram__footer {
+    margin-top: 1.4rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(26,22,18,0.08);
+    font-family: var(--serif);
+    font-size: 0.90rem;
+    font-style: italic;
+    color: var(--swd-ink-3);
+    line-height: 1.62;
+  }
+
+  /* ── SECTORS ─────────────────────────────────────── */
+  .swd-sectors {
+    background: var(--swd-ground);
+    padding: 5.5rem 5%;
+    border-bottom: 1px solid rgba(26,22,18,0.08);
+  }
+  .swd-sectors__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .swd-sectors h2 {
+    font-family: var(--display);
+    font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.18;
+    color: var(--swd-ink);
+    margin: 0 0 1.8rem;
+  }
+  .swd-sectors h2 em {
+    font-style: italic;
+    color: var(--gold-deep);
+  }
+  .swd-sectors__body {
+    font-family: var(--serif);
+    font-size: clamp(1.18rem, 1.6vw, 1.45rem);
+    line-height: 1.85;
+    color: var(--swd-ink-2);
+    max-width: 72ch;
+    margin: 0 0 1.6rem;
+  }
+  .swd-sectors__body:last-of-type { margin-bottom: 0; }
+  .swd-sectors__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 2.4rem;
+  }
+  .swd-sectors__tag {
+    background: var(--swd-ground-2);
+    border: 1px solid rgba(26,22,18,0.12);
+    padding: 0.55rem 1.1rem;
+    font-family: 'Archivo', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--swd-ink-2);
+  }
+
+  /* ── REALITY (dark) ──────────────────────────────── */
+  .swd-reality {
+    background: var(--swd-dark);
+    padding: 6.5rem 5%;
+  }
+  .swd-reality__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .swd-reality h2 {
+    font-family: var(--display);
+    font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.18;
+    color: rgba(255,255,255,0.92);
+    margin: 0 0 1.2rem;
+  }
+  .swd-reality h2 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .swd-reality__intro {
+    font-family: var(--serif);
+    font-size: clamp(1.18rem, 1.6vw, 1.45rem);
+    font-style: italic;
+    line-height: 1.82;
+    color: rgba(255,255,255,0.78);
+    max-width: 70ch;
+    margin: 0 0 3.5rem;
+    padding-left: 1.4rem;
+    border-left: 2px solid rgba(212,175,55,0.40);
+  }
+  .swd-reality__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.05);
+    margin-bottom: 3.5rem;
+  }
+  .swd-reality__cell {
+    background: var(--swd-dark);
+    padding: 2.6rem 2.2rem 2.2rem;
+    transition: background 0.2s;
+  }
+  .swd-reality__cell:hover { background: var(--swd-dark-2); }
+  .swd-reality__num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.60rem;
+    letter-spacing: 0.10em;
+    color: var(--gold);
+    margin-bottom: 1.1rem;
+    display: block;
+  }
+  .swd-reality__cell h3 {
+    font-family: var(--display);
+    font-size: 1.10rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.92);
+    margin: 0 0 1rem;
+    line-height: 1.30;
+  }
+  .swd-reality__cell p {
+    font-family: var(--serif);
+    font-size: clamp(1.05rem, 1.38vw, 1.22rem);
+    line-height: 1.82;
+    color: rgba(255,255,255,0.76);
+    margin: 0;
+  }
+  .swd-reality__callout {
+    font-family: var(--serif);
+    font-size: clamp(1.10rem, 1.5vw, 1.28rem);
+    font-style: italic;
+    line-height: 1.80;
+    color: rgba(255,255,255,0.65);
+    text-align: center;
+    max-width: 72ch;
+    margin: 0 auto;
+    padding: 2.2rem 2rem;
+    border: 1px solid rgba(212,175,55,0.14);
+  }
+  .swd-reality__callout strong {
+    font-style: normal;
+    font-weight: 600;
+    color: rgba(255,255,255,0.84);
+  }
+
+  /* ── COMMITMENT ──────────────────────────────────── */
+  .swd-commitment {
+    background: var(--swd-ground-2);
+    padding: 6rem 5%;
+    border-top: 1px solid rgba(26,22,18,0.08);
+    border-bottom: 1px solid rgba(26,22,18,0.08);
+  }
+  .swd-commitment__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    gap: 5.5rem;
+    align-items: start;
+  }
+  .swd-commitment h2 {
+    font-family: var(--display);
+    font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.18;
+    color: var(--swd-ink);
+    margin: 0 0 1.6rem;
+  }
+  .swd-commitment h2 em {
+    font-style: italic;
+    color: var(--gold-deep);
+  }
+  .swd-commitment__body {
+    font-family: var(--serif);
+    font-size: clamp(1.18rem, 1.6vw, 1.45rem);
+    line-height: 1.85;
+    color: var(--swd-ink-2);
+    margin: 0 0 1.6rem;
+  }
+  .swd-commitment__cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .swd-commitment__card {
+    border-top: 2px solid var(--gold-deep);
+    padding: 1.8rem 1.5rem 1.6rem;
+    background: var(--swd-ground);
+  }
+  .swd-commitment__card h4 {
+    font-family: var(--display);
+    font-size: 1.02rem;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--swd-ink);
+    margin: 0 0 0.8rem;
+    line-height: 1.30;
+  }
+  .swd-commitment__card p {
+    font-family: var(--serif);
+    font-size: clamp(1.05rem, 1.38vw, 1.22rem);
+    line-height: 1.80;
+    color: var(--swd-ink-2);
+    margin: 0;
+  }
+
+  /* ── TECHNOLOGY ──────────────────────────────────── */
+  .swd-tech {
+    background: var(--swd-ground);
+    padding: 6rem 5%;
+    border-bottom: 1px solid rgba(26,22,18,0.08);
+  }
+  .swd-tech__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .swd-tech h2 {
+    font-family: var(--display);
+    font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.18;
+    color: var(--swd-ink);
+    margin: 0 0 1.6rem;
+  }
+  .swd-tech h2 em {
+    font-style: italic;
+    color: var(--gold-deep);
+  }
+  .swd-tech__body {
+    font-family: var(--serif);
+    font-size: clamp(1.18rem, 1.6vw, 1.45rem);
+    line-height: 1.85;
+    color: var(--swd-ink-2);
+    max-width: 70ch;
+    margin: 0 0 3.5rem;
+  }
+  .swd-tech__cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+  .swd-tech__col-heading {
+    font-family: 'Archivo', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    display: block;
+    margin: 0 0 1.4rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(138,109,26,0.22);
+  }
+  .swd-tech__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .swd-tech__list li {
+    font-family: var(--serif);
+    font-size: clamp(1.10rem, 1.45vw, 1.28rem);
+    line-height: 1.80;
+    color: var(--swd-ink-2);
+    padding: 0.85rem 0;
+    border-bottom: 1px solid rgba(26,22,18,0.07);
+    display: flex;
+    gap: 0.9rem;
+    align-items: baseline;
+  }
+  .swd-tech__list li::before {
+    content: '\2192';
+    color: var(--gold-deep);
+    font-family: 'Archivo', sans-serif;
+    font-size: 0.76rem;
+    flex-shrink: 0;
+  }
+  .swd-tech__list li strong {
+    color: var(--swd-ink);
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  /* ── BUILDS ──────────────────────────────────────── */
+  .swd-builds {
+    background: var(--swd-ground-3);
+    padding: 6rem 5%;
+    border-bottom: 1px solid rgba(26,22,18,0.08);
+  }
+  .swd-builds__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .swd-builds h2 {
+    font-family: var(--display);
+    font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.18;
+    color: var(--swd-ink);
+    margin: 0 0 1.6rem;
+  }
+  .swd-builds h2 em {
+    font-style: italic;
+    color: var(--gold-deep);
+  }
+  .swd-builds__body {
+    font-family: var(--serif);
+    font-size: clamp(1.18rem, 1.6vw, 1.45rem);
+    line-height: 1.85;
+    color: var(--swd-ink-2);
+    max-width: 70ch;
+    margin: 0 0 3rem;
+  }
+  .swd-builds__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(26,22,18,0.10);
+    border: 1px solid rgba(26,22,18,0.10);
+  }
+  .swd-builds__item {
+    background: var(--swd-ground-3);
+    padding: 2.4rem 2.2rem 2.2rem;
+    transition: background 0.2s;
+  }
+  .swd-builds__item:hover { background: var(--swd-ground-2); }
+  .swd-builds__item-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.60rem;
+    letter-spacing: 0.10em;
+    color: var(--gold-deep);
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .swd-builds__item h3 {
+    font-family: var(--display);
+    font-size: 1.08rem;
+    font-weight: 700;
+    color: var(--swd-ink);
+    margin: 0 0 0.9rem;
+    line-height: 1.30;
+  }
+  .swd-builds__item p {
+    font-family: var(--serif);
+    font-size: clamp(1.05rem, 1.38vw, 1.22rem);
+    line-height: 1.80;
+    color: var(--swd-ink-2);
+    margin: 0;
+  }
+
+  /* ── CTA CLOSE ───────────────────────────────────── */
+  .swd-cta {
+    background: var(--ink);
+    padding: 7rem 5%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .swd-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(212,175,55,0.07) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .swd-cta__inner {
+    max-width: 680px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .swd-cta h2 {
+    font-family: var(--display);
+    font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.18;
+    color: rgba(255,255,255,0.92);
+    margin: 0 0 1.6rem;
+  }
+  .swd-cta h2 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .swd-cta__body {
+    font-family: var(--serif);
+    font-size: clamp(1.18rem, 1.6vw, 1.45rem);
+    font-style: italic;
+    line-height: 1.82;
+    color: rgba(255,255,255,0.78);
+    margin: 0 0 3rem;
+  }
+  .swd-cta__buttons {
+    display: flex;
+    gap: 1.2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .swd-cta__next {
+    margin-top: 3.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.96rem;
+    color: rgba(255,255,255,0.44);
+  }
+  .swd-cta__next a {
+    color: rgba(212,175,55,0.72);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .swd-cta__next a:hover { color: var(--gold); }
+
+  /* ── RESPONSIVE ──────────────────────────────────── */
+  @media (max-width: 1099px) {
+    .swd-hero__inner       { grid-template-columns: 1fr; gap: 3rem; }
+    .swd-hero__diagram     { display: none; }
+    .swd-commitment__inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .swd-tech__cols        { grid-template-columns: 1fr; gap: 2.8rem; }
+  }
+  @media (max-width: 899px) {
+    .swd-reality__grid     { grid-template-columns: 1fr 1fr; }
+    .swd-builds__grid      { grid-template-columns: 1fr 1fr; }
+    .swd-commitment__cards { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .swd-hero              { padding: 4.5rem 5% 4rem; }
+    .swd-reality__grid     { grid-template-columns: 1fr; }
+    .swd-builds__grid      { grid-template-columns: 1fr; }
+    .swd-hero__cta         { flex-direction: column; align-items: flex-start; }
+    .swd-cta__buttons      { flex-direction: column; align-items: center; }
+    .swd-sectors__tags     { gap: 0.4rem; }
+  }
+  </style>
+</head>
+<body>
+<div class="page">
+
+<!-- TAGLINE SUB-BAR -->
+<div class="gh-tagline-sub" id="ghTaglineSub">
+  <span class="gh-tagline-sub-text">
+    <strong>Feel Proud:</strong> Choosing to be courageous enough to feel proud of exactly who you are and what your life is &ndash; is seeing you are growing, expanding, and creating a better world
+  </span>
+</div>
+
+<header class="global-header">
+  <a href="index.html" class="gh-logo" aria-label="MECULS home">
+    <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS" loading="eager" width="140" height="36">
+    <span class="gh-logo-text">MECULS</span>
+  </a>
+
+  <nav aria-label="Primary navigation">
+    <ul class="gh-nav gh-nav-wrap">
+
+      <li><a href="about-meculs.html">About MECULS</a></li>
+
+      <li>
+        <a href="how-meculs-works.html">How MECULS Works
+          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <ul class="gh-dropdown">
+          <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+          <li><a href="the-journey.html">The Journey</a></li>
+          <li><a href="contexts.html">Contexts</a></li>
+          <li><a href="source-of-challenges.html">Source of Challenges</a></li>
+          <li><a href="contemplative-practices.html">Contemplative Practices</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="services.html" class="active">Services
+          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <ul class="gh-dropdown">
+          <li><a href="services.html">All Services</a></li>
+          <li><a href="corporate-programs.html">Corporate Programmes</a></li>
+          <li><a href="360-pulse-rate.html">360&deg; PULSE RATE&trade;</a></li>
+          <li><a href="service-personality-profiling.html">Personality Profiling</a></li>
+          <li><a href="service-executive-search.html">Executive Search</a></li>
+          <li><a href="bespoke-coaching.html">Executive Coaching &ndash; Bespoke</a></li>
+          <li><a href="service-hr-analytics.html">HR Analytics</a></li>
+          <li><a href="service-data-science-analytics.html">Data Science &amp; Analytics</a></li>
+          <li><a href="service-market-actionable-intelligence.html">Market Intelligence</a></li>
+          <li><a href="organisational-health-consulting.html">Organisational Health</a></li>
+          <li class="gh-dropdown-divider" aria-hidden="true"></li>
+          <li><a href="individual-services.html">Individual &amp; Wellness</a></li>
+          <li><a href="service-consciousness-clarity.html">Consciousness &amp; Clarity</a></li>
+          <li><a href="service-mind-wellness.html">Mind Wellness</a></li>
+          <li><a href="service-addiction-freedom.html">Addiction Freedom</a></li>
+          <li><a href="service-counselling.html">Counselling</a></li>
+          <li><a href="service-children.html">For Children</a></li>
+          <li><a href="service-zero-state-meditation.html">Meditation as Medicine</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="the-approach.html">The Approach
+          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <ul class="gh-dropdown">
+          <li><a href="the-approach.html">The Approach</a></li>
+          <li><a href="why-meculs.html">Why MECULS</a></li>
+          <li><a href="why-mynd-care.html">Why Mynd CARE</a></li>
+          <li><a href="our-work-proof.html">Our Work Proof</a></li>
+        </ul>
+      </li>
+
+      <li><a href="insights.html">Insights</a></li>
+      <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+
+      <li>
+        <a href="paid-services.html">Paid Services
+          <svg class="gh-arrow" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <ul class="gh-dropdown">
+          <li><a href="paid-services.html">Paid Services</a></li>
+          <li><a href="wellness-services.html">Wellness Services</a></li>
+        </ul>
+      </li>
+
+      <li><a href="cv-portal.html">The CV Portal</a></li>
+      <li><a href="begin-conversation.html" class="gh-cta">Begin a Conversation</a></li>
+
+      <li class="gh-login-wrap">
+        <a href="login.html" class="gh-login-icon" aria-label="Sign in or register for The CV Portal" aria-haspopup="true" aria-expanded="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </a>
+        <ul class="gh-login-dropdown" role="menu" aria-label="The CV Portal account">
+          <li class="gh-login-dropdown-label">The CV Portal</li>
+          <li role="none"><a href="login.html" role="menuitem">CV Portal &ndash; Login</a></li>
+          <li role="none"><a href="register.html" role="menuitem">CV Portal &ndash; Register</a></li>
+        </ul>
+      </li>
+
+    </ul>
+  </nav>
+
+  <button class="gh-toggle" id="ghToggle" aria-label="Open navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="gh-mobile-menu" id="ghMobileMenu" role="dialog" aria-label="Mobile navigation">
+  <ul class="gh-mobile-nav">
+
+    <li><a href="about-meculs.html">About MECULS</a></li>
+
+    <li>
+      <a href="how-meculs-works.html">How MECULS Works</a>
+      <ul class="gh-mobile-sub">
+        <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+        <li><a href="the-journey.html">The Journey</a></li>
+        <li><a href="contexts.html">Contexts</a></li>
+        <li><a href="source-of-challenges.html">Source of Challenges</a></li>
+        <li><a href="contemplative-practices.html">Contemplative Practices</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <a href="services.html">Services</a>
+      <ul class="gh-mobile-sub">
+        <li><a href="services.html">All Services</a></li>
+        <li><a href="corporate-programs.html">Corporate Programmes</a></li>
+        <li><a href="360-pulse-rate.html">360&deg; PULSE RATE&trade;</a></li>
+        <li><a href="service-personality-profiling.html">Personality Profiling</a></li>
+        <li><a href="service-executive-search.html">Executive Search</a></li>
+        <li><a href="bespoke-coaching.html">Executive Coaching &ndash; Bespoke</a></li>
+        <li><a href="service-hr-analytics.html">HR Analytics</a></li>
+        <li><a href="service-data-science-analytics.html">Data Science &amp; Analytics</a></li>
+        <li><a href="service-market-actionable-intelligence.html">Market Intelligence</a></li>
+        <li><a href="organisational-health-consulting.html">Organisational Health</a></li>
+        <li><a href="individual-services.html">Individual &amp; Wellness</a></li>
+        <li><a href="service-consciousness-clarity.html">Consciousness &amp; Clarity</a></li>
+        <li><a href="service-mind-wellness.html">Mind Wellness</a></li>
+        <li><a href="service-addiction-freedom.html">Addiction Freedom</a></li>
+        <li><a href="service-counselling.html">Counselling</a></li>
+        <li><a href="service-children.html">For Children</a></li>
+        <li><a href="service-zero-state-meditation.html">Meditation as Medicine</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <a href="the-approach.html">The Approach</a>
+      <ul class="gh-mobile-sub">
+        <li><a href="the-approach.html">The Approach</a></li>
+        <li><a href="why-meculs.html">Why MECULS</a></li>
+        <li><a href="why-mynd-care.html">Why Mynd CARE</a></li>
+        <li><a href="our-work-proof.html">Our Work Proof</a></li>
+      </ul>
+    </li>
+
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+
+    <li>
+      <a href="paid-services.html">Paid Services</a>
+      <ul class="gh-mobile-sub">
+        <li><a href="paid-services.html">Paid Services</a></li>
+        <li><a href="wellness-services.html">Wellness Services</a></li>
+      </ul>
+    </li>
+
+    <li><a href="cv-portal.html">The CV Portal</a></li>
+    <li><a href="login.html">CV Portal &ndash; Login</a></li>
+    <li><a href="register.html">CV Portal &ndash; Register</a></li>
+  </ul>
+  <a href="begin-conversation.html" class="gh-mobile-cta">Begin a Conversation</a>
+</div>
+
+<!-- PAGE CONTENT -->
+
+<main id="main-content">
+
+  <!-- S1: HERO -->
+  <section class="swd-hero" aria-labelledby="swd-h1">
+    <div class="swd-hero__inner">
+
+      <div class="swd-hero__text">
+        <p class="swd-hero__dateline rev">MECULS &middot; Website Development &middot; Any Sector</p>
+        <h1 id="swd-h1" class="rev">The website most developers build and the website your business needs are <em>not the same thing.</em></h1>
+        <p class="swd-hero__pull rev">One is delivered to a deadline. The other is built to a standard.</p>
+        <div class="swd-hero__cta rev">
+          <a href="website-enquiry.html" class="btn-swd-primary">Begin a Website Enquiry</a>
+          <a href="#swd-what-gets-left" class="btn-swd-ghost">Read on</a>
+        </div>
+      </div>
+
+      <div class="swd-hero__diagram rev" aria-hidden="true">
+        <div class="swd-diagram">
+          <span class="swd-diagram__label">Website Architecture</span>
+          <div class="swd-diagram__layer">
+            <span class="swd-diagram__layer-name">Visitor / Browser</span>
+            <span class="swd-diagram__layer-tags">Desktop &middot; Mobile &middot; Tablet</span>
+          </div>
+          <div class="swd-diagram__arrow">&#8595;</div>
+          <div class="swd-diagram__layer">
+            <span class="swd-diagram__layer-name">Frontend</span>
+            <span class="swd-diagram__layer-tags">HTML &middot; CSS &middot; JavaScript</span>
+          </div>
+          <div class="swd-diagram__arrow">&#8595;</div>
+          <div class="swd-diagram__layer">
+            <span class="swd-diagram__layer-name">Backend &amp; API</span>
+            <span class="swd-diagram__layer-tags">Validation &middot; Rate Limiting</span>
+          </div>
+          <div class="swd-diagram__arrow">&#8595;</div>
+          <div class="swd-diagram__layer">
+            <span class="swd-diagram__layer-name">Database</span>
+            <span class="swd-diagram__layer-tags">Encrypted &middot; Backed Up</span>
+          </div>
+          <div class="swd-diagram__layer swd-diagram__layer--security" style="margin-top:0.8rem;">
+            <span class="swd-diagram__layer-name swd-diagram__layer-name--security">Security</span>
+            <span class="swd-diagram__layer-tags">HTTPS &middot; CSP &middot; WAF &middot; Auth</span>
+          </div>
+          <p class="swd-diagram__footer">Every layer built to the same standard. No layer left assumed.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- S2: ANY SECTOR -->
+  <section class="swd-sectors" aria-labelledby="swd-sectors-h2">
+    <div class="swd-sectors__inner">
+      <span class="swd-eyebrow rev">Any Sector &middot; Any Scale</span>
+      <h2 id="swd-sectors-h2" class="rev">Not positioned<br>for a <em>niche.</em></h2>
+      <hr class="swd-rule rev">
+      <p class="swd-sectors__body rev">Website development at MECULS is not restricted to any particular industry. Whether you are running a hospital, a hotel, a school, a manufacturing unit, a financial firm, an NGO, a retail chain, a logistics company, a real estate practice, or a professional services firm &ndash; the technical requirements of a well-built, secure website do not change with the sector. What changes is the content. What does not change is the standard.</p>
+      <p class="swd-sectors__body rev">The client determines the sector. We determine the architecture, the security model, and the technology choices. That division of responsibility does not shift regardless of what the website is for.</p>
+      <div class="swd-sectors__tags rev">
+        <span class="swd-sectors__tag">Healthcare</span>
+        <span class="swd-sectors__tag">Manufacturing</span>
+        <span class="swd-sectors__tag">Financial Services</span>
+        <span class="swd-sectors__tag">Hospitality</span>
+        <span class="swd-sectors__tag">Education</span>
+        <span class="swd-sectors__tag">Retail &amp; E-commerce</span>
+        <span class="swd-sectors__tag">Logistics</span>
+        <span class="swd-sectors__tag">Real Estate</span>
+        <span class="swd-sectors__tag">NGOs &amp; Foundations</span>
+        <span class="swd-sectors__tag">Professional Services</span>
+        <span class="swd-sectors__tag">Media &amp; Publishing</span>
+        <span class="swd-sectors__tag">Technology</span>
+        <span class="swd-sectors__tag">Events &amp; Venues</span>
+        <span class="swd-sectors__tag">Pharmaceutical</span>
+        <span class="swd-sectors__tag">Legal</span>
+        <span class="swd-sectors__tag">Architecture &amp; Design</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- S3: THE REALITY -->
+  <section class="swd-reality" id="swd-what-gets-left" aria-labelledby="swd-reality-h2">
+    <div class="swd-reality__inner">
+      <span class="swd-eyebrow swd-eyebrow--light rev">What every website owner deserves to know</span>
+      <h2 id="swd-reality-h2" class="rev">What most website projects<br>leave <em>unaddressed.</em></h2>
+      <p class="swd-reality__intro rev">This is not a criticism of any developer. It is information that every person who has ever paid for a website has the right to understand. Knowing what is technically possible to leave out of a website project is the first and most important step in knowing what to insist on.</p>
+
+      <div class="swd-reality__grid">
+
+        <div class="swd-reality__cell rev">
+          <span class="swd-reality__num">01 &middot; Performance</span>
+          <h3>The page loads slowly. Nobody mentioned it.</h3>
+          <p>Images not compressed. CSS and JavaScript files not minified. No caching headers configured. No lazy loading for content below the fold. The client never asked about page speed, so no one built for it. On mobile &ndash; where most traffic now arrives &ndash; a slow page loses a visitor before they have read a single word.</p>
+        </div>
+
+        <div class="swd-reality__cell rev">
+          <span class="swd-reality__num">02 &middot; Mobile &amp; Accessibility</span>
+          <h3>Designed on a desktop. Tested on a browser resize.</h3>
+          <p>Not on an actual phone. Text overflows. Buttons are too small to tap. Navigation collapses in ways no one anticipated. Images have no alt text. Keyboard users cannot navigate the page. These are not edge cases &ndash; they are the default output of a build that was never tested in the environment where most people will use it.</p>
+        </div>
+
+        <div class="swd-reality__cell rev">
+          <span class="swd-reality__num">03 &middot; Backend Integrity</span>
+          <h3>Forms that accept anything. Including what they should not.</h3>
+          <p>Input not validated on the server &ndash; only in the browser, where validation can be bypassed. Admin panels using credentials that were never changed after the initial setup. Private API keys written into client-side JavaScript, visible to anyone who views the page source. When the server trusts whatever the browser sends, the server can be made to accept anything.</p>
+        </div>
+
+        <div class="swd-reality__cell rev">
+          <span class="swd-reality__num">04 &middot; Payment Security</span>
+          <h3>The amount was calculated in the browser. Not on the server.</h3>
+          <p>Payment totals computed only in client-side code, where they can be modified before reaching the payment gateway. Payment confirmation handled by a browser callback rather than verified through the gateway&apos;s server-side webhook &ndash; which cannot be forged. A site that does not verify payment server-side can be made to confirm a payment that never completed.</p>
+        </div>
+
+        <div class="swd-reality__cell rev">
+          <span class="swd-reality__num">05 &middot; Data Protection</span>
+          <h3>User data collected. What happens to it is unclear.</h3>
+          <p>Names, email addresses, phone numbers, and form submissions stored without encryption. No process for a user to request deletion of their data. Third-party tracking scripts embedded without clear disclosure. Backups taken but never tested for restoration. A backup that has never been tested is not a backup &ndash; it is a file that has not yet been needed.</p>
+        </div>
+
+        <div class="swd-reality__cell rev">
+          <span class="swd-reality__num">06 &middot; Security &amp; Search Visibility</span>
+          <h3>No security headers. No sitemap. Pages undiscovered for months.</h3>
+          <p>HTTPS not enforced across the full domain. No Content Security Policy header, leaving cross-site scripting possible. Third-party packages left unupdated as known vulnerabilities accumulate publicly. Title tags duplicated across pages. No Schema.org structured data. Sitemap never submitted. Canonical tags absent. A website that search engines cannot read is invisible to the people it was built for.</p>
+        </div>
+
+      </div>
+
+      <p class="swd-reality__callout rev"><strong>The point is not that developers intend to leave these things undone.</strong> It is that most clients do not know to ask for them &ndash; and most projects are scoped in a way that does not require them to be included. The responsibility for asking is with the client. We are telling you what to ask for.</p>
+    </div>
+  </section>
+
+  <!-- S4: THE MECULS COMMITMENT -->
+  <section class="swd-commitment" aria-labelledby="swd-commitment-h2">
+    <div class="swd-commitment__inner">
+
+      <div>
+        <span class="swd-eyebrow rev">The MECULS Standard</span>
+        <h2 id="swd-commitment-h2" class="rev">What we build and what<br>we will <em>not move on.</em></h2>
+        <hr class="swd-rule rev">
+        <p class="swd-commitment__body rev">Every website MECULS builds is built to the same standard &ndash; regardless of sector, scale, or timeline. The standard is not a premium tier. It is the only tier. Data is either protected or it is not. HTTPS is either enforced or it is not. Input is either validated server-side or it is not. The middle ground is where vulnerabilities live.</p>
+        <p class="swd-commitment__body rev">We build with complete integrity: no undisclosed shortcuts, no code we cannot explain, no technology choices made for our convenience rather than yours. If something will take more time to do correctly, we say so before we begin &ndash; not after we have delivered it.</p>
+      </div>
+
+      <div class="swd-commitment__cards">
+        <div class="swd-commitment__card rev">
+          <h4>Zero vulnerabilities at launch</h4>
+          <p>Every form validated server-side. Every API endpoint rate-limited. Every package vetted and current. No known vulnerability left unpatched. Nothing shipped with a door that should be closed.</p>
+        </div>
+        <div class="swd-commitment__card rev">
+          <h4>No technology lock-in</h4>
+          <p>The code we write is yours. The platforms we use are open and fully documented. You can hand the entire codebase to a different developer tomorrow. No proprietary format, no hidden dependency on our continued involvement.</p>
+        </div>
+        <div class="swd-commitment__card rev">
+          <h4>Complete documentation</h4>
+          <p>Every page, every form, every integration, every API call is documented. If something needs to be fixed in two years, the next developer does not need to reverse-engineer what was built. The documentation tells them.</p>
+        </div>
+        <div class="swd-commitment__card rev">
+          <h4>Data protection by design</h4>
+          <p>Encryption at rest. HTTPS enforced across the full domain. Data deletion mechanisms in place before the first user submits anything. No third-party tracking without your explicit knowledge and consent.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- S5: TECHNOLOGY -->
+  <section class="swd-tech" aria-labelledby="swd-tech-h2">
+    <div class="swd-tech__inner">
+      <span class="swd-eyebrow rev">Technology</span>
+      <h2 id="swd-tech-h2" class="rev">What we use<br>and <em>why.</em></h2>
+      <hr class="swd-rule rev">
+      <p class="swd-tech__body rev">Technology choices are made on three criteria: secure by design, cost-effective without hidden ongoing fees, and open enough that you are never locked into a single vendor. We do not recommend a technology because it is fashionable or because it generates recurring revenue for us. We recommend it because it is the right fit for the specific requirement in front of us.</p>
+
+      <div class="swd-tech__cols">
+
+        <div class="rev">
+          <span class="swd-tech__col-heading">What we use</span>
+          <ul class="swd-tech__list">
+            <li><strong>GitHub Pages</strong> &ndash; zero-cost, high-reliability static site hosting. No server to maintain, no monthly hosting invoice, no single point of failure.</li>
+            <li><strong>Supabase</strong> &ndash; open-source database, authentication, and API platform with row-level security. Your data is in a standard PostgreSQL database. You can export it in full at any time.</li>
+            <li><strong>Cloudflare</strong> &ndash; CDN, DDoS mitigation, and Web Application Firewall at the network edge, before a malicious request reaches your application. Free tier covers most requirements.</li>
+            <li><strong>Modern HTML, CSS, and JavaScript</strong> &ndash; browser-native, platform-independent. No licence fees, no plugin ecosystem to maintain, no framework dependency that becomes a liability after the project closes.</li>
+            <li><strong>Cloudflare Turnstile</strong> &ndash; bot and spam protection without user friction. Privacy-respecting. No CAPTCHA puzzles for genuine visitors.</li>
+            <li><strong>Razorpay / PayPal</strong> &ndash; Indian and international payment integration, with server-side payment verification through the gateway&apos;s signed webhook. Payment status confirmed by the gateway &ndash; not by the browser.</li>
+          </ul>
+        </div>
+
+        <div class="rev">
+          <span class="swd-tech__col-heading">What we do not use, and why</span>
+          <ul class="swd-tech__list">
+            <li><strong>Plugin-dependent CMS platforms</strong> &ndash; platforms that rely on a large ecosystem of third-party plugins introduce maintenance overhead, recurring plugin fees, and security exposure that grows with each additional plugin. For most business websites, a well-built static or database-backed site achieves the same result with none of the ongoing risk.</li>
+            <li><strong>Proprietary visual page builders</strong> &ndash; drag-and-drop tools that generate bloated, inaccessible markup that performs poorly on search engines and cannot be cleanly maintained by a developer who did not build it inside the same tool.</li>
+            <li><strong>Undocumented SaaS backends</strong> &ndash; platforms where your data is stored in a proprietary format with no standard export path. Migration, should you need it, becomes expensive or structurally impossible without starting over from the beginning.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- S6: WHAT WE BUILD -->
+  <section class="swd-builds" aria-labelledby="swd-builds-h2">
+    <div class="swd-builds__inner">
+      <span class="swd-eyebrow rev">Scope</span>
+      <h2 id="swd-builds-h2" class="rev">The kinds of websites<br><em>we build.</em></h2>
+      <hr class="swd-rule rev">
+      <p class="swd-builds__body rev">Scope is determined by what the business requires &ndash; not by what is easiest to deliver. Each of the following is a distinct technical undertaking with its own architecture, security model, and data handling requirements.</p>
+
+      <div class="swd-builds__grid">
+
+        <div class="swd-builds__item rev">
+          <span class="swd-builds__item-num">01</span>
+          <h3>Static Informational Sites</h3>
+          <p>Multi-page brand and information websites. Fast, inherently secure, zero ongoing hosting cost on GitHub Pages. Every page properly indexed: Schema.org structured data, correct canonical tags, unique title and meta per page, sitemap submitted at launch. Ideal for service businesses, professional practices, and organisations with stable content.</p>
+        </div>
+
+        <div class="swd-builds__item rev">
+          <span class="swd-builds__item-num">02</span>
+          <h3>Dynamic Data-Driven Sites</h3>
+          <p>Sites that read and write to a database: directories, booking portals, member areas, dashboards, and content portals. Built on Supabase with row-level security, proper server-side authentication, and validated data handling &ndash; not a frontend login screen placed over an unprotected database.</p>
+        </div>
+
+        <div class="swd-builds__item rev">
+          <span class="swd-builds__item-num">03</span>
+          <h3>Payment-Integrated Sites</h3>
+          <p>E-commerce, course enrolment, event registration, and service booking with integrated payment processing. Every payment amount verified server-side through the gateway&apos;s signed webhook. No client-side manipulation possible between the visitor&apos;s browser and your account.</p>
+        </div>
+
+        <div class="swd-builds__item rev">
+          <span class="swd-builds__item-num">04</span>
+          <h3>Registration &amp; Form Portals</h3>
+          <p>Complex multi-field forms for enquiry, registration, application, and data collection. Full server-side input validation, rate limiting on submission endpoints, spam protection, and structured data storage. What reaches the database is exactly what the user submitted &ndash; not what someone injected.</p>
+        </div>
+
+        <div class="swd-builds__item rev">
+          <span class="swd-builds__item-num">05</span>
+          <h3>Corporate &amp; Enterprise Sites</h3>
+          <p>Multi-division sites with structured navigation, extensive content, and multiple stakeholder audiences. Full SEO architecture from the first page: Schema.org per page type, sitemap submitted at launch, canonical tags correct, no duplicate content, no pages accidentally blocked by a wrong robots.txt entry.</p>
+        </div>
+
+        <div class="swd-builds__item rev">
+          <span class="swd-builds__item-num">06</span>
+          <h3>Audit &amp; Rebuild Projects</h3>
+          <p>Existing website review, vulnerability assessment, and targeted or full rebuild. We identify what the original build left unaddressed &ndash; across performance, security, data protection, accessibility, and search visibility &ndash; and correct it without dismantling what is already working correctly.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- S7: CTA CLOSE -->
+  <section class="swd-cta" aria-labelledby="swd-cta-h2">
+    <div class="swd-cta__inner">
+      <span class="swd-eyebrow swd-eyebrow--light rev">Begin Here</span>
+      <h2 id="swd-cta-h2" class="rev">Begin with a<br><em>website enquiry.</em></h2>
+      <p class="swd-cta__body rev">The enquiry form takes five minutes. It asks about your sector, the scale of your requirement, your current website if you have one, and what you need the new website to do. There is no commitment in completing it. What it starts is a real conversation &ndash; between two people who have read the same document and are both clear about what the work involves.</p>
+      <div class="swd-cta__buttons rev">
+        <a href="website-enquiry.html" class="btn-gold-cta">Begin a Website Enquiry</a>
+        <a href="services.html" class="btn-outline-white">View All Services</a>
+      </div>
+      <p class="swd-cta__next rev">Next chapter &ndash; <a href="begin-conversation.html">Begin a Conversation &rarr;</a></p>
+    </div>
+  </section>
+
+</main>
+
+<!-- CANONICAL FOOTER v5 -->
+<footer class="global-footer">
+
+  <div class="gf-top">
+
+    <div class="gf-brand">
+      <div class="gf-logo">
+        <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS" width="140" height="32">
+        <span class="gf-logo-text" style="display:none">MECULS</span>
+      </div>
+      <p class="gf-tagline">Mind Enablement Centre for Unlocking Limitless Leadership &amp; Self-Potential</p>
+      <div class="gf-contact">
+        <a href="mailto:Jain.Rajneesh@meculs.com">Jain.Rajneesh@meculs.com</a>
+        <a href="https://meculs.com">www.meculs.com</a>
+        <span>Delhi, India</span>
+      </div>
+      <div class="gf-social">
+        <a href="https://www.linkedin.com/in/rajneesh-jain-meculs" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@meculs" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.33zM9.75 15.02V8.48l5.75 3.27z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/meculs_official" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://x.com/meculs_official" aria-label="X / Twitter" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/meculs" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <span class="gf-col-title">Services</span>
+      <ul class="gf-links">
+        <li><a href="360-pulse-rate.html">360&deg; PULSE RATE&trade;</a></li>
+        <li><a href="service-personality-profiling.html">Personality Profiling</a></li>
+        <li><a href="bespoke-coaching.html">Executive Coaching &ndash; Bespoke</a></li>
+        <li><a href="corporate-programs.html">Corporate Programmes</a></li>
+        <li><a href="service-executive-search.html">Executive Search</a></li>
+        <li><a href="service-hr-analytics.html">HR Analytics</a></li>
+        <li><a href="service-data-science-analytics.html">Data Science &amp; Analytics</a></li>
+        <li><a href="service-market-actionable-intelligence.html">Market Intelligence</a></li>
+        <li><a href="organisational-health-consulting.html">Organisational Health</a></li>
+        <li><a href="service-consciousness-clarity.html">Consciousness &amp; Clarity</a></li>
+        <li><a href="service-mind-wellness.html">Mind Wellness</a></li>
+        <li><a href="service-addiction-freedom.html">Addiction Freedom</a></li>
+        <li><a href="service-counselling.html">Counselling</a></li>
+        <li><a href="service-children.html">For Children</a></li>
+        <li><a href="service-zero-state-meditation.html">Meditation as Medicine</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <span class="gf-col-title">Company</span>
+      <ul class="gf-links">
+        <li><a href="about-meculs.html">About MECULS</a></li>
+        <li><a href="about-rajneesh-jain.html">The Founder</a></li>
+        <li><a href="how-meculs-works.html">How MECULS Works</a></li>
+        <li><a href="the-approach.html">The Approach</a></li>
+        <li><a href="the-journey.html">The Journey</a></li>
+        <li><a href="why-meculs.html">Why MECULS</a></li>
+        <li><a href="why-mynd-care.html">Why Mynd CARE</a></li>
+        <li><a href="our-work-proof.html">Our Work Proof</a></li>
+        <li><a href="contexts.html">Contexts</a></li>
+        <li><a href="source-of-challenges.html">Source of Challenges</a></li>
+        <li><a href="contemplative-practices.html">Contemplative Practices</a></li>
+        <li><a href="insights.html">Insights</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <span class="gf-col-title">Connect</span>
+      <ul class="gf-links">
+        <li><a href="cv-portal.html">The CV Portal</a></li>
+        <li><a href="begin-conversation.html">Begin a Conversation</a></li>
+        <li><a href="book-session.html">Corporate Enquiry</a></li>
+      </ul>
+      <span class="gf-col-title" style="margin-top:2rem;">Legal</span>
+      <ul class="gf-links">
+        <li><a href="grievance.html">Grievance</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms of Service</a></li>
+        <li><a href="refund-policy.html">Refund Policy</a></li>
+        <li><a href="disclaimer.html">Disclaimer</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="gf-bottom">
+    <p class="gf-ip">This website, its content, frameworks, methodologies, and design are conceptualised, created, and authored by Rajneesh Jain, Founder, MECULS. All methodologies are the original and exclusive intellectual property of Rajneesh Jain. Unauthorised reproduction or commercial use is prohibited.</p>
+    <div class="gf-bottom-bar">
+      <p class="gf-copy">&copy; 2026 MECULS. All rights reserved. Delhi, India.</p>
+      <p class="gf-payment">Payment: PayUBiz &middot; Razorpay &middot; PayPal &middot; UPI &middot; Credit Card</p>
+      <nav class="gf-legal" aria-label="Legal links">
+        <a href="grievance.html">Grievance</a>
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="refund-policy.html">Refund</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </nav>
+    </div>
+  </div>
+
+</footer>
+
+</div><!-- /.page -->
+
+<script src="global.js"></script>
+<script>
+(function () {
+  'use strict';
+  if (!('IntersectionObserver' in window)) {
+    document.querySelectorAll('.rev').forEach(function (el) { el.classList.add('vis'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('vis');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.10 });
+  document.querySelectorAll('.rev').forEach(function (el) { io.observe(el); });
+}());
+</script>
+
+</body>
+</html>

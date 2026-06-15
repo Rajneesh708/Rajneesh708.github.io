@@ -1,6 +1,6 @@
 /* ============================================================
-   MECULS — register.js (v=22)
-   Date: 2026-05-17 (UPDATE → UPSERT fix in _writeConsentsForNewUser)
+   MECULS — register.js (v=23)
+   Date: 2026-06-15 (add email to upsert row — NOT NULL fix)
    ============================================================
    Carried forward from v=21:
    - Soft Gmail hint feature kept removed
@@ -402,13 +402,24 @@ async function _writeConsentsForNewUser(user) {
   if (consentPayload.marketing_consent)   consentPayload.marketing_consent_at    = nowIso;
 
   try {
-    /* v=22: UPSERT instead of UPDATE.
-       If the profile row exists → updates consent columns.
-       If it doesn't exist yet (trigger didn't fire) → creates it.
-       onConflict: "user_id" tells Supabase which column is the key. */
+    /* v=23: include email in the upsert row.
+       ROOT CAUSE (June 2026): the handle_new_user trigger stopped
+       firing reliably after a Supabase internal change around
+       May 30, 2026. When no profile row exists, the UPSERT tries
+       to INSERT rather than UPDATE. Without email the INSERT fails
+       immediately — profiles.email is NOT NULL.
+       Adding user.email here makes the INSERT succeed. On an
+       existing row it simply re-writes the same email value —
+       completely harmless. This makes the consent write robust
+       regardless of whether the trigger fires or not. */
+    const upsertRow = {
+      user_id : user.id,
+      email   : user.email,
+      ...consentPayload
+    };
     const { error: upsertErr } = await sb
       .from("profiles")
-      .upsert({ user_id: user.id, ...consentPayload }, { onConflict: "user_id" });
+      .upsert(upsertRow, { onConflict: "user_id" });
     if (upsertErr) {
       console.error("[register.js] CRITICAL: consent UPSERT failed:", upsertErr.message, upsertErr);
       throw new Error("Consent write failed: " + (upsertErr.message || "unknown"));
