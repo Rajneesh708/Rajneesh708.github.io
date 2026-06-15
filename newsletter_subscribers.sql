@@ -104,6 +104,15 @@ CREATE POLICY "newsletter_delete_admin_only" ON public.newsletter_subscribers
 
 
 -- ─────────────────────────────────────────────────────────────
+-- Explicit GRANTs (required for Supabase Data API access)
+-- Future-proofs against the October 2026 Supabase enforcement
+-- ─────────────────────────────────────────────────────────────
+
+GRANT INSERT                    ON public.newsletter_subscribers TO anon;
+GRANT INSERT, SELECT, UPDATE    ON public.newsletter_subscribers TO authenticated;
+
+
+-- ─────────────────────────────────────────────────────────────
 -- Verification query
 -- ─────────────────────────────────────────────────────────────
 
