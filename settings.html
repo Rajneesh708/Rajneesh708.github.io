@@ -5,12 +5,12 @@
   <meta name="robots" content="noindex, nofollow">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Settings — MECULS</title>
+  <title>Settings &ndash; MECULS</title>
 
   <!-- ============================================================
-       MECULS — settings.html
+       MECULS &ndash; settings.html
        Date: 2026-05-09
-       Cache buster: v=4 — adds:
+       Cache buster: v=4 &ndash; adds:
          - "Last active" display with 24-month retention notice
        v=3 changes:
          - Eye icon to show/hide password in both fields
@@ -21,7 +21,7 @@
          - settings.js bumped to v=4 alongside
        ============================================================
        Standalone settings page (not inside dashboard chrome).
-       Sections: Profile · Security · Consents · Visibility · Danger
+       Sections: Profile Â· Security Â· Consents Â· Visibility Â· Danger
        Sticky in-page nav on the left. All saves go through MC.* helpers
        which already manage auth + RLS.
 
@@ -37,7 +37,7 @@
 
   <style>
     /* ---------------------------------------------------------
-       BRAND TOKENS — synced with dashboard.html
+       BRAND TOKENS &ndash; synced with dashboard.html
     --------------------------------------------------------- */
     :root {
       --blue-950:  #070d18;
@@ -611,7 +611,7 @@
       color: var(--text-soft);
       font-size: 1.05rem;
     }
-    /* Universal [hidden] rule — ensures the HTML hidden attribute
+    /* Universal [hidden] rule &ndash; ensures the HTML hidden attribute
        reliably hides any element regardless of explicit display
        values applied by class rules. Without this, .st-field uses
        display:grid and .st-page-loading uses display:flex, both
@@ -653,8 +653,8 @@
   </style>
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://meculs.com/settings.html">
-<meta property="og:title" content="Settings — MECULS">
-<meta property="og:description" content="MECULS — executive coaching, leadership development, wellness, and CV portal. By Rajneesh Jain, Delhi, India.">
+<meta property="og:title" content="Settings &ndash; MECULS">
+<meta property="og:description" content="MECULS &ndash; executive coaching, leadership development, wellness, and CV portal. By Rajneesh Jain, Delhi, India.">
 <meta property="og:site_name" content="MECULS">
 <meta property="og:locale" content="en_IN">
 <meta property="og:image" content="https://meculs.com/images/og/og-default.png?v=2">
@@ -664,8 +664,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://meculs.com/images/og/og-default.png?v=2">
 <meta name="twitter:image:alt" content="MECULS - Honest help for executive coaching, wellness, and CV portal">
-<meta name="twitter:title" content="Settings — MECULS">
-<meta name="twitter:description" content="MECULS — executive coaching, leadership development, wellness, and CV portal. By Rajneesh Jain, Delhi, India.">
+<meta name="twitter:title" content="Settings &ndash; MECULS">
+<meta name="twitter:description" content="MECULS &ndash; executive coaching, leadership development, wellness, and CV portal. By Rajneesh Jain, Delhi, India.">
 </head>
 <body>
 
@@ -726,14 +726,14 @@
                 Full name
                 <div class="st-field__hint">Edit on the "About You" page in dashboard.</div>
               </div>
-              <div class="st-field__value st-field__value--strong" id="stProfileName">—</div>
+              <div class="st-field__value st-field__value--strong" id="stProfileName">&ndash;</div>
             </div>
             <div class="st-field">
               <div class="st-field__label">
                 Email
                 <div class="st-field__hint">Sign-in email for your account.</div>
               </div>
-              <div class="st-field__value st-field__value--strong" id="stProfileEmail">—</div>
+              <div class="st-field__value st-field__value--strong" id="stProfileEmail">&ndash;</div>
             </div>
             <div class="st-field">
               <div class="st-field__label">
@@ -742,7 +742,7 @@
               </div>
               <div class="st-field__value">
                 <div class="st-field__row">
-                  <a id="stPublicUrl" href="#" target="_blank" rel="noopener" class="st-field__url">—</a>
+                  <a id="stPublicUrl" href="#" target="_blank" rel="noopener" class="st-field__url">&ndash;</a>
                   <button type="button" class="st-btn st-btn--ghost" id="stCopyUrlBtn">Copy link</button>
                 </div>
               </div>
@@ -752,7 +752,7 @@
                 Member since
                 <div class="st-field__hint">When you joined MECULS.</div>
               </div>
-              <div class="st-field__value" id="stMemberSince">—</div>
+              <div class="st-field__value" id="stMemberSince">&ndash;</div>
             </div>
             <div class="st-field">
               <div class="st-field__label">
@@ -760,7 +760,7 @@
                 <div class="st-field__hint">Updated when you sign in or use the dashboard.</div>
               </div>
               <div class="st-field__value">
-                <div id="stLastActive">—</div>
+                <div id="stLastActive">&ndash;</div>
                 <div style="font-size:0.84rem; color:var(--text-soft); margin-top:6px; line-height:1.5;">
                   Inactive accounts are archived after 24 months and permanently deleted
                   6 months later. We email you 30 days and 3 days before each step so you
@@ -782,7 +782,7 @@
                 Sign-in method
                 <div class="st-field__hint">How you log in to MECULS.</div>
               </div>
-              <div class="st-field__value" id="stSigninMethod">—</div>
+              <div class="st-field__value" id="stSigninMethod">&ndash;</div>
             </div>
 
             <!-- Password change form (only for email/password users) -->
@@ -884,7 +884,7 @@
                   <div class="st-consent__desc">You agreed to the
                     <a href="terms.html" target="_blank" rel="noopener" style="color:var(--gold);">terms of service</a>
                     when you registered. This is required to remain a member.</div>
-                  <div class="st-consent__meta" id="stTermsAt">—</div>
+                  <div class="st-consent__meta" id="stTermsAt">&ndash;</div>
                 </div>
                 <label class="st-toggle">
                   <input type="checkbox" class="st-toggle__input" id="stToggleTerms" checked disabled>
@@ -903,7 +903,7 @@
                   </div>
                   <div class="st-consent__desc">You confirmed you are 18 years or older.
                     MECULS is an adult-only service.</div>
-                  <div class="st-consent__meta" id="stAgeAt">—</div>
+                  <div class="st-consent__meta" id="stAgeAt">&ndash;</div>
                 </div>
                 <label class="st-toggle">
                   <input type="checkbox" class="st-toggle__input" id="stToggleAge" checked disabled>
@@ -919,7 +919,7 @@
                   <div class="st-consent__title">Share email with verified employers</div>
                   <div class="st-consent__desc">Allow MECULS to share your email with verified employers
                     who message you about specific opportunities. You can turn this off any time.</div>
-                  <div class="st-consent__meta" id="stEmailShareAt">—</div>
+                  <div class="st-consent__meta" id="stEmailShareAt">&ndash;</div>
                 </div>
                 <label class="st-toggle">
                   <input type="checkbox" class="st-toggle__input" id="stToggleEmailShare" data-consent="email_share_consent">
@@ -935,7 +935,7 @@
                   <div class="st-consent__title">Job and career notifications</div>
                   <div class="st-consent__desc">Receive emails about job openings, opportunities, and
                     relevant career news. We'll only send what's actually useful.</div>
-                  <div class="st-consent__meta" id="stNotifAt">—</div>
+                  <div class="st-consent__meta" id="stNotifAt">&ndash;</div>
                 </div>
                 <label class="st-toggle">
                   <input type="checkbox" class="st-toggle__input" id="stToggleNotif" data-consent="notif_consent">
@@ -951,7 +951,7 @@
                   <div class="st-consent__title">Newsletter and product updates</div>
                   <div class="st-consent__desc">Receive our monthly newsletter, product announcements,
                     and tips on building a strong professional profile.</div>
-                  <div class="st-consent__meta" id="stMarketingAt">—</div>
+                  <div class="st-consent__meta" id="stMarketingAt">&ndash;</div>
                 </div>
                 <label class="st-toggle">
                   <input type="checkbox" class="st-toggle__input" id="stToggleMarketing" data-consent="marketing_consent">
@@ -974,9 +974,9 @@
                 <div>
                   <div class="st-consent__title">Make my profile public</div>
                   <div class="st-consent__desc">When on, anyone with your profile link can view it.
-                    When off, the link shows "Profile is private" and your data stays hidden — even
+                    When off, the link shows "Profile is private" and your data stays hidden &ndash; even
                     while you continue to build it.</div>
-                  <div class="st-consent__meta" id="stVisibilityState">—</div>
+                  <div class="st-consent__meta" id="stVisibilityState">&ndash;</div>
                 </div>
                 <label class="st-toggle">
                   <input type="checkbox" class="st-toggle__input" id="stToggleVisibility">
