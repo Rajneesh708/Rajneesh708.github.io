@@ -34,6 +34,23 @@
    ╚══════════════════════════════════════════════════════════╝ */
 const DEV_MODE = false;
 
+/* v=3 — DEV_MODE safety check.
+   If DEV_MODE is ever accidentally set to true and pushed to production,
+   this fires a loud red console error on every page load so it cannot
+   be missed. It does NOT override DEV_MODE — only a code change can do that.
+   This is purely an early-warning system. */
+if (DEV_MODE) {
+  const _host = window.location.hostname;
+  if (_host !== "localhost" && _host !== "127.0.0.1" && _host !== "") {
+    console.error(
+      "%c[guard.js] SECURITY WARNING: DEV_MODE is TRUE on a live host (" +
+      _host + "). Every authentication check is bypassed. " +
+      "Set DEV_MODE = false immediately and redeploy.",
+      "color:#fff;background:#c0392b;font-size:15px;padding:4px 8px;border-radius:3px;"
+    );
+  }
+}
+
 /* ── Supabase client (initialised from config.js values) ── */
 let _supabase = null;
 
@@ -89,6 +106,20 @@ async function requireAuth() {
     await signOut();   /* clears state and redirects */
     return null;
   }
+
+  /* v=3: sync user_type from server-verified metadata to localStorage.
+     This overwrites any value a user may have written via DevTools,
+     making requireCandidate() / requireRecruiter() tamper-resistant.
+     Email/password users have user_type set in user_metadata at signup.
+     Google OAuth users don't (GIS doesn't accept arbitrary metadata),
+     so for them we leave whatever login.js set — which is always
+     "candidate" as of v=29. */
+  try {
+    const serverType = data.user.user_metadata && data.user.user_metadata.user_type;
+    if (serverType) {
+      localStorage.setItem("user_type", serverType);
+    }
+  } catch (_e) { /* localStorage may be blocked in private mode */ }
 
   return session;
 }

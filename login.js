@@ -1,6 +1,6 @@
 /* ============================================================
-   MECULS — login.js (v=28)
-   Date: 2026-05-08 (orphan-block speed-up)
+   MECULS — login.js (v=29)
+   Date: 2026-06-15 (set user_type for Google OAuth path)
    ============================================================
    Carried forward from v=27:
    - Email confirmation flow (?confirmed=1)
@@ -432,6 +432,14 @@ async function _handleGoogleCredentialResponse(response) {
       console.warn("[login.js] wipeMeculsAppDataOnly failed (non-fatal):", e);
     }
   }
+
+  /* v=29: set user_type for Google OAuth users.
+     Email/password users get this via handleLoginSuccess(), but
+     the Google path bypasses that function entirely. Without this
+     line, guard.js requireCandidate() finds no user_type in
+     localStorage and blocks access to candidate-only pages.
+     All current MECULS accounts are candidates. */
+  try { localStorage.setItem("user_type", "candidate"); } catch (_e) {}
 
   window.location.href = window.location.origin + "/dashboard.html";
 }

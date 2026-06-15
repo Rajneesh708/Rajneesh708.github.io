@@ -79,6 +79,17 @@
         window.MECULS_PRODUCT    = data.product || product;
         show(gated);
         hide(locked);
+
+        /* v=2: strip Razorpay and access-token params from the URL now
+           that they have been consumed and stored in window globals.
+           Leaving them in the URL means they persist in browser history
+           and leak via Referer headers to any third-party resource on
+           this page. sessionStorage retains the values for form submission. */
+        try {
+          if (window.history && window.history.replaceState) {
+            window.history.replaceState({}, document.title, window.location.pathname);
+          }
+        } catch (_e) { /* non-fatal — params stay in URL but functionality is unaffected */ }
       } else {
         /* Token missing/forged/expired/wrong product → no form. */
         console.warn("meculs-gate: access denied —", data && data.reason);
