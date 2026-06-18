@@ -292,7 +292,7 @@
       line-height: 1.35;
       margin-bottom: 10px;
     }
-    /* Bio meta &ndash; Location · Years of experience */
+    /* Bio meta &ndash; Location &middot; Years of experience */
     .pp-hero__bio-line {
       font-family: var(--sans);
       font-size: 0.94rem;
@@ -873,7 +873,7 @@
     }
 
     /* ---------------------------------------------------------
-       LANGUAGES &ndash; single-line group, name · proficiency
+       LANGUAGES &ndash; single-line group, name &middot; proficiency
        --------------------------------------------------------- */
     .pp-langs {
       display: flex;
@@ -1399,7 +1399,7 @@
   }
 
   function initialsFromName(name) {
-    if (!name) return "";
+    if (!name) return "&bull;";
     const parts = String(name).trim().split(/\s+/);
     if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
     return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
@@ -1522,7 +1522,7 @@
       }
     }
 
-    /* Bio meta &ndash; Location · "X years of experience" (never just "X years") */
+    /* Bio meta &ndash; Location &middot; "X years of experience" (never just "X years") */
     const loc = [intro.res_state, intro.res_country].filter(Boolean).join(", ");
     const bioEl = document.getElementById("ppBioLine");
     if (bioEl) {
@@ -1537,7 +1537,7 @@
       }
       if (parts.length) {
         bioEl.innerHTML = parts.map(escapeHtml)
-          .join('<span class="pp-hero__sep">·</span>');
+          .join('<span class="pp-hero__sep">&middot;</span>');
         bioEl.hidden = false;
       } else {
         bioEl.hidden = true;
@@ -1607,7 +1607,7 @@
       const dateLocParts = [];
       if (dateStr)  dateLocParts.push(escapeHtml(dateStr));
       if (location) dateLocParts.push(escapeHtml(location));
-      const dateLocLine = dateLocParts.join('<span class="pp-exp__sep">·</span>');
+      const dateLocLine = dateLocParts.join('<span class="pp-exp__sep">&middot;</span>');
 
       const fnLine = splitList(e.industry_function).join(", ");
 
@@ -1652,7 +1652,7 @@
             }
             html += '<div class="pp-exp__project">';
             html += '<div class="pp-exp__project-header">' +
-                    headerBits.join('<span class="pp-exp__sep">·</span>') + '</div>';
+                    headerBits.join('<span class="pp-exp__sep">&middot;</span>') + '</div>';
             if (proj.ask) {
               html += '<div class="pp-exp__project-line">' +
                       '<span class="pp-exp__project-key">Ask:</span>' +
@@ -1677,7 +1677,7 @@
       if (allSkills.length) {
         html += '<div class="pp-exp__skills-line">' +
                 allSkills.map(escapeHtml)
-                  .join('<span class="pp-exp__skills-sep"> · </span>') +
+                  .join('<span class="pp-exp__skills-sep"> &middot; </span>') +
                 '</div>';
       }
 
@@ -1806,7 +1806,7 @@
           html += '<div class="pp-edu__skills-line">' +
                   '<span class="pp-edu__skills-label">Skills:</span>' +
                   eduSkills.map(escapeHtml)
-                    .join('<span class="pp-edu__skills-sep"> · </span>') +
+                    .join('<span class="pp-edu__skills-sep"> &middot; </span>') +
                   '</div>';
         }
         if (e.activities) {
@@ -1896,7 +1896,7 @@
     function renderItemHtml(item) {
       if (item.proficiency) {
         return escapeHtml(item.name) +
-          ' <span class="pp-skill__level">· ' + escapeHtml(item.proficiency) + '</span>';
+          ' <span class="pp-skill__level">&middot; ' + escapeHtml(item.proficiency) + '</span>';
       }
       return escapeHtml(item.name);
     }
@@ -1905,7 +1905,7 @@
       const line = document.createElement("div");
       line.className = "pp-skill-line";
       line.innerHTML = flatItems.map(renderItemHtml)
-        .join('<span class="pp-skill-sep"> · </span>');
+        .join('<span class="pp-skill-sep"> &middot; </span>');
       list.appendChild(line);
     } else {
       groups.forEach(function (g) {
@@ -1920,7 +1920,7 @@
         const line = document.createElement("div");
         line.className = "pp-skill-line";
         line.innerHTML = g.items.map(renderItemHtml)
-          .join('<span class="pp-skill-sep"> · </span>');
+          .join('<span class="pp-skill-sep"> &middot; </span>');
         groupEl.appendChild(line);
         list.appendChild(groupEl);
       });
@@ -2023,7 +2023,7 @@
       if (pub.pub_type) subBits.push(escapeHtml(titleize(pub.pub_type)));
       if (subBits.length) {
         html += '<div class="pp-list__meta">' +
-                subBits.join('<span class="pp-list__sep">·</span>') + '</div>';
+                subBits.join('<span class="pp-list__sep">&middot;</span>') + '</div>';
       }
       if (pub.description) {
         html += '<div class="pp-list__desc">' + escapeHtml(pub.description) + '</div>';
@@ -2099,7 +2099,7 @@
       if (dateStr) metaBits.push(escapeHtml(dateStr));
       if (metaBits.length) {
         html += '<div class="pp-list__meta">' +
-                metaBits.join('<span class="pp-list__sep">·</span>') + '</div>';
+                metaBits.join('<span class="pp-list__sep">&middot;</span>') + '</div>';
       }
       if (v.description) {
         html += '<div class="pp-list__desc">' + escapeHtml(v.description) + '</div>';
@@ -2123,14 +2123,14 @@
       const span = document.createElement("span");
       let html = '<span class="pp-lang__name">' + escapeHtml(l.name) + '</span>';
       if (l.proficiency) {
-        html += '<span class="pp-lang__level">· ' + escapeHtml(l.proficiency) + '</span>';
+        html += '<span class="pp-lang__level">&middot; ' + escapeHtml(l.proficiency) + '</span>';
       }
       span.innerHTML = html;
       list.appendChild(span);
       if (i < valid.length - 1) {
         const sep = document.createElement("span");
         sep.className = "pp-lang__sep";
-        sep.textContent = "·";
+        sep.textContent = "&middot;";
         list.appendChild(sep);
       }
     });
@@ -2193,7 +2193,7 @@
       const items = splitList(arr);
       if (!items.length) return "";
       return items.map(escapeHtml)
-        .join('<span class="pp-block__inline-sep"> · </span>');
+        .join('<span class="pp-block__inline-sep"> &middot; </span>');
     }
 
     const domainsHtml = listToInlineHtml(c.consulting_domains);
@@ -2204,14 +2204,14 @@
 
     if (c.engagement_type) {
       const eng = Array.isArray(c.engagement_type)
-        ? c.engagement_type.map(titleize).join(" · ")
+        ? c.engagement_type.map(titleize).join(" &middot; ")
         : titleize(c.engagement_type);
       html += renderRow("Engagement", escapeHtml(eng));
     }
 
     if (c.company_size_preference) {
       const csz = Array.isArray(c.company_size_preference)
-        ? c.company_size_preference.map(titleize).join(" · ")
+        ? c.company_size_preference.map(titleize).join(" &middot; ")
         : titleize(c.company_size_preference);
       html += renderRow("Company size", escapeHtml(csz));
     }
