@@ -1,3 +1,19 @@
+/* ── Google Analytics 4 (added 2026-10-31) ──
+   Measurement ID is public by design. Loaded here so every page
+   that includes global.js gets tracked. Portal/login pages do not
+   load global.js, so they are intentionally not tracked. */
+(function () {
+  var GA_ID = 'G-Y5SBSKZPCR';
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+  document.head.appendChild(s);
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  window.gtag('js', new Date());
+  window.gtag('config', GA_ID);
+})();
+
 /* ═══════════════════════════════════════════════════════════════════
    MECULS - GLOBAL NAVIGATION JAVASCRIPT  v6
    File: global.js
