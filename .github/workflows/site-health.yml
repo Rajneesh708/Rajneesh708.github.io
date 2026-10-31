@@ -1,0 +1,58 @@
+name: Site Health Check
+
+# Runs every Monday and on demand. If ANY check fails the run turns red and
+# GitHub emails you (Actions failure notification), so problems reach you
+# without you having to look. Added 2026-10-31.
+#
+# Checks:
+#   1. meculs.com and its sitemap answer normally
+#   2. The payment server (Vercel) is up (any 2xx-4xx reply counts as up)
+#   3. The website security certificate has more than 14 days left
+#   4. The domain meculs.com expires in more than 60 days
+#      (if the public registry cannot be read, this only warns, never fails)
+
+on:
+  schedule:
+    - cron: '0 4 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  health:
+    name: Check site, payment server, certificate and domain
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Website and payment server answer
+        run: |
+          FAIL=0
+          check () {
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" --max-time 30 --retry 3 --retry-delay 5 "$2")
+            echo "$1: HTTP $STATUS"
+            if [[ ! "$STATUS" =~ ^[234][0-9][0-9]$ ]]; then echo "FAIL: $1"; FAIL=1; fi
+          }
+          check "Website home" "https://meculs.com/"
+          check "Sitemap" "https://meculs.com/sitemap.xml"
+          check "Payment server" "https://meculs-payment.vercel.app/api/create-order"
+          exit $FAIL
+
+      - name: Security certificate has more than 14 days left
+        run: |
+          END=$(echo | openssl s_client -servername meculs.com -connect meculs.com:443 2>/dev/null | openssl x509 -noout -enddate | cut -d= -f2)
+          echo "Certificate ends: $END"
+          END_S=$(date -d "$END" +%s)
+          DAYS=$(( (END_S - $(date +%s)) / 86400 ))
+          echo "Days left: $DAYS"
+          if [ "$DAYS" -lt 14 ]; then echo "FAIL: certificate expires in $DAYS days"; exit 1; fi
+
+      - name: Domain expires in more than 60 days
+        run: |
+          JSON=$(curl -sL --max-time 30 --retry 3 "https://rdap.org/domain/meculs.com" || true)
+          EXP=$(echo "$JSON" | jq -r '.events[]? | select(.eventAction=="expiration") | .eventDate' 2>/dev/null | head -1)
+          if [ -z "$EXP" ]; then echo "WARNING: could not read domain expiry from the public registry. Check Namecheap by hand."; exit 0; fi
+          echo "Domain expires: $EXP"
+          DAYS=$(( ($(date -d "$EXP" +%s) - $(date +%s)) / 86400 ))
+          echo "Days left: $DAYS"
+          if [ "$DAYS" -lt 60 ]; then echo "FAIL: domain expires in $DAYS days. Renew at Namecheap."; exit 1; fi
