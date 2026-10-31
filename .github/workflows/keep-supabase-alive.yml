@@ -1,6 +1,6 @@
 name: Keep Supabase Alive
 
-# Keeps the MECULS Mumbai Supabase project active.
+# Keeps the MECULS Supabase projects active (website + meculs-pulse).
 # Free-tier Supabase projects pause after ~7 days of database
 # inactivity. A paused project means login breaks for everyone
 # until you manually un-pause from the Supabase dashboard.
@@ -36,32 +36,21 @@ jobs:
     timeout-minutes: 2
 
     steps:
-      - name: Ping Supabase
+      - name: Ping Supabase projects
         run: |
-          # -s: silent (no progress bar)
-          # -o /dev/null: discard response body (we only want status)
-          # -w "%{http_code}": print HTTP status code
-          # --max-time 30: time out after 30 seconds
-          # --retry 3: retry up to 3 times on network failure
-          STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
-            --max-time 30 \
-            --retry 3 \
-            --retry-delay 5 \
-            "https://fjxcphhhddfwrlkpshyw.supabase.co/rest/v1/")
-
-          echo "HTTP status from Supabase: $STATUS"
-          echo "Ping completed at $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
-
-          # Any 2xx, 3xx, or 4xx means the project is awake.
-          # 401/403 are also acceptable — they mean auth was
-          # rejected, but the server is alive (which is all
-          # the keep-alive needs to verify).
-          # 5xx, or no status (timeout / DNS fail), is a real
-          # failure that should mark the workflow as failed.
-          if [[ "$STATUS" =~ ^[2345][0-9][0-9]$ ]]; then
-            echo "✓ Supabase project is alive."
-            exit 0
-          else
-            echo "✗ Unexpected status — project may be paused."
-            exit 1
-          fi
+          # Pings the REST endpoint of each project. Any 2xx, 3xx or 4xx reply
+          # counts as alive (401/403 are fine). 5xx or no reply fails the run.
+          FAIL=0
+          for REF in fjxcphhhddfwrlkpshyw qkhrxhzxrbikeryhzngc; do
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+              --max-time 30 --retry 3 --retry-delay 5 \
+              "https://${REF}.supabase.co/rest/v1/")
+            echo "Project ${REF}: HTTP ${STATUS} at $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+            if [[ "$STATUS" =~ ^[234][0-9][0-9]$ ]]; then
+              echo "OK: ${REF} is alive."
+            else
+              echo "FAIL: ${REF} unexpected status (may be paused)."
+              FAIL=1
+            fi
+          done
+          exit $FAIL
