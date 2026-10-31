@@ -495,14 +495,14 @@ body {
   /* Insulate from page body inheritance (see .global-header). */
   font-family: 'Cormorant Garamond', serif;
   line-height: 1.4;
-  color: rgba(255,255,255,0.62);
+  color: #ffffff;
 }
 
 .gh-tagline-sub-text {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(0.80rem, 1.05vw, 0.92rem);
   font-style: italic;
-  color: rgba(255,255,255,0.62);
+  color: #ffffff;
   letter-spacing: 0.02em;
   line-height: 1.4;
   white-space: nowrap;
@@ -517,7 +517,7 @@ body {
   font-size: 0.68rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #d4af37;
+  color: #ffffff;
   margin-right: 0.5em;
 }
 
