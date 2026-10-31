@@ -655,6 +655,17 @@
       .ps-card__deal { justify-content: flex-start; }
       .ps-card__gstnote { margin-left: 0; max-width: none; }
     }
+
+    /* ── PRICING v5: reading order = Standard fee (struck) → you pay → "60% off" label ── */
+    .ps-index__link { grid-template-columns: 1.8rem 1fr; row-gap: 0.4rem; padding: 1rem 0; }
+    .ps-index__name { grid-column: 2; grid-row: 1; }
+    .ps-index__pricing { grid-column: 2; grid-row: 2; display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; font-family: var(--sans); }
+    .ps-index__pricing s { font-size: 0.82rem; color: var(--ps-soft); text-decoration: line-through; }
+    .ps-index__pricing .ps-index__price { grid-column: auto; grid-row: auto; font-size: 1.1rem; font-weight: 700; color: var(--ps-amber-deep); }
+    .ps-index__pricing .ps-index__off { order: 0; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #8f1d2f; background: rgba(199,37,62,0.09); border-radius: 999px; padding: 0.18rem 0.55rem; white-space: nowrap; }
+    .ps-card__deal { justify-content: flex-end; }
+    .ps-card__regular { font-size: 0.84rem; margin-top: 0.45rem; }
+    .ps-card__regular .ps-card__off { font-size: 0.84rem; font-weight: 700; color: #8f1d2f; }
   </style>
 </head>
 <body class="ps-body">
@@ -863,60 +874,53 @@
           <a class="ps-index__link" href="#anxiety">
             <span class="ps-index__num">01</span>
             <span class="ps-index__name">Anxiety, Burnout &amp; Emotional Weight</span>
-            <span class="ps-index__price">&#8377;1,999</span>
-            <span class="ps-index__deal"><span class="ps-index__off">&minus;60%</span> <s>&#8377;5,000</s></span>
+            <span class="ps-index__pricing"><s title="Standard fee">&#8377;5,000</s><span class="ps-index__price">&#8377;1,999</span><span class="ps-index__off">60% off</span></span>
           </a>
         </li>
         <li class="ps-index__item">
           <a class="ps-index__link" href="#pattern">
             <span class="ps-index__num">02</span>
             <span class="ps-index__name">The Pattern That Keeps Coming Back</span>
-            <span class="ps-index__price">&#8377;1,999</span>
-            <span class="ps-index__deal"><span class="ps-index__off">&minus;60%</span> <s>&#8377;5,000</s></span>
+            <span class="ps-index__pricing"><s title="Standard fee">&#8377;5,000</s><span class="ps-index__price">&#8377;1,999</span><span class="ps-index__off">60% off</span></span>
           </a>
         </li>
         <li class="ps-index__item">
           <a class="ps-index__link" href="#grief">
             <span class="ps-index__num">03</span>
             <span class="ps-index__name">Grief, Crisis &amp; Relationship Loss</span>
-            <span class="ps-index__price">&#8377;1,999</span>
-            <span class="ps-index__deal"><span class="ps-index__off">&minus;60%</span> <s>&#8377;5,000</s></span>
+            <span class="ps-index__pricing"><s title="Standard fee">&#8377;5,000</s><span class="ps-index__price">&#8377;1,999</span><span class="ps-index__off">60% off</span></span>
           </a>
         </li>
         <li class="ps-index__item">
           <a class="ps-index__link" href="#addiction">
             <span class="ps-index__num">04</span>
             <span class="ps-index__name">Breaking Free of an Addiction</span>
-            <span class="ps-index__price">&#8377;1,999</span>
-            <span class="ps-index__deal"><span class="ps-index__off">&minus;60%</span> <s>&#8377;5,000</s></span>
+            <span class="ps-index__pricing"><s title="Standard fee">&#8377;5,000</s><span class="ps-index__price">&#8377;1,999</span><span class="ps-index__off">60% off</span></span>
           </a>
         </li>
         <li class="ps-index__item">
           <a class="ps-index__link" href="#parent">
             <span class="ps-index__num">05</span>
             <span class="ps-index__name">Concerned About My Child &mdash; Parent</span>
-            <span class="ps-index__price">&#8377;1,999</span>
-            <span class="ps-index__deal"><span class="ps-index__off">&minus;60%</span> <s>&#8377;5,000</s></span>
+            <span class="ps-index__pricing"><s title="Standard fee">&#8377;5,000</s><span class="ps-index__price">&#8377;1,999</span><span class="ps-index__off">60% off</span></span>
           </a>
         </li>
         <li class="ps-index__item">
           <a class="ps-index__link" href="#child">
             <span class="ps-index__num">06</span>
             <span class="ps-index__name">Working With My Child &mdash; Child</span>
-            <span class="ps-index__price">&#8377;1,999</span>
-            <span class="ps-index__deal"><span class="ps-index__off">&minus;60%</span> <s>&#8377;5,000</s></span>
+            <span class="ps-index__pricing"><s title="Standard fee">&#8377;5,000</s><span class="ps-index__price">&#8377;1,999</span><span class="ps-index__off">60% off</span></span>
           </a>
         </li>
         <li class="ps-index__item">
           <a class="ps-index__link" href="#meditation">
             <span class="ps-index__num">07</span>
             <span class="ps-index__name">Long-Held Pain That Won't Shift</span>
-            <span class="ps-index__price">&#8377;199</span>
-            <span class="ps-index__deal"><span class="ps-index__off">&minus;60%</span> <s>&#8377;500</s></span>
+            <span class="ps-index__pricing"><s title="Standard fee">&#8377;500</s><span class="ps-index__price">&#8377;199</span><span class="ps-index__off">60% off</span></span>
           </a>
         </li>
       </ul>
-      <p class="ps-index__gstnote">Final price. No GST: turnover below the &#8377;20 lakh GST limit.</p>
+      <p class="ps-index__gstnote">The struck-through amount is our Standard fee. The bold amount is what you pay. No GST is charged: turnover is below the &#8377;20 lakh GST limit.</p>
     </aside>
 
     <!-- CARDS COLUMN -->
@@ -927,8 +931,8 @@
         <header class="ps-card__head">
           <h2 class="ps-card__name"><span class="ps-card__num">01</span>Anxiety, Burnout &amp; Emotional Weight</h2>
           <div class="ps-card__price-wrap">
-            <div class="ps-card__deal"><span class="ps-card__off">&minus;60%</span><div class="ps-card__price">&#8377;1,999 <span class="ps-card__price-unit">/ session</span></div></div>
-            <div class="ps-card__regular">Standard fee: <s>&#8377;5,000</s></div>
+            <div class="ps-card__deal"><div class="ps-card__price">&#8377;1,999 <span class="ps-card__price-unit">/ session</span></div></div>
+            <div class="ps-card__regular">Standard fee <s>&#8377;5,000</s> &middot; <span class="ps-card__off">60% off</span></div>
             <div class="ps-card__gstnote">Final price. No GST charged: turnover below the &#8377;20 lakh GST limit.</div>
           </div>
         </header>
@@ -953,8 +957,8 @@
         <header class="ps-card__head">
           <h2 class="ps-card__name"><span class="ps-card__num">02</span>The Pattern That Keeps Coming Back</h2>
           <div class="ps-card__price-wrap">
-            <div class="ps-card__deal"><span class="ps-card__off">&minus;60%</span><div class="ps-card__price">&#8377;1,999 <span class="ps-card__price-unit">/ session</span></div></div>
-            <div class="ps-card__regular">Standard fee: <s>&#8377;5,000</s></div>
+            <div class="ps-card__deal"><div class="ps-card__price">&#8377;1,999 <span class="ps-card__price-unit">/ session</span></div></div>
+            <div class="ps-card__regular">Standard fee <s>&#8377;5,000</s> &middot; <span class="ps-card__off">60% off</span></div>
             <div class="ps-card__gstnote">Final price. No GST charged: turnover below the &#8377;20 lakh GST limit.</div>
           </div>
         </header>
@@ -981,8 +985,8 @@
         <header class="ps-card__head">
           <h2 class="ps-card__name"><span class="ps-card__num">03</span>Grief, Crisis &amp; Relationship Loss</h2>
           <div class="ps-card__price-wrap">
-            <div class="ps-card__deal"><span class="ps-card__off">&minus;60%</span><div class="ps-card__price">&#8377;1,999 <span class="ps-card__price-unit">/ session</span></div></div>
-            <div class="ps-card__regular">Standard fee: <s>&#8377;5,000</s></div>
+            <div class="ps-card__deal"><div class="ps-card__price">&#8377;1,999 <span class="ps-card__price-unit">/ session</span></div></div>
+            <div class="ps-card__regular">Standard fee <s>&#8377;5,000</s> &middot; <span class="ps-card__off">60% off</span></div>
             <div class="ps-card__gstnote">Final price. No GST charged: turnover below the &#8377;20 lakh GST limit.</div>
           </div>
         </header>
@@ -1008,8 +1012,8 @@
         <header class="ps-card__head">
           <h2 class="ps-card__name"><span class="ps-card__num">04</span>Breaking Free of an Addiction</h2>
           <div class="ps-card__price-wrap">
-            <div class="ps-card__deal"><span class="ps-card__off">&minus;60%</span><div class="ps-card__price">&#8377;1,999 <span class="ps-card__price-unit">/ session</span></div></div>
-            <div class="ps-card__regular">Standard fee: <s>&#8377;5,000</s></div>
+            <div class="ps-card__deal"><div class="ps-card__price">&#8377;1,999 <span class="ps-card__price-unit">/ session</span></div></div>
+            <div class="ps-card__regular">Standard fee <s>&#8377;5,000</s> &middot; <span class="ps-card__off">60% off</span></div>
             <div class="ps-card__gstnote">Final price. No GST charged: turnover below the &#8377;20 lakh GST limit.</div>
           </div>
         </header>
@@ -1035,8 +1039,8 @@
         <header class="ps-card__head">
           <h2 class="ps-card__name"><span class="ps-card__num">05</span>Concerned About My Child &mdash; Parent Conversation</h2>
           <div class="ps-card__price-wrap">
-            <div class="ps-card__deal"><span class="ps-card__off">&minus;60%</span><div class="ps-card__price">&#8377;1,999 <span class="ps-card__price-unit">/ session</span></div></div>
-            <div class="ps-card__regular">Standard fee: <s>&#8377;5,000</s></div>
+            <div class="ps-card__deal"><div class="ps-card__price">&#8377;1,999 <span class="ps-card__price-unit">/ session</span></div></div>
+            <div class="ps-card__regular">Standard fee <s>&#8377;5,000</s> &middot; <span class="ps-card__off">60% off</span></div>
             <div class="ps-card__gstnote">Final price. No GST charged: turnover below the &#8377;20 lakh GST limit.</div>
           </div>
         </header>
@@ -1062,8 +1066,8 @@
         <header class="ps-card__head">
           <h2 class="ps-card__name"><span class="ps-card__num">06</span>Working With My Child &mdash; Child Session</h2>
           <div class="ps-card__price-wrap">
-            <div class="ps-card__deal"><span class="ps-card__off">&minus;60%</span><div class="ps-card__price">&#8377;1,999 <span class="ps-card__price-unit">/ session</span></div></div>
-            <div class="ps-card__regular">Standard fee: <s>&#8377;5,000</s></div>
+            <div class="ps-card__deal"><div class="ps-card__price">&#8377;1,999 <span class="ps-card__price-unit">/ session</span></div></div>
+            <div class="ps-card__regular">Standard fee <s>&#8377;5,000</s> &middot; <span class="ps-card__off">60% off</span></div>
             <div class="ps-card__gstnote">Final price. No GST charged: turnover below the &#8377;20 lakh GST limit.</div>
           </div>
         </header>
@@ -1089,8 +1093,8 @@
         <header class="ps-card__head">
           <h2 class="ps-card__name"><span class="ps-card__num">07</span>Long-Held Pain That Won't Shift</h2>
           <div class="ps-card__price-wrap">
-            <div class="ps-card__deal"><span class="ps-card__off">&minus;60%</span><div class="ps-card__price">&#8377;199 <span class="ps-card__price-unit">/ session</span></div></div>
-            <div class="ps-card__regular">Standard fee: <s>&#8377;500</s></div>
+            <div class="ps-card__deal"><div class="ps-card__price">&#8377;199 <span class="ps-card__price-unit">/ session</span></div></div>
+            <div class="ps-card__regular">Standard fee <s>&#8377;500</s> &middot; <span class="ps-card__off">60% off</span></div>
             <div class="ps-card__gstnote">Final price. No GST charged: turnover below the &#8377;20 lakh GST limit.</div>
           </div>
         </header>
