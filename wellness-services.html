@@ -615,6 +615,38 @@
       .ps-page { padding: 2.5rem 6% 3.5rem; }
       .ps-index__link { grid-template-columns: 1.6rem 1fr auto; }
     }
+  
+    /* ── PRICING DISPLAY: regular price, discount, offer price, GST note (2026-10-31) ── */
+    .ps-index__link { row-gap: 0.12rem; }
+    .ps-index__deal {
+      grid-column: 2 / -1;
+      display: flex; align-items: baseline; gap: 0.55rem;
+      font-family: var(--sans); font-size: 0.8rem; color: var(--ps-soft);
+    }
+    .ps-index__off { color: #cc0c39; font-size: 1rem; font-weight: 700; line-height: 1.1; }
+    .ps-index__deal s { color: var(--ps-soft); text-decoration: line-through; }
+    .ps-index__gst {
+      grid-column: 2 / -1;
+      font-family: var(--sans); font-size: 0.68rem; line-height: 1.3; color: var(--ps-soft);
+    }
+    .ps-card__deal { display: flex; align-items: baseline; justify-content: flex-end; gap: 0.65rem; }
+    .ps-card__off {
+      font-family: var(--sans); font-size: 1.75rem; font-weight: 700;
+      color: #cc0c39; line-height: 1; white-space: nowrap;
+    }
+    .ps-card__deal .ps-card__price { font-size: 1.9rem; }
+    .ps-card__regular {
+      font-family: var(--sans); font-size: 0.86rem; color: var(--ps-soft); margin-top: 0.45rem;
+    }
+    .ps-card__regular s { text-decoration: line-through; }
+    .ps-card__gstnote {
+      font-family: var(--sans); font-size: 0.72rem; line-height: 1.35; color: var(--ps-soft);
+      margin: 0.35rem 0 0 auto; max-width: 15.5rem;
+    }
+    @media (max-width: 880px) {
+      .ps-card__deal { justify-content: flex-start; }
+      .ps-card__gstnote { margin-left: 0; max-width: none; }
+    }
   </style>
 </head>
 <body class="ps-body">
@@ -823,49 +855,63 @@
           <a class="ps-index__link" href="#anxiety">
             <span class="ps-index__num">01</span>
             <span class="ps-index__name">Anxiety, Burnout &amp; Emotional Weight</span>
-            <span class="ps-index__price">&#8377;999</span>
+            <span class="ps-index__price">&#8377;1,999</span>
+            <span class="ps-index__deal"><span class="ps-index__off">&minus;60%</span> Regular price <s>&#8377;5,000</s></span>
+            <span class="ps-index__gst">Final price. No GST: turnover below &#8377;20 lakh limit.</span>
           </a>
         </li>
         <li class="ps-index__item">
           <a class="ps-index__link" href="#pattern">
             <span class="ps-index__num">02</span>
             <span class="ps-index__name">The Pattern That Keeps Coming Back</span>
-            <span class="ps-index__price">&#8377;999</span>
+            <span class="ps-index__price">&#8377;1,999</span>
+            <span class="ps-index__deal"><span class="ps-index__off">&minus;60%</span> Regular price <s>&#8377;5,000</s></span>
+            <span class="ps-index__gst">Final price. No GST: turnover below &#8377;20 lakh limit.</span>
           </a>
         </li>
         <li class="ps-index__item">
           <a class="ps-index__link" href="#grief">
             <span class="ps-index__num">03</span>
             <span class="ps-index__name">Grief, Crisis &amp; Relationship Loss</span>
-            <span class="ps-index__price">&#8377;999</span>
+            <span class="ps-index__price">&#8377;1,999</span>
+            <span class="ps-index__deal"><span class="ps-index__off">&minus;60%</span> Regular price <s>&#8377;5,000</s></span>
+            <span class="ps-index__gst">Final price. No GST: turnover below &#8377;20 lakh limit.</span>
           </a>
         </li>
         <li class="ps-index__item">
           <a class="ps-index__link" href="#addiction">
             <span class="ps-index__num">04</span>
             <span class="ps-index__name">Breaking Free of an Addiction</span>
-            <span class="ps-index__price">&#8377;999</span>
+            <span class="ps-index__price">&#8377;1,999</span>
+            <span class="ps-index__deal"><span class="ps-index__off">&minus;60%</span> Regular price <s>&#8377;5,000</s></span>
+            <span class="ps-index__gst">Final price. No GST: turnover below &#8377;20 lakh limit.</span>
           </a>
         </li>
         <li class="ps-index__item">
           <a class="ps-index__link" href="#parent">
             <span class="ps-index__num">05</span>
             <span class="ps-index__name">Concerned About My Child &mdash; Parent</span>
-            <span class="ps-index__price">&#8377;999</span>
+            <span class="ps-index__price">&#8377;1,999</span>
+            <span class="ps-index__deal"><span class="ps-index__off">&minus;60%</span> Regular price <s>&#8377;5,000</s></span>
+            <span class="ps-index__gst">Final price. No GST: turnover below &#8377;20 lakh limit.</span>
           </a>
         </li>
         <li class="ps-index__item">
           <a class="ps-index__link" href="#child">
             <span class="ps-index__num">06</span>
             <span class="ps-index__name">Working With My Child &mdash; Child</span>
-            <span class="ps-index__price">&#8377;999</span>
+            <span class="ps-index__price">&#8377;1,999</span>
+            <span class="ps-index__deal"><span class="ps-index__off">&minus;60%</span> Regular price <s>&#8377;5,000</s></span>
+            <span class="ps-index__gst">Final price. No GST: turnover below &#8377;20 lakh limit.</span>
           </a>
         </li>
         <li class="ps-index__item">
           <a class="ps-index__link" href="#meditation">
             <span class="ps-index__num">07</span>
             <span class="ps-index__name">Long-Held Pain That Won't Shift</span>
-            <span class="ps-index__price">&#8377;149</span>
+            <span class="ps-index__price">&#8377;199</span>
+            <span class="ps-index__deal"><span class="ps-index__off">&minus;60%</span> Regular price <s>&#8377;500</s></span>
+            <span class="ps-index__gst">Final price. No GST: turnover below &#8377;20 lakh limit.</span>
           </a>
         </li>
       </ul>
@@ -879,7 +925,9 @@
         <header class="ps-card__head">
           <h2 class="ps-card__name"><span class="ps-card__num">01</span>Anxiety, Burnout &amp; Emotional Weight</h2>
           <div class="ps-card__price-wrap">
-            <div class="ps-card__price">&#8377;999 <span class="ps-card__price-unit">/ session</span></div>
+            <div class="ps-card__deal"><span class="ps-card__off">&minus;60%</span><div class="ps-card__price">&#8377;1,999 <span class="ps-card__price-unit">/ session</span></div></div>
+            <div class="ps-card__regular">Regular price: <s>&#8377;5,000</s></div>
+            <div class="ps-card__gstnote">Final price. No GST charged: turnover below the &#8377;20 lakh GST limit.</div>
           </div>
         </header>
         <p class="ps-card__desc">
@@ -903,7 +951,9 @@
         <header class="ps-card__head">
           <h2 class="ps-card__name"><span class="ps-card__num">02</span>The Pattern That Keeps Coming Back</h2>
           <div class="ps-card__price-wrap">
-            <div class="ps-card__price">&#8377;999 <span class="ps-card__price-unit">/ session</span></div>
+            <div class="ps-card__deal"><span class="ps-card__off">&minus;60%</span><div class="ps-card__price">&#8377;1,999 <span class="ps-card__price-unit">/ session</span></div></div>
+            <div class="ps-card__regular">Regular price: <s>&#8377;5,000</s></div>
+            <div class="ps-card__gstnote">Final price. No GST charged: turnover below the &#8377;20 lakh GST limit.</div>
           </div>
         </header>
         <p class="ps-card__desc">
@@ -929,7 +979,9 @@
         <header class="ps-card__head">
           <h2 class="ps-card__name"><span class="ps-card__num">03</span>Grief, Crisis &amp; Relationship Loss</h2>
           <div class="ps-card__price-wrap">
-            <div class="ps-card__price">&#8377;999 <span class="ps-card__price-unit">/ session</span></div>
+            <div class="ps-card__deal"><span class="ps-card__off">&minus;60%</span><div class="ps-card__price">&#8377;1,999 <span class="ps-card__price-unit">/ session</span></div></div>
+            <div class="ps-card__regular">Regular price: <s>&#8377;5,000</s></div>
+            <div class="ps-card__gstnote">Final price. No GST charged: turnover below the &#8377;20 lakh GST limit.</div>
           </div>
         </header>
         <p class="ps-card__desc">
@@ -954,7 +1006,9 @@
         <header class="ps-card__head">
           <h2 class="ps-card__name"><span class="ps-card__num">04</span>Breaking Free of an Addiction</h2>
           <div class="ps-card__price-wrap">
-            <div class="ps-card__price">&#8377;999 <span class="ps-card__price-unit">/ session</span></div>
+            <div class="ps-card__deal"><span class="ps-card__off">&minus;60%</span><div class="ps-card__price">&#8377;1,999 <span class="ps-card__price-unit">/ session</span></div></div>
+            <div class="ps-card__regular">Regular price: <s>&#8377;5,000</s></div>
+            <div class="ps-card__gstnote">Final price. No GST charged: turnover below the &#8377;20 lakh GST limit.</div>
           </div>
         </header>
         <p class="ps-card__desc">
@@ -979,7 +1033,9 @@
         <header class="ps-card__head">
           <h2 class="ps-card__name"><span class="ps-card__num">05</span>Concerned About My Child &mdash; Parent Conversation</h2>
           <div class="ps-card__price-wrap">
-            <div class="ps-card__price">&#8377;999 <span class="ps-card__price-unit">/ session</span></div>
+            <div class="ps-card__deal"><span class="ps-card__off">&minus;60%</span><div class="ps-card__price">&#8377;1,999 <span class="ps-card__price-unit">/ session</span></div></div>
+            <div class="ps-card__regular">Regular price: <s>&#8377;5,000</s></div>
+            <div class="ps-card__gstnote">Final price. No GST charged: turnover below the &#8377;20 lakh GST limit.</div>
           </div>
         </header>
         <p class="ps-card__desc">
@@ -1004,7 +1060,9 @@
         <header class="ps-card__head">
           <h2 class="ps-card__name"><span class="ps-card__num">06</span>Working With My Child &mdash; Child Session</h2>
           <div class="ps-card__price-wrap">
-            <div class="ps-card__price">&#8377;999 <span class="ps-card__price-unit">/ session</span></div>
+            <div class="ps-card__deal"><span class="ps-card__off">&minus;60%</span><div class="ps-card__price">&#8377;1,999 <span class="ps-card__price-unit">/ session</span></div></div>
+            <div class="ps-card__regular">Regular price: <s>&#8377;5,000</s></div>
+            <div class="ps-card__gstnote">Final price. No GST charged: turnover below the &#8377;20 lakh GST limit.</div>
           </div>
         </header>
         <p class="ps-card__desc">
@@ -1029,7 +1087,9 @@
         <header class="ps-card__head">
           <h2 class="ps-card__name"><span class="ps-card__num">07</span>Long-Held Pain That Won't Shift</h2>
           <div class="ps-card__price-wrap">
-            <div class="ps-card__price">&#8377;149 <span class="ps-card__price-unit">/ session</span></div>
+            <div class="ps-card__deal"><span class="ps-card__off">&minus;60%</span><div class="ps-card__price">&#8377;199 <span class="ps-card__price-unit">/ session</span></div></div>
+            <div class="ps-card__regular">Regular price: <s>&#8377;500</s></div>
+            <div class="ps-card__gstnote">Final price. No GST charged: turnover below the &#8377;20 lakh GST limit.</div>
           </div>
         </header>
         <p class="ps-card__desc">
@@ -1243,7 +1303,7 @@
       "@type": "Offer",
       "name": "Anxiety, Burnout & Emotional Weight Session",
       "description": "A 60-minute one-to-one session pairing conversation that goes below the surface with guided meditation.",
-      "price": "999",
+      "price": "1999",
       "priceCurrency": "INR",
       "category": "Wellness Counselling",
       "url": "https://meculs.com/wellness-services.html#anxiety"
@@ -1252,7 +1312,7 @@
       "@type": "Offer",
       "name": "The Pattern That Keeps Coming Back Session",
       "description": "A Jungian-rooted conversation that surfaces the belief quietly running a repeating pattern in your life.",
-      "price": "999",
+      "price": "1999",
       "priceCurrency": "INR",
       "category": "Wellness Counselling",
       "url": "https://meculs.com/wellness-services.html#pattern"
@@ -1261,7 +1321,7 @@
       "@type": "Offer",
       "name": "Grief, Crisis & Relationship Loss Session",
       "description": "One-to-one accompaniment for when something has come apart - grief, crisis, or relationship breakdown.",
-      "price": "999",
+      "price": "1999",
       "priceCurrency": "INR",
       "category": "Wellness Counselling",
       "url": "https://meculs.com/wellness-services.html#grief"
@@ -1270,7 +1330,7 @@
       "@type": "Offer",
       "name": "Breaking Free of an Addiction Session",
       "description": "Conversation, meditation and creative expression working together with what the addiction was trying to fix.",
-      "price": "999",
+      "price": "1999",
       "priceCurrency": "INR",
       "category": "Wellness Counselling",
       "url": "https://meculs.com/wellness-services.html#addiction"
@@ -1279,7 +1339,7 @@
       "@type": "Offer",
       "name": "Concerned About My Child - Parent Conversation",
       "description": "The first conversation with the parent about a child who is struggling, and an honest next step.",
-      "price": "999",
+      "price": "1999",
       "priceCurrency": "INR",
       "category": "Family Counselling",
       "url": "https://meculs.com/wellness-services.html#parent"
@@ -1288,7 +1348,7 @@
       "@type": "Offer",
       "name": "Working With My Child - Child Session",
       "description": "One-to-one sessions with the child, with no agenda and no assessments, booked after the parent conversation.",
-      "price": "999",
+      "price": "1999",
       "priceCurrency": "INR",
       "category": "Family Counselling",
       "url": "https://meculs.com/wellness-services.html#child"
@@ -1297,7 +1357,7 @@
       "@type": "Offer",
       "name": "Long-Held Pain Meditation Session",
       "description": "A 30-minute one-to-one guided meditation session for long-held pain that has not shifted with other approaches.",
-      "price": "149",
+      "price": "199",
       "priceCurrency": "INR",
       "category": "Guided Meditation",
       "url": "https://meculs.com/wellness-services.html#meditation"
