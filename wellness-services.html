@@ -616,32 +616,31 @@
       .ps-index__link { grid-template-columns: 1.6rem 1fr auto; }
     }
   
-    /* ── PRICING DISPLAY: regular price, discount, offer price, GST note (2026-10-31) ── */
-    .ps-index__link { row-gap: 0.12rem; }
+    /* ── PRICING DISPLAY: regular price, discount, offer price, GST note (2026-10-31, v3 calmer) ── */
+    .ps-index__link { row-gap: 0.1rem; }
     .ps-index__deal {
       grid-column: 2 / -1;
-      display: flex; align-items: baseline; gap: 0.55rem;
-      font-family: var(--sans); font-size: 0.8rem; color: var(--ps-soft);
+      display: flex; align-items: baseline; gap: 0.5rem;
+      font-family: var(--sans); font-size: 0.74rem; color: var(--ps-soft);
     }
-    .ps-index__off { color: #cc0c39; font-size: 1rem; font-weight: 700; line-height: 1.1; }
+    .ps-index__off { color: #c7253e; font-size: 0.78rem; font-weight: 400; }
     .ps-index__deal s { color: var(--ps-soft); text-decoration: line-through; }
-    .ps-index__gst {
-      grid-column: 2 / -1;
-      font-family: var(--sans); font-size: 0.68rem; line-height: 1.3; color: var(--ps-soft);
+    .ps-index__gstnote {
+      margin: 0.9rem 0 0;
+      font-family: var(--sans); font-size: 0.72rem; line-height: 1.4; color: var(--ps-soft);
     }
-    .ps-card__deal { display: flex; align-items: baseline; justify-content: flex-end; gap: 0.65rem; }
+    .ps-card__deal { display: flex; align-items: baseline; justify-content: flex-end; gap: 0.6rem; }
     .ps-card__off {
-      font-family: var(--sans); font-size: 1.75rem; font-weight: 700;
-      color: #cc0c39; line-height: 1; white-space: nowrap;
+      font-family: var(--sans); font-size: 1.35rem; font-weight: 400;
+      color: #c7253e; line-height: 1; white-space: nowrap;
     }
-    .ps-card__deal .ps-card__price { font-size: 1.9rem; }
     .ps-card__regular {
-      font-family: var(--sans); font-size: 0.86rem; color: var(--ps-soft); margin-top: 0.45rem;
+      font-family: var(--sans); font-size: 0.82rem; color: var(--ps-soft); margin-top: 0.4rem;
     }
     .ps-card__regular s { text-decoration: line-through; }
     .ps-card__gstnote {
-      font-family: var(--sans); font-size: 0.72rem; line-height: 1.35; color: var(--ps-soft);
-      margin: 0.35rem 0 0 auto; max-width: 15.5rem;
+      font-family: var(--sans); font-size: 0.7rem; line-height: 1.35; color: var(--ps-soft);
+      margin: 0.3rem 0 0 auto; max-width: 15.5rem;
     }
     @media (max-width: 880px) {
       .ps-card__deal { justify-content: flex-start; }
@@ -856,8 +855,7 @@
             <span class="ps-index__num">01</span>
             <span class="ps-index__name">Anxiety, Burnout &amp; Emotional Weight</span>
             <span class="ps-index__price">&#8377;1,999</span>
-            <span class="ps-index__deal"><span class="ps-index__off">&minus;60%</span> Regular price <s>&#8377;5,000</s></span>
-            <span class="ps-index__gst">Final price. No GST: turnover below &#8377;20 lakh limit.</span>
+            <span class="ps-index__deal"><span class="ps-index__off">&minus;60%</span> <s>&#8377;5,000</s></span>
           </a>
         </li>
         <li class="ps-index__item">
@@ -865,8 +863,7 @@
             <span class="ps-index__num">02</span>
             <span class="ps-index__name">The Pattern That Keeps Coming Back</span>
             <span class="ps-index__price">&#8377;1,999</span>
-            <span class="ps-index__deal"><span class="ps-index__off">&minus;60%</span> Regular price <s>&#8377;5,000</s></span>
-            <span class="ps-index__gst">Final price. No GST: turnover below &#8377;20 lakh limit.</span>
+            <span class="ps-index__deal"><span class="ps-index__off">&minus;60%</span> <s>&#8377;5,000</s></span>
           </a>
         </li>
         <li class="ps-index__item">
@@ -874,8 +871,7 @@
             <span class="ps-index__num">03</span>
             <span class="ps-index__name">Grief, Crisis &amp; Relationship Loss</span>
             <span class="ps-index__price">&#8377;1,999</span>
-            <span class="ps-index__deal"><span class="ps-index__off">&minus;60%</span> Regular price <s>&#8377;5,000</s></span>
-            <span class="ps-index__gst">Final price. No GST: turnover below &#8377;20 lakh limit.</span>
+            <span class="ps-index__deal"><span class="ps-index__off">&minus;60%</span> <s>&#8377;5,000</s></span>
           </a>
         </li>
         <li class="ps-index__item">
@@ -883,8 +879,7 @@
             <span class="ps-index__num">04</span>
             <span class="ps-index__name">Breaking Free of an Addiction</span>
             <span class="ps-index__price">&#8377;1,999</span>
-            <span class="ps-index__deal"><span class="ps-index__off">&minus;60%</span> Regular price <s>&#8377;5,000</s></span>
-            <span class="ps-index__gst">Final price. No GST: turnover below &#8377;20 lakh limit.</span>
+            <span class="ps-index__deal"><span class="ps-index__off">&minus;60%</span> <s>&#8377;5,000</s></span>
           </a>
         </li>
         <li class="ps-index__item">
@@ -892,8 +887,7 @@
             <span class="ps-index__num">05</span>
             <span class="ps-index__name">Concerned About My Child &mdash; Parent</span>
             <span class="ps-index__price">&#8377;1,999</span>
-            <span class="ps-index__deal"><span class="ps-index__off">&minus;60%</span> Regular price <s>&#8377;5,000</s></span>
-            <span class="ps-index__gst">Final price. No GST: turnover below &#8377;20 lakh limit.</span>
+            <span class="ps-index__deal"><span class="ps-index__off">&minus;60%</span> <s>&#8377;5,000</s></span>
           </a>
         </li>
         <li class="ps-index__item">
@@ -901,8 +895,7 @@
             <span class="ps-index__num">06</span>
             <span class="ps-index__name">Working With My Child &mdash; Child</span>
             <span class="ps-index__price">&#8377;1,999</span>
-            <span class="ps-index__deal"><span class="ps-index__off">&minus;60%</span> Regular price <s>&#8377;5,000</s></span>
-            <span class="ps-index__gst">Final price. No GST: turnover below &#8377;20 lakh limit.</span>
+            <span class="ps-index__deal"><span class="ps-index__off">&minus;60%</span> <s>&#8377;5,000</s></span>
           </a>
         </li>
         <li class="ps-index__item">
@@ -910,11 +903,11 @@
             <span class="ps-index__num">07</span>
             <span class="ps-index__name">Long-Held Pain That Won't Shift</span>
             <span class="ps-index__price">&#8377;199</span>
-            <span class="ps-index__deal"><span class="ps-index__off">&minus;60%</span> Regular price <s>&#8377;500</s></span>
-            <span class="ps-index__gst">Final price. No GST: turnover below &#8377;20 lakh limit.</span>
+            <span class="ps-index__deal"><span class="ps-index__off">&minus;60%</span> <s>&#8377;500</s></span>
           </a>
         </li>
       </ul>
+      <p class="ps-index__gstnote">Final price. No GST: turnover below the &#8377;20 lakh GST limit.</p>
     </aside>
 
     <!-- CARDS COLUMN -->
