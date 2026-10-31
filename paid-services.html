@@ -632,7 +632,7 @@
     .ps-card__regular s { text-decoration: line-through; }
     .ps-card__gstnote {
       font-family: var(--sans); font-size: 0.7rem; line-height: 1.35; color: var(--ps-soft);
-      margin: 0.3rem 0 0 auto; max-width: 15.5rem;
+      margin: 0.3rem 0 0 auto; max-width: 20rem;
     }
     @media (max-width: 880px) {
       .ps-card__deal { justify-content: flex-start; }
@@ -646,9 +646,6 @@
     .ps-index__pricing s { font-size: 0.82rem; color: var(--ps-soft); text-decoration: line-through; }
     .ps-index__pricing .ps-index__price { grid-column: auto; grid-row: auto; font-size: 1.1rem; font-weight: 700; color: var(--ps-amber-deep); }
     .ps-index__pricing .ps-index__off { order: 0; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #8f1d2f; background: rgba(199,37,62,0.09); border-radius: 999px; padding: 0.18rem 0.55rem; white-space: nowrap; }
-    .ps-card__deal { justify-content: flex-end; }
-    .ps-card__regular { font-size: 0.84rem; margin-top: 0.45rem; }
-    .ps-card__regular .ps-card__off { font-size: 0.84rem; font-weight: 700; color: #8f1d2f; }
   </style>
 </head>
 <body class="ps-body">
@@ -896,7 +893,7 @@
           </a>
         </li>
       </ul>
-      <p class="ps-index__gstnote">The struck-through amount is our Standard fee. The bold amount is what you pay. No GST is charged: turnover is below the &#8377;20 lakh GST limit.</p>
+      <p class="ps-index__gstnote">GSTIN: Not Currently Applicable. MECULS is currently below the GST registration threshold applicable to service providers under Indian GST regulations.</p>
     </aside>
 
     <!-- CARDS COLUMN -->
@@ -907,9 +904,9 @@
         <header class="ps-card__head">
           <h2 class="ps-card__name"><span class="ps-card__num">01</span>CV Upgrade</h2>
           <div class="ps-card__price-wrap">
-            <div class="ps-card__deal"><div class="ps-card__price">&#8377;199</div></div>
-            <div class="ps-card__regular">Standard fee <s>&#8377;500</s> &middot; <span class="ps-card__off">60% off</span></div>
-            <div class="ps-card__gstnote">Final price. No GST charged: turnover below the &#8377;20 lakh GST limit.</div>
+            <div class="ps-card__deal"><span class="ps-card__off">&minus;60%</span><div class="ps-card__price">&#8377;199</div></div>
+            <div class="ps-card__regular">Standard fee: <s>&#8377;500</s></div>
+            <div class="ps-card__gstnote">GST Not Applicable: MECULS is currently below the GST registration threshold under Indian GST regulations.</div>
           </div>
         </header>
         <p class="ps-card__desc">
@@ -946,9 +943,9 @@
         <header class="ps-card__head">
           <h2 class="ps-card__name"><span class="ps-card__num">02</span>Single Coaching Session</h2>
           <div class="ps-card__price-wrap">
-            <div class="ps-card__deal"><div class="ps-card__price">&#8377;1,999</div></div>
-            <div class="ps-card__regular">Standard fee <s>&#8377;5,000</s> &middot; <span class="ps-card__off">60% off</span></div>
-            <div class="ps-card__gstnote">Final price. No GST charged: turnover below the &#8377;20 lakh GST limit.</div>
+            <div class="ps-card__deal"><span class="ps-card__off">&minus;60%</span><div class="ps-card__price">&#8377;1,999</div></div>
+            <div class="ps-card__regular">Standard fee: <s>&#8377;5,000</s></div>
+            <div class="ps-card__gstnote">GST Not Applicable: MECULS is currently below the GST registration threshold under Indian GST regulations.</div>
           </div>
         </header>
         <p class="ps-card__desc">
@@ -984,9 +981,9 @@
         <header class="ps-card__head">
           <h2 class="ps-card__name"><span class="ps-card__num">03</span>4-Session Coaching Block</h2>
           <div class="ps-card__price-wrap">
-            <div class="ps-card__deal"><div class="ps-card__price">&#8377;7,999</div></div>
-            <div class="ps-card__regular">Standard fee <s>&#8377;20,000</s> &middot; <span class="ps-card__off">60% off</span></div>
-            <div class="ps-card__gstnote">Final price. No GST charged: turnover below the &#8377;20 lakh GST limit.</div>
+            <div class="ps-card__deal"><span class="ps-card__off">&minus;60%</span><div class="ps-card__price">&#8377;7,999</div></div>
+            <div class="ps-card__regular">Standard fee: <s>&#8377;20,000</s></div>
+            <div class="ps-card__gstnote">GST Not Applicable: MECULS is currently below the GST registration threshold under Indian GST regulations.</div>
           </div>
         </header>
         <p class="ps-card__desc">
@@ -1022,9 +1019,9 @@
         <header class="ps-card__head">
           <h2 class="ps-card__name"><span class="ps-card__num">04</span>3-Month Coaching Retainer</h2>
           <div class="ps-card__price-wrap">
-            <div class="ps-card__deal"><div class="ps-card__price">&#8377;19,999</div></div>
-            <div class="ps-card__regular">Standard fee <s>&#8377;50,000</s> &middot; <span class="ps-card__off">60% off</span></div>
-            <div class="ps-card__gstnote">Final price. No GST charged: turnover below the &#8377;20 lakh GST limit.</div>
+            <div class="ps-card__deal"><span class="ps-card__off">&minus;60%</span><div class="ps-card__price">&#8377;19,999</div></div>
+            <div class="ps-card__regular">Standard fee: <s>&#8377;50,000</s></div>
+            <div class="ps-card__gstnote">GST Not Applicable: MECULS is currently below the GST registration threshold under Indian GST regulations.</div>
           </div>
         </header>
         <p class="ps-card__desc">
@@ -1060,9 +1057,9 @@
         <header class="ps-card__head">
           <h2 class="ps-card__name"><span class="ps-card__num">05</span>Career Investigation</h2>
           <div class="ps-card__price-wrap">
-            <div class="ps-card__deal"><div class="ps-card__price">&#8377;1,999</div></div>
-            <div class="ps-card__regular">Standard fee <s>&#8377;5,000</s> &middot; <span class="ps-card__off">60% off</span></div>
-            <div class="ps-card__gstnote">Final price. No GST charged: turnover below the &#8377;20 lakh GST limit.</div>
+            <div class="ps-card__deal"><span class="ps-card__off">&minus;60%</span><div class="ps-card__price">&#8377;1,999</div></div>
+            <div class="ps-card__regular">Standard fee: <s>&#8377;5,000</s></div>
+            <div class="ps-card__gstnote">GST Not Applicable: MECULS is currently below the GST registration threshold under Indian GST regulations.</div>
           </div>
         </header>
         <p class="ps-card__desc">
@@ -1105,9 +1102,9 @@
         <header class="ps-card__head">
           <h2 class="ps-card__name"><span class="ps-card__num">06</span>Personality Profiling</h2>
           <div class="ps-card__price-wrap">
-            <div class="ps-card__deal"><div class="ps-card__price">&#8377;9,999</div></div>
-            <div class="ps-card__regular">Standard fee <s>&#8377;25,000</s> &middot; <span class="ps-card__off">60% off</span></div>
-            <div class="ps-card__gstnote">Final price. No GST charged: turnover below the &#8377;20 lakh GST limit.</div>
+            <div class="ps-card__deal"><span class="ps-card__off">&minus;60%</span><div class="ps-card__price">&#8377;9,999</div></div>
+            <div class="ps-card__regular">Standard fee: <s>&#8377;25,000</s></div>
+            <div class="ps-card__gstnote">GST Not Applicable: MECULS is currently below the GST registration threshold under Indian GST regulations.</div>
           </div>
         </header>
         <p class="ps-card__desc">
