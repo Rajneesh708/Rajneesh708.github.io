@@ -201,7 +201,7 @@
     /* ── LAYOUT: sticky index + cards ─────────────────────────── */
     .ps-layout {
       display: grid;
-      grid-template-columns: 260px 1fr;
+      grid-template-columns: 300px 1fr;
       gap: 3.5rem;
       align-items: start;
     }
@@ -616,18 +616,27 @@
       .ps-index__link { grid-template-columns: 1.6rem 1fr auto; }
     }
   
-    /* ── PRICING DISPLAY: regular price, discount, offer price, GST note (2026-10-31, v3 calmer) ── */
-    .ps-index__link { row-gap: 0.1rem; }
-    .ps-index__deal {
-      grid-column: 2 / -1;
-      display: flex; align-items: baseline; gap: 0.5rem;
-      font-family: var(--sans); font-size: 0.74rem; color: var(--ps-soft);
+    /* ── PRICING DISPLAY: standard fee, discount, offer price, GST note (2026-10-31, v4 roomier left list) ── */
+    .ps-index__link {
+      grid-template-columns: 1.8rem auto 1fr;
+      row-gap: 0.28rem;
+      padding: 0.95rem 0;
+      align-items: baseline;
     }
-    .ps-index__off { color: #c7253e; font-size: 0.78rem; font-weight: 400; }
-    .ps-index__deal s { color: var(--ps-soft); text-decoration: line-through; }
+    .ps-index__num { grid-row: 1; }
+    .ps-index__name { grid-column: 2 / -1; grid-row: 1; font-size: 0.92rem; line-height: 1.35; }
+    .ps-index__price { grid-column: 2; grid-row: 2; font-size: 1rem; }
+    .ps-index__deal {
+      grid-column: 3; grid-row: 2;
+      display: flex; align-items: baseline; gap: 0.6rem; padding-left: 0.7rem;
+      font-family: var(--sans); font-size: 0.78rem; color: var(--ps-soft);
+    }
+    .ps-index__off { color: #c7253e; font-size: 0.8rem; font-weight: 400; order: 2; }
+    .ps-index__deal s { color: var(--ps-soft); text-decoration: line-through; order: 1; }
     .ps-index__gstnote {
-      margin: 0.9rem 0 0;
-      font-family: var(--sans); font-size: 0.72rem; line-height: 1.4; color: var(--ps-soft);
+      margin: 1.1rem 0 0; padding-top: 0.9rem;
+      border-top: 1px solid var(--ps-rule);
+      font-family: var(--sans); font-size: 0.74rem; line-height: 1.45; color: var(--ps-soft);
     }
     .ps-card__deal { display: flex; align-items: baseline; justify-content: flex-end; gap: 0.6rem; }
     .ps-card__off {
