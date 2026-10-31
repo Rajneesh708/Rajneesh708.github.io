@@ -183,13 +183,13 @@ iframe body {
 }
 .btn:disabled { opacity: 0.55; cursor: not-allowed; }
 
-.btn--primary { background: #4c73ff; color: #ffffff; }
+.btn--primary { background: #3555d6; color: #ffffff; }
 .btn--primary:hover:not(:disabled) { background: #3a5fd9; }
 
 .btn--secondary { background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; }
 .btn--secondary:hover:not(:disabled) { background: #e5e7eb; }
 
-.btn--ghost { background: transparent; color: #4c73ff; border: 1px solid #4c73ff; }
+.btn--ghost { background: transparent; color: #3555d6; border: 1px solid #3555d6; }
 .btn--ghost:hover:not(:disabled) { background: #eef4ff; }
 
 .btn--small {
@@ -201,13 +201,13 @@ iframe body {
 
 .btn--save-later {
   background: #ffffff;
-  color: #4c73ff;
-  border: 1px dashed #4c73ff;
+  color: #3555d6;
+  border: 1px dashed #3555d6;
 }
 .btn--save-later:hover:not(:disabled) { background: #eef4ff; }
 
 .btn--add-tag {
-  background: #4c73ff;
+  background: #3555d6;
   color: #ffffff;
   padding: 8px 14px;
   font-size: 0.82rem;
@@ -300,7 +300,7 @@ iframe body {
 .progress-badge {
   font-size: 0.75rem;
   font-weight: 600;
-  color: #4c73ff;
+  color: #3555d6;
   background: #eff6ff;
   border: 1px solid #bfdbfe;
   border-radius: 20px;
@@ -320,7 +320,7 @@ iframe body {
 /* Base — page CSS provides the per-step width override */
 .progress-bar-fill {
   height: 100%;
-  background: linear-gradient(90deg, #4c73ff, #6b8fff);
+  background: linear-gradient(90deg, #3555d6, #6b8fff);
   border-radius: 4px;
   transition: width 0.4s ease;
 }
@@ -364,9 +364,9 @@ iframe body {
   font-weight: 600;
   padding: 5px 12px;
   border-radius: 6px;
-  border: 1px solid #4c73ff;
+  border: 1px solid #3555d6;
   background: #ffffff;
-  color: #4c73ff;
+  color: #3555d6;
   cursor: pointer;
   transition:
     background 0.15s ease,
@@ -392,7 +392,7 @@ iframe body {
 /* Saving state — disabled, keeps blue colour */
 .btn--save-now.btn--save-now--saving {
   background: #eff4ff;
-  color: #4c73ff;
+  color: #3555d6;
 }
 
 /* Saved state — green: backend confirmed the save */
@@ -462,9 +462,9 @@ iframe body {
 }
 
 .draft-restore__btn--restore {
-  background: #4c73ff;
+  background: #3555d6;
   color: #ffffff;
-  border-color: #4c73ff;
+  border-color: #3555d6;
 }
 .draft-restore__btn--restore:hover {
   background: #3a5fd9;
@@ -575,7 +575,7 @@ iframe body {
 .error-popup__message { font-size: 0.9rem; color: #1f2937; line-height: 1.55; margin-bottom: 20px; }
 
 .error-popup__close {
-  background: #4c73ff;
+  background: #3555d6;
   color: #ffffff;
   border: none;
   border-radius: 6px;
@@ -655,7 +655,7 @@ iframe body {
 
 .sub-card--blue {
   background: #eef4ff;
-  border-left: 4px solid #4c73ff;
+  border-left: 4px solid #3555d6;
 }
 
 .sub-card--purple {
@@ -681,7 +681,7 @@ iframe body {
   background: #f8faff;
   border: 1px solid #dbeafe;
   border-radius: 8px;
-  border-left: 3px solid #4c73ff;
+  border-left: 3px solid #3555d6;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -705,7 +705,7 @@ iframe body {
 .ri-list-heading {
   font-size: 1rem;
   font-weight: 700;
-  color: #4c73ff;
+  color: #3555d6;
   margin: 0 0 10px 0;
 }
 
@@ -813,7 +813,7 @@ iframe body {
 .entry-title {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #4c73ff;
+  color: #3555d6;
   margin-bottom: 16px;
 }
 
@@ -873,7 +873,7 @@ iframe body {
   justify-content: space-between;
   align-items: flex-start;
   gap: 16px;
-  border-left: 3px solid #4c73ff;
+  border-left: 3px solid #3555d6;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }

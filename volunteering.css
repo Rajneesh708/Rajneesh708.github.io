@@ -37,11 +37,11 @@
 .vol-card__btn--edit {
   background: #ffffff;
   border-color: #c7d2fe;
-  color: #4c73ff;
+  color: #3555d6;
 }
 .vol-card__btn--edit:hover {
-  background: #4c73ff;
-  border-color: #4c73ff;
+  background: #3555d6;
+  border-color: #3555d6;
   color: #ffffff;
 }
 

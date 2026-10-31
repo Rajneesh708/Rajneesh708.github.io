@@ -8,7 +8,7 @@
    Card background  : #111827
    Border           : #1e2d40
    Gold accent      : #c9a84c
-   Primary blue     : #4c73ff
+   Primary blue     : #3555d6
    ============================================================ */
 
 /* ── Page background ── */
@@ -192,7 +192,7 @@
 }
 
 .auth-card .field-input:focus {
-  border-color: #4c73ff;
+  border-color: #3555d6;
   outline: none;
   box-shadow: 0 0 0 3px rgba(76,115,255,0.15);
 }
@@ -247,7 +247,7 @@
 
 /* ── Auth link (inline) ── */
 .auth-link {
-  color: #4c73ff;
+  color: #3555d6;
   text-decoration: none;
   font-size: inherit;
 }
@@ -292,7 +292,7 @@
 }
 
 .auth-type-option--selected .auth-type-option__box {
-  border-color: #4c73ff;
+  border-color: #3555d6;
   background: rgba(76,115,255,0.08);
 }
 
@@ -323,7 +323,7 @@
   height: 16px;
   flex-shrink: 0;
   margin-top: 2px;
-  accent-color: #4c73ff;
+  accent-color: #3555d6;
   cursor: pointer;
 }
 

@@ -50,7 +50,7 @@
 }
 
 .exp-list-card:hover {
-  border-color: #4c73ff;
+  border-color: #3555d6;
   background: #f5f7ff;
 }
 
@@ -81,11 +81,11 @@
 .exp-list-card__btn--edit {
   background: #ffffff;
   border-color: #c7d2fe;
-  color: #4c73ff;
+  color: #3555d6;
 }
 .exp-list-card__btn--edit:hover {
-  background: #4c73ff;
-  border-color: #4c73ff;
+  background: #3555d6;
+  border-color: #3555d6;
   color: #ffffff;
 }
 
@@ -188,7 +188,7 @@
 .field-select:focus,
 .field-textarea:focus {
   outline: none;
-  border-color: #4c73ff;
+  border-color: #3555d6;
   box-shadow: 0 0 0 3px rgba(76,115,255,0.1);
 }.date-row .field-select {
   flex: 1;
@@ -270,7 +270,7 @@
 /* Bolded missing-field names appear inline within the message.
    The JS wraps each name in <strong class="confirm-popup__highlight">. */
 .confirm-popup__highlight {
-  color: #4c73ff;
+  color: #3555d6;
   font-weight: 700;
 }
 
@@ -308,8 +308,8 @@
 }
 
 .confirm-popup__btn--primary {
-  background: #4c73ff;
-  border-color: #4c73ff;
+  background: #3555d6;
+  border-color: #3555d6;
   color: #ffffff;
 }
 .confirm-popup__btn--primary:hover {

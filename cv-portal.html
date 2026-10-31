@@ -545,7 +545,7 @@
     font-family: var(--sans);
     font-size: 0.78rem;
     font-weight: 600;
-    color: var(--cv-saffron);
+    color: #78581b;
     letter-spacing: 0.36em;
     text-transform: uppercase;
     margin-bottom: 1.2rem;
@@ -560,7 +560,7 @@
     margin-bottom: 3rem;
   }
 
-  .cv-mockup-h em { font-style: italic; color: var(--cv-saffron); }
+  .cv-mockup-h em { font-style: italic; color: #78581b; }
 
   .cv-browser {
     background: var(--cv-paper);
@@ -612,7 +612,7 @@
   }
 
   .cv-browser-domain { color: var(--cv-quiet); }
-  .cv-browser-path { color: var(--cv-saffron); font-weight: 500; }
+  .cv-browser-path { color: #78581b; font-weight: 500; }
 
   .cv-browser-content {
     padding: 2rem 1.8rem;
@@ -662,7 +662,7 @@
 
   .cv-browser-tag {
     background: var(--cv-saffron-bg);
-    color: var(--cv-saffron);
+    color: #78581b;
     font-family: var(--sans);
     font-size: 0.72rem;
     font-weight: 600;
@@ -736,7 +736,7 @@
     font-family: var(--sans);
     font-size: 0.78rem;
     font-weight: 600;
-    color: var(--cv-saffron);
+    color: #78581b;
     letter-spacing: 0.36em;
     text-transform: uppercase;
     margin-bottom: 1.2rem;
@@ -754,7 +754,7 @@
 
   .cv-h2 em {
     font-style: italic;
-    color: var(--cv-saffron);
+    color: #78581b;
     font-weight: 500;
   }
 
@@ -816,7 +816,7 @@
     font-family: var(--deva);
     font-size: clamp(6rem, 13vw, 10rem);
     line-height: 1;
-    color: var(--cv-saffron);
+    color: #78581b;
     font-weight: 500;
     letter-spacing: 0;
     margin-bottom: 1rem;
@@ -938,7 +938,7 @@
     border: 1px solid rgba(184,134,44,0.18);
   }
 
-  .cv-card-link span { color: var(--cv-saffron); font-weight: 500; }
+  .cv-card-link span { color: #78581b; font-weight: 500; }
 
   .cv-card-body {
     font-family: var(--serif);
@@ -1094,7 +1094,7 @@
     border-radius: 50%;
     background: var(--cv-vellum);
     border: 1.5px solid var(--cv-saffron);
-    color: var(--cv-saffron);
+    color: #78581b;
     font-family: var(--display);
     font-style: italic;
     font-weight: 500;
@@ -1430,6 +1430,10 @@
       font-size: 0.85rem;
     }
   }
+  /* contrast fix on light cards (2026-10-31) */
+  .cv-card-num { color: #78581b; opacity: 1; }
+  .cv-section:not(.ink) .cv-h2 em, .cv-profile-intro .cv-h2 em, .cv-cards-intro .cv-h2 em { color: #78581b; }
+  .cv-section:not(.ink) .cv-prose p em { color: #78581b; }
 </style>
   <link rel="icon" type="image/png" href="/images/favicon/favicon-96x96.png" sizes="96x96">
   <link rel="icon" type="image/svg+xml" href="/images/favicon/favicon.svg">

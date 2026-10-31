@@ -96,7 +96,7 @@
 .field-select:focus,
 .field-textarea:focus {
   outline: none;
-  border-color: #4c73ff;
+  border-color: #3555d6;
   box-shadow: 0 0 0 3px rgba(76,115,255,0.1);
 }
 
@@ -128,7 +128,7 @@
   background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%);
   border: 1px solid #bfdbfe;
   border-radius: 8px;
-  border-left: 4px solid #4c73ff;
+  border-left: 4px solid #3555d6;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -362,7 +362,7 @@
 .tag-row__toggle {
   font-size: 0.78rem;
   font-weight: 600;
-  color: #4c73ff;
+  color: #3555d6;
   cursor: pointer;
   background: none;
   border: none;
@@ -421,7 +421,7 @@
 
 .tag-row__body textarea:focus {
   outline: none;
-  border-color: #4c73ff;
+  border-color: #3555d6;
   box-shadow: 0 0 0 3px rgba(76,115,255,0.08);
 }
 
@@ -441,7 +441,7 @@
 
 /* Filled state — row gets a left accent */
 .tag-row--filled {
-  border-left: 3px solid #4c73ff;
+  border-left: 3px solid #3555d6;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }

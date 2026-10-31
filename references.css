@@ -27,7 +27,7 @@
 .ref-list-heading {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #4c73ff;
+  color: #3555d6;
   margin-bottom: 12px;
 }
 
@@ -123,11 +123,11 @@
 .ref-card__btn--edit {
   background: #ffffff;
   border-color: #c7d2fe;
-  color: #4c73ff;
+  color: #3555d6;
 }
 .ref-card__btn--edit:hover {
-  background: #4c73ff;
-  border-color: #4c73ff;
+  background: #3555d6;
+  border-color: #3555d6;
   color: #ffffff;
 }
 
@@ -144,7 +144,7 @@
 
 /* Hover state on the whole card to indicate the body is clickable */
 .ref-card:hover {
-  border-color: #4c73ff;
+  border-color: #3555d6;
   background: #f5f7ff;
 }
 
@@ -181,7 +181,7 @@
 .field-input:focus,
 .field-select:focus {
   outline: none;
-  border-color: #4c73ff;
+  border-color: #3555d6;
   box-shadow: 0 0 0 3px rgba(76,115,255,0.1);
 }
 /* Country code box — narrow fixed width.

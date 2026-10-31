@@ -27,7 +27,7 @@
 .section-intro {
   background: #f0f7ff;
   border: 1px solid #bfdbfe;
-  border-left: 4px solid #4c73ff;
+  border-left: 4px solid #3555d6;
   border-radius: 8px;
   padding: 14px 18px;
   margin-bottom: 16px;
@@ -53,7 +53,7 @@
 .field-select:focus,
 .field-textarea:focus {
   outline: none;
-  border-color: #4c73ff;
+  border-color: #3555d6;
   box-shadow: 0 0 0 3px rgba(76,115,255,0.1);
 }
 .field-textarea {
@@ -83,7 +83,7 @@
 .list-heading {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #4c73ff;
+  color: #3555d6;
   margin-bottom: 12px;
 }
 
@@ -99,7 +99,7 @@
   align-items: flex-start;
   gap: 16px;
 }
-.item-card--accent-blue   { border-left: 3px solid #4c73ff; }
+.item-card--accent-blue   { border-left: 3px solid #3555d6; }
 .item-card--accent-green  { border-left: 3px solid #16a34a; }
 .item-card--accent-purple { border-left: 3px solid #7e22ce; }
 .item-card--accent-yellow { border-left: 3px solid #ca8a04; }
@@ -140,7 +140,7 @@
   -webkit-box-orient:vertical; overflow:hidden;
 }
 .item-card__link {
-  font-size: 0.8rem; color: #4c73ff;
+  font-size: 0.8rem; color: #3555d6;
   text-decoration: none; margin-top: 4px; display: inline-block;
 }
 .item-card__link:hover { text-decoration: underline; }
@@ -163,7 +163,7 @@
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 .error-popup__close {
-  background: #4c73ff; color: #ffffff; border: none; border-radius: 6px;
+  background: #3555d6; color: #ffffff; border: none; border-radius: 6px;
   padding: 9px 28px; font-size: 0.875rem; font-weight: 600;
   cursor: pointer; width: auto; margin-top: 0; transition: background 0.15s;
 }
@@ -171,7 +171,7 @@
 .step-badge {
   font-size: 0.75rem;
   font-weight: 600;
-  color: #4c73ff;
+  color: #3555d6;
   background: #eff6ff;
   border: 1px solid #bfdbfe;
   border-radius: 20px;
@@ -243,7 +243,7 @@
 }
 
 .btn--ghost {
-  background: transparent; color: #4c73ff; border: 1px solid #4c73ff;
+  background: transparent; color: #3555d6; border: 1px solid #3555d6;
 }
 
 /* ── Skip-section pill button ──
@@ -282,6 +282,6 @@
   color: #1f2937;
 }
 .skip-section-pill:focus-visible {
-  outline: 2px solid #4c73ff;
+  outline: 2px solid #3555d6;
   outline-offset: 2px;
 }

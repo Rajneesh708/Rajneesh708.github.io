@@ -86,7 +86,7 @@
   text-align: center;
   font-size: 1.05rem;
   font-style: italic;
-  color: #a88a2e;            /* darker gold — readable on white */
+  color: #887025;            /* darker gold — readable on white */
   margin: 28px 24px 6px;
   font-weight: 600;
   letter-spacing: 0.01em;
@@ -222,7 +222,7 @@
 }
 
 .bonus-item:hover {
-  border-color: #4c73ff;
+  border-color: #3555d6;
   background: #f0f4ff;
 }
 
@@ -243,7 +243,7 @@
 }
 
 .bonus-item--skipped:hover {
-  border-color: #4c73ff;
+  border-color: #3555d6;
   background: #f0f4ff;
 }
 
@@ -268,7 +268,7 @@
 
 .bonus-item__status--pending {
   background: #eff6ff;
-  color: #4c73ff;
+  color: #3555d6;
   border: 1px solid #bfdbfe;
 }
 
@@ -321,7 +321,7 @@
   border: 1px solid #d1d5db;
   border-radius: 6px;
   background: #f3f4f6;
-  color: #6b7280;
+  color: #5b6270;
   box-sizing: border-box;
   cursor: text;
   font-family: inherit;

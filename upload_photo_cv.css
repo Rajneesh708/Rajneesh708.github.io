@@ -105,19 +105,19 @@
 
 .photo-dropzone:hover,
 .photo-dropzone:focus {
-  border-color: #4c73ff;
+  border-color: #3555d6;
   background: #eef4ff;
   outline: none;
 }
 
 .photo-dropzone.dragover {
-  border-color: #4c73ff;
+  border-color: #3555d6;
   background: #eef4ff;
 }
 
 .photo-dropzone.has-image {
   border-style: solid;
-  border-color: #4c73ff;
+  border-color: #3555d6;
 }
 
 /* ── Photo dropzone wrapper ──
@@ -200,7 +200,7 @@
 }
 
 .link-text {
-  color: #4c73ff;
+  color: #3555d6;
   font-weight: 600;
   text-decoration: underline;
   text-underline-offset: 2px;
@@ -225,13 +225,13 @@
 
 .cv-dropzone:hover,
 .cv-dropzone:focus {
-  border-color: #4c73ff;
+  border-color: #3555d6;
   background: #eef4ff;
   outline: none;
 }
 
 .cv-dropzone.dragover {
-  border-color: #4c73ff;
+  border-color: #3555d6;
   background: #eef4ff;
 }
 

@@ -48,12 +48,12 @@
 }
 
 .type-chip:hover {
-  border-color: #4c73ff;
+  border-color: #3555d6;
   background: #f0f5ff;
 }
 
 .type-chip.selected {
-  border-color: #4c73ff;
+  border-color: #3555d6;
   background: #eef4ff;
   color: #1d4ed8;
   font-weight: 700;
@@ -96,11 +96,11 @@
 .pf-card__btn--edit {
   background: #ffffff;
   border-color: #c7d2fe;
-  color: #4c73ff;
+  color: #3555d6;
 }
 .pf-card__btn--edit:hover {
-  background: #4c73ff;
-  border-color: #4c73ff;
+  background: #3555d6;
+  border-color: #3555d6;
   color: #ffffff;
 }
 
@@ -120,7 +120,7 @@
   transition: border-color 0.15s, background 0.15s;
 }
 .item-card.item-card--accent-blue:hover {
-  border-color: #4c73ff;
+  border-color: #3555d6;
   background: #f5f7ff;
 }
 

@@ -60,7 +60,7 @@
 .field-select:focus,
 .field-textarea:focus {
   outline: none;
-  border-color: #4c73ff;
+  border-color: #3555d6;
   box-shadow: 0 0 0 3px rgba(76,115,255,0.1);
 }
 
@@ -246,7 +246,7 @@
   height: 32px;
   border-radius: 6px;
   background: #f3f4f6;
-  color: #4c73ff;
+  color: #3555d6;
   font-size: 1rem;
   font-weight: 700;
   text-decoration: none;
