@@ -254,7 +254,7 @@
       position: absolute; inset: 0; z-index: -3;
       background-image: url('images/our-work-proof/our-work-proof-hero-bg.jpg');
       background-size: cover; background-position: center 30%;
-      filter: brightness(0.42) saturate(0.85) contrast(1.05);
+      filter: brightness(0.95) saturate(0.95) contrast(1.05);
       transform: scale(1.03);
       animation: wp-hero-zoom 18s ease-out forwards;
     }
@@ -265,7 +265,8 @@
     .wp-hero-scrim {
       position: absolute; inset: 0; z-index: -2;
       background:
-        linear-gradient(170deg, rgba(15,13,10,0.78) 0%, rgba(26,24,20,0.62) 45%, rgba(15,13,10,0.88) 100%);
+        linear-gradient(90deg, rgba(15,13,10,0.86) 0%, rgba(15,13,10,0.76) 50%, rgba(15,13,10,0.58) 100%),
+        linear-gradient(180deg, rgba(15,13,10,0.5) 0%, rgba(15,13,10,0.2) 25%, transparent 60%, rgba(15,13,10,0.5) 100%);
       pointer-events: none;
     }
     .wp-hero-glow {
@@ -634,11 +635,11 @@
       position: absolute; inset: 0; z-index: -3;
       background-image: url('images/our-work-proof/our-work-proof-closing-bg.jpg');
       background-size: cover; background-position: center;
-      filter: brightness(0.32) saturate(0.7) contrast(1.06);
+      filter: brightness(0.9) saturate(0.9) contrast(1.05);
     }
     .wp-closing-scrim {
       position: absolute; inset: 0; z-index: -2;
-      background: linear-gradient(170deg, rgba(15,13,10,0.85) 0%, rgba(26,24,20,0.72) 50%, rgba(15,13,10,0.92) 100%);
+      background: radial-gradient(ellipse 75% 85% at 50% 50%, rgba(15,13,10,0.9) 0%, rgba(15,13,10,0.74) 55%, rgba(15,13,10,0.25) 100%);
     }
     .wp-closing-in {
       position: relative; z-index: 1;
@@ -715,6 +716,12 @@ html>body:nth-of-type(1)>div:nth-of-type(1)>main:nth-of-type(1)>section:nth-of-t
 html>body:nth-of-type(1)>div:nth-of-type(1)>main:nth-of-type(1)>section:nth-of-type(3)>div:nth-of-type(1)>div:nth-of-type(1)>span:nth-of-type(3){color:#ffffff !important;-webkit-text-fill-color:#ffffff !important;opacity:1 !important}
 html>body:nth-of-type(1)>div:nth-of-type(1)>main:nth-of-type(1)>section:nth-of-type(5)>div:nth-of-type(1)>div:nth-of-type(1)>span:nth-of-type(3){color:#ffffff !important;-webkit-text-fill-color:#ffffff !important;opacity:1 !important}
 }
+
+/* readability on photos */
+.wp-hero-eyebrow,.wp-hero-eyebrow span,.wp-closing-eyebrow,.wp-closing-eyebrow span{color:#f3dc83 !important;-webkit-text-fill-color:#f3dc83 !important}
+.wp-hero-stat-l{color:#fff !important}
+.wp-closing-cite{color:#fff !important}
+.wp-hero-stat-n{color:#f3dc83 !important}
 </style>
 </head>
 <body>
