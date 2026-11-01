@@ -769,6 +769,24 @@
   }
   .swd-cta__next a:hover { color: var(--gold); }
 
+
+  /* ── PROOF: pages of this site (added 2026-11-01) ── */
+  .swd-proof { background: var(--swd-ground); padding: 6rem 5%; border-bottom: 1px solid rgba(26,22,18,0.08); }
+  .swd-proof__inner { max-width: 1180px; margin: 0 auto; }
+  .swd-proof h2 { font-family: var(--display, 'Playfair Display', serif); font-weight: 500; font-size: clamp(2rem, 3.6vw, 3rem); line-height: 1.18; color: var(--swd-ink); margin: 0.6rem 0 1.4rem; }
+  .swd-proof h2 em { font-style: italic; color: #54420d; }
+  .swd-proof__body { font-family: var(--serif); font-size: 1.3rem; line-height: 1.7; color: var(--swd-ink-2); max-width: 46rem; margin-bottom: 3rem; }
+  .swd-proof__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.4rem 2rem; }
+  .swd-proof__fig { margin: 0; }
+  .swd-proof__frame { background: #fff; border: 1px solid rgba(26,22,18,0.16); border-radius: 10px; overflow: hidden; box-shadow: 0 18px 40px -22px rgba(13,21,32,0.45); }
+  .swd-proof__bar { display: flex; align-items: center; gap: 6px; padding: 0.6rem 0.8rem; background: var(--swd-dark); }
+  .swd-proof__bar i { width: 9px; height: 9px; border-radius: 50%; background: rgba(212,175,55,0.75); display: block; }
+  .swd-proof__url { margin-left: 0.7rem; font-family: var(--ui, 'Archivo', sans-serif); font-size: 0.8rem; color: rgba(255,255,255,0.88); letter-spacing: 0.02em; }
+  .swd-proof__frame img { display: block; width: 100%; height: auto; }
+  .swd-proof figcaption { font-family: var(--ui, 'Archivo', sans-serif); font-size: 1rem; line-height: 1.6; color: var(--swd-ink-2); margin-top: 0.9rem; }
+  .swd-proof figcaption strong { color: var(--swd-ink); }
+  @media (max-width: 760px) { .swd-proof__grid { grid-template-columns: 1fr; } .swd-proof { padding: 4rem 5%; } }
+
   /* ── RESPONSIVE ──────────────────────────────────── */
   @media (max-width: 1099px) {
     .swd-hero__inner       { grid-template-columns: 1fr; gap: 3rem; }
@@ -1214,6 +1232,45 @@
           <p>Existing website review, vulnerability assessment, and targeted or full rebuild. We identify what the original build left unaddressed &ndash; across performance, security, data protection, accessibility, and search visibility &ndash; and correct it without dismantling what is already working correctly.</p>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- S6b: PROOF - pages of this very site -->
+  <section class="swd-proof" aria-labelledby="swd-proof-h2">
+    <div class="swd-proof__inner">
+      <span class="swd-eyebrow rev">Proof</span>
+      <h2 id="swd-proof-h2" class="rev">You are reading<br>the <em>work itself.</em></h2>
+      <p class="swd-proof__body rev">This website was designed, built, secured and published by MECULS. Four of its pages, exactly as visitors see them.</p>
+      <div class="swd-proof__grid">
+        <figure class="swd-proof__fig rev">
+          <div class="swd-proof__frame">
+            <div class="swd-proof__bar" aria-hidden="true"><i></i><i></i><i></i><span class="swd-proof__url">meculs.com</span></div>
+            <img src="images/service-website-development/swd-site-home.jpg" alt="The MECULS home page: opening statement and hero image" width="1200" height="662" loading="lazy">
+          </div>
+          <figcaption><strong>Home page.</strong> One clear statement, one calm image, and a direct path to every service.</figcaption>
+        </figure>
+        <figure class="swd-proof__fig rev">
+          <div class="swd-proof__frame">
+            <div class="swd-proof__bar" aria-hidden="true"><i></i><i></i><i></i><span class="swd-proof__url">meculs.com/about-rajneesh-jain</span></div>
+            <img src="images/service-website-development/swd-site-about.jpg" alt="The About Rajneesh Jain page with founder portrait and credentials" width="1200" height="662" loading="lazy">
+          </div>
+          <figcaption><strong>Founder page.</strong> A quiet, credible profile built around the person, not a sales pitch.</figcaption>
+        </figure>
+        <figure class="swd-proof__fig rev">
+          <div class="swd-proof__frame">
+            <div class="swd-proof__bar" aria-hidden="true"><i></i><i></i><i></i><span class="swd-proof__url">meculs.com/360-pulse-rate</span></div>
+            <img src="images/service-website-development/swd-site-pulse.jpg" alt="The 360 degree PULSE RATE methodology page" width="1200" height="662" loading="lazy">
+          </div>
+          <figcaption><strong>Methodology page.</strong> A flagship framework presented with its own visual identity.</figcaption>
+        </figure>
+        <figure class="swd-proof__fig rev">
+          <div class="swd-proof__frame">
+            <div class="swd-proof__bar" aria-hidden="true"><i></i><i></i><i></i><span class="swd-proof__url">meculs.com/paid-services</span></div>
+            <img src="images/service-website-development/swd-site-paid.jpg" alt="The Paid Services page with prices and Razorpay payment" width="1200" height="662" loading="lazy">
+          </div>
+          <figcaption><strong>Paid services.</strong> Clear prices and secure online payment, verified on the server.</figcaption>
+        </figure>
       </div>
     </div>
   </section>
