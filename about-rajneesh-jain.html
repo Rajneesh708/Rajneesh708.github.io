@@ -293,60 +293,68 @@
       .rj-hero-grid { grid-template-columns: 1fr; gap: 56px; }
     }
 
-    /* PORTRAIT FRAME -- thick gold border */
+    /* ROYAL PORTRAIT CARD -- ink card, double gold frame, portrait fades into a name plate (2026-11-01) */
     .rj-portrait {
       position: relative;
-      max-width: 420px;
+      max-width: 440px;
       width: 100%;
-      aspect-ratio: 4 / 5;
+      aspect-ratio: 4 / 5.3;
       margin: 0 auto;
+      padding: 10px;
+      border-radius: 26px;
+      border: 1px solid rgba(212,175,55,0.6);
+      background: linear-gradient(160deg, #1b160b 0%, #0e0c08 55%, #1b160b 100%);
+      box-shadow: 0 40px 90px -30px rgba(0,0,0,0.85),
+                  0 0 0 1px rgba(212,175,55,0.12),
+                  0 0 70px -12px rgba(212,175,55,0.22);
     }
     .rj-portrait-frame {
       position: relative;
       width: 100%; height: 100%;
       overflow: hidden;
-      border: 1px solid rgba(212,175,55,0.32);
-      box-shadow: 0 32px 80px -28px rgba(0,0,0,0.7),
-                  inset 0 0 0 1px rgba(212,175,55,0.08);
+      border-radius: 18px;
+      border: 1px solid rgba(212,175,55,0.38);
+      background: #0e0c08;
+    }
+    .rj-portrait-frame img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover; object-position: 50% 10%; display: block;
+      filter: grayscale(1) contrast(1.1) brightness(0.96);
     }
     .rj-portrait-frame::before {
       content: '';
-      position: absolute;
-      top: 0; left: 0; width: 6px; height: 100%;
-      background: linear-gradient(180deg, var(--gold) 0%, var(--gold-deep) 100%);
-      z-index: 2;
-    }
-    .rj-portrait-frame img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-      filter: brightness(0.95) contrast(1.04);
-    }
-    .rj-portrait-corner {
-      position: absolute;
-      bottom: -16px; right: -16px;
-      width: 80px; height: 80px;
-      border-right: 2px solid var(--gold);
-      border-bottom: 2px solid var(--gold);
-      pointer-events: none;
+      position: absolute; inset: 0; z-index: 1;
+      background:
+        linear-gradient(180deg, rgba(14,12,8,0) 40%, rgba(14,12,8,0.8) 68%, #0e0c08 100%),
+        radial-gradient(120% 65% at 50% 0%, rgba(212,175,55,0.16), transparent 62%);
     }
     .rj-portrait-caption {
-      position: absolute;
-      bottom: 16px; left: 22px;
-      padding: 0.6rem 1rem;
-      background: rgba(14, 12, 8, 0.85);
-      border-left: 2px solid var(--gold);
-      backdrop-filter: blur(4px);
+      position: absolute; left: 0; right: 0; bottom: 0;
+      padding: 0 1.7rem 1.6rem;
       z-index: 3;
     }
     .rj-portrait-caption-tag {
       display: block;
-      font-family: var(--sans); font-size: 0.62rem; font-weight: 700;
-      letter-spacing: 0.26em; text-transform: uppercase; color: var(--gold);
-      margin-bottom: 0.2rem;
+      font-family: var(--sans); font-size: 0.64rem; font-weight: 700;
+      letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold);
+      margin-bottom: 0.45rem;
     }
     .rj-portrait-caption-name {
       display: block;
-      font-family: var(--serif-display); font-style: italic; font-weight: 500;
-      font-size: 0.95rem; color: #ffffff;
+      font-family: var(--serif-display); font-weight: 600;
+      font-size: clamp(1.7rem, 2.6vw, 2.15rem); line-height: 1.1; color: #ffffff;
+      letter-spacing: 0.01em;
+    }
+    .rj-portrait-caption-role {
+      display: block;
+      font-family: var(--sans); font-size: 0.84rem; line-height: 1.45; color: #e9e0c8;
+      margin-top: 0.5rem;
+    }
+    .rj-portrait-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 1rem; }
+    .rj-portrait-tags span {
+      font-family: var(--sans); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.04em;
+      color: #f3e7bd; padding: 0.38rem 0.8rem; border-radius: 999px;
+      border: 1px solid rgba(212,175,55,0.55); background: rgba(212,175,55,0.1);
     }
 
     /* HERO TEXT */
@@ -844,11 +852,12 @@
           <img src="images/about-rajneesh-jain/about-rajneesh-jain-portrait.jpg"
                alt="Rajneesh Jain, Founder of MECULS, Delhi, India"
                loading="eager" fetchpriority="high"
-               width="420" height="525">
-          <div class="rj-portrait-corner" aria-hidden="true"></div>
+               width="420" height="555">
           <div class="rj-portrait-caption">
             <span class="rj-portrait-caption-tag">The Founder</span>
             <span class="rj-portrait-caption-name">Rajneesh Jain</span>
+            <span class="rj-portrait-caption-role">Architect of the 360&deg; PULSE RATE&trade; model</span>
+            <span class="rj-portrait-tags"><span>Delhi</span><span>Former BCG</span><span>Harvard Kennedy School</span></span>
           </div>
         </div>
       </div>
