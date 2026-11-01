@@ -35,7 +35,7 @@
 }
 
 .cert-list-card:hover {
-  border-color: #3555d6;
+  border-color: #1f3a9e;
   background: #f5f7ff;
 }
 
@@ -57,7 +57,7 @@
 
 .cert-list-card__info a {
   font-size: 0.8rem;
-  color: #3555d6;
+  color: #1f3a9e;
   text-decoration: none;
   display: inline-block;
   margin-top: 4px;
@@ -89,11 +89,11 @@
 .cert-list-card__btn--edit {
   background: #ffffff;
   border-color: #c7d2fe;
-  color: #3555d6;
+  color: #1f3a9e;
 }
 .cert-list-card__btn--edit:hover {
-  background: #3555d6;
-  border-color: #3555d6;
+  background: #1f3a9e;
+  border-color: #1f3a9e;
   color: #ffffff;
 }
 
@@ -112,7 +112,7 @@
 .entry-title {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #3555d6;
+  color: #1f3a9e;
   margin-bottom: 12px;
 }
 .field-group:last-child {
@@ -148,7 +148,7 @@
 .field-input:focus,
 .field-select:focus {
   outline: none;
-  border-color: #3555d6;
+  border-color: #1f3a9e;
   box-shadow: 0 0 0 3px rgba(76,115,255,0.1);
 }
 

@@ -55,7 +55,7 @@
 .field-input:focus,
 .field-select:focus {
   outline: none;
-  border-color: #3555d6;
+  border-color: #1f3a9e;
   box-shadow: 0 0 0 3px rgba(76,115,255,0.1);
 }
 

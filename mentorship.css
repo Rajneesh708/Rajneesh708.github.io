@@ -34,7 +34,7 @@
 }
 
 .role-option:hover {
-  border-color: #3555d6;
+  border-color: #1f3a9e;
   background: #f8faff;
 }
 
@@ -48,7 +48,7 @@
 /* Mentor / Coach selected (BLUE) */
 .role-option[data-value="Mentor"].selected,
 .role-option[data-value="Coach"].selected {
-  border-color: #3555d6;
+  border-color: #1f3a9e;
   background: #eef4ff;
 }
 .role-option[data-value="Mentor"].selected .role-option__title,
@@ -57,7 +57,7 @@
 }
 .role-option[data-value="Mentor"] input[type="checkbox"],
 .role-option[data-value="Coach"] input[type="checkbox"] {
-  accent-color: #3555d6;
+  accent-color: #1f3a9e;
 }
 
 /* Mentee / Coachee selected (GREEN) */
@@ -77,7 +77,7 @@
 
 /* Default checkbox accent for unselected hover state */
 .role-option input[type="checkbox"] {
-  accent-color: #3555d6;
+  accent-color: #1f3a9e;
 }
 
 /* Checkbox positioned in the top-right of each card */
@@ -88,7 +88,7 @@
   width: 16px;
   height: 16px;
   cursor: pointer;
-  accent-color: #3555d6;
+  accent-color: #1f3a9e;
 }
 
 .role-option__icon {
@@ -149,7 +149,7 @@
 .section-heading-box--blue {
   background: #eef4ff;
   border-color: #bfdbfe;
-  border-left-color: #3555d6;
+  border-left-color: #1f3a9e;
 }
 .section-heading-box--blue .section-heading-box__title { color: #1d4ed8; }
 .section-heading-box--blue .section-heading-box__sub   { color: #1e40af; }

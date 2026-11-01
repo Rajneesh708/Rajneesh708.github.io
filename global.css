@@ -60,7 +60,7 @@
   --g-dark:        #000814;
   --g-dark-2:      #00111f;
   --g-white:       #ffffff;
-  --g-muted:       #7a8499;
+  --g-muted:       #c9d3e6;
   --g-soft:        #b8c2d8;
   --g-rule:        rgba(255,255,255,0.08);
   --g-nav-h:       72px;
@@ -141,7 +141,7 @@ body {
 .gh-nav > li { position: relative; }
 
 .gh-nav > li > a {
-  font-size: 0.74rem;
+  font-size: 0.8rem;
   font-weight: 500;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -514,7 +514,7 @@ body {
   font-family: 'Archivo', sans-serif;
   font-style: normal;
   font-weight: 700;
-  font-size: 0.68rem;
+  font-size: 0.8rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #d4af37;
@@ -565,7 +565,7 @@ body {
   color: var(--g-gold);
 }
 .gf-tagline {
-  font-size: 0.85rem;
+  font-size: 0.92rem;
   color: var(--g-muted);
   line-height: 1.6;
   margin: 0 0 1.4rem;
@@ -573,7 +573,7 @@ body {
 .gf-contact a,
 .gf-contact span {
   display: block;
-  font-size: 0.85rem;
+  font-size: 0.92rem;
   color: var(--g-soft);
   text-decoration: none;
   margin-bottom: 0.35rem;
@@ -606,7 +606,7 @@ body {
 
 /* Columns 2-4 - Links */
 .gf-col-title {
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -638,9 +638,9 @@ body {
 
 .gf-ip {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 0.92rem;
+  font-size: 1rem;
   font-style: italic;
-  color: rgba(184,194,216,0.75);
+  color: #d3dbea;
   line-height: 1.65;
   max-width: 980px;
   text-align: center;
@@ -660,13 +660,13 @@ body {
 }
 
 .gf-copy {
-  font-size: 0.78rem;
+  font-size: 0.875rem;
   color: var(--g-muted);
   margin: 0;
 }
 
 .gf-payment {
-  font-size: 0.78rem;
+  font-size: 0.875rem;
   color: var(--g-muted);
   margin: 0;
 }
@@ -677,7 +677,7 @@ body {
   flex-wrap: wrap;
 }
 .gf-legal a {
-  font-size: 0.78rem;
+  font-size: 0.875rem;
   color: var(--g-muted);
   text-decoration: none;
   transition: color 0.2s;
@@ -696,13 +696,13 @@ body {
 
 @media (max-width: 1279px) {
   .gh-nav { gap: 1.1rem; }
-  .gh-nav > li > a { font-size: 0.70rem; letter-spacing: 0.045em; }
+  .gh-nav > li > a { font-size: 0.8rem; letter-spacing: 0.045em; }
   .gf-top { gap: 2.2rem; }
 }
 
 @media (max-width: 1099px) {
   .gh-nav { gap: 0.85rem; }
-  .gh-nav > li > a { font-size: 0.67rem; letter-spacing: 0.04em; }
+  .gh-nav > li > a { font-size: 0.8rem; letter-spacing: 0.04em; }
 }
 
 @media (max-width: 899px) {

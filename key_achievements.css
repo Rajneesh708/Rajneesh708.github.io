@@ -38,7 +38,7 @@
   font-weight: 500;
   background: #fefce8;
   border: 1px solid #fde68a;
-  color: #92400e;
+  color: #6b2d0a;
   cursor: pointer;
   transition: background 0.15s;
   user-select: none;
@@ -74,11 +74,11 @@
 .ach-card__btn--edit {
   background: #ffffff;
   border-color: #c7d2fe;
-  color: #3555d6;
+  color: #1f3a9e;
 }
 .ach-card__btn--edit:hover {
-  background: #3555d6;
-  border-color: #3555d6;
+  background: #1f3a9e;
+  border-color: #1f3a9e;
   color: #ffffff;
 }
 

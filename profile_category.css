@@ -55,7 +55,7 @@
 .char-counter-abled {
   text-align: right;
   font-size: 0.75rem;
-  color: #6b7280;
+  color: #4a4a4a;
   margin-top: 3px;
 }
 /* ── Step next hint ── */
@@ -92,7 +92,7 @@
 
 .field-select:focus {
   outline: none;
-  border-color: #3555d6;
+  border-color: #1f3a9e;
   box-shadow: 0 0 0 3px rgba(76,115,255,0.1);
 }
 

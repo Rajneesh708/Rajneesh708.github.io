@@ -28,7 +28,7 @@
 /* ── Char counter ── */
 .char-counter {
   font-size: 0.75rem;
-  color: #6b7280;
+  color: #4a4a4a;
   text-align: right;
   margin-top: 4px;
 }
@@ -60,7 +60,7 @@
 .field-select:focus,
 .field-textarea:focus {
   outline: none;
-  border-color: #3555d6;
+  border-color: #1f3a9e;
   box-shadow: 0 0 0 3px rgba(76,115,255,0.1);
 }
 
@@ -75,7 +75,7 @@
 /* Soft-warn helper text — amber tint, used for non-blocking hints
    like "this doesn't look like a LinkedIn URL." User can still save. */
 .helper-text--soft-warn {
-  color: #92400e;
+  color: #6b2d0a;
   background: #fffbeb;
   border-left: 3px solid #f59e0b;
   border-radius: 4px;
@@ -155,11 +155,11 @@
 .lang-tag--Native {
   background: #fefce8;
   border-color: #fde68a;
-  color: #92400e;
+  color: #6b2d0a;
 }
 
 .lang-tag__level {
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   opacity: 0.7;
   font-weight: 400;
 }
@@ -246,7 +246,7 @@
   height: 32px;
   border-radius: 6px;
   background: #f3f4f6;
-  color: #3555d6;
+  color: #1f3a9e;
   font-size: 1rem;
   font-weight: 700;
   text-decoration: none;

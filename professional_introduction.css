@@ -72,7 +72,7 @@
 .field-select:focus,
 .field-textarea:focus {
   outline: none;
-  border-color: #3555d6;
+  border-color: #1f3a9e;
   box-shadow: 0 0 0 3px rgba(76,115,255,0.1);
 }
 /* ── Multi-select ── */
@@ -94,7 +94,7 @@
 .char-counter-out {
   text-align: right;
   font-size: 0.75rem;
-  color: #6f747c;
+  color: #52565c;
   margin-top: 4px;
 }
 
@@ -126,7 +126,7 @@
 .field-select:disabled,
 .field-textarea:disabled {
   background: #f3f4f6;
-  color: #6f747c;
+  color: #52565c;
   cursor: not-allowed;
   border-color: #e5e7eb;
 }
@@ -162,5 +162,5 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: 16px;
-  border-left: 3px solid #3555d6;
+  border-left: 3px solid #1f3a9e;
 }

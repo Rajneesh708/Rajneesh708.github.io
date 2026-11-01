@@ -51,7 +51,7 @@
 }
 
 .edu-list-card:hover {
-  border-color: #3555d6;
+  border-color: #1f3a9e;
   background: #f5f7ff;
 }
 
@@ -93,11 +93,11 @@
 .edu-list-card__btn--edit {
   background: #ffffff;
   border-color: #c7d2fe;
-  color: #3555d6;
+  color: #1f3a9e;
 }
 .edu-list-card__btn--edit:hover {
-  background: #3555d6;
-  border-color: #3555d6;
+  background: #1f3a9e;
+  border-color: #1f3a9e;
   color: #ffffff;
 }
 
@@ -144,7 +144,7 @@
 .field-select:focus,
 .field-textarea:focus {
   outline: none;
-  border-color: #3555d6;
+  border-color: #1f3a9e;
   box-shadow: 0 0 0 3px rgba(76,115,255,0.1);
 }.date-row .field-select {
   flex: 1;

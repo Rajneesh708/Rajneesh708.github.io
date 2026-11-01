@@ -105,19 +105,19 @@
 
 .photo-dropzone:hover,
 .photo-dropzone:focus {
-  border-color: #3555d6;
+  border-color: #1f3a9e;
   background: #eef4ff;
   outline: none;
 }
 
 .photo-dropzone.dragover {
-  border-color: #3555d6;
+  border-color: #1f3a9e;
   background: #eef4ff;
 }
 
 .photo-dropzone.has-image {
   border-style: solid;
-  border-color: #3555d6;
+  border-color: #1f3a9e;
 }
 
 /* ── Photo dropzone wrapper ──
@@ -200,7 +200,7 @@
 }
 
 .link-text {
-  color: #3555d6;
+  color: #1f3a9e;
   font-weight: 600;
   text-decoration: underline;
   text-underline-offset: 2px;
@@ -225,13 +225,13 @@
 
 .cv-dropzone:hover,
 .cv-dropzone:focus {
-  border-color: #3555d6;
+  border-color: #1f3a9e;
   background: #eef4ff;
   outline: none;
 }
 
 .cv-dropzone.dragover {
-  border-color: #3555d6;
+  border-color: #1f3a9e;
   background: #eef4ff;
 }
 
@@ -736,7 +736,7 @@
   cursor: not-allowed;
   background: #f3f4f6;
   border-color: #9ca3af;
-  color: #6b7280;
+  color: #4a4a4a;
 }
 .cv-add-btn[disabled]:hover,
 .cv-add-btn.disabled:hover,
@@ -745,7 +745,7 @@
   background: #f3f4f6;
   border-style: dashed;
   border-color: #9ca3af;
-  color: #6b7280;
+  color: #4a4a4a;
 }
 
 .cv-count-hint {

@@ -22,11 +22,11 @@
   display: block;
 }
 .avail-option:hover {
-  border-color: #3555d6;
+  border-color: #1f3a9e;
   background: #f8faff;
 }
 .avail-option.selected {
-  border-color: #3555d6;
+  border-color: #1f3a9e;
   background: #eef4ff;
 }
 .avail-option input[type="radio"] {

@@ -96,7 +96,7 @@
 .field-select:focus,
 .field-textarea:focus {
   outline: none;
-  border-color: #3555d6;
+  border-color: #1f3a9e;
   box-shadow: 0 0 0 3px rgba(76,115,255,0.1);
 }
 
@@ -128,7 +128,7 @@
   background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%);
   border: 1px solid #bfdbfe;
   border-radius: 8px;
-  border-left: 4px solid #3555d6;
+  border-left: 4px solid #1f3a9e;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -222,7 +222,7 @@
 
 .tag-other-meta .char-counter-out {
   flex-shrink: 0;
-  color: #6b7280;
+  color: #4a4a4a;
 }
 
 /* Character counter colour states (drive via JS class toggle on counter element) */
@@ -273,7 +273,7 @@
 .goal-tag--custom {
   background: #fefce8;
   border-color: #fde68a;
-  color: #92400e;
+  color: #6b2d0a;
 }
 
 /* Remove button inside tag */
@@ -347,7 +347,7 @@
 .tag-row__pill--custom {
   background: #fefce8;
   border-color: #fde68a;
-  color: #92400e;
+  color: #6b2d0a;
 }
 
 /* Right side: toggle + remove grouped together */
@@ -362,7 +362,7 @@
 .tag-row__toggle {
   font-size: 0.78rem;
   font-weight: 600;
-  color: #3555d6;
+  color: #1f3a9e;
   cursor: pointer;
   background: none;
   border: none;
@@ -421,7 +421,7 @@
 
 .tag-row__body textarea:focus {
   outline: none;
-  border-color: #3555d6;
+  border-color: #1f3a9e;
   box-shadow: 0 0 0 3px rgba(76,115,255,0.08);
 }
 
@@ -429,7 +429,7 @@
   margin-top: 4px;
   text-align: right;
   font-size: 0.75rem;
-  color: #6b7280;
+  color: #4a4a4a;
 }
 
 .tag-row__body .tag-row__desc-hint {
@@ -441,7 +441,7 @@
 
 /* Filled state — row gets a left accent */
 .tag-row--filled {
-  border-left: 3px solid #3555d6;
+  border-left: 3px solid #1f3a9e;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }

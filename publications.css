@@ -39,11 +39,11 @@
 .pub-card__btn--edit {
   background: #ffffff;
   border-color: #c7d2fe;
-  color: #3555d6;
+  color: #1f3a9e;
 }
 .pub-card__btn--edit:hover {
-  background: #3555d6;
-  border-color: #3555d6;
+  background: #1f3a9e;
+  border-color: #1f3a9e;
   color: #ffffff;
 }
 
