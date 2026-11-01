@@ -293,68 +293,44 @@
       .rj-hero-grid { grid-template-columns: 1fr; gap: 56px; }
     }
 
-    /* ROYAL PORTRAIT CARD -- ink card, double gold frame, portrait fades into a name plate (2026-11-01) */
+    /* PORTRAIT CARD v2 -- light, warm, colour photo; name plate sits below the picture (2026-11-01) */
     .rj-portrait {
       position: relative;
-      max-width: 440px;
+      max-width: 430px;
       width: 100%;
-      aspect-ratio: 4 / 5.3;
       margin: 0 auto;
       padding: 10px;
-      border-radius: 26px;
-      border: 1px solid rgba(212,175,55,0.6);
-      background: linear-gradient(160deg, #1b160b 0%, #0e0c08 55%, #1b160b 100%);
-      box-shadow: 0 40px 90px -30px rgba(0,0,0,0.85),
-                  0 0 0 1px rgba(212,175,55,0.12),
-                  0 0 70px -12px rgba(212,175,55,0.22);
+      border-radius: 22px;
+      background: #fffdf8;
+      border: 1px solid rgba(138,109,26,0.34);
+      box-shadow: 0 28px 64px -32px rgba(60,45,10,0.38);
     }
-    .rj-portrait-frame {
-      position: relative;
-      width: 100%; height: 100%;
-      overflow: hidden;
-      border-radius: 18px;
-      border: 1px solid rgba(212,175,55,0.38);
-      background: #0e0c08;
-    }
+    .rj-portrait-frame { position: relative; overflow: hidden; border-radius: 14px; }
     .rj-portrait-frame img {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%; object-fit: cover; object-position: 50% 10%; display: block;
-      filter: grayscale(1) contrast(1.1) brightness(0.96);
+      width: 100%; aspect-ratio: 1 / 1.02; object-fit: cover; object-position: 50% 14%; display: block;
     }
-    .rj-portrait-frame::before {
-      content: '';
-      position: absolute; inset: 0; z-index: 1;
-      background:
-        linear-gradient(180deg, rgba(14,12,8,0) 40%, rgba(14,12,8,0.8) 68%, #0e0c08 100%),
-        radial-gradient(120% 65% at 50% 0%, rgba(212,175,55,0.16), transparent 62%);
-    }
-    .rj-portrait-caption {
-      position: absolute; left: 0; right: 0; bottom: 0;
-      padding: 0 1.7rem 1.6rem;
-      z-index: 3;
-    }
+    .rj-portrait-caption { padding: 1.15rem 0.7rem 0.55rem; }
     .rj-portrait-caption-tag {
       display: block;
-      font-family: var(--sans); font-size: 0.64rem; font-weight: 700;
-      letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold);
-      margin-bottom: 0.45rem;
+      font-family: var(--sans); font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.24em; text-transform: uppercase; color: #5f4a10;
+      margin-bottom: 0.4rem;
     }
     .rj-portrait-caption-name {
       display: block;
-      font-family: var(--serif-display); font-weight: 600;
-      font-size: clamp(1.7rem, 2.6vw, 2.15rem); line-height: 1.1; color: #ffffff;
-      letter-spacing: 0.01em;
+      font-family: var(--serif-display); font-weight: 500;
+      font-size: 1.6rem; line-height: 1.15; color: #14110c;
     }
     .rj-portrait-caption-role {
       display: block;
-      font-family: var(--sans); font-size: 0.84rem; line-height: 1.45; color: #e9e0c8;
-      margin-top: 0.5rem;
+      font-family: var(--sans); font-size: 0.88rem; line-height: 1.5; color: #4a4236;
+      margin-top: 0.4rem;
     }
-    .rj-portrait-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 1rem; }
+    .rj-portrait-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.95rem; }
     .rj-portrait-tags span {
-      font-family: var(--sans); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.04em;
-      color: #f3e7bd; padding: 0.38rem 0.8rem; border-radius: 999px;
-      border: 1px solid rgba(212,175,55,0.55); background: rgba(212,175,55,0.1);
+      font-family: var(--sans); font-size: 0.76rem; font-weight: 500; letter-spacing: 0.02em;
+      color: #3a3024; padding: 0.32rem 0.8rem; border-radius: 999px;
+      border: 1px solid rgba(138,109,26,0.45); background: rgba(138,109,26,0.06);
     }
 
     /* HERO TEXT */
@@ -661,6 +637,33 @@
       .rj-strip { padding: 0 clamp(18px, 5vw, 32px) clamp(72px, 10vh, 120px); }
       .rj-close { padding: clamp(96px, 14vh, 160px) clamp(18px, 5vw, 32px); }
     }
+
+    /* ABOUT HERO v2 -- ivory ground, dark text, quiet type (2026-11-01). Overrides the dark hero rules above. */
+    .rj-ground-ivory {
+      background: radial-gradient(ellipse at 15% 20%, rgba(212,175,55,0.10) 0%, transparent 55%), linear-gradient(180deg, #fbf7ee 0%, #f5eedd 100%);
+      color: #2b2620;
+    }
+    .rj-hero-eyebrow { color: #5f4a10; font-size: 0.78rem; letter-spacing: 0.3em; margin-bottom: 1.2rem; }
+    .rj-hero-eyebrow::before { background: #8a6d1a; width: 36px; }
+    .rj-h1 { color: #14110c; font-weight: 500; font-size: clamp(2.3rem, 3.8vw, 3.2rem); line-height: 1.1; letter-spacing: -0.012em; margin: 0 0 1rem; }
+    .rj-h1-rule { width: 56px; height: 1px; background: #8a6d1a; margin: 0 0 1.4rem; }
+    .rj-hero-role { color: #4a4236; font-size: clamp(1.1rem, 1.35vw, 1.22rem); line-height: 1.55; margin: 0 0 1.3rem; max-width: 620px; }
+    .rj-hero-statement { color: #2b2620; font-size: clamp(1.02rem, 1.15vw, 1.1rem); line-height: 1.78; margin: 0 0 1.8rem; max-width: 620px; }
+    .rj-hero-statement strong { color: #14110c; font-weight: 600; }
+    .rj-hero-statement em { color: #5f4a10; }
+    .rj-chips { gap: 0.5rem; }
+    .rj-chip {
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.02em; text-transform: none;
+      color: #3a3024; border: 1px solid rgba(138,109,26,0.45); background: transparent; border-radius: 999px; padding: 0.36rem 0.85rem;
+    }
+    .rj-strip.rj-ground-ivory { padding-bottom: clamp(56px, 8vh, 96px); background: linear-gradient(180deg, #f5eedd 0%, #f1e9d3 100%); }
+    .rj-ground-ivory .rj-strip-in { border-top: 1px solid rgba(138,109,26,0.34); border-bottom: 1px solid rgba(138,109,26,0.34); }
+    .rj-ground-ivory .rj-strip-item { border-right-color: rgba(138,109,26,0.22); }
+    .rj-ground-ivory .rj-strip-n { color: #5f4a10; font-size: clamp(1.9rem, 3vw, 2.5rem); }
+    .rj-ground-ivory .rj-strip-l { color: #3a3024; font-size: clamp(0.74rem, 0.9vw, 0.8rem); letter-spacing: 0.1em; }
+    @media (max-width: 900px) {
+      .rj-ground-ivory .rj-strip-item:nth-child(1), .rj-ground-ivory .rj-strip-item:nth-child(2) { border-bottom-color: rgba(138,109,26,0.22); }
+    }
   </style>
 </head>
 <body>
@@ -843,7 +846,7 @@
 <main class="rj">
 
 <!-- ===== HERO + CREDENTIAL STRIP (on ink-pure) ===== -->
-<section class="rj-hero rj-ground-dark" aria-labelledby="rj-h1">
+<section class="rj-hero rj-ground-ivory" aria-labelledby="rj-h1">
   <div class="rj-hero-in">
     <div class="rj-hero-grid">
 
@@ -852,7 +855,7 @@
           <img src="images/about-rajneesh-jain/about-rajneesh-jain-portrait.jpg"
                alt="Rajneesh Jain, Founder of MECULS, Delhi, India"
                loading="eager" fetchpriority="high"
-               width="420" height="555">
+               width="410" height="418">
           <div class="rj-portrait-caption">
             <span class="rj-portrait-caption-tag">The Founder</span>
             <span class="rj-portrait-caption-name">Rajneesh Jain</span>
@@ -888,7 +891,7 @@
 </section>
 
 <!-- ===== CREDENTIAL STRIP -- continuation of ink-pure band ===== -->
-<section class="rj-strip rj-ground-dark" aria-label="Credentials at a glance">
+<section class="rj-strip rj-ground-ivory" aria-label="Credentials at a glance">
   <div class="rj-strip-in">
     <div class="rj-strip-item">
       <span class="rj-strip-n">18</span>
