@@ -220,7 +220,7 @@
       position: absolute; inset: 0; z-index: -3;
       background-image: url('images/insights/insights-hero-bg.jpg');
       background-size: cover; background-position: center 40%;
-      filter: brightness(0.95) saturate(0.95) contrast(1.05);
+      filter: brightness(1.2) saturate(1.05) contrast(1.05);
       transform: scale(1.03);
       animation: ix-hero-zoom 18s ease-out forwards;
     }
@@ -231,7 +231,7 @@
     .ix-hero-scrim {
       position: absolute; inset: 0; z-index: -2;
       background:
-        linear-gradient(90deg, rgba(13,10,6,0.92) 0%, rgba(13,10,6,0.90) 48%, rgba(13,10,6,0.45) 75%, rgba(13,10,6,0.08) 100%),
+        linear-gradient(90deg, rgba(13,10,6,0.76) 0%, rgba(13,10,6,0.70) 48%, rgba(13,10,6,0.30) 75%, rgba(13,10,6,0) 100%),
         linear-gradient(180deg, rgba(13,10,6,0.35) 0%, transparent 25%, transparent 75%, rgba(13,10,6,0.45) 100%);
     }
     .ix-hero-glow {
@@ -570,8 +570,12 @@
 /* hero readability: flowing scrim, text sits directly on the photo */
 .ix-hero-h1 em,.ix-hero-sub em,.ix-hero-eyebrow{color:#f3dc83 !important;-webkit-text-fill-color:#f3dc83 !important}
 .ix-hero-sub{color:#fff !important}
-@media (max-width:820px){.ix-hero-scrim{background:linear-gradient(180deg,rgba(13,10,6,.84),rgba(13,10,6,.80)) !important}}
+@media (max-width:820px){.ix-hero-scrim{background:linear-gradient(180deg,rgba(13,10,6,.66),rgba(13,10,6,.62)) !important}}
 .ix-hero-eyebrow{color:#fff1b8 !important;-webkit-text-fill-color:#fff1b8 !important}
+.ix-hero-h1,.ix-hero-sub,.ix-hero-eyebrow{text-shadow:0 1px 3px rgba(0,0,0,.65),0 0 20px rgba(0,0,0,.5) !important}
+.ix-hero-h1 em,.ix-hero-sub em,.ix-hero-eyebrow{color:#fbeaa8 !important;-webkit-text-fill-color:#fbeaa8 !important}
+.ix-hero-eyebrow,.ix-hero-eyebrow *{color:#fff !important;-webkit-text-fill-color:#fff !important}
+html body .ix-hero .ix-hero-eyebrow:not(#a):not(#b):not(#c):not(#d),html body .ix-hero .ix-hero-eyebrow span:not(#a):not(#b):not(#c):not(#d){color:#fff !important;-webkit-text-fill-color:#fff !important}
 </style>
 </head>
 <body>
