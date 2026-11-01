@@ -254,7 +254,7 @@
       position: absolute; inset: 0; z-index: -3;
       background-image: url('images/our-work-proof/our-work-proof-hero-bg.jpg');
       background-size: cover; background-position: center 30%;
-      filter: brightness(1.55) saturate(1.05) contrast(1.05);
+      filter: brightness(1.12) saturate(1.02) contrast(1.04);
       transform: scale(1.03);
       animation: wp-hero-zoom 18s ease-out forwards;
     }
@@ -635,7 +635,7 @@
       position: absolute; inset: 0; z-index: -3;
       background-image: url('images/our-work-proof/our-work-proof-closing-bg.jpg');
       background-size: cover; background-position: center;
-      filter: brightness(1.45) saturate(1.05) contrast(1.05);
+      filter: brightness(1.12) saturate(1.02) contrast(1.04);
     }
     .wp-closing-scrim {
       position: absolute; inset: 0; z-index: -2;
@@ -731,6 +731,15 @@ html>body:nth-of-type(1)>div:nth-of-type(1)>main:nth-of-type(1)>section:nth-of-t
 .wp-hero-eyebrow,.wp-hero-eyebrow *,.wp-closing-eyebrow,.wp-closing-eyebrow *,.wp-closing-cite{color:#fff !important;-webkit-text-fill-color:#fff !important}
 .wp-closing-in em,.wp-closing-in strong,.wp-closing-in span.gold{color:#fbeaa8 !important;-webkit-text-fill-color:#fbeaa8 !important}
 html body .wp-hero .wp-hero-eyebrow span:not(#a):not(#b):not(#c):not(#d),html body .wp-hero .wp-hero-eyebrow:not(#a):not(#b):not(#c):not(#d){color:#fff !important;-webkit-text-fill-color:#fff !important}
+
+/* photo framing: show more of the picture (less zoom), fade its edges into the dark page colour */
+.wp-hero,.wp-closing{background-color:#0f0d0a}
+@media (min-width:821px){
+  .wp-hero-bg{background-size:54% auto !important;background-position:right 22% !important;background-repeat:no-repeat !important;-webkit-mask-image:linear-gradient(90deg,transparent 44%,#000 74%);mask-image:linear-gradient(90deg,transparent 44%,#000 74%)}
+  .wp-hero-scrim{background:linear-gradient(90deg,rgba(15,13,10,.40) 0%,rgba(15,13,10,.50) 50%,rgba(15,13,10,.50) 80%,rgba(15,13,10,.25) 100%),linear-gradient(180deg,rgba(15,13,10,.25) 0%,transparent 25%,transparent 75%,rgba(15,13,10,.3) 100%) !important}
+  .wp-closing-bg{background-size:82% auto !important;background-position:center !important;background-repeat:no-repeat !important;-webkit-mask-image:linear-gradient(90deg,transparent 9%,#000 30%,#000 70%,transparent 91%);mask-image:linear-gradient(90deg,transparent 9%,#000 30%,#000 70%,transparent 91%)}
+  .wp-closing-scrim{background:radial-gradient(ellipse 58% 66% at 50% 50%,rgba(15,13,10,.66) 0%,rgba(15,13,10,.5) 60%,rgba(15,13,10,0) 100%) !important}
+}
 </style>
 </head>
 <body>
