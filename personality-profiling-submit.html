@@ -227,7 +227,15 @@
     }
     .pp-footer a { color: var(--ps-gold); text-decoration: none; }
     .pp-footer a:hover { text-decoration: underline; }
-  </style>
+  
+/* contrast-fix 2026-11-01 v3: readability overrides, measured per screen size */
+@media (min-width:821px){html>body:nth-of-type(1)>div:nth-of-type(1)>div:nth-of-type(1)>div:nth-of-type(1){color:#6e4e1d !important;-webkit-text-fill-color:#6e4e1d !important;opacity:1 !important}
+html>body:nth-of-type(1)>div:nth-of-type(1)>div:nth-of-type(1)>p:nth-of-type(2)>a:nth-of-type(1){color:#6e4e1d !important;-webkit-text-fill-color:#6e4e1d !important;opacity:1 !important}
+}
+@media (max-width:820px){html>body:nth-of-type(1)>div:nth-of-type(1)>div:nth-of-type(1)>div:nth-of-type(1){color:#6e4e1d !important;-webkit-text-fill-color:#6e4e1d !important;opacity:1 !important}
+html>body:nth-of-type(1)>div:nth-of-type(1)>div:nth-of-type(1)>p:nth-of-type(2)>a:nth-of-type(1){color:#6e4e1d !important;-webkit-text-fill-color:#6e4e1d !important;opacity:1 !important}
+}
+</style>
 </head>
 <body data-gate-product="personality-profiling">
 

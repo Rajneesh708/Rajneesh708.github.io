@@ -196,6 +196,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://meculs.com/service-website-development.html</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://meculs.com/website-enquiry.html</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://meculs.com/service-hr-analytics.html</loc>
     <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>

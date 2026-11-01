@@ -595,7 +595,20 @@
       .ap-care-phrase-line { font-size: clamp(2rem, 9vw, 2.8rem); }
       .ap-care-phrase-sep { display: block; width: 8px; height: 8px; margin: 1rem auto; transform: none; }
     }
-  </style>
+  
+/* contrast-fix 2026-11-01 v3: readability overrides, measured per screen size */
+@media (min-width:821px){
+}
+@media (max-width:820px){
+}
+
+/* contrast-fix 2026-11-01 v4: text on photographs */
+.ap-rule-mark-num{color:#3d2f06!important;-webkit-text-fill-color:#3d2f06!important;opacity:1!important}
+.ap-rule-mark.is-on-dark .ap-rule-mark-num{color:#e4bf47!important;-webkit-text-fill-color:#e4bf47!important;opacity:1!important}
+
+/* contrast-fix v5 */
+.ap-rule-mark.is-ivory-to-deep .ap-rule-mark-num,.ap-rule-mark.is-deep-to-ivory .ap-rule-mark-num{color:#3d2f06!important;-webkit-text-fill-color:#3d2f06!important;opacity:1!important}
+</style>
 </head>
 <body>
 <div class="page">
@@ -646,6 +659,7 @@
           <li><a href="service-data-science-analytics.html">Data Science &amp; Analytics</a></li>
           <li><a href="service-market-actionable-intelligence.html">Market Intelligence</a></li>
           <li><a href="organisational-health-consulting.html">Organisational Health</a></li>
+          <li><a href="service-website-development.html">Website Development</a></li>
           <li class="gh-dropdown-divider" aria-hidden="true"></li>
           <li><a href="individual-services.html">Individual &amp; Wellness</a></li>
           <li><a href="service-consciousness-clarity.html">Consciousness &amp; Clarity</a></li>
@@ -736,6 +750,7 @@
         <li><a href="service-data-science-analytics.html">Data Science &amp; Analytics</a></li>
         <li><a href="service-market-actionable-intelligence.html">Market Intelligence</a></li>
         <li><a href="organisational-health-consulting.html">Organisational Health</a></li>
+        <li><a href="service-website-development.html">Website Development</a></li>
         <li><a href="individual-services.html">Individual &amp; Wellness</a></li>
         <li><a href="service-consciousness-clarity.html">Consciousness &amp; Clarity</a></li>
         <li><a href="service-mind-wellness.html">Mind Wellness</a></li>
@@ -1184,6 +1199,7 @@
         <li><a href="service-data-science-analytics.html">Data Science &amp; Analytics</a></li>
         <li><a href="service-market-actionable-intelligence.html">Market Intelligence</a></li>
         <li><a href="organisational-health-consulting.html">Organisational Health</a></li>
+        <li><a href="service-website-development.html">Website Development</a></li>
         <li><a href="service-consciousness-clarity.html">Consciousness &amp; Clarity</a></li>
         <li><a href="service-mind-wellness.html">Mind Wellness</a></li>
         <li><a href="service-addiction-freedom.html">Addiction Freedom</a></li>

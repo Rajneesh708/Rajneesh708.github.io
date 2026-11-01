@@ -854,6 +854,22 @@ h2 em { font-style: italic; color: var(--gold-deep); font-weight: 500; }
   .mx-cta-row a { width: 100%; }
   .mx-dist-rows li { grid-template-columns: 1fr; gap: 0.4rem; }
 }
+
+/* contrast-fix 2026-11-01 v3: readability overrides, measured per screen size */
+@media (min-width:821px){html>body:nth-of-type(1)>div:nth-of-type(1)>section:nth-of-type(5)>div:nth-of-type(2)>div:nth-of-type(1)>div:nth-of-type(1)>span:nth-of-type(2){color:#275a3f !important;-webkit-text-fill-color:#275a3f !important;opacity:1 !important}
+html>body:nth-of-type(1)>div:nth-of-type(1)>section:nth-of-type(5)>div:nth-of-type(2)>div:nth-of-type(1)>div:nth-of-type(2)>div:nth-of-type(1)>span:nth-of-type(1){color:#285d41 !important;-webkit-text-fill-color:#285d41 !important;opacity:1 !important}
+html>body:nth-of-type(1)>div:nth-of-type(1)>section:nth-of-type(5)>div:nth-of-type(2)>div:nth-of-type(2)>div:nth-of-type(1)>span:nth-of-type(2){color:#7a4211 !important;-webkit-text-fill-color:#7a4211 !important;opacity:1 !important}
+html>body:nth-of-type(1)>div:nth-of-type(1)>section:nth-of-type(5)>div:nth-of-type(2)>div:nth-of-type(2)>div:nth-of-type(2)>div:nth-of-type(1)>span:nth-of-type(1){color:#7f4412 !important;-webkit-text-fill-color:#7f4412 !important;opacity:1 !important}
+html>body:nth-of-type(1)>div:nth-of-type(1)>section:nth-of-type(5)>div:nth-of-type(2)>div:nth-of-type(3)>div:nth-of-type(1)>span:nth-of-type(2){color:#504594 !important;-webkit-text-fill-color:#504594 !important;opacity:1 !important}
+html>body:nth-of-type(1)>div:nth-of-type(1)>section:nth-of-type(5)>div:nth-of-type(2)>div:nth-of-type(3)>div:nth-of-type(2)>div:nth-of-type(1)>span:nth-of-type(1){color:#52479a !important;-webkit-text-fill-color:#52479a !important;opacity:1 !important}
+}
+@media (max-width:820px){html>body:nth-of-type(1)>div:nth-of-type(1)>section:nth-of-type(5)>div:nth-of-type(2)>div:nth-of-type(1)>div:nth-of-type(1)>span:nth-of-type(2){color:#275a3f !important;-webkit-text-fill-color:#275a3f !important;opacity:1 !important}
+html>body:nth-of-type(1)>div:nth-of-type(1)>section:nth-of-type(5)>div:nth-of-type(2)>div:nth-of-type(1)>div:nth-of-type(2)>div:nth-of-type(1)>span:nth-of-type(1){color:#285d41 !important;-webkit-text-fill-color:#285d41 !important;opacity:1 !important}
+html>body:nth-of-type(1)>div:nth-of-type(1)>section:nth-of-type(5)>div:nth-of-type(2)>div:nth-of-type(2)>div:nth-of-type(1)>span:nth-of-type(2){color:#7a4211 !important;-webkit-text-fill-color:#7a4211 !important;opacity:1 !important}
+html>body:nth-of-type(1)>div:nth-of-type(1)>section:nth-of-type(5)>div:nth-of-type(2)>div:nth-of-type(2)>div:nth-of-type(2)>div:nth-of-type(1)>span:nth-of-type(1){color:#7f4412 !important;-webkit-text-fill-color:#7f4412 !important;opacity:1 !important}
+html>body:nth-of-type(1)>div:nth-of-type(1)>section:nth-of-type(5)>div:nth-of-type(2)>div:nth-of-type(3)>div:nth-of-type(1)>span:nth-of-type(2){color:#504594 !important;-webkit-text-fill-color:#504594 !important;opacity:1 !important}
+html>body:nth-of-type(1)>div:nth-of-type(1)>section:nth-of-type(5)>div:nth-of-type(2)>div:nth-of-type(3)>div:nth-of-type(2)>div:nth-of-type(1)>span:nth-of-type(1){color:#52479a !important;-webkit-text-fill-color:#52479a !important;opacity:1 !important}
+}
 </style>
 </head>
 <body>
@@ -908,6 +924,7 @@ h2 em { font-style: italic; color: var(--gold-deep); font-weight: 500; }
           <li><a href="service-data-science-analytics.html">Data Science &amp; Analytics</a></li>
           <li><a href="service-market-actionable-intelligence.html" class="active">Market Intelligence</a></li>
           <li><a href="organisational-health-consulting.html">Organisational Health</a></li>
+          <li><a href="service-website-development.html">Website Development</a></li>
           <li class="gh-dropdown-divider" aria-hidden="true"></li>
           <li><a href="individual-services.html">Individual &amp; Wellness</a></li>
           <li><a href="service-consciousness-clarity.html">Consciousness &amp; Clarity</a></li>
@@ -998,6 +1015,7 @@ h2 em { font-style: italic; color: var(--gold-deep); font-weight: 500; }
         <li><a href="service-data-science-analytics.html">Data Science &amp; Analytics</a></li>
         <li><a href="service-market-actionable-intelligence.html">Market Intelligence</a></li>
         <li><a href="organisational-health-consulting.html">Organisational Health</a></li>
+        <li><a href="service-website-development.html">Website Development</a></li>
         <li><a href="individual-services.html">Individual &amp; Wellness</a></li>
         <li><a href="service-consciousness-clarity.html">Consciousness &amp; Clarity</a></li>
         <li><a href="service-mind-wellness.html">Mind Wellness</a></li>
@@ -1736,6 +1754,7 @@ h2 em { font-style: italic; color: var(--gold-deep); font-weight: 500; }
         <li><a href="service-data-science-analytics.html">Data Science &amp; Analytics</a></li>
         <li><a href="service-market-actionable-intelligence.html">Market Intelligence</a></li>
         <li><a href="organisational-health-consulting.html">Organisational Health</a></li>
+        <li><a href="service-website-development.html">Website Development</a></li>
         <li><a href="service-consciousness-clarity.html">Consciousness &amp; Clarity</a></li>
         <li><a href="service-mind-wellness.html">Mind Wellness</a></li>
         <li><a href="service-addiction-freedom.html">Addiction Freedom</a></li>
