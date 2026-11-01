@@ -965,6 +965,12 @@
       grid-template-columns: 1fr;
     }
   }
+
+  /* Email fallback lines (added 2026-11-01) */
+  .bc-fallback { margin-top: 1.1rem; font-family: var(--sans); font-size: 1rem; line-height: 1.6; color: #3a342b; }
+  .bc-fallback a { color: #54420d; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+  .bc-fallback--dark { color: rgba(255,255,255,0.92); text-align: center; margin-top: 1.6rem; }
+  .bc-fallback--dark a { color: #d4af37; }
 </style>
   <link rel="icon" type="image/png" href="/images/favicon/favicon-96x96.png" sizes="96x96">
   <link rel="icon" type="image/svg+xml" href="/images/favicon/favicon.svg">
@@ -1192,6 +1198,7 @@
             Send a short note &ndash; even a sentence is enough. Describe what is happening, or simply say you would like to talk. <strong>Rajneesh reads and responds personally to every message.</strong> No auto-replies. No team inbox. For corporates: a 30-minute exploratory conversation. For individuals: a 20-minute first conversation &ndash; no commitment required.
           </p>
           <a href="mailto:Jain.Rajneesh@meculs.com" class="bc-btn">Write to Rajneesh</a>
+          <p class="bc-fallback">Email not opening? Write to <a href="mailto:Jain.Rajneesh@meculs.com">Jain.Rajneesh@meculs.com</a> from your own email.</p>
         </div>
       </div>
 
@@ -1354,6 +1361,7 @@
       <a href="mailto:Jain.Rajneesh@meculs.com" class="bc-close-btn">Write to Rajneesh</a>
       <a href="https://wa.me/919911220922" target="_blank" rel="noopener noreferrer" class="bc-close-btn outline">Message on WhatsApp</a>
     </div>
+    <p class="bc-fallback bc-fallback--dark">Email not opening? Write to <a href="mailto:Jain.Rajneesh@meculs.com">Jain.Rajneesh@meculs.com</a> from your own email.</p>
   </div>
 </section>
 
