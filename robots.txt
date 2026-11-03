@@ -29,4 +29,9 @@ Disallow: /goodbye.html
 Disallow: /p.html
 Disallow: /404.html
 
+Disallow: /CANONICAL-header.html
+Disallow: /CANONICAL-footer.html
+Disallow: /email_template_confirm_signup.html
+Disallow: /email_template_password_recovery.html
+
 Sitemap: https://meculs.com/sitemap.xml
