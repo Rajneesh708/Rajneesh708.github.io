@@ -102,9 +102,10 @@
   }
   </script>
 
+  <link rel="preload" as="image" href="images/home/home-hero.jpg" imagesrcset="images/home/home-hero-800.jpg 800w, images/home/home-hero.jpg 2000w" imagesizes="(max-width: 900px) 92vw, 560px" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Archivo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Archivo:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Archivo:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Archivo:wght@300;400;500;600;700&display=swap"></noscript></noscript>
   <link rel="stylesheet" href="global.css">
 
   <style>
@@ -1449,6 +1450,8 @@
         <div class="h-plate-corner" aria-hidden="true"></div>
         <img
           src="images/home/home-hero.jpg"
+          srcset="images/home/home-hero-800.jpg 800w, images/home/home-hero.jpg 2000w"
+          sizes="(max-width: 900px) 92vw, 560px"
           alt="Deep blue ocean water seen from below, with sunlight reaching down from the surface"
           width="1200"
           height="1500"
