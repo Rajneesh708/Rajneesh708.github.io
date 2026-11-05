@@ -88,7 +88,7 @@
       var orderRes = await fetch(MECULS_API_BASE + "/api/create-order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ product: product })
+        body: JSON.stringify({ product: product, currency: currentCurrency })
       });
       orderInfo = await orderRes.json();
       if (!orderRes.ok) throw new Error(orderInfo.error || "create-order failed");
@@ -230,8 +230,111 @@
     }
   }
 
+
+  /* ============================================================
+     OTHER CURRENCIES (added 5 Nov 2026)
+     Off unless MECULS_MULTI_CURRENCY = true in config.js.
+     Prices are set per currency by MECULS (not converted from INR).
+     The SERVER holds the real prices; these figures are for display.
+     ============================================================ */
+  var currentCurrency = "INR";
+  var ENTRY  = { USD: 15,  GBP: 10,  EUR: 15,  AED: 55   };
+  var SINGLE = { USD: 50,  GBP: 40,  EUR: 45,  AED: 180  };
+  var BLOCK  = { USD: 175, GBP: 140, EUR: 160, AED: 650  };
+  var PROFIL = { USD: 200, GBP: 160, EUR: 180, AED: 750  };
+  var RETAIN = { USD: 450, GBP: 350, EUR: 400, AED: 1650 };
+  var FOREIGN_PRICES = {
+    "cv-upgrade": ENTRY, "wellness-meditation": ENTRY,
+    "single-coaching": SINGLE, "wellness-anxiety": SINGLE, "wellness-pattern": SINGLE,
+    "wellness-grief": SINGLE, "wellness-addiction": SINGLE, "wellness-parent": SINGLE,
+    "wellness-child": SINGLE, "coaching-block": BLOCK,
+    "personality-profiling": PROFIL, "retainer": RETAIN
+  };
+  var CURRENCY_LIST = ["INR", "USD", "GBP", "EUR", "AED"];
+
+  function applyCurrency(cur) {
+    currentCurrency = cur;
+    var buttons = document.querySelectorAll(".js-pay");
+    for (var i = 0; i < buttons.length; i++) {
+      var code = buttons[i].getAttribute("data-product");
+      var card = buttons[i].closest(".ps-card");
+      if (!card) continue;
+      var priceEl = card.querySelector(".ps-card__price");
+      var off = card.querySelector(".ps-card__off");
+      var reg = card.querySelector(".ps-card__regular");
+      if (!priceEl || !priceEl.firstChild || priceEl.firstChild.nodeType !== 3) continue;
+      if (priceEl.dataset.origText === undefined) priceEl.dataset.origText = priceEl.firstChild.nodeValue;
+      var foreign = FOREIGN_PRICES[code] && FOREIGN_PRICES[code][cur];
+      if (cur !== "INR" && foreign) {
+        priceEl.firstChild.nodeValue = cur + " " + foreign.toLocaleString("en-US") + " ";
+        if (off) off.style.display = "none";
+        if (reg) reg.style.display = "none";
+      } else {
+        priceEl.firstChild.nodeValue = priceEl.dataset.origText;
+        if (off) off.style.display = "";
+        if (reg) reg.style.display = "";
+      }
+    }
+    /* Cards that are booked through the calendar page (no pay button) stay in INR.
+       When another currency is chosen, say so plainly next to their price. */
+    var cards = document.querySelectorAll(".ps-card");
+    for (var m = 0; m < cards.length; m++) {
+      if (cards[m].querySelector(".js-pay")) continue;
+      var wrap = cards[m].querySelector(".ps-card__price-wrap");
+      if (!wrap) continue;
+      var note = wrap.querySelector(".meculs-inr-note");
+      if (!note) {
+        note = document.createElement("div");
+        note.className = "meculs-inr-note";
+        note.textContent = "Priced in INR. For another currency, write to Jain.Rajneesh@meculs.com.";
+        note.style.cssText = "display:none;margin-top:0.35rem;font-size:0.82rem;font-style:italic;";
+        wrap.appendChild(note);
+      }
+      note.style.display = (cur !== "INR") ? "block" : "none";
+    }
+    var pills = document.querySelectorAll(".meculs-cur-btn");
+    for (var k = 0; k < pills.length; k++) {
+      var on = pills[k].getAttribute("data-cur") === cur;
+      pills[k].setAttribute("aria-pressed", on ? "true" : "false");
+      pills[k].style.background = on ? "#2f3b2c" : "transparent";
+      pills[k].style.color = on ? "#ffffff" : "#2f3b2c";
+    }
+  }
+
+  function buildCurrencyPicker() {
+    var first = document.querySelector(".ps-cards .ps-card");
+    if (!first || document.getElementById("meculsCurrencyPicker")) return;
+    var box = document.createElement("div");
+    box.id = "meculsCurrencyPicker";
+    box.style.cssText = "margin:0 0 1.5rem;padding:1rem 1.2rem;border:1px solid rgba(47,59,44,0.25);border-radius:6px;background:#fbfaf5;color:#22291f;font-family:Georgia,'Times New Roman',serif;font-size:0.95rem;line-height:1.5;";
+    var lab = document.createElement("div");
+    lab.textContent = "Show prices in";
+    lab.style.cssText = "font-weight:700;margin-bottom:0.5rem;";
+    box.appendChild(lab);
+    var row = document.createElement("div");
+    row.style.cssText = "display:flex;flex-wrap:wrap;gap:0.5rem;";
+    CURRENCY_LIST.forEach(function (c) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "meculs-cur-btn";
+      b.setAttribute("data-cur", c);
+      b.textContent = c;
+      b.style.cssText = "padding:0.45rem 1rem;border:1px solid #2f3b2c;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.9rem;";
+      b.addEventListener("click", function () { applyCurrency(c); });
+      row.appendChild(b);
+    });
+    box.appendChild(row);
+    var note = document.createElement("div");
+    note.textContent = "Each currency has its own price, set by MECULS. INR is for payments from India. Other currencies are paid by international card.";
+    note.style.cssText = "margin-top:0.6rem;font-size:0.85rem;opacity:0.85;";
+    box.appendChild(note);
+    first.parentNode.insertBefore(box, first);
+    applyCurrency("INR");
+  }
+
   /* Wire every .js-pay button on the page. */
   document.addEventListener("DOMContentLoaded", function () {
+    if (typeof MECULS_MULTI_CURRENCY !== "undefined" && MECULS_MULTI_CURRENCY) buildCurrencyPicker();
     var buttons = document.querySelectorAll(".js-pay");
     for (var i = 0; i < buttons.length; i++) {
       buttons[i].addEventListener("click", function (e) {
