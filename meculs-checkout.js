@@ -267,12 +267,20 @@
       var foreign = FOREIGN_PRICES[code] && FOREIGN_PRICES[code][cur];
       if (cur !== "INR" && foreign) {
         priceEl.firstChild.nodeValue = cur + " " + foreign.toLocaleString("en-US") + " ";
-        if (off) off.style.display = "none";
-        if (reg) reg.style.display = "none";
+        /* The same 60% launch offer applies in every currency:
+           standard fee = price / 0.4 (i.e. price x 2.5). */
+        var sEl = reg ? reg.querySelector("s") : null;
+        if (sEl) {
+          if (sEl.dataset.origText === undefined) sEl.dataset.origText = sEl.textContent;
+          var std = foreign * 2.5;
+          sEl.textContent = cur + " " + (std % 1 === 0
+            ? std.toLocaleString("en-US")
+            : std.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
+        }
       } else {
         priceEl.firstChild.nodeValue = priceEl.dataset.origText;
-        if (off) off.style.display = "";
-        if (reg) reg.style.display = "";
+        var sEl2 = reg ? reg.querySelector("s") : null;
+        if (sEl2 && sEl2.dataset.origText !== undefined) sEl2.textContent = sEl2.dataset.origText;
       }
     }
     /* Cards that are booked through the calendar page (no pay button) stay in INR.
