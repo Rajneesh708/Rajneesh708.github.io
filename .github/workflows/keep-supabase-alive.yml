@@ -9,8 +9,9 @@ name: Keep Supabase Alive
 # database for one row of the "profiles" table, using the public anon key
 # (the same public key already inside config.js on the live site; it is not a secret).
 #
-# meculs-pulse (qkhrxhzxrbikeryhzngc) is not used by the website and is left out
-# on purpose. Add it back only after it is resumed and its public key is known.
+# meculs-pulse (qkhrxhzxrbikeryhzngc) is a separate live product. It has its own
+# job below so that a problem with one project never hides a problem with the other.
+# Its public (publishable) key is safe to store here; it is not a secret.
 
 on:
   schedule:
@@ -38,5 +39,36 @@ jobs:
             echo "OK: database was reached."
           else
             echo "FAIL: unexpected status. The project may be paused or the table name changed."
+            exit 1
+          fi
+
+  ping-pulse:
+    name: Ping meculs-pulse
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Ask the meculs-pulse database for one row
+        run: |
+          REF=qkhrxhzxrbikeryhzngc
+          KEY="sb_publishable_Fjg7XUBTPQgkntZevIWtFw_seYfhNwu"
+          # Find the name of one table automatically.
+          TABLE=$(curl -s --max-time 30 --retry 3 -H "apikey: ${KEY}" \
+            "https://${REF}.supabase.co/rest/v1/" \
+            | jq -r '.paths | keys[] | select(. != "/") | select(startswith("/rpc/") | not)' 2>/dev/null | head -1 | sed 's#^/##')
+          if [ -z "$TABLE" ]; then
+            echo "FAIL: could not find a table name automatically. Send Claude the name of one table from Supabase > Table Editor."
+            exit 1
+          fi
+          echo "Using table: ${TABLE}"
+          STATUS=$(curl -s -o /tmp/body.txt -w "%{http_code}" \
+            --max-time 30 --retry 3 --retry-delay 5 \
+            -H "apikey: ${KEY}" \
+            "https://${REF}.supabase.co/rest/v1/${TABLE}?select=*&limit=1")
+          echo "Project ${REF}: HTTP ${STATUS} at $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+          echo "Reply starts: $(head -c 150 /tmp/body.txt)"
+          if [[ "$STATUS" =~ ^2[0-9][0-9]$ || "$STATUS" == "401" || "$STATUS" == "403" ]]; then
+            echo "OK: database was reached."
+          else
+            echo "FAIL: unexpected status. The project may be paused."
             exit 1
           fi
