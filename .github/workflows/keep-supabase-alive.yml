@@ -1,17 +1,11 @@
 name: Keep Supabase Alive
 
-# Keeps the MECULS website Supabase project (login and profiles) active.
-# Free-tier Supabase projects pause after 7 days with no real database use.
-#
-# Rewritten 2026-11-07. The old version only opened the bare /rest/v1/ address.
-# Supabase answers that without touching the database, so it did NOT count as
-# activity (this is why meculs-pulse got paused). This version asks the
-# database for one row of the "profiles" table, using the public anon key
-# (the same public key already inside config.js on the live site; it is not a secret).
-#
-# meculs-pulse (qkhrxhzxrbikeryhzngc) is a separate live product. It has its own
-# job below so that a problem with one project never hides a problem with the other.
-# Its public (publishable) key is safe to store here; it is not a secret.
+# Keeps BOTH MECULS Supabase projects active. Free-tier projects pause after
+# 7 days without real database use, and the bare /rest/v1/ address does NOT count.
+# Each job below asks a real table for one row using the project's PUBLIC key
+# (the same public key that is already visible on the live site; not a secret).
+# Rewritten 2026-11-07 (v3): never stops silently, prints what it saw, and tries
+# several tables. Two separate jobs so one project can never hide the other.
 
 on:
   schedule:
@@ -22,53 +16,50 @@ jobs:
   ping:
     name: Ping Supabase REST endpoint
     runs-on: ubuntu-latest
-    timeout-minutes: 2
+    timeout-minutes: 3
     steps:
-      - name: Ask the database for one row
+      - name: Ask the website database for one row
         run: |
+          set +e
           REF=fjxcphhhddfwrlkpshyw
           KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZqeGNwaGhoZGRmd3Jsa3BzaHl3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc2MDgwOTYsImV4cCI6MjA5MzE4NDA5Nn0.83h3FhLbRP7sz4K5Aomek-Ns3L9IfVZ6kFNKJcc_6YM"
-          STATUS=$(curl -s -o /tmp/body.txt -w "%{http_code}" \
-            --max-time 30 --retry 3 --retry-delay 5 \
-            -H "apikey: ${KEY}" -H "Authorization: Bearer ${KEY}" \
-            "https://${REF}.supabase.co/rest/v1/profiles?select=id&limit=1")
-          echo "Project ${REF}: HTTP ${STATUS} at $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
-          echo "Reply starts: $(head -c 150 /tmp/body.txt)"
-          # 2xx = database answered. 401/403 = database refused this key but was reached.
-          if [[ "$STATUS" =~ ^2[0-9][0-9]$ || "$STATUS" == "401" || "$STATUS" == "403" ]]; then
-            echo "OK: database was reached."
-          else
-            echo "FAIL: unexpected status. The project may be paused or the table name changed."
-            exit 1
-          fi
+          for TABLE in profiles paid_submissions photos; do
+            STATUS=$(curl -s -o /tmp/body.txt -w "%{http_code}" --max-time 30 \
+              -H "apikey: ${KEY}" -H "Authorization: Bearer ${KEY}" \
+              "https://${REF}.supabase.co/rest/v1/${TABLE}?select=*&limit=1")
+            echo "Table ${TABLE}: HTTP ${STATUS} at $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+            echo "  Reply starts: $(head -c 200 /tmp/body.txt)"
+            # 2xx = rows (or none) returned. 42501 = the database itself refused: it was still reached.
+            if [[ "$STATUS" =~ ^2[0-9][0-9]$ ]] || grep -q "42501" /tmp/body.txt; then
+              echo "OK: database was reached through ${TABLE}."
+              exit 0
+            fi
+          done
+          echo "FAIL: no table answered. The project may be paused, or the table names changed."
+          exit 1
 
   ping-pulse:
     name: Ping meculs-pulse
     runs-on: ubuntu-latest
-    timeout-minutes: 2
+    timeout-minutes: 3
     steps:
       - name: Ask the meculs-pulse database for one row
         run: |
+          set +e
           REF=qkhrxhzxrbikeryhzngc
           KEY="sb_publishable_Fjg7XUBTPQgkntZevIWtFw_seYfhNwu"
-          # Find the name of one table automatically.
-          TABLE=$(curl -s --max-time 30 --retry 3 -H "apikey: ${KEY}" \
-            "https://${REF}.supabase.co/rest/v1/" \
-            | jq -r '.paths | keys[] | select(. != "/") | select(startswith("/rpc/") | not)' 2>/dev/null | head -1 | sed 's#^/##')
-          if [ -z "$TABLE" ]; then
-            echo "FAIL: could not find a table name automatically. Send Claude the name of one table from Supabase > Table Editor."
-            exit 1
-          fi
-          echo "Using table: ${TABLE}"
-          STATUS=$(curl -s -o /tmp/body.txt -w "%{http_code}" \
-            --max-time 30 --retry 3 --retry-delay 5 \
-            -H "apikey: ${KEY}" \
-            "https://${REF}.supabase.co/rest/v1/${TABLE}?select=*&limit=1")
-          echo "Project ${REF}: HTTP ${STATUS} at $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
-          echo "Reply starts: $(head -c 150 /tmp/body.txt)"
-          if [[ "$STATUS" =~ ^2[0-9][0-9]$ || "$STATUS" == "401" || "$STATUS" == "403" ]]; then
-            echo "OK: database was reached."
-          else
-            echo "FAIL: unexpected status. The project may be paused."
-            exit 1
-          fi
+          # meculs-pulse is the MECULS applicant-tracking app. Its tables (read from the Supabase dashboard 2026-11-07):
+          TABLES="openings candidates clients applications submissions interview_rounds"
+          for TABLE in $TABLES; do
+            STATUS=$(curl -s -o /tmp/body.txt -w "%{http_code}" --max-time 30 \
+              -H "apikey: ${KEY}" \
+              "https://${REF}.supabase.co/rest/v1/${TABLE}?select=*&limit=1")
+            echo "Table ${TABLE}: HTTP ${STATUS} at $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+            echo "  Reply starts: $(head -c 200 /tmp/body.txt)"
+            if [[ "$STATUS" =~ ^2[0-9][0-9]$ ]] || grep -q "42501" /tmp/body.txt; then
+              echo "OK: database was reached through ${TABLE}."
+              exit 0
+            fi
+          done
+          echo "FAIL: no table answered. The project may be paused."
+          exit 1
