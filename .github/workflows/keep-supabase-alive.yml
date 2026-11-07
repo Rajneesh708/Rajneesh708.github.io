@@ -1,32 +1,20 @@
 name: Keep Supabase Alive
 
-# Keeps the MECULS Supabase projects active (website + meculs-pulse).
-# Free-tier Supabase projects pause after ~7 days of database
-# inactivity. A paused project means login breaks for everyone
-# until you manually un-pause from the Supabase dashboard.
+# Keeps the MECULS website Supabase project (login and profiles) active.
+# Free-tier Supabase projects pause after 7 days with no real database use.
 #
-# This workflow pings a public Supabase REST endpoint every 6
-# hours. Each ping registers as activity, so the project never
-# pauses.
+# Rewritten 2026-11-07. The old version only opened the bare /rest/v1/ address.
+# Supabase answers that without touching the database, so it did NOT count as
+# activity (this is why meculs-pulse got paused). This version asks the
+# database for one row of the "profiles" table, using the public anon key
+# (the same public key already inside config.js on the live site; it is not a secret).
 #
-# Updated 2026-05-02:
-#   - URL changed from old project (mlvjztftunndjudunlim) to
-#     the active Mumbai project (fjxcphhhddfwrlkpshyw).
-#   - Cron changed from every 5 minutes (288/day, burns most
-#     of GitHub Actions free tier) to every 6 hours (4/day).
-#   - Removed the apikey/Authorization headers — they were
-#     using a secret that likely matched the old project anyway.
-#     The base /rest/v1/ endpoint needs no auth to hit.
+# meculs-pulse (qkhrxhzxrbikeryhzngc) is not used by the website and is left out
+# on purpose. Add it back only after it is resumed and its public key is known.
 
 on:
-  # Every 6 hours: 00:00, 06:00, 12:00, 18:00 UTC.
-  # 4 runs per day × 30 days × ~10 seconds each = ~20 minutes
-  # of compute per month. Comfortably inside any free tier.
   schedule:
     - cron: '0 */6 * * *'
-
-  # Allows manual trigger from the Actions tab — useful for
-  # testing the workflow without waiting 6 hours.
   workflow_dispatch:
 
 jobs:
@@ -34,23 +22,21 @@ jobs:
     name: Ping Supabase REST endpoint
     runs-on: ubuntu-latest
     timeout-minutes: 2
-
     steps:
-      - name: Ping Supabase projects
+      - name: Ask the database for one row
         run: |
-          # Pings the REST endpoint of each project. Any 2xx, 3xx or 4xx reply
-          # counts as alive (401/403 are fine). 5xx or no reply fails the run.
-          FAIL=0
-          for REF in fjxcphhhddfwrlkpshyw qkhrxhzxrbikeryhzngc; do
-            STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
-              --max-time 30 --retry 3 --retry-delay 5 \
-              "https://${REF}.supabase.co/rest/v1/")
-            echo "Project ${REF}: HTTP ${STATUS} at $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
-            if [[ "$STATUS" =~ ^[234][0-9][0-9]$ ]]; then
-              echo "OK: ${REF} is alive."
-            else
-              echo "FAIL: ${REF} unexpected status (may be paused)."
-              FAIL=1
-            fi
-          done
-          exit $FAIL
+          REF=fjxcphhhddfwrlkpshyw
+          KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZqeGNwaGhoZGRmd3Jsa3BzaHl3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc2MDgwOTYsImV4cCI6MjA5MzE4NDA5Nn0.83h3FhLbRP7sz4K5Aomek-Ns3L9IfVZ6kFNKJcc_6YM"
+          STATUS=$(curl -s -o /tmp/body.txt -w "%{http_code}" \
+            --max-time 30 --retry 3 --retry-delay 5 \
+            -H "apikey: ${KEY}" -H "Authorization: Bearer ${KEY}" \
+            "https://${REF}.supabase.co/rest/v1/profiles?select=id&limit=1")
+          echo "Project ${REF}: HTTP ${STATUS} at $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+          echo "Reply starts: $(head -c 150 /tmp/body.txt)"
+          # 2xx = database answered. 401/403 = database refused this key but was reached.
+          if [[ "$STATUS" =~ ^2[0-9][0-9]$ || "$STATUS" == "401" || "$STATUS" == "403" ]]; then
+            echo "OK: database was reached."
+          else
+            echo "FAIL: unexpected status. The project may be paused or the table name changed."
+            exit 1
+          fi
