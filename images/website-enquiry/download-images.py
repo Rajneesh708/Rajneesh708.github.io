@@ -17,13 +17,13 @@ FOLDER = os.path.dirname(os.path.abspath(__file__))
 IMAGES = [
     {
         "filename": "we-hero.jpg",
-        "url": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=82&auto=format&fit=crop",
-        "desc": "Hero — glass tower geometry, structure and precision (Unsplash)"
+        "url": "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=1600&q=82&auto=format&fit=crop",
+        "desc": "Hero — hand sketching a website wireframe (Unsplash)"
     },
     {
         "filename": "we-form.jpg",
-        "url": "https://images.unsplash.com/photo-1483058712412-4245e9b90334?w=700&h=1100&q=82&auto=format&fit=crop",
-        "desc": "Form rail — architectural blueprints from above (Unsplash / Lex Sirikiat)"
+        "url": "https://images.unsplash.com/photo-1600132806608-231446b2e7af?w=700&h=1100&q=82&auto=format&fit=crop",
+        "desc": "Form rail — wireframe plan sheet from above (Unsplash)"
     },
 ]
 

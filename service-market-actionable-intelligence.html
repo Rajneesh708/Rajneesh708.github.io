@@ -873,6 +873,7 @@ html>body:nth-of-type(1)>div:nth-of-type(1)>section:nth-of-type(5)>div:nth-of-ty
 </style>
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+<style id="mobile-diagram-fix">@media (max-width:760px){.mx-clock{overflow-x:auto;-webkit-overflow-scrolling:touch}.mx-clock>svg{min-width:500px}}</style>
 </head>
 <body>
 <div class="page">
@@ -1841,5 +1842,6 @@ html>body:nth-of-type(1)>div:nth-of-type(1)>section:nth-of-type(5)>div:nth-of-ty
     document.querySelectorAll('.rev').forEach(function (el) { io.observe(el); });
   })();
 </script>
+<script>(function(){try{var c=function(){document.querySelectorAll(".mx-clock").forEach(function(w){w.scrollLeft=(w.scrollWidth-w.clientWidth)/2})};c();window.addEventListener("load",c)}catch(e){}})();</script>
 </body>
 </html>

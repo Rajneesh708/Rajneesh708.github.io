@@ -852,7 +852,7 @@ html>body:nth-of-type(1)>div:nth-of-type(1)>section:nth-of-type(4)>div:nth-of-ty
 </style>
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-<style id="mobile-diagram-fix">@media (max-width:760px){.h-arch,.h-ladder,.dx-spectrum,.c-fw-diagram,.diagram{overflow-x:auto;-webkit-overflow-scrolling:touch}.h-arch>svg,.h-ladder>svg,.dx-spectrum>svg,.c-fw-diagram>svg,.diagram-svg{min-width:900px}}</style>
+<style id="mobile-diagram-fix">@media (max-width:760px){.h-arch,.h-ladder,.dx-spectrum,.c-fw-diagram,.diagram{overflow-x:auto;-webkit-overflow-scrolling:touch}.h-arch>svg,.h-ladder>svg,.dx-spectrum>svg,.c-fw-diagram>svg,.diagram-svg{min-width:1000px}.dx-flow{overflow-x:auto;-webkit-overflow-scrolling:touch}.dx-flow svg{min-width:500px}}</style>
 </head>
 <body>
 <div class="page">
@@ -1832,5 +1832,6 @@ html>body:nth-of-type(1)>div:nth-of-type(1)>section:nth-of-type(4)>div:nth-of-ty
     document.querySelectorAll('.rev').forEach(function (el) { io.observe(el); });
   })();
 </script>
+<script>(function(){try{var c=function(){document.querySelectorAll(".dx-flow").forEach(function(w){w.scrollLeft=(w.scrollWidth-w.clientWidth)/2})};c();window.addEventListener("load",c)}catch(e){}})();</script>
 </body>
 </html>
