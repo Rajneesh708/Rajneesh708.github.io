@@ -17,8 +17,8 @@ FOLDER = os.path.dirname(os.path.abspath(__file__))
 IMAGES = [
     {
         "filename": "we-hero.jpg",
-        "url": "https://images.unsplash.com/photo-1484788984921-03950022c38b?w=1600&q=82&auto=format&fit=crop",
-        "desc": "Hero — hands at work, precision (Unsplash / Alejandro Escamilla)"
+        "url": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=82&auto=format&fit=crop",
+        "desc": "Hero — glass tower geometry, structure and precision (Unsplash)"
     },
     {
         "filename": "we-form.jpg",
