@@ -245,7 +245,7 @@
   var RETAIN = { USD: 450, GBP: 350, EUR: 400, AED: 1650 };
   var FOREIGN_PRICES = {
     "cv-upgrade": ENTRY, "wellness-meditation": ENTRY,
-    "single-coaching": SINGLE, "wellness-anxiety": SINGLE, "wellness-pattern": SINGLE,
+    "single-coaching": SINGLE, "career-investigation": SINGLE, "wellness-anxiety": SINGLE, "wellness-pattern": SINGLE,
     "wellness-grief": SINGLE, "wellness-addiction": SINGLE, "wellness-parent": SINGLE,
     "wellness-child": SINGLE, "coaching-block": BLOCK,
     "personality-profiling": PROFIL, "retainer": RETAIN
@@ -255,10 +255,11 @@
   function applyCurrency(cur) {
     currentCurrency = cur;
     var buttons = document.querySelectorAll(".js-pay");
-    for (var i = 0; i < buttons.length; i++) {
-      var code = buttons[i].getAttribute("data-product");
-      var card = buttons[i].closest(".ps-card");
-      if (!card) continue;
+    var allCards = document.querySelectorAll(".ps-card");
+    for (var i = 0; i < allCards.length; i++) {
+      var card = allCards[i];
+      var pbtn = card.querySelector(".js-pay");
+      var code = pbtn ? pbtn.getAttribute("data-product") : card.id;
       var priceEl = card.querySelector(".ps-card__price");
       var off = card.querySelector(".ps-card__off");
       var reg = card.querySelector(".ps-card__regular");
@@ -272,10 +273,7 @@
         var sEl = reg ? reg.querySelector("s") : null;
         if (sEl) {
           if (sEl.dataset.origText === undefined) sEl.dataset.origText = sEl.textContent;
-          var std = foreign * 2.5;
-          sEl.textContent = cur + " " + (std % 1 === 0
-            ? std.toLocaleString("en-US")
-            : std.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
+          sEl.textContent = cur + " " + Math.round(foreign * 2.5).toLocaleString("en-US");
         }
       } else {
         priceEl.firstChild.nodeValue = priceEl.dataset.origText;
@@ -289,7 +287,7 @@
       var href = items[n].getAttribute("href") || "";
       var art = href.charAt(0) === "#" ? document.getElementById(href.slice(1)) : null;
       var pb = art ? art.querySelector(".js-pay") : null;
-      var pcode = pb ? pb.getAttribute("data-product") : null;
+      var pcode = pb ? pb.getAttribute("data-product") : (art ? art.id : null);
       var ip = items[n].querySelector(".ps-index__price");
       var is = items[n].querySelector("s");
       if (!ip) continue;
@@ -298,7 +296,7 @@
       var fp = pcode && FOREIGN_PRICES[pcode] && FOREIGN_PRICES[pcode][cur];
       if (cur !== "INR" && fp) {
         ip.textContent = cur + " " + fp.toLocaleString("en-US");
-        if (is) is.textContent = cur + " " + (fp * 2.5).toLocaleString("en-US");
+        if (is) is.textContent = cur + " " + Math.round(fp * 2.5).toLocaleString("en-US");
       } else {
         ip.textContent = ip.dataset.origText;
         if (is) is.textContent = is.dataset.origText;
@@ -308,7 +306,7 @@
        When another currency is chosen, say so plainly next to their price. */
     var cards = document.querySelectorAll(".ps-card");
     for (var m = 0; m < cards.length; m++) {
-      if (cards[m].querySelector(".js-pay")) continue;
+      if (cards[m].querySelector(".js-pay") || FOREIGN_PRICES[cards[m].id]) continue;
       var wrap = cards[m].querySelector(".ps-card__price-wrap");
       if (!wrap) continue;
       var note = wrap.querySelector(".meculs-inr-note");
