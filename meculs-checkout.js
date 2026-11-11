@@ -283,6 +283,27 @@
         if (sEl2 && sEl2.dataset.origText !== undefined) sEl2.textContent = sEl2.dataset.origText;
       }
     }
+    /* The "All Services" list on the left must show the same currency. */
+    var items = document.querySelectorAll(".ps-index__link");
+    for (var n = 0; n < items.length; n++) {
+      var href = items[n].getAttribute("href") || "";
+      var art = href.charAt(0) === "#" ? document.getElementById(href.slice(1)) : null;
+      var pb = art ? art.querySelector(".js-pay") : null;
+      var pcode = pb ? pb.getAttribute("data-product") : null;
+      var ip = items[n].querySelector(".ps-index__price");
+      var is = items[n].querySelector("s");
+      if (!ip) continue;
+      if (ip.dataset.origText === undefined) ip.dataset.origText = ip.textContent;
+      if (is && is.dataset.origText === undefined) is.dataset.origText = is.textContent;
+      var fp = pcode && FOREIGN_PRICES[pcode] && FOREIGN_PRICES[pcode][cur];
+      if (cur !== "INR" && fp) {
+        ip.textContent = cur + " " + fp.toLocaleString("en-US");
+        if (is) is.textContent = cur + " " + (fp * 2.5).toLocaleString("en-US");
+      } else {
+        ip.textContent = ip.dataset.origText;
+        if (is) is.textContent = is.dataset.origText;
+      }
+    }
     /* Cards that are booked through the calendar page (no pay button) stay in INR.
        When another currency is chosen, say so plainly next to their price. */
     var cards = document.querySelectorAll(".ps-card");
