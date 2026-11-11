@@ -83,4 +83,4 @@ const MECULS_API_BASE = "https://meculs-payment.vercel.app";
 /* Other currencies on the payment pages (USD, GBP, EUR, AED).
    Keep false until Razorpay has enabled the currencies AND the server
    env var ENABLED_CURRENCIES lists them. false = visitors see INR only. */
-const MECULS_MULTI_CURRENCY = false;
+const MECULS_MULTI_CURRENCY = true;
