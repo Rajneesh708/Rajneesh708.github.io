@@ -647,6 +647,13 @@
     .ps-index__pricing .ps-index__price { grid-column: auto; grid-row: auto; font-size: 1.1rem; font-weight: 700; color: var(--ps-amber-deep); }
     .ps-index__pricing .ps-index__off { order: 0; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a1727; background: rgba(199,37,62,0.09); border-radius: 999px; padding: 0.18rem 0.55rem; white-space: nowrap; }
   </style>
+  <style>
+    /* 11 Nov 2026: small labels raised to 14px for easier reading */
+    .ps-hero__eyebrow, .ps-index__heading, .ps-index__off, .ps-index__gstnote,
+    .ps-card__gstnote, .ps-card__regular, .ps-card__meta-label, .ps-card__price-unit,
+    .ps-weeks__label, .ps-safety__title, .ps-card__cta-note, .gf-col-title,
+    .ps-index__pricing s { font-size: 0.875rem !important; }
+  </style>
 </head>
 <body class="ps-body">
 
@@ -1097,6 +1104,7 @@
         <span class="ps-card__cta-note">
           Free screening first. Payment only if Rajneesh accepts you as a fit.
         </span>
+        <span class="ps-card__cta-note">You pay by a secure payment link sent after your free call, in your chosen currency.</span>
       </article>
 
       <!-- 06. PERSONALITY PROFILING -->
@@ -1138,6 +1146,7 @@
         <span class="ps-card__cta-note">
           Free call first. Payment link sent only if both agree to proceed.
         </span>
+        <span class="ps-card__cta-note">You pay by a secure payment link sent after your free call, in your chosen currency.</span>
       </article>
 
     </main>
@@ -1148,6 +1157,7 @@
     <div class="ps-safety__title">Pay safely via Razorpay</div>
     <p class="ps-safety__text">
       All payments are encrypted end-to-end. UPI, cards, netbanking and wallets accepted.
+      International cards are accepted: you pay in the currency you choose.
       MECULS never sees or stores your card details.
     </p>
   </section>
