@@ -28,7 +28,7 @@ jobs:
               -H "apikey: ${KEY}" -H "Authorization: Bearer ${KEY}" \
               "https://${REF}.supabase.co/rest/v1/${TABLE}?select=*&limit=1")
             echo "Table ${TABLE}: HTTP ${STATUS} at $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
-            echo "  Reply starts: $(head -c 200 /tmp/body.txt)"
+            # Reply body is no longer printed: the log is public (15 Nov 2026).
             # 2xx = rows (or none) returned. 42501 = the database itself refused: it was still reached.
             if [[ "$STATUS" =~ ^2[0-9][0-9]$ ]] || grep -q "42501" /tmp/body.txt; then
               echo "OK: database was reached through ${TABLE}."

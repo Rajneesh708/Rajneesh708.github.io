@@ -1302,8 +1302,13 @@ a   { text-decoration: none; color: inherit; }
 
     /* -- Email Share Modal -------------------------------------- */
     if (emailShareBtn) {
+      /* Opens the visitor's own email app with the article link filled in (15 Nov 2026).
+         The old pop-up form never sent anything. */
       emailShareBtn.addEventListener('click', function () {
-        openModal(emailModal);
+        var t = document.querySelector('h1') ? document.querySelector('h1').textContent.trim() : document.title;
+        var subject = encodeURIComponent('Worth reading: ' + t);
+        var body = encodeURIComponent('I thought you might find this article from MECULS valuable:\n\n' + t + '\n' + window.location.href);
+        window.location.href = 'mailto:?subject=' + subject + '&body=' + body;
       });
     }
 
@@ -1534,7 +1539,7 @@ a   { text-decoration: none; color: inherit; }
 
     /* -- Keyboard: Escape closes any open modal ----------------- */
     document.addEventListener('keydown', function (e) {
-      if (e.key =      if (e.key === 'Escape') {
+      if (e.key === 'Escape') {
         if (emailModal     && emailModal.classList.contains('active'))     closeModal(emailModal);
         if (subscribeModal && subscribeModal.classList.contains('active')) closeModal(subscribeModal);
       }
