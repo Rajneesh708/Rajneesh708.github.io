@@ -1,17 +1,84 @@
-/* ── Google Analytics 4 (added 2026-10-31) ──
-   Measurement ID is public by design. Loaded here so every page
-   that includes global.js gets tracked. Portal/login pages do not
-   load global.js, so they are intentionally not tracked. */
+/* ── Google Analytics 4 + cookie choice (Consent Mode, 15 Nov 2026) ──
+   Measurement ID is public by design. Portal/login pages do not load
+   global.js, so they are intentionally not tracked.
+   - Until a visitor clicks "Accept all", analytics cookies stay OFF.
+     Google only receives cookieless visit signals and estimates numbers.
+   - "Essential only" or ignoring the banner = no analytics cookies.
+   - The choice is remembered on this browser; footer "Cookie settings"
+     link lets the visitor change it. */
 (function () {
   var GA_ID = 'G-Y5SBSKZPCR';
+  var KEY = 'meculs-cookie-choice';
+  function getChoice() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+  function setChoice(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var choice = getChoice();
+  window.gtag('consent', 'default', {
+    ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied',
+    analytics_storage: choice === 'all' ? 'granted' : 'denied'
+  });
   var s = document.createElement('script');
   s.async = true;
   s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
   document.head.appendChild(s);
-  window.dataLayer = window.dataLayer || [];
-  window.gtag = function () { window.dataLayer.push(arguments); };
   window.gtag('js', new Date());
   window.gtag('config', GA_ID);
+
+  var css = '' +
+    '.mc-cookie{position:fixed;left:16px;right:16px;bottom:16px;z-index:9999;max-width:760px;margin:0 auto;' +
+    'background:#001428;color:#d8deea;border:1px solid rgba(212,175,55,0.45);border-radius:4px;' +
+    'box-shadow:0 12px 40px rgba(0,0,0,0.35);padding:14px 18px;display:flex;gap:14px 20px;align-items:center;flex-wrap:wrap;' +
+    'font:14px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}' +
+    '.mc-cookie p{margin:0;flex:1 1 320px}' +
+    '.mc-cookie a{color:#d4af37}' +
+    '.mc-cookie-btns{display:flex;gap:10px;flex-wrap:wrap}' +
+    '.mc-cookie button{font:600 13px/1 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;letter-spacing:.04em;' +
+    'padding:10px 16px;border-radius:2px;cursor:pointer;border:1px solid #d4af37}' +
+    '.mc-cookie .mc-accept{background:#d4af37;color:#001428}' +
+    '.mc-cookie .mc-essential{background:transparent;color:#d4af37}' +
+    '.mc-cookie button:focus-visible{outline:2px solid #fff;outline-offset:2px}';
+
+  function showBanner() {
+    if (document.getElementById('mcCookie')) return;
+    if (!document.getElementById('mcCookieCss')) {
+      var st = document.createElement('style'); st.id = 'mcCookieCss'; st.textContent = css;
+      document.head.appendChild(st);
+    }
+    var b = document.createElement('div');
+    b.id = 'mcCookie'; b.className = 'mc-cookie';
+    b.setAttribute('role', 'region'); b.setAttribute('aria-label', 'Cookie choice');
+    b.innerHTML = '<p>We use essential cookies to run this site, and optional analytics cookies to understand ' +
+      'which pages help visitors. <a href="privacy-policy.html">Privacy Policy</a></p>' +
+      '<div class="mc-cookie-btns"><button type="button" class="mc-essential">Essential only</button>' +
+      '<button type="button" class="mc-accept">Accept all</button></div>';
+    document.body.appendChild(b);
+    b.querySelector('.mc-accept').addEventListener('click', function () {
+      setChoice('all');
+      window.gtag('consent', 'update', { analytics_storage: 'granted' });
+      b.remove();
+    });
+    b.querySelector('.mc-essential').addEventListener('click', function () {
+      setChoice('essential');
+      window.gtag('consent', 'update', { analytics_storage: 'denied' });
+      b.remove();
+    });
+  }
+  window.meculsCookieSettings = showBanner;
+
+  function onReady() {
+    if (!getChoice()) showBanner();
+    var legal = document.querySelector('.gf-legal');
+    if (legal && !document.getElementById('mcCookieLink')) {
+      var a = document.createElement('a');
+      a.href = '#'; a.id = 'mcCookieLink'; a.textContent = 'Cookie settings';
+      a.addEventListener('click', function (e) { e.preventDefault(); showBanner(); });
+      legal.appendChild(a);
+    }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', onReady);
+  else onReady();
 })();
 
 /* ═══════════════════════════════════════════════════════════════════

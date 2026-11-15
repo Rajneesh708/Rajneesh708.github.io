@@ -736,3 +736,22 @@ body {
   }
   .gf-legal { gap: 1rem; }
 }
+
+
+/* ── Services menu: grouped, two columns (15 Nov 2026) ── */
+.gh-dropdown--services { columns: 2; column-gap: 0; min-width: 500px; }
+.gh-dropdown--services > li { break-inside: avoid; -webkit-column-break-inside: avoid; }
+.gh-dropdown-label {
+  padding: 0.75rem 1.3rem 0.3rem;
+  font-size: 0.62rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--g-gold); white-space: nowrap;
+}
+.gh-col-break { break-before: column; -webkit-column-break-before: always; padding-top: 0.4rem; }
+.gh-mobile-sub--services { }
+.gh-mobile-nav > li.open .gh-mobile-sub--services { max-height: 1400px; }
+.gh-mobile-label {
+  padding: 0.9rem 0 0.25rem;
+  font-size: 0.66rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--g-gold);
+}
+.gh-mobile-divider { height: 1px; background: var(--g-rule); margin: 0.6rem 0; }
