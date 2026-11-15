@@ -347,13 +347,52 @@
   .c-framework .chapter-label { color: var(--gold); }
   .c-framework .chapter-label.centered::after { background: var(--gold); }
 
+  /* Driver -> Wheel -> Life experience flow (HTML, so text stays readable at every size) */
   .c-fw-diagram {
-    max-width: 880px; margin: 0 auto 4rem; padding: 0 5%;
+    max-width: 1040px; margin: 0 auto 4rem; padding: 0 5%;
     position: relative; z-index: 2;
-    overflow-x: auto;
+    display: flex; align-items: stretch; justify-content: center;
   }
-  .c-fw-diagram svg {
-    width: 100%; min-width: 580px; display: block;
+  .c-fw-box {
+    flex: 1 1 0; text-align: center;
+    padding: 1.6rem 1.2rem 1.5rem;
+    border: 1px solid rgba(255,255,255,0.30);
+    background: rgba(255,255,255,0.04);
+    border-radius: 4px;
+  }
+  .c-fw-box.is-driver { border-color: var(--gold); background: rgba(212,175,55,0.10); }
+  .c-fw-box-label {
+    display: block; font-family: 'Archivo', sans-serif;
+    font-size: 0.8rem; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: rgba(255,255,255,0.80);
+    margin-bottom: 0.55rem;
+  }
+  .c-fw-box.is-driver .c-fw-box-label { color: var(--gold); }
+  .c-fw-box-title {
+    display: block; font-family: var(--display); font-style: italic;
+    font-weight: 500; font-size: 1.4rem; line-height: 1.25;
+    color: rgba(255,255,255,0.94); margin-bottom: 0.45rem;
+  }
+  .c-fw-box.is-driver .c-fw-box-title { color: var(--gold); }
+  .c-fw-box-note {
+    display: block; font-family: var(--serif); font-style: italic;
+    font-weight: 600; font-size: 1.15rem; line-height: 1.45;
+    color: rgba(255,255,255,0.80);
+  }
+  .c-fw-link {
+    flex: 0 0 auto; width: 92px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-family: var(--serif); font-style: italic; font-weight: 600;
+    font-size: 1.1rem; color: rgba(255,255,255,0.78);
+  }
+  .c-fw-link::after {
+    content: '\2192'; font-style: normal; font-size: 1.5rem; line-height: 1;
+    color: var(--gold); margin-top: 0.2rem;
+  }
+  @media (max-width: 760px) {
+    .c-fw-diagram { flex-direction: column; max-width: 460px; }
+    .c-fw-link { width: auto; padding: 0.6rem 0; }
+    .c-fw-link::after { content: '\2193'; }
   }
 
   .c-fw-cols {
@@ -896,7 +935,7 @@ html>body:nth-of-type(1)>div:nth-of-type(1)>section:nth-of-type(6)>div:nth-of-ty
 html>body:nth-of-type(1)>div:nth-of-type(1)>section:nth-of-type(8)>div:nth-of-type(2)>p:nth-of-type(1)>em:nth-of-type(1){color:#dbbd59 !important;-webkit-text-fill-color:#dbbd59 !important;opacity:1 !important}
 }
 </style>
-<style id="mobile-diagram-fix">@media (max-width:760px){.h-arch,.h-ladder,.dx-spectrum,.c-fw-diagram,.diagram{overflow-x:auto;-webkit-overflow-scrolling:touch}.h-arch>svg,.h-ladder>svg,.dx-spectrum>svg,.c-fw-diagram>svg,.diagram-svg{min-width:900px}}</style>
+<style id="mobile-diagram-fix">@media (max-width:760px){.h-arch,.h-ladder,.dx-spectrum,.diagram{overflow-x:auto;-webkit-overflow-scrolling:touch}.h-arch>svg,.h-ladder>svg,.dx-spectrum>svg,.diagram-svg{min-width:900px}}</style>
 </head>
 <body>
 <div class="page">
@@ -1160,69 +1199,24 @@ html>body:nth-of-type(1)>div:nth-of-type(1)>section:nth-of-type(8)>div:nth-of-ty
   </div>
 
   <!-- Driver-Wheel diagram -->
-  <div class="c-fw-diagram rev" aria-hidden="true">
-    <svg viewBox="0 0 860 160" xmlns="http://www.w3.org/2000/svg" fill="none" role="img" aria-label="Driver, wheel, and life experience flow diagram">
-      <defs>
-        <marker id="ccc-arr" viewBox="0 0 10 10" refX="8" refY="5"
-                markerWidth="5" markerHeight="5" orient="auto">
-          <path d="M2 2L8 5L2 8" fill="none" stroke="rgba(212,175,55,0.65)"
-                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </marker>
-      </defs>
-
-      <!-- Unconscious (driver) -->
-      <rect x="30" y="30" width="220" height="100" rx="4"
-            fill="rgba(212,175,55,0.10)" stroke="#d4af37" stroke-width="1.2"/>
-      <text x="140" y="68" text-anchor="middle"
-            font-family="'Archivo',sans-serif" font-size="11.9" font-weight="700"
-            fill="rgba(212,175,55,0.78)" letter-spacing="0.18em">THE DRIVER</text>
-      <text x="140" y="90" text-anchor="middle"
-            font-family="'Playfair Display',serif" font-size="15" font-weight="500"
-            font-style="italic" fill="#d4af37">Unconscious Mind</text>
-      <text x="140" y="110" text-anchor="middle"
-            font-family="'Cormorant Garamond',serif" font-size="12" font-style="italic"
-            fill="rgba(212,175,55,0.68)">Beliefs formed early. Sets direction.</text>
-
-      <line x1="250" y1="80" x2="320" y2="80"
-            stroke="rgba(212,175,55,0.55)" stroke-width="1.2"
-            marker-end="url(#ccc-arr)"/>
-      <text x="285" y="70" text-anchor="middle"
-            font-family="'Cormorant Garamond',serif" font-size="11.9" font-style="italic"
-            fill="rgba(255,255,255,0.40)">drives</text>
-
-      <!-- Conscious (wheel) -->
-      <rect x="320" y="30" width="220" height="100" rx="4"
-            fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.30)" stroke-width="0.8"/>
-      <text x="430" y="68" text-anchor="middle"
-            font-family="'Archivo',sans-serif" font-size="11.9" font-weight="700"
-            fill="rgba(255,255,255,0.46)" letter-spacing="0.18em">THE WHEEL</text>
-      <text x="430" y="90" text-anchor="middle"
-            font-family="'Playfair Display',serif" font-size="15" font-weight="500"
-            font-style="italic" fill="rgba(255,255,255,0.74)">Conscious Mind</text>
-      <text x="430" y="110" text-anchor="middle"
-            font-family="'Cormorant Garamond',serif" font-size="12" font-style="italic"
-            fill="rgba(255,255,255,0.44)">Thinks, plans, intends. Steers.</text>
-
-      <line x1="540" y1="80" x2="610" y2="80"
-            stroke="rgba(255,255,255,0.28)" stroke-width="1"
-            marker-end="url(#ccc-arr)"/>
-      <text x="575" y="70" text-anchor="middle"
-            font-family="'Cormorant Garamond',serif" font-size="11.9" font-style="italic"
-            fill="rgba(255,255,255,0.36)">produces</text>
-
-      <!-- Experience -->
-      <rect x="610" y="30" width="220" height="100" rx="4"
-            fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.20)" stroke-width="0.6"/>
-      <text x="720" y="68" text-anchor="middle"
-            font-family="'Archivo',sans-serif" font-size="11.9" font-weight="700"
-            fill="rgba(255,255,255,0.36)" letter-spacing="0.18em">WHAT SHOWS UP</text>
-      <text x="720" y="90" text-anchor="middle"
-            font-family="'Playfair Display',serif" font-size="15" font-weight="500"
-            font-style="italic" fill="rgba(255,255,255,0.58)">Life experience</text>
-      <text x="720" y="110" text-anchor="middle"
-            font-family="'Cormorant Garamond',serif" font-size="12" font-style="italic"
-            fill="rgba(255,255,255,0.36)">Patterns, feelings, results.</text>
-    </svg>
+  <div class="c-fw-diagram rev" role="img" aria-label="The unconscious mind drives the conscious mind, which produces life experience">
+    <div class="c-fw-box is-driver">
+      <span class="c-fw-box-label">The Driver</span>
+      <span class="c-fw-box-title">Unconscious Mind</span>
+      <span class="c-fw-box-note">Beliefs formed early. Sets direction.</span>
+    </div>
+    <div class="c-fw-link">drives</div>
+    <div class="c-fw-box">
+      <span class="c-fw-box-label">The Wheel</span>
+      <span class="c-fw-box-title">Conscious Mind</span>
+      <span class="c-fw-box-note">Thinks, plans, intends. Steers.</span>
+    </div>
+    <div class="c-fw-link">produces</div>
+    <div class="c-fw-box">
+      <span class="c-fw-box-label">What Shows Up</span>
+      <span class="c-fw-box-title">Life experience</span>
+      <span class="c-fw-box-note">Patterns, feelings, results.</span>
+    </div>
   </div>
 
   <!-- Effect vs Cause two-column -->
@@ -1452,56 +1446,54 @@ html>body:nth-of-type(1)>div:nth-of-type(1)>section:nth-of-type(8)>div:nth-of-ty
     <div class="gf-brand">
       <div class="gf-logo">
         <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS" width="140" height="32">
-        <span class="gf-logo-text" style="display:none">MECULS</span>
       </div>
       <p class="gf-tagline">Mind Enablement Centre for Unlocking Limitless Leadership &amp; Self-Potential</p>
       <div class="gf-contact">
         <a href="mailto:Jain.Rajneesh@meculs.com">Jain.Rajneesh@meculs.com</a>
-        <a href="https://meculs.com">www.meculs.com</a>
         <span>D-13, Sector-7, Rohini, Delhi &ndash; 110085, India</span>
       </div>
       <div class="gf-social">
-        <a href="https://www.linkedin.com/company/meculs/" aria-label="MECULS on LinkedIn" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-        </a>
-        <a href="https://www.youtube.com/@MECULSofficial" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.33zM9.75 15.02V8.48l5.75 3.27z"/></svg>
-        </a>
-        <a href="https://www.instagram.com/meculs_official" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg>
-        </a>
-        <a href="https://x.com/meculs_official" aria-label="X / Twitter" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        </a>
-        <a href="https://www.facebook.com/unlockingselfpotential" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
-        </a>
+      <a href="https://www.linkedin.com/company/meculs/" aria-label="MECULS on LinkedIn" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <a href="https://www.youtube.com/@MECULSofficial" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.33zM9.75 15.02V8.48l5.75 3.27z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/meculs_official" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="https://x.com/meculs_official" aria-label="X / Twitter" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="https://www.facebook.com/unlockingselfpotential" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+      </a>
       </div>
     </div>
 
-    <div>
+    <div class="gf-group gf-group--services">
       <span class="gf-col-title">Services</span>
       <ul class="gf-links">
         <li><a href="360-pulse-rate.html">360&deg; PULSE RATE&trade;</a></li>
-        <li><a href="service-personality-profiling.html">Personality Profiling</a></li>
-        <li><a href="bespoke-coaching.html">Executive Coaching &ndash; Bespoke</a></li>
+        <li><a href="bespoke-coaching.html">Executive Coaching</a></li>
         <li><a href="corporate-programs.html">Corporate Programmes</a></li>
-        <li><a href="service-executive-search.html">Executive Search</a></li>
-        <li><a href="service-hr-analytics.html">HR Analytics</a></li>
-        <li><a href="service-data-science-analytics.html">Data Science &amp; Analytics</a></li>
-        <li><a href="service-market-actionable-intelligence.html">Market Intelligence</a></li>
         <li><a href="organisational-health-consulting.html">Organisational Health</a></li>
-        <li><a href="service-website-development.html">Website Development</a></li>
+        <li><a href="service-personality-profiling.html">Personality Profiling</a></li>
+        <li><a href="service-hr-analytics.html">HR Analytics</a></li>
+        <li><a href="service-data-science-analytics.html">Data Science</a></li>
+        <li><a href="service-market-actionable-intelligence.html">Market Intelligence</a></li>
+        <li><a href="service-executive-search.html">Executive Search</a></li>
         <li><a href="service-consciousness-clarity.html">Consciousness &amp; Clarity</a></li>
         <li><a href="service-mind-wellness.html">Mind Wellness</a></li>
         <li><a href="service-addiction-freedom.html">Addiction Freedom</a></li>
         <li><a href="service-counselling.html">Counselling</a></li>
         <li><a href="service-children.html">For Children</a></li>
         <li><a href="service-zero-state-meditation.html">Meditation as Medicine</a></li>
+        <li><a href="service-website-development.html">Website Development</a></li>
       </ul>
     </div>
 
-    <div>
+    <div class="gf-group">
       <span class="gf-col-title">Company</span>
       <ul class="gf-links">
         <li><a href="about-meculs.html">About MECULS</a></li>
@@ -1519,43 +1511,31 @@ html>body:nth-of-type(1)>div:nth-of-type(1)>section:nth-of-type(8)>div:nth-of-ty
       </ul>
     </div>
 
-    <div>
+    <div class="gf-group">
       <span class="gf-col-title">Connect</span>
       <ul class="gf-links">
         <li><a href="cv-portal.html">The CV Portal</a></li>
         <li><a href="begin-conversation.html">Begin a Conversation</a></li>
-        <li><a href="book-session.html">Corporate Enquiry</a></li>
-      </ul>
-      <span class="gf-col-title" style="margin-top:2rem;">Legal</span>
-      <ul class="gf-links">
-        <li><a href="grievance.html">Grievance</a></li>
-        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-        <li><a href="terms.html">Terms of Service</a></li>
-        <li><a href="refund-policy.html">Refund Policy</a></li>
-        <li><a href="shipping-delivery.html">Shipping &amp; Delivery</a></li>
-        <li><a href="contact.html">Contact Us</a></li>
-        <li><a href="disclaimer.html">Disclaimer</a></li>
+        <li><a href="corporate-enquiry.html">Corporate Enquiry</a></li>
+        <li><a href="website-enquiry.html">Website Enquiry</a></li>
       </ul>
     </div>
 
   </div>
 
-  <div class="gf-bottom">
-    <p class="gf-ip">This website, its content, frameworks, methodologies, and design are conceptualised, created, and authored by Rajneesh Jain, Founder, MECULS. All methodologies are the original and exclusive intellectual property of Rajneesh Jain. Unauthorised reproduction or commercial use is prohibited.</p>
-    <div class="gf-bottom-bar">
-      <p class="gf-copy">&copy; 2026 MECULS. All rights reserved. D-13, Sector-7, Rohini, Delhi &ndash; 110085, India.</p>
-      <p class="gf-payment">Payment: Razorpay &middot; UPI &middot; Cards &middot; Netbanking &middot; Wallets</p>
-      <nav class="gf-legal" aria-label="Legal links">
-        <a href="grievance.html">Grievance</a>
-        <a href="privacy-policy.html">Privacy</a>
-        <a href="terms.html">Terms</a>
-        <a href="refund-policy.html">Refund</a>
-        <a href="shipping-delivery.html">Shipping</a>
-        <a href="contact.html">Contact</a>
-        <a href="disclaimer.html">Disclaimer</a>
-      </nav>
-    </div>
+  <div class="gf-bottom-bar">
+    <p class="gf-copy">&copy; 2026 MECULS. All rights reserved. Payment: Razorpay &middot; UPI &middot; Cards &middot; Netbanking &middot; Wallets</p>
+    <nav class="gf-legal" aria-label="Legal links">
+      <a href="grievance.html">Grievance</a>
+      <a href="privacy-policy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="refund-policy.html">Refund</a>
+      <a href="shipping-delivery.html">Shipping</a>
+      <a href="contact.html">Contact</a>
+      <a href="disclaimer.html">Disclaimer</a>
+    </nav>
   </div>
+  <p class="gf-ip">All content, frameworks, methodologies and design are the original intellectual property of Rajneesh Jain, Founder, MECULS. Unauthorised reproduction or commercial use is prohibited.</p>
 
 </footer>
 

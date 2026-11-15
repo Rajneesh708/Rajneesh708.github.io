@@ -528,16 +528,16 @@ body {
 
 
 /* ══════════════════════════════════════════════════════════════════
-   GLOBAL FOOTER
+   GLOBAL FOOTER  (compact version, 16 Nov 2026)
+   Links flow side by side instead of one per line, legal links and
+   social icons share one bottom row, nothing is listed twice.
 ════════════════════════════════════════════════════════════════════ */
 .global-footer {
   background: var(--g-dark-2);
   border-top: 1px solid var(--g-rule);
-  padding: 4rem 5% 2rem;
+  padding: 2.6rem 5% 1.4rem;
   margin-top: auto;
-  /* Insulate from page body inheritance (see .global-header).
-     line-height stays at the original value (1); each footer
-     descendant that needs taller line-height sets its own. */
+  /* Insulate from page body inheritance (see .global-header). */
   font-family: 'Archivo', sans-serif;
   line-height: 1;
   color: var(--g-soft);
@@ -545,52 +545,88 @@ body {
 
 .gf-top {
   display: grid;
-  grid-template-columns: 1.3fr 1fr 1fr 1fr;
-  gap: 3rem;
-  padding-bottom: 3rem;
+  grid-template-columns: 1fr 1.7fr 1.35fr 0.75fr;
+  gap: 2.4rem;
+  padding-bottom: 1.8rem;
   border-bottom: 1px solid var(--g-rule);
-  margin-bottom: 2.5rem;
 }
 
-/* Column 1 - Brand */
-.gf-logo {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1.1rem;
-}
-.gf-logo img { height: 32px; width: auto; display: block; }
-.gf-logo-text {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: var(--g-gold);
-}
+/* Brand */
+.gf-logo { display: flex; align-items: center; margin-bottom: 0.9rem; }
+.gf-logo img { height: 30px; width: auto; display: block; }
 .gf-tagline {
   font-size: 0.92rem;
   color: var(--g-muted);
-  line-height: 1.6;
-  margin: 0 0 1.4rem;
+  line-height: 1.55;
+  margin: 0 0 0.9rem;
 }
 .gf-contact a,
 .gf-contact span {
   display: block;
   font-size: 0.92rem;
+  line-height: 1.5;
   color: var(--g-soft);
   text-decoration: none;
-  margin-bottom: 0.35rem;
   transition: color 0.2s;
 }
 .gf-contact a:hover { color: var(--g-gold); }
 .gf-contact span { color: var(--g-muted); }
 
-/* Social icons */
-.gf-social {
-  display: flex;
-  gap: 0.7rem;
-  margin-top: 1.3rem;
+/* Link groups: items flow side by side and wrap */
+.gf-col-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--g-gold);
+  margin: 0 0 0.9rem;
+  display: block;
 }
+.gf-links {
+  list-style: none;
+  margin: 0; padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 1.3rem;
+}
+.gf-links li a {
+  font-size: 0.92rem;
+  color: var(--g-soft);
+  text-decoration: none;
+  line-height: 1.45;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+.gf-links li a:hover { color: var(--g-gold); }
+.gf-group:last-child .gf-links { flex-direction: column; gap: 0.55rem; }
+
+/* Bottom row: copyright + payment | legal links | social icons */
+.gf-bottom-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.9rem 2rem;
+  padding: 1.1rem 0 0.9rem;
+}
+.gf-copy {
+  font-size: 0.875rem;
+  color: var(--g-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+.gf-legal { display: flex; gap: 0.5rem 1.3rem; flex-wrap: wrap; }
+.gf-legal a {
+  font-size: 0.875rem;
+  color: var(--g-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.gf-legal a:hover { color: var(--g-gold); }
+
+.gf-social { display: flex; gap: 0.5rem; margin-top: 1rem; }
 .gf-social a {
-  width: 34px; height: 34px;
+  width: 32px; height: 32px;
   display: flex; align-items: center; justify-content: center;
   border: 1px solid var(--g-rule);
   border-radius: 2px;
@@ -605,86 +641,18 @@ body {
 }
 .gf-social svg { width: 15px; height: 15px; }
 
-/* Columns 2-4 - Links */
-.gf-col-title {
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--g-gold);
-  margin: 0 0 1.3rem;
-  display: block;
-}
-.gf-links {
-  list-style: none;
-  margin: 0; padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-}
-.gf-links li a {
-  font-size: 0.85rem;
-  color: var(--g-soft);
-  text-decoration: none;
-  transition: color 0.2s;
-  line-height: 1.45;
-}
-.gf-links li a:hover { color: var(--g-gold); }
-
-/* ── Bottom section (IP notice + bottom bar) ── */
-.gf-bottom {
-  display: flex;
-  flex-direction: column;
-}
-
 .gf-ip {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 500;
   font-size: 1rem;
   font-style: italic;
   color: #d3dbea;
-  line-height: 1.65;
-  max-width: 980px;
+  line-height: 1.5;
   text-align: center;
-  margin: 0 auto 1.8rem;
-  padding: 0 1rem;
-}
-
-/* The three-part bottom row: copyright | payment | legal */
-.gf-bottom-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem 2rem;
-  padding-top: 1.4rem;
+  margin: 0;
+  padding-top: 0.9rem;
   border-top: 1px solid var(--g-rule);
 }
-
-.gf-copy {
-  font-size: 0.875rem;
-  color: var(--g-muted);
-  margin: 0;
-}
-
-.gf-payment {
-  font-size: 0.875rem;
-  color: var(--g-muted);
-  margin: 0;
-}
-
-.gf-legal {
-  display: flex;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-}
-.gf-legal a {
-  font-size: 0.875rem;
-  color: var(--g-muted);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.gf-legal a:hover { color: var(--g-gold); }
 
 
 /* ══════════════════════════════════════════════════════════════════
@@ -699,7 +667,7 @@ body {
 @media (max-width: 1279px) {
   .gh-nav { gap: 1.1rem; }
   .gh-nav > li > a { font-size: 0.8rem; letter-spacing: 0.045em; }
-  .gf-top { gap: 2.2rem; }
+  .gf-top { gap: 1.8rem; }
 }
 
 @media (max-width: 1099px) {
@@ -712,31 +680,28 @@ body {
   .gh-toggle   { display: flex; }
   .gf-top {
     grid-template-columns: 1fr 1fr;
-    gap: 2.5rem 3rem;
+    gap: 1.8rem 2.4rem;
   }
-  .gf-brand { grid-column: 1 / -1; max-width: 520px; }
+  .gf-brand { grid-column: 1 / -1; }
+  .gf-group--services { grid-column: 1 / -1; }
+  .gf-group:last-child .gf-links { flex-direction: row; gap: 0.55rem 1.3rem; }
 }
 
 @media (max-width: 640px) {
-  .global-footer { padding: 3rem 5% 1.5rem; }
+  .global-footer { padding: 2.2rem 5% 1.2rem; }
   .gf-top {
     grid-template-columns: 1fr;
-    gap: 2.4rem;
-    padding-bottom: 2.2rem;
-    margin-bottom: 2rem;
+    gap: 1.5rem;
+    padding-bottom: 1.5rem;
   }
-  .gf-brand { max-width: none; }
-  .gf-ip {
-    font-size: 0.88rem;
-    margin-bottom: 1.3rem;
-  }
+  .gf-links { gap: 0.6rem 1.1rem; }
   .gf-bottom-bar {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.8rem;
-    text-align: left;
   }
-  .gf-legal { gap: 1rem; }
+  .gf-legal { gap: 0.6rem 1.1rem; }
+  .gf-ip { text-align: left; font-size: 0.98rem; }
 }
 
 

@@ -648,78 +648,84 @@
   }
 
   /* ------------------------------------------------------------------
-     THE FOUNDER  -  two-column split: portrait left, content right
-     Removed the unused monogram fallback block for clarity.
+     THE FOUNDERS  -  two founders side by side (Rajneesh left, Sneha right).
+     Small framed rectangular portraits, deliberately different from the
+     round photo cards on the Founders page. Stacks on screens under 900px.
      ------------------------------------------------------------------ */
   .founder {
-    padding: 0;
+    padding: 5.5rem 0;
     background: var(--ink);
   }
-  .founder-grid {
-    display: grid;
-    grid-template-columns: minmax(280px, 380px) 1fr;
-    min-height: 0;
+  .founders-head { margin-bottom: 2.6rem; }
+  .founders-head h2 {
+    font-family: var(--display);
+    font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+    font-weight: 600;
+    line-height: 1.14;
+    letter-spacing: -0.02em;
   }
-  /* Quiet framed portrait: smaller, rectangular, with a caption underneath.
-     Deliberately different from the round photo cards on the Founders page. */
-  .founder-portrait {
+  .founders-head h2 em { font-style: italic; color: var(--gold); }
+  .founders-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.8rem;
+    align-items: stretch;
+  }
+  .founder-card {
+    background: var(--ink-2);
+    border: 1px solid rgba(212,175,55,0.16);
+    padding: 2.6rem 2.4rem 2.4rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 4.2rem 2rem 3.5rem 5vw;
-    background: var(--ink);
   }
-  .founder-portrait img {
-    width: 100%;
-    max-width: 250px;
+  .founder-top {
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+    margin-bottom: 1.6rem;
+  }
+  .founder-top img {
+    width: 132px;
+    flex-shrink: 0;
     aspect-ratio: 4 / 5;
     height: auto;
     object-fit: cover;
     object-position: center 15%;
     display: block;
     border: 1px solid rgba(212,175,55,0.45);
-    padding: 6px;
+    padding: 5px;
     background: rgba(255,255,255,0.03);
   }
-  .founder-nameplate {
-    margin-top: 1rem;
+  .founder-top h3 {
+    font-family: var(--display);
+    font-size: clamp(1.7rem, 2.4vw, 2.2rem);
+    font-weight: 600;
+    line-height: 1.18;
+    letter-spacing: -0.01em;
+  }
+  .founder-top h3 em { display: block; font-style: italic; color: var(--gold); font-size: 0.82em; margin-top: 0.3rem; }
+  .founder-role {
+    display: block;
+    margin-top: 0.7rem;
     font-size: 0.8rem;
     font-weight: 700;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--gold);
-    text-align: center;
   }
-  .founder-content {
-    padding: 3.4rem 3.2rem;
-    background: var(--ink-2);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .founder-content h2 {
-    font-family: var(--display);
-    font-size: clamp(2.2rem, 3.8vw, 3.2rem);
-    font-weight: 600;
-    line-height: 1.14;
-    letter-spacing: -0.02em;
-    margin-bottom: 1.5rem;
-  }
-  .founder-content h2 em { font-style: italic; color: var(--gold); }
-  .founder-content > p {
+  .founder-card > p {
     font-family: var(--serif);
     font-weight: 600;
-    font-size: clamp(1.22rem, 1.65vw, 1.48rem);
+    font-size: clamp(1.18rem, 1.4vw, 1.34rem);
     color: rgba(255,255,255,0.82);
-    line-height: 1.88;
-    margin-bottom: 1.3rem;
+    line-height: 1.8;
+    margin-bottom: 1.1rem;
   }
   .founder-creds {
     display: flex;
     flex-direction: column;
-    gap: 0.9rem;
-    margin: 1.4rem 0;
+    gap: 0.7rem;
+    margin: 0.6rem 0 1.6rem;
   }
   .fc-item {
     display: flex;
@@ -727,9 +733,9 @@
     gap: 0.85rem;
     font-family: var(--serif);
     font-weight: 600;
-    font-size: clamp(1.18rem, 1.55vw, 1.4rem);
+    font-size: clamp(1.12rem, 1.3vw, 1.26rem);
     color: rgba(255,255,255,0.82);
-    line-height: 1.80;
+    line-height: 1.7;
   }
   .fc-dot {
     width: 5px; height: 5px;
@@ -738,6 +744,7 @@
     flex-shrink: 0;
     margin-top: 0.62em;
   }
+  .founder-card .btn-outline { align-self: flex-start; margin-top: auto; }
 
   /* ------------------------------------------------------------------
      INSIGHTS  -  now on dark background
@@ -932,9 +939,7 @@
       grid-template-columns: 1fr;
       gap: 2.8rem;
     }
-    .founder-grid { grid-template-columns: 1fr; }
-    .founder-portrait { padding: 2.5rem 5% 0.5rem; }
-    .founder-content { padding: 2.8rem 5%; }
+    .founder { padding: 4.5rem 0; }
 
     .svc-grid { grid-template-columns: repeat(2, 1fr); }
     .svc-card:nth-child(3n) { border-right: 1px solid rgba(212,175,55,0.14); }
@@ -956,6 +961,7 @@
 
   /* Small tablet */
   @media (max-width: 899px) {
+    .founders-pair { grid-template-columns: 1fr; }
     .proof-strip-inner { grid-template-columns: 1fr; }
     .ps-item {
       border-right: none;
@@ -1009,7 +1015,10 @@
 
     .what, .services, .wellness, .journey-door, .insights-strip { padding: 4rem 0; }
     .final-cta { padding: 4rem 0; }
-    .founder-content { padding: 2.4rem 5%; }
+    .founder { padding: 4rem 0; }
+    .founder-card { padding: 2rem 1.4rem; }
+    .founder-top { gap: 1rem; }
+    .founder-top img { width: 96px; }
 
     .btn-gold, .btn-outline {
       padding: 0.85rem 1.6rem;
@@ -1516,26 +1525,56 @@ html>body:nth-of-type(1)>div:nth-of-type(1)>section:nth-of-type(4)>div:nth-of-ty
 
 <!-- --- THE FOUNDER ------------------------------------------------- -->
 <section class="founder" aria-labelledby="founder-heading">
-  <div class="founder-grid">
-    <div class="founder-portrait">
-      <img src="images/shared/rajneesh-jain-portrait.jpg"
-           alt="Rajneesh Jain, Founder, MECULS, Delhi, India"
-           loading="lazy" width="570" height="640">
-      <div class="founder-nameplate">Founder &middot; MECULS</div>
-    </div>
-    <div class="founder-content rev">
+  <div class="wrap">
+    <div class="founders-head rev">
       <div class="gold-rule"></div>
-      <span class="label">The Founder</span>
-      <h2 id="founder-heading">Rajneesh Jain &ndash;<br><em>the work behind the work.</em></h2>
-      <p>Before MECULS, Rajneesh Jain spent 15 years at the intersection of global consulting research and human behaviour &ndash; as India Head at Springboard Research (later acquired by Forrester Research), and across multiple roles at The Boston Consulting Group. He did not come to coaching from a training background. He came from building tools that solved problems no team had solved before.</p>
-      <p>The 360&deg; PULSE RATE&trade; was not sourced from a certification programme. It was built through 22 years of foundational research in Jungian psychology, direct inner work on himself &ndash; not just on clients &ndash; and the repeated observation that the same psychological structures govern behaviour whether the person is a CHRO at a multinational or an adult struggling with addiction.</p>
-      <div class="founder-creds">
-        <div class="fc-item"><div class="fc-dot"></div>Leadership &amp; Ethics &ndash; Harvard Kennedy School, 2018</div>
-        <div class="fc-item"><div class="fc-dot"></div>India Head &ndash; Springboard Research (acquired by Forrester) &ndash; 16-country APAC research for Microsoft, Intel, IBM, McKinsey, and American Express</div>
-        <div class="fc-item"><div class="fc-dot"></div>The Boston Consulting Group &ndash; CFB Framework: ROI 450&ndash;750% documented across cohort engagements</div>
-        <div class="fc-item"><div class="fc-dot"></div>22 years of foundational research in Jungian psychology and direct inner work</div>
-      </div>
-      <a href="about-rajneesh-jain.html" class="btn-outline" style="align-self:flex-start; margin-top:0.6rem;">The Full Story &rarr;</a>
+      <span class="label">The Founders</span>
+      <h2 id="founder-heading">Two founders &ndash; <em>one practice.</em></h2>
+    </div>
+    <div class="founders-pair">
+
+      <article class="founder-card rev" aria-labelledby="founder-rj">
+        <div class="founder-top">
+          <img src="images/shared/rajneesh-jain-portrait.jpg"
+               alt="Rajneesh Jain, Founder, MECULS, Delhi, India"
+               loading="lazy" width="570" height="640">
+          <div>
+            <h3 id="founder-rj">Rajneesh Jain <em>the work behind the work.</em></h3>
+            <span class="founder-role">Founder &middot; Delhi</span>
+          </div>
+        </div>
+        <p>Before MECULS, Rajneesh Jain spent 15 years at the intersection of global consulting research and human behaviour &ndash; as India Head at Springboard Research (later acquired by Forrester Research), and across multiple roles at The Boston Consulting Group. He did not come to coaching from a training background. He came from building tools that solved problems no team had solved before.</p>
+        <p>The 360&deg; PULSE RATE&trade; was not sourced from a certification programme. It was built through 22 years of foundational research in Jungian psychology, direct inner work on himself &ndash; not just on clients &ndash; and the repeated observation that the same psychological structures govern behaviour whether the person is a CHRO at a multinational or an adult struggling with addiction.</p>
+        <div class="founder-creds">
+          <div class="fc-item"><div class="fc-dot"></div>Leadership &amp; Ethics &ndash; Harvard Kennedy School, 2018</div>
+          <div class="fc-item"><div class="fc-dot"></div>India Head &ndash; Springboard Research (acquired by Forrester) &ndash; 16-country APAC research for Microsoft, Intel, IBM, McKinsey, and American Express</div>
+          <div class="fc-item"><div class="fc-dot"></div>The Boston Consulting Group &ndash; CFB Framework: ROI 450&ndash;750% documented across cohort engagements</div>
+          <div class="fc-item"><div class="fc-dot"></div>22 years of foundational research in Jungian psychology and direct inner work</div>
+        </div>
+        <a href="about-rajneesh-jain.html" class="btn-outline">The Full Story &rarr;</a>
+      </article>
+
+      <article class="founder-card rev" aria-labelledby="founder-sh">
+        <div class="founder-top">
+          <img src="images/shared/sneha-hasrajani-portrait.jpg"
+               alt="Sneha Hasrajani, Co-Founder, MECULS, Ahmedabad, India"
+               loading="lazy" width="720" height="720">
+          <div>
+            <h3 id="founder-sh">Sneha Hasrajani <em>people at the centre.</em></h3>
+            <span class="founder-role">Co-Founder &middot; Ahmedabad</span>
+          </div>
+        </div>
+        <p>Sneha Hasrajani is Co-Founder of MECULS and founder of Ritatva, personalised yoga. Fifteen years of raising two children and building a home is not a gap in her career &ndash; it is the career. It built patience, the ability to understand people, calm that is forged and not taught, and long-term thinking.</p>
+        <p>At MECULS, her role is to make sure every person who engages with us feels understood, respected and supported through their journey. In her words: &ldquo;I did not come to MECULS to learn what it stands for. I had already been living it.&rdquo;</p>
+        <div class="founder-creds">
+          <div class="fc-item"><div class="fc-dot"></div>Co-Founder, MECULS &ndash; since July 2026</div>
+          <div class="fc-item"><div class="fc-dot"></div>Founder, Ritatva &ndash; personalised yoga, one-on-one online and in person</div>
+          <div class="fc-item"><div class="fc-dot"></div>15 years of daily yoga practice</div>
+          <div class="fc-item"><div class="fc-dot"></div>MBA, Sikkim Manipal University &middot; B.Com, Gujarat University</div>
+        </div>
+        <a href="about-sneha-hasrajani.html" class="btn-outline">The Full Story &rarr;</a>
+      </article>
+
     </div>
   </div>
 </section>
@@ -1615,56 +1654,54 @@ html>body:nth-of-type(1)>div:nth-of-type(1)>section:nth-of-type(4)>div:nth-of-ty
     <div class="gf-brand">
       <div class="gf-logo">
         <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS" width="140" height="32">
-        <span class="gf-logo-text" style="display:none">MECULS</span>
       </div>
       <p class="gf-tagline">Mind Enablement Centre for Unlocking Limitless Leadership &amp; Self-Potential</p>
       <div class="gf-contact">
         <a href="mailto:Jain.Rajneesh@meculs.com">Jain.Rajneesh@meculs.com</a>
-        <a href="https://meculs.com">www.meculs.com</a>
         <span>D-13, Sector-7, Rohini, Delhi &ndash; 110085, India</span>
       </div>
       <div class="gf-social">
-        <a href="https://www.linkedin.com/company/meculs/" aria-label="MECULS on LinkedIn" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-        </a>
-        <a href="https://www.youtube.com/@MECULSofficial" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.33zM9.75 15.02V8.48l5.75 3.27z"/></svg>
-        </a>
-        <a href="https://www.instagram.com/meculs_official" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg>
-        </a>
-        <a href="https://x.com/meculs_official" aria-label="X / Twitter" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        </a>
-        <a href="https://www.facebook.com/unlockingselfpotential" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
-        </a>
+      <a href="https://www.linkedin.com/company/meculs/" aria-label="MECULS on LinkedIn" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <a href="https://www.youtube.com/@MECULSofficial" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.33zM9.75 15.02V8.48l5.75 3.27z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/meculs_official" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="https://x.com/meculs_official" aria-label="X / Twitter" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="https://www.facebook.com/unlockingselfpotential" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+      </a>
       </div>
     </div>
 
-    <div>
+    <div class="gf-group gf-group--services">
       <span class="gf-col-title">Services</span>
       <ul class="gf-links">
         <li><a href="360-pulse-rate.html">360&deg; PULSE RATE&trade;</a></li>
-        <li><a href="service-personality-profiling.html">Personality Profiling</a></li>
-        <li><a href="bespoke-coaching.html">Executive Coaching &ndash; Bespoke</a></li>
+        <li><a href="bespoke-coaching.html">Executive Coaching</a></li>
         <li><a href="corporate-programs.html">Corporate Programmes</a></li>
-        <li><a href="service-executive-search.html">Executive Search</a></li>
-        <li><a href="service-hr-analytics.html">HR Analytics</a></li>
-        <li><a href="service-data-science-analytics.html">Data Science &amp; Analytics</a></li>
-        <li><a href="service-market-actionable-intelligence.html">Market Intelligence</a></li>
         <li><a href="organisational-health-consulting.html">Organisational Health</a></li>
-        <li><a href="service-website-development.html">Website Development</a></li>
+        <li><a href="service-personality-profiling.html">Personality Profiling</a></li>
+        <li><a href="service-hr-analytics.html">HR Analytics</a></li>
+        <li><a href="service-data-science-analytics.html">Data Science</a></li>
+        <li><a href="service-market-actionable-intelligence.html">Market Intelligence</a></li>
+        <li><a href="service-executive-search.html">Executive Search</a></li>
         <li><a href="service-consciousness-clarity.html">Consciousness &amp; Clarity</a></li>
         <li><a href="service-mind-wellness.html">Mind Wellness</a></li>
         <li><a href="service-addiction-freedom.html">Addiction Freedom</a></li>
         <li><a href="service-counselling.html">Counselling</a></li>
         <li><a href="service-children.html">For Children</a></li>
         <li><a href="service-zero-state-meditation.html">Meditation as Medicine</a></li>
+        <li><a href="service-website-development.html">Website Development</a></li>
       </ul>
     </div>
 
-    <div>
+    <div class="gf-group">
       <span class="gf-col-title">Company</span>
       <ul class="gf-links">
         <li><a href="about-meculs.html">About MECULS</a></li>
@@ -1682,43 +1719,31 @@ html>body:nth-of-type(1)>div:nth-of-type(1)>section:nth-of-type(4)>div:nth-of-ty
       </ul>
     </div>
 
-    <div>
+    <div class="gf-group">
       <span class="gf-col-title">Connect</span>
       <ul class="gf-links">
         <li><a href="cv-portal.html">The CV Portal</a></li>
         <li><a href="begin-conversation.html">Begin a Conversation</a></li>
-        <li><a href="book-session.html">Corporate Enquiry</a></li>
-      </ul>
-      <span class="gf-col-title" style="margin-top:2rem;">Legal</span>
-      <ul class="gf-links">
-        <li><a href="grievance.html">Grievance</a></li>
-        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-        <li><a href="terms.html">Terms of Service</a></li>
-        <li><a href="refund-policy.html">Refund Policy</a></li>
-        <li><a href="shipping-delivery.html">Shipping &amp; Delivery</a></li>
-        <li><a href="contact.html">Contact Us</a></li>
-        <li><a href="disclaimer.html">Disclaimer</a></li>
+        <li><a href="corporate-enquiry.html">Corporate Enquiry</a></li>
+        <li><a href="website-enquiry.html">Website Enquiry</a></li>
       </ul>
     </div>
 
   </div>
 
-  <div class="gf-bottom">
-    <p class="gf-ip">This website, its content, frameworks, methodologies, and design are conceptualised, created, and authored by Rajneesh Jain, Founder, MECULS. All methodologies are the original and exclusive intellectual property of Rajneesh Jain. Unauthorised reproduction or commercial use is prohibited.</p>
-    <div class="gf-bottom-bar">
-      <p class="gf-copy">&copy; 2026 MECULS. All rights reserved. D-13, Sector-7, Rohini, Delhi &ndash; 110085, India.</p>
-      <p class="gf-payment">Payment: Razorpay &middot; UPI &middot; Cards &middot; Netbanking &middot; Wallets</p>
-      <nav class="gf-legal" aria-label="Legal links">
-        <a href="grievance.html">Grievance</a>
-        <a href="privacy-policy.html">Privacy</a>
-        <a href="terms.html">Terms</a>
-        <a href="refund-policy.html">Refund</a>
-        <a href="shipping-delivery.html">Shipping</a>
-        <a href="contact.html">Contact</a>
-        <a href="disclaimer.html">Disclaimer</a>
-      </nav>
-    </div>
+  <div class="gf-bottom-bar">
+    <p class="gf-copy">&copy; 2026 MECULS. All rights reserved. Payment: Razorpay &middot; UPI &middot; Cards &middot; Netbanking &middot; Wallets</p>
+    <nav class="gf-legal" aria-label="Legal links">
+      <a href="grievance.html">Grievance</a>
+      <a href="privacy-policy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="refund-policy.html">Refund</a>
+      <a href="shipping-delivery.html">Shipping</a>
+      <a href="contact.html">Contact</a>
+      <a href="disclaimer.html">Disclaimer</a>
+    </nav>
   </div>
+  <p class="gf-ip">All content, frameworks, methodologies and design are the original intellectual property of Rajneesh Jain, Founder, MECULS. Unauthorised reproduction or commercial use is prohibited.</p>
 
 </footer>
 
