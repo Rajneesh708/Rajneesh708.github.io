@@ -601,7 +601,12 @@
     .fd-tracks .rj-track-title { font-size: clamp(1.7rem, 2.4vw, 2.1rem); margin-bottom: 1rem; }
     .fd-tracks .rj-track-card p + p { margin-top: 1.4rem; }
     .fd-photo { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; object-position: center 25%; display: block; margin: 0 0 1.4rem; border: 3px solid rgba(138,109,26,0.45); }
-  </style>
+  
+    .fs-row { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1rem; }
+    .fs-row a { width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; border: 1px solid rgba(138,109,26,0.55); background: rgba(138,109,26,0.07); color: #2a241f; transition: background .2s, color .2s; }
+    .fs-row a:hover, .fs-row a:focus-visible { background: #6b5414; color: #fff; }
+    .fs-row svg { width: 18px; height: 18px; }
+</style>
 </head>
 <body>
 <div class="page">
@@ -832,6 +837,12 @@
         <div class="fd-role">Founder &middot; Delhi</div>
         <h3 class="rj-track-title">Rajneesh Jain</h3>
         <p>Twenty-two years of original research and practice in leadership, the human mind, and organisational analytics. Architect of the 360&deg; PULSE RATE&trade; coaching model. <em>Former Boston Consulting Group. Former India Head, Springboard Research.</em></p>
+        <div class="fs-row" aria-label="Rajneesh Jain on social media">
+          <a href="https://www.linkedin.com/in/rajneesh-jain-meculs" aria-label="Rajneesh Jain on LinkedIn" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="https://x.com/meculs_official" aria-label="Rajneesh Jain on X" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.instagram.com/meculs_official" aria-label="Rajneesh Jain on Instagram" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.facebook.com/unlockingselfpotential" aria-label="Rajneesh Jain on Facebook" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        </div>
         <p><a class="rj-btn rj-btn-fill" href="about-rajneesh-jain.html">Rajneesh&rsquo;s profile</a></p>
       </article>
 
@@ -840,6 +851,11 @@
         <div class="fd-role">Co-Founder &middot; Ahmedabad</div>
         <h3 class="rj-track-title">Sneha Hasrajani</h3>
         <p>Keeps people at the centre of MECULS. Fifteen years of raising two children and building a home, and fifteen years of daily yoga practice. <em>Founder of Ritatva, personalised yoga.</em></p>
+        <div class="fs-row" aria-label="Sneha Hasrajani on social media">
+          <a href="https://www.linkedin.com/in/sneha-hasrajani" aria-label="Sneha Hasrajani on LinkedIn" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="https://www.instagram.com/sneha_hasrajani" aria-label="Sneha Hasrajani on Instagram" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.facebook.com/sneha.hasrajani.2025" aria-label="Sneha Hasrajani on Facebook" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        </div>
         <p><a class="rj-btn rj-btn-fill" href="about-sneha-hasrajani.html">Sneha&rsquo;s profile</a></p>
       </article>
 
@@ -890,7 +906,7 @@
         <span>D-13, Sector-7, Rohini, Delhi &ndash; 110085, India</span>
       </div>
       <div class="gf-social">
-        <a href="https://www.linkedin.com/in/rajneesh-jain-meculs" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.linkedin.com/company/meculs/" aria-label="MECULS on LinkedIn" target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
         </a>
         <a href="https://www.youtube.com/@MECULSofficial" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
