@@ -431,9 +431,11 @@
   }
   .diagram-svg {
     width: 100%;
+    min-width: 880px;
     height: auto;
     display: block;
   }
+  .svg-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .diagram-caption {
     margin-top: 1.2rem;
     padding-top: 1rem;
@@ -1312,15 +1314,15 @@ html>body:nth-of-type(1)>div:nth-of-type(1)>section:nth-of-type(9)>div:nth-of-ty
         <span class="diagram-head-r">three layers, observed</span>
       </div>
 
-      <svg class="diagram-svg" viewBox="0 0 1100 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="diag-title diag-desc">
+      <div class="svg-scroll"><svg class="diagram-svg" viewBox="0 0 1100 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="diag-title diag-desc">
         <title id="diag-title">A three-layer schematic of an organisation</title>
         <desc id="diag-desc">Three horizontal layers labelled Board, Leadership, and Operating System, connected by gold lines. Two nodes in the Leadership layer are circled to mark the leaders who have been replaced repeatedly without changing the pattern beneath them.</desc>
 
         <!-- Layer labels (left margin) -->
-        <g font-family="Archivo, sans-serif" font-size="12.7" font-weight="700" letter-spacing="3" fill="#d4af37">
+        <g font-family="Archivo, sans-serif" font-size="15" font-weight="700" letter-spacing="1.5" fill="#d4af37">
           <text x="20"  y="74"  opacity="0.9">BOARD</text>
           <text x="20"  y="184" opacity="0.9">LEADERSHIP</text>
-          <text x="20"  y="294" opacity="0.9">OPERATING SYSTEM</text>
+          <text x="20"  y="286" opacity="0.9"><tspan x="20">OPERATING</tspan><tspan x="20" dy="18">SYSTEM</tspan></text>
         </g>
 
         <!-- Layer baselines (faint horizontal rules) -->
@@ -1391,7 +1393,7 @@ html>body:nth-of-type(1)>div:nth-of-type(1)>section:nth-of-type(9)>div:nth-of-ty
           <line x1="636" y1="180" x2="688" y2="148"/>
           <line x1="996" y1="180" x2="1050" y2="148"/>
         </g>
-        <g font-family="Cormorant Garamond, serif" font-style="italic" font-size="14" fill="#e4bf47" fill-opacity="0.92">
+        <g font-family="Cormorant Garamond, serif" font-style="italic" font-size="18" fill="#e4bf47" fill-opacity="0.92">
           <text x="692" y="146">replaced. same outcome.</text>
           <text x="900" y="146">replaced. same outcome.</text>
         </g>
@@ -1417,8 +1419,8 @@ html>body:nth-of-type(1)>div:nth-of-type(1)>section:nth-of-type(9)>div:nth-of-ty
 
         <!-- Foot of diagram - a thin sub-band representing 'the persistent pattern' -->
         <line x1="170" y1="320" x2="1080" y2="320" stroke="#d4af37" stroke-opacity="0.18" stroke-width="1"/>
-        <text x="170" y="345" font-family="Archivo, sans-serif" font-size="12.7" font-weight="600" letter-spacing="2.5" fill="#d4af37" fill-opacity="0.6">THE PATTERN BENEATH ALL THREE LAYERS &ndash; UNCHANGED THROUGH THREE CHRO REPLACEMENTS</text>
-      </svg>
+        <text x="170" y="347" font-family="Archivo, sans-serif" font-size="15" font-weight="600" letter-spacing="1" fill="#d4af37" fill-opacity="0.9">THE PATTERN BENEATH ALL THREE LAYERS &ndash; UNCHANGED THROUGH THREE CHRO REPLACEMENTS</text>
+      </svg></div>
 
       <figcaption class="diagram-caption" id="diag-cap">
         <span class="gold-key">Read</span>
