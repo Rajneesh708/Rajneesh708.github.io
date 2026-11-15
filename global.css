@@ -500,6 +500,7 @@ body {
 
 .gh-tagline-sub-text {
   font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
   font-size: clamp(0.80rem, 1.05vw, 0.92rem);
   font-style: italic;
   color: #ffffff;
@@ -638,6 +639,7 @@ body {
 
 .gf-ip {
   font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
   font-size: 1rem;
   font-style: italic;
   color: #d3dbea;
