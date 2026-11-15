@@ -648,18 +648,20 @@
   }
 
   /* ------------------------------------------------------------------
-     THE FOUNDERS  -  two founders side by side (Rajneesh left, Sneha right).
-     Small framed rectangular portraits, deliberately different from the
-     round photo cards on the Founders page. Stacks on screens under 900px.
+     THE FOUNDERS  -  two founders side by side, full width.
+     Each card: framed photo on the left, text on the right.
+     Both cards share the same structure so they line up exactly.
+     Stacks one above the other under 1000px.
      ------------------------------------------------------------------ */
   .founder {
-    padding: 5.5rem 0;
+    padding: 5rem 0;
     background: var(--ink);
   }
-  .founders-head { margin-bottom: 2.6rem; }
+  .founder-wrap { padding: 0 5%; }
+  .founders-head { margin-bottom: 2.4rem; }
   .founders-head h2 {
     font-family: var(--display);
-    font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+    font-size: clamp(2.2rem, 3.6vw, 3rem);
     font-weight: 600;
     line-height: 1.14;
     letter-spacing: -0.02em;
@@ -668,25 +670,27 @@
   .founders-pair {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.8rem;
+    gap: 2rem;
     align-items: stretch;
   }
   .founder-card {
-    background: var(--ink-2);
-    border: 1px solid rgba(212,175,55,0.16);
-    padding: 2.6rem 2.4rem 2.4rem;
     display: flex;
     flex-direction: column;
+    background: var(--ink-2);
+    border: 1px solid rgba(212,175,55,0.16);
+    padding: 2.4rem 2.6rem;
   }
   .founder-top {
     display: flex;
     align-items: center;
-    gap: 1.4rem;
-    margin-bottom: 1.6rem;
+    gap: 1.8rem;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(212,175,55,0.16);
   }
   .founder-top img {
-    width: 132px;
     flex-shrink: 0;
+    width: 150px;
     aspect-ratio: 4 / 5;
     height: auto;
     object-fit: cover;
@@ -698,53 +702,70 @@
   }
   .founder-top h3 {
     font-family: var(--display);
-    font-size: clamp(1.7rem, 2.4vw, 2.2rem);
+    font-size: clamp(1.7rem, 2.1vw, 2rem);
     font-weight: 600;
-    line-height: 1.18;
+    line-height: 1.15;
     letter-spacing: -0.01em;
   }
-  .founder-top h3 em { display: block; font-style: italic; color: var(--gold); font-size: 0.82em; margin-top: 0.3rem; }
   .founder-role {
     display: block;
-    margin-top: 0.7rem;
+    margin-top: 0.55rem;
     font-size: 0.8rem;
     font-weight: 700;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--gold);
   }
+  .founder-tag {
+    display: block;
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 500;
+    color: var(--gold);
+    font-size: clamp(1.15rem, 1.4vw, 1.3rem);
+    line-height: 1.35;
+    margin-top: 0.7rem;
+  }
   .founder-card > p {
     font-family: var(--serif);
     font-weight: 600;
-    font-size: clamp(1.18rem, 1.4vw, 1.34rem);
-    color: rgba(255,255,255,0.82);
-    line-height: 1.8;
-    margin-bottom: 1.1rem;
+    font-size: clamp(1.16rem, 1.3vw, 1.3rem);
+    color: rgba(255,255,255,0.84);
+    line-height: 1.7;
+    margin-bottom: 1rem;
   }
   .founder-creds {
     display: flex;
     flex-direction: column;
-    gap: 0.7rem;
-    margin: 0.6rem 0 1.6rem;
+    gap: 0.45rem;
+    margin: 0 0 1.5rem;
   }
   .fc-item {
     display: flex;
     align-items: baseline;
-    gap: 0.85rem;
+    gap: 0.75rem;
     font-family: var(--serif);
     font-weight: 600;
-    font-size: clamp(1.12rem, 1.3vw, 1.26rem);
-    color: rgba(255,255,255,0.82);
-    line-height: 1.7;
+    font-size: clamp(1.1rem, 1.2vw, 1.22rem);
+    color: rgba(255,255,255,0.84);
+    line-height: 1.55;
   }
   .fc-dot {
     width: 5px; height: 5px;
     border-radius: 50%;
     background: var(--gold);
     flex-shrink: 0;
-    margin-top: 0.62em;
+    margin-top: 0.55em;
   }
   .founder-card .btn-outline { align-self: flex-start; margin-top: auto; }
+  @media (max-width: 999px) {
+    .founders-pair { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .founder-card { padding: 1.8rem 1.3rem; }
+    .founder-top { gap: 1.1rem; }
+    .founder-top img { width: 100px; }
+  }
 
   /* ------------------------------------------------------------------
      INSIGHTS  -  now on dark background
@@ -961,7 +982,6 @@
 
   /* Small tablet */
   @media (max-width: 899px) {
-    .founders-pair { grid-template-columns: 1fr; }
     .proof-strip-inner { grid-template-columns: 1fr; }
     .ps-item {
       border-right: none;
@@ -1016,9 +1036,6 @@
     .what, .services, .wellness, .journey-door, .insights-strip { padding: 4rem 0; }
     .final-cta { padding: 4rem 0; }
     .founder { padding: 4rem 0; }
-    .founder-card { padding: 2rem 1.4rem; }
-    .founder-top { gap: 1rem; }
-    .founder-top img { width: 96px; }
 
     .btn-gold, .btn-outline {
       padding: 0.85rem 1.6rem;
@@ -1525,7 +1542,7 @@ html>body:nth-of-type(1)>div:nth-of-type(1)>section:nth-of-type(4)>div:nth-of-ty
 
 <!-- --- THE FOUNDER ------------------------------------------------- -->
 <section class="founder" aria-labelledby="founder-heading">
-  <div class="wrap">
+  <div class="founder-wrap">
     <div class="founders-head rev">
       <div class="gold-rule"></div>
       <span class="label">The Founders</span>
@@ -1537,19 +1554,18 @@ html>body:nth-of-type(1)>div:nth-of-type(1)>section:nth-of-type(4)>div:nth-of-ty
         <div class="founder-top">
           <img src="images/shared/rajneesh-jain-portrait.jpg"
                alt="Rajneesh Jain, Founder, MECULS, Delhi, India"
-               loading="lazy" width="570" height="640">
+               loading="lazy" width="591" height="591">
           <div>
-            <h3 id="founder-rj">Rajneesh Jain <em>the work behind the work.</em></h3>
+            <h3 id="founder-rj">Rajneesh Jain</h3>
             <span class="founder-role">Founder &middot; Delhi</span>
+            <span class="founder-tag">The work behind the work.</span>
           </div>
         </div>
-        <p>Before MECULS, Rajneesh Jain spent 15 years at the intersection of global consulting research and human behaviour &ndash; as India Head at Springboard Research (later acquired by Forrester Research), and across multiple roles at The Boston Consulting Group. He did not come to coaching from a training background. He came from building tools that solved problems no team had solved before.</p>
-        <p>The 360&deg; PULSE RATE&trade; was not sourced from a certification programme. It was built through 22 years of foundational research in Jungian psychology, direct inner work on himself &ndash; not just on clients &ndash; and the repeated observation that the same psychological structures govern behaviour whether the person is a CHRO at a multinational or an adult struggling with addiction.</p>
+        <p>Fifteen years in global consulting research &ndash; India Head at Springboard Research (later acquired by Forrester) and multiple roles at The Boston Consulting Group. He built the 360&deg; PULSE RATE&trade; from 22 years of research in Jungian psychology and direct inner work.</p>
         <div class="founder-creds">
           <div class="fc-item"><div class="fc-dot"></div>Leadership &amp; Ethics &ndash; Harvard Kennedy School, 2018</div>
-          <div class="fc-item"><div class="fc-dot"></div>India Head &ndash; Springboard Research (acquired by Forrester) &ndash; 16-country APAC research for Microsoft, Intel, IBM, McKinsey, and American Express</div>
-          <div class="fc-item"><div class="fc-dot"></div>The Boston Consulting Group &ndash; CFB Framework: ROI 450&ndash;750% documented across cohort engagements</div>
-          <div class="fc-item"><div class="fc-dot"></div>22 years of foundational research in Jungian psychology and direct inner work</div>
+          <div class="fc-item"><div class="fc-dot"></div>BCG &ndash; CFB Framework, ROI 450&ndash;750% documented</div>
+          <div class="fc-item"><div class="fc-dot"></div>16-country APAC research for Microsoft, Intel, IBM</div>
         </div>
         <a href="about-rajneesh-jain.html" class="btn-outline">The Full Story &rarr;</a>
       </article>
@@ -1560,17 +1576,16 @@ html>body:nth-of-type(1)>div:nth-of-type(1)>section:nth-of-type(4)>div:nth-of-ty
                alt="Sneha Hasrajani, Co-Founder, MECULS, Ahmedabad, India"
                loading="lazy" width="720" height="720">
           <div>
-            <h3 id="founder-sh">Sneha Hasrajani <em>people at the centre.</em></h3>
+            <h3 id="founder-sh">Sneha Hasrajani</h3>
             <span class="founder-role">Co-Founder &middot; Ahmedabad</span>
+            <span class="founder-tag">People at the centre.</span>
           </div>
         </div>
-        <p>Sneha Hasrajani is Co-Founder of MECULS and founder of Ritatva, personalised yoga. Fifteen years of raising two children and building a home is not a gap in her career &ndash; it is the career. It built patience, the ability to understand people, calm that is forged and not taught, and long-term thinking.</p>
-        <p>At MECULS, her role is to make sure every person who engages with us feels understood, respected and supported through their journey. In her words: &ldquo;I did not come to MECULS to learn what it stands for. I had already been living it.&rdquo;</p>
+        <p>Fifteen years of raising two children and building a home built her patience, calm and the ability to understand people. At MECULS, she makes sure every person who comes to us feels understood, respected and supported.</p>
         <div class="founder-creds">
-          <div class="fc-item"><div class="fc-dot"></div>Co-Founder, MECULS &ndash; since July 2026</div>
-          <div class="fc-item"><div class="fc-dot"></div>Founder, Ritatva &ndash; personalised yoga, one-on-one online and in person</div>
+          <div class="fc-item"><div class="fc-dot"></div>Founder, Ritatva &ndash; personalised yoga</div>
           <div class="fc-item"><div class="fc-dot"></div>15 years of daily yoga practice</div>
-          <div class="fc-item"><div class="fc-dot"></div>MBA, Sikkim Manipal University &middot; B.Com, Gujarat University</div>
+          <div class="fc-item"><div class="fc-dot"></div>MBA, Sikkim Manipal University</div>
         </div>
         <a href="about-sneha-hasrajani.html" class="btn-outline">The Full Story &rarr;</a>
       </article>
