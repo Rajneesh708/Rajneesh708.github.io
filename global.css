@@ -755,3 +755,46 @@ body {
   .gf-brand { margin-bottom: 1.1rem; }
   .gf-group:last-child { margin-top: 1.4rem; }
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   HEADER, FEEL PROUD LINE AND FOOTER FIT EVERY SCREEN (16 Nov 2026)
+   - Wide screens: nothing changes.
+   - When the full menu does not fit next to the logo, global.js adds
+     .gh-compact and the menu button is shown instead (the same menu
+     phones use, opening as a side panel). Logo and FEEL PROUD line
+     keep the same 5% left edge.
+   - FEEL PROUD line wraps onto a second line instead of being cut off.
+   - Phones: FEEL PROUD line shown in smaller text at the top of the
+     page; it scrolls away instead of staying fixed on screen.
+   - Footer: two-row layout up to 1599px so no column is cut off.
+════════════════════════════════════════════════════════════════════ */
+.gh-tagline-sub-text { white-space: normal; overflow: visible; text-overflow: clip; }
+
+.global-header.gh-compact .gh-nav-wrap,
+.global-header.gh-compact .gh-login-wrap { display: none; }
+.global-header.gh-compact .gh-toggle { display: flex; }
+
+.gh-mobile-menu {
+  top: calc(var(--g-nav-h) + var(--tagline-fixed-h, 0px));
+  max-height: calc(100vh - var(--g-nav-h) - var(--tagline-fixed-h, 0px));
+}
+@media (min-width: 900px) {
+  .gh-mobile-menu {
+    left: auto;
+    width: 420px;
+    border-left: 1px solid var(--g-gold-border);
+    padding: 1.5rem 2rem 2rem;
+  }
+}
+
+@media (max-width: 680px) {
+  .gh-tagline-sub { display: block; position: absolute; padding: 0.5rem 5%; }
+  .gh-tagline-sub-text { font-size: 0.85rem; line-height: 1.45; }
+  .gh-tagline-sub-text strong { font-size: 0.72rem; }
+}
+
+@media (min-width: 900px) and (max-width: 1599px) {
+  .gf-top { grid-template-columns: 1fr 1fr; gap: 1.8rem 2.4rem; }
+  .gf-brand { grid-column: 1 / -1; }
+  .gf-group--services { grid-column: 1 / -1; }
+}

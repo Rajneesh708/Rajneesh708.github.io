@@ -294,3 +294,36 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setup);
   else setup();
 })();
+
+/* ── Header and FEEL PROUD line fit every screen (16 Nov 2026) ──────
+   If the full menu does not fit next to the logo, show the menu button
+   instead (.gh-compact). Also measures the FEEL PROUD line so page
+   content and the menu panel always start just below it. */
+(function () {
+  var header = document.querySelector('.global-header');
+  if (!header) return;
+  var nav  = header.querySelector('.gh-nav-wrap');
+  var logo = header.querySelector('.gh-logo');
+  var tag  = document.getElementById('ghTaglineSub');
+  function fit() {
+    if (nav && logo) {
+      header.classList.remove('gh-compact');
+      if (window.innerWidth > 899) {
+        var cs = getComputedStyle(header);
+        var room = header.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+        var need = logo.offsetWidth + 32 + nav.scrollWidth;
+        if (need > room) header.classList.add('gh-compact');
+      }
+    }
+    if (tag) {
+      var h = tag.offsetHeight;
+      var fixed = getComputedStyle(tag).position === 'fixed';
+      document.documentElement.style.setProperty('--tagline-h', h + 'px');
+      document.documentElement.style.setProperty('--tagline-fixed-h', (fixed ? h : 0) + 'px');
+    }
+  }
+  fit();
+  window.addEventListener('resize', fit, { passive: true });
+  window.addEventListener('load', fit);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+})();
