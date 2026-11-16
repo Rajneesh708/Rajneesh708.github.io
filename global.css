@@ -723,3 +723,35 @@ body {
   color: var(--g-gold);
 }
 .gh-mobile-divider { height: 1px; background: var(--g-rule); margin: 0.6rem 0; }
+
+/* ── Footer on phones: Services and Company open on tap (16 Nov 2026) ──
+   global.js adds .gf-collapsible to those two groups. Phones only;
+   laptops and tablets show every link as before. Without JavaScript
+   all links simply stay visible. */
+@media (max-width: 640px) {
+  .gf-collapsible .gf-col-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    margin: 0;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--g-rule);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .gf-collapsible .gf-col-title::after {
+    content: '';
+    width: 8px; height: 8px;
+    border-right: 2px solid var(--g-gold);
+    border-bottom: 2px solid var(--g-gold);
+    transform: rotate(45deg);
+    margin: 0 4px 4px 0;
+    transition: transform 0.2s;
+  }
+  .gf-collapsible.gf-open .gf-col-title::after { transform: rotate(-135deg); margin-bottom: -4px; }
+  .gf-collapsible .gf-links { display: none; }
+  .gf-collapsible.gf-open .gf-links { display: grid; padding: 1rem 0 0.4rem; }
+  .gf-top { gap: 0.4rem; }
+  .gf-brand { margin-bottom: 1.1rem; }
+  .gf-group:last-child { margin-top: 1.4rem; }
+}

@@ -264,3 +264,33 @@
   }
 
 })();
+
+/* ── Footer on phones: tap "Services" or "Company" to show its links (16 Nov 2026) ──
+   Only the look changes on phones (see global.css); on larger screens
+   the links are always visible and the headings do nothing. */
+(function () {
+  function setup() {
+    var groups = document.querySelectorAll('.global-footer .gf-group');
+    for (var i = 0; i < groups.length - 1; i++) {   // every group except the last (Connect)
+      (function (g) {
+        var title = g.querySelector('.gf-col-title');
+        if (!title) return;
+        g.classList.add('gf-collapsible');
+        title.setAttribute('role', 'button');
+        title.setAttribute('tabindex', '0');
+        title.setAttribute('aria-expanded', 'false');
+        function flip() {
+          if (!window.matchMedia('(max-width: 640px)').matches) return;
+          var open = g.classList.toggle('gf-open');
+          title.setAttribute('aria-expanded', String(open));
+        }
+        title.addEventListener('click', flip);
+        title.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); }
+        });
+      })(groups[i]);
+    }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setup);
+  else setup();
+})();
