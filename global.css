@@ -723,3 +723,42 @@ body {
   color: var(--g-gold);
 }
 .gh-mobile-divider { height: 1px; background: var(--g-rule); margin: 0.6rem 0; }
+
+/* ── Header fit on laptop screens (16 Nov 2026) ──────────────────────
+   The full menu needs about 1,330px. On laptops (1280-1699px wide) it
+   was running into the logo and pushing "Begin a Conversation" and the
+   sign-in icon off the right edge.
+   1700px and wider : full menu, unchanged.
+   1440 to 1699px   : same menu, slightly tighter spacing.
+   below 1440px     : menu button (the same menu used on phones),
+                      opening as a side panel on laptops and tablets.
+──────────────────────────────────────────────────────────────────── */
+.global-header { gap: 2rem; }
+@media (min-width: 1440px) and (max-width: 1699px) {
+  .global-header { padding: 0 3%; }
+  .gh-nav { gap: 0.9rem; }
+  .gh-nav > li > a { letter-spacing: 0.02em; }
+  .gh-cta { padding: 0.5rem 0.95rem !important; letter-spacing: 0.05em !important; }
+}
+@media (max-width: 1439px) {
+  .gh-nav-wrap   { display: none; }
+  .gh-login-wrap { display: none; }
+  .gh-toggle     { display: flex; }
+}
+@media (min-width: 900px) and (max-width: 1439px) {
+  .gh-mobile-menu {
+    top: calc(var(--g-nav-h) + var(--tagline-h, 0px));
+    max-height: calc(100vh - var(--g-nav-h) - var(--tagline-h, 0px));
+    left: auto;
+    width: 420px;
+    border-left: 1px solid var(--g-gold-border);
+    padding: 1.5rem 2rem 2rem;
+  }
+}
+@media (min-width: 1440px) {
+  .gh-mobile-menu { display: none !important; }
+}
+/* Tablets: let the FEEL PROUD line wrap onto two lines instead of being cut off */
+@media (min-width: 681px) and (max-width: 1199px) {
+  .gh-tagline-sub-text { white-space: normal; }
+}
