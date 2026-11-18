@@ -148,42 +148,132 @@
       });
     }
 
+    /* -- Subscribe: real saving (18 Nov 2026) -------------------
+       Saves the visitor to the Supabase table "newsletter_subscribers"
+       (columns: name, email, source_page). To see subscribers:
+       Supabase > Table Editor > newsletter_subscribers.
+       Spam check: Cloudflare Turnstile, checked by our Vercel server
+       (MECULS_API_BASE + /api/verify-turnstile) - same as the
+       corporate enquiry form. Needs config.js and Turnstile's api.js
+       on the page. Nobody can read the list from the browser
+       (only insert is allowed - see newsletter_subscribers.sql).
+       ------------------------------------------------------------ */
+    var SUBSCRIBE_TURNSTILE_SITEKEY = '0x4AAAAAADQhXVRIIusl9YwX'; /* same key as corporate-enquiry.html */
+    var subscribeWidgetId = null;
+    var subscribeRenderTries = 0;
+
+    function renderSubscribeTurnstile() {
+      var box = document.getElementById('subscribeTurnstile');
+      if (!box || subscribeWidgetId !== null) return;
+      if (typeof turnstile === 'undefined' || !turnstile.render) {
+        /* Turnstile script still loading - try again for up to ~15 s */
+        if (subscribeRenderTries++ < 50) setTimeout(renderSubscribeTurnstile, 300);
+        return;
+      }
+      subscribeWidgetId = turnstile.render(box, {
+        sitekey: SUBSCRIBE_TURNSTILE_SITEKEY,
+        theme: 'light'
+      });
+    }
+
+    function setSubscribeStatus(message) {
+      var el = document.getElementById('subscribeStatus');
+      if (!el) return;
+      el.textContent = message || '';
+      el.hidden = !message;
+    }
+
+    function resetSubscribeTurnstile() {
+      try {
+        if (typeof turnstile !== 'undefined' && subscribeWidgetId !== null) turnstile.reset(subscribeWidgetId);
+      } catch (err) { /* widget not ready - nothing to reset */ }
+    }
+
+    if (subscribeBtn) {
+      subscribeBtn.addEventListener('click', renderSubscribeTurnstile);
+    }
+
     if (subscribeForm) {
-      subscribeForm.addEventListener('submit', function (e) {
+      subscribeForm.addEventListener('submit', async function (e) {
         e.preventDefault();
+        setSubscribeStatus('');
 
-        var formData = {
-          name:       document.getElementById('subscribeName')  ? document.getElementById('subscribeName').value  : '',
-          email:      document.getElementById('subscribeEmail') ? document.getElementById('subscribeEmail').value : '',
-          agreeTerms: document.getElementById('agreeTerms')     ? document.getElementById('agreeTerms').checked   : false
-        };
+        var nameEl  = document.getElementById('subscribeName');
+        var emailEl = document.getElementById('subscribeEmail');
+        var agreeEl = document.getElementById('agreeTerms');
+        var name  = nameEl  ? nameEl.value.trim() : '';
+        var email = emailEl ? emailEl.value.trim().toLowerCase() : '';
 
-        /*
-        -- HOW TO CONNECT BREVO (your email platform) IN FUTURE ----
-        You have a Brevo account. When ready, replace the console.log
-        below with a Brevo API call or use Brevo's embedded form.
-        Brevo documentation: https://developers.brevo.com
+        if (agreeEl && !agreeEl.checked) {
+          setSubscribeStatus('Please tick the box to agree.');
+          return;
+        }
 
-        fetch('https://api.brevo.com/v3/contacts', {
-          method: 'POST',
-          headers: {
-            'accept': 'application/json',
-            'content-type': 'application/json',
-            'api-key': 'YOUR_BREVO_API_KEY'
-          },
-          body: JSON.stringify({
-            email: formData.email,
-            attributes: { FIRSTNAME: formData.name },
-            listIds: [YOUR_LIST_ID],
-            updateEnabled: true
-          })
-        });
-        ------------------------------------------------------------ */
+        var token = '';
+        try {
+          if (typeof turnstile !== 'undefined' && subscribeWidgetId !== null) {
+            token = turnstile.getResponse(subscribeWidgetId) || '';
+          }
+        } catch (err) { token = ''; }
+        if (!token) {
+          setSubscribeStatus('Please wait for the security check above the button to finish, then try again.');
+          renderSubscribeTurnstile();
+          return;
+        }
 
-        console.log('Subscribe (not yet connected to Brevo):', formData);
-        showToast('Successfully subscribed to MECULS insights!');
-        closeModal(subscribeModal);
-        subscribeForm.reset();
+        var submitBtn = subscribeForm.querySelector('button[type="submit"]');
+        var submitText = submitBtn ? submitBtn.textContent : '';
+        if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Subscribing...'; }
+
+        try {
+          /* 1. Our server asks Cloudflare whether this is a real person */
+          var verifyRes = await fetch(MECULS_API_BASE + '/api/verify-turnstile', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ turnstile_token: token })
+          });
+          var verifyData = {};
+          try { verifyData = await verifyRes.json(); } catch (err) { verifyData = {}; }
+          if (!verifyRes.ok || !verifyData.ok) {
+            setSubscribeStatus('The security check did not pass. Please try again.');
+            return;
+          }
+
+          /* 2. Save the subscriber */
+          var saveRes = await fetch(SUPABASE_URL + '/rest/v1/newsletter_subscribers', {
+            method: 'POST',
+            headers: {
+              'apikey': SUPABASE_ANON_KEY,
+              'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+              'Content-Type': 'application/json',
+              'Prefer': 'return=minimal'
+            },
+            body: JSON.stringify({
+              name: name.slice(0, 100),
+              email: email,
+              source_page: window.location.pathname
+            })
+          });
+
+          if (saveRes.status === 201 || saveRes.status === 204) {
+            showToast('Thank you - you are subscribed to MECULS insights.');
+          } else if (saveRes.status === 409) {
+            /* Email is already on the list (unique email rule) */
+            showToast('You are already subscribed - thank you.');
+          } else {
+            console.error('Subscribe failed:', saveRes.status, await saveRes.text());
+            setSubscribeStatus('Sorry, that did not go through. Please check your email address and try again.');
+            return;
+          }
+          closeModal(subscribeModal);
+          subscribeForm.reset();
+        } catch (err) {
+          console.error('Subscribe error:', err);
+          setSubscribeStatus('Sorry, we could not connect. Please check your internet and try again.');
+        } finally {
+          if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = submitText; }
+          resetSubscribeTurnstile();
+        }
       });
     }
 
