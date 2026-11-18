@@ -4,6 +4,8 @@
   <link rel="canonical" href="https://meculs.com/goodbye.html">
   <meta name="robots" content="noindex, nofollow">
   <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://challenges.cloudflare.com https://accounts.google.com/gsi/client https://checkout.razorpay.com https://*.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.google.com/gsi/style; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://fjxcphhhddfwrlkpshyw.supabase.co https://*.googleusercontent.com https://*.google-analytics.com https://*.googletagmanager.com https://*.razorpay.com; connect-src 'self' https://fjxcphhhddfwrlkpshyw.supabase.co https://meculs-payment.vercel.app https://*.razorpay.com https://accounts.google.com/gsi/ https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src 'self' https://challenges.cloudflare.com https://accounts.google.com/gsi/ https://*.razorpay.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <script src="js/img-fallback.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Goodbye &ndash; MECULS</title>
 
@@ -261,7 +263,7 @@
       <a href="https://meculs.com/" class="gb-top__brand" aria-label="MECULS">
         <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS"
              class="gb-top__logo"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+             data-fallback="next-inline">
         <span class="gb-top__brand-text" style="display:none">MECULS</span>
       </a>
     </div>
@@ -309,91 +311,7 @@
 
 </div>
 
-<script>
-(function () {
-  "use strict";
-
-  // Auto-redirect countdown
-  let secondsLeft = 8;
-  const countdownEl = document.getElementById("gbCountdown");
-  let redirected = false;
-  const tick = setInterval(() => {
-    secondsLeft -= 1;
-    if (countdownEl) countdownEl.textContent = String(secondsLeft);
-    if (secondsLeft <= 0) {
-      clearInterval(tick);
-      if (!redirected) {
-        redirected = true;
-        window.location.href = "https://meculs.com/";
-      }
-    }
-  }, 1000);
-
-  // Feedback submit &ndash; POSTs to a simple feedback endpoint via mailto.
-  // Without a backend mail relay, the lightest option is to use a
-  // form action that opens the user's mail client. For now we write
-  // to localStorage as a holding place and direct user to mailto, so
-  // the feedback isn't lost if no mail client is configured.
-  const submitBtn = document.getElementById("gbSubmitBtn");
-  const skipBtn   = document.getElementById("gbSkipBtn");
-  const txt       = document.getElementById("gbFeedback");
-  const msgEl     = document.getElementById("gbMsg");
-
-  function showMsg(text, ok) {
-    if (!msgEl) return;
-    msgEl.hidden = false;
-    msgEl.textContent = text;
-    msgEl.className = "gb-feedback__msg" + (ok ? " gb-feedback__msg--ok" : "");
-  }
-
-  function pauseCountdown() {
-    clearInterval(tick);
-    const note = document.querySelector(".gb-redirect");
-    if (note) note.style.display = "none";
-  }
-
-  // Pause auto-redirect when user starts typing
-  txt.addEventListener("focus", pauseCountdown);
-
-  submitBtn.addEventListener("click", () => {
-    const value = (txt.value || "").trim();
-    if (!value) {
-      showMsg("Please write something or click Skip.", false);
-      return;
-    }
-    pauseCountdown();
-    submitBtn.disabled = true;
-    skipBtn.disabled = true;
-    txt.disabled = true;
-
-    // Open user's mail client with pre-filled message to MECULS
-    const subject = encodeURIComponent("Goodbye feedback");
-    const body    = encodeURIComponent(value + "\n\n(Sent from MECULS goodbye page.)");
-    const mailto  = "mailto:hello@meculs.com?subject=" + subject + "&body=" + body;
-
-    // Try opening mail client. We can't detect success reliably, so we
-    // optimistically thank the user and redirect after a moment.
-    window.location.href = mailto;
-
-    showMsg("Thank you. Your mail app should open shortly.", true);
-
-    setTimeout(() => {
-      if (!redirected) {
-        redirected = true;
-        window.location.href = "https://meculs.com/";
-      }
-    }, 4000);
-  });
-
-  skipBtn.addEventListener("click", () => {
-    pauseCountdown();
-    if (!redirected) {
-      redirected = true;
-      window.location.href = "https://meculs.com/";
-    }
-  });
-})();
-</script>
+<script src="js/pages/goodbye.js"></script>
 
 </body>
 </html>

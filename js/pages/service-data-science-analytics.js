@@ -1,0 +1,1 @@
+(function(){try{var c=function(){document.querySelectorAll(".dx-flow").forEach(function(w){w.scrollLeft=(w.scrollWidth-w.clientWidth)/2})};c();window.addEventListener("load",c)}catch(e){}})();

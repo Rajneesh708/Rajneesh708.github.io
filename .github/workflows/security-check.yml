@@ -1,0 +1,33 @@
+name: Security Check
+
+# Runs on every push and every Monday. If it fails the run turns red and
+# GitHub emails you, so a page that breaks the security rules is caught.
+# Added 2026-11-18.
+#
+# Checks (see tools/security_check.py):
+#   1. Every page has the site-wide Content-Security-Policy from tools/csp-policy.txt
+#   2. No inline <script> code and no inline onclick=/onload=/onerror= attributes
+#      (a page that has them will silently lose that code on the live site)
+#   3. Outside scripts come only from the allowed services
+#   4. The Supabase library is loaded from vendor/, never from a CDN
+
+on:
+  push:
+  schedule:
+    - cron: '30 4 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  security:
+    name: Check Content-Security-Policy and inline code
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Get the website files
+        uses: actions/checkout@v4
+
+      - name: Run the security check
+        run: python3 tools/security_check.py

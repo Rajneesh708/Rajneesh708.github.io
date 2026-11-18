@@ -4,6 +4,8 @@
   <link rel="canonical" href="https://meculs.com/settings.html">
   <meta name="robots" content="noindex, nofollow">
   <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://challenges.cloudflare.com https://accounts.google.com/gsi/client https://checkout.razorpay.com https://*.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.google.com/gsi/style; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://fjxcphhhddfwrlkpshyw.supabase.co https://*.googleusercontent.com https://*.google-analytics.com https://*.googletagmanager.com https://*.razorpay.com; connect-src 'self' https://fjxcphhhddfwrlkpshyw.supabase.co https://meculs-payment.vercel.app https://*.razorpay.com https://accounts.google.com/gsi/ https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src 'self' https://challenges.cloudflare.com https://accounts.google.com/gsi/ https://*.razorpay.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <script src="js/img-fallback.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Settings &ndash; MECULS</title>
 
@@ -678,7 +680,7 @@
       <a href="dashboard.html" class="st-top__brand" aria-label="MECULS">
         <img src="images/logo/MECULS-gold-white-bold.png" alt="MECULS"
              class="st-top__logo"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+             data-fallback="next-inline">
         <span class="st-top__brand-text" style="display:none">MECULS</span>
       </a>
       <a href="dashboard.html" class="st-top__back">← Back to dashboard</a>
@@ -1045,7 +1047,7 @@
 </div>
 
 <!-- Supabase + helpers -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="vendor/supabase-js-2.119.0.js"></script>
 <script src="config.js?v=15"></script>
 <script src="mc_storage.js?v=2"></script>
 <script src="mc_supabase.js?v=4"></script>

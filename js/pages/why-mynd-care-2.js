@@ -1,0 +1,1 @@
+(function(){try{var w=document.querySelector(".mc-seed-svg-wrap");if(w){var c=function(){w.scrollLeft=(w.scrollWidth-w.clientWidth)/2};c();window.addEventListener("load",c)}}catch(e){}})();

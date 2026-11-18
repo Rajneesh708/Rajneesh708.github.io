@@ -798,3 +798,39 @@ body {
   .gf-brand { grid-column: 1 / -1; }
   .gf-group--services { grid-column: 1 / -1; }
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   ENQUIRY BUTTONS on service pages (18 Nov 2026)
+   Moved from inline style="" + onmouseover/onmouseout attributes,
+   which a strict Content-Security-Policy does not allow.
+   Same colours, sizes and hover movement as before.
+════════════════════════════════════════════════════════════════════ */
+a.mc-enq-btn {
+  display: inline-flex;
+  align-items: center;
+  background: #2f3b2c;
+  color: #fdfcf7;
+  font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 600;
+  border-radius: 3px;
+  text-decoration: none;
+  transition: background 0.18s, transform 0.1s;
+}
+a.mc-enq-btn:hover,
+a.mc-enq-btn:focus-visible {
+  background: #6b552c;
+  transform: translateY(-1px);
+}
+a.mc-enq-btn--sm {
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  padding: 0.7rem 1.4rem;
+  white-space: nowrap;
+}
+a.mc-enq-btn--lg {
+  gap: 0.5rem;
+  font-size: 0.92rem;
+  letter-spacing: 0.03em;
+  padding: 0.9rem 1.8rem;
+}

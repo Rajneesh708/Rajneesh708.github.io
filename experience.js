@@ -427,7 +427,7 @@ function addProject() {
     <div class="field-group">
       <label class="field-label">Project Name (Max. 300 characters) <span class="required">*</span></label>
       <textarea class="field-textarea" maxlength="300" required
-        oninput="updateExpCounter(this,'pname_${ExpState.projectCount}')"></textarea>
+        data-counter="pname_${ExpState.projectCount}"></textarea>
       <div class="char-counter-out" id="pname_${ExpState.projectCount}">0 / 300</div>
     </div>
 
@@ -444,21 +444,21 @@ function addProject() {
     <div class="field-group">
       <label class="field-label">What was the ask? (Max. 300 characters) <span class="required">*</span></label>
       <textarea class="field-textarea" maxlength="300" required
-        oninput="updateExpCounter(this,'ask_${ExpState.projectCount}')"></textarea>
+        data-counter="ask_${ExpState.projectCount}"></textarea>
       <div class="char-counter-out" id="ask_${ExpState.projectCount}">0 / 300</div>
     </div>
 
     <div class="field-group">
       <label class="field-label">What was your role? (Max. 1,000 characters) <span class="required">*</span></label>
       <textarea class="field-textarea" maxlength="1000" required
-        oninput="updateExpCounter(this,'role_${ExpState.projectCount}')"></textarea>
+        data-counter="role_${ExpState.projectCount}"></textarea>
       <div class="char-counter-out" id="role_${ExpState.projectCount}">0 / 1,000</div>
     </div>
 
     <div class="field-group">
       <label class="field-label">What was the end deliverable? (Max. 1,000 characters) <span class="required">*</span></label>
       <textarea class="field-textarea" maxlength="1000" required
-        oninput="updateExpCounter(this,'deliv_${ExpState.projectCount}')"></textarea>
+        data-counter="deliv_${ExpState.projectCount}"></textarea>
       <div class="char-counter-out" id="deliv_${ExpState.projectCount}">0 / 1,000</div>
     </div>
   `;
@@ -475,6 +475,15 @@ function updateExpCounter(el, id) {
       ? max.replace(/\B(?=(\d{3})+(?!\d))/g, ",") : max);
   }
 }
+
+/* Character counters for project fields (added dynamically).
+   One listener for the whole page instead of inline oninput="..."
+   attributes, which the site's Content-Security-Policy blocks. */
+document.addEventListener("input", function (e) {
+  if (e.target && e.target.matches && e.target.matches("[data-counter]")) {
+    updateExpCounter(e.target, e.target.getAttribute("data-counter"));
+  }
+});
 
 /* ============================================================
    AUTO-GROW TEXTAREAS

@@ -1,8 +1,8 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://challenges.cloudflare.com https://accounts.google.com/gsi/client https://checkout.razorpay.com https://*.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.google.com/gsi/style; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://fjxcphhhddfwrlkpshyw.supabase.co https://*.googleusercontent.com https://*.google-analytics.com https://*.googletagmanager.com https://*.razorpay.com; connect-src 'self' https://fjxcphhhddfwrlkpshyw.supabase.co https://meculs-payment.vercel.app https://*.razorpay.com https://accounts.google.com/gsi/ https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src 'self' https://challenges.cloudflare.com https://accounts.google.com/gsi/ https://*.razorpay.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
   <title>Executive Coaching & Leadership Development | MECULS</title>
@@ -105,7 +105,7 @@
   <link rel="preload" as="image" href="images/home/home-hero.jpg" imagesrcset="images/home/home-hero-800.jpg 606w, images/home/home-hero.jpg 1200w" imagesizes="(max-width: 900px) 92vw, 560px" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Archivo:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Archivo:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Archivo:wght@300;400;500;600;700&display=swap"></noscript></noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Archivo:wght@300;400;500;600;700&display=swap">
   <link rel="stylesheet" href="global.css">
 
   <style>
@@ -2010,26 +2010,7 @@
 </div><!-- /.page -->
 
 <script src="global.js"></script>
-<script>
-(function () {
-  'use strict';
-  /* Scroll reveal for .rev elements */
-  var els = document.querySelectorAll('.rev');
-  if (!('IntersectionObserver' in window) || els.length === 0) {
-    els.forEach(function (el) { el.classList.add('vis'); });
-    return;
-  }
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (e.isIntersecting) {
-        e.target.classList.add('vis');
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-  els.forEach(function (el) { io.observe(el); });
-})();
-</script>
+<script src="js/pages/index.js"></script>
 
 </body>
 </html>

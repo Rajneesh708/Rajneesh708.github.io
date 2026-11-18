@@ -546,21 +546,21 @@ function addProject(containerId) {
     <div class="field-group">
       <label class="field-label">What was the project ask? (Max 300 characters) <span class="required">*</span></label>
       <textarea class="field-textarea" maxlength="300" required
-        oninput="updateCharCount(this)"></textarea>
+        data-charcount></textarea>
       <div class="char-counter"><span>0</span> / 300</div>
     </div>
 
     <div class="field-group">
       <label class="field-label">What was your role? (Max 1,000 characters) <span class="required">*</span></label>
       <textarea class="field-textarea" maxlength="1000" required
-        oninput="updateCharCount(this)"></textarea>
+        data-charcount></textarea>
       <div class="char-counter"><span>0</span> / 1,000</div>
     </div>
 
     <div class="field-group">
       <label class="field-label">What was the end deliverable you delivered? (Max 1,000 characters) <span class="required">*</span></label>
       <textarea class="field-textarea" maxlength="1000" required
-        oninput="updateCharCount(this)"></textarea>
+        data-charcount></textarea>
       <div class="char-counter"><span>0</span> / 1,000</div>
     </div>
   `;
@@ -572,6 +572,15 @@ function updateCharCount(textarea) {
   const counter = textarea.nextElementSibling?.querySelector("span");
   if (counter) counter.textContent = textarea.value.length;
 }
+
+/* Character counters for project textareas (added dynamically).
+   One listener for the whole page instead of inline oninput="..."
+   attributes, which the site's Content-Security-Policy blocks. */
+document.addEventListener("input", function (e) {
+  if (e.target && e.target.matches && e.target.matches("textarea[data-charcount]")) {
+    updateCharCount(e.target);
+  }
+});
 
 /* ============================================================
    DEPENDENCY LOGIC
